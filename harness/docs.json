@@ -1,0 +1,200 @@
+[
+  {
+    "path": ".github/pull_request_template.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "AGENTS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "ARCHITECTURE.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "CLAUDE.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "README.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "crates/app/AGENTS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "crates/domain/AGENTS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "crates/engine/AGENTS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/ADOPTING.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/DRIVER.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/ENGINEERING.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/EVALUATION.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/HARNESS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/MAINTENANCE.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/PRODUCT.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/QUALITY.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/READINESS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/REGRESSIONS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/SECURITY.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/TESTING.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/decisions/0001-harness-first.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/plans/README.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/plans/TEMPLATE.md",
+    "owner": "maintainers",
+    "status": "draft",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/plans/completed/0002-evaluable-harness.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/plans/completed/0003-observable-product.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; acceptance evidence recorded in plan"
+  },
+  {
+    "path": "docs/plans/tech-debt.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/regressions/0001-strict-unit-commands.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/regressions/TEMPLATE.md",
+    "owner": "maintainers",
+    "status": "draft",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/skills/investigate.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "experiments/AGENTS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "experiments/README.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "experiments/gepa/README.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "xtask/AGENTS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  }
+]

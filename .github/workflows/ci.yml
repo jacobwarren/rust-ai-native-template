@@ -1,0 +1,92 @@
+name: verify
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Install pinned toolchain
+        run: rustup show active-toolchain
+      - name: Verify
+        env:
+          RUSTDOCFLAGS: -D warnings
+        shell: bash
+        run: |
+          mkdir -p target/verification
+          cargo xtask check ci > target/verification/ci.json
+          cat target/verification/ci.json
+      - name: Qualify template scope against this checkout
+        run: cargo xtask release template --report target/verification/ci.json > target/verification/readiness.json
+      - name: Preserve evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: harness-${{ matrix.os }}
+          path: |
+            target/harness/runs/
+            target/verification/
+          retention-days: 7
+          if-no-files-found: ignore
+  experiment-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned Rust toolchain
+        run: rustup show active-toolchain
+      - name: Install optional experiment dependencies
+        run: python -m pip install -r experiments/gepa/requirements.lock
+      - name: Test evaluator and real GEPA API with scripted agents
+        shell: bash
+        run: |
+          mkdir -p target/verification
+          python -m unittest discover -s experiments/tests -v 2>&1 | tee target/verification/experiment-tests.log
+      - name: Demonstrate independent Rust task acceptance
+        run: python -m experiments.evaluator.demo --output target/experiments/ci-demo
+      - name: Preserve experiment evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: experiment-contracts
+          path: |
+            target/verification/
+            target/experiments/ci-demo/demo-summary.json
+            target/experiments/ci-demo/trials/
+          retention-days: 7
+          if-no-files-found: ignore
+  required:
+    if: always()
+    needs: [verify, experiment-contracts]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every verification job
+        env:
+          RUST_RESULT: ${{ needs.verify.result }}
+          EXPERIMENT_RESULT: ${{ needs.experiment-contracts.result }}
+        run: |
+          test "$RUST_RESULT" = success
+          test "$EXPERIMENT_RESULT" = success

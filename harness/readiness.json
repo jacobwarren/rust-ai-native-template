@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "requirements": [
+    {
+      "id": "driver",
+      "implementation": [
+        "crates/engine/src/protocol.rs",
+        "crates/app/src/driver.rs"
+      ],
+      "tests": [
+        "discovery_examples_are_real_commands_and_capture_replays",
+        "strict_requests_and_nested_commands_fail_without_mutation"
+      ],
+      "workflows": [
+        "script-parity",
+        "rejected-edit"
+      ]
+    },
+    {
+      "id": "state",
+      "implementation": [
+        "crates/domain/src/board.rs",
+        "crates/engine/src/lib.rs"
+      ],
+      "tests": [
+        "generated_edits_match_reference_model_and_replay",
+        "failed_replay_and_invalid_edit_preserve_all_observable_state"
+      ],
+      "workflows": [
+        "replay-atomicity"
+      ]
+    },
+    {
+      "id": "persistence",
+      "implementation": [
+        "crates/engine/src/store.rs"
+      ],
+      "tests": [
+        "store::tests::roundtrip_preserves_state_journal_and_undo",
+        "store::tests::failures_before_replace_preserve_committed_bytes",
+        "store::tests::abrupt_process_exit_reopens_last_commit_and_ignores_orphan",
+        "store::tests::error_after_replace_reports_uncertainty_instead_of_false_rollback"
+      ],
+      "workflows": [
+        "board-lifecycle"
+      ]
+    },
+    {
+      "id": "evidence",
+      "implementation": [
+        "xtask/src/golden.rs",
+        "xtask/src/readiness.rs"
+      ],
+      "tests": [
+        "golden::tests::missing_and_changed_baselines_fail_without_writing_source",
+        "readiness_rejects_stale_incomplete_and_missing_workflow_evidence",
+        "workflow_grader_rejects_wrong_state_and_missing_golden_from_successful_app"
+      ],
+      "workflows": [
+        "board-lifecycle",
+        "rejected-edit"
+      ]
+    }
+  ],
+  "scopes": {
+    "template": [
+      "driver",
+      "state",
+      "persistence",
+      "evidence"
+    ],
+    "product": [
+      "driver",
+      "state",
+      "persistence",
+      "evidence"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "agent_identity": "REPLACE: exact coding agent and model version",
+  "agent": {
+    "argv": [
+      "/absolute/path/to/python",
+      "/absolute/path/to/starter/experiments/evaluator/stdin_agent.py",
+      "--",
+      "/absolute/path/to/your-agent",
+      "REPLACE_WITH_INSTALLED_STDIN_MODE"
+    ],
+    "timeout_seconds": 600
+  },
+  "tasks": [
+    {
+      "id": "real-task-001",
+      "repo": "/absolute/path/to/product",
+      "commit": "REPLACE_WITH_FULL_COMMIT_HASH",
+      "prompt": "REPLACE with independently observable acceptance criteria",
+      "editable_files": [
+        "src/lib.rs"
+      ],
+      "regression": [
+        {
+          "argv": [
+            "cargo",
+            "test",
+            "--locked"
+          ],
+          "timeout_seconds": 300
+        }
+      ],
+      "grader": "/absolute/control/graders/task-001.py",
+      "grader_timeout_seconds": 300
+    }
+  ]
+}

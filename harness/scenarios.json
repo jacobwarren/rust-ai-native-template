@@ -1,0 +1,83 @@
+[
+  {
+    "id": "greeting",
+    "args": [
+      "greet",
+      "Ada"
+    ],
+    "exit_code": 0,
+    "stdout_json": {
+      "message": "Hello, Ada!"
+    },
+    "stderr_event": "greet_completed"
+  },
+  {
+    "id": "unicode",
+    "args": [
+      "greet",
+      "  Zoë  "
+    ],
+    "exit_code": 0,
+    "stdout_json": {
+      "message": "Hello, Zoë!"
+    },
+    "stderr_event": "greet_completed"
+  },
+  {
+    "id": "empty",
+    "args": [
+      "greet",
+      "   "
+    ],
+    "exit_code": 2,
+    "stdout_json": {
+      "error": {
+        "code": "invalid_name",
+        "message": "name must not be empty"
+      }
+    },
+    "stderr_event": "request_rejected"
+  },
+  {
+    "id": "control",
+    "args": [
+      "greet",
+      "a\nb"
+    ],
+    "exit_code": 2,
+    "stdout_json": {
+      "error": {
+        "code": "invalid_name",
+        "message": "name must not contain control characters"
+      }
+    },
+    "stderr_event": "request_rejected"
+  },
+  {
+    "id": "long",
+    "args": [
+      "greet",
+      "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    ],
+    "exit_code": 2,
+    "stdout_json": {
+      "error": {
+        "code": "invalid_name",
+        "message": "name must be at most 80 Unicode scalar values"
+      }
+    },
+    "stderr_event": "request_rejected"
+  },
+  {
+    "id": "usage",
+    "args": [],
+    "exit_code": 2,
+    "stdout_json": {
+      "error": {
+        "code": "usage",
+        "message": "usage: starter-app greet <name>"
+      }
+    },
+    "stderr_event": "request_rejected"
+  }
+]

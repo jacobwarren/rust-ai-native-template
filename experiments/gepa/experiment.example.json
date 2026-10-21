@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "train_suite": "train.json",
+  "validation_suite": "validation.json",
+  "seed_skill": "seed-skill.md",
+  "reflection_model": "REPLACE_WITH_PROVIDER_AND_MODEL",
+  "max_evals": 30,
+  "max_proposals": 5,
+  "admission_seconds": 3600,
+  "max_reflection_cost_usd": 5.0
+}

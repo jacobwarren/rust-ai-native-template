@@ -1,0 +1,38 @@
+[
+  {
+    "id": "product-acceptance",
+    "rank": 0,
+    "state": "open",
+    "blocks": [
+      "product"
+    ],
+    "impact": "The example does not establish acceptance for an adopted product.",
+    "evidence": "docs/PRODUCT.md identifies disposable example behavior.",
+    "next_action": "Define real user workflows, independent expected outcomes and supported platforms; replace example gates.",
+    "resolution": null
+  },
+  {
+    "id": "platform-qualification",
+    "rank": 1,
+    "state": "open",
+    "blocks": [
+      "product"
+    ],
+    "impact": "A local Linux run cannot qualify macOS, hardware, a GUI, or deployment infrastructure.",
+    "evidence": "Linux/macOS PR jobs are configured; platform and hosting results must be collected after adoption.",
+    "next_action": "Run the declared platform matrix and real user-entry-point smoke checks, then record a reviewed qualification document.",
+    "resolution": null
+  },
+  {
+    "id": "hosting-enforcement",
+    "rank": 2,
+    "state": "open",
+    "blocks": [
+      "product"
+    ],
+    "impact": "Local code cannot configure repository rulesets or guarantee reviewers cannot bypass required checks.",
+    "evidence": "This starter is delivered as an archive, without a hosted GitHub repository.",
+    "next_action": "Configure the documented required checks and protected baseline/policy review in the adopted repository.",
+    "resolution": null
+  }
+]

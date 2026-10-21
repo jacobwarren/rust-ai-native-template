@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "max_rust_lines": 400,
+  "layers": {
+    "domain": {
+      "dependencies": [],
+      "external": []
+    },
+    "runtime": {
+      "dependencies": [
+        "domain",
+        "engine"
+      ],
+      "external": [
+        "serde_json"
+      ]
+    },
+    "tooling": {
+      "dependencies": [],
+      "external": [
+        "serde",
+        "serde_json",
+        "sha2"
+      ]
+    },
+    "engine": {
+      "dependencies": [
+        "domain"
+      ],
+      "external": [
+        "serde",
+        "serde_json",
+        "sha2"
+      ]
+    }
+  },
+  "profiles": {
+    "fast": [
+      {
+        "id": "format",
+        "argv": [
+          "cargo",
+          "fmt",
+          "--all",
+          "--",
+          "--check"
+        ],
+        "timeout_seconds": 180
+      },
+      {
+        "id": "architecture",
+        "argv": [
+          "@self",
+          "architecture"
+        ],
+        "timeout_seconds": 180
+      },
+      {
+        "id": "docs",
+        "argv": [
+          "@self",
+          "docs"
+        ],
+        "timeout_seconds": 180
+      },
+      {
+        "id": "tests",
+        "argv": [
+          "cargo",
+          "test",
+          "--workspace",
+          "--locked"
+        ],
+        "timeout_seconds": 600
+      }
+    ],
+    "ci": [
+      {
+        "id": "format",
+        "argv": [
+          "cargo",
+          "fmt",
+          "--all",
+          "--",
+          "--check"
+        ],
+        "timeout_seconds": 180
+      },
+      {
+        "id": "architecture",
+        "argv": [
+          "@self",
+          "architecture"
+        ],
+        "timeout_seconds": 180
+      },
+      {
+        "id": "docs",
+        "argv": [
+          "@self",
+          "docs"
+        ],
+        "timeout_seconds": 180
+      },
+      {
+        "id": "clippy",
+        "argv": [
+          "cargo",
+          "clippy",
+          "--workspace",
+          "--all-targets",
+          "--all-features",
+          "--locked",
+          "--",
+          "-D",
+          "warnings",
+          "-F",
+          "unsafe-code",
+          "-D",
+          "clippy::todo",
+          "-D",
+          "clippy::dbg_macro",
+          "-D",
+          "clippy::unwrap_used",
+          "-D",
+          "clippy::expect_used",
+          "-D",
+          "clippy::panic",
+          "-D",
+          "clippy::unimplemented",
+          "-D",
+          "clippy::unreachable"
+        ],
+        "timeout_seconds": 600
+      },
+      {
+        "id": "tests",
+        "argv": [
+          "cargo",
+          "test",
+          "--workspace",
+          "--locked"
+        ],
+        "timeout_seconds": 600
+      },
+      {
+        "id": "rustdoc",
+        "argv": [
+          "cargo",
+          "doc",
+          "--workspace",
+          "--no-deps",
+          "--locked"
+        ],
+        "timeout_seconds": 300
+      },
+      {
+        "id": "scenarios",
+        "argv": [
+          "@self",
+          "scenario"
+        ],
+        "timeout_seconds": 420
+      },
+      {
+        "id": "workflows",
+        "argv": [
+          "@self",
+          "workflow"
+        ],
+        "timeout_seconds": 180
+      }
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+{"schema_version": 1, "id": 1, "action": {"method": "discover"}}
+{"schema_version": 1, "id": 2, "action": {"method": "execute", "command": {"command": "add", "title": "Review the change"}}}
+{"schema_version": 1, "id": 3, "action": {"method": "execute", "command": {"command": "complete", "id": 1}}}
+{"schema_version": 1, "id": 4, "action": {"method": "save"}}
+{"schema_version": 1, "id": 5, "action": {"method": "capture"}}

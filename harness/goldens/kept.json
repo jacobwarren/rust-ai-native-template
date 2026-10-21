@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Keep",
+      "done": false
+    }
+  ],
+  "next_id": 2,
+  "revision": 1,
+  "can_undo": true
+}

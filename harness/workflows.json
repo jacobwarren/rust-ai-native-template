@@ -1,0 +1,604 @@
+[
+  {
+    "id": "board-lifecycle",
+    "boundary": "process",
+    "criterion": "Create, complete, undo, save, exit, reopen and undo with preserved history",
+    "sessions": [
+      {
+        "transport": "stdin",
+        "requests": [
+          {
+            "schema_version": 1,
+            "id": 1,
+            "action": {
+              "method": "discover"
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 2,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "add",
+                "title": "Review"
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 3,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "add",
+                "title": "Zoë"
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 4,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "complete",
+                "id": 1
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 5,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "undo"
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 6,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "complete",
+                "id": 2
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 7,
+            "action": {
+              "method": "save"
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 8,
+            "action": {
+              "method": "capture"
+            }
+          }
+        ],
+        "exit_code": 0,
+        "expect": [
+          {
+            "kind": "fields",
+            "pointers": {
+              "/ok": true,
+              "/result/protocol_version": 1,
+              "/result/commands/0/id": "add",
+              "/result/persistence_available": true
+            }
+          },
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 2,
+              "ok": true,
+              "result": {
+                "id": 1
+              }
+            }
+          },
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 3,
+              "ok": true,
+              "result": {
+                "id": 2
+              }
+            }
+          },
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 4,
+              "ok": true,
+              "result": {
+                "id": 1
+              }
+            }
+          },
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 5,
+              "ok": true,
+              "result": {
+                "undone": true
+              }
+            }
+          },
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 6,
+              "ok": true,
+              "result": {
+                "id": 2
+              }
+            }
+          },
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 7,
+              "ok": true,
+              "result": {
+                "saved": true,
+                "revision": 5
+              }
+            }
+          },
+          {
+            "kind": "golden",
+            "path": "harness/goldens/lifecycle.json",
+            "pointer": "/result/snapshot"
+          }
+        ]
+      },
+      {
+        "transport": "stdin",
+        "requests": [
+          {
+            "schema_version": 1,
+            "id": 1,
+            "action": {
+              "method": "load"
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 2,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "undo"
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 3,
+            "action": {
+              "method": "inspect"
+            }
+          }
+        ],
+        "exit_code": 0,
+        "expect": [
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 1,
+              "ok": true,
+              "result": {
+                "tasks": [
+                  {
+                    "id": 1,
+                    "title": "Review",
+                    "done": false
+                  },
+                  {
+                    "id": 2,
+                    "title": "Zoë",
+                    "done": true
+                  }
+                ],
+                "next_id": 3,
+                "revision": 5,
+                "can_undo": true
+              }
+            }
+          },
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 2,
+              "ok": true,
+              "result": {
+                "undone": true
+              }
+            }
+          },
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 3,
+              "ok": true,
+              "result": {
+                "tasks": [
+                  {
+                    "id": 1,
+                    "title": "Review",
+                    "done": false
+                  },
+                  {
+                    "id": 2,
+                    "title": "Zoë",
+                    "done": false
+                  }
+                ],
+                "next_id": 3,
+                "revision": 6,
+                "can_undo": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rejected-edit",
+    "boundary": "process",
+    "criterion": "Rejected edits and unknown fields preserve state and undo history",
+    "sessions": [
+      {
+        "transport": "stdin",
+        "requests": [
+          {
+            "schema_version": 1,
+            "id": 1,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "add",
+                "title": "Keep"
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 2,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "complete",
+                "id": 99
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 3,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "add",
+                "title": "Bad",
+                "typo": true
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 4,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "undo",
+                "typo": true
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 5,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "add",
+                "title": "a\nb"
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 6,
+            "action": {
+              "method": "capture"
+            }
+          }
+        ],
+        "exit_code": 2,
+        "expect": [
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 1,
+              "ok": true,
+              "result": {
+                "id": 1
+              }
+            }
+          },
+          {
+            "kind": "fields",
+            "pointers": {
+              "/ok": false,
+              "/error/code": "invalid_task"
+            }
+          },
+          {
+            "kind": "fields",
+            "pointers": {
+              "/ok": false,
+              "/error/code": "invalid_request"
+            }
+          },
+          {
+            "kind": "fields",
+            "pointers": {
+              "/ok": false,
+              "/error/code": "invalid_request"
+            }
+          },
+          {
+            "kind": "fields",
+            "pointers": {
+              "/ok": false,
+              "/error/code": "invalid_title"
+            }
+          },
+          {
+            "kind": "golden",
+            "path": "harness/goldens/kept.json",
+            "pointer": "/result/snapshot"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "replay-atomicity",
+    "boundary": "process",
+    "criterion": "Replay fails atomically and valid journals reconstruct state including undo",
+    "sessions": [
+      {
+        "transport": "stdin",
+        "requests": [
+          {
+            "schema_version": 1,
+            "id": 1,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "add",
+                "title": "Keep"
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 2,
+            "action": {
+              "method": "replay",
+              "commands": [
+                {
+                  "command": "add",
+                  "title": "Replace"
+                },
+                {
+                  "command": "remove",
+                  "id": 99
+                }
+              ]
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 3,
+            "action": {
+              "method": "capture"
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 4,
+            "action": {
+              "method": "replay",
+              "commands": [
+                {
+                  "command": "add",
+                  "title": "A"
+                },
+                {
+                  "command": "remove",
+                  "id": 1
+                },
+                {
+                  "command": "undo"
+                }
+              ]
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 5,
+            "action": {
+              "method": "capture"
+            }
+          }
+        ],
+        "exit_code": 2,
+        "expect": [
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 1,
+              "ok": true,
+              "result": {
+                "id": 1
+              }
+            }
+          },
+          {
+            "kind": "fields",
+            "pointers": {
+              "/ok": false,
+              "/error/code": "replay_failed"
+            }
+          },
+          {
+            "kind": "golden",
+            "path": "harness/goldens/kept.json",
+            "pointer": "/result/snapshot"
+          },
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 4,
+              "ok": true,
+              "result": {
+                "tasks": [
+                  {
+                    "id": 1,
+                    "title": "A",
+                    "done": false
+                  }
+                ],
+                "next_id": 2,
+                "revision": 3,
+                "can_undo": true
+              }
+            }
+          },
+          {
+            "kind": "golden",
+            "path": "harness/goldens/replayed.json",
+            "pointer": "/result/snapshot"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "script-parity",
+    "boundary": "process",
+    "criterion": "File script adapter and stdin driver meet identical independently specified state expectations",
+    "sessions": [
+      {
+        "transport": "stdin",
+        "requests": [
+          {
+            "schema_version": 1,
+            "id": 1,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "add",
+                "title": "Keep"
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 2,
+            "action": {
+              "method": "capture"
+            }
+          }
+        ],
+        "exit_code": 0,
+        "expect": [
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 1,
+              "ok": true,
+              "result": {
+                "id": 1
+              }
+            }
+          },
+          {
+            "kind": "golden",
+            "path": "harness/goldens/kept.json",
+            "pointer": "/result/snapshot"
+          }
+        ]
+      },
+      {
+        "transport": "script",
+        "requests": [
+          {
+            "schema_version": 1,
+            "id": 1,
+            "action": {
+              "method": "execute",
+              "command": {
+                "command": "add",
+                "title": "Keep"
+              }
+            }
+          },
+          {
+            "schema_version": 1,
+            "id": 2,
+            "action": {
+              "method": "capture"
+            }
+          }
+        ],
+        "exit_code": 0,
+        "expect": [
+          {
+            "kind": "exact",
+            "value": {
+              "schema_version": 1,
+              "id": 1,
+              "ok": true,
+              "result": {
+                "id": 1
+              }
+            }
+          },
+          {
+            "kind": "golden",
+            "path": "harness/goldens/kept.json",
+            "pointer": "/result/snapshot"
+          }
+        ]
+      }
+    ]
+  }
+]
