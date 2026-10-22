@@ -64,6 +64,14 @@
         "timeout_seconds": 180
       },
       {
+        "id": "coordination",
+        "argv": [
+          "@self",
+          "coordination"
+        ],
+        "timeout_seconds": 30
+      },
+      {
         "id": "tests",
         "argv": [
           "cargo",
@@ -101,6 +109,14 @@
           "docs"
         ],
         "timeout_seconds": 180
+      },
+      {
+        "id": "coordination",
+        "argv": [
+          "@self",
+          "coordination"
+        ],
+        "timeout_seconds": 30
       },
       {
         "id": "clippy",

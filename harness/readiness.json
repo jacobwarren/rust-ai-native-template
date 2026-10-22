@@ -60,6 +60,26 @@
         "board-lifecycle",
         "rejected-edit"
       ]
+    },
+    {
+      "id": "completion",
+      "implementation": [
+        "xtask/src/completion.rs",
+        "xtask/src/tracking.rs",
+        "xtask/src/transitions.rs",
+        "scripts/agent-complete.sh"
+      ],
+      "tests": [
+        "completion_requires_acceptance_and_fresh_evidence_but_not_closing_unrelated_gaps",
+        "partial_and_blocked_handoffs_are_honest_and_do_not_claim_completion",
+        "gap_transitions_require_exact_rationale_and_verified_closure",
+        "hook_allows_register_repair_handoff_without_allowing_pr_or_completion",
+        "hook_rejects_unverified_completion_and_accepts_explicit_partial_handoff",
+        "prompt_only_work_needs_no_ticket_or_new_gap",
+        "stop_hook_returns_specific_questions_for_missing_review",
+        "material_discovery_requires_durable_record_but_can_remain_open_after_task"
+      ],
+      "workflows": []
     }
   ],
   "scopes": {
@@ -67,13 +87,15 @@
       "driver",
       "state",
       "persistence",
-      "evidence"
+      "evidence",
+      "completion"
     ],
     "product": [
       "driver",
       "state",
       "persistence",
-      "evidence"
+      "evidence",
+      "completion"
     ]
   }
 }

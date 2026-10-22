@@ -15,7 +15,14 @@ Start here. This is a map; follow the linked source for the current task.
    when behavior changes. Tests must assert an independent expected result.
 6. Run targeted checks while editing, then `cargo xtask check ci` before handoff.
    Cite the report path, checks actually run, and remaining uncertainty.
-7. Update affected contracts and docs in the same change. New Markdown files
+7. Reconcile task records and gaps at task start, material discovery, milestone,
+   and handoff. Follow [completion and gap discovery guidance](docs/COMPLETION.md).
+   Before claiming done, run `cargo xtask complete --task ID --base REV --report PATH`.
+   Partial/blocked work uses handoff with explicit remaining actions; do not force
+   broader gaps closed. Answer the four task-review questions before stopping;
+   "no material gaps discovered" is valid. Record durable findings during work,
+   not transient failures already fixed. Finalize records before CI; put reports under target.
+8. Update affected contracts and docs in the same change. New Markdown files
    must be registered in `harness/docs.json`.
 
 ## Navigation

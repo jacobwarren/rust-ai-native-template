@@ -5,10 +5,7 @@ use crate::{
 };
 use serde::Deserialize;
 use serde_json::{Value, json};
-use std::{
-    collections::BTreeSet,
-    path::{Component, Path},
-};
+use std::{collections::BTreeSet, path::Path};
 
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -25,48 +22,8 @@ struct Requirement {
     tests: Vec<String>,
     workflows: Vec<String>,
 }
-#[derive(Deserialize, serde::Serialize)]
-#[serde(deny_unknown_fields)]
-struct Gap {
-    id: String,
-    rank: u32,
-    state: String,
-    blocks: Vec<String>,
-    impact: String,
-    evidence: String,
-    next_action: String,
-    resolution: Option<String>,
-}
-
 fn local_file(root: &Path, name: &str) -> bool {
-    let p = Path::new(name);
-    !p.as_os_str().is_empty()
-        && p.components().all(|c| matches!(c, Component::Normal(_)))
-        && root.join(p).is_file()
-}
-
-fn gaps(root: &Path) -> Result<Vec<Gap>> {
-    let mut gaps: Vec<Gap> = config::read(&root.join("harness/gaps.json"))?;
-    let mut ids = BTreeSet::new();
-    for gap in &gaps {
-        if !valid_id(&gap.id)
-            || !ids.insert(&gap.id)
-            || !["open", "closed"].contains(&gap.state.as_str())
-            || gap.impact.trim().is_empty()
-            || gap.evidence.trim().is_empty()
-            || gap.next_action.trim().is_empty()
-            || (gap.state == "closed"
-                && !gap.resolution.as_ref().is_some_and(|p| local_file(root, p)))
-        {
-            return Err("gap needs unique id, state, impact, evidence, next action and a checked-in resolution when closed".into());
-        }
-    }
-    gaps.sort_by_key(|g| g.rank);
-    Ok(gaps)
-}
-
-pub fn list_gaps(root: &Path) -> Result<Value> {
-    Ok(json!({"ok":true,"gaps":gaps(root)?}))
+    crate::tracking::local_path(name) && root.join(name).is_file()
 }
 
 pub fn assess(root: &Path, evidence: Option<&Path>, release: Option<&str>) -> Result<Value> {
@@ -81,10 +38,11 @@ pub fn assess(root: &Path, evidence: Option<&Path>, release: Option<&str>) -> Re
     for r in &policy.requirements {
         if !valid_id(&r.id)
             || r.implementation.is_empty()
-            || r.tests.is_empty()
-            || r.workflows.is_empty()
+            || (r.tests.is_empty() && r.workflows.is_empty())
         {
-            return Err("requirement needs id, implementation, tests and workflows".into());
+            return Err(
+                "requirement needs id, implementation and at least one test or workflow".into(),
+            );
         }
     }
     for (scope, ids) in &policy.scopes {
@@ -95,13 +53,10 @@ pub fn assess(root: &Path, evidence: Option<&Path>, release: Option<&str>) -> Re
     if release.is_some_and(|s| !policy.scopes.contains_key(s)) {
         return Err("unknown release scope".into());
     }
-    let gaps = gaps(root)?;
-    if gaps
-        .iter()
-        .any(|g| g.blocks.iter().any(|s| !policy.scopes.contains_key(s)))
-    {
-        return Err("gap names unknown release scope".into());
-    }
+    let (gaps, gap_register_error) = match crate::tracking::load(root) {
+        Ok(gaps) => (gaps, None),
+        Err(e) => (Vec::new(), Some(e.to_string())),
+    };
     let mut errors = Vec::new();
     let mut passed_tests = BTreeSet::new();
     let mut passed_workflows = BTreeSet::new();
@@ -137,9 +92,9 @@ pub fn assess(root: &Path, evidence: Option<&Path>, release: Option<&str>) -> Re
             "missing_tests":missing_tests,"missing_workflows":missing_workflows}));
     }
     let scopes: Vec<_> = policy.scopes.iter().map(|(scope, ids)| {
-        let blockers: Vec<_> = gaps.iter().filter(|g| g.state == "open" && g.blocks.contains(scope)).map(|g| &g.id).collect();
+        let blockers: Vec<_> = gaps.iter().filter(|g| (g.state == "open" || !g.requirements.iter().all(|id| requirements.iter().any(|r| r["id"] == *id && r["state"] == "verified"))) && g.blocks.contains(scope)).map(|g| &g.id).collect();
         let verified = ids.iter().all(|id| requirements.iter().any(|r| r["id"] == *id && r["state"] == "verified"));
-        json!({"id":scope,"state":if verified && blockers.is_empty() {"release_ready"} else {"blocked"},"blockers":blockers,"required":ids})
+        json!({"id":scope,"state":if verified && blockers.is_empty() && gap_register_error.is_none() {"release_ready"} else {"blocked"},"blockers":blockers,"required":ids})
     }).collect();
     let ok = release.is_none_or(|scope| {
         scopes
@@ -148,7 +103,7 @@ pub fn assess(root: &Path, evidence: Option<&Path>, release: Option<&str>) -> Re
     });
     Ok(
         json!({"ok":ok,"kind":"readiness","evidence":evidence,"source_sha256":repo::fingerprint(root)?,
-        "requirements":requirements,"scopes":scopes,"evidence_errors":errors,"scope":"Local evidence for the named scope only. No deployment, signature, hosting policy or cross-platform attestation."}),
+        "requirements":requirements,"scopes":scopes,"evidence_errors":errors,"gap_register_error":gap_register_error,"scope":"Local evidence for the named scope only. No deployment, signature, hosting policy or cross-platform attestation."}),
     )
 }
 

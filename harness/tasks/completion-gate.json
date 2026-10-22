@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "id": "completion-gate",
+  "work_item": "docs/plans/completed/0005-focused-gap-review.md",
+  "status": "complete",
+  "requirements": [
+    "completion",
+    "evidence"
+  ],
+  "related_gaps": [
+    {
+      "id": "product-acceptance",
+      "disposition": "unaffected",
+      "rationale": "This delivers template tooling; adopted-product acceptance still needs definition."
+    },
+    {
+      "id": "platform-qualification",
+      "disposition": "unaffected",
+      "rationale": "Local Linux verification cannot close hosted macOS or adopted-platform qualification."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "The repository workflow is extended, but hosting rules and reviewer authority still require configuration."
+    }
+  ],
+  "gap_review": "Reviewed all three current gaps and retained their product blocking scopes. This task establishes template completion tooling, not product release readiness.",
+  "discoveries": [
+    {
+      "summary": "Tracker-specific snapshot semantics add unnecessary coupling for the default template; removed them within this assignment.",
+      "record": "docs/plans/completed/0005-focused-gap-review.md"
+    },
+    {
+      "summary": "Discovery review must permit no findings and out-of-scope open gaps; mechanical completeness of a checklist does not prove exhaustive investigation.",
+      "record": "docs/COMPLETION.md"
+    }
+  ],
+  "discovery_review": "Reviewed completion, gap loading, hooks, tests and operating docs. Addressed the discovered coupling in this task; retained all three pre-existing adoption gaps without inventing new blockers.",
+  "documentation": {
+    "updated": [
+      "docs/COMPLETION.md",
+      "docs/READINESS.md",
+      "docs/ADOPTING.md",
+      "docs/HARNESS.md",
+      "docs/MAINTENANCE.md",
+      "docs/plans/TEMPLATE.md",
+      "AGENTS.md",
+      "ARCHITECTURE.md",
+      "README.md",
+      ".github/pull_request_template.md",
+      "docs/plans/completed/0005-focused-gap-review.md"
+    ],
+    "rationale": "Documented engineering gap discovery, task checkpoints, opaque optional references, no-findings outcomes, schema migration and bounded maintenance review."
+  },
+  "summary": "Added transition and completion checks with task-scoped discovery review, opaque optional work references and an opt-in stop hook; removed default tracker snapshot coupling.",
+  "remaining": [
+    "Activate the opt-in hook in the chosen agent host.",
+    "Configure hosted required checks and independent review; local receipts are not approval.",
+    "Tracker synchronization, if desired, is a separate team integration; the core performs no remote work-item operations."
+  ],
+  "review": {
+    "acceptance": "Implemented optional opaque work references, repository engineering gaps, scoped completion and the four-question checkpoint. Named acceptance checks cover valid no-gap tasks and rejection of missing reconciliation.",
+    "verification": "Focused admission and transition tests pass. No additional pre-existing implementation failure was found. Final full-CI evidence is required by the completion command before a success claim.",
+    "assumptions": "No external ticket availability is assumed. Hook host behavior and hosted reviewer authority remain adoption responsibilities documented in the existing gaps and guide.",
+    "coverage": "Added coverage for prompt-only work, opaque tickets, missing review answers, durable discoveries, retained v1 history and explicit legacy external-mode rejection. Linux is verified locally; other platforms remain under the existing qualification gap."
+  }
+}

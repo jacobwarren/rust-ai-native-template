@@ -72,3 +72,11 @@ harness/gaps.json blockers with checked-in resolution evidence. Keep template an
 product claims separate. Set the workflow's required job as a required status and
 assign real reviewers to policies, baselines, workflows and gap closure. The
 archive cannot configure your hosting settings. See [READINESS.md](READINESS.md).
+
+## Work tracking and agent completion
+
+Keep task coordination wherever your team works. The task record may contain an
+opaque work_item reference; prompts need no ticket. Keep only material engineering
+shortcomings in the project gap register. Use the task-review checkpoint and
+optional stop hook before completion claims. See [COMPLETION.md](COMPLETION.md).
+Live tracker synchronization is an optional team integration outside the core.

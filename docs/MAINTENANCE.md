@@ -37,3 +37,35 @@ A scheduled green build establishes structural health, not semantic freshness.
 Use cargo xtask gaps to select the highest-impact applicable unresolved problem.
 Retain minimized reproducers using [REGRESSIONS.md](REGRESSIONS.md). Gap closure
 needs a checked-in resolution; recompute readiness with fresh full-CI evidence.
+
+## Task and gap reconciliation
+
+At task start, material discovery, milestone completion and handoff, reconcile
+relevant gaps and durable discoveries. Structural scheduling does not discover
+new blockers or establish semantic truth. Use [COMPLETION.md](COMPLETION.md) for
+transition receipts and bounded task review; do not rewrite every
+gap after each edit or re-verify historical tasks on every maintenance run.
+
+## Bounded gap discovery review
+
+Use a dedicated review task when broader discovery is wanted. Specify one area
+(for example persistence recovery), the requirements and paths to inspect, a time
+or scope budget, and the evidence to collect. The agent should:
+
+1. Read the relevant contracts and existing gaps, then exercise representative
+   success, rejection and recovery paths at the claimed runtime boundary.
+2. Investigate failures and suspicious assumptions; distinguish observed defects,
+   missing evidence and hypotheses. Preserve a reproducer where possible.
+3. Update existing gaps or record only material unresolved findings with impact,
+   evidence and next action. Report reviewed scope even when no findings result.
+4. Reconcile the review task and hand off remaining investigation explicitly.
+
+A useful assignment is: "Review persistence recovery against docs/DRIVER.md.
+Exercise interrupted saves and reopening the last committed state. Record
+reproducible shortcomings or missing evidence; do not expand into unrelated
+features or invent gaps to fill a quota. Report what you inspected and what
+remains unverified."
+
+Do not run this review on every stop hook. A scheduled review requires explicit
+scheduling and an agent runner; the existing scheduled workflow only runs
+structural checks. No automated semantic auditor is installed by this template.

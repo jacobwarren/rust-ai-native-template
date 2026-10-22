@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "id": "TASK-142",
+  "status": "partial",
+  "requirements": [
+    "evidence"
+  ],
+  "related_gaps": [
+    {
+      "id": "product-acceptance",
+      "disposition": "unaffected",
+      "rationale": "This harness task does not establish adopted-product acceptance."
+    }
+  ],
+  "gap_review": "Reviewed the ranked register and identified product-acceptance as related but unchanged.",
+  "discoveries": [],
+  "discovery_review": "Reviewed the relevant paths; no additional material discoveries.",
+  "documentation": {
+    "updated": [],
+    "rationale": "No documented behavior has changed yet."
+  },
+  "summary": "Assigned work is in progress; answer the task review before handoff.",
+  "remaining": [
+    "Implement the requested outcome and verify its named requirements."
+  ],
+  "review": {
+    "acceptance": "",
+    "verification": "",
+    "assumptions": "",
+    "coverage": ""
+  }
+}

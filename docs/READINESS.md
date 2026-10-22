@@ -8,9 +8,10 @@ Feature presence, verified behavior, and release readiness are distinct.
 - release_ready: every requirement in a named scope is verified and that scope
   has no open blocking gaps.
 
-harness/readiness.json registers requirements and scopes. harness/gaps.json is the
-ranked work list with impact, evidence, next action and blocking scopes. A closed
-gap needs a checked-in resolution document. Reviewers judge that resolution;
+harness/readiness.json registers requirements and scopes. harness/gaps.json is
+the project engineering gap register with impact, evidence, next action and blocking scopes. A closed
+gap needs a checked-in resolution document. Optional ticket references are opaque.
+Requirements linked to closed gaps must verify before their scope can release. Reviewers judge that resolution;
 file existence alone cannot prove its claims. Pick the highest-impact applicable
 open gap instead of inventing feature breadth work.
 
@@ -48,6 +49,14 @@ harness policy, workflows, baselines, readiness and gap-resolution changes; assi
 real owners using CODEOWNERS when the owners are known. Do not add fictitious
 usernames to the starter. Restrict bypass rights according to your team policy.
 
-No remote repository was supplied with this archive, so branch protection and
-remote CI qualification must be configured and observed after adoption. Keep the
+Branch protection and remote CI qualification must be configured and observed
+in the hosted repository. Keep the
 hosting-enforcement gap open until that has happened.
+
+## Gap transitions and task completion
+
+See [COMPLETION.md](COMPLETION.md) for consequential-transition receipts, task
+reconciliation, task review and opt-in stop hooks. PR CI checks
+changed task records as well as full verification. Partial handoffs may be valid
+without being complete; open product gaps remain release blockers. An invalid
+gap register blocks release even when local tests pass.

@@ -126,3 +126,27 @@ The product scope intentionally stays blocked until real product requirements,
 platform results and hosted enforcement are supplied. No paid model or deployment
 is part of a release-readiness check. CI exposes a final required status for the
 adopter to make mandatory in repository settings.
+
+## Task completion and project gaps
+
+Tasks can come from a prompt, plan or ticket. Optional work-item references are
+opaque: the harness never fetches or interprets Jira, Linear or GitHub state.
+`cargo xtask gaps` reads the known project engineering gaps; it does not generate
+findings or mirror a backlog. Agents investigate and record material shortcomings.
+
+Before stopping, review assigned acceptance, check failures, assumptions and
+missing coverage. Record discoveries or explicitly report none in the inspected
+scope. The opt-in scripts/agent-complete.sh hook checks this reconciliation and
+current evidence; it does not launch a broad audit or require new gaps.
+
+```sh
+mkdir -p target/verification
+cargo xtask gaps --base origin/main
+cargo xtask check ci > target/verification/ci.json
+cargo xtask complete --task TASK-142 --base origin/main --report target/verification/ci.json
+```
+
+Create a task record and review any transition receipts first. Completion is
+scoped to assigned work; release gates check the selected project scope. Use
+handoff for partial/blocked work. Read [the workflow](docs/COMPLETION.md) for
+schemas, discovery guidance, hook setup and authority limits.

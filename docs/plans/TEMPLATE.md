@@ -75,3 +75,10 @@ valid outcome; it must not be relabeled a successful feature.
 
 Date, changed plan sections, and why. On completion move this file to completed/,
 update its catalog path/status, and carry unresolved obligations into tech-debt.md.
+
+## Task reconciliation
+
+Name the work item and harness/tasks/ID.json record. Map acceptance to registered
+requirements, account for related gaps, record material discoveries durably,
+and explain documentation updates. Finalize records before CI; keep resulting
+reports under target. Use partial/blocked status with next steps when needed.

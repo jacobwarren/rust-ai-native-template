@@ -21,6 +21,7 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
+          fetch-depth: 0
       - name: Install pinned toolchain
         run: rustup show active-toolchain
       - name: Verify
@@ -31,6 +32,13 @@ jobs:
           mkdir -p target/verification
           cargo xtask check ci > target/verification/ci.json
           cat target/verification/ci.json
+      - name: Reconcile task handoff and gap transitions against PR merge base
+        if: github.event_name == 'pull_request'
+        env:
+          HARNESS_BASE: ${{ github.event.pull_request.base.sha }}
+        shell: bash
+        run: |
+          cargo xtask handoff --base "$HARNESS_BASE" --report target/verification/ci.json > target/verification/handoff.json
       - name: Qualify template scope against this checkout
         run: cargo xtask release template --report target/verification/ci.json > target/verification/readiness.json
       - name: Preserve evidence

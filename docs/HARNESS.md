@@ -42,7 +42,7 @@ attestations or a tamper-proof audit log. The human/CI trust boundary matters.
 
 ## Profiles and contracts
 
-- **fast:** formatting, architecture, docs, workspace unit/integration tests.
+- **fast:** formatting, architecture, docs, task structure, workspace unit/integration tests.
 - **ci:** fast checks plus Clippy on all targets/features, rustdoc, and all six
   process scenarios. The current project has no mutually exclusive features.
 - Add target/feature profiles as your product requires. If features conflict,
@@ -99,3 +99,11 @@ The readiness/release commands require fresh full-CI evidence and named tests
 and workflow cases. The release command fails on open scope blockers; it does
 not publish. See [READINESS.md](READINESS.md). The task-board engine's limits and
 persistence commit/failure semantics are in [DRIVER.md](DRIVER.md).
+
+## Completion admission
+
+Task reconciliation and gap transitions run after evidence production, avoiding
+recursive verification. Finalize source-owned records before running CI; emit
+completion output under target. Current acceptance may name tests, workflows,
+or both. The opt-in hook and PR job invoke the same Rust commands. See
+[COMPLETION.md](COMPLETION.md) for the contract and authority limits.

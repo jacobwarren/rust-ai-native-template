@@ -196,5 +196,23 @@
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/plans/completed/0004-completion-gate.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; completion regression tests"
+  },
+  {
+    "path": "docs/COMPLETION.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; completion, gap_transitions and gap_discovery tests"
+  },
+  {
+    "path": "docs/plans/completed/0005-focused-gap-review.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; focused gap discovery and completion regression tests"
   }
 ]

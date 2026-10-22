@@ -21,7 +21,9 @@ or Python dependency. Product intent lives in docs/PRODUCT.md.
 | Architecture and knowledge checks | xtask/src/checks.rs: architecture_errors, docs | Dependency policy and document structure |
 | Application acceptance | xtask/src/scenarios.rs: run | Exact CLI output, exit, and event expectations |
 | Workflow acceptance and goldens | xtask/src/workflows.rs, golden.rs | Independent process expectations and read-only baseline comparison |
-| Readiness and work selection | xtask/src/readiness.rs: assess, list_gaps | Current evidence, named scope requirements and ranked blockers |
+| Readiness and work selection | xtask/src/readiness.rs: assess | Current evidence, named scope requirements and ranked blockers |
+| Gap authority and history | xtask/src/tracking.rs, transitions.rs, history.rs | Project register with opaque links; merge-base transition receipts |
+| Task reconciliation | xtask/src/task_record.rs, completion.rs | Task review, acceptance evidence and honest handoffs |
 | Source identity | xtask/src/repo.rs: metadata, fingerprint, worktree_id | Workspace discovery and inspected-source identity |
 | Independent agent trials | experiments/evaluator: Suite, Task, evaluate | Frozen task, disposable checkout, permitted patch, separate grading tree |
 | Skill search and final evaluation | experiments/gepa: Experiment, optimize, compare | Optional GEPA adapter and explicit paired holdout comparison |

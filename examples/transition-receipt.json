@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "base_commit": "COPY-base_commit-FROM-gaps-output",
+  "changes": [{
+    "change": {"subject":"gap:example","before_sha256":"COPY-before_sha256","after_sha256":"COPY-after_sha256"},
+    "rationale":"Explain the actual change and why it is justified.",
+    "evidence":["docs/READINESS.md"],
+    "manual_justification":null
+  }]
+}

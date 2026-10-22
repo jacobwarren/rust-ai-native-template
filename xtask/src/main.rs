@@ -1,10 +1,15 @@
 mod checks;
+mod completion;
 mod config;
 mod golden;
+mod history;
 mod readiness;
 mod repo;
 mod runner;
 mod scenarios;
+mod task_record;
+mod tracking;
+mod transitions;
 mod workflows;
 
 use config::Result;
@@ -50,9 +55,24 @@ fn dispatch() -> Result<Value> {
             "workflow [id]":"Run independent stateful process workflows; capture requests, replies and golden comparisons",
             "readiness [--report path]":"Compute implemented and verified requirements from source-bound evidence",
             "release scope --report path":"Fail unless the named scope is ready; never publishes",
-            "gaps":"List ranked evidence-backed gaps",
+            "gaps":"Read known project gaps (does not generate them); --base REV [--report PATH] validates transitions",
+            "coordination":"Validate task record structure without demanding completion",
+            "agent-stop --task ID --base REV --report PATH":"Hook gate: completion or explicit partial/blocked handoff",
+            "complete --task ID --base REV --report PATH":"Gate a completion claim with reconciliation and current evidence",
+            "handoff --base REV [--report PATH]":"Check changed tasks; partial/blocked handoffs are explicitly allowed",
             "run -- greet Ada":"Run example with isolated state and JSON logs",
             "env":"Show worktree-specific context"}})),
+        ["agent-stop", "--task", id, "--base", base, "--report", path] => {
+            completion::agent_stop(&root, id, base, std::path::Path::new(path))
+        }
+        ["coordination"] => completion::validate(&root),
+        ["complete", "--task", id, "--base", base, "--report", path] => {
+            completion::complete(&root, id, base, std::path::Path::new(path))
+        }
+        ["handoff", "--base", base] => completion::handoff(&root, base, None),
+        ["handoff", "--base", base, "--report", path] => {
+            completion::handoff(&root, base, Some(std::path::Path::new(path)))
+        }
         ["doctor"] => {
             config::load(&root)?;
             let mut versions = serde_json::Map::new();
@@ -102,7 +122,11 @@ fn dispatch() -> Result<Value> {
         ["scenario"] => scenarios::run(&root),
         ["workflow"] => workflows::run(&root, None),
         ["workflow", id] => workflows::run(&root, Some(id)),
-        ["gaps"] => readiness::list_gaps(&root),
+        ["gaps"] => tracking::list(&root),
+        ["gaps", "--base", base] => transitions::check(&root, base, None),
+        ["gaps", "--base", base, "--report", path] => {
+            transitions::check(&root, base, Some(std::path::Path::new(path)))
+        }
         ["readiness"] => readiness::assess(&root, None, None),
         ["readiness", "--report", path] => {
             readiness::assess(&root, Some(std::path::Path::new(path)), None)

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "base_commit": "7f63e90f5fc205a93063c553443b50ea29b3dd73",
+  "changes": [
+    {
+      "change": {
+        "after_sha256": "f80807f95cac66c3da5a3e33fcf54fb9856a0342fecc2a2a786bb4899818e906",
+        "before_sha256": "e5c4568a783a0b984034dfb8deb163892dfcdedfb8c66b926db94462b5e96fd9",
+        "subject": "policy"
+      },
+      "rationale": "Implement the requested transition/completion gates with source-bound evidence and a bounded task discovery review. Keep optional work references opaque, remove default tracker snapshot coupling, allow no-findings outcomes and honest partial handoffs, and retain project-wide release blockers. The review checkpoint checks reconciliation, not semantic completeness or independent approval.",
+      "evidence": [
+        "docs/COMPLETION.md",
+        "docs/plans/completed/0005-focused-gap-review.md",
+        "xtask/tests/completion.rs",
+        "xtask/tests/gap_discovery.rs",
+        "xtask/tests/gap_transitions.rs"
+      ],
+      "manual_justification": null
+    }
+  ]
+}
