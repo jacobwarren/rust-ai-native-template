@@ -47,9 +47,15 @@ changes nothing is not a tweakable plan. Do not invent an irrelevant alternative
 just to satisfy a count; use a real product behavior or implementation tradeoff.
 
 Layout, controls, diagrams, content and response formatting remain freely authored.
-The [example plan](../examples/tweakable-plan.html) and its
+Read the [quality guide](ARTIFACT-AUTHORING.md) and the
+[worked decision model](../examples/artifact-studies/plan.html): its controls change
+visible state, driver error, recovery guidance and acceptance together. Its
+[interaction tests](../examples/artifact-studies/test-studies.cjs) assert those
+consequences and responses. These are optional patterns, not required page shapes.
+The older [minimal wiring example](../examples/tweakable-plan.html) and its
 [DOM test](../examples/test-tweakable-plan.cjs) are optional patterns, not templates
-that the page must match. Adapt the tested choices to the actual feature.
+that the page must match. They demonstrate event/report plumbing only, not the
+artifact quality bar. Adapt tested choices and explanations to the actual feature.
 
 Exercise the actual handlers for at least two choices and assert independent
 expected outcomes and responses. Save the result as a supporting JSON file inside

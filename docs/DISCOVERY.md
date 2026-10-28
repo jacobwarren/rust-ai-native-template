@@ -3,6 +3,10 @@
 **Default: freely [author HTML for the task](AUTHORED-HTML.md).** The five purposes
 are required; their layouts, content models, interactions and response formats are
 not fixed. The commands, typed data and controls below document optional starters.
+Use the [authoring quality guide](ARTIFACT-AUTHORING.md) and
+[worked studies](../examples/artifact-studies/index.html) for the expected human
+utility. A starter's existence or successful rendering is not a reason to choose
+its layout or a substitute for substantive task-specific reasoning.
 
 Every active v4 task needs five separate HTML tools before implementation. The
 [task lifecycle](TASK-ARTIFACTS.md) keeps its initial preflight and final artifacts;

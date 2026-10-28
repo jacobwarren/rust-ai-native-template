@@ -1,0 +1,46 @@
+<!doctype html><html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Predict the recovery · authoring study</title><link rel="stylesheet" href="foundation.css" data-artifact-foundation="1"><link rel="stylesheet" href="study.css"></head>
+
+<body>
+<main>
+<nav aria-label="Studies"><a href="index.html">About these studies</a><a href="blindspots.html">blindspots</a><a href="interventions.html">interventions</a><a href="interview.html">interview</a><a href="reference.html">reference</a><a href="plan.html">plan</a><a href="implementation.html">implementation</a><a href="buy-in.html">buy-in</a><a href="quiz.html" aria-current="page">quiz</a></nav>
+
+
+<header class="intro">
+<p class="eyebrow">Worked study · existing persistence contract</p>
+
+<h1>Predict the recovery</h1>
+
+<p class="lead">Commit to a prediction, then use the explanation to repair the model. This is a learning aid; passing never grants merge approval.</p>
+</header>
+<form id="quiz">
+<fieldset><legend>1. Directory sync fails after replacement. What can we conclude?</legend>
+<label><input type="radio" name="q1" value="rollback">The old journal is definitely still committed.</label>
+
+<label><input type="radio" name="q1" value="visible">The replacement is visible; its directory durability is unconfirmed.</label>
+
+<label><input type="radio" name="q1" value="durable">The new journal is guaranteed durable because replacement succeeded.</label>
+<button type="button" data-check="q1">Check prediction</button><output id="q1-feedback" hidden aria-live="polite"></output></fieldset>
+
+<fieldset><legend>2. A newer .tmp file remains after a failed save. What should load use?</legend>
+<label><input type="radio" name="q2" value="newest">Whichever file has the newest timestamp.</label>
+
+<label><input type="radio" name="q2" value="committed">The committed board.json, after validating its envelope.</label>
+<button type="button" data-check="q2">Check prediction</button><output id="q2-feedback" hidden aria-live="polite"></output></fieldset>
+
+<fieldset><legend>3. Data and its SHA-256 were both rewritten consistently. Does a matching checksum authenticate the author?</legend>
+<label><input type="radio" name="q3" value="yes">Yes, SHA-256 authenticates who wrote it.</label>
+
+<label><input type="radio" name="q3" value="no">No, the unkeyed checksum only checks that these bytes match.</label>
+<button type="button" data-check="q3">Check prediction</button><output id="q3-feedback" hidden aria-live="polite"></output></fieldset>
+</form>
+<label>Learning summary<textarea id="response" readonly></textarea></label>
+
+<p>Share the misunderstood scenario and requested clarification. Do not treat this response as verification of the product.</p>
+
+<footer><strong>Authoring lesson.</strong> This is an illustrative model of existing repository behavior, not a product execution or a mandatory layout. Read <a href="../../docs/ARTIFACT-AUTHORING.md">the authoring guide</a>. Source: <a href="../../crates/engine/src/store.rs">Store::save_with / load</a>, <a href="../../crates/engine/src/store_tests.rs">storage regressions</a>, <a href="../../docs/DRIVER.md">driver contract</a>. Browser visual review remains separate from DOM checks. Defaults and exports are proposals, never approval.</footer>
+</main>
+
+<script>const keys={q1:'visible',q2:'committed',q3:'no'},messages={q1:{rollback:'Replacement already happened; the error does not roll it back.',visible:'Correct: visibility and confirmed durability are different facts.',durable:'Replacement precedes directory sync; it cannot establish that the latter succeeded.'},q2:{newest:'A newer staging file is not a committed journal.',committed:'Correct: load uses board.json and validates before replay.'},q3:{yes:'An actor who can rewrite both data and digest can recompute an unkeyed hash.',no:'Correct: corruption detection is not author authentication.'}},links={q1:['buy-in.html#boundary','Review the commit boundary'],q2:['reference.html','Review load and staging semantics'],q3:['blindspots.html','Review the checksum trust boundary']};let results={};function exportSummary(){document.querySelector('#response').value=JSON.stringify({learning:results,approval:false},null,2)}document.querySelectorAll('[data-check]').forEach(b=>b.onclick=()=>{let q=b.dataset.check,a=document.querySelector('input[name='+q+']:checked'),out=document.querySelector('#'+q+'-feedback');out.hidden=false;out.replaceChildren();if(!a){out.textContent='Choose a prediction first.';return}out.append(document.createTextNode(messages[q][a.value]+' '));let link=document.createElement('a');link.href=links[q][0];link.textContent=links[q][1];out.append(link);results[q]={answer:a.value,correct:a.value===keys[q],explanation:messages[q][a.value],review:links[q][0]};exportSummary()});document.querySelectorAll('input').forEach(x=>x.onchange=()=>{delete results[x.name];document.querySelector('#'+x.name+'-feedback').hidden=true;exportSummary()});exportSummary();</script>
+</body>
+</html>

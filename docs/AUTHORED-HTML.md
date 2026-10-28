@@ -1,5 +1,10 @@
 # Author HTML for the task
 
+First read the [authoring quality guide](ARTIFACT-AUTHORING.md) and inspect the
+[worked studies](../examples/artifact-studies/index.html). They teach the expected
+explanatory depth and purposeful interactions without prescribing layouts. The
+registry below checks lifecycle integrity, not that human-review quality bar.
+
 HTML is the default human review medium, not a fixed form to fill out. Generate
 purpose-built HTML/CSS/SVG/JavaScript from the actual code, evidence and decisions.
 Choose layouts, diagrams, simulations, comparisons, editors and interactions that

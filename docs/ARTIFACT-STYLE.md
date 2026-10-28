@@ -47,7 +47,10 @@ can differ; reuse foundation colors for the surrounding controls and prose.
 ```
 
 The optional [page starter](../examples/artifact-page.html) shows the link and a
-custom layout. Copy and adapt it, or author a completely different document.
+custom layout. It demonstrates stylesheet wiring, not sufficient explanatory
+depth. Study the [varied worked examples](../examples/artifact-studies/index.html)
+and [authoring guide](ARTIFACT-AUTHORING.md) before composing a task artifact.
+Copy and adapt useful techniques, or author a completely different document.
 Optional foundation classes include surface, callout, warning, muted, eyebrow,
 lead, secondary (buttons), and table-scroll. No class or particular DOM layout is
 required. Apply aria-current="page" to the active navigation link.

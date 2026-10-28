@@ -298,5 +298,11 @@
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs; checkpoint and hook tests; independent fresh-agent trial"
+  },
+  {
+    "path": "docs/ARTIFACT-AUTHORING.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; worked study DOM tests and independent human utility review"
   }
 ]

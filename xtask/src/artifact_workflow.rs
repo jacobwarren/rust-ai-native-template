@@ -256,13 +256,12 @@ pub fn guard(root: &Path, id: &str, point: &str) -> Result<Value> {
 
 /// New task records cannot select a legacy renderer to bypass ordered checkpoints.
 pub fn admission(root: &Path, id: &str) -> Result<()> {
-    if crate::task_record::read(root, id)?.schema_version >= 5 {
-        if !authored::exists(root, id) || authored::read(root, id)?.schema_version != 2 {
-            return Err(
-                "schema-5 tasks require an ordered authored ledger; register discovery first"
-                    .into(),
-            );
-        }
+    if crate::task_record::read(root, id)?.schema_version >= 5
+        && (!authored::exists(root, id) || authored::read(root, id)?.schema_version != 2)
+    {
+        return Err(
+            "schema-5 tasks require an ordered authored ledger; register discovery first".into(),
+        );
     }
     Ok(())
 }

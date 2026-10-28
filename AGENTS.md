@@ -7,6 +7,12 @@ Start here. This is a map; follow the linked source for the current task.
 2. Author task-specific [HTML artifacts](docs/AUTHORED-HTML.md) before code,
    covering the five [discovery purposes](docs/DISCOVERY.md). Choose the layout,
    diagrams and interactions for the actual task; fixed templates are optional.
+   Read the [authoring quality guide](docs/ARTIFACT-AUTHORING.md) and inspect its
+   worked examples before composing pages. Match their explanatory usefulness,
+   not their layouts; passing file checks does not establish artifact quality.
+   For nontrivial features, use the guide's independent artifact review loop:
+   review discovery before product code and review the final bundle before final
+   registration, repair findings, and record semantic and visual limits separately.
    Use the [shared style foundation](docs/ARTIFACT-STYLE.md), bundled per revision.
    Follow [ordered checkpoints](docs/ARTIFACT-CHECKPOINTS.md): register discovery,
    then notes after the first implementation slice and each material milestone,

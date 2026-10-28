@@ -1,0 +1,98 @@
+<!doctype html><html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Different questions deserve different compositions · authoring study</title><link rel="stylesheet" href="foundation.css" data-artifact-foundation="1"><link rel="stylesheet" href="study.css"></head>
+
+<body>
+<main>
+<nav aria-label="Studies"><a href="index.html">About these studies</a><a href="blindspots.html">blindspots</a><a href="interventions.html">interventions</a><a href="interview.html">interview</a><a href="reference.html">reference</a><a href="plan.html">plan</a><a href="implementation.html">implementation</a><a href="buy-in.html">buy-in</a><a href="quiz.html">quiz</a></nav>
+
+
+<header class="intro">
+<p class="eyebrow">Worked study · existing persistence contract</p>
+
+<h1>Different questions deserve different compositions</h1>
+
+<p class="lead">Use these studies to learn how explanations and interactions work together. They are not required layouts.</p>
+</header>
+
+<p class="callout">The subject is the existing Rust store. The proposed UI and interview are illustrative future work. This gallery makes no claim that a graphical recovery UI exists, or that current product tests have been run.</p>
+
+<div class="split">
+<section>
+<p class="eyebrow">01 / blindspots</p>
+
+<h2><a href="blindspots.html">Where a save can lie</a></h2>
+
+<p>Evidence → failure → prompt constraint. Compare the two sides of an actual commit boundary.</p>
+</section>
+
+<section>
+<p class="eyebrow">02 / interventions</p>
+
+<h2><a href="interventions.html">Choose the recovery investment</a></h2>
+
+<p>Compare scope, cost and user outcomes; selections compose a concrete proposal.</p>
+</section>
+
+<section>
+<p class="eyebrow">03 / interview</p>
+
+<h2><a href="interview.html">Define what “saved” means</a></h2>
+
+<p>Answer consequential questions one at a time; distinguish unanswered from selected.</p>
+</section>
+
+<section>
+<p class="eyebrow">04 / reference</p>
+
+<h2><a href="reference.html">Map the commit boundary</a></h2>
+
+<p>Matched code and intended UI semantics, with linked highlighting and expected edge cases.</p>
+</section>
+
+<section>
+<p class="eyebrow">05 / plan</p>
+
+<h2><a href="plan.html">Explore a failure before implementing</a></h2>
+
+<p>Change failure timing and presentation; observe committed state, error, recovery and acceptance together.</p>
+</section>
+
+<section>
+<p class="eyebrow">06 / implementation</p>
+
+<h2><a href="implementation.html">What the implementation taught us</a></h2>
+
+<p>Explain observations and conservative decisions; this example explicitly labels retrospective reconstruction.</p>
+</section>
+
+<section>
+<p class="eyebrow">07 / buy-in</p>
+
+<h2><a href="buy-in.html">A save you can explain</a></h2>
+
+<p>Step through a save, explore uncertainty, and answer reviewer objections using linked evidence.</p>
+</section>
+
+<section>
+<p class="eyebrow">08 / quiz</p>
+
+<h2><a href="quiz.html">Predict the recovery</a></h2>
+
+<p>Predict scenarios; wrong answers explain the mistaken model and link to targeted remediation.</p>
+</section>
+</div>
+
+<section>
+<h2>How to adapt</h2>
+
+<p>Start with the actual task's hard question. Choose a representation that exposes its consequences. Copy an interaction only when it serves that purpose; otherwise create another. Use local bundled styling and make the evidence and response mechanism specific to the new task.</p>
+
+<p><a href="https://thariqs.github.io/html-effectiveness/unknowns/index.html">Thariq's original gallery</a> supplies additional approaches. We preserve the distinction between learning and merge authorization.</p>
+</section>
+
+<footer><strong>Authoring lesson.</strong> This is an illustrative model of existing repository behavior, not a product execution or a mandatory layout. Read <a href="../../docs/ARTIFACT-AUTHORING.md">the authoring guide</a>. Source: <a href="../../crates/engine/src/store.rs">Store::save_with / load</a>, <a href="../../crates/engine/src/store_tests.rs">storage regressions</a>, <a href="../../docs/DRIVER.md">driver contract</a>. Browser visual review remains separate from DOM checks. Defaults and exports are proposals, never approval.</footer>
+</main>
+
+<script></script>
+</body>
+</html>
