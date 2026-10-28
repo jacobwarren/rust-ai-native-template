@@ -86,7 +86,8 @@
       "implementation": [
         "xtask/src/artifacts.rs",
         "xtask/src/artifact_hook.rs",
-        "scripts/agent-artifact-write.sh"
+        "scripts/agent-artifact-write.sh",
+        "scripts/artifact-screenshots.cjs"
       ],
       "tests": [
         "completion_requires_eight_pages_linking_the_task_stylesheet",
@@ -95,7 +96,8 @@
         "completion_requires_committed_code_and_pages",
         "guard_blocks_code_edits_until_discovery_is_committed",
         "merged_target_commits_do_not_count_as_task_code",
-        "concurrent_fixtures_have_independent_directories"
+        "concurrent_fixtures_have_independent_directories",
+        "screenshots_need_pages_and_a_valid_task"
       ],
       "workflows": []
     }

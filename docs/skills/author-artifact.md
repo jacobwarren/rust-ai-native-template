@@ -25,9 +25,13 @@ anything.
    the network.
 5. Keep the page about the feature. No harness mechanics, hashes, revision
    talk or verification boilerplate. Report those to the caller instead.
-6. Check your work. Open the page if you can render it, exercise each
-   interaction, and compare it with the exemplar. If the exemplar would teach a
-   reader more about its task than yours teaches about this one, revise.
+6. Check your work by looking at it, not by reasoning about the markup. Render
+   your page and the exemplar with
+   `node scripts/artifact-screenshots.cjs OUT_DIR YOUR_PAGE.html EXEMPLAR.html`
+   (use a scratch OUT_DIR under `target/`) and view the PNG tiles. Fix every
+   console error, network request and phone-width overflow the JSON report
+   lists. Exercise each interaction. If the exemplar would teach a reader more
+   about its task than yours teaches about this one, revise.
 
 Return the path, three lines on what the page lets a reader learn or decide, the
 evidence it cites, and anything you could not check (rendering, interactions,

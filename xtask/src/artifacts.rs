@@ -8,6 +8,7 @@ use serde_json::{Value, json};
 use std::{
     fs,
     path::{Component, Path, PathBuf},
+    process::Command,
 };
 
 pub const DISCOVERY: [&str; 5] = [
@@ -184,4 +185,37 @@ pub fn guard(root: &Path, id: &str) -> Result<Value> {
     }
     Ok(json!({"ok":true,"task":id,
         "scope":"Discovery pages exist and are committed; their usefulness needs human review"}))
+}
+
+/// Render the task's pages to PNG tiles under target/ with a local Chrome, so an
+/// agent can look at what it wrote. Needs Node and Chrome; reports, never judges.
+pub fn screenshots(root: &Path, id: &str) -> Result<Value> {
+    let dir = dir(root, id)?;
+    let mut pages: Vec<PathBuf> = fs::read_dir(&dir)
+        .map_err(|_| format!("no artifact folder {}", directory(id)))?
+        .filter_map(|e| e.ok().map(|e| e.path()))
+        .filter(|p| p.extension().is_some_and(|e| e == "html"))
+        .collect();
+    if pages.is_empty() {
+        return Err(format!("no HTML pages in {}", directory(id)).into());
+    }
+    pages.sort();
+    let out = root.join("target/artifact-screenshots").join(id);
+    if out.exists() {
+        fs::remove_dir_all(&out)?;
+    }
+    let output = Command::new("node")
+        .arg(root.join("scripts/artifact-screenshots.cjs"))
+        .arg(&out)
+        .args(&pages)
+        .current_dir(root)
+        .output()
+        .map_err(|e| format!("screenshots need Node on PATH: {e}"))?;
+    serde_json::from_slice(&output.stdout).map_err(|_| {
+        format!(
+            "screenshot script failed: {}",
+            String::from_utf8_lossy(&output.stderr).trim()
+        )
+        .into()
+    })
 }

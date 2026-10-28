@@ -23,9 +23,13 @@ and a dedicated author do.
    finding. Do not invent findings, options, questions or reference code to fill
    space. A small task gets a smaller page, but it must still teach something
    the diff alone does not.
-4. **Look at it.** Render the page and compare it side by side with the
-   exemplar before committing it. If you cannot render it, say so rather than
-   implying visual review.
+4. **Look at it.** Run `cargo xtask task-artifact screenshot --task ID`. It
+   renders each page with local Chrome at desktop and phone width into
+   `target/artifact-screenshots/ID/` and reports console errors, phone-width
+   overflow and any network requests. View the tiles next to the exemplar's
+   (`node scripts/artifact-screenshots.cjs OUT_DIR examples/thariq/PAGE.html`)
+   and fix what the report flags before committing. Without Node or Chrome, say
+   so rather than implying visual review.
 
 ## The prompts
 

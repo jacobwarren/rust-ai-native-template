@@ -231,3 +231,24 @@ fn concurrent_fixtures_have_independent_directories() {
         );
     }
 }
+
+#[test]
+fn screenshots_need_pages_and_a_valid_task() {
+    let (f, _) = setup();
+    let shot = |id: &str| f.run(&["task-artifact", "screenshot", "--task", id]);
+    assert!(
+        shot("TASK-1")["error"]
+            .to_string()
+            .contains("no HTML pages")
+    );
+    assert!(
+        shot("TASK-2")["error"]
+            .to_string()
+            .contains("no artifact folder")
+    );
+    assert!(
+        shot("../TASK-1")["error"]
+            .to_string()
+            .contains("invalid task ID")
+    );
+}
