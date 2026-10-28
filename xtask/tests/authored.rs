@@ -35,7 +35,7 @@ fn manifest(f: &Fixture, variant: bool) -> Value {
     }
     json!({"summary":"Register original task-authored interfaces", "files":files})
 }
-fn register(f: &Fixture, m: Value) -> Value {
+fn raw_register(f: &Fixture, m: Value) -> Value {
     f.write("target/manifest.json", m);
     f.run(&[
         "task-artifact",
@@ -45,6 +45,61 @@ fn register(f: &Fixture, m: Value) -> Value {
         "--input",
         "target/manifest.json",
     ])
+}
+fn register(f: &Fixture, mut m: Value) -> Value {
+    use sha2::{Digest, Sha256};
+    let plan_path = m["files"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|s| s["purpose"] == "plan")
+        .unwrap()["path"]
+        .as_str()
+        .unwrap();
+    if let Ok(plan) = std::fs::read(f.0.join(format!("{DIR}/{plan_path}"))) {
+        f.write(&format!("{DIR}/plan-evidence.json"), json!({"schema_version":1,"plan_sha256":format!("{:x}",Sha256::digest(plan)),"test_command":"fixture: registry contract only","cases":[{"choice":"A","before":"initial","after":"outcome A","response":"Choose A"},{"choice":"B","before":"initial","after":"outcome B","response":"Choose B"}]}));
+    }
+    let mut entry = m["files"][0].clone();
+    entry["purpose"] = json!("supporting");
+    entry["path"] = json!("plan-evidence.json");
+    m["files"].as_array_mut().unwrap().push(entry);
+    m["plan_evidence"] = json!("plan-evidence.json");
+    if !f.0.join(format!("{DIR}/authored.json")).exists() {
+        let mut before = m.clone();
+        before["files"].as_array_mut().unwrap().retain(|s| {
+            !["implementation", "buy-in", "quiz"].contains(&s["purpose"].as_str().unwrap())
+        });
+        let result = raw_register(f, before);
+        if result["ok"] != true {
+            return result;
+        }
+        if !m["files"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|s| s["purpose"] == "implementation")
+        {
+            return result;
+        }
+        f.text("implementation.rs", "// implementation checkpoint change\n");
+    }
+    if m["files"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|s| s["purpose"] == "buy-in")
+    {
+        let mut during = m.clone();
+        during["files"]
+            .as_array_mut()
+            .unwrap()
+            .retain(|s| !["buy-in", "quiz"].contains(&s["purpose"].as_str().unwrap()));
+        let result = raw_register(f, during);
+        if result["ok"] != true {
+            return result;
+        }
+    }
+    raw_register(f, m)
 }
 fn setup() -> Fixture {
     let f = Fixture::new();
@@ -219,13 +274,24 @@ fn shared_style_upgrade_preserves_historical_css_and_custom_html() {
     f.text(&format!("{DIR}/authored-revisions/1/foundation.css"), old);
     f.text(&format!("{DIR}/foundation.css"), old);
     let mut ledger = f.read(&format!("{DIR}/authored.json"));
-    let css = ledger["revisions"][0]["files"]
+    for (i, r) in ledger["revisions"]
         .as_array_mut()
         .unwrap()
         .iter_mut()
-        .find(|s| s["file"]["path"] == "foundation.css")
-        .unwrap();
-    css["sha256"] = json!(format!("{:x}", Sha256::digest(old.as_bytes())));
+        .enumerate()
+    {
+        f.text(
+            &format!("{DIR}/authored-revisions/{}/foundation.css", i + 1),
+            old,
+        );
+        let css = r["files"]
+            .as_array_mut()
+            .unwrap()
+            .iter_mut()
+            .find(|s| s["file"]["path"] == "foundation.css")
+            .unwrap();
+        css["sha256"] = json!(format!("{:x}", Sha256::digest(old.as_bytes())));
+    }
     f.write(&format!("{DIR}/authored.json"), ledger);
     f.evidence();
     assert_eq!(f.complete()["ok"], true);
@@ -245,12 +311,12 @@ fn shared_style_upgrade_preserves_historical_css_and_custom_html() {
         old
     );
     assert_ne!(
-        std::fs::read_to_string(f.0.join(format!("{DIR}/authored-revisions/2/foundation.css")))
+        std::fs::read_to_string(f.0.join(format!("{DIR}/authored-revisions/5/foundation.css")))
             .unwrap(),
         old
     );
     assert_eq!(
-        std::fs::read(f.0.join(format!("{DIR}/authored-revisions/2/plan-bespoke.html"))).unwrap(),
+        std::fs::read(f.0.join(format!("{DIR}/authored-revisions/5/plan-bespoke.html"))).unwrap(),
         html
     );
     f.evidence();

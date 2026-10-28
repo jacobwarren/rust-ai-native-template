@@ -57,7 +57,8 @@ see [the maintenance procedure](MAINTENANCE.md).
 
 ## Task review and record contract
 
-Schema version 4 requires the [HTML task lifecycle](TASK-ARTIFACTS.md), defaulting
+Schema version 5 requires ordered authored checkpoints; legacy version 4 retains
+its preceding contract. Both require the [HTML task lifecycle](TASK-ARTIFACTS.md), defaulting
 to [task-authored HTML](AUTHORED-HTML.md) in addition to review, with four nonempty answers:
 
 - acceptance: Did any assigned acceptance criterion remain unmet? Explain the
@@ -194,3 +195,8 @@ The same required purposes and current full-CI acceptance still apply. Open-payl
 feedback is revision-bound and requires a reconciled registration before complete.
 Legacy fixed-mode artifacts remain supported; deleting committed authored history
 cannot bypass admission.
+
+New authored ledgers enforce [ordered checkpoints](ARTIFACT-CHECKPOINTS.md) and
+plan scenario evidence. Stop-hook admission invokes the same completion checks;
+host write interception is separate and opt-in. Legacy ledgers do not attest to
+the newer sequence contract.

@@ -1,6 +1,6 @@
 //! Explicit registration and response recording. Never renders or executes authored files.
 use crate::{
-    artifact_style,
+    artifact_style, artifact_workflow,
     authored::{self, Feedback, Input, Ledger, Revision},
     config::{self, Result},
     history, repo, task_record,
@@ -22,7 +22,7 @@ pub fn context(root: &Path, id: &str) -> Result<Value> {
     let r = l.revisions.last().ok_or("missing revision")?;
     Ok(
         json!({"ok":true,"task":id,"mode":"authored","revision_sha256":history::json_digest(r)?,
-        "feedback_base_sha256":history::json_digest(&l.feedback)?,"revision":l.revisions.len(),
+        "feedback_base_sha256":history::json_digest(&l.feedback)?,"revision":l.revisions.len(),"checkpoint":r.checkpoint,
         "files":r.files.iter().map(|s|&s.file).collect::<Vec<_>>(),
         "scope":"Registered bytes and provenance; not a template, content-quality check or JavaScript sandbox"}),
     )
@@ -45,7 +45,7 @@ pub fn command(root: &Path, action: &str, id: &str, input: &Path) -> Result<Valu
         authored::read(root, id)?
     } else {
         Ledger {
-            schema_version: 1,
+            schema_version: 2,
             task: id.into(),
             revisions: vec![],
             feedback: vec![],
@@ -57,6 +57,13 @@ pub fn command(root: &Path, action: &str, id: &str, input: &Path) -> Result<Valu
             let mut input: Input = config::read(input)?;
             artifact_style::prepare(root, id, &mut input)?;
             let files = authored::inspect(root, id, &input)?;
+            let checkpoint = artifact_workflow::prepare(
+                root,
+                id,
+                &ledger,
+                &files,
+                input.plan_evidence.as_deref(),
+            )?;
             let number = ledger.revisions.len() + 1;
             let snapshot = authored::path(root, id, &format!("authored-revisions/{number}"))?;
             if let Some(parent) = snapshot.parent() {
@@ -78,6 +85,7 @@ pub fn command(root: &Path, action: &str, id: &str, input: &Path) -> Result<Valu
                 fs::write(dest, bytes)?;
             }
             ledger.revisions.push(Revision {
+                checkpoint,
                 summary: input.summary,
                 source_sha256: source,
                 feedback_sha256: history::json_digest(&ledger.feedback)?,

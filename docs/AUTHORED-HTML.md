@@ -7,6 +7,9 @@ make this particular problem understandable. Use the [shared styling foundation]
 Starter components are optional; exact templates and fixed interaction or feedback schemas are not
 required. The agent authors files directly with normal file tools.
 
+New tasks follow [ordered checkpoints and plan interaction evidence](ARTIFACT-CHECKPOINTS.md).
+Register discovery → implementation notes → final as separate revisions.
+
 ## Required purposes, flexible presentation
 
 Before implementation, provide separate HTML artifacts for blindspots,
@@ -27,10 +30,11 @@ No browser selection, quiz score or declared actor is approval by itself.
 
 ## Register a reviewable revision
 
-Create the normal v4 task record. Run `cargo xtask task-artifact style --task ID`
+Create the normal v5 task record. Run `cargo xtask task-artifact style --task ID`
 to install the shared foundation, then author files under harness/task-artifacts/ID/.
 Each HTML head must link its local foundation.css as documented in the style guide.
-Then list their purposes and review context in a small registration input:
+Then list their purposes and review context in a small registration input, including
+`plan_evidence` naming a registered supporting JSON report from actual plan tests:
 
 ```sh
 cargo xtask task-artifact register --task ID --input PATH-TO-MANIFEST

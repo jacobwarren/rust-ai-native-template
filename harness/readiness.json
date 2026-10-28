@@ -146,6 +146,21 @@
         "shared_style_install_rejects_symlink_and_active_writer"
       ],
       "workflows": []
+    },
+    {
+      "id": "artifact-checkpoints",
+      "implementation": [
+        "xtask/src/artifact_workflow.rs",
+        "xtask/src/artifact_hook.rs",
+        "scripts/agent-artifact-write.sh"
+      ],
+      "tests": [
+        "checkpoints_reject_final_only_and_require_separate_current_notes",
+        "plan_evidence_rejects_inert_choices_missing_exports_and_stale_html",
+        "patch_hook_blocks_source_without_checkpoint_and_allows_artifact_repairs",
+        "new_task_cannot_bypass_checkpoints_with_legacy_renderer"
+      ],
+      "workflows": []
     }
   ],
   "scopes": {
@@ -158,7 +173,8 @@
       "task-artifacts",
       "discovery-workbench",
       "authored-html",
-      "artifact-style"
+      "artifact-style",
+      "artifact-checkpoints"
     ],
     "product": [
       "driver",
@@ -169,7 +185,8 @@
       "task-artifacts",
       "discovery-workbench",
       "authored-html",
-      "artifact-style"
+      "artifact-style",
+      "artifact-checkpoints"
     ]
   }
 }

@@ -24,6 +24,7 @@ or Python dependency. Product intent lives in docs/PRODUCT.md.
 | Readiness and work selection | xtask/src/readiness.rs: assess | Current evidence, named scope requirements and ranked blockers |
 | Gap authority and history | xtask/src/tracking.rs, transitions.rs, history.rs | Project register with opaque links; merge-base transition receipts |
 | Artifact style foundation | xtask/src/artifact_style.rs, artifact_foundation.css | Install shared styles and include local CSS in every new authored revision |
+| Artifact checkpoints and hook adapter | xtask/src/artifact_workflow.rs, artifact_hook.rs | Ordered work-bound records, plan evidence and opt-in write boundaries |
 | Authored HTML registry | xtask/src/authored.rs, authored_command.rs | Default purpose/provenance contract, immutable byte snapshots and open feedback payloads |
 | HTML task lifecycle | xtask/src/task_artifact.rs, task_view.rs, task_view.html | Mandatory offline review page, preserved snapshots, notes, brief and quiz |
 | Interactive discovery | xtask/src/discovery.rs, discovery_feedback.rs, discovery_view.rs | Five required decision tools, revision-bound feedback and append-only history |

@@ -292,5 +292,11 @@
     "owner": "maintainers",
     "status": "archived",
     "verified_by": "cargo xtask docs; shared style regression and DOM checks"
+  },
+  {
+    "path": "docs/ARTIFACT-CHECKPOINTS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; checkpoint and hook tests; independent fresh-agent trial"
   }
 ]

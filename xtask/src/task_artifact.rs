@@ -197,6 +197,7 @@ pub fn read(root: &Path, id: &str) -> Result<Artifact> {
     Ok(a)
 }
 pub fn check(root: &Path, id: &str, final_stage: bool, base: Option<&str>) -> Result<()> {
+    crate::artifact_workflow::admission(root, id)?;
     if crate::authored::exists(root, id) {
         return crate::authored::check(root, id, final_stage, base);
     }

@@ -1,5 +1,6 @@
 //! Contract and integrity checks for task-authored HTML. No renderer owns these bytes.
 use crate::{
+    artifact_workflow,
     config::{self, Result},
     history, task_artifact, tracking,
 };
@@ -31,6 +32,8 @@ pub struct File {
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Input {
+    #[serde(default)]
+    pub plan_evidence: Option<String>,
     pub summary: String,
     pub files: Vec<File>,
 }
@@ -43,6 +46,8 @@ pub struct Snapshot {
 #[derive(Deserialize, Serialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct Revision {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub checkpoint: Option<artifact_workflow::Checkpoint>,
     pub summary: String,
     pub source_sha256: String,
     pub feedback_sha256: String,
@@ -154,7 +159,7 @@ pub fn inspect(root: &Path, id: &str, input: &Input) -> Result<Vec<Snapshot>> {
 }
 pub fn read(root: &Path, id: &str) -> Result<Ledger> {
     let l: Ledger = config::read(&path(root, id, "authored.json")?)?;
-    if l.schema_version != 1 || l.task != id || l.revisions.is_empty() {
+    if ![1, 2].contains(&l.schema_version) || l.task != id || l.revisions.is_empty() {
         return Err("invalid authored ledger identity".into());
     }
     for (i, r) in l.revisions.iter().enumerate() {
@@ -189,6 +194,7 @@ pub fn read(root: &Path, id: &str) -> Result<Ledger> {
             return Err("authored feedback history was rewritten".into());
         }
     }
+    artifact_workflow::history_check(root, id, &l)?;
     Ok(l)
 }
 pub fn validate_feedback(f: &Feedback, id: &str) -> Result<()> {
@@ -215,6 +221,7 @@ pub fn check(root: &Path, id: &str, complete: bool, base: Option<&str>) -> Resul
         }
     }
     if complete {
+        artifact_workflow::final_check(root, &l)?;
         for p in AFTER {
             if !r.files.iter().any(|s| s.file.purpose == p) {
                 return Err(format!("missing final authored purpose: {p}").into());
