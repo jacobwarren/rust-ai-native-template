@@ -218,7 +218,7 @@
   {
     "path": "docs/unknowns-review.md",
     "owner": "maintainers",
-    "status": "draft",
+    "status": "archived",
     "verified_by": "cargo xtask docs; delegated prompt review and repository contract inspection"
   },
   {
@@ -226,12 +226,6 @@
     "owner": "maintainers",
     "status": "archived",
     "verified_by": "cargo xtask docs; task artifact regression tests"
-  },
-  {
-    "path": "docs/TASK-ARTIFACTS.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; task_artifacts CLI regressions"
   },
   {
     "path": "docs/plans/completed/0006-html-task-artifacts.md",
@@ -246,12 +240,6 @@
     "verified_by": "cargo xtask docs; discovery-workbench regression checks"
   },
   {
-    "path": "docs/DISCOVERY.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; discovery CLI and generated-DOM integration tests"
-  },
-  {
     "path": "docs/plans/completed/0007-discovery-workbench.md",
     "owner": "maintainers",
     "status": "archived",
@@ -262,12 +250,6 @@
     "owner": "maintainers",
     "status": "archived",
     "verified_by": "cargo xtask docs; authored artifact regressions"
-  },
-  {
-    "path": "docs/AUTHORED-HTML.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; authored artifact registry regression tests"
   },
   {
     "path": "docs/plans/completed/0008-authored-html.md",
@@ -282,27 +264,63 @@
     "verified_by": "cargo xtask docs; artifact style CLI regressions"
   },
   {
-    "path": "docs/ARTIFACT-STYLE.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; shared style CLI regressions"
-  },
-  {
     "path": "docs/plans/completed/0009-artifact-style.md",
     "owner": "maintainers",
     "status": "archived",
     "verified_by": "cargo xtask docs; shared style regression and DOM checks"
   },
   {
-    "path": "docs/ARTIFACT-CHECKPOINTS.md",
+    "path": "docs/ARTIFACTS.md",
     "owner": "maintainers",
     "status": "active",
-    "verified_by": "cargo xtask docs; checkpoint and hook tests; independent fresh-agent trial"
+    "verified_by": "cargo xtask docs; human comparison of task artifacts against examples/thariq"
+  },
+  {
+    "path": "docs/skills/author-artifact.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; fresh-agent artifact trial"
+  },
+  {
+    "path": "examples/thariq/README.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; pages match upstream commit 1787245"
   },
   {
     "path": "docs/ARTIFACT-AUTHORING.md",
     "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; worked study DOM tests and independent human utility review"
+    "status": "archived",
+    "verified_by": "cargo xtask docs; superseded stub kept for historical task references"
+  },
+  {
+    "path": "docs/ARTIFACT-CHECKPOINTS.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; superseded stub kept for historical task references"
+  },
+  {
+    "path": "docs/ARTIFACT-STYLE.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; superseded stub kept for historical task references"
+  },
+  {
+    "path": "docs/AUTHORED-HTML.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; superseded stub kept for historical task references"
+  },
+  {
+    "path": "docs/DISCOVERY.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; superseded stub kept for historical task references"
+  },
+  {
+    "path": "docs/TASK-ARTIFACTS.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; superseded stub kept for historical task references"
   }
 ]

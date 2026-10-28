@@ -4,19 +4,11 @@ Start here. This is a map; follow the linked source for the current task.
 
 1. Read [product intent](docs/PRODUCT.md), [architecture](ARCHITECTURE.md),
    and the nearest package's AGENTS.md before editing.
-2. Author task-specific [HTML artifacts](docs/AUTHORED-HTML.md) before code,
-   covering the five [discovery purposes](docs/DISCOVERY.md). Choose the layout,
-   diagrams and interactions for the actual task; fixed templates are optional.
-   Read the [authoring quality guide](docs/ARTIFACT-AUTHORING.md) and inspect its
-   worked examples before composing pages. Match their explanatory usefulness,
-   not their layouts; passing file checks does not establish artifact quality.
-   For nontrivial features, use the guide's independent artifact review loop:
-   review discovery before product code and review the final bundle before final
-   registration, repair findings, and record semantic and visual limits separately.
-   Use the [shared style foundation](docs/ARTIFACT-STYLE.md), bundled per revision.
-   Follow [ordered checkpoints](docs/ARTIFACT-CHECKPOINTS.md): register discovery,
-   then notes after the first implementation slice and each material milestone,
-   then the final buy-in/quiz. Test two consequential plan choices and their exports. Inspect the existing implementation and applicable acceptance criteria.
+2. Produce the task's [HTML artifacts](docs/ARTIFACTS.md): five discovery pages
+   before code, implementation notes during the work, buy-in and quiz before
+   merge. Each page comes from its prompt in that guide, written by a dedicated
+   author against its exemplar. Inspect the existing implementation and
+   applicable acceptance criteria.
    Use `cargo xtask gaps` for ranked work and the driver to observe product behavior.
    Use `cargo xtask map` and `rg` to locate owners and dependencies.
 3. Run `cargo xtask doctor` on first setup and `cargo xtask check fast`

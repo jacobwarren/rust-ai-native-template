@@ -58,8 +58,8 @@ see [the maintenance procedure](MAINTENANCE.md).
 ## Task review and record contract
 
 Schema version 5 requires ordered authored checkpoints; legacy version 4 retains
-its preceding contract. Both require the [HTML task lifecycle](TASK-ARTIFACTS.md), defaulting
-to [task-authored HTML](AUTHORED-HTML.md) in addition to review, with four nonempty answers:
+its preceding contract. Both require the [HTML task artifacts](ARTIFACTS.md) in
+addition to review, with four nonempty answers:
 
 - acceptance: Did any assigned acceptance criterion remain unmet? Explain the
   outcome and remaining work; unmet assigned acceptance means partial or blocked.
@@ -94,7 +94,7 @@ The other fields are demonstrated in [the example](../examples/task-record.json)
 
 References are not proof that a remote document exists or its contents are true.
 Unknown fields are rejected. Archived v1/v2/v3 task records remain readable; upgrade any
-active record making a new handoff/completion claim to v4, create its required [interactive discovery tools](DISCOVERY.md) and lifecycle artifacts
+active record making a new handoff/completion claim to v4, create its required [discovery and lifecycle artifacts](ARTIFACTS.md)
 and answer the review. Initial snapshots and committed note/brief history are
 preserved; artifact-only edits also trigger reconciliation.
 
@@ -196,7 +196,7 @@ feedback is revision-bound and requires a reconciled registration before complet
 Legacy fixed-mode artifacts remain supported; deleting committed authored history
 cannot bypass admission.
 
-New authored ledgers enforce [ordered checkpoints](ARTIFACT-CHECKPOINTS.md) and
+New authored ledgers enforce [ordered checkpoints](ARTIFACTS.md#registering-current-gates) and
 plan scenario evidence. Stop-hook admission invokes the same completion checks;
 host write interception is separate and opt-in. Legacy ledgers do not attest to
 the newer sequence contract.

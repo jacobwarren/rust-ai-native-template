@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Opt-in apply_patch PreToolUse/PostToolUse adapter. Read docs/ARTIFACT-CHECKPOINTS.md.
+# Opt-in apply_patch PreToolUse/PostToolUse adapter. Read docs/ARTIFACTS.md.
 set -euo pipefail
 : "${HARNESS_TASK_ID:?Set HARNESS_TASK_ID for this session}"
 root="$(cd "$(dirname "$0")/.." && pwd)"

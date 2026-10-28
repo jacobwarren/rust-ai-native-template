@@ -1,0 +1,102 @@
+# Task artifacts
+
+Every task leaves HTML pages that let a human understand it: what was unknown
+before code, what the code taught us during the work, and why the result is
+ready to merge. The method is Thariq Shihipar's
+[Know your unknowns](../examples/thariq/index.html): each page is what a capable
+model produces from **one short, specific prompt, given its full attention**.
+Rules and checklists do not make these pages good. The prompt, a strong example
+and a dedicated author do.
+
+## How to produce a page
+
+1. **Use a dedicated author.** Start a fresh subagent for each page and give it
+   the [author-artifact brief](skills/author-artifact.md), the prompt below with
+   the task filled in, the exemplar path and the task context. If your host has
+   no subagents, give the page its own turn and do nothing else in it.
+2. **Read the exemplar first.** The author reads the matching page in
+   [examples/thariq/](../examples/thariq/) in full before writing. Match its
+   depth, density and the job its interactions do, not its layout or domain.
+   Those pages run 27–41 KB. A page a fraction of that size on a comparable task
+   usually summarizes where it should show.
+3. **Ground every claim.** Name the file, function, test or commit behind each
+   finding. Do not invent findings, options, questions or reference code to fill
+   space. A small task gets a smaller page, but it must still teach something
+   the diff alone does not.
+4. **Look at it.** Render the page and compare it side by side with the
+   exemplar before registering. If you cannot render it, say so rather than
+   implying visual review.
+
+## The prompts
+
+Fill in the braces from the task. The adapted prompt is the author's
+instruction. The exemplar is the bar.
+
+| When | Page | Prompt | Exemplar |
+| --- | --- | --- | --- |
+| Before code | Blindspot pass | "I'm about to {task} in {area}. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation." | [01](../examples/thariq/01-blindspot-pass.html) |
+| Before code | Brainstorm the intervention | "Here's the problem: {problem}. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate." | [05](../examples/thariq/05-churn-brainstorm.html) |
+| Before code | The interview | "Interview me one question at a time about anything still ambiguous in {task}. Prioritize questions where my answer would change the architecture." | [06](../examples/thariq/06-interview.html) |
+| Before code | Point at a reference | "{reference} already behaves the way {task} should. Read it and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything." | [07](../examples/thariq/07-reference-port.html) |
+| Before code | The tweakable plan | "Write an implementation plan for {task} as HTML, but lead with the decisions I'm most likely to tweak: data model changes, new type interfaces and anything user-facing. Bury the mechanical work at the bottom; I trust you on that part." | [08](../examples/thariq/08-implementation-plan.html) |
+| During | Implementation notes | "Keep implementation notes as you build {task}. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going." | [09](../examples/thariq/09-implementation-notes.html) |
+| Before merge | Buy-in doc | "Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping {task}. Lead with the demo." | [10](../examples/thariq/10-pitch-doc.html) |
+| Before merge | Quiz me before I merge | "I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass." | [11](../examples/thariq/11-change-quiz.html) |
+
+All eight are required. When no external reference exists, the reference is
+the existing code path that the change extends or most resembles. Add these
+when the task calls for them: [teach me my unknowns](../examples/thariq/02-color-grading-explainer.html)
+for unfamiliar domains, [design directions](../examples/thariq/03-design-directions.html)
+for visual work, and [mock before you wire](../examples/thariq/04-toolbar-mock.html)
+for new UI.
+
+Write implementation notes during the work: after the first implementation slice
+and at each material milestone. Never write them all at the end.
+
+## Replies come back into the work
+
+Thariq's pages end with a reply the reader assembles and copies back. When a
+human is available, present the discovery pages and wait for their reply before
+writing product code; their answers are task input. When running unattended,
+answer the interview with your recommendation, label it as yours, and carry the
+open questions into the buy-in doc.
+
+## Keep pages about the feature
+
+A page speaks to a reviewer about the change. Keep harness mechanics out of it:
+registration, hashes, revision numbers, verification boilerplate and paragraphs
+about what the page is not. One short label is enough when a page shows a model
+rather than the running product. Put verification limits in the registration
+manifest.
+
+## Registering (current gates)
+
+These commands enforce order and preserve history. They do not judge quality.
+
+1. After creating the task record, run `cargo xtask task-artifact style --task ID`.
+   It installs `foundation.css` in `harness/task-artifacts/ID/`. Link it first
+   in each page's head:
+   `<link rel="stylesheet" href="foundation.css" data-artifact-foundation="1">`
+   (add `../` per nested directory). Use its tokens for color, type and spacing.
+   Layout stays page-specific.
+2. Register with `cargo xtask task-artifact register --task ID --input MANIFEST`.
+   Each manifest entry has `purpose`, `path`, `description`, `evidence`,
+   `feedback` and `verification` (see [the example](../examples/authored-artifacts.json)).
+   Check with `task-artifact check` and read hashes with `task-artifact context`.
+3. Register in order: the five discovery pages before product code; then a
+   revision adding notes after the first implementation slice and at each
+   milestone; then buy-in and quiz last, once the latest notes cover the current
+   code.
+4. The plan needs `plan_evidence`: a registered JSON report from exercising two
+   real plan choices, each changing a visible consequence and exported response.
+   [test-tweakable-plan.cjs](../examples/test-tweakable-plan.cjs) shows the shape.
+5. Import a durable reply with `task-artifact decide --task ID --input ENVELOPE`
+   against the revision the human actually reviewed.
+
+`task-artifact guard` and the opt-in [Codex hooks](../examples/codex-artifact-hooks.json)
+check these boundaries around edits. They cover `apply_patch` only, not shell or
+MCP writes.
+
+Examples are from Thariq Shihipar's
+[html-effectiveness](https://github.com/ThariqS/html-effectiveness), vendored
+unmodified under Apache-2.0; see [their provenance](../examples/thariq/README.md).

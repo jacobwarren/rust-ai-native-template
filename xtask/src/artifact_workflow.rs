@@ -191,7 +191,7 @@ pub fn prepare(
         phase: phase(files)?,
         work_sha256: work_hash(root)?,
         plan_evidence: report
-            .ok_or("new workflow requires plan_evidence; see docs/ARTIFACT-CHECKPOINTS.md")?
+            .ok_or("new workflow requires plan_evidence; see docs/ARTIFACTS.md")?
             .into(),
     };
     ordered(&ledger.revisions, files, &cp)?;

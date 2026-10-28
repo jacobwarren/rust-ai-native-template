@@ -153,9 +153,10 @@ schemas, discovery guidance, hook setup and authority limits.
 
 ## HTML task reviews
 
-[Author task-specific HTML](docs/AUTHORED-HTML.md): choose layouts, diagrams,
-simulations and interactions that help humans understand this task. Five discovery
-purposes, implementation notes, buy-in and quiz are required; fixed templates are
-optional. Install the [shared foundation](docs/ARTIFACT-STYLE.md) with
+Each task leaves [HTML artifacts](docs/ARTIFACTS.md) a human can review: five
+discovery pages before code, implementation notes during the work, and a buy-in
+doc and quiz before merge. Each page comes from one prompt adapted from Thariq
+Shihipar's [Know your unknowns](examples/thariq/index.html) examples, which set
+the quality bar. Install the shared stylesheet with
 `cargo xtask task-artifact style --task ID`. Register files with `cargo xtask task-artifact register --task ID --input PATH`.
 The harness preserves bytes and provenance without prescribing presentation.

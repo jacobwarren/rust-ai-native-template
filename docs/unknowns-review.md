@@ -3,7 +3,7 @@
 Status: historical assessment, superseded by mandatory HTML policy. Reviewed: 2026-10-28.
 
 The user subsequently required HTML for every active task. The implemented
-contract is [Mandatory HTML task reviews](TASK-ARTIFACTS.md). Recommendations
+contract is [task artifacts](ARTIFACTS.md). Recommendations
 below preserve the initial review, including the rejected optional-HTML approach.
 Task: unknowns-review. Inspected base: f78c3c15e89902d3071308c56e4243dc4054c16e.
 
