@@ -1,23 +1,15 @@
 mod artifact_hook;
-mod artifact_style;
-mod artifact_workflow;
-mod authored;
-mod authored_command;
+mod artifacts;
 mod checks;
 mod completion;
 mod config;
-mod discovery;
-mod discovery_feedback;
-mod discovery_view;
 mod golden;
 mod history;
 mod readiness;
 mod repo;
 mod runner;
 mod scenarios;
-mod task_artifact;
 mod task_record;
-mod task_view;
 mod tracking;
 mod transitions;
 mod workflows;
@@ -66,42 +58,24 @@ fn dispatch() -> Result<Value> {
             "readiness [--report path]":"Compute implemented and verified requirements from source-bound evidence",
             "release scope --report path":"Fail unless the named scope is ready; never publishes",
             "gaps":"Read known project gaps (does not generate them); --base REV [--report PATH] validates transitions",
-            "task-artifact register|decide --task ID --input PATH":"Run task-artifact style --task ID to install the shared local CSS. Default: register task-authored HTML or import open-payload feedback; context/check --task ID inspects provenance. Legacy start/discover/note/publish/render are optional fixed starters",
-            "task-artifact guard --task ID --point before-edit|after-edit|before-final":"Check the ordered artifact checkpoint at a host boundary",
+            "task-artifact style --task ID":"Copy the shared stylesheet into the task's artifact folder (docs/ARTIFACTS.md)",
+            "task-artifact check --task ID":"Check the task's required pages exist and link its stylesheet",
+            "task-artifact guard --task ID":"Fail until the five discovery pages are committed; for host hooks before product edits",
             "coordination":"Validate task record structure without demanding completion",
             "agent-stop --task ID --base REV --report PATH":"Hook gate: completion or explicit partial/blocked handoff",
             "complete --task ID --base REV --report PATH":"Gate a completion claim with reconciliation and current evidence",
             "handoff --base REV [--report PATH]":"Check changed tasks; partial/blocked handoffs are explicitly allowed",
             "run -- greet Ada":"Run example with isolated state and JSON logs",
             "env":"Show worktree-specific context"}})),
-        ["artifact-hook", "--task", id, "--point", point] => artifact_hook::run(&root, id, point),
+        ["artifact-hook", "--task", id] => artifact_hook::run(&root, id),
         ["agent-stop", "--task", id, "--base", base, "--report", path] => {
             completion::agent_stop(&root, id, base, std::path::Path::new(path))
         }
-        [
-            "task-artifact",
-            action @ ("start" | "note" | "publish" | "discover" | "decide"),
-            "--task",
-            id,
-            "--input",
-            path,
-        ] => task_artifact::command(&root, action, id, Some(std::path::Path::new(path))),
-        ["task-artifact", "guard", "--task", id, "--point", point] => {
-            artifact_workflow::guard(&root, id, point)
-        }
-        ["task-artifact", "register", "--task", id, "--input", path] => {
-            authored_command::command(&root, "register", id, std::path::Path::new(path))
-        }
-        ["task-artifact", "style", "--task", id] => {
-            authored_command::command(&root, "style", id, std::path::Path::new(""))
-        }
-        ["task-artifact", "context", "--task", id] => authored_command::context(&root, id),
-        ["task-artifact", "render", "--task", id] => {
-            task_artifact::command(&root, "render", id, None)
-        }
+        ["task-artifact", "style", "--task", id] => artifacts::install(&root, id),
+        ["task-artifact", "guard", "--task", id] => artifacts::guard(&root, id),
         ["task-artifact", "check", "--task", id] => {
             let task = task_record::read(&root, id)?;
-            task_artifact::check(
+            artifacts::check(
                 &root,
                 id,
                 task.status == task_record::Status::Complete,

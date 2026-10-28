@@ -8,8 +8,8 @@ Behavior, boundaries, contracts, and intentional policy changes.
 
 ## HTML task review
 
-Link harness/task-artifacts/ID/index.html: preserved unknowns, implementation
-notes, buy-in brief and interactive scenario quiz. Distinguish demonstration from
+Link the pages in harness/task-artifacts/ID/: the five discovery pages,
+implementation notes, buy-in doc and quiz. Distinguish demonstration from
 observed behavior. Quiz completion is not reviewer approval.
 
 ## Evidence

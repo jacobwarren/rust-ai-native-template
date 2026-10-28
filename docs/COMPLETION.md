@@ -41,9 +41,9 @@ findings into existing gaps. No quota requires a new gap per task.
 
 1. Task start: read relevant requirements and the project gaps. Identify which
    gaps the assignment addresses and create harness/tasks/ID.json using
-   examples/task-record.json. A ticket URL, ID or plan reference is optional. Before implementation,
-   author its five discovery HTML artifacts with the shared style foundation; append notes at
-   material discoveries and publish the buy-in brief and quiz before completion.
+   examples/task-record.json. A ticket URL, ID or plan reference is optional. Before
+   implementation, write and commit its five discovery pages; commit notes during the
+   work and the buy-in doc and quiz last ([task artifacts](ARTIFACTS.md)).
 2. Material discovery: investigate immediately. Fix it within authorized scope,
    update an existing gap, or record a new durable gap/observation. Do not silently
    expand the task into a project-wide audit.
@@ -57,9 +57,8 @@ see [the maintenance procedure](MAINTENANCE.md).
 
 ## Task review and record contract
 
-Schema version 5 requires ordered authored checkpoints; legacy version 4 retains
-its preceding contract. Both require the [HTML task artifacts](ARTIFACTS.md) in
-addition to review, with four nonempty answers:
+Schema version 6 requires the [HTML task artifacts](ARTIFACTS.md) in addition to
+review, with four nonempty answers:
 
 - acceptance: Did any assigned acceptance criterion remain unmet? Explain the
   outcome and remaining work; unmet assigned acceptance means partial or blocked.
@@ -93,10 +92,10 @@ The other fields are demonstrated in [the example](../examples/task-record.json)
   Complete may retain follow-up work outside its accepted scope.
 
 References are not proof that a remote document exists or its contents are true.
-Unknown fields are rejected. Archived v1/v2/v3 task records remain readable; upgrade any
-active record making a new handoff/completion claim to v4, create its required [discovery and lifecycle artifacts](ARTIFACTS.md)
-and answer the review. Initial snapshots and committed note/brief history are
-preserved; artifact-only edits also trigger reconciliation.
+Unknown fields are rejected. Archived v1–v5 task records remain readable; upgrade any
+active record making a new handoff/completion claim to v6, write its
+[artifacts](ARTIFACTS.md) and answer the review. Git history preserves earlier page
+versions; artifact-only edits also trigger reconciliation.
 
 ## Commands and source-bound evidence
 
@@ -187,16 +186,13 @@ before switching; the harness rejects that legacy mode rather than trusting a
 stale local copy. Historical external-authority comparisons require a deliberate
 migration baseline; there is no automatic remote migration or completeness claim.
 
-## Authored HTML admission
+## Artifact admission
 
-When authored.json is present, admission validates purpose coverage and registered
-file/snapshot hashes instead of renderer equality or fixed discovery payloads.
-The same required purposes and current full-CI acceptance still apply. Open-payload
-feedback is revision-bound and requires a reconciled registration before complete.
-Legacy fixed-mode artifacts remain supported; deleting committed authored history
-cannot bypass admission.
-
-New authored ledgers enforce [ordered checkpoints](ARTIFACTS.md#registering-current-gates) and
-plan scenario evidence. Stop-hook admission invokes the same completion checks;
-host write interception is separate and opt-in. Legacy ledgers do not attest to
-the newer sequence contract.
+Completion requires the task's eight pages, each linking its own foundation.css,
+and reads the branch's own commits since the base (merge commits skipped): the five
+discovery pages before the first product-code commit, implementation notes before
+the last one, and buy-in and quiz at or after it. Product code and the task's pages
+must be committed; task records, gaps and reports need not be. Commit order shows
+sequence, not usefulness, and a rewritten history can fake it. Human review against
+the exemplars judges quality. The stop hook invokes the same completion checks; the
+opt-in edit guard is separate.

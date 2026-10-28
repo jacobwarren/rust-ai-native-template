@@ -43,6 +43,56 @@ pub fn read(root: &Path, base: &str, path: &str) -> Result<Option<Vec<u8>>> {
     }
     Ok(Some(git(root, &["show", &format!("{base}:{path}")])?))
 }
+/// Paths changed by each of the branch's own commits since `base`, oldest first.
+/// Merge commits are skipped so changes merged in from the target do not count.
+pub fn commits(root: &Path, base: &str) -> Result<Vec<Vec<String>>> {
+    let range = format!("{base}..HEAD");
+    let out = String::from_utf8(git(
+        root,
+        &[
+            "-c",
+            "core.quotePath=false",
+            "log",
+            "--first-parent",
+            "--no-merges",
+            "--no-renames",
+            "--reverse",
+            "--name-only",
+            "-z",
+            "--format=%x01",
+            &range,
+        ],
+    )?)?;
+    Ok(out
+        .split('\u{1}')
+        .skip(1)
+        .map(|c| {
+            c.split('\0')
+                .map(|p| p.trim_start_matches('\n'))
+                .filter(|p| !p.is_empty())
+                .map(String::from)
+                .collect()
+        })
+        .collect())
+}
+/// Tracked paths with uncommitted changes, plus untracked paths that are not ignored.
+pub fn uncommitted(root: &Path) -> Result<Vec<String>> {
+    let out = String::from_utf8(git(
+        root,
+        &[
+            "status",
+            "--porcelain=v1",
+            "-z",
+            "--untracked-files=all",
+            "--no-renames",
+        ],
+    )?)?;
+    Ok(out
+        .split('\0')
+        .filter(|e| e.len() > 3)
+        .map(|e| e[3..].to_owned())
+        .collect())
+}
 pub fn digest(bytes: &[u8]) -> String {
     format!("{:x}", Sha256::digest(bytes))
 }

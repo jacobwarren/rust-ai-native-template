@@ -2,7 +2,7 @@
 
 You are writing one HTML page that a human reads to understand a task in this
 repository. You were given a prompt, an exemplar page, the task context and an
-output path. That page is your whole job; do not edit product code or register
+output path. That page is your whole job; do not edit product code or commit
 anything.
 
 1. Read the exemplar in `examples/thariq/` in full, both its source and, if you
@@ -23,7 +23,7 @@ anything.
    `foundation.css` first in the head as described in [the guide](../ARTIFACTS.md)
    and use its tokens. Inline your own layout CSS and scripts. Load nothing from
    the network.
-5. Keep the page about the feature. No registration details, hashes, revision
+5. Keep the page about the feature. No harness mechanics, hashes, revision
    talk or verification boilerplate. Report those to the caller instead.
 6. Check your work. Open the page if you can render it, exercise each
    interaction, and compare it with the exemplar. If the exemplar would teach a

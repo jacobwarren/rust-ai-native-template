@@ -24,7 +24,7 @@ and a dedicated author do.
    space. A small task gets a smaller page, but it must still teach something
    the diff alone does not.
 4. **Look at it.** Render the page and compare it side by side with the
-   exemplar before registering. If you cannot render it, say so rather than
+   exemplar before committing it. If you cannot render it, say so rather than
    implying visual review.
 
 ## The prompts
@@ -64,38 +64,33 @@ open questions into the buy-in doc.
 ## Keep pages about the feature
 
 A page speaks to a reviewer about the change. Keep harness mechanics out of it:
-registration, hashes, revision numbers, verification boilerplate and paragraphs
+commit hashes, revision numbers, verification boilerplate and paragraphs
 about what the page is not. One short label is enough when a page shows a model
-rather than the running product. Put verification limits in the registration
-manifest.
+rather than the running product. Report verification limits to the caller and in
+the task record.
 
-## Registering (current gates)
+## Files and commits
 
-These commands enforce order and preserve history. They do not judge quality.
+The harness checks presence and order. It does not judge quality.
 
 1. After creating the task record, run `cargo xtask task-artifact style --task ID`.
-   It installs `foundation.css` in `harness/task-artifacts/ID/`. Link it first
-   in each page's head:
+   It copies the shared `foundation.css` into `harness/task-artifacts/ID/`, so a
+   later style change never alters this task's pages. Link it first in each
+   page's head:
    `<link rel="stylesheet" href="foundation.css" data-artifact-foundation="1">`
-   (add `../` per nested directory). Use its tokens for color, type and spacing.
-   Layout stays page-specific.
-2. Register with `cargo xtask task-artifact register --task ID --input MANIFEST`.
-   Each manifest entry has `purpose`, `path`, `description`, `evidence`,
-   `feedback` and `verification` (see [the example](../examples/authored-artifacts.json)).
-   Check with `task-artifact check` and read hashes with `task-artifact context`.
-3. Register in order: the five discovery pages before product code; then a
-   revision adding notes after the first implementation slice and at each
-   milestone; then buy-in and quiz last, once the latest notes cover the current
-   code.
-4. The plan needs `plan_evidence`: a registered JSON report from exercising two
-   real plan choices, each changing a visible consequence and exported response.
-   [test-tweakable-plan.cjs](../examples/test-tweakable-plan.cjs) shows the shape.
-5. Import a durable reply with `task-artifact decide --task ID --input ENVELOPE`
-   against the revision the human actually reviewed.
+   Use its tokens for color, type and spacing. Layout stays page-specific.
+2. Write the pages in that folder as `blindspots.html`, `interventions.html`,
+   `interview.html`, `reference.html`, `plan.html`, `implementation.html`,
+   `buy-in.html` and `quiz.html`. Supporting files are welcome alongside them.
+3. Commit as you go. Completion reads the branch's own commits since the base:
+   the five discovery pages before the first product-code commit, notes before
+   the last one, and buy-in and quiz at or after it. Code and pages must be
+   committed when you claim completion. Git history keeps every earlier version.
 
-`task-artifact guard` and the opt-in [Codex hooks](../examples/codex-artifact-hooks.json)
-check these boundaries around edits. They cover `apply_patch` only, not shell or
-MCP writes.
+`cargo xtask task-artifact guard --task ID` fails until the discovery pages are
+committed. The opt-in [Codex hooks](../examples/codex-artifact-hooks.json) run it
+before `apply_patch` edits to product code, and run completion at stop. They do
+not cover shell or MCP writes.
 
 Examples are from Thariq Shihipar's
 [html-effectiveness](https://github.com/ThariqS/html-effectiveness), vendored

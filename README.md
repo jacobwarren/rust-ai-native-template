@@ -158,5 +158,6 @@ discovery pages before code, implementation notes during the work, and a buy-in
 doc and quiz before merge. Each page comes from one prompt adapted from Thariq
 Shihipar's [Know your unknowns](examples/thariq/index.html) examples, which set
 the quality bar. Install the shared stylesheet with
-`cargo xtask task-artifact style --task ID`. Register files with `cargo xtask task-artifact register --task ID --input PATH`.
+`cargo xtask task-artifact style --task ID`. Completion reads commit order: discovery
+pages before the first code commit, notes during the work, buy-in and quiz last.
 The harness preserves bytes and provenance without prescribing presentation.

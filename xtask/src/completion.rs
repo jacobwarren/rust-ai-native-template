@@ -1,7 +1,8 @@
 //! The same admission gate is callable from an agent hook and PR CI.
 use crate::{
+    artifacts,
     config::{self, Result},
-    history, readiness, repo, task_artifact,
+    history, readiness, repo,
     task_record::{self, GapState, Status},
     tracking, transitions,
 };
@@ -16,8 +17,7 @@ pub fn task(
     must_complete: bool,
 ) -> Result<Value> {
     let task = task_record::read(root, id)?;
-    let artifact_result =
-        task_artifact::check(root, id, task.status == Status::Complete, Some(base));
+    let artifact_result = artifacts::check(root, id, task.status == Status::Complete, Some(base));
     let current = match tracking::load(root) {
         Ok(gaps) => gaps,
         Err(e)
@@ -136,7 +136,7 @@ pub fn handoff(root: &Path, revision: &str, report: Option<&Path>) -> Result<Val
             .file_stem()
             .and_then(|s| s.to_str())
             .unwrap_or("");
-        let prefix = format!("{}/", task_artifact::directory(id));
+        let prefix = format!("{}/", artifacts::directory(id));
         before.get(*p) != after.get(*p)
             || before
                 .keys()
@@ -214,8 +214,8 @@ pub fn validate(root: &Path) -> Result<Value> {
             .and_then(|s| s.to_str())
             .ok_or("invalid task filename")?;
         let record = task_record::read(root, id)?;
-        if record.schema_version >= 3 {
-            task_artifact::check(root, id, record.status == Status::Complete, None)?;
+        if record.schema_version >= 6 {
+            artifacts::check(root, id, record.status == Status::Complete, None)?;
         }
         ids.push(id.to_owned());
     }

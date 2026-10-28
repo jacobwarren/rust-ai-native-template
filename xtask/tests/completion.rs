@@ -13,6 +13,7 @@ fn completion_requires_acceptance_and_fresh_evidence_but_not_closing_unrelated_g
     assert_eq!(f.complete()["ok"], true);
     assert_eq!(f.handoff()["all_tasks_complete"], true);
     f.text("implementation.rs", "// changed after verification\n");
+    f.commit("change after verification");
     assert_eq!(f.complete()["ok"], false);
     f.evidence();
     assert_eq!(f.complete()["ok"], true);

@@ -1,0 +1,187 @@
+//! Task HTML artifacts: eight agent-authored pages, a per-task stylesheet and commit order.
+//! Checks establish presence and order only; people judge usefulness against the exemplars.
+use crate::{
+    config::{Result, valid_id},
+    history,
+};
+use serde_json::{Value, json};
+use std::{
+    fs,
+    path::{Component, Path, PathBuf},
+};
+
+pub const DISCOVERY: [&str; 5] = [
+    "blindspots.html",
+    "interventions.html",
+    "interview.html",
+    "reference.html",
+    "plan.html",
+];
+pub const NOTES: &str = "implementation.html";
+pub const FINAL: [&str; 2] = ["buy-in.html", "quiz.html"];
+pub const LINK: &str =
+    "<link rel=\"stylesheet\" href=\"foundation.css\" data-artifact-foundation=\"1\">";
+const CSS: &str = include_str!("artifact_foundation.css");
+const STYLESHEET: &str = "foundation.css";
+
+pub fn directory(id: &str) -> String {
+    format!("harness/task-artifacts/{id}")
+}
+
+/// Edits that record or review work rather than change the product.
+pub fn administrative(path: &str) -> bool {
+    [
+        "harness/task-artifacts/",
+        "harness/tasks/",
+        "harness/transitions/",
+        "docs/plans/",
+    ]
+    .iter()
+    .any(|p| path.starts_with(p))
+        || ["harness/docs.json", "harness/gaps.json"].contains(&path)
+}
+
+/// A repository-relative path from a tool event, rejecting traversal and outside paths.
+pub fn relative(root: &Path, raw: &str) -> Result<String> {
+    let path = Path::new(raw);
+    let rel = if path.is_absolute() {
+        path.strip_prefix(root)
+            .map_err(|_| format!("{raw} is outside the repository"))?
+    } else {
+        path
+    };
+    if rel.as_os_str().is_empty() || rel.components().any(|c| !matches!(c, Component::Normal(_))) {
+        return Err(format!("unsafe path {raw}").into());
+    }
+    Ok(rel.to_string_lossy().replace('\\', "/"))
+}
+
+fn dir(root: &Path, id: &str) -> Result<PathBuf> {
+    if !valid_id(id) {
+        return Err("invalid task ID".into());
+    }
+    let dir = root.join(directory(id));
+    for p in [
+        root.join("harness"),
+        root.join("harness/task-artifacts"),
+        dir.clone(),
+    ] {
+        if p.symlink_metadata()
+            .is_ok_and(|m| m.file_type().is_symlink())
+        {
+            return Err("artifact paths must not be symlinks".into());
+        }
+    }
+    Ok(dir)
+}
+
+/// Copy the shared stylesheet into the task so later style changes leave its pages alone.
+pub fn install(root: &Path, id: &str) -> Result<Value> {
+    let dir = dir(root, id)?;
+    fs::create_dir_all(&dir)?;
+    fs::write(dir.join(STYLESHEET), CSS)?;
+    Ok(
+        json!({"ok":true,"task":id,"path":format!("{}/{STYLESHEET}", directory(id)),"link":LINK,
+        "next":"Link it first in each page's head, then write the pages described in docs/ARTIFACTS.md."}),
+    )
+}
+
+/// Discovery pages are always required; the full set when the task claims completion.
+/// With a base revision, completion also checks the order of the branch's commits.
+pub fn check(root: &Path, id: &str, final_stage: bool, base: Option<&str>) -> Result<()> {
+    let dir = dir(root, id)?;
+    if !dir.join(STYLESHEET).is_file() {
+        return Err("missing foundation.css; run cargo xtask task-artifact style --task ID".into());
+    }
+    let mut pages = DISCOVERY.to_vec();
+    if final_stage {
+        pages.push(NOTES);
+        pages.extend(FINAL);
+    }
+    for page in pages {
+        let path = dir.join(page);
+        if path
+            .symlink_metadata()
+            .is_ok_and(|m| m.file_type().is_symlink())
+        {
+            return Err(format!("{page} must not be a symlink").into());
+        }
+        let text = fs::read_to_string(&path)
+            .map_err(|_| format!("missing {page}; see docs/ARTIFACTS.md"))?;
+        if !text.contains(LINK) {
+            return Err(format!("{page} must link the task stylesheet in its head: {LINK}").into());
+        }
+    }
+    if let (true, Some(base)) = (final_stage, base) {
+        order(root, id, base)?;
+    }
+    Ok(())
+}
+
+fn order(root: &Path, id: &str, base: &str) -> Result<()> {
+    let prefix = format!("{}/", directory(id));
+    let dirty: Vec<String> = history::uncommitted(root)?
+        .into_iter()
+        .filter(|p| p.starts_with(&prefix) || !administrative(p))
+        .collect();
+    if !dirty.is_empty() {
+        return Err(format!(
+            "commit product changes and this task's pages before completion; order is read from commits: {}",
+            dirty.join(", ")
+        )
+        .into());
+    }
+    let commits = history::commits(root, base)?;
+    let code: Vec<usize> = (0..commits.len())
+        .filter(|&i| commits[i].iter().any(|p| !administrative(p)))
+        .collect();
+    let (Some(&first), Some(&last)) = (code.first(), code.last()) else {
+        return Ok(());
+    };
+    let touched = |page: &str| -> Vec<usize> {
+        let path = format!("{prefix}{page}");
+        (0..commits.len())
+            .filter(|&i| commits[i].contains(&path))
+            .collect()
+    };
+    for page in DISCOVERY {
+        let at_base = history::read(root, base, &format!("{prefix}{page}"))?.is_some();
+        if !at_base && !touched(page).first().is_some_and(|&i| i < first) {
+            return Err(
+                format!("{page} must be committed before the first product-code commit").into(),
+            );
+        }
+    }
+    // With one code commit, notes in that same commit are as early as notes can be.
+    let notes = touched(NOTES).first().copied();
+    if !notes.is_some_and(|i| i < last || (code.len() == 1 && i == last)) {
+        return Err(format!(
+            "{NOTES} must be committed during the work, before the last product-code commit"
+        )
+        .into());
+    }
+    for page in FINAL {
+        if !touched(page).last().is_some_and(|&i| i >= last) {
+            return Err(
+                format!("{page} must be updated at or after the last product-code commit").into(),
+            );
+        }
+    }
+    Ok(())
+}
+
+/// Host boundary before product-code edits: the discovery pages must already be committed.
+pub fn guard(root: &Path, id: &str) -> Result<Value> {
+    check(root, id, false, None)?;
+    let committed = history::paths(root, "HEAD")?;
+    for page in DISCOVERY {
+        if !committed.contains(&format!("{}/{page}", directory(id))) {
+            return Err(format!(
+                "commit the five discovery pages before editing product code; {page} is not committed"
+            )
+            .into());
+        }
+    }
+    Ok(json!({"ok":true,"task":id,
+        "scope":"Discovery pages exist and are committed; their usefulness needs human review"}))
+}
