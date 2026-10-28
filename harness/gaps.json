@@ -34,5 +34,18 @@
     "evidence": "This starter is delivered as an archive, without a hosted GitHub repository.",
     "next_action": "Configure the documented required checks and protected baseline/policy review in the adopted repository.",
     "resolution": null
+  },
+  {
+    "id": "completion-fixture-isolation",
+    "rank": 3,
+    "state": "closed",
+    "blocks": [],
+    "impact": "Baseline fast and CI cannot establish passing workspace tests in the observed macOS run because completion fixtures fail during Git initialization.",
+    "evidence": "Baseline failures are retained in docs/unknowns-review.md. Exclusive fixture allocation and concurrent marker isolation now pass normal workspace tests; see docs/plans/completed/0006-html-task-artifacts.md.",
+    "next_action": "Retain the concurrent fixture isolation regression and normal parallel test execution.",
+    "resolution": "docs/plans/completed/0006-html-task-artifacts.md",
+    "requirements": [
+      "task-artifacts"
+    ]
   }
 ]

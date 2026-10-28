@@ -1,0 +1,10 @@
+{
+  "outcome": "A rejected task-board edit preserves observable state.",
+  "unknowns": "Which transport and replay boundaries exercise rejection?",
+  "assumptions": "Domain validation is shared through the driver; inspect before relying on it.",
+  "alternatives": "Keep validation in the shared path instead of duplicating it per adapter.",
+  "verification": "Assert independent before/after state through the public driver.",
+  "references": [
+    "docs/DRIVER.md"
+  ]
+}

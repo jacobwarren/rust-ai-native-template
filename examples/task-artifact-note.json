@@ -1,0 +1,8 @@
+{
+  "observation": "The driver already routes edits through the shared session.",
+  "decision": "Use that path and preserve the failure semantics; no material deviation from the plan.",
+  "effect": "Rejected edits leave state intact; verify through process workflows.",
+  "references": [
+    "crates/engine/src/protocol.rs"
+  ]
+}

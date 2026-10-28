@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "base_commit": "f78c3c15e89902d3071308c56e4243dc4054c16e",
+  "changes": [
+    {
+      "change": {
+        "subject": "gap:completion-fixture-isolation",
+        "before_sha256": null,
+        "after_sha256": "f1aa3c71fcd993146ffac6689890dbf3c9547581563e40218aacab73e2c140f5"
+      },
+      "rationale": "The earlier review recorded repeated Git fixture setup failures. Exclusive directory allocation removes unsafe reuse instead of serializing or disabling tests. The concurrent marker-isolation regression and ordinary parallel test suite now pass; final closure remains gated by current task-artifacts acceptance evidence.",
+      "evidence": [
+        "xtask/tests/support/mod.rs",
+        "xtask/tests/task_artifacts.rs",
+        "docs/plans/completed/0006-html-task-artifacts.md"
+      ]
+    },
+    {
+      "change": {
+        "after_sha256": "e496b11da8f3b82023314c40366e37c5ec804f6b92141607945fb259c6cb7bc5",
+        "before_sha256": "f80807f95cac66c3da5a3e33fcf54fb9856a0342fecc2a2a786bb4899818e906",
+        "subject": "policy"
+      },
+      "rationale": "The user required mandatory HTML lifecycle artifacts, then five richer pre-implementation tools. Active v4 admission requires typed blindspots, intervention alternatives, interview, reference map and tweakable plan, with exact rendered-page checks. Artifact v2 preserves initial snapshots and appends discovery/feedback history. Explicit feedback imports validate task and content/history hashes; imported changes invalidate final publication. Unchanged legacy v1-v3 task records remain readable. No quiz result, preview recommendation, declared actor or browser click grants approval. Existing acceptance and fresh full-CI requirements are retained. Added negative CLI regressions and actual generated-UI export/import integration support this deliberate policy change. The user subsequently required arbitrary task-authored HTML. The default now registers authored bytes and immutable snapshots with mandatory purpose metadata and open feedback payloads. Exact template equality remains only for legacy/optional fixed-mode artifacts. Regression tests reject missing purposes, unsafe paths, stale feedback and altered history. This is an explicit presentation-policy change; acceptance and full-CI gates remain intact. The user requested consistent styling with immutable historical presentation. New authored registrations now require a local shared foundation link and current installed CSS; the CSS is automatically bundled and hashed in each revision. Historical revisions retain their own bytes, while custom layouts and interactions remain allowed. Tests cover nested paths, supporting pages, missing or changed CSS, locks, symlinks, and simulated prior-release upgrades.",
+      "evidence": [
+        "docs/DISCOVERY.md",
+        "docs/TASK-ARTIFACTS.md",
+        "xtask/tests/discovery.rs",
+        "xtask/tests/task_artifacts.rs",
+        "scripts/test-discovery-ui.cjs",
+        "docs/AUTHORED-HTML.md",
+        "xtask/tests/authored.rs",
+        "docs/ARTIFACT-STYLE.md",
+        "xtask/src/artifact_style.rs",
+        "scripts/test-artifact-style.cjs"
+      ]
+    }
+  ]
+}

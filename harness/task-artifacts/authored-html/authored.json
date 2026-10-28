@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "task": "authored-html",
+  "revisions": [
+    {
+      "summary": "Task-specific authoring demonstration with honest retrospective discovery, implementation evidence and open response payloads.",
+      "source_sha256": "39e3550e1a8c2a5fc30c91153ee417fa16c5f71de2f274333c4e3824f08a1c7a",
+      "feedback_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "files": [
+        {
+          "file": {
+            "purpose": "blindspots",
+            "path": "risk-map.html",
+            "description": "Where freedom can lose evidence",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "CLI registry regressions passed; page interactions checked separately with DOM assertions; no browser visual verification."
+          },
+          "sha256": "cc01a5361dcc2c3709a0a43391cf2f16d795c57e50feae69a637db6ef5e35206"
+        },
+        {
+          "file": {
+            "purpose": "interventions",
+            "path": "approach-lab.html",
+            "description": "Choose what the harness owns",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "CLI registry regressions passed; page interactions checked separately with DOM assertions; no browser visual verification."
+          },
+          "sha256": "e2f8062fed0d2f12297a564e3b4541b865a313aa0b9b62b1adc3b80801f186b9"
+        },
+        {
+          "file": {
+            "purpose": "interview",
+            "path": "questions.html",
+            "description": "The decisions already made",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "CLI registry regressions passed; page interactions checked separately with DOM assertions; no browser visual verification."
+          },
+          "sha256": "b5be2fbe35397ae2e16db40763a26a0c594bfa944ddf7e968d0807e44b49b4f7"
+        },
+        {
+          "file": {
+            "purpose": "reference",
+            "path": "contract-map.html",
+            "description": "Borrow the method, choose the form",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "CLI registry regressions passed; page interactions checked separately with DOM assertions; no browser visual verification."
+          },
+          "sha256": "7f905574658cade2c9a8416f0a007abb0e8cc589dba05f2ae634ce9f6b84bec3"
+        },
+        {
+          "file": {
+            "purpose": "plan",
+            "path": "plan-lab.html",
+            "description": "A plan you can challenge",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "CLI registry regressions passed; page interactions checked separately with DOM assertions; no browser visual verification."
+          },
+          "sha256": "60758065dcbbf356560220f830685646582703392130b71f77d37261656b4ccb"
+        },
+        {
+          "file": {
+            "purpose": "implementation",
+            "path": "build-log.html",
+            "description": "Implementation evidence",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "CLI registry regressions passed; page interactions checked separately with DOM assertions; no browser visual verification."
+          },
+          "sha256": "7db25245db3a1bc6115aaac832d53a118698cd0f68614a659ffe0af3711d462e"
+        },
+        {
+          "file": {
+            "purpose": "buy-in",
+            "path": "case.html",
+            "description": "Keep the audit trail. Free the explanation.",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "CLI registry regressions passed; page interactions checked separately with DOM assertions; no browser visual verification."
+          },
+          "sha256": "dd5fb14e7bcdad38f33a1b1e952716a7be3a016e5d406db2567e1b9e10470ea6"
+        },
+        {
+          "file": {
+            "purpose": "quiz",
+            "path": "self-check.html",
+            "description": "Can you explain the boundary?",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "CLI registry regressions passed; page interactions checked separately with DOM assertions; no browser visual verification."
+          },
+          "sha256": "b1b256bd0c7d849e917d718d34f26838d4a9199c7110d9f1a5f3ed47078c18bc"
+        },
+        {
+          "file": {
+            "purpose": "supporting",
+            "path": "index.html",
+            "description": "Navigation or preserved original preflight.",
+            "evidence": [
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Return corrections in the task conversation.",
+            "verification": "File integrity only; no visual verification."
+          },
+          "sha256": "693d5f229b77271256ba58142439ecb5e63e314f1c0c7ed8f36012fd92456b7c"
+        },
+        {
+          "file": {
+            "purpose": "supporting",
+            "path": "preflight.html",
+            "description": "Navigation or preserved original preflight.",
+            "evidence": [
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Return corrections in the task conversation.",
+            "verification": "File integrity only; no visual verification."
+          },
+          "sha256": "5a34aa7ab06080cdfc2be18e32a19edc5e1f5e907b10962fdecfe04ddc44f492"
+        }
+      ]
+    },
+    {
+      "summary": "Adopt shared foundation in current authored examples; preserve prior revision bytes and custom interactions.",
+      "source_sha256": "3f8420f1e95f9ab6fe61519e54ec5ab47adb7448257b474cd84986e2489d23b0",
+      "feedback_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "files": [
+        {
+          "file": {
+            "purpose": "blindspots",
+            "path": "risk-map.html",
+            "description": "Where freedom can lose evidence",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "Registered byte integrity and DOM interaction checks; no browser visual verification."
+          },
+          "sha256": "87b60399114ac29654ca13195c4c87100be714f900ab27185a89d5b8c13f9948"
+        },
+        {
+          "file": {
+            "purpose": "interventions",
+            "path": "approach-lab.html",
+            "description": "Choose what the harness owns",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "Registered byte integrity and DOM interaction checks; no browser visual verification."
+          },
+          "sha256": "709f33425ec14d98155ede2ca1bd327517d74356f6bd053c0495fd41eb2d1292"
+        },
+        {
+          "file": {
+            "purpose": "interview",
+            "path": "questions.html",
+            "description": "The decisions already made",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "Registered byte integrity and DOM interaction checks; no browser visual verification."
+          },
+          "sha256": "0e70a1f5635c9065a65eee6d103545881779fc46e26c3ae9c51242d617f71522"
+        },
+        {
+          "file": {
+            "purpose": "reference",
+            "path": "contract-map.html",
+            "description": "Borrow the method, choose the form",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "Registered byte integrity and DOM interaction checks; no browser visual verification."
+          },
+          "sha256": "0a38fd881703a26b0af11d6cadc8252b468c86e1158fc713ad7903025ab4115a"
+        },
+        {
+          "file": {
+            "purpose": "plan",
+            "path": "plan-lab.html",
+            "description": "A plan you can challenge",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "Registered byte integrity and DOM interaction checks; no browser visual verification."
+          },
+          "sha256": "9a9128e49f204ddea1edc62d10948ec151033ea98abc2f2a89d26246e68f5091"
+        },
+        {
+          "file": {
+            "purpose": "implementation",
+            "path": "build-log.html",
+            "description": "Implementation evidence",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "Registered byte integrity and DOM interaction checks; no browser visual verification."
+          },
+          "sha256": "ae707fe8393f295579ec9f73266d5c0f494b510653a042df775617a858d7c4f1"
+        },
+        {
+          "file": {
+            "purpose": "buy-in",
+            "path": "case.html",
+            "description": "Keep the audit trail. Free the explanation.",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "Registered byte integrity and DOM interaction checks; no browser visual verification."
+          },
+          "sha256": "aa106cbd98ad7e9eb9fd19a879580e3b9044d572cbee134bdee875051ebfaebf"
+        },
+        {
+          "file": {
+            "purpose": "quiz",
+            "path": "self-check.html",
+            "description": "Can you explain the boundary?",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Prepare a custom payload, copy it and return it with the reviewed page/revision.",
+            "verification": "Registered byte integrity and DOM interaction checks; no browser visual verification."
+          },
+          "sha256": "5a1ac10a8c7f56fa8c6598434e7507fa4ec34749086e226d1eacdaf1dff1c3ec"
+        },
+        {
+          "file": {
+            "purpose": "supporting",
+            "path": "index.html",
+            "description": "Navigation or preserved original preflight.",
+            "evidence": [
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Return corrections in the task conversation.",
+            "verification": "Registered byte integrity and DOM interaction checks; no browser visual verification."
+          },
+          "sha256": "9d44eaa4f0584a3d23103b2c919e070319f06b0561dcc49c3d65023d3d6ce25f"
+        },
+        {
+          "file": {
+            "purpose": "supporting",
+            "path": "preflight.html",
+            "description": "Navigation or preserved original preflight.",
+            "evidence": [
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Return corrections in the task conversation.",
+            "verification": "Registered byte integrity and DOM interaction checks; no browser visual verification."
+          },
+          "sha256": "d02b4a0a3d599d87a4460035305ffa86dc63f894666301b5b5dfcac08c00b365"
+        },
+        {
+          "file": {
+            "purpose": "supporting",
+            "path": "foundation.css",
+            "description": "Shared artifact foundation 1.0.0; frozen with this revision.",
+            "evidence": [
+              "xtask/src/authored.rs",
+              "xtask/src/authored_command.rs",
+              "xtask/tests/authored.rs",
+              "docs/AUTHORED-HTML.md"
+            ],
+            "feedback": "Propose changes to the shared foundation in the task conversation.",
+            "verification": "Matches the bundled foundation at registration; hashes preserve the revision, not visual correctness."
+          },
+          "sha256": "d903e520e141d33a43268628e7e13add09b20728be4f6bfc40addfebc558b397"
+        }
+      ]
+    }
+  ],
+  "feedback": []
+}

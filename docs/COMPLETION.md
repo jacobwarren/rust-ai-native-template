@@ -41,7 +41,9 @@ findings into existing gaps. No quota requires a new gap per task.
 
 1. Task start: read relevant requirements and the project gaps. Identify which
    gaps the assignment addresses and create harness/tasks/ID.json using
-   examples/task-record.json. A ticket URL, ID or plan reference is optional.
+   examples/task-record.json. A ticket URL, ID or plan reference is optional. Before implementation,
+   author its five discovery HTML artifacts with the shared style foundation; append notes at
+   material discoveries and publish the buy-in brief and quiz before completion.
 2. Material discovery: investigate immediately. Fix it within authorized scope,
    update an existing gap, or record a new durable gap/observation. Do not silently
    expand the task into a project-wide audit.
@@ -55,7 +57,8 @@ see [the maintenance procedure](MAINTENANCE.md).
 
 ## Task review and record contract
 
-Schema version 2 adds review, with four nonempty answers:
+Schema version 4 requires the [HTML task lifecycle](TASK-ARTIFACTS.md), defaulting
+to [task-authored HTML](AUTHORED-HTML.md) in addition to review, with four nonempty answers:
 
 - acceptance: Did any assigned acceptance criterion remain unmet? Explain the
   outcome and remaining work; unmet assigned acceptance means partial or blocked.
@@ -89,8 +92,10 @@ The other fields are demonstrated in [the example](../examples/task-record.json)
   Complete may retain follow-up work outside its accepted scope.
 
 References are not proof that a remote document exists or its contents are true.
-Unknown fields are rejected. Archived v1 task records remain readable; upgrade any
-active record making a new handoff/completion claim to v2 and answer the review.
+Unknown fields are rejected. Archived v1/v2/v3 task records remain readable; upgrade any
+active record making a new handoff/completion claim to v4, create its required [interactive discovery tools](DISCOVERY.md) and lifecycle artifacts
+and answer the review. Initial snapshots and committed note/brief history are
+preserved; artifact-only edits also trigger reconciliation.
 
 ## Commands and source-bound evidence
 
@@ -180,3 +185,12 @@ reconcile the authoritative records into local gaps with reviewed resolution fil
 before switching; the harness rejects that legacy mode rather than trusting a
 stale local copy. Historical external-authority comparisons require a deliberate
 migration baseline; there is no automatic remote migration or completeness claim.
+
+## Authored HTML admission
+
+When authored.json is present, admission validates purpose coverage and registered
+file/snapshot hashes instead of renderer equality or fixed discovery payloads.
+The same required purposes and current full-CI acceptance still apply. Open-payload
+feedback is revision-bound and requires a reconciled registration before complete.
+Legacy fixed-mode artifacts remain supported; deleting committed authored history
+cannot bypass admission.

@@ -64,7 +64,7 @@ pub fn read(root: &Path, id: &str) -> Result<Task> {
         return Err("invalid task ID".into());
     }
     let task: Task = config::read(&root.join(format!("harness/tasks/{id}.json")))?;
-    if ![1, 2].contains(&task.schema_version)
+    if ![1, 2, 3, 4].contains(&task.schema_version)
         || task.id != id
         || task
             .work_item
@@ -121,8 +121,8 @@ pub struct Review {
 
 pub fn review_errors(task: &Task) -> Vec<String> {
     let mut errors = Vec::new();
-    if task.schema_version != 2 {
-        errors.push("Upgrade this active task to schema_version 2 and complete the review checkpoint; historical v1 records may remain archived.".into());
+    if task.schema_version != 4 {
+        errors.push("Upgrade this active task to schema_version 4 and create all five interactive discovery artifacts; historical v1/v2/v3 records may remain archived.".into());
     }
     let empty = Review::default();
     let review = task.review.as_ref().unwrap_or(&empty);

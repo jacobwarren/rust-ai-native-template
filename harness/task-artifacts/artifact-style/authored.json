@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "task": "artifact-style",
+  "revisions": [
+    {
+      "summary": "Pre-implementation discovery for shared styling and historical CSS isolation.",
+      "source_sha256": "50c8e0f1d59ca7c84d6c4c21bed3c7026ba62d547f641e499f2145ec60cc09e0",
+      "feedback_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "files": [
+        {
+          "file": {
+            "purpose": "blindspots",
+            "path": "blindspots.html",
+            "description": "What can change behind a reviewer’s back?",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Return claim-specific corrections in conversation.",
+            "verification": "Pre-implementation reasoning and source inspection; no visual claim."
+          },
+          "sha256": "6b7821a862079459421bbdf6f04b3d77b4237ac3fed826879456ff6694a1275d"
+        },
+        {
+          "file": {
+            "purpose": "interventions",
+            "path": "interventions.html",
+            "description": "Where should styling live?",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Return claim-specific corrections in conversation.",
+            "verification": "Pre-implementation reasoning and source inspection; no visual claim."
+          },
+          "sha256": "54e6779ac1cfa1e4aa04e9d9e7af97850f21a5e21563e6c7fe048ed8cae9b299"
+        },
+        {
+          "file": {
+            "purpose": "interview",
+            "path": "interview.html",
+            "description": "Which decisions are settled?",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Return claim-specific corrections in conversation.",
+            "verification": "Pre-implementation reasoning and source inspection; no visual claim."
+          },
+          "sha256": "f0a8e802f8311a49069178a1e0b142ba161200dc3d3f16564c06afb58aecac2e"
+        },
+        {
+          "file": {
+            "purpose": "reference",
+            "path": "reference.html",
+            "description": "Reuse our visual vocabulary",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Return claim-specific corrections in conversation.",
+            "verification": "Pre-implementation reasoning and source inspection; no visual claim."
+          },
+          "sha256": "5d8f9fd30c9481428c99e39f8faab01dbf2b431e1531b5c980ab49c4f7b2ff54"
+        },
+        {
+          "file": {
+            "purpose": "plan",
+            "path": "plan.html",
+            "description": "Freeze the style, free the layout",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Return claim-specific corrections in conversation.",
+            "verification": "Pre-implementation reasoning and source inspection; no visual claim."
+          },
+          "sha256": "aa1bf8254a4ea017c5b852d9d86d83af4a9761c7cef798359e019e9aedba728c"
+        }
+      ]
+    },
+    {
+      "summary": "Shared foundation adopted after implementation, with actual pre-implementation revision retained and final explanatory artifacts added.",
+      "source_sha256": "6f49bf0451c3a336f4535beb06d9319ff16c72efb04631477935a9960e3d2a09",
+      "feedback_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "files": [
+        {
+          "file": {
+            "purpose": "blindspots",
+            "path": "blindspots.html",
+            "description": "What can change behind a reviewer’s back?",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Return claim-specific corrections in conversation.",
+            "verification": "Pre-implementation reasoning and source inspection; no visual claim."
+          },
+          "sha256": "143991b0aeca347a5dc756d24f2021f67d87f009ff08c8ce2bdbd80e1d9bd6f8"
+        },
+        {
+          "file": {
+            "purpose": "interventions",
+            "path": "interventions.html",
+            "description": "Where should styling live?",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Return claim-specific corrections in conversation.",
+            "verification": "Pre-implementation reasoning and source inspection; no visual claim."
+          },
+          "sha256": "3f61caf98b66c96abb4591ed9d1ecc3ec77ac946325314396a7b29367d4c8541"
+        },
+        {
+          "file": {
+            "purpose": "interview",
+            "path": "interview.html",
+            "description": "Which decisions are settled?",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Return claim-specific corrections in conversation.",
+            "verification": "Pre-implementation reasoning and source inspection; no visual claim."
+          },
+          "sha256": "3e271d52dff2680801430207a5e6d30e3006f885a157908f0b06be2b21d130c6"
+        },
+        {
+          "file": {
+            "purpose": "reference",
+            "path": "reference.html",
+            "description": "Reuse our visual vocabulary",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Return claim-specific corrections in conversation.",
+            "verification": "Pre-implementation reasoning and source inspection; no visual claim."
+          },
+          "sha256": "447489849997c109a7f6c6cbfe20d96e17a55f98cf74214bebca58d7814278eb"
+        },
+        {
+          "file": {
+            "purpose": "plan",
+            "path": "plan.html",
+            "description": "Freeze the style, free the layout",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Return claim-specific corrections in conversation.",
+            "verification": "Pre-implementation reasoning and source inspection; no visual claim."
+          },
+          "sha256": "96242bcc3c5c257a6d9d788f7480bf1428e22ca2278aa697697d76e1cefd1188"
+        },
+        {
+          "file": {
+            "purpose": "implementation",
+            "path": "implementation.html",
+            "description": "Build evidence and chronology",
+            "evidence": [
+              "xtask/src/artifact_style.rs",
+              "xtask/src/artifact_foundation.css",
+              "xtask/tests/authored.rs"
+            ],
+            "feedback": "Return the reviewed page and claim to correct in conversation.",
+            "verification": "CLI integrity and DOM interaction checks; browser visual review not performed."
+          },
+          "sha256": "2ffaef5b0691c2390bd22d6527ffac72eb0ab453114031789ba8852fcdcaa8a1"
+        },
+        {
+          "file": {
+            "purpose": "buy-in",
+            "path": "buy-in.html",
+            "description": "A consistent visual language, a local historical copy",
+            "evidence": [
+              "xtask/src/artifact_style.rs",
+              "xtask/src/artifact_foundation.css",
+              "xtask/tests/authored.rs"
+            ],
+            "feedback": "Return the reviewed page and claim to correct in conversation.",
+            "verification": "CLI integrity and DOM interaction checks; browser visual review not performed."
+          },
+          "sha256": "ac004c15e96dcf2a1a1ec876ce91c2579277f00614c2dd76f7ac63b0b39ed848"
+        },
+        {
+          "file": {
+            "purpose": "quiz",
+            "path": "quiz.html",
+            "description": "Which stylesheet does a historical page load?",
+            "evidence": [
+              "xtask/src/artifact_style.rs",
+              "xtask/src/artifact_foundation.css",
+              "xtask/tests/authored.rs"
+            ],
+            "feedback": "Return the reviewed page and claim to correct in conversation.",
+            "verification": "CLI integrity and DOM interaction checks; browser visual review not performed."
+          },
+          "sha256": "9ed61f06424059f03fb8907f48836f37cf281c47b6575378d6bd91c643b2f915"
+        },
+        {
+          "file": {
+            "purpose": "supporting",
+            "path": "index.html",
+            "description": "Shared foundation, different compositions",
+            "evidence": [
+              "xtask/src/artifact_style.rs",
+              "xtask/src/artifact_foundation.css",
+              "xtask/tests/authored.rs"
+            ],
+            "feedback": "Return the reviewed page and claim to correct in conversation.",
+            "verification": "CLI integrity and DOM interaction checks; browser visual review not performed."
+          },
+          "sha256": "0230944889a3dca3022a972c0ca2a988931749472df0e4f0969732ae27b8768a"
+        },
+        {
+          "file": {
+            "purpose": "supporting",
+            "path": "foundation.css",
+            "description": "Shared artifact foundation 1.0.0; frozen with this revision.",
+            "evidence": [
+              "xtask/src/task_view.html",
+              "xtask/src/authored.rs"
+            ],
+            "feedback": "Propose changes to the shared foundation in the task conversation.",
+            "verification": "Matches the bundled foundation at registration; hashes preserve the revision, not visual correctness."
+          },
+          "sha256": "d903e520e141d33a43268628e7e13add09b20728be4f6bfc40addfebc558b397"
+        }
+      ]
+    }
+  ],
+  "feedback": []
+}

@@ -4,7 +4,12 @@ Start here. This is a map; follow the linked source for the current task.
 
 1. Read [product intent](docs/PRODUCT.md), [architecture](ARCHITECTURE.md),
    and the nearest package's AGENTS.md before editing.
-2. Inspect the existing implementation and applicable acceptance criteria.
+2. Author task-specific [HTML artifacts](docs/AUTHORED-HTML.md) before code,
+   covering the five [discovery purposes](docs/DISCOVERY.md). Choose the layout,
+   diagrams and interactions for the actual task; fixed templates are optional.
+   Use the [shared style foundation](docs/ARTIFACT-STYLE.md), bundled per revision.
+   Append implementation notes during work, and publish its buy-in brief and quiz
+   before completion. Inspect the existing implementation and applicable acceptance criteria.
    Use `cargo xtask gaps` for ranked work and the driver to observe product behavior.
    Use `cargo xtask map` and `rg` to locate owners and dependencies.
 3. Run `cargo xtask doctor` on first setup and `cargo xtask check fast`

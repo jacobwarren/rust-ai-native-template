@@ -1,0 +1,36 @@
+{
+  "schema_version": 4,
+  "id": "artifact-style",
+  "status": "complete",
+  "requirements": [
+    "artifact-style"
+  ],
+  "related_gaps": [],
+  "gap_review": "No existing product gaps are addressed.",
+  "discoveries": [
+    {
+      "summary": "Version-local CSS is required for historical presentation integrity; global stylesheet links would change previously reviewed artifacts.",
+      "record": "docs/plans/completed/0009-artifact-style.md"
+    }
+  ],
+  "discovery_review": "Resolved shared style ownership and revision-local links; no material unresolved gap found in the inspected scope.",
+  "documentation": {
+    "updated": [
+      "docs/ARTIFACT-STYLE.md",
+      "docs/AUTHORED-HTML.md",
+      "docs/COMPLETION.md",
+      "docs/plans/completed/0009-artifact-style.md"
+    ],
+    "rationale": "Document installation, exact local link convention, custom layout boundaries, automatic CSS bundling and frozen upgrades."
+  },
+  "summary": "Shared presentation foundation with revision-local CSS, preserving task-specific composition.",
+  "remaining": [
+    "Human visual review at narrow and wide viewport sizes remains outside CLI and DOM evidence."
+  ],
+  "review": {
+    "acceptance": "Shared colors, typography, spacing, controls and focus states now apply through a required local foundation on new registrations. CSS is included in every revision; custom layout and scripts remain author-controlled.",
+    "verification": "Baseline fast passed. Eight CLI regressions, strict Clippy, documentation checks and 38 current/snapshot DOM checks passed. Final CI and completion evidence are under target/verification/artifact-style.",
+    "assumptions": "Literal link inclusion and hash checks do not prove CSS cascade semantics or visual quality. Authors follow the token/style contract; historical bytes remain independently verifiable. Existing pre-foundation history remains readable.",
+    "coverage": "Added independent nested/supporting-page link, missing/changed CSS, frozen upgrade, HTML preservation, stale working-copy, symlink and active-writer cases. DOM checks verify actual local stylesheet resolution and preserved controls. Human visual review remains."
+  }
+}

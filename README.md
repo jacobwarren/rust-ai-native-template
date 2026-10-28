@@ -150,3 +150,12 @@ Create a task record and review any transition receipts first. Completion is
 scoped to assigned work; release gates check the selected project scope. Use
 handoff for partial/blocked work. Read [the workflow](docs/COMPLETION.md) for
 schemas, discovery guidance, hook setup and authority limits.
+
+## HTML task reviews
+
+[Author task-specific HTML](docs/AUTHORED-HTML.md): choose layouts, diagrams,
+simulations and interactions that help humans understand this task. Five discovery
+purposes, implementation notes, buy-in and quiz are required; fixed templates are
+optional. Install the [shared foundation](docs/ARTIFACT-STYLE.md) with
+`cargo xtask task-artifact style --task ID`. Register files with `cargo xtask task-artifact register --task ID --input PATH`.
+The harness preserves bytes and provenance without prescribing presentation.

@@ -46,7 +46,7 @@ pub fn read(root: &Path, base: &str, path: &str) -> Result<Option<Vec<u8>>> {
 pub fn digest(bytes: &[u8]) -> String {
     format!("{:x}", Sha256::digest(bytes))
 }
-pub fn json_digest<T: serde::Serialize>(value: &T) -> Result<String> {
+pub fn json_digest<T: serde::Serialize + ?Sized>(value: &T) -> Result<String> {
     Ok(digest(&serde_json::to_vec(value)?))
 }
 pub fn current(root: &Path) -> Result<BTreeMap<String, String>> {

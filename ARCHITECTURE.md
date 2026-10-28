@@ -23,6 +23,10 @@ or Python dependency. Product intent lives in docs/PRODUCT.md.
 | Workflow acceptance and goldens | xtask/src/workflows.rs, golden.rs | Independent process expectations and read-only baseline comparison |
 | Readiness and work selection | xtask/src/readiness.rs: assess | Current evidence, named scope requirements and ranked blockers |
 | Gap authority and history | xtask/src/tracking.rs, transitions.rs, history.rs | Project register with opaque links; merge-base transition receipts |
+| Artifact style foundation | xtask/src/artifact_style.rs, artifact_foundation.css | Install shared styles and include local CSS in every new authored revision |
+| Authored HTML registry | xtask/src/authored.rs, authored_command.rs | Default purpose/provenance contract, immutable byte snapshots and open feedback payloads |
+| HTML task lifecycle | xtask/src/task_artifact.rs, task_view.rs, task_view.html | Mandatory offline review page, preserved snapshots, notes, brief and quiz |
+| Interactive discovery | xtask/src/discovery.rs, discovery_feedback.rs, discovery_view.rs | Five required decision tools, revision-bound feedback and append-only history |
 | Task reconciliation | xtask/src/task_record.rs, completion.rs | Task review, acceptance evidence and honest handoffs |
 | Source identity | xtask/src/repo.rs: metadata, fingerprint, worktree_id | Workspace discovery and inspected-source identity |
 | Independent agent trials | experiments/evaluator: Suite, Task, evaluate | Frozen task, disposable checkout, permitted patch, separate grading tree |

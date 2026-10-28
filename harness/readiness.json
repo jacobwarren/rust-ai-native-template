@@ -80,6 +80,72 @@
         "material_discovery_requires_durable_record_but_can_remain_open_after_task"
       ],
       "workflows": []
+    },
+    {
+      "id": "task-artifacts",
+      "implementation": [
+        "xtask/src/task_artifact.rs",
+        "xtask/src/task_view.rs",
+        "xtask/src/task_view.html",
+        "xtask/src/task_quiz.js"
+      ],
+      "tests": [
+        "artifact_lifecycle_preserves_preflight_and_requires_current_html",
+        "artifact_rejects_invalid_quiz_and_escapes_authored_content",
+        "artifact_history_cannot_be_rewritten_even_without_task_edits",
+        "legacy_records_cannot_bypass_mandatory_artifacts",
+        "partial_preflight_is_reviewable_but_not_complete",
+        "concurrent_fixtures_have_independent_directories",
+        "artifact_invalid_input_and_lock_leave_record_unchanged",
+        "artifact_symlinks_and_orphans_are_rejected"
+      ],
+      "workflows": []
+    },
+    {
+      "id": "discovery-workbench",
+      "implementation": [
+        "xtask/src/discovery.rs",
+        "xtask/src/discovery_feedback.rs",
+        "xtask/src/discovery_view.rs",
+        "xtask/src/discovery_state.js",
+        "xtask/src/discovery_ui.js"
+      ],
+      "tests": [
+        "five_discovery_artifacts_are_required_and_escape_authored_content",
+        "feedback_import_rejects_stale_wrong_task_and_invalid_choices_atomically",
+        "discovery_revisions_preserve_history_and_do_not_reuse_old_answers",
+        "discovery_requires_structured_sections_but_allows_documented_settled_states"
+      ],
+      "workflows": []
+    },
+    {
+      "id": "authored-html",
+      "implementation": [
+        "xtask/src/authored.rs",
+        "xtask/src/authored_command.rs"
+      ],
+      "tests": [
+        "authored_layouts_are_unconstrained_and_templates_cannot_overwrite_them",
+        "authored_feedback_accepts_open_payloads_and_rejects_stale_envelopes",
+        "authored_contract_rejects_missing_purposes_paths_and_history_edits",
+        "authored_partial_requires_discovery_and_final_requires_lifecycle",
+        "authored_registration_rejects_symlink_assets_without_writing_ledger"
+      ],
+      "workflows": []
+    },
+    {
+      "id": "artifact-style",
+      "implementation": [
+        "xtask/src/artifact_style.rs",
+        "xtask/src/artifact_foundation.css",
+        "scripts/test-artifact-style.cjs"
+      ],
+      "tests": [
+        "shared_style_is_required_and_bundled_for_nested_and_supporting_pages",
+        "shared_style_upgrade_preserves_historical_css_and_custom_html",
+        "shared_style_install_rejects_symlink_and_active_writer"
+      ],
+      "workflows": []
     }
   ],
   "scopes": {
@@ -88,14 +154,22 @@
       "state",
       "persistence",
       "evidence",
-      "completion"
+      "completion",
+      "task-artifacts",
+      "discovery-workbench",
+      "authored-html",
+      "artifact-style"
     ],
     "product": [
       "driver",
       "state",
       "persistence",
       "evidence",
-      "completion"
+      "completion",
+      "task-artifacts",
+      "discovery-workbench",
+      "authored-html",
+      "artifact-style"
     ]
   }
 }
