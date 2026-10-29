@@ -255,10 +255,16 @@ fn corrupt_future_and_oversize_files_do_not_change_live_state() {
         (future, "store_too_new"),
         (vec![b' '; MAX_BYTES + 1], "capacity"),
     ] {
-        fs::write(dir.0.join("board.json"), data).unwrap();
+        fs::write(dir.0.join("board.json"), &data).unwrap();
         assert_eq!(store.load(&mut live).unwrap_err().code, code);
         assert_eq!(live.inspect(), before);
     }
+    // A newer build with a larger limit may have written it, so save keeps it too.
+    assert_eq!(store.save(&live).unwrap_err().code, "capacity");
+    assert_eq!(
+        fs::read(dir.0.join("board.json")).unwrap(),
+        vec![b' '; MAX_BYTES + 1]
+    );
 }
 
 #[test]

@@ -208,12 +208,20 @@ impl Store {
 
     /// Refuse to replace a board from a newer build. A missing, unreadable or
     /// unparseable file is replaced as before: saving is how a damaged board recovers.
+    /// An oversized file is refused because its format cannot be read, and this build
+    /// never writes one: a newer build with a larger limit may have.
     fn refuse_newer(&self) -> Result<()> {
         let bytes = match self.read() {
             Ok(bytes) => bytes,
             Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(()),
             Err(e) => return Err(io_error(e)),
         };
+        if bytes.len() > MAX_BYTES {
+            return Err(Error::new(
+                "capacity",
+                "board.json exceeds 256 KiB, so this build cannot tell which build wrote it. It was not overwritten.",
+            ));
+        }
         match Peek::parse(&bytes) {
             Ok((_, found)) if found > JOURNAL_FORMAT => Err(too_new(format!(
                 "board.json uses journal format {found}, newer than this build writes (up to {JOURNAL_FORMAT}). It was not overwritten."
