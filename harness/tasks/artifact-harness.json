@@ -1,0 +1,43 @@
+{
+  "schema_version": 6,
+  "id": "artifact-harness",
+  "status": "partial",
+  "requirements": [
+    "task-artifacts",
+    "completion"
+  ],
+  "related_gaps": [
+    {
+      "id": "product-acceptance",
+      "disposition": "unaffected",
+      "rationale": "Task pages explain work on the template; they do not define acceptance for an adopted product."
+    },
+    {
+      "id": "platform-qualification",
+      "disposition": "unaffected",
+      "rationale": "The gate and screenshot script ran on local macOS and in CI on Ubuntu and macOS; the declared platform matrix is unchanged."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "The artifact gate runs in CI and opt-in hooks; it does not configure branch protection or reviewer authority on the host."
+    }
+  ],
+  "gap_review": "Reviewed the three open gaps. None is addressed or worsened: the pages are local evidence for reviewers, not hosted enforcement, product acceptance or platform qualification.",
+  "discoveries": [],
+  "discovery_review": "Discovery in progress through this task's pages, written after the code.",
+  "documentation": {
+    "updated": [],
+    "rationale": "Filled in at handoff."
+  },
+  "summary": "Require every schema-6 task to leave eight agent-written, independently reviewed HTML pages in the style of Thariq Shihipar's Know your unknowns, gated by presence, an inline stylesheet and commit order.",
+  "remaining": [
+    "Write and review this change's five discovery pages, then answer the task review."
+  ],
+  "review": {
+    "acceptance": "",
+    "verification": "",
+    "assumptions": "",
+    "coverage": ""
+  }
+}
