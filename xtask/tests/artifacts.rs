@@ -32,12 +32,18 @@ fn errors(v: &Value) -> String {
 }
 
 #[test]
-fn completion_requires_eight_pages_linking_the_task_stylesheet() {
+fn completion_requires_eight_pages_carrying_the_stylesheet_inline() {
     let f = Fixture::new();
     f.write("harness/tasks/TASK-1.json", f.record("complete"));
     f.evidence();
-    assert!(errors(&f.complete()).contains("foundation.css"));
-    f.run(&["task-artifact", "style", "--task", "TASK-1"]);
+    assert!(errors(&f.complete()).contains("missing blindspots.html"));
+    let style = f.run(&["task-artifact", "style", "--task", "TASK-1"]);
+    let block = std::fs::read_to_string(f.0.join(style["style"].as_str().unwrap())).unwrap();
+    assert!(block.starts_with("<style data-artifact-foundation=\"1\">") && block.contains("--ink"));
+    assert!(
+        !f.0.join("harness/task-artifacts/TASK-1/foundation.css")
+            .exists()
+    );
     f.pages(&DISCOVERY);
     f.commit("discovery");
     f.evidence();
@@ -45,11 +51,11 @@ fn completion_requires_eight_pages_linking_the_task_stylesheet() {
     f.pages(&ALL);
     f.text(
         "harness/task-artifacts/TASK-1/quiz.html",
-        "<!doctype html><p>no stylesheet</p>",
+        "<!doctype html><link rel=\"stylesheet\" href=\"foundation.css\"><p>sibling file</p>",
     );
     f.commit("pages");
     f.evidence();
-    assert!(errors(&f.complete()).contains("quiz.html must link"));
+    assert!(errors(&f.complete()).contains("quiz.html must carry the shared stylesheet inline"));
     f.page("quiz.html");
     f.commit("fix quiz");
     f.evidence();

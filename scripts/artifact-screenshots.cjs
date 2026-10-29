@@ -13,7 +13,8 @@ const VIEWPORTS = [
   { name: 'desktop', width: 1280, height: 900, mobile: false },
   { name: 'phone', width: 390, height: 844, mobile: true },
 ];
-const MAX_TILES = 12;
+// Phone renders run about twice the desktop height; 30 tiles cover ~25,000px.
+const MAX_TILES = 30;
 const SETTLE_MS = 400;
 const TIMEOUT_MS = 120000;
 
@@ -68,7 +69,8 @@ async function capture(cdp, page, viewport, outDir) {
   const { targetId } = await cdp.send('Target.createTarget', { url: 'about:blank' });
   const { sessionId } = await cdp.send('Target.attachToTarget', { targetId, flatten: true });
   const send = (method, params) => cdp.send(method, params, sessionId);
-  const result = { console_errors: [], external_requests: [] };
+  const result = { console_errors: [], external_requests: [], local_files: [] };
+  const pageUrl = pathToFileURL(path.resolve(page)).href;
   let loaded;
   const onLoad = new Promise((resolve) => (loaded = resolve));
   const stop = cdp.listen((m) => {
@@ -83,7 +85,9 @@ async function capture(cdp, page, viewport, outDir) {
     }
     if (m.method === 'Network.requestWillBeSent') {
       const url = m.params.request.url;
-      if (!/^(file|data|blob|about):/.test(url)) result.external_requests.push(url);
+      // A page that loads sibling files breaks wherever it is opened alone.
+      if (url.startsWith('file:')) { if (url !== pageUrl) result.local_files.push(url); }
+      else if (!/^(data|blob|about):/.test(url)) result.external_requests.push(url);
     }
   });
   await Promise.all(['Page.enable', 'Runtime.enable', 'Network.enable'].map((m) => send(m)));
@@ -93,7 +97,7 @@ async function capture(cdp, page, viewport, outDir) {
     deviceScaleFactor: 1,
     mobile: viewport.mobile,
   });
-  await send('Page.navigate', { url: pathToFileURL(path.resolve(page)).href });
+  await send('Page.navigate', { url: pageUrl });
   await onLoad;
   await new Promise((r) => setTimeout(r, SETTLE_MS));
   const { result: metrics } = await send('Runtime.evaluate', {
@@ -159,7 +163,7 @@ async function main() {
       report.push({ page, ...views });
     }
     const problems = report.some((r) =>
-      VIEWPORTS.some((v) => r[v.name].console_errors.length || r[v.name].external_requests.length) ||
+      VIEWPORTS.some((v) => ['console_errors', 'external_requests', 'local_files'].some((k) => r[v.name][k].length)) ||
       r.phone.horizontal_overflow);
     console.log(JSON.stringify({ ok: true, chrome: binary, problems, pages: report,
       scope: 'Rendered appearance for a person or agent to inspect; not a quality judgment' }));

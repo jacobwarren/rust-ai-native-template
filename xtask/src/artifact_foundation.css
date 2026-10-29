@@ -1,4 +1,4 @@
-/* Artifact foundation v1.0.0. Bundle locally; never reference a mutable global URL. */
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
 :root {
   color-scheme: light;
   --artifact-style-version: "1.0.0";

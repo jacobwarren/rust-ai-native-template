@@ -5,8 +5,8 @@ before code, what the code taught us during the work, and why the result is
 ready to merge. The method is Thariq Shihipar's
 [Know your unknowns](../examples/thariq/index.html): each page is what a capable
 model produces from **one short, specific prompt, given its full attention**.
-Rules and checklists do not make these pages good. The prompt, a strong example
-and a dedicated author do.
+Rules and checklists do not make these pages good. The prompt, a strong example,
+a dedicated author and an independent reviewer do.
 
 ## How to produce a page
 
@@ -26,10 +26,19 @@ and a dedicated author do.
 4. **Look at it.** Run `cargo xtask task-artifact screenshot --task ID`. It
    renders each page with local Chrome at desktop and phone width into
    `target/artifact-screenshots/ID/` and reports console errors, phone-width
-   overflow and any network requests. View the tiles next to the exemplar's
+   overflow, network requests and any file the page loads from disk. View the tiles next to the exemplar's
    (`node scripts/artifact-screenshots.cjs OUT_DIR examples/thariq/PAGE.html`)
    and fix what the report flags before committing. Without Node or Chrome, say
    so rather than implying visual review.
+5. **Get an independent review.** Start another fresh subagent, never the
+   author, with the [reviewer brief](skills/review-artifact.md), the page, its
+   prompt, the exemplar and the task context. A different model is better when
+   your host offers one. On REVISE, give the findings to a fresh author to
+   rewrite the page, then have a fresh reviewer judge the whole page again:
+   each review samples different claims, and rewrites can break what was
+   right. After two rewrites, commit the best
+   version. Record each page's final verdict and any findings left open in the
+   task record's `review.verification`.
 
 ## The prompts
 
@@ -75,17 +84,20 @@ the task record.
 
 ## Files and commits
 
-The harness checks presence and order. It does not judge quality.
+The harness checks presence and order. Quality is the reviewer's and the
+human's call.
 
 1. After creating the task record, run `cargo xtask task-artifact style --task ID`.
-   It copies the shared `foundation.css` into `harness/task-artifacts/ID/`, so a
-   later style change never alters this task's pages. Link it first in each
-   page's head:
-   `<link rel="stylesheet" href="foundation.css" data-artifact-foundation="1">`
-   Use its tokens for color, type and spacing. Layout stays page-specific.
+   It creates `harness/task-artifacts/ID/` and writes the shared stylesheet to
+   `target/artifact-style.html` as a `<style data-artifact-foundation="1">`
+   block. Paste that block first in each page's head and use its tokens for
+   color, type and spacing. Layout stays page-specific.
 2. Write the pages in that folder as `blindspots.html`, `interventions.html`,
    `interview.html`, `reference.html`, `plan.html`, `implementation.html`,
-   `buy-in.html` and `quiz.html`. Supporting files are welcome alongside them.
+   `buy-in.html` and `quiz.html`. Each page is one self-contained file that loads
+   nothing else, not even from its own folder, so it renders the same in a file
+   preview, on a code host or as an attachment, and a later style change never
+   alters it.
 3. Commit as you go. Completion reads the branch's own commits since the base:
    the five discovery pages before the first product-code commit, notes before
    the last one, and buy-in and quiz at or after it. Code and pages must be

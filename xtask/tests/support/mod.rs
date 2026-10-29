@@ -1,8 +1,7 @@
 #![allow(dead_code)]
 use serde_json::{Value, json};
 use std::{fs, path::PathBuf, process::Command};
-pub const LINK: &str =
-    "<link rel=\"stylesheet\" href=\"foundation.css\" data-artifact-foundation=\"1\">";
+pub const STYLE: &str = "<style data-artifact-foundation=\"1\">body{}</style>";
 pub const DISCOVERY: [&str; 5] = [
     "blindspots.html",
     "interventions.html",
@@ -108,7 +107,7 @@ impl Fixture {
     pub fn task(&self, status: &str) -> Value {
         if !self
             .0
-            .join("harness/task-artifacts/TASK-1/foundation.css")
+            .join("harness/task-artifacts/TASK-1/quiz.html")
             .exists()
         {
             self.run(&["task-artifact", "style", "--task", "TASK-1"]);
@@ -121,7 +120,7 @@ impl Fixture {
         self.text(
             &format!("harness/task-artifacts/TASK-1/{name}"),
             &format!(
-                "<!doctype html><head>{LINK}</head><p>{name} {:?}</p>",
+                "<!doctype html><head>{STYLE}</head><p>{name} {:?}</p>",
                 std::time::Instant::now()
             ),
         );

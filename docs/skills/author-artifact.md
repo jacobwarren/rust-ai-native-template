@@ -19,10 +19,10 @@ anything.
    step-through, toggles that change a visible consequence. Interactions exist to
    help the reader reason or reply. End with a way to send a reaction back, such
    as a reply assembled from their choices that they can copy.
-4. Write a single self-contained HTML file at the output path. Link
-   `foundation.css` first in the head as described in [the guide](../ARTIFACTS.md)
-   and use its tokens. Inline your own layout CSS and scripts. Load nothing from
-   the network.
+4. Write a single self-contained HTML file at the output path. Paste the shared
+   style block first in the head as described in [the guide](../ARTIFACTS.md)
+   and use its tokens. Inline your own layout CSS and scripts. Load nothing,
+   neither from the network nor from files beside the page.
 5. Keep the page about the feature. No harness mechanics, hashes, revision
    talk or verification boilerplate. Report those to the caller instead.
 6. Check your work by looking at it, not by reasoning about the markup. Render
@@ -30,8 +30,11 @@ anything.
    `node scripts/artifact-screenshots.cjs OUT_DIR YOUR_PAGE.html EXEMPLAR.html`
    (use a scratch OUT_DIR under `target/`) and view the PNG tiles. Fix every
    console error, network request and phone-width overflow the JSON report
-   lists. Exercise each interaction. If the exemplar would teach a reader more
+   lists, including any local file it loads. Exercise each interaction. If the exemplar would teach a reader more
    about its task than yours teaches about this one, revise.
+
+If you were given reviewer findings, address every one of them, and rewrite more
+than the flagged lines when a finding shows the page misread its job.
 
 Return the path, three lines on what the page lets a reader learn or decide, the
 evidence it cites, and anything you could not check (rendering, interactions,

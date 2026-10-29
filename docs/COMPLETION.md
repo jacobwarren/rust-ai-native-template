@@ -188,11 +188,11 @@ migration baseline; there is no automatic remote migration or completeness claim
 
 ## Artifact admission
 
-Completion requires the task's eight pages, each linking its own foundation.css,
-and reads the branch's own commits since the base (merge commits skipped): the five
+Completion requires the task's eight pages, each carrying the shared stylesheet
+inline, and reads the branch's own commits since the base (merge commits skipped): the five
 discovery pages before the first product-code commit, implementation notes before
 the last one, and buy-in and quiz at or after it. Product code and the task's pages
 must be committed; task records, gaps and reports need not be. Commit order shows
-sequence, not usefulness, and a rewritten history can fake it. Human review against
-the exemplars judges quality. The stop hook invokes the same completion checks; the
+sequence, not usefulness, and a rewritten history can fake it. An independent
+reviewer agent and human review against the exemplars judge quality. The stop hook invokes the same completion checks; the
 opt-in edit guard is separate.

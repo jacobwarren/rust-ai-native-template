@@ -1,4 +1,4 @@
-//! Task HTML artifacts: eight agent-authored pages, a per-task stylesheet and commit order.
+//! Task HTML artifacts: eight self-contained agent-authored pages and their commit order.
 //! Checks establish presence and order only; people judge usefulness against the exemplars.
 use crate::{
     config::{Result, valid_id},
@@ -20,10 +20,10 @@ pub const DISCOVERY: [&str; 5] = [
 ];
 pub const NOTES: &str = "implementation.html";
 pub const FINAL: [&str; 2] = ["buy-in.html", "quiz.html"];
-pub const LINK: &str =
-    "<link rel=\"stylesheet\" href=\"foundation.css\" data-artifact-foundation=\"1\">";
+/// Opening tag of the shared stylesheet, carried inline so a page renders on its own.
+pub const MARKER: &str = "<style data-artifact-foundation=\"1\">";
 const CSS: &str = include_str!("artifact_foundation.css");
-const STYLESHEET: &str = "foundation.css";
+const BLOCK: &str = "target/artifact-style.html";
 
 pub fn directory(id: &str) -> String {
     format!("harness/task-artifacts/{id}")
@@ -76,14 +76,15 @@ fn dir(root: &Path, id: &str) -> Result<PathBuf> {
     Ok(dir)
 }
 
-/// Copy the shared stylesheet into the task so later style changes leave its pages alone.
+/// Create the task's folder and write the current stylesheet as a block to paste into each
+/// page's head. Inline styles keep a page whole in any viewer and unchanged by later edits.
 pub fn install(root: &Path, id: &str) -> Result<Value> {
-    let dir = dir(root, id)?;
-    fs::create_dir_all(&dir)?;
-    fs::write(dir.join(STYLESHEET), CSS)?;
+    fs::create_dir_all(dir(root, id)?)?;
+    fs::create_dir_all(root.join("target"))?;
+    fs::write(root.join(BLOCK), format!("{MARKER}\n{CSS}</style>\n"))?;
     Ok(
-        json!({"ok":true,"task":id,"path":format!("{}/{STYLESHEET}", directory(id)),"link":LINK,
-        "next":"Link it first in each page's head, then write the pages described in docs/ARTIFACTS.md."}),
+        json!({"ok":true,"task":id,"folder":directory(id),"style":BLOCK,
+        "next":"Paste the style block first in each page's head, then write the pages described in docs/ARTIFACTS.md."}),
     )
 }
 
@@ -91,9 +92,6 @@ pub fn install(root: &Path, id: &str) -> Result<Value> {
 /// With a base revision, completion also checks the order of the branch's commits.
 pub fn check(root: &Path, id: &str, final_stage: bool, base: Option<&str>) -> Result<()> {
     let dir = dir(root, id)?;
-    if !dir.join(STYLESHEET).is_file() {
-        return Err("missing foundation.css; run cargo xtask task-artifact style --task ID".into());
-    }
     let mut pages = DISCOVERY.to_vec();
     if final_stage {
         pages.push(NOTES);
@@ -109,8 +107,11 @@ pub fn check(root: &Path, id: &str, final_stage: bool, base: Option<&str>) -> Re
         }
         let text = fs::read_to_string(&path)
             .map_err(|_| format!("missing {page}; see docs/ARTIFACTS.md"))?;
-        if !text.contains(LINK) {
-            return Err(format!("{page} must link the task stylesheet in its head: {LINK}").into());
+        if !text.contains(MARKER) {
+            return Err(format!(
+                "{page} must carry the shared stylesheet inline; paste the block from cargo xtask task-artifact style --task ID"
+            )
+            .into());
         }
     }
     if let (true, Some(base)) = (final_stage, base) {
