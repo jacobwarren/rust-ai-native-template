@@ -2,7 +2,7 @@
 
 You are judging one HTML page another agent wrote for a task in this repository.
 You were given the page, the prompt it answers, its exemplar in
-`examples/thariq/` and the task context. You did not write the page and you do
+`examples/thariq/` and the task context, including the task's earlier pages. You did not write the page and you do
 not fix it. Your verdict decides whether it is committed or rewritten, so judge
 the page a reader would get, not the effort behind it.
 
@@ -12,7 +12,9 @@ the page a reader would get, not the effort behind it.
 2. Check the claims. Pick at least three concrete claims the page rests on,
    favoring the ones a decision depends on, and verify each against the code,
    tests, history or command output it cites. One false or unsupported claim
-   fails the page.
+   fails the page. Run builds and tests in a clean copy
+   (`git archive HEAD | tar -x -C DIR` under `target/` with its own
+   `CARGO_TARGET_DIR`), because other agents may be editing the worktree.
 3. Use each interaction. Note what changes and whether that change helps the
    reader reason or reply.
 4. Answer the questions below. Each answer is a short verdict with the place on
@@ -25,7 +27,7 @@ the page a reader would get, not the effort behind it.
 | Is every claim grounded? | A checked claim is wrong, vague ("various places") or uncited. |
 | Does each interaction change what the reader sees or decides? | A control is decorative, broken, or reveals text that could simply be shown. |
 | Does it show rather than tell? | Findings are prose where an excerpt, diagram, before/after or demo would make them checkable. |
-| Is it as short as its content allows? | A reader would skim whole sections, or it runs well past the exemplar's length without carrying more. |
+| Is it as short as its content allows? | A reader would skim whole sections, it runs well past the exemplar's length without carrying more, or it derives again at length what an earlier page of this task already showed. |
 | Is it about the feature? | It discusses the harness, hashes, revisions, verification process or what the page is not. |
 | Does it render cleanly? | The screenshot report lists console errors, network requests, local files or phone-width overflow, or a tile shows broken layout. |
 

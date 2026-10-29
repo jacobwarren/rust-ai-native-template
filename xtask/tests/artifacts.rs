@@ -67,6 +67,32 @@ fn completion_requires_eight_pages_carrying_the_stylesheet_inline() {
 }
 
 #[test]
+fn coordination_accepts_a_started_task_but_checks_the_pages_it_has() {
+    let f = Fixture::new();
+    f.write("harness/tasks/TASK-1.json", f.record("partial"));
+    assert_eq!(f.run(&["coordination"])["ok"], true);
+    f.run(&["task-artifact", "style", "--task", "TASK-1"]);
+    f.page("blindspots.html");
+    assert_eq!(f.run(&["coordination"])["ok"], true);
+    f.text(
+        "harness/task-artifacts/TASK-1/plan.html",
+        "<!doctype html><link rel=\"stylesheet\" href=\"foundation.css\">",
+    );
+    let sibling = f.run(&["coordination"]);
+    assert!(
+        sibling["error"]
+            .to_string()
+            .contains("plan.html must carry the shared stylesheet inline")
+    );
+    f.write("harness/tasks/TASK-1.json", f.record("complete"));
+    assert!(
+        f.run(&["coordination"])["error"]
+            .to_string()
+            .contains("missing interventions.html")
+    );
+}
+
+#[test]
 fn discovery_must_be_committed_before_the_first_code_commit() {
     let (f, base) = setup();
     code(&f, 1);

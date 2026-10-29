@@ -214,8 +214,11 @@ pub fn validate(root: &Path) -> Result<Value> {
             .and_then(|s| s.to_str())
             .ok_or("invalid task filename")?;
         let record = task_record::read(root, id)?;
-        if record.schema_version >= 6 {
-            artifacts::check(root, id, record.status == Status::Complete, None)?;
+        // Handoff and completion demand pages; validation only checks the ones written.
+        if record.schema_version >= 6 && record.status == Status::Complete {
+            artifacts::check(root, id, true, None)?;
+        } else if record.schema_version >= 6 {
+            artifacts::check_written(root, id)?;
         }
         ids.push(id.to_owned());
     }

@@ -12,8 +12,11 @@ a dedicated author and an independent reviewer do.
 
 1. **Use a dedicated author.** Start a fresh subagent for each page and give it
    the [author-artifact brief](skills/author-artifact.md), the prompt below with
-   the task filled in, the exemplar path and the task context. If your host has
-   no subagents, give the page its own turn and do nothing else in it.
+   the task filled in, the exemplar path, the task context and the task's pages
+   written so far. If your host has no subagents, give the page its own turn and
+   do nothing else in it. Write the pages in the order of the table below.
+   Authors working in parallel each derive the same headline finding again; one
+   after another, each builds on the last.
 2. **Read the exemplar first.** The author reads the matching page in
    [examples/thariq/](../examples/thariq/) in full before writing. Match its
    depth, density and the job its interactions do, not its layout or domain.
@@ -22,11 +25,13 @@ a dedicated author and an independent reviewer do.
 3. **Ground every claim.** Name the file, function, test or commit behind each
    finding. Do not invent findings, options, questions or reference code to fill
    space. A small task gets a smaller page, but it must still teach something
-   the diff alone does not.
+   the diff alone does not. A finding an earlier page showed gets a one-line
+   citation in later pages, not a second derivation.
 4. **Look at it.** Run `cargo xtask task-artifact screenshot --task ID`. It
    renders each page with local Chrome at desktop and phone width into
    `target/artifact-screenshots/ID/` and reports console errors, phone-width
-   overflow, network requests and any file the page loads from disk. View the tiles next to the exemplar's
+   overflow, network requests and any file the page loads from disk. View the
+   tiles next to the exemplar's
    (`node scripts/artifact-screenshots.cjs OUT_DIR examples/thariq/PAGE.html`)
    and fix what the report flags before committing. Without Node or Chrome, say
    so rather than implying visual review.

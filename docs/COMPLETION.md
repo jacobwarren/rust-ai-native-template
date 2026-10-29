@@ -78,6 +78,9 @@ The other fields are demonstrated in [the example](../examples/task-record.json)
 
 - requirements names registered acceptance IDs. Complete requires current passing
   full-CI evidence and verified requirements that actually represent the task.
+  When the task adds tests that prove a requirement, list them under that
+  requirement in `harness/readiness.json` in the same change; otherwise the
+  requirement verifies against its old tests alone.
 - related_gaps includes rationale and disposition. resolved requires a closed gap
   and verified linked requirements. updated means changed against base; unaffected
   means unchanged. retired means removed with a matching transition receipt.

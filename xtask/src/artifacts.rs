@@ -98,26 +98,43 @@ pub fn check(root: &Path, id: &str, final_stage: bool, base: Option<&str>) -> Re
         pages.extend(FINAL);
     }
     for page in pages {
-        let path = dir.join(page);
-        if path
-            .symlink_metadata()
-            .is_ok_and(|m| m.file_type().is_symlink())
-        {
-            return Err(format!("{page} must not be a symlink").into());
-        }
-        let text = fs::read_to_string(&path)
-            .map_err(|_| format!("missing {page}; see docs/ARTIFACTS.md"))?;
-        if !text.contains(MARKER) {
-            return Err(format!(
-                "{page} must carry the shared stylesheet inline; paste the block from cargo xtask task-artifact style --task ID"
-            )
-            .into());
+        if !verify(&dir, page)? {
+            return Err(format!("missing {page}; see docs/ARTIFACTS.md").into());
         }
     }
     if let (true, Some(base)) = (final_stage, base) {
         order(root, id, base)?;
     }
     Ok(())
+}
+
+/// Checks the pages a task has written so far, so a task in progress validates
+/// before its discovery pages exist.
+pub fn check_written(root: &Path, id: &str) -> Result<()> {
+    let dir = dir(root, id)?;
+    for page in DISCOVERY.iter().chain([&NOTES]).chain(FINAL.iter()) {
+        verify(&dir, page)?;
+    }
+    Ok(())
+}
+
+/// Whether the page exists, after rejecting a symlink or a page without the inline stylesheet.
+fn verify(dir: &Path, page: &str) -> Result<bool> {
+    let path = dir.join(page);
+    let Ok(meta) = path.symlink_metadata() else {
+        return Ok(false);
+    };
+    if meta.file_type().is_symlink() {
+        return Err(format!("{page} must not be a symlink").into());
+    }
+    let text = fs::read_to_string(&path).map_err(|e| format!("cannot read {page}: {e}"))?;
+    if !text.contains(MARKER) {
+        return Err(format!(
+            "{page} must carry the shared stylesheet inline; paste the block from cargo xtask task-artifact style --task ID"
+        )
+        .into());
+    }
+    Ok(true)
 }
 
 fn order(root: &Path, id: &str, base: &str) -> Result<()> {
