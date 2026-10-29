@@ -1,7 +1,7 @@
 {
   "schema_version": 6,
   "id": "journal-versioning",
-  "status": "partial",
+  "status": "complete",
   "requirements": [
     "persistence"
   ],
@@ -23,20 +23,38 @@
     }
   ],
   "gap_review": "Reviewed the three open gaps; none is addressed or worsened by versioning the saved journal format.",
-  "discoveries": [],
-  "discovery_review": "Discovery in progress through the task's HTML pages.",
+  "discoveries": [
+    {
+      "summary": "Load parsed every command strictly before checking the version, so a newer board failed as invalid_store, and save never read the file it replaced, so the next save silently destroyed a newer board. Load now dates and verifies the file first and save refuses to replace a newer or oversized board.",
+      "record": "docs/DRIVER.md"
+    },
+    {
+      "summary": "The checksum covered the re-serialized journal, not the stored bytes, so no reader could verify a file it did not fully understand. Formats now hash the stored data bytes; format 1 keeps accepting the old digest so reformatted v1 boards still load.",
+      "record": "harness/task-artifacts/journal-versioning/implementation.html"
+    },
+    {
+      "summary": "Load replays stored commands under current domain rules, so a rule change can strand saved boards with replay_failed regardless of format. Documented that such a change must raise the format; no rule change is planned.",
+      "record": "docs/DRIVER.md"
+    }
+  ],
+  "discovery_review": "Discovery pages, implementation notes and reviews found the strict-parse-before-version order, silent overwrite of newer boards, re-serialized checksum, oversized-board overwrite and a writer that could go below the oldest readable format. All were fixed in this task. Replay under current rules is documented, not changed. No open gap is created or worsened.",
   "documentation": {
-    "updated": [],
-    "rationale": "No documented behavior has changed yet."
+    "updated": [
+      "docs/DRIVER.md"
+    ],
+    "rationale": "DRIVER.md documents the board.json shape, the load gates and their codes, the lowest-format rule, the save refusals, discover's journal_formats and the rule that replay-breaking rule changes must raise the format."
   },
-  "summary": "Version the saved-board journal format so new journal commands can be added without stranding saved boards, and so builds refuse files from newer builds with a clear error.",
+  "summary": "Saved boards now carry a checked journal format: load verifies the stored bytes and the format before parsing commands and refuses boards from newer builds with store_too_new, save writes the lowest format its commands need and never replaces a newer or oversized board, and today's v1 boards are pinned by a checked-in fixture.",
   "remaining": [
-    "Write and review the five discovery pages, then implement against the replies."
+    "Ship this reader in at least one release before any build writes format 2; builds already in use still report newer boards as invalid_store or version and overwrite them on save.",
+    "When the first format-2 command (such as rename) lands, reject files whose commands are newer than their declared format; that check cannot fire while every command is format 1.",
+    "A board.json whose format field is corrupted to a newer number blocks save until removed by hand, because save refuses on the peeked format without checking the digest.",
+    "The interview was answered with the coordinating agent's recommendations, not by a human; the buy-in page lists each decision for confirmation."
   ],
   "review": {
-    "acceptance": "",
-    "verification": "",
-    "assumptions": "",
-    "coverage": ""
+    "acceptance": "Met for the persistence requirement as scoped by the plan: newer boards are refused clearly by load and save and left byte-identical, v1 boards (including reformatted ones) load and re-save to identical bytes, and the mechanism ships with format 1 only. No real format-2 command was added, by decision A1.",
+    "verification": "cargo xtask check ci passes at the last code commit. Pre-change and post-change drivers were run against every fixture; the transcripts are reproduced in the buy-in page. No pre-existing failure was exposed. Each of the eight pages was judged by an independent reviewer on a different model: blindspots, interventions, interview, plan, implementation and buy-in passed first time; reference and quiz passed after one rewrite each (reference: an abridged transcript labelled as real output, pre-checked sign-offs, length; quiz: one question with two defensible answers and three answerable by phrase-matching). Reviews of the notes and the quiz also found two code defects, an oversized newer board overwritten by save and a writer that could go below the oldest readable format, both fixed. Open nits: pages run longer than the exemplars; the four discovery pages overlap on the headline finding.",
+    "assumptions": "Assumed the interview leans reflect what the human would choose; they were not answered by a human and are listed for confirmation in the buy-in page. Assumed no build has ever written a format other than 1 (store.rs had a single commit before this task).",
+    "coverage": "Added a frozen v1 fixture with expected state, a pretty-printed copy, four forged newer-format fixtures, exact error codes for every failing load, save refusal over newer and oversized boards, save replacement of a truncated board, the format gate table, and discover's journal_formats. Not covered: a real format-2 build reading these fixtures, and platforms beyond local macOS."
   }
 }
