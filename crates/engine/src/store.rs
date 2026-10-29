@@ -48,12 +48,13 @@ impl Peek<'_> {
 }
 
 /// The lowest format that can hold these commands, so older builds keep reading
-/// boards that never used a newer command.
+/// boards that never used a newer command. Never below the oldest format this
+/// build reads, or it would write files it then refuses.
 fn format_for(commands: &[Command]) -> u32 {
     commands
         .iter()
         .map(Command::introduced_in)
-        .fold(1, u32::max)
+        .fold(OLDEST_JOURNAL_FORMAT, u32::max)
 }
 
 fn check_format(found: u32, oldest: u32, newest: u32) -> Result<()> {
