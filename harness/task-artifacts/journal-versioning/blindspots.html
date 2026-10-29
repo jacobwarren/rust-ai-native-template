@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blindspot pass: versioning the saved-board journal</title>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<style>
+  main { max-width: 64rem; }
+  .prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); }
+  .prompt-card blockquote { font-style: italic; margin: var(--space-3) 0 0; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-block: var(--space-8) var(--space-6); }
+  .vs > div { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); background: var(--surface); }
+  .vs > div.actual { border-color: var(--warning); background: var(--warning-soft); }
+  .vs .tag { font-size: var(--text-small); font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .vs .actual .tag { color: var(--warning); }
+  .vs p { margin: var(--space-2) 0 0; }
+  @media (max-width: 44rem) { .vs { grid-template-columns: 1fr; } }
+  .stats { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); padding: var(--space-3) var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); font-family: var(--font-code); font-size: var(--text-small); }
+  .stats b { color: var(--warning); }
+
+  /* load pipeline */
+  .pipe { list-style: none; padding: 0; margin: var(--space-4) 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-2); counter-reset: step; }
+  .pipe li { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); font-size: var(--text-small); line-height: 1.4; }
+  .pipe li strong { display: block; font-size: .95rem; margin-bottom: var(--space-1); }
+  .pipe li code { font-size: .78rem; }
+  .pipe li .where { display: block; color: var(--muted); font-family: var(--font-code); font-size: .72rem; margin-top: var(--space-2); }
+  .pipe li .refs { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-2); }
+  .pipe li .refs a { font-family: var(--font-code); font-size: .72rem; text-decoration: none; border: 1px solid var(--warning); color: var(--warning); background: var(--warning-soft); border-radius: 999px; padding: 0 .45rem; }
+  .pipe li.hot { border-color: var(--warning); }
+  @media (max-width: 52rem) { .pipe { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 30rem) { .pipe { grid-template-columns: 1fr; } }
+
+  /* probe explorer */
+  .probe { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: var(--space-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4); }
+  .probe-list { display: flex; flex-direction: column; gap: var(--space-2); }
+  .probe-list button { text-align: start; min-height: 40px; padding: var(--space-2) var(--space-3); font-size: var(--text-small); line-height: 1.3; }
+  .probe-list button.secondary[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 3px 0 0 var(--ink); font-weight: 650; }
+  .probe-list .grp { font-size: .72rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: var(--space-2); }
+  .probe-out h4 { margin: 0 0 var(--space-2); font-size: 1rem; }
+  .probe-out .label { font-size: .72rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: var(--space-3); }
+  .probe-out pre { margin: var(--space-1) 0 0; font-size: .8rem; }
+  .probe-out pre.resp.bad { border-color: var(--danger); }
+  .probe-out pre.resp.good { border-color: var(--accent); }
+  .probe-out .verdict { margin: var(--space-3) 0 0; font-size: var(--text-small); }
+  @media (max-width: 44rem) { .probe { grid-template-columns: 1fr; } }
+
+  /* blindspot cards */
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); scroll-margin-top: var(--space-4); }
+  .card-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+  .card-head h3 { flex: 1 1 100%; margin: var(--space-2) 0 0; font-size: 1.2rem; }
+  .badge { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .1rem .5rem; border-radius: var(--control-radius); border: 1px solid; }
+  .badge.landmine { color: var(--danger); border-color: var(--danger); background: #fbeeef; }
+  .badge.concept { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .badge.convention { color: var(--muted); border-color: var(--line); background: var(--paper); }
+  .badge.gap { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+  .num { font-family: var(--font-code); font-size: var(--text-small); color: var(--muted); }
+  .card p { margin-block: var(--space-3); }
+  .card code, .vs code, .lead code, .decision code { font-size: .85em; background: var(--paper); border: 1px solid var(--line); border-radius: .3rem; padding: 0 .25rem; overflow-wrap: anywhere; }
+  figure.code { margin: var(--space-4) 0; }
+  figure.code figcaption { font-family: var(--font-code); font-size: .75rem; color: var(--muted); margin-bottom: var(--space-1); }
+  figure.code pre { white-space: pre; overflow-x: auto; overflow-wrap: normal; margin: 0; font-size: .78rem; line-height: 1.55; background: var(--paper); }
+  figure.code pre mark { background: var(--warning-soft); color: inherit; box-shadow: inset 3px 0 0 var(--warning); display: inline-block; min-width: 100%; }
+  .bite { border-inline-start: 3px solid var(--danger); background: #fbeeef; padding: var(--space-3) var(--space-4); border-radius: 0 var(--control-radius) var(--control-radius) 0; font-size: .95rem; }
+  .bite b { color: var(--danger); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; margin-inline-end: var(--space-2); }
+  .chip { display: flex; gap: var(--space-2); align-items: flex-start; margin-top: var(--space-4); }
+  .chip pre { flex: 1; margin: 0; font-size: .8rem; background: var(--accent-soft); border-color: var(--accent); }
+  .chip pre::before { content: "› "; color: var(--accent); font-weight: 700; }
+  .chip button { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  @media (max-width: 30rem) { .chip { flex-direction: column; } .chip button { align-self: flex-end; } }
+
+  /* decisions + final prompt */
+  .decision { margin-block: var(--space-4); }
+  .decision legend { font-size: 1rem; }
+  .decision .ref { font-family: var(--font-code); font-size: .75rem; color: var(--muted); margin: 0 0 var(--space-2); }
+  .decision label { display: flex; gap: var(--space-2); align-items: flex-start; margin-block: var(--space-2); padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--control-radius); cursor: pointer; }
+  .decision label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .decision label input { margin-top: .35rem; flex: none; }
+  .decision label .rec { font-size: .72rem; font-weight: 700; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; margin-inline-start: var(--space-2); }
+  .final { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-6); margin-top: var(--space-8); }
+  .final-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3); }
+  .final-head h2 { margin: 0; }
+  #final-prompt { font-size: .8rem; line-height: 1.6; background: var(--paper); margin-top: var(--space-4); }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Blindspot pass · before code · crates/engine persistence</p>
+  <h1>Versioning the saved-board journal: what you don't know yet</h1>
+
+  <div class="prompt-card">
+    <span class="muted">The prompt</span>
+    <blockquote>I'm about to version the saved-board journal format in the engine's persistence layer (crates/engine, starting from crates/engine/src/store.rs) so we can add new journal commands without stranding boards people have already saved, and so older builds refuse newer files clearly. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation.</blockquote>
+  </div>
+
+  <div class="vs">
+    <div>
+      <div class="tag">What it sounds like</div>
+      <p>The file already carries <code>schema_version: 1</code> and <code>load</code> already rejects anything else. Bump the number, add a match arm for v2, add the new command variant, done.</p>
+    </div>
+    <div class="actual">
+      <div class="tag">What you are walking into</div>
+      <p>A reader that <strong>parses every command strictly before it looks at the version</strong>, a checksum <strong>computed over today's Rust types rather than the file's bytes</strong>, one <code>Command</code> enum that is <strong>wire protocol, capture output and file format at once</strong>, and a test suite that <strong>has never seen a file it did not just write</strong>.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <span><b>4</b> landmines</span>
+    <span><b>2</b> conventions</span>
+    <span><b>1</b> missing concept</span>
+    <span><b>1</b> test gap</span>
+    <span>store.rs and lib.rs each have one commit: no earlier attempt to learn from</span>
+  </div>
+
+  <h2>Where each blindspot sits on the load path</h2>
+  <p class="lead">This is <code>Store::load</code> today, in order. Every probe below went through exactly these steps in a real driver process.</p>
+  <ol class="pipe">
+    <li><strong>Read</strong>Open <code>board.json</code>, read at most 256 KiB + 1.<span class="where">store.rs:118–126</span></li>
+    <li class="hot"><strong>Strict parse</strong><code>Envelope</code> → <code>Journal</code> → <code>Vec&lt;Command&gt;</code>, all <code>deny_unknown_fields</code>.<span class="where">store.rs:127</span><span class="refs"><a href="#b1">01</a><a href="#b4">04</a><a href="#b5">05</a></span></li>
+    <li class="hot"><strong>Version check</strong><code>schema_version != 1</code> → code <code>version</code>.<span class="where">store.rs:128–130</span><span class="refs"><a href="#b1">01</a><a href="#b8">08</a></span></li>
+    <li class="hot"><strong>Checksum</strong>Re-serialize the parsed struct, hash it, compare.<span class="where">store.rs:131–134</span><span class="refs"><a href="#b2">02</a></span></li>
+    <li class="hot"><strong>Replay</strong>Every command re-executed through today's domain rules.<span class="where">lib.rs:107–119</span><span class="refs"><a href="#b3">03</a></span></li>
+    <li class="hot"><strong>Commit</strong>Replace live session; nothing is written back. Writing happens only on <code>save</code>.<span class="where">lib.rs:117 · store.rs:79–100</span><span class="refs"><a href="#b6">06</a></span></li>
+  </ol>
+
+  <h2>Try today's build against files a newer build might write</h2>
+  <p>I saved a real board with the driver, then hand-built the files below with correct sha256 values (the hash recipe matches the driver's own: the baseline digest reproduces byte for byte) and asked a fresh <code>starter-app driver</code> to <code>load</code> each one. Pick a file to see its bytes and the exact response.</p>
+  <div class="probe" id="probe">
+    <div class="probe-list" role="group" aria-label="Probe files"></div>
+    <div class="probe-out" aria-live="polite">
+      <h4 id="p-title"></h4>
+      <div id="p-what" class="muted"></div>
+      <div class="label">board.json</div>
+      <pre id="p-file"></pre>
+      <div class="label">load response from today's build</div>
+      <pre id="p-resp" class="resp"></pre>
+      <p class="verdict" id="p-verdict"></p>
+    </div>
+  </div>
+
+  <h2>The blindspots</h2>
+
+  <!-- 01 -->
+  <section class="card" id="b1">
+    <div class="card-head"><span class="badge landmine">Landmine</span><span class="num">01</span>
+      <h3>The version check is unreachable for almost every real "newer" file</h3></div>
+    <p><code>load</code> deserializes the whole file into today's strict types first, and only then compares <code>schema_version</code>. <code>Envelope</code> and <code>Journal</code> deny unknown fields, and <code>Command</code> is an internally tagged enum that also denies unknown fields. So a newer file with a new command, a new field on an existing command, or a new envelope field fails at line 127 with <code>invalid_store</code>. The <code>version</code> error at line 129 only fires when the newer file happens to be shaped exactly like v1.</p>
+    <figure class="code"><figcaption>crates/engine/src/store.rs</figcaption><pre> 10  #[derive(Serialize, Deserialize)]
+ 11  #[serde(deny_unknown_fields)]
+ 12  struct Journal {
+ 13      schema_version: u32,
+ 14      commands: Vec&lt;Command&gt;,
+ 15  }
+ ...
+<mark>127          let envelope: Envelope = serde_json::from_slice(&amp;bytes).map_err(json_error)?;</mark>
+<mark>128          if envelope.data.schema_version != 1 {</mark>
+129              return Err(Error::new("version", "unsupported saved journal version"));
+130          }</pre></figure>
+    <p>In the probes, a v2 file containing <code>rename</code> came back as <code>invalid_store: unknown variant `rename`, expected one of `add`, `complete`, `remove`, `undo`</code>. Of the four v2 files, only the one with nothing new in it produced <code>version</code>.</p>
+    <div class="bite"><b>Why it bites</b>The build people have today is the "older build" in your goal, and its code is already frozen. No file a v2 writer produces can make it say <code>version</code> once a new command is in the journal. "Refuse newer files clearly" is achievable only for builds that ship with this change, and only if the new reader reads the version before it parses commands. Bumping the number alone repeats today's ordering in the next build.</div>
+    <div class="chip"><pre id="c1">Read schema_version with a lenient probe (only data.schema_version, unknown fields ignored) before any strict parse, and refuse newer versions there. Add a test with a newer file that contains an unknown command and assert the version error, not invalid_store.</pre><button class="secondary" data-copy="c1">Copy</button></div>
+  </section>
+
+  <!-- 02 -->
+  <section class="card" id="b2">
+    <div class="card-head"><span class="badge landmine">Landmine</span><span class="num">02</span>
+      <h3>The checksum covers today's Rust struct, not the bytes on disk</h3></div>
+    <p>Both <code>save</code> and <code>load</code> hash <code>serde_json::to_vec(&amp;Journal)</code>. On load that is the <em>parsed and re-serialized</em> value, so the digest is defined by the field order and serde attributes of the types you load into. Whitespace and key order in the file are irrelevant: a pretty-printed file with keys reversed loads fine. A writer that hashed <code>{"commands":…,"schema_version":1}</code> in that order is rejected as <code>corrupt_store</code>, although its content is identical.</p>
+    <figure class="code"><figcaption>crates/engine/src/store.rs</figcaption><pre> 79          let data = Journal {
+ 80              schema_version: 1,
+ 81              commands: session.journal().to_vec(),
+ 82          };
+<mark> 83          let sha256 = digest(&amp;serde_json::to_vec(&amp;data).map_err(json_error)?);</mark>
+ ...
+<mark>131          let expected = digest(&amp;serde_json::to_vec(&amp;envelope.data).map_err(json_error)?);</mark>
+132          if envelope.sha256 != expected {
+133              return Err(Error::new("corrupt_store", "journal checksum mismatch"));</pre></figure>
+    <div class="bite"><b>Why it bites</b>The natural v2 move is to widen the types: add a field to <code>Journal</code>, give <code>Add</code> an optional field, reorder <code>Journal</code>'s fields, then load v1 files into those wider types. Each of those changes what re-serialization produces, so every intact v1 board would fail with <code>corrupt_store</code>. That is the worst outcome for the "don't strand saved boards" goal, and it reports a healthy file as damaged.</div>
+    <div class="chip"><pre id="c2">Verify each file's sha256 against the serialized form of that version's own frozen types, before any migration. Never re-hash a v1 file through v2 types. Keep v1's field order (schema_version, commands) and serde attributes byte-identical.</pre><button class="secondary" data-copy="c2">Copy</button></div>
+  </section>
+
+  <!-- 03 -->
+  <section class="card" id="b3">
+    <div class="card-head"><span class="badge concept">Missing concept</span><span class="num">03</span>
+      <h3>A saved board is a list of intents, re-judged by today's rules every time it opens</h3></div>
+    <p>The file stores commands, not tasks. <code>load</code> hands them to <code>Session::replay</code>, which runs each one through <code>execute</code> on a fresh session, including title validation and the undo history. In the probes, a v1 file with title <code>"  Review  "</code> opened as <code>"Review"</code>, and a v1 file whose second command completes a missing task was refused as <code>replay_failed: step 1: task does not exist</code>.</p>
+    <figure class="code"><figcaption>crates/engine/src/lib.rs</figcaption><pre>106      /// Fresh-state replay is all-or-nothing; it does not append to the current session.
+107      pub fn replay(&amp;mut self, commands: Vec&lt;Command&gt;) -&gt; Result&lt;()&gt; {
+ ...
+111          let mut candidate = Self::default();
+112          for (index, command) in commands.into_iter().enumerate() {
+113              candidate
+<mark>114                  .execute(command)</mark>
+115                  .map_err(|e| Error::new("replay_failed", format!("step {index}: {}", e.message)))?;</pre></figure>
+    <p>Undo is rebuilt the same way: every non-undo command pushes the prior board (lib.rs:82–86), so a new command is undoable after reopen automatically, whether or not you want that.</p>
+    <div class="bite"><b>Why it bites</b>A schema version protects the file's syntax. It does not protect its meaning. Tighten a title rule in <code>board.rs</code>, lower <code>MAX_TASKS</code>, or change what undo restores, and a perfectly valid v1 file can stop opening or open as a different board, with no version change involved. You need to decide whether the version number promises meaning too.</div>
+    <div class="chip"><pre id="c3">Treat replay semantics as part of compatibility: a checked-in v1 board must replay to the same inspect state in every future build. State in the plan whether the new command is undoable and how replay handles it.</pre><button class="secondary" data-copy="c3">Copy</button></div>
+  </section>
+
+  <!-- 04 -->
+  <section class="card" id="b4">
+    <div class="card-head"><span class="badge landmine">Landmine</span><span class="num">04</span>
+      <h3>One <code>Command</code> enum is the wire protocol, the capture format and the file format</h3></div>
+    <p>The same type is deserialized from <code>execute</code> and <code>replay</code> requests, returned by <code>capture</code> as <code>journal</code>, and stored in <code>board.json</code>. Adding a variant for the file changes the driver protocol in the same commit. Yet <code>protocol_version</code> is a literal <code>1</code>, and the discovery list is hand-written, so a new variant can be accepted by <code>execute</code> while <code>discover</code> never mentions it.</p>
+    <figure class="code"><figcaption>crates/engine/src/protocol.rs</figcaption><pre> 20  pub enum Action {
+ ...
+<mark> 23      Execute { command: Command },</mark>
+<mark> 24      Replay { commands: Vec&lt;Command&gt; },</mark>
+ ...
+<mark> 33      json!({"protocol_version":1,"boundary":"application_engine",</mark>
+ ...
+ 37          "commands":[
+ 38              {"id":"add","example":{"command":"add","title":"Ship a change"},"effect":"Add a task; returns its id"},
+ ...
+ 41              {"id":"undo","example":{"command":"undo"},"effect":"Undo the last edit","enabled":session.inspect()["can_undo"]}</pre></figure>
+    <figure class="code"><figcaption>crates/engine/tests/protocol.rs: checks only the descriptors that exist</figcaption><pre> 18      for descriptor in capabilities(&amp;s, false)["commands"].as_array().unwrap() {
+ 19          let command: Command = serde_json::from_value(descriptor["example"].clone()).unwrap();
+ 20          assert!(s.clone().execute(command).is_ok(), "{descriptor}");</pre></figure>
+    <div class="bite"><b>Why it bites</b>A journal captured from a v2 build and fed to an older build's <code>replay</code> fails as <code>invalid_request</code>, another unversioned path for the same data. If you keep v1 decoding on the shared enum, you can never change how an existing command serializes on the wire without breaking v1 files (see 02). The architectural choice is whether the stored format gets its own frozen type. That is decision A below.</div>
+    <div class="chip"><pre id="c4">List every place Command crosses a boundary (execute, replay, capture, board.json) and say for each whether the change is visible there. Make capabilities() cover every variant with a test that fails when one is missing.</pre><button class="secondary" data-copy="c4">Copy</button></div>
+  </section>
+
+  <!-- 05 -->
+  <section class="card" id="b5">
+    <div class="card-head"><span class="badge convention">Convention</span><span class="num">05</span>
+      <h3>New commands must be struct variants. A unit variant silently accepts junk</h3></div>
+    <p><code>Undo {}</code> looks odd for a command with no data. It is deliberate: <code>docs/DRIVER.md</code> says unknown fields fail "including empty-struct variants", and <code>tests/protocol.rs:45</code> rejects <code>{"command":"undo","id":1}</code>. I checked serde 1.0 directly with the same attributes: <code>Undo {}</code> rejects that input with "unknown field `id`", while a unit variant <code>Undo</code> accepts it.</p>
+    <figure class="code"><figcaption>crates/engine/src/lib.rs</figcaption><pre> 30  #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+ 31  #[serde(tag = "command", rename_all = "snake_case", deny_unknown_fields)]
+ 32  pub enum Command {
+ 33      Add { title: String },
+ ...
+<mark> 36      Undo {},</mark>
+ 37  }</pre></figure>
+    <div class="bite"><b>Why it bites</b>A no-argument command written as a unit variant compiles, passes round-trip tests, and quietly ignores misspelled fields in requests and in stored files. That breaks the strictness that 01's version probe and 02's checksum rely on.</div>
+    <div class="chip"><pre id="c5">Any new Command variant without data is written as Name {}, never a unit variant. Add the new command's typo case to strict_requests_and_nested_commands_fail_without_mutation.</pre><button class="secondary" data-copy="c5">Copy</button></div>
+  </section>
+
+  <!-- 06 -->
+  <section class="card" id="b6">
+    <div class="card-head"><span class="badge landmine">Landmine</span><span class="num">06</span>
+      <h3>The first save from a new build upgrades the board one way, with no copy kept</h3></div>
+    <p><code>save</code> always rewrites the whole journal under a version literal and renames over <code>board.json</code>. <code>load</code> never writes. So a v1 board is still v1 after a v2 build opens it, but becomes whatever the writer stamps on the next <code>save</code>, even if nobody used a new command. <code>docs/DRIVER.md</code> is explicit that there is no automatic backup archive.</p>
+    <figure class="code"><figcaption>crates/engine/src/store.rs</figcaption><pre> 79          let data = Journal {
+<mark> 80              schema_version: 1,</mark>
+ 81              commands: session.journal().to_vec(),
+ 82          };
+ ...
+<mark>100              fs::rename(&amp;temp, self.root.join("board.json"))?;</mark></pre></figure>
+    <div class="bite"><b>Why it bites</b>If the v2 writer always writes 2, anyone who opens and saves a board in the new build can no longer open it in the old build, even though the journal contains nothing the old build doesn't understand. Writing the lowest version that can express the journal avoids that. Decision B below.</div>
+    <div class="chip"><pre id="c6">Decide the writer rule explicitly (lowest sufficient version vs always newest) and test it: open a v1 board in the new build, save without new commands, and assert the schema_version on disk.</pre><button class="secondary" data-copy="c6">Copy</button></div>
+  </section>
+
+  <!-- 07 -->
+  <section class="card" id="b7">
+    <div class="card-head"><span class="badge gap">Test gap</span><span class="num">07</span>
+      <h3>No test has ever loaded a file this build did not just write, and the future-file test only asserts <code>is_err()</code></h3></div>
+    <p>Every store test creates its file with the current <code>store.save</code>. The goldens in <code>harness/goldens/</code> are <code>inspect</code> states, not <code>board.json</code> bytes. After you change the writer, the round-trip tests read what the new writer wrote and stay green, even if v1 files no longer load. The only "future" case bumps the number to 999 on an otherwise v1 file and accepts any error.</p>
+    <figure class="code"><figcaption>crates/engine/src/store_tests.rs</figcaption><pre>107      let mut future: serde_json::Value = serde_json::from_slice(&amp;original).unwrap();
+<mark>108      future["data"]["schema_version"] = serde_json::json!(999);</mark>
+ ...
+115          fs::write(dir.0.join("board.json"), data).unwrap();
+<mark>116          assert!(store.load(&amp;mut live).is_err());</mark>
+117          assert_eq!(live.inspect(), before);</pre></figure>
+    <div class="bite"><b>Why it bites</b>This test passes today for <code>version</code>, and would pass equally for <code>invalid_store</code> or <code>corrupt_store</code>. It cannot tell a correct refusal from 01's wrong one. <code>crates/engine/AGENTS.md</code> also says golden files need explicit review and never auto-create, so the v1 fixture has to be written down from real v1 bytes, not regenerated by the new writer. Today's build wrote this 202-byte file:</div>
+    <figure class="code"><figcaption>board.json written by today's driver: add "Review", complete 1, undo</figcaption><pre>{"data":{"schema_version":1,"commands":[{"command":"add","title":"Review"},{"command":"complete","id":1},{"command":"undo"}]},"sha256":"856c2342bc48b3b7726f867a48c5407b5c76f508e9d9811ab6a6c6ac42574818"}</pre></figure>
+    <div class="chip"><pre id="c7">Before changing the writer, check in the exact v1 bytes as a reviewed fixture and assert it loads to tasks [{id 1, "Review", done false}], next_id 2, revision 3, can_undo true. Make the corrupt/future test assert exact error codes.</pre><button class="secondary" data-copy="c7">Copy</button></div>
+  </section>
+
+  <!-- 08 -->
+  <section class="card" id="b8">
+    <div class="card-head"><span class="badge convention">Convention</span><span class="num">08</span>
+      <h3>The <code>version</code> error code already means "bad request version", and the message names no numbers</h3></div>
+    <p>The driver rejects a request with <code>schema_version: 2</code> using the same code, <code>version</code>, that the store uses for a newer file. A client can only tell them apart by message text. Neither message says which version it found or which it supports. The version is also checked <em>before</em> the checksum, so a damaged version field is reported as "unsupported version" rather than corruption. Load error codes are not listed in <code>docs/DRIVER.md</code>, and the <code>1</code> lives as two separate literals (store.rs:80 and :128).</p>
+    <figure class="code"><figcaption>crates/engine/src/protocol.rs and store.rs</figcaption><pre><mark>protocol.rs 68      return Err(Error::new("version", "unsupported protocol version"));</mark>
+<mark>store.rs   129      return Err(Error::new("version", "unsupported saved journal version"));</mark></pre></figure>
+    <div class="bite"><b>Why it bites</b>"Refuse clearly" is mostly about what the user reads. Today's message can't say "this board was saved by a newer build (format 2); this build reads up to 1". A shared code also makes "update your app" advice ambiguous between a client problem and a file problem. Decision C below.</div>
+    <div class="chip"><pre id="c8">Give the newer-file refusal its own error code with found and supported versions in the message, keep it out of the protocol's version code, and document every load error code in docs/DRIVER.md.</pre><button class="secondary" data-copy="c8">Copy</button></div>
+  </section>
+
+  <h2>Four decisions only you can make</h2>
+  <p>The constraints above are settled by the code. These four change the shape of the implementation. Pick one in each; the prompt at the bottom updates.</p>
+
+  <fieldset class="decision" data-key="A">
+    <legend>A · What type do stored commands decode into?</legend>
+    <p class="ref">from 02 and 04</p>
+    <label><input type="radio" name="A" value="split" checked><span>Freeze the stored v1 format in its own type in store.rs, with today's four variants and identical serde attributes, verified then converted to <code>Command</code>. The wire enum can then grow without touching v1 files.<span class="rec">Recommended</span></span></label>
+    <label><input type="radio" name="A" value="shared"><span>Keep one shared <code>Command</code> enum for wire, capture and storage. A new variant is also a protocol change, so bump <code>protocol_version</code> and update DRIVER.md's command list in the same change.</span></label>
+  </fieldset>
+
+  <fieldset class="decision" data-key="B">
+    <legend>B · Which version does save write?</legend>
+    <p class="ref">from 06</p>
+    <label><input type="radio" name="B" value="lowest" checked><span>The lowest version that can express the journal. A board using only add, complete, remove and undo stays v1, so older builds keep opening it until a new command is used.<span class="rec">Recommended</span></span></label>
+    <label><input type="radio" name="B" value="newest"><span>Always the newest version. The first save from a new build upgrades the board one way; DRIVER.md says so.</span></label>
+  </fieldset>
+
+  <fieldset class="decision" data-key="C">
+    <legend>C · How is a newer file refused?</legend>
+    <p class="ref">from 01 and 08</p>
+    <label><input type="radio" name="C" value="newcode" checked><span>A distinct code (for example <code>unsupported_store_version</code>) whose message names the file's version and the highest version this build reads.<span class="rec">Recommended</span></span></label>
+    <label><input type="radio" name="C" value="samecode"><span>Keep the code <code>version</code>, shared with the protocol check, but put the found and supported versions in the message.</span></label>
+  </fieldset>
+
+  <fieldset class="decision" data-key="D">
+    <legend>D · Does the schema version promise meaning as well as syntax?</legend>
+    <p class="ref">from 03</p>
+    <label><input type="radio" name="D" value="syntax" checked><span>Syntax only. Domain-rule changes are a separate concern, and the checked-in v1 fixture replaying to a fixed state is the tripwire that catches them.<span class="rec">Recommended</span></span></label>
+    <label><input type="radio" name="D" value="meaning"><span>Meaning too. Any change to how a stored command replays (title rules, limits, undo) requires a version bump and a migration step.</span></label>
+  </fieldset>
+
+  <section class="final">
+    <div class="final-head">
+      <h2>Your improved prompt</h2>
+      <button data-copy="final-prompt">Copy prompt</button>
+    </div>
+    <p class="muted">Everything above folded into the instruction to give for the implementation, with your four choices filled in.</p>
+    <pre id="final-prompt"></pre>
+  </section>
+
+  <footer>Evidence: crates/engine/src/store.rs, lib.rs, protocol.rs, store_tests.rs, tests/protocol.rs, docs/DRIVER.md, crates/engine/AGENTS.md, and load responses from today's starter-app driver against the probe files above.</footer>
+</main>
+
+<script>
+(function () {
+  var V1 = '{"data":{"schema_version":1,"commands":[{"command":"add","title":"Review"},{"command":"complete","id":1},{"command":"undo"}]},"sha256":"856c2342bc48b3b7726f867a48c5407b5c76f508e9d9811ab6a6c6ac42574818"}';
+  var probes = [
+    { grp: "Today's format", id: "v1", label: "v1 board, as saved", what: "Written by today's driver: add \"Review\", complete 1, undo.", file: V1,
+      resp: '{"id":1,"ok":true,"result":{"can_undo":true,"next_id":2,"revision":3,"tasks":[{"done":false,"id":1,"title":"Review"}]},"schema_version":1}',
+      ok: true, verdict: "Baseline. Undo history survives because replay rebuilds it." },
+    { grp: "Files a v2 build might write", id: "v2cmd", label: "v2 with a new command", what: "schema_version 2 plus a hypothetical rename command. Valid checksum.",
+      file: '{"data":{"schema_version":2,"commands":[{"command":"add","title":"Review"},{"command":"complete","id":1},{"command":"undo"},{"command":"rename","id":1,"title":"Ship"}]},"sha256":"bdc12cc63692eec15c84b6e7f8d2c51eb9a85e847f5ff471182bae2c279bf8c6"}',
+      resp: '{"error":{"code":"invalid_store","message":"unknown variant `rename`, expected one of `add`, `complete`, `remove`, `undo` at line 1 column 143"},"id":1,"ok":false,"schema_version":1}',
+      ok: false, verdict: "Refused, but as a malformed store, not a newer one. The version check never ran (01)." },
+    { grp: null, id: "v2field", label: "v2 with a new field on add", what: "schema_version 2, add carries an extra due field.",
+      file: '{"data":{"schema_version":2,"commands":[{"command":"add","title":"Review","due":"2026-11-01"}]},"sha256":"6f2c2f9a3af7a7746635beea274a35c06e58afef881dea61b72e0c960e6300f7"}',
+      resp: '{"error":{"code":"invalid_store","message":"unknown field `due`, expected `title` at line 1 column 94"},"id":1,"ok":false,"schema_version":1}',
+      ok: false, verdict: "Same: strict command parsing wins over the version check (01)." },
+    { grp: null, id: "v2env", label: "v2 with an envelope field", what: "schema_version 2 plus a top-level min_reader hint next to data and sha256.",
+      file: '{"data":{"schema_version":2,"commands":[{"command":"add","title":"Review"},{"command":"complete","id":1},{"command":"undo"}]},"sha256":"dae11900b2a756906469c1f40e7cafd4bb4846d6b138f34e3119bc225215979d","min_reader":2}',
+      resp: '{"error":{"code":"invalid_store","message":"unknown field `min_reader`, expected `data` or `sha256` at line 1 column 214"},"id":1,"ok":false,"schema_version":1}',
+      ok: false, verdict: "Envelope is deny_unknown_fields too, so no metadata can be added for old readers to see (01)." },
+    { grp: null, id: "v2plain", label: "v2 with nothing new", what: "schema_version 2, only v1 commands.",
+      file: '{"data":{"schema_version":2,"commands":[{"command":"add","title":"Review"},{"command":"complete","id":1},{"command":"undo"}]},"sha256":"dae11900b2a756906469c1f40e7cafd4bb4846d6b138f34e3119bc225215979d"}',
+      resp: '{"error":{"code":"version","message":"unsupported saved journal version"},"id":1,"ok":false,"schema_version":1}',
+      ok: false, verdict: "The only newer file that reaches the version check, and the message names no versions (08)." },
+    { grp: "Checksum and replay", id: "pretty", label: "v1, pretty-printed, keys reversed", what: "Same content as the baseline, indented, sha256 first, commands before schema_version. Same digest.",
+      file: "{\n  \"sha256\": \"856c2342bc48b3b7726f867a48c5407b5c76f508e9d9811ab6a6c6ac42574818\",\n  \"data\": {\n    \"commands\": [\n      {\n        \"command\": \"add\",\n        \"title\": \"Review\"\n      },\n      {\n        \"command\": \"complete\",\n        \"id\": 1\n      },\n      {\n        \"command\": \"undo\"\n      }\n    ],\n    \"schema_version\": 1\n  }\n}",
+      resp: '{"id":1,"ok":true,"result":{"can_undo":true,"next_id":2,"revision":3,"tasks":[{"done":false,"id":1,"title":"Review"}]},"schema_version":1}',
+      ok: true, verdict: "Loads: the digest is of the re-serialized struct, not these bytes (02)." },
+    { grp: null, id: "order", label: "v1, hashed in another key order", what: "Identical content, but the writer hashed {commands, schema_version} in that order.",
+      file: '{"data":{"commands":[{"command":"add","title":"Review"},{"command":"complete","id":1},{"command":"undo"}],"schema_version":1},"sha256":"cce6b82c8de37dfc8b6e349787096fbeaf7bf3c2d18203895b52d8b7c055f481"}',
+      resp: '{"error":{"code":"corrupt_store","message":"journal checksum mismatch"},"id":1,"ok":false,"schema_version":1}',
+      ok: false, verdict: "Rejected as corrupt. Change Journal's fields or order and every v1 board gets this (02)." },
+    { grp: null, id: "trim", label: "v1, untrimmed title", what: "A valid v1 file whose add title has surrounding spaces.",
+      file: '{"data":{"schema_version":1,"commands":[{"command":"add","title":"  Review  "}]},"sha256":"c518b630c084f341ab560ccf63e4fc25c2159571dbae90a8b48f1e807716b43e"}',
+      resp: '{"id":1,"ok":true,"result":{"can_undo":true,"next_id":2,"revision":1,"tasks":[{"done":false,"id":1,"title":"Review"}]},"schema_version":1}',
+      ok: true, verdict: "Today's Title rules reshaped stored data on the way in (03)." },
+    { grp: null, id: "replay", label: "v1, command today's rules refuse", what: "Correct checksum and version; the second command completes a task that does not exist.",
+      file: '{"data":{"schema_version":1,"commands":[{"command":"add","title":"A"},{"command":"complete","id":2}]},"sha256":"e232f215eef19ca34e2541f8556d4036025253fcfaf12db9f5aa44896a839026"}',
+      resp: '{"error":{"code":"replay_failed","message":"step 1: task does not exist"},"id":1,"ok":false,"schema_version":1}',
+      ok: false, verdict: "Format-valid, still stranded. Any future rule change can do this to real v1 boards (03)." }
+  ];
+  var list = document.querySelector(".probe-list");
+  var buttons = [];
+  probes.forEach(function (p, i) {
+    if (p.grp) { var g = document.createElement("div"); g.className = "grp"; g.textContent = p.grp; list.appendChild(g); }
+    var b = document.createElement("button");
+    b.className = "secondary"; b.type = "button"; b.textContent = p.label;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { show(i); });
+    list.appendChild(b); buttons.push(b);
+  });
+  function show(i) {
+    var p = probes[i];
+    buttons.forEach(function (b, j) { b.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+    document.getElementById("p-title").textContent = p.label;
+    document.getElementById("p-what").textContent = p.what;
+    document.getElementById("p-file").textContent = p.file;
+    var r = document.getElementById("p-resp");
+    r.textContent = p.resp; r.className = "resp " + (p.ok ? "good" : "bad");
+    document.getElementById("p-verdict").textContent = p.verdict;
+  }
+  show(1);
+
+  var choiceText = {
+    A: { split: "Stored type: freeze v1 in its own type in store.rs (add, complete, remove, undo with today's exact serde attributes). Verify its checksum with that type, then convert to Command. v2 may use its own type; the wire Command can grow independently.",
+         shared: "Stored type: keep one shared Command enum for wire, capture and storage. Treat the new variant as a protocol change: bump protocol_version in capabilities() and update the command list in docs/DRIVER.md in the same change." },
+    B: { lowest: "Writer: write the lowest schema_version that can express the journal. A board with only add/complete/remove/undo stays v1. Test: load the v1 fixture in the new build, save, assert schema_version 1 on disk; add the new command, save, assert 2.",
+         newest: "Writer: always write the newest schema_version. Document in docs/DRIVER.md that the first save from this build upgrades a board one way and older builds will refuse it. Test that a v1 board saved by this build is rewritten as the new version." },
+    C: { newcode: "Refusal: newer files fail with a new error code, unsupported_store_version, whose message names the file's version and the highest version this build reads. Do not reuse the protocol's version code.",
+         samecode: "Refusal: keep the error code version, but the message must name the file's version and the highest version this build reads, and say it is the saved board, not the request." },
+    D: { syntax: "Meaning: the schema version describes syntax only. The v1 fixture must replay to the same inspect state in every future build; that test is the tripwire for domain-rule changes.",
+         meaning: "Meaning: the schema version also pins replay semantics. Any change to how a stored command replays (title rules, limits, undo) must bump the version and add a migration step, tested against the v1 fixture." }
+  };
+  function pick(k) { var el = document.querySelector('input[name="' + k + '"]:checked'); return choiceText[k][el.value]; }
+  function wrap(head, text) {
+    var out = [], line = head, pad = head.replace(/./g, " ");
+    text.split(" ").forEach(function (w) {
+      if (line.length + w.length > 78 && line.trim().length > head.trim().length) { out.push(line.replace(/\s+$/, "")); line = pad; }
+      line += w + " ";
+    });
+    out.push(line.replace(/\s+$/, ""));
+    return out.join("\n");
+  }
+  function render() {
+    var lines = [
+      "Version the saved-board journal in crates/engine/src/store.rs so new journal",
+      "commands can be added without stranding saved boards, and newer files are",
+      "refused clearly. Constraints from the blindspot pass:",
+      "",
+      "1. Parse order: read data.schema_version first with a lenient probe (unknown",
+      "   fields ignored), refuse newer versions there, then decode with that",
+      "   version's strict types. Today's load parses every command before checking",
+      "   the version, so a newer file surfaces as invalid_store.",
+      "2. Checksum: verify sha256 against the serialized form of the file's own",
+      "   version types (compact serde_json, field order schema_version, commands)",
+      "   before any migration. Never re-hash a v1 file through v2 types.",
+      "3. Fixture first: before touching the writer, check in this exact v1",
+      "   board.json as a reviewed fixture (do not regenerate it):",
+      "   " + V1,
+      "   It must load to tasks [{id 1, \"Review\", done false}], next_id 2,",
+      "   revision 3, can_undo true, and undo must still work after load.",
+      "4. Exact error codes: make corrupt_future_and_oversize_files_do_not_change_live_state",
+      "   assert codes instead of is_err(), and add a newer file containing an",
+      "   unknown command.",
+      "5. New Command variants are struct variants (Name {} when empty), never unit",
+      "   variants; add the new command's unknown-field case to",
+      "   strict_requests_and_nested_commands_fail_without_mutation.",
+      "6. capabilities() must list every Command variant; add a test that fails",
+      "   when one is missing. Say how the change shows up in execute, replay,",
+      "   capture and board.json, and whether the new command is undoable.",
+      wrap("7. ", pick("A")),
+      wrap("8. ", pick("B")),
+      wrap("9. ", pick("C")),
+      wrap("10. ", pick("D")),
+      "11. Docs: update the persistence section of docs/DRIVER.md with the version",
+      "    rule and every load error code, and note that builds before this change",
+      "    report a newer file as invalid_store, not as a version error.",
+      "",
+      "Order: v1 fixture + exact-code tests (green on today's code) -> version",
+      "probe -> per-version decode and verify -> writer rule -> new command ->",
+      "docs. Show me the probe and the fixture test before changing the writer."
+    ];
+    document.getElementById("final-prompt").textContent = lines.join("\n");
+  }
+  document.querySelectorAll(".decision input").forEach(function (el) { el.addEventListener("change", render); });
+  render();
+
+  function copy(text, btn) {
+    function done() { var t = btn.textContent; btn.textContent = "Copied"; setTimeout(function () { btn.textContent = t; }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  }
+  function fallback(text) {
+    var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta);
+  }
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-copy]"); if (!btn) return;
+    var el = document.getElementById(btn.getAttribute("data-copy")); if (el) copy(el.textContent.trim(), btn);
+  });
+})();
+</script>
+</body>
+</html>

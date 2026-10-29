@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal versioning: where to intervene</title>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<style>
+  body { padding-bottom: 7rem; }
+  main { max-width: 64rem; }
+  code { font-size: .86em; background: var(--accent-soft); border-radius: .3rem; padding: .05em .35em; overflow-wrap: anywhere; }
+  pre code { background: none; padding: 0; font-size: .82rem; }
+  .eyebrow { margin: 0; }
+  h1 { margin-top: var(--space-3); }
+
+  /* prompt */
+  .prompt { position: relative; padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .prompt .label { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+  .prompt blockquote { background: none; border: 0; padding: 0; margin: var(--space-3) 0 0; font-size: 1.08rem; font-style: italic; max-width: 62ch; }
+  .prompt button { position: absolute; top: var(--space-4); right: var(--space-4); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  @media (max-width: 40rem) { .prompt button { position: static; margin-top: var(--space-4); } }
+
+  /* findings strip */
+  .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); margin-block: var(--space-6); }
+  .fact { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-4) var(--space-3); }
+  .fact b { display: block; font-size: 1.02rem; line-height: 1.3; margin-bottom: var(--space-2); }
+  .fact p { margin: 0; font-size: var(--text-small); color: var(--muted); }
+  @media (max-width: 52rem) { .facts { grid-template-columns: 1fr; } }
+
+  /* pipeline */
+  .pipe { list-style: none; padding: 0; margin: var(--space-4) 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-2); counter-reset: st; }
+  .pipe li { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); font-size: .82rem; line-height: 1.4; counter-increment: st; }
+  .pipe li::before { content: counter(st); display: inline-grid; place-content: center; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--ink); color: var(--surface); font-size: .72rem; font-weight: 700; margin-bottom: var(--space-2); }
+  .pipe li b { display: block; font-size: .9rem; margin-bottom: var(--space-1); }
+  .pipe .src { display: block; font-family: var(--font-code); font-size: .72rem; color: var(--muted); margin-top: var(--space-1); }
+  .pipe .exit { display: block; margin-top: var(--space-2); padding-top: var(--space-2); border-top: 1px dashed var(--line); font-family: var(--font-code); font-size: .74rem; color: var(--danger); }
+  .pipe li.hot { border-color: var(--danger); box-shadow: inset 0 0 0 1px var(--danger); }
+  .pipe li.hot .tag { display: inline-block; margin-top: var(--space-2); font-size: .7rem; font-weight: 700; color: var(--surface); background: var(--danger); padding: 0 .4rem; border-radius: .25rem; }
+  .pipe li.ok { border-color: var(--accent); }
+  .pipe li.ok .exit { color: var(--accent); }
+  @media (max-width: 60rem) { .pipe { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 34rem) { .pipe { grid-template-columns: 1fr; } }
+  .savepath { font-size: var(--text-small); padding: var(--space-3) var(--space-4); border-inline-start: 3px solid var(--warning); background: var(--warning-soft); margin: 0 0 var(--space-4); }
+
+  /* probe table */
+  .probe td:first-child { font-family: var(--font-code); font-size: .8rem; white-space: nowrap; }
+  .probe td { font-size: .88rem; }
+  .probe td.out { font-family: var(--font-code); font-size: .78rem; overflow-wrap: anywhere; }
+  .probe .bad { color: var(--danger); font-weight: 650; }
+  .probe .good { color: var(--accent); font-weight: 650; }
+  @media (max-width: 40rem) { .probe td:first-child { white-space: normal; } }
+
+  /* spectrum */
+  .spec { margin: var(--space-6) 0 var(--space-8); }
+  .spec-labels, .spec-ticks { display: flex; justify-content: space-between; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .spec-labels .lo { color: var(--accent); font-weight: 650; }
+  .spec-labels .hi { color: var(--warning); font-weight: 650; text-align: right; }
+  .spec-labels { gap: var(--space-4); }
+  .spec-track { position: relative; height: 56px; margin: var(--space-2) 14px 0; }
+  .spec-line { position: absolute; left: 0; right: 0; top: 27px; height: 2px; background: linear-gradient(90deg, var(--accent), var(--line) 50%, var(--warning)); }
+  .spec-dot { position: absolute; top: 27px; transform: translate(-50%, -50%); width: 30px; height: 30px; min-height: 0; padding: 0; border-radius: 50%; font-size: .75rem; font-weight: 700; display: grid; place-content: center; }
+  .spec-dot, button.spec-dot:not(.secondary) { background: var(--surface); color: var(--ink); border: 2px solid var(--muted); }
+  button.spec-dot.on { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+  .spec-ticks { margin-top: var(--space-1); text-transform: none; letter-spacing: 0; font-size: .75rem; }
+  @media (max-width: 40rem) { .spec-dot { width: 24px; height: 24px; font-size: .66rem; } .spec-track { margin-inline: 12px; } .spec-labels { font-size: .62rem; } }
+
+  /* cards */
+  .cards { display: flex; flex-direction: column; gap: var(--space-4); }
+  .iv { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6) var(--space-4); scroll-margin-top: 1rem; }
+  .iv.checked { border-color: var(--accent); box-shadow: inset 4px 0 0 var(--accent); background: #fbfefc; }
+  .iv-top { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
+  .iv-num { font-family: var(--font-code); font-weight: 700; color: var(--accent); }
+  .iv h3 { margin: 0; flex: 1 1 14rem; font-size: 1.1rem; }
+  .effort { font-family: var(--font-code); font-size: .7rem; font-weight: 700; border-radius: 999px; padding: .1rem .6rem; border: 1px solid var(--line); }
+  .effort.s { background: var(--accent-soft); color: var(--accent); border-color: #b9dccb; }
+  .effort.m { background: #eef0e6; color: #4e5a3a; }
+  .effort.l { background: var(--warning-soft); color: var(--warning); border-color: #e7cfb2; }
+  .effort.xl { background: var(--warning); color: var(--surface); border-color: var(--warning); }
+  .where { display: inline-block; margin: var(--space-2) 0 0; font-family: var(--font-code); font-size: .75rem; color: var(--muted); background: var(--paper); border: 1px solid var(--line); border-radius: .3rem; padding: .1rem .5rem; overflow-wrap: anywhere; max-width: 100%; }
+  .iv p { font-size: .94rem; margin: var(--space-3) 0 0; }
+  .k { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-right: .35rem; }
+  .k.impact { color: var(--accent); }
+  .k.watch { color: var(--warning); }
+  .iv pre { margin: var(--space-3) 0 0; font-size: .8rem; padding: var(--space-3); background: var(--paper); }
+  .iv-foot { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px dashed var(--line); }
+  .iv-foot label { display: inline-flex; align-items: center; margin: 0; font-weight: 600; font-size: .92rem; cursor: pointer; }
+  .iv-foot input { width: 1.1rem; height: 1.1rem; }
+
+  /* matrix */
+  .matrix th { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .matrix td { font-size: .88rem; }
+  .matrix td:first-child { font-weight: 600; width: 30%; }
+  .matrix td.base { color: var(--danger); width: 33%; }
+  .matrix td.pick { width: 37%; }
+  .matrix td.pick.good { background: var(--accent-soft); }
+  .matrix td.pick.part { background: var(--warning-soft); }
+  .matrix td.pick.none { color: var(--muted); }
+  .matrix .via { display: block; font-family: var(--font-code); font-size: .72rem; color: var(--muted); margin-top: var(--space-1); }
+  @media (max-width: 40rem) {
+    .matrix thead { display: none; }
+    .matrix tr { display: block; border-bottom: 1px solid var(--line); padding-block: var(--space-2); }
+    .matrix td { display: block; width: auto !important; border: 0; padding: var(--space-1) var(--space-2); }
+    .matrix td.base::before { content: "Baseline: "; font-weight: 650; }
+    .matrix td.pick::before { content: "With your picks: "; font-weight: 650; color: var(--ink); }
+  }
+
+  /* reply bar */
+  .replybar { position: fixed; left: 0; right: 0; bottom: 0; background: var(--ink); color: var(--surface); z-index: 10; }
+  .rb { max-width: 64rem; margin: 0 auto; padding: var(--space-3) var(--space-6); display: flex; gap: var(--space-4); align-items: center; }
+  .rb-count { flex: none; font-size: .85rem; white-space: nowrap; }
+  .rb-count b { font-size: 1.1rem; color: #9fe0c8; }
+  .rb-text { flex: 1; min-width: 0; font-family: var(--font-code); font-size: .8rem; color: #b8cbc4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rb-text.live { color: var(--surface); }
+  .rb button { flex: none; min-height: 40px; padding: var(--space-2) var(--space-4); background: var(--accent); border-color: #9fe0c8; }
+  @media (max-width: 40rem) { .rb { flex-wrap: wrap; gap: var(--space-2); padding: var(--space-2) var(--space-4); } .rb-text { order: 3; flex-basis: 100%; white-space: normal; } }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <p class="eyebrow">Task board &middot; saved-board journal &middot; before code</p>
+  <h1>Where we could intervene so a new command can't strand saved boards</h1>
+  <p class="lead">Eleven places, cheapest first, each grounded in the persistence path as it exists today. Check the ones that resonate; the table near the end shows what your picks would change, and the bar at the bottom builds your reply.</p>
+  <div class="prompt">
+    <div class="label">The prompt</div>
+    <blockquote id="promptText">&ldquo;Here's the problem: we can't add a new journal command (for example, renaming a task) to saved boards without risking the boards people have already saved, and a build that meets a board saved by a newer build should refuse it clearly instead of failing confusingly or damaging it. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate.&rdquo;</blockquote>
+    <button type="button" class="secondary" id="copyPrompt">Copy prompt</button>
+  </div>
+</header>
+
+<h2>What the search turned up</h2>
+<p>I read <code>crates/engine/src/store.rs</code>, the <code>Command</code> and <code>Session</code> types in <code>crates/engine/src/lib.rs</code>, the driver in <code>protocol.rs</code>, the store tests and the board workflows, then forged newer-format files and fed them to today's driver. The pattern: <strong>a version number already exists and is already checked, but it is checked too late, on the read side only, and the thing it versions is the public command enum.</strong> The cheap options are mostly reordering and tightening, not building.</p>
+
+<div class="facts">
+  <div class="fact"><b>The version is read after the commands are parsed.</b><p><code>serde_json::from_slice::&lt;Envelope&gt;</code> at <code>store.rs:127</code> decodes every command with <code>deny_unknown_fields</code> before the <code>schema_version != 1</code> check at <code>:128</code> runs. A newer file usually dies on its new content, not its number.</p></div>
+  <div class="fact"><b>Save never looks at what it replaces.</b><p><code>save_with</code> builds <code>schema_version: 1</code> (<code>store.rs:79-82</code>), stages a temp file and renames it over <code>board.json</code> (<code>:100</code>). No read of the existing file happens anywhere on that path.</p></div>
+  <div class="fact"><b>The file format is the wire format.</b><p><code>Journal.commands</code> is <code>Vec&lt;Command&gt;</code> (<code>store.rs:14</code>), the same enum the driver accepts for <code>execute</code> and <code>replay</code> (<code>protocol.rs:23-24</code>). Adding <code>Rename</code> changes the file, the request protocol and captured journals in one stroke.</p></div>
+</div>
+
+<h3>How load works today, and where a newer board exits</h3>
+<ol class="pipe">
+  <li><b>Read &le; 256 KiB</b>Bounded read of <code>board.json</code><span class="src">store.rs:118-126</span><span class="exit">capacity</span></li>
+  <li class="hot"><b>Strict parse</b>Envelope &rarr; Journal &rarr; Command, all <code>deny_unknown_fields</code><span class="src">store.rs:127, lib.rs:31</span><span class="exit">invalid_store</span><span class="tag">newer boards die here</span></li>
+  <li><b>Version == 1</b>Only reached if every command and field was already known<span class="src">store.rs:128-129</span><span class="exit">version</span></li>
+  <li><b>Checksum</b>SHA-256 of the <em>re-serialized</em> struct, not the bytes on disk<span class="src">store.rs:131-133</span><span class="exit">corrupt_store</span></li>
+  <li><b>Replay</b>Every stored command re-runs through <code>Session::execute</code>, including title validation on the raw stored title<span class="src">lib.rs:107-119</span><span class="exit">replay_failed &middot; step N</span></li>
+  <li class="ok"><b>Commit</b>Candidate session replaces the live one<span class="src">lib.rs:117</span><span class="exit">ok</span></li>
+</ol>
+<p class="savepath"><strong>Save path:</strong> build <code>Journal { schema_version: 1, .. }</code> &rarr; checksum &rarr; write temp &rarr; fsync &rarr; rename over <code>board.json</code> &rarr; fsync dir (<code>store.rs:73-114</code>). Nothing on this path asks what version the file being replaced was.</p>
+
+<h3>What today's build does when it meets a newer board</h3>
+<p>I saved a real board with today's driver, then wrote variants with correct checksums the way a future build plausibly would, and ran <code>load</code> against each with <code>APP_DATA_DIR</code> pointed at a scratch directory. Today's build plays the part of &ldquo;the older build&rdquo;.</p>
+<div class="table-scroll">
+<table class="probe">
+  <thead><tr><th>File</th><th>What it simulates</th><th>Driver response</th></tr></thead>
+  <tbody>
+    <tr><td>v1, add + complete</td><td>A board saved today</td><td class="out"><span class="good">ok</span> &mdash; 1 task, revision 2, can_undo true</td></tr>
+    <tr><td>v2, add + rename</td><td>Newer build, board that used rename</td><td class="out"><span class="bad">invalid_store</span> &ldquo;unknown variant `rename`, expected one of `add`, `complete`, `remove`, `undo` at line 1 column 94&rdquo;</td></tr>
+    <tr><td>v2, add only</td><td>Newer build, board that never used rename</td><td class="out"><span class="bad">version</span> &ldquo;unsupported saved journal version&rdquo;</td></tr>
+    <tr><td>v1, add + rename</td><td>Newer build that forgot to bump the number</td><td class="out"><span class="bad">invalid_store</span> &ldquo;unknown variant `rename` &hellip;&rdquo; (identical to the v2 case)</td></tr>
+    <tr><td>v2, extra <code>created_by</code> field</td><td>Newer build that adds metadata</td><td class="out"><span class="bad">invalid_store</span> &ldquo;unknown field `created_by`, expected `schema_version` or `commands`&rdquo;</td></tr>
+    <tr><td>v2 + rename, then <code>add</code>, <code>save</code></td><td>User shrugs off the load error and keeps working</td><td class="out"><span class="bad">save ok:true</span> &mdash; <code>board.json</code> is now <code>{"schema_version":1,"commands":[{"command":"add","title":"Groceries"}]}</code>; the newer board is gone</td></tr>
+    <tr><td><code>replay</code> with a rename</td><td>A newer build's <code>capture</code> journal fed to an older build</td><td class="out"><span class="bad">invalid_request</span>, <code>id: null</code>, &ldquo;unknown variant `rename` &hellip;&rdquo;</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="muted">Two more facts from the same run that shape the options: a pretty-printed or field-reordered v1 file still loads, because the checksum is computed over the re-serialized struct; and the journal keeps the raw title exactly as typed (<code style="white-space:pre">"   Review   "</code> with its spaces), so every load re-validates old input against current title rules.</p>
+
+<h2>Eleven places to intervene, cheapest to most ambitious</h2>
+
+<div class="spec">
+  <div class="spec-labels"><span class="lo">A few lines in store.rs</span><span class="hi">Changes what a saved board is</span></div>
+  <div class="spec-track">
+    <div class="spec-line"></div>
+    <button type="button" class="spec-dot secondary" style="left:0%" data-n="1" title="Read the version first">1</button>
+    <button type="button" class="spec-dot secondary" style="left:8%" data-n="2" title="Own error code with both numbers">2</button>
+    <button type="button" class="spec-dot secondary" style="left:16%" data-n="3" title="Accept every version up to ours">3</button>
+    <button type="button" class="spec-dot secondary" style="left:24%" data-n="4" title="Commit a v1 board fixture">4</button>
+    <button type="button" class="spec-dot secondary" style="left:35%" data-n="5" title="Refuse to save over an unreadable board">5</button>
+    <button type="button" class="spec-dot secondary" style="left:45%" data-n="6" title="Write the lowest version the content needs">6</button>
+    <button type="button" class="spec-dot secondary" style="left:55%" data-n="7" title="Freeze a stored command type">7</button>
+    <button type="button" class="spec-dot secondary" style="left:64%" data-n="8" title="Version captures and replay">8</button>
+    <button type="button" class="spec-dot secondary" style="left:75%" data-n="9" title="Per-version decoders">9</button>
+    <button type="button" class="spec-dot secondary" style="left:86%" data-n="10" title="Cross-build workflow">10</button>
+    <button type="button" class="spec-dot secondary" style="left:100%" data-n="11" title="Persist the board, not the commands">11</button>
+  </div>
+  <div class="spec-ticks"><span>reorder</span><span>guard</span><span>new types</span><span>new harness</span><span>new format</span></div>
+</div>
+
+<div class="cards">
+
+<article class="iv" id="iv1">
+  <div class="iv-top"><span class="iv-num">#1</span><h3>Read the version before parsing the commands</h3><span class="effort s">S</span></div>
+  <span class="where">crates/engine/src/store.rs:127-129 &middot; Store::load</span>
+  <p><span class="k">Found</span>The only version check sits behind a full strict decode. In the probe, a v2 board containing a rename never reached it: the error was <code>invalid_store</code> with a serde message about an unknown variant, which reads like a corrupt file. Decode a lax peek first, with no <code>deny_unknown_fields</code> and the commands ignored, check the number, then do the strict decode.</p>
+  <pre><code>#[derive(Deserialize)] struct Peek { data: PeekData }
+#[derive(Deserialize)] struct PeekData { schema_version: u32 }  // other fields ignored</code></pre>
+  <p><span class="k impact">Impact</span>A newer board is refused because of its number, whatever new commands or fields it carries. The <code>created_by</code> probe shows the peek must ignore unknown fields at both levels, or a future envelope change brings the confusion back.</p>
+  <p><span class="k watch">Watch</span>This only protects builds that contain it. Builds already in people's hands will keep saying &ldquo;unknown variant `rename`&rdquo;, so the reader fix has to ship in a build before the one that adds rename.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="1">This resonates</label></div>
+</article>
+
+<article class="iv" id="iv2">
+  <div class="iv-top"><span class="iv-num">#2</span><h3>Give &ldquo;board is too new&rdquo; its own code and both numbers</h3><span class="effort s">S</span></div>
+  <span class="where">store.rs:129 &middot; protocol.rs:68 &middot; store_tests.rs:98-119</span>
+  <p><span class="k">Found</span>The store refuses with code <code>version</code> and the message &ldquo;unsupported saved journal version&rdquo;. The driver uses the same code <code>version</code> for &ldquo;unsupported protocol version&rdquo; on a bad request (<code>protocol.rs:68</code>), so a client can't tell &ldquo;your request is wrong&rdquo; from &ldquo;your file is from the future&rdquo; without parsing English. Neither message says which version was found or which this build reads. The existing test feeds a version-999 file and asserts only <code>is_err()</code> (<code>store_tests.rs:116</code>), so the code is unpinned.</p>
+  <p><span class="k impact">Impact</span>Something like <code>store_too_new</code>: &ldquo;board.json uses journal format 2; this build reads up to 1. Open it with a newer build. The file was not changed.&rdquo; The last sentence is true today because <code>load</code> never writes, and it's the sentence that stops a user from deleting the file. Tighten the test to assert the code.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="2">This resonates</label></div>
+</article>
+
+<article class="iv" id="iv3">
+  <div class="iv-top"><span class="iv-num">#3</span><h3>Accept every version up to ours, not just ours</h3><span class="effort s">S</span></div>
+  <span class="where">store.rs:128 &middot; store.rs:79-82 &middot; store.rs:131</span>
+  <p><span class="k">Found</span>The check is equality: <code>schema_version != 1</code>. The obvious edit when adding rename, bumping both the writer at <code>:80</code> and this check to 2, would refuse every board saved before the change. Because <code>Rename</code> is additive, every v1 command decodes unchanged under the new enum, so <code>1..=2</code> is the whole migration for this change.</p>
+  <p><span class="k impact">Impact</span>Old boards open in the new build with no conversion code. The checksum survives too: the probe shows it is computed by re-serializing the parsed struct (<code>:131</code>), so as long as <code>Journal</code> keeps its shape and the read <code>schema_version</code> is kept as read, a v1 file hashes the same.</p>
+  <p><span class="k watch">Watch</span>That same detail is a trap later. Add any field to <code>Journal</code> and re-serialization emits it, so every older file fails with <code>corrupt_store</code>. That's when you need #9.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="3">This resonates</label></div>
+</article>
+
+<article class="iv" id="iv4">
+  <div class="iv-top"><span class="iv-num">#4</span><h3>Commit a v1 board and make every build load it</h3><span class="effort s">S</span></div>
+  <span class="where">store_tests.rs:36-49 &middot; harness/goldens/*.json</span>
+  <p><span class="k">Found</span>No test reads bytes written by an earlier build. The store round-trip test saves and loads with the same code (<code>store_tests.rs:36</code>), and the three goldens are <code>inspect</code> snapshots selected by <code>/result/snapshot</code>, not files on disk. The exact bytes today's build writes are short enough to check in:</p>
+  <pre><code>{"data":{"schema_version":1,"commands":[{"command":"add","title":"Review"},{"command":"complete","id":1}]},"sha256":"cd128a02…714c4"}</code></pre>
+  <p><span class="k impact">Impact</span>&ldquo;Don't strand saved boards&rdquo; becomes a failing test instead of an intention. It also catches the quieter risk: load replays raw titles through current rules (<code>lib.rs:107</code>), so tightening <code>Title</code> later would strand boards too. Add an undo and a raw <code style="white-space:pre">"   Review   "</code> title to the fixture so both paths are pinned. <code>crates/engine/AGENTS.md</code> already requires goldens to be reviewed and never auto-created.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="4">This resonates</label></div>
+</article>
+
+<article class="iv" id="iv5">
+  <div class="iv-top"><span class="iv-num">#5</span><h3>Refuse to save over a board this build can't read</h3><span class="effort m">M</span></div>
+  <span class="where">store.rs:73-114 &middot; Store::save_with</span>
+  <p><span class="k">Found</span>This is the &ldquo;damaging it&rdquo; half of the problem, and it already happens. In the probe, load failed on the v2 board, the session stayed empty and still editable, one <code>add</code> and one <code>save</code> later the newer board was replaced by a one-task v1 board, and <code>save</code> answered <code>ok: true</code>. Before staging, peek at the existing <code>board.json</code> (reusing #1's peek) and refuse with the same too-new code if its version is above ours.</p>
+  <p><span class="k impact">Impact</span>The only option that protects a newer board from an older build after a failed load. The single-writer lock (<code>store.rs:56</code>) already rules out a race between the peek and the rename.</p>
+  <p><span class="k watch">Watch</span>It forces a policy call: what about an existing file that is corrupt or unparseable, rather than newer? Today saving over it is the only in-app recovery, and DRIVER.md promises load never silently swaps in empty state but says nothing about save. The M is for that decision, not the code.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="5">This resonates</label></div>
+</article>
+
+<article class="iv" id="iv6">
+  <div class="iv-top"><span class="iv-num">#6</span><h3>Write the lowest version the content needs</h3><span class="effort m">M</span></div>
+  <span class="where">store.rs:79-82 &middot; lib.rs:30-37</span>
+  <p><span class="k">Found</span>The writer hardcodes <code>schema_version: 1</code>. If it instead wrote 2 only when the journal actually holds a <code>rename</code>, a board that never used rename would stay a v1 file. The probe's &ldquo;v2, add only&rdquo; row, refused today, would simply open in an older build.</p>
+  <p><span class="k impact">Impact</span>Downgrade keeps working for most boards, and each future command declares the minimum format it needs in one function next to <code>Command</code>.</p>
+  <p><span class="k watch">Watch</span>Undo doesn't remove entries: <code>execute</code> pushes every command, undo included, onto the journal (<code>lib.rs:88</code>). Rename a task, undo it, and the board looks unchanged but is a v2 file forever. That is correct, but someone will report it as a bug.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="6">This resonates</label></div>
+</article>
+
+<article class="iv" id="iv7">
+  <div class="iv-top"><span class="iv-num">#7</span><h3>Freeze a stored command type apart from the wire <code>Command</code></h3><span class="effort m">M</span></div>
+  <span class="where">store.rs:14 &middot; lib.rs:30-37 &middot; protocol.rs:23-24, 32-43</span>
+  <p><span class="k">Found</span><code>Command</code>'s serde attributes (<code>tag = "command"</code>, <code>rename_all</code>, <code>deny_unknown_fields</code>) define both the request protocol and the file. Any wire-only change, such as an optional field on <code>add</code> or a renamed tag, silently becomes a file-format change with no version bump. A <code>StoredCommand</code> enum owned by <code>store.rs</code>, converted with an exhaustive <code>From</code>, makes every format change a visible edit to the store module.</p>
+  <p><span class="k impact">Impact</span>The file stops moving when the protocol does. The exhaustive conversion is also a compile-time reminder to decide each new command's format version, which pairs with #6.</p>
+  <p><span class="k watch">Watch</span>Not every match will remind you. <code>Session::execute</code> matches exhaustively (<code>lib.rs:56</code>), but the property test's reference model ends in <code>_ =&gt; false</code> (<code>tests/properties.rs:59</code>), so <code>Rename</code> compiles there untested.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="7">This resonates</label></div>
+</article>
+
+<article class="iv" id="iv8">
+  <div class="iv-top"><span class="iv-num">#8</span><h3>Version captured journals and replay requests too</h3><span class="effort m">M</span></div>
+  <span class="where">protocol.rs:33, 87-95 &middot; docs/DRIVER.md (capture, replay)</span>
+  <p><span class="k">Found</span><code>capture</code> returns <code>"journal": session.journal()</code> with no version, and <code>replay</code> accepts a bare <code>Vec&lt;Command&gt;</code>. That makes captures a second, unversioned saved format that people keep as evidence and feed back in. In the probe, a replay containing a rename failed as <code>invalid_request</code> with <code>id: null</code>, so the caller can't even tell which request failed. <code>discover</code> still reports <code>protocol_version: 1</code>.</p>
+  <p><span class="k impact">Impact</span>Add a <code>journal_version</code> next to the captured journal and accept it on replay, or bump <code>protocol_version</code> when rename lands. Once rename is listed in <code>capabilities</code>, the discovery test (<code>tests/protocol.rs:12-21</code>) requires its example to execute, so clients can feature-detect it from <code>discover</code>.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="8">This resonates</label></div>
+</article>
+
+<article class="iv" id="iv9">
+  <div class="iv-top"><span class="iv-num">#9</span><h3>Per-version decoders with an upgrade chain, hashing the bytes as read</h3><span class="effort l">L</span></div>
+  <span class="where">store.rs:116-136 &middot; Cargo.toml:16 (serde_json, no features)</span>
+  <p><span class="k">Found</span>Load has one shape, the current one. A version match lets each format keep its own struct: <code>1 =&gt; decode_v1(bytes)?.upgrade()</code>, <code>2 =&gt; decode_v2(bytes)?</code>. To stop #3's checksum trap, hash the <code>data</code> bytes as they appear on disk. That needs serde_json's <code>raw_value</code> feature, which isn't enabled today. The alternative is to always re-serialize through the struct of the version that was read.</p>
+  <p><span class="k impact">Impact</span>Non-additive changes become routine. Storing normalized titles instead of raw input, or adding metadata like <code>created_by</code>, would be an upgrade step rather than a stranding event. Rename by itself doesn't need this.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="9">This resonates</label></div>
+</article>
+
+<article class="iv" id="iv10">
+  <div class="iv-top"><span class="iv-num">#10</span><h3>A workflow that runs two builds against one data directory</h3><span class="effort l">L</span></div>
+  <span class="where">harness/workflows.json &middot; xtask/src/workflows.rs</span>
+  <p><span class="k">Found</span>The workflow harness already runs multi-session process journeys. <code>board-lifecycle</code> covers &ldquo;save, exit, reopen and undo with preserved history&rdquo;, but every session runs the same binary. A cross-build workflow would build the base branch's <code>starter-app</code> in a worktree and check both directions. New saves, old loads: expect the too-new code with the file unchanged. Old saves, new loads: expect an identical snapshot.</p>
+  <p><span class="k impact">Impact</span>The only option that tests the actual promise between two real builds rather than forged files like the probe's. The cost is a second build in CI and a binary-per-session field in the workflow schema.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="10">This resonates</label></div>
+</article>
+
+<article class="iv" id="iv11">
+  <div class="iv-top"><span class="iv-num">#11</span><h3>Persist the board, not the commands</h3><span class="effort xl">XL</span></div>
+  <span class="where">store.rs:10-21 &middot; lib.rs:39-44 &middot; lib.rs:9-10</span>
+  <p><span class="k">Found</span>The file is a command log, so every new command and every tightened domain rule is a format question. Storing <code>Board</code> state instead would make rename format-neutral, since titles already exist, and stop re-validating years-old input on every load.</p>
+  <p><span class="k watch">Watch</span>Undo across reopen is a promised behavior: the <code>board-lifecycle</code> workflow reopens and undoes. Keeping it means storing <code>history</code>, up to 256 boards (<code>MAX_COMMANDS</code>) of up to 64 tasks each. At full size that's megabytes against the 256 KiB <code>MAX_BYTES</code> cap. So this needs history deltas or giving up undo after reopen. That's a product decision, not a refactor.</p>
+  <div class="iv-foot"><label><input type="checkbox" data-n="11">This resonates</label></div>
+</article>
+
+</div>
+
+<h2>What your picks would change</h2>
+<p>Each row is a situation the problem statement worries about. The baseline is &ldquo;add <code>Rename</code>, bump the number to 2, nothing else&rdquo;. Rows A, B, C and E are measured with today's build standing in for the older one; D and F follow from the code cited. The right column updates as you check cards and assumes the older build already contains your reader-side picks.</p>
+<div class="table-scroll">
+<table class="matrix">
+  <thead><tr><th>Situation</th><th>Baseline</th><th>With your picks</th></tr></thead>
+  <tbody id="matrixBody"></tbody>
+</table>
+</div>
+
+<footer>Sources: crates/engine/src/store.rs, lib.rs, protocol.rs, store_tests.rs, tests/protocol.rs, tests/properties.rs, harness/workflows.json, harness/goldens/, docs/DRIVER.md, crates/engine/AGENTS.md, plus a local driver run against a scratch data directory.</footer>
+</main>
+
+<div class="replybar" role="region" aria-label="Your reply">
+  <div class="rb">
+    <span class="rb-count"><b id="rbNum">0</b> resonate</span>
+    <span class="rb-text" id="rbText">Check the interventions that resonate; your reply builds here.</span>
+    <button type="button" id="rbCopy" disabled>Copy reply</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var ROWS = [
+    { s: "A. Older build opens a board that used rename",
+      base: "invalid_store: “unknown variant `rename` …”. Reads like a corrupt file.",
+      rules: [
+        { needs: [1, 2], cls: "good", text: "Refused as store_too_new, naming file format 2 and supported 1; the file is not changed." },
+        { needs: [1], cls: "part", text: "Refused by number with code version. Clear, but the code is shared with bad requests and has no numbers." },
+        { needs: [2], cls: "none", text: "Unchanged: the strict parse still fails before #2's code is reached. Pair it with #1." }
+      ] },
+    { s: "B. Older build opens a newer board that never used rename",
+      base: "version: “unsupported saved journal version”. Refused even though it holds nothing new.",
+      rules: [
+        { needs: [6], cls: "good", text: "Opens normally: the file was written as format 1 because it holds no rename." },
+        { needs: [2], cls: "part", text: "Still refused, but as store_too_new with both numbers." }
+      ] },
+    { s: "C. Older build saves after failing to load a newer board",
+      base: "save ok:true. The newer board is replaced by this session's board.",
+      rules: [
+        { needs: [5], cls: "good", text: "Save refused; the newer board stays byte-for-byte." }
+      ] },
+    { s: "D. New build opens a board saved before rename existed",
+      base: "Refused with version: the equality check at store.rs:128 strands every existing board.",
+      rules: [
+        { needs: [3], cls: "good", text: "Opens: v1 commands decode unchanged and the checksum still matches." },
+        { needs: [4], cls: "part", text: "Still broken, but CI fails first because the committed v1 board stops loading." }
+      ] },
+    { s: "E. A newer build's capture is replayed into an older build",
+      base: "invalid_request with id null: “unknown variant `rename` …”.",
+      rules: [
+        { needs: [8], cls: "good", text: "Refused with the capture's journal version named (in builds that read it)." }
+      ] },
+    { s: "F. A later change tightens title rules or stores titles differently",
+      base: "Old boards fail to load with replay_failed at the first step whose raw title no longer passes.",
+      rules: [
+        { needs: [11], cls: "good", text: "Unaffected: load restores the stored board without re-running title rules." },
+        { needs: [9], cls: "good", text: "Migratable: the v1 decoder upgrades raw titles before replay." },
+        { needs: [4], cls: "part", text: "Not prevented, but caught in CI by the committed board." }
+      ] }
+  ];
+
+  function has(set, needs) { return needs.every(function (n) { return set.indexOf(n) !== -1; }); }
+
+  var body = document.getElementById("matrixBody");
+  var cells = ROWS.map(function (row) {
+    var tr = document.createElement("tr");
+    var a = document.createElement("td"); a.textContent = row.s;
+    var b = document.createElement("td"); b.className = "base"; b.textContent = row.base;
+    var c = document.createElement("td");
+    tr.appendChild(a); tr.appendChild(b); tr.appendChild(c);
+    body.appendChild(tr);
+    return c;
+  });
+
+  function renderMatrix(picked) {
+    ROWS.forEach(function (row, i) {
+      var cell = cells[i], hit = null;
+      for (var r = 0; r < row.rules.length; r++) { if (has(picked, row.rules[r].needs)) { hit = row.rules[r]; break; } }
+      cell.textContent = "";
+      if (hit) {
+        cell.className = "pick " + hit.cls;
+        cell.appendChild(document.createTextNode(hit.text));
+        var via = document.createElement("span"); via.className = "via";
+        via.textContent = "via " + hit.needs.map(function (n) { return "#" + n; }).join(" + ");
+        cell.appendChild(via);
+      } else {
+        cell.className = "pick none";
+        var options = [];
+        row.rules.forEach(function (r) { if (r.cls !== "none") r.needs.forEach(function (n) { if (options.indexOf(n) === -1) options.push(n); }); });
+        cell.textContent = "Same as baseline. Changed by " + options.sort(function (x, y) { return x - y; }).map(function (n) { return "#" + n; }).join(", ") + ".";
+      }
+    });
+  }
+
+  function copyText(text, btn, label) {
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1500); }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+  }
+
+  var promptBtn = document.getElementById("copyPrompt");
+  promptBtn.addEventListener("click", function () {
+    copyText(document.getElementById("promptText").textContent.replace(/^“|”$/g, ""), promptBtn, "Copy prompt");
+  });
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".iv-foot input"));
+  var dots = {};
+  Array.prototype.forEach.call(document.querySelectorAll(".spec-dot"), function (d) {
+    dots[d.getAttribute("data-n")] = d;
+    d.addEventListener("click", function () {
+      var card = document.getElementById("iv" + d.getAttribute("data-n"));
+      if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  });
+
+  var rbNum = document.getElementById("rbNum"), rbText = document.getElementById("rbText"), rbCopy = document.getElementById("rbCopy");
+  var reply = "";
+
+  function update() {
+    var picked = boxes.filter(function (b) { return b.checked; })
+      .map(function (b) { return parseInt(b.getAttribute("data-n"), 10); })
+      .sort(function (a, b) { return a - b; });
+    boxes.forEach(function (b) {
+      var n = b.getAttribute("data-n");
+      document.getElementById("iv" + n).classList.toggle("checked", b.checked);
+      if (dots[n]) dots[n].classList.toggle("on", b.checked);
+    });
+    renderMatrix(picked);
+    rbNum.textContent = picked.length;
+    if (!picked.length) {
+      reply = "";
+      rbText.textContent = "Check the interventions that resonate; your reply builds here.";
+      rbText.classList.remove("live");
+      rbCopy.disabled = true;
+      return;
+    }
+    reply = "These resonate: " + picked.map(function (n) { return "#" + n; }).join(", ") + ". Start with #" + picked[0] + ".";
+    var uncovered = ROWS.filter(function (row) { return !row.rules.some(function (r) { return r.cls !== "none" && has(picked, r.needs); }); })
+      .map(function (row) { return row.s.charAt(0); });
+    if (uncovered.length) reply += " Situations still at baseline: " + uncovered.join(", ") + ".";
+    rbText.textContent = reply;
+    rbText.classList.add("live");
+    rbCopy.disabled = false;
+  }
+
+  boxes.forEach(function (b) { b.addEventListener("change", update); });
+  rbCopy.addEventListener("click", function () { if (reply) copyText(reply, rbCopy, "Copy reply"); });
+  update();
+})();
+</script>
+</body>
+</html>

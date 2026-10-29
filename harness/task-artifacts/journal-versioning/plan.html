@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan: versioning the saved-board journal</title>
+<style>
+.prompt { padding: var(--space-6); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.prompt blockquote { margin: 0; font-style: italic; }
+.lbl { font-size: .75rem; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--space-2); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-6) 0; padding: 0; list-style: none; }
+.chips li, .card, .notes div, .pipe li, .res > div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--control-radius); }
+.chips li { border-radius: 999px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+.chips b { color: var(--accent); }
+.sort { display: flex; gap: var(--space-4); background: var(--warning-soft); border-radius: var(--radius); padding: var(--space-4); font-size: var(--text-small); }
+.sort .g { font-family: var(--font-code); color: var(--warning); white-space: pre; }
+section { margin-top: var(--space-12); }
+.sh { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: var(--space-2); }
+.sh h2 { margin: 0; }
+.sl { font: 700 .9rem var(--font-code); background: var(--ink); color: var(--paper); width: 1.8rem; height: 1.8rem; border-radius: .4rem; display: inline-flex; align-items: center; justify-content: center; }
+.sl.soft { background: var(--line); color: var(--ink); }
+.tag { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 650; border-radius: .3rem; padding: .1rem .5rem; background: var(--accent-soft); color: var(--accent); }
+.tag.hi { background: var(--warning); color: var(--surface); }
+.intro { color: var(--muted); max-width: var(--reading-width); }
+h3.sub { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: var(--space-8) 0 var(--space-3); }
+.card { border-radius: var(--radius); padding: var(--space-6); margin: var(--space-4) 0; border-left: 4px solid var(--warning); }
+.card h3 { margin: 0 0 var(--space-2); }
+.opts, .res { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); margin: var(--space-4) 0; }
+.opt { margin: 0; border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3) var(--space-4); cursor: pointer; font-size: var(--text-small); }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
+.opt b { font-size: var(--text-body); }
+.rec { font-size: .7rem; font-weight: 700; text-transform: uppercase; color: var(--accent); margin-left: var(--space-1); }
+.ev { font-size: var(--text-small); color: var(--muted); border-top: 1px dashed var(--line); padding-top: var(--space-3); }
+code { font-size: .88em; background: var(--accent-soft); border-radius: .25rem; padding: 0 .25rem; }
+pre code { background: none; padding: 0; font-size: inherit; }
+pre.dark { background: var(--ink); color: var(--paper); border: 0; font-size: .8rem; line-height: 1.6; margin: 0; }
+pre.dark .c { color: #9fb8af; } pre.dark .k { color: #f3c98b; }
+.n { display: inline-block; background: var(--warning); color: var(--surface); border-radius: 50%; width: 1.1rem; height: 1.1rem; line-height: 1.1rem; text-align: center; font: 700 .65rem var(--font-body); margin: 0 .3rem 0 .2rem; }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) 17rem; gap: var(--space-4); align-items: start; }
+.notes { display: flex; flex-direction: column; gap: var(--space-3); font-size: var(--text-small); }
+.notes div, .res > div { padding: var(--space-3); }
+.pipe { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-2); list-style: none; padding: 0; counter-reset: g; }
+.pipe li { padding: var(--space-3); font-size: .8rem; line-height: 1.4; }
+.pipe li b { display: block; font-size: .9rem; }
+.pipe li b::before { counter-increment: g; content: counter(g) " · "; color: var(--muted); }
+.pipe .cd { display: block; margin-top: var(--space-1); font-family: var(--font-code); color: var(--danger); }
+.pipe li.new { border: 1px dashed var(--accent); }
+.pipe li.pass { background: var(--accent-soft); }
+.pipe li.hit { background: var(--warning-soft); border: 2px solid var(--warning); }
+.files { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.files button { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: .8rem; }
+.files button[aria-pressed="false"] { background: var(--surface); color: var(--ink); border-color: var(--line); }
+.res > div { font-size: var(--text-small); overflow-wrap: anywhere; }
+.res .code { font-family: var(--font-code); font-weight: 700; color: var(--danger); }
+.res .code.good { color: var(--accent); }
+.bytes { font-size: .75rem; max-height: 9rem; overflow: auto; }
+table { font-size: var(--text-small); background: var(--surface); }
+th { background: var(--accent-soft); }
+.mech ul { padding-left: 1.2rem; font-size: var(--text-small); }
+.reply { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-6); margin-top: var(--space-12); }
+.reply h2 { margin-top: 0; }
+.lrow { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr) auto; gap: var(--space-1) var(--space-3); padding: var(--space-2) 0; border-bottom: 1px solid var(--line); font-size: var(--text-small); }
+.lrow b { font-family: var(--font-code); color: var(--muted); }
+.lrow label { margin: 0; white-space: nowrap; }
+.lrow input[type=text] { grid-column: 2 / 4; padding: var(--space-2); }
+#out { margin: var(--space-4) 0; font-size: .82rem; }
+@media (max-width: 52rem) { .grid2, .opts, .res { grid-template-columns: minmax(0, 1fr); } .pipe { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 40rem) { .lrow { grid-template-columns: 2.2rem minmax(0, 1fr); } .lrow label { grid-column: 2; } }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">journal-versioning · the tweakable plan · before code</p>
+<h1>Plan: version the saved-board journal</h1>
+
+<div class="prompt">
+<p class="lbl">The prompt</p>
+<blockquote>Write an implementation plan for versioning the saved-board journal format (so new journal commands can be added without stranding saved boards, and builds refuse files from newer builds with a clear error) as HTML, but lead with the decisions I'm most likely to tweak: data model changes, new type interfaces and anything user-facing. Bury the mechanical work at the bottom; I trust you on that part.</blockquote>
+</div>
+
+<p class="callout"><strong>The interview answers below are the coordinating agent's leans, not yours.</strong> You chose "use your leans". Each is tagged <span class="tag">lean Qn</span> and can be changed in the reply. Findings from the blindspot, interventions, interview and reference pages are cited by number, not repeated.</p>
+
+<ul class="chips">
+<li>Journal format stays <b>1</b></li>
+<li>New error code <b>store_too_new</b></li>
+<li>serde_json feature <b>raw_value</b>, no new crate</li>
+<li><b>7</b> product files + 6 fixtures</li>
+<li><code>protocol_version</code> <b>unchanged</b></li>
+</ul>
+
+<div class="sort"><span class="g">↑ tweak
+↓ trust</span><div><strong>Sorted by how likely you are to change it.</strong> A holds the three calls your replies left open. B to D cover the file, types and messages built from your leans. E is the test plan, F the order, and G plumbing you can skip.</div></div>
+
+<!-- A -->
+<section>
+<div class="sh"><span class="sl">A</span><h2>Decide these first</h2><span class="tag hi">left open by the replies</span></div>
+<p class="intro">My recommendation is selected in each card. Switching an option changes the reply at the bottom, and A2 and A3 also change the load results and tests further down.</p>
+
+<div class="card">
+<h3>A1 · Ship a real format-2 command now, or only the mechanism?</h3>
+<div class="opts">
+<label class="opt"><input type="radio" name="d1" value="mech" checked> <b>Mechanism only</b><span class="rec">recommended</span><br><code>JOURNAL_FORMAT</code> stays 1 and every command is <code>introduced_in</code> 1. The new reader ships before any build writes 2.</label>
+<label class="opt"><input type="radio" name="d1" value="rename"> <b>Also ship Rename as format 2</b><br><code>Command::Rename { id, title }</code> and <code>JOURNAL_FORMAT = 2</code>. Saves that use it write 2.</label>
+</div>
+<p><strong>Why.</strong> Builds already shipped answer an unknown command with <code>invalid_store</code> (blindspot 01). Only builds that contain the new reader can refuse a newer file clearly, so the reader should ship one release before any v2 writer does. Rename is also not a store change. It adds a variant to the enum that <code>execute</code>, <code>replay</code> and <code>capture</code> share (<code>protocol.rs:23-24</code>). It needs a <code>Board::rename</code> that <code>crates/domain/src/board.rs</code> lacks, and the property model's <code>_ =&gt; false</code> arm (<code>tests/properties.rs:59</code>) would have to learn it.</p>
+<p><strong>Testing "accept up to ours" without a v2 command.</strong> The gate is a pure <code>check_format(found, oldest, newest)</code>. The load body takes <code>newest</code> as a parameter: <code>load</code> calls <code>load_from(bytes, JOURNAL_FORMAT)</code>. A forged <code>v2-add-only.json</code> must load through <code>load_from(.., 2)</code> and be refused by <code>load_from(.., 1)</code>. <code>introduced_in</code> has no wildcard arm, so a new variant does not compile until it names its format.</p>
+<p class="ev">The Rename task still has to reject a file that declares format N but holds a command from N+1. While every command is format 1, that check can never fire, so it cannot be tested here.</p>
+</div>
+
+<div class="card">
+<h3>A2 · Raw-byte hashing vs. a hand-reformatted v1 file</h3>
+<p>The digest is computed over the re-serialized struct today (<code>store.rs:131</code>), so a pretty-printed or key-reordered v1 file loads. Under lean Q6 it would not. Files this build wrote are safe: their raw <code>data</code> span is byte-identical to the re-serialization (evidence below).</p>
+<div class="opts">
+<label class="opt"><input type="radio" name="d2" value="legacy" checked> <b>Accept either digest, format 1 only</b><span class="rec">recommended</span><br>If the raw digest fails and the peeked format is 1, strict-parse and compare today's re-serialized digest. Format 2 and later accept only the raw digest.</label>
+<label class="opt"><input type="radio" name="d2" value="raw"> <b>Raw digest only</b><br>One hashing rule, but a reformatted v1 file that loads today becomes <code>corrupt_store</code>.</label>
+</div>
+<div class="table-scroll"><table>
+<thead><tr><th>v1 file</th><th>Today</th><th>Planned</th></tr></thead>
+<tbody>
+<tr><td>As written by this build</td><td>loads</td><td>loads (raw digest)</td></tr>
+<tr><td>Pretty-printed</td><td>loads</td><td data-d2="legacy">loads (fallback digest)</td><td data-d2="raw" hidden><code>corrupt_store</code></td></tr>
+<tr><td>Keys reordered</td><td>loads</td><td data-d2="legacy">loads (fallback digest)</td><td data-d2="raw" hidden><code>corrupt_store</code></td></tr>
+<tr><td>Pretty-printed, one title edited</td><td><code>corrupt_store</code></td><td><code>corrupt_store</code> (both fail)</td></tr>
+</tbody>
+</table></div>
+<p>The fallback is about ten lines and adds no new constraint: the v1 strict parse already depends on today's <code>Command</code> serialization. The next save rewrites the file compactly.</p>
+<p class="ev"><strong>Run on this branch.</strong> I saved a 598-byte board with today's driver. Its titles included quotes, a backslash, <code>&lt;/script&gt;</code>, emoji, CJK, a no-break space and 120 characters. The SHA-256 of the bytes between <code>{"data":</code> and <code>,"sha256"</code> equals the stored hash, because save serializes <code>Journal</code> with the same compact serde output on its own and inside <code>Envelope</code> (<code>store.rs:83-84</code>). A scratch crate using <code>serde_json</code> 1.0.154 with <code>raw_value</code> read each file through a lax <code>Peek</code>. The pretty-printed and reordered copies failed the raw digest but passed the re-serialized one, and today's driver loads both. The edited copy failed both digests.</p>
+</div>
+
+<div class="card">
+<h3>A3 · Save finds a <code>board.json</code> it cannot peek</h3>
+<p>Lean Q5 makes save refuse a newer file. It leaves open what save does with a truncated or non-JSON file (interventions #5).</p>
+<div class="opts">
+<label class="opt"><input type="radio" name="d3" value="overwrite" checked> <b>Refuse only a peeked newer format</b><span class="rec">recommended</span><br>Overwrite a missing, unparseable or ≤ ours file as today. Saving is the only in-app way to recover a damaged board.</label>
+<label class="opt"><input type="radio" name="d3" value="refuse"> <b>Also refuse anything that does not peek</b><br>Safer for unknown files, but a corrupt board then has to be deleted by hand.</label>
+</div>
+<p class="ev">Either way, an I/O error other than "not found" fails the save with <code>storage_io</code>. Save refuses on the format number alone, without checking the checksum. The writer lock (<code>store.rs:56</code>) keeps the file stable between the peek and the rename.</p>
+</div>
+</section>
+
+<!-- B -->
+<section>
+<div class="sh"><span class="sl">B</span><h2>Data model: the file and its read order</h2><span class="tag hi">high tweak</span></div>
+<p class="intro">The same <code>board.json</code> and envelope (lean Q1). What changes is what each part promises a future build, and the order in which load checks them.</p>
+
+<h3 class="sub">B1 · The v1 fixture, annotated</h3>
+<div class="grid2">
+<pre class="dark"><code><span class="c">// tests/fixtures/journal/v1-board.json · 269 bytes, one line on disk</span>
+{"data":<span class="n">1</span>{"schema_version":1,<span class="n">2</span>"commands":[
+  {"command":"add","title":"  Review  "},<span class="n">3</span>
+  {"command":"add","title":"Zoë"},
+  {"command":"complete","id":2},
+  {"command":"complete","id":1},
+  {"command":"undo"}]},<span class="n">4</span>
+ "sha256":"ac20b819001004c9951ccdb974be8086
+           8b397cde055d1b53914d54b484074091"}
+
+<span class="c">// expected result, checked in beside it</span>
+{"tasks":[{"id":1,"title":"Review","done":false},
+          {"id":2,"title":"Zoë","done":true}],
+ "next_id":3,"revision":5,"can_undo":true}</code></pre>
+<div class="notes">
+<div><span class="n">1</span><strong>The envelope is frozen.</strong> Every format keeps <code>data</code> plus <code>sha256</code>, the hex SHA-256 of the <code>data</code> bytes as they sit on disk (lean Q6). Later formats may add keys around them, and the peek ignores those keys.</div>
+<div><span class="n">2</span><strong>The lowest format that holds the commands</strong> (lean Q2). Undo stays in the journal, so a board that once used a v2 command stays v2 (interventions #6).</div>
+<div><span class="n">3</span><strong>Raw titles, one <code>Command</code> enum</strong> (lean Q3). Replay trims the title to <code>"Review"</code>, as today.</div>
+<div><span class="n">4</span><strong>Meaning is replay under current rules.</strong> DRIVER.md will say that a rule change which breaks an old journal must raise the format (lean Q4). This fixture is the tripwire.</div>
+</div>
+</div>
+<p class="ev">Written by today's driver from: add <code>"  Review  "</code>, add <code>"Zoë"</code>, complete 2, complete 1, undo, save. The expected state is today's <code>load</code> response.</p>
+
+<h3 class="sub">B2 · Load order, and where each file stops</h3>
+<p class="intro">Dashed gates are new. Pick a file. "Today" is verbatim output from today's driver; "Planned" is what this design returns.</p>
+<ol class="pipe" id="pipe">
+<li data-g="1"><b>Read</b>≤ 256 KiB, as today <span class="cd">storage_io capacity</span></li>
+<li data-g="2" class="new"><b>Peek</b>raw <code>data</code>, format, <code>sha256</code>; unknown keys ignored <span class="cd">invalid_store</span></li>
+<li data-g="3" class="new"><b>Checksum</b>raw <code>data</code> bytes<span data-d2="legacy">, v1 fallback</span> <span class="cd">corrupt_store</span></li>
+<li data-g="4" class="new"><b>Format</b><code>oldest ≤ found ≤ newest</code> <span class="cd">store_too_new invalid_store</span></li>
+<li data-g="5"><b>Strict parse</b>today's <code>Envelope</code> <span class="cd">invalid_store</span></li>
+<li data-g="6"><b>Replay</b>all or nothing <span class="cd">replay_failed capacity</span></li>
+</ol>
+<div class="files" id="files" role="group" aria-label="Files to load"></div>
+<pre class="bytes" id="fbytes"></pre>
+<div class="res">
+<div><p class="lbl">Today</p><div id="ftoday"></div></div>
+<div><p class="lbl">Planned</p><div id="fplan"></div></div>
+</div>
+<p class="ev">The forged files carry a correct raw-span digest. The last one is today's future-file test (<code>store_tests.rs:107-108</code>). It goes through <code>serde_json::Value</code>, which sorts keys, and keeps the old hash. With the checksum running first it becomes <code>corrupt_store</code>, so E re-forges it.</p>
+
+<h3 class="sub">B3 · Save order</h3>
+<ol>
+<li><code>format_for(journal)</code>: the highest <code>introduced_in</code>, at least 1.</li>
+<li>Peek the existing <code>board.json</code> with the same bounded read. A newer format returns <code>store_too_new</code> before anything is written (lean Q5; A3 covers the unpeekable case).</li>
+<li>Serialize <code>Journal</code> once, hash those bytes and write them as the envelope's <code>data</code> through <code>RawValue</code>. The hash covers what is written by construction.</li>
+<li>Temp file, fsync, rename and directory fsync stay as they are (<code>store.rs:85-113</code>).</li>
+</ol>
+</section>
+
+<!-- C -->
+<section>
+<div class="sh"><span class="sl">C</span><h2>New type interfaces</h2><span class="tag hi">high tweak</span></div>
+<p class="intro">Everything except the two constants is private. <code>introduced_in</code>, <code>format_for</code> and the <code>RawValue</code> writer compile against today's <code>Command</code> in a scratch crate. The envelope it wrote matches today's writer byte for byte.</p>
+<div class="grid2">
+<pre class="dark"><code><span class="c">// crates/engine/src/lib.rs</span>
+<span class="k">pub const</span> JOURNAL_FORMAT: u32 = 1;<span class="n">1</span>
+<span class="k">pub const</span> OLDEST_JOURNAL_FORMAT: u32 = 1;
+
+<span class="k">impl</span> Command {
+    <span class="k">pub(crate) const fn</span> introduced_in(&amp;self) -&gt; u32 {
+        <span class="k">match</span> self {<span class="n">2</span>
+            Command::Add { .. } | Command::Complete { .. }
+            | Command::Remove { .. } | Command::Undo {} =&gt; 1,
+        }
+    }
+}
+
+<span class="c">// crates/engine/src/store.rs</span>
+<span class="k">fn</span> format_for(commands: &amp;[Command]) -&gt; u32 {
+    commands.iter().map(Command::introduced_in).fold(1, u32::max)
+}
+#[derive(Deserialize)] <span class="c">// no deny_unknown_fields</span>
+<span class="k">struct</span> Peek&lt;'a&gt; {<span class="n">3</span>
+    #[serde(borrow)] data: &amp;'a RawValue,
+    sha256: String,
+}
+#[derive(Deserialize)]
+<span class="k">struct</span> PeekData { schema_version: u32 }
+
+<span class="k">fn</span> check_format(found: u32, oldest: u32, newest: u32)
+    -&gt; Result&lt;()&gt;;<span class="n">4</span>
+<span class="k">fn</span> load_from(&amp;self, bytes: &amp;[u8], newest: u32,
+    session: &amp;mut Session) -&gt; Result&lt;()&gt;;
+
+<span class="c">// Envelope, Journal: unchanged and strict. Writer:</span>
+#[derive(Serialize)]
+<span class="k">struct</span> EnvelopeOut&lt;'a&gt; { data: &amp;'a RawValue, sha256: String }</code></pre>
+<div class="notes">
+<div><span class="n">1</span>Replaces the literal <code>1</code>s at <code>store.rs:80</code> and <code>:128</code>. <code>capabilities()</code> reads the same constants.</div>
+<div><span class="n">2</span>No <code>_</code> arm, so each new variant must name its format (lean Q3). This table replaces a <code>StoredCommand</code> type (interventions #7, declined).</div>
+<div><span class="n">3</span>Needs <code>raw_value</code>, which has no dependencies. Unknown keys are ignored at both levels (lean Q1). A file with no <code>sha256</code> fails here with <code>invalid_store</code>.</div>
+<div><span class="n">4</span>Takes the bounds as parameters so tests can act as a format-2 build (A1).</div>
+</div>
+</div>
+</section>
+
+<!-- D -->
+<section>
+<div class="sh"><span class="sl">D</span><h2>What users and clients see</h2><span class="tag hi">high tweak</span></div>
+<p class="intro"><code>Error { code, message }</code> stays as it is (lean Q7). The format numbers go in the message, and <code>discover</code> reports them in a form clients can parse.</p>
+<div class="table-scroll"><table>
+<thead><tr><th>When</th><th>Code</th><th>Message</th></tr></thead>
+<tbody>
+<tr><td>load meets a newer format</td><td><code>store_too_new</code></td><td>board.json uses journal format 2; this build reads formats 1 to 1. Open it with a newer build. The file was not changed.</td></tr>
+<tr><td>save would overwrite one</td><td><code>store_too_new</code></td><td>board.json uses journal format 2, newer than this build writes (up to 1). It was not overwritten.</td></tr>
+<tr><td>format below oldest (0)</td><td><code>invalid_store</code></td><td>journal format 0 is not a saved-board format</td></tr>
+<tr><td>request version ≠ 1</td><td><code>version</code></td><td>Unchanged. The store stops sharing this code (blindspot 08).</td></tr>
+</tbody>
+</table></div>
+<p><strong>No <code>store_too_old</code> yet.</strong> Every file ever written says 1 (store.rs has a single commit), and no format is being dropped. Add the code with the first change that raises <code>OLDEST_JOURNAL_FORMAT</code>, or reserve it now through the reply.</p>
+<div class="grid2">
+<pre class="dark"><code><span class="c">// discover result, new key</span>
+"journal_formats": { "reads": [1], "writes": [1] }</code></pre>
+<div class="notes"><div>Lists, so a Rename build reports <code>[1, 2]</code>. The key is additive: <code>protocol_version</code> stays 1, and board-lifecycle only checks named pointers.</div></div>
+</div>
+<p><strong>DRIVER.md</strong> gets a versioning paragraph covering the load gate order, every load and save code, the lowest-format rule, "newer boards are refused and never overwritten", and the lean Q4 rule.</p>
+</section>
+
+<!-- E -->
+<section>
+<div class="sh"><span class="sl">E</span><h2>Test plan</h2><span class="tag">medium tweak</span></div>
+<p class="intro">Fixtures go in <code>crates/engine/tests/fixtures/journal/</code> and are read with <code>include_bytes!</code>. The v1 file is checked in from today's bytes before <code>store.rs</code> changes and reviewed by hand, as <code>crates/engine/AGENTS.md</code> requires for goldens.</p>
+<div class="table-scroll"><table>
+<thead><tr><th>Fixture or test</th><th>Asserts</th></tr></thead>
+<tbody>
+<tr><td><code>v1-board.json</code></td><td>Loads to the expected state. The journal keeps <code>"  Review  "</code>. One more undo un-completes Zoë. Re-saving writes identical bytes at format 1.</td></tr>
+<tr><td><code>v1-board.pretty.json</code></td><td><span data-d2="legacy">Loads to the same state.</span><span data-d2="raw" hidden><code>corrupt_store</code>; the file is unchanged.</span></td></tr>
+<tr><td><code>v2-new-command.json</code></td><td>Load returns <code>store_too_new</code> naming formats 2 and 1, and leaves the session and the file unchanged. Save into that directory returns <code>store_too_new</code> and leaves the file unchanged.</td></tr>
+<tr><td><code>v2-new-field.json</code></td><td><code>store_too_new</code>, with <code>created_by</code> on <code>data</code> and <code>tags</code> on a command. A variant with an envelope key behaves the same.</td></tr>
+<tr><td><code>v2-add-only.json</code></td><td><code>load_from(.., 1)</code> refuses it; <code>load_from(.., 2)</code> loads it (A1).</td></tr>
+<tr><td><code>check_format</code></td><td>(1,1,1) ok · (2,1,1) too new · (2,1,2) ok · (3,1,2) too new · (0,1,2) <code>invalid_store</code></td></tr>
+<tr><td>Writer</td><td>After each save, the raw <code>data</code> span hashes to <code>sha256</code>. <code>format_for</code> is 1 for an empty journal and for every <code>capabilities()</code> example.</td></tr>
+<tr><td><code>corrupt_future_…</code></td><td>Each case asserts its exact code instead of <code>is_err()</code> (blindspot 07), and the future case is re-forged to return <code>store_too_new</code>.</td></tr>
+<tr><td>Save over a truncated file</td><td><span data-d3="overwrite">Succeeds, and the new file loads.</span><span data-d3="refuse" hidden>Refused; the bytes are unchanged.</span></td></tr>
+<tr><td><code>tests/protocol.rs</code></td><td><code>discover</code> reports <code>journal_formats</code>.</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- F -->
+<section>
+<div class="sh"><span class="sl">F</span><h2>Sequencing</h2><span class="tag">execution order</span></div>
+<ol>
+<li><strong>Pin v1.</strong> Check in the fixture and its expected state, and assert exact codes against today's <code>store.rs</code>. Everything passes before format code changes.</li>
+<li><strong>Raw-span checksum.</strong> Enable <code>raw_value</code>, add <code>Peek</code>, reorder load<span data-d2="legacy">, add the v1 fallback</span>, and write through <code>EnvelopeOut</code>.</li>
+<li><strong>Format gate.</strong> Add the constants, <code>introduced_in</code>, <code>format_for</code>, <code>check_format</code>, <code>load_from</code>, <code>store_too_new</code> and the v2 fixtures.</li>
+<li><strong>Save refusal.</strong> Peek before staging, following A3.</li>
+<li><strong>Surface.</strong> Add <code>journal_formats</code>, update DRIVER.md and fill in the task record's documentation fields.</li>
+</ol>
+</section>
+
+<!-- G -->
+<section>
+<div class="sh"><span class="sl soft">G</span><h2>Mechanical work</h2><span class="tag">low tweak</span></div>
+<details class="mech">
+<summary>Plumbing with no judgment calls (7 items)</summary>
+<ul>
+<li><code>crates/engine/Cargo.toml</code>: <code>serde_json = { workspace = true, features = ["raw_value"] }</code>, for the engine only.</li>
+<li>Share the bounded read (<code>store.rs:118-126</code>) between load and the save peek. In save, "not found" means there is nothing to protect.</li>
+<li>Retire the store's use of code <code>version</code> (<code>store.rs:129</code>). The protocol's use at <code>protocol.rs:68</code> stays.</li>
+<li>Build the <code>store_too_new</code> message in one function so load and save word it the same way.</li>
+<li>Keep the field order and attributes of <code>Envelope</code> and <code>Journal</code>. The v1 fallback digest depends on them, and the fixture would catch a change.</li>
+<li>No <code>unwrap</code> or <code>expect</code> outside tests (workspace clippy). <code>PeekData</code> and <code>RawValue</code> errors map to <code>invalid_store</code> through <code>json_error</code>.</li>
+<li>Run <code>cargo xtask workflow</code>: board-lifecycle saves and reopens through the new path.</li>
+</ul>
+</details>
+</section>
+
+<div class="reply">
+<h2>Your reply</h2>
+<p class="muted">Your A1 to A3 choices are already filled in. Tick any lean you want changed and say how, then copy.</p>
+<div id="leans"></div>
+<label>Anything else<textarea id="extra" placeholder="Optional"></textarea></label>
+<pre id="out" aria-live="polite"></pre>
+<button id="copy" type="button">Copy reply</button>
+</div>
+
+<footer>Grounded in crates/engine/src/store.rs, lib.rs, protocol.rs, store_tests.rs, tests/protocol.rs, tests/properties.rs, crates/domain/src/board.rs, docs/DRIVER.md, harness/workflows.json and driver runs on this branch.</footer>
+</main>
+<script>
+(function () {
+var FILES = [{"id":"v1-board","label":"v1 fixture","bytes":"{\"data\":{\"schema_version\":1,\"commands\":[{\"command\":\"add\",\"title\":\"  Review  \"},{\"command\":\"add\",\"title\":\"Zoë\"},{\"command\":\"complete\",\"id\":2},{\"command\":\"complete\",\"id\":1},{\"command\":\"undo\"}]},\"sha256\":\"ac20b819001004c9951ccdb974be80868b397cde055d1b53914d54b484074091\"}","today":{"ok":"{\"can_undo\":true,\"next_id\":3,\"revision\":5,\"tasks\":[{\"done\":false,\"id\":1,\"title\":\"Review\"},{\"done\":true,\"id\":2,\"title\":\"Zoë\"}]}"}},{"id":"v1-pretty","label":"v1, pretty-printed","bytes":"{\n  \"data\": {\n    \"schema_version\": 1,\n    \"commands\": [\n      {\n        \"command\": \"add\",\n        \"title\": \"  Review  \"\n      },\n      {\n        \"command\": \"add\",\n        \"title\": \"Zoë\"\n      },\n      {\n        \"command\": \"complete\",\n        \"id\": 2\n      },\n      {\n        \"command\": \"complete\",\n        \"id\": 1\n      },\n      {\n        \"command\": \"undo\"\n      }\n    ]\n  },\n  \"sha256\": \"ac20b819001004c9951ccdb974be80868b397cde055d1b53914d54b484074091\"\n}","today":{"ok":"{\"can_undo\":true,\"next_id\":3,\"revision\":5,\"tasks\":[{\"done\":false,\"id\":1,\"title\":\"Review\"},{\"done\":true,\"id\":2,\"title\":\"Zoë\"}]}"}},{"id":"v2-new-command","label":"v2 + rename","bytes":"{\"data\":{\"schema_version\":2,\"commands\":[{\"command\":\"add\",\"title\":\"Plan\"},{\"command\":\"rename\",\"id\":1,\"title\":\"Plan v2\"}]},\"sha256\":\"84fe5075335075ff8560a67737d9a2847dca5724c168cf6ea0aa9d73a4067302\"}","today":{"code":"invalid_store","message":"unknown variant `rename`, expected one of `add`, `complete`, `remove`, `undo` at line 1 column 92"}},{"id":"v2-new-field","label":"v2 + new fields","bytes":"{\"data\":{\"schema_version\":2,\"created_by\":\"0.3\",\"commands\":[{\"command\":\"add\",\"title\":\"Plan\",\"tags\":[\"x\"]}]},\"sha256\":\"44922e1ca43e2b68e86ae94dadc0f2684e8fc337b3b57af7db537d31a8d900fc\"}","today":{"code":"invalid_store","message":"unknown field `created_by`, expected `schema_version` or `commands` at line 1 column 40"}},{"id":"v2-envelope-key","label":"v2 + envelope key","bytes":"{\"data\":{\"schema_version\":2,\"commands\":[{\"command\":\"add\",\"title\":\"Plan\"}]},\"sha256\":\"42395108a9027cb33312975d233691af3013a5014f1e3a1098f1818917c4c8c5\",\"written_by\":\"0.3\"}","today":{"code":"invalid_store","message":"unknown field `written_by`, expected `data` or `sha256` at line 1 column 163"}},{"id":"v1-envelope-key","label":"v1 + envelope key","bytes":"{\"data\":{\"schema_version\":1,\"commands\":[{\"command\":\"add\",\"title\":\"Plan\"}]},\"sha256\":\"4ad4cd91fc56cd268fa67118bc2e420b8b0dba57978f0b42f5b61b93aa23a45c\",\"written_by\":\"0.3\"}","today":{"code":"invalid_store","message":"unknown field `written_by`, expected `data` or `sha256` at line 1 column 163"}},{"id":"v0","label":"format 0","bytes":"{\"data\":{\"schema_version\":0,\"commands\":[]},\"sha256\":\"bd1ced01d9c93aee2bee5d804260736b5ad5ea68bb034a22feb36db1fe1d90bf\"}","today":{"code":"version","message":"unsupported saved journal version"}},{"id":"test-future-999","label":"today's 999 test file","bytes":"{\"data\":{\"commands\":[{\"command\":\"add\",\"title\":\"stored\"}],\"schema_version\":999},\"sha256\":\"966a7d413068adf4100f749cc0039211a241eaf501100ec9a656aedf4623f721\"}","today":{"code":"version","message":"unsupported saved journal version"}}];
+var OKSTATE = 'loads: {"tasks":[{"id":1,"title":"Review","done":false},{"id":2,"title":"Zoë","done":true}],"next_id":3,"revision":5,"can_undo":true}';
+var TOO_NEW = { code: 'store_too_new', message: 'board.json uses journal format 2; this build reads formats 1 to 1. Open it with a newer build. The file was not changed.' };
+var CORRUPT = { code: 'corrupt_store', message: 'journal checksum mismatch' };
+function plan(id, d2) {
+switch (id) {
+case 'v1-board': return { stop: 0, ok: OKSTATE + ' (raw digest)' };
+case 'v1-pretty': return d2 === 'legacy' ? { stop: 0, ok: OKSTATE + ' (raw digest fails; v1 fallback digest matches)' } : { stop: 3, err: CORRUPT };
+case 'v2-new-command': case 'v2-new-field': case 'v2-envelope-key': return { stop: 4, err: TOO_NEW };
+case 'v1-envelope-key': return { stop: 5, err: { code: 'invalid_store', message: 'unknown field `written_by`, expected `data` or `sha256` …' } };
+case 'v0': return { stop: 4, err: { code: 'invalid_store', message: 'journal format 0 is not a saved-board format' } };
+case 'test-future-999': return { stop: 3, err: CORRUPT };
+}
+}
+var LEANS = [
+['Q1', 'Same board.json; a lax peek reads the format before the strict parse.'],
+['Q2', 'Save writes the lowest format that holds the journal, via introduced_in.'],
+['Q3', 'One Command enum plus the introduced_in table; no StoredCommand.'],
+['Q4', 'Domain rule changes out of scope; DRIVER.md says a replay-breaking change must raise the format.'],
+['Q5', 'Save refuses to overwrite a newer board.json.'],
+['Q6', 'Checksum over the raw data bytes; order read, peek, checksum, format, strict parse, replay.'],
+['Q7', 'store_too_new with found and supported formats; no store_too_old yet; discover lists journal_formats; Error unchanged.'],
+['Q8', 'Frozen v1 fixture plus v2 fixtures (new command, new field) asserting exact codes.']
+];
+var TEXT = {
+d1: { mech: 'A1: Mechanism only. JOURNAL_FORMAT stays 1; Rename is its own task.', rename: 'A1: Also ship Rename as format 2 in this change.' },
+d2: { legacy: 'A2: Accept either digest for format 1 only; format 2+ needs the raw digest.', raw: 'A2: Raw digest only; a reformatted v1 file is corrupt_store.' },
+d3: { overwrite: 'A3: Save refuses only a peeked newer format; unpeekable files are overwritten as today.', refuse: 'A3: Save also refuses to overwrite any board.json it cannot peek.' }
+};
+var $ = function (s) { return document.querySelector(s); };
+var current = 'v1-board';
+function val(name) { var el = document.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ''; }
+
+var files = $('#files');
+FILES.forEach(function (f) {
+var b = document.createElement('button');
+b.type = 'button'; b.textContent = f.label; b.dataset.id = f.id;
+b.setAttribute('aria-pressed', 'false');
+b.addEventListener('click', function () { current = f.id; showFile(); });
+files.appendChild(b);
+});
+function resp(el, r) {
+el.textContent = '';
+var c = document.createElement('div'); c.className = r.ok ? 'code good' : 'code';
+c.textContent = r.ok ? 'ok' : r.code; el.appendChild(c);
+var m = document.createElement('div'); m.textContent = r.ok || r.message; el.appendChild(m);
+}
+function showFile() {
+var f = FILES.filter(function (x) { return x.id === current; })[0];
+files.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.id === current)); });
+$('#fbytes').textContent = f.bytes;
+resp($('#ftoday'), f.today);
+var p = plan(current, val('d2'));
+resp($('#fplan'), p.err ? p.err : { ok: p.ok });
+document.querySelectorAll('#pipe li').forEach(function (li) {
+var g = Number(li.dataset.g);
+li.classList.toggle('hit', g === p.stop);
+li.classList.toggle('pass', p.stop === 0 || g < p.stop);
+});
+}
+
+var leans = $('#leans');
+LEANS.forEach(function (l) {
+var row = document.createElement('div'); row.className = 'lrow';
+var q = document.createElement('b'); q.textContent = l[0];
+var t = document.createElement('span'); t.textContent = l[1];
+var lab = document.createElement('label');
+var cb = document.createElement('input'); cb.type = 'checkbox'; cb.dataset.q = l[0];
+lab.appendChild(cb); lab.appendChild(document.createTextNode('Change'));
+var inp = document.createElement('input'); inp.type = 'text'; inp.hidden = true; inp.dataset.q = l[0];
+inp.placeholder = 'What should ' + l[0] + ' be instead?';
+inp.setAttribute('aria-label', 'Change to ' + l[0]);
+cb.addEventListener('change', function () { inp.hidden = !cb.checked; if (cb.checked) inp.focus(); build(); });
+inp.addEventListener('input', build);
+row.appendChild(q); row.appendChild(t); row.appendChild(lab); row.appendChild(inp);
+leans.appendChild(row);
+});
+
+function build() {
+var lines = ['Journal versioning plan: my reply.', ''];
+['d1', 'd2', 'd3'].forEach(function (d) { lines.push(TEXT[d][val(d)]); });
+lines.push('');
+var changed = [];
+leans.querySelectorAll('input[type=checkbox]').forEach(function (cb) {
+if (!cb.checked) return;
+var inp = leans.querySelector('input[type=text][data-q="' + cb.dataset.q + '"]');
+changed.push(cb.dataset.q + ': change. ' + (inp.value.trim() || '(say how)'));
+});
+if (changed.length) { lines.push('Leans Q1 to Q8 stand as written except:'); lines = lines.concat(changed); }
+else lines.push('Leans Q1 to Q8: keep all as written; they are my answers now.');
+var extra = $('#extra').value.trim();
+if (extra) { lines.push(''); lines.push(extra); }
+$('#out').textContent = lines.join('\n');
+}
+function syncToggles() {
+['d2', 'd3'].forEach(function (d) {
+var v = val(d);
+document.querySelectorAll('[data-' + d + ']').forEach(function (el) { el.hidden = el.getAttribute('data-' + d) !== v; });
+});
+}
+document.querySelectorAll('input[type=radio]').forEach(function (r) {
+r.addEventListener('change', function () { syncToggles(); showFile(); build(); });
+});
+$('#extra').addEventListener('input', build);
+
+function copied(btn) { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy reply'; }, 1500); }
+function fallback(text, btn) {
+var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', '');
+ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+try { document.execCommand('copy'); copied(btn); } catch (e) { btn.textContent = 'Select the text above to copy'; }
+document.body.removeChild(ta);
+}
+$('#copy').addEventListener('click', function () {
+var btn = this, text = $('#out').textContent;
+if (navigator.clipboard && navigator.clipboard.writeText) {
+navigator.clipboard.writeText(text).then(function () { copied(btn); }, function () { fallback(text, btn); });
+} else { fallback(text, btn); }
+});
+
+syncToggles(); showFile(); build();
+})();
+</script>
+</body>
+</html>

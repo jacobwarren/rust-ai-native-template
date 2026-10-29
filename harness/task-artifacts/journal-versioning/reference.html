@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Saved board semantics</title>
+<style>
+  .prompt { position: relative; padding-right: 7.5rem; }
+  .prompt p { margin: 0; font-style: italic; max-width: var(--reading-width); }
+  .prompt .copy-prompt { position: absolute; top: var(--space-3); right: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  @media (max-width: 40rem) { .prompt { padding-right: var(--space-4); } .prompt .copy-prompt { position: static; margin-top: var(--space-3); } }
+  .status { display: inline-block; font-size: var(--text-small); font-weight: 650; padding: var(--space-1) var(--space-3); border-radius: 999px; border: 1px solid var(--warning); color: var(--warning); background: var(--warning-soft); }
+  .paths { font-family: var(--font-code); font-size: var(--text-small); color: var(--muted); display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-6); margin-block: var(--space-4) 0; }
+  .paths b { color: var(--ink); font-weight: 650; }
+  section { margin-block: var(--space-12); }
+  .sec-head { display: flex; align-items: center; gap: var(--space-3); margin-block: 0 var(--space-2); }
+  .sec-head h2 { margin: 0; }
+  .num { flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--ink); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; font-size: var(--text-small); font-weight: 650; }
+  .sub { color: var(--muted); max-width: var(--reading-width); margin-block: 0 var(--space-4); }
+  code { font-size: .88em; }
+  p code, li code, td code, .note code, .why code, label code { background: var(--accent-soft); padding: 0 .3em; border-radius: .25rem; overflow-wrap: anywhere; }
+
+  .pair { margin-block: var(--space-8); }
+  .pair h3 { margin-block: 0 var(--space-3); }
+  .pair h3 small { font-family: var(--font-code); font-weight: 400; margin-right: var(--space-2); color: var(--warning); }
+  .pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+  .pair-grid > * { min-width: 0; }
+  @media (max-width: 52rem) { .pair-grid { grid-template-columns: 1fr; } }
+  .codecard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .codecard .chead { display: flex; justify-content: space-between; gap: var(--space-3); padding: var(--space-2) var(--space-4); border-bottom: 1px solid var(--line); background: var(--paper); font-family: var(--font-code); font-size: .78rem; color: var(--muted); }
+  .codecard .chead span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .codecard .chead .kind { flex: none; text-transform: uppercase; letter-spacing: .08em; }
+  .codecard pre { margin: 0; border: 0; border-radius: 0; white-space: pre; overflow-wrap: normal; overflow-x: auto; font-size: .8rem; line-height: 1.55; flex: 1; }
+  .codecard pre.wrap { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .cm { color: var(--muted); font-style: italic; }
+  .kw { color: var(--accent); font-weight: 650; }
+  .er { color: var(--danger); }
+  .rq { color: var(--accent); }
+  mark.hl { background: var(--warning-soft); color: inherit; border-bottom: 2px solid var(--warning); border-radius: .2rem; padding: 0 .1em; cursor: pointer; }
+  mark.hl sup { font-size: .65rem; color: var(--warning); margin-left: .1em; }
+  mark.hl.active, mark.hl:focus-visible { background: #f2dcc2; }
+  .notes { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+  .note { display: flex; gap: var(--space-3); align-items: baseline; font-size: .93rem; max-width: 62rem; cursor: pointer; border-radius: var(--control-radius); padding: var(--space-1) var(--space-2); }
+  .note.active { background: var(--warning-soft); }
+  .note .n { flex: none; width: 1.4rem; height: 1.4rem; border-radius: 50%; border: 1.5px solid var(--warning); color: var(--warning); display: inline-flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 650; align-self: flex-start; margin-top: .15rem; }
+  .note.active .n { background: var(--warning); color: var(--surface); }
+
+  .explorer { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6) var(--space-6); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .chips button { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: .85rem; background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
+  .chips button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .chips button .dot { display: inline-block; width: .5rem; height: .5rem; border-radius: 50%; margin-right: .4rem; vertical-align: middle; }
+  .gates { list-style: none; padding: 0; margin: var(--space-4) 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .gates li { flex: 1 1 8rem; border: 1.5px solid var(--line); border-radius: var(--control-radius); padding: var(--space-1) var(--space-3); font-size: .8rem; line-height: 1.35; background: var(--paper); color: var(--muted); }
+  .gates li b { display: block; font-size: .82rem; color: inherit; }
+  .gates li code { font-size: .74rem; }
+  .gates li.pass { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
+  .gates li.stop { border-color: var(--danger); background: #fbeaea; color: var(--danger); }
+  .gates li.skip { opacity: .45; border-style: dashed; }
+  .gates li.done { border-color: var(--accent); background: var(--accent); color: var(--surface); }
+  .result { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-4); }
+  @media (max-width: 52rem) { .result { grid-template-columns: 1fr; } }
+  .result pre { margin: 0; font-size: .78rem; white-space: pre-wrap; overflow-wrap: anywhere; background: var(--paper); max-height: 16rem; overflow-y: auto; }
+  .verdict { font-family: var(--font-code); font-size: .82rem; padding: var(--space-3); border-radius: var(--control-radius); background: #fbeaea; color: var(--danger); overflow-wrap: anywhere; }
+  .verdict.ok { background: var(--accent-soft); color: var(--accent); }
+  .why { margin: var(--space-3) 0 0; font-size: .95rem; }
+  .ev { font-size: .8rem; color: var(--muted); margin: var(--space-2) 0 0; }
+
+  .table-scroll { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .table-scroll table { min-width: 40rem; font-size: .92rem; }
+  .table-scroll th { background: var(--paper); font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .table-scroll tr:last-child td { border-bottom: 0; }
+
+  .reply-box { background: var(--surface); }
+  .claim { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-2) var(--space-4); align-items: start; padding: var(--space-3) 0; border-bottom: 1px dashed var(--line); }
+  .claim:last-of-type { border-bottom: 0; }
+  .claim p { margin: 0; font-size: .95rem; }
+  .claim p small { display: block; margin-top: var(--space-1); }
+  @media (max-width: 40rem) { .claim { grid-template-columns: 1fr; } }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--control-radius); overflow: hidden; }
+  .seg label { margin: 0; display: flex; align-items: center; padding: var(--space-1) var(--space-3); font-size: .85rem; cursor: pointer; min-height: 36px; }
+  .seg label + label { border-left: 1px solid var(--line); }
+  .seg input { margin: 0 var(--space-1) 0 0; }
+  .seg label:has(input[value="confirm"]:checked) { background: var(--accent-soft); color: var(--accent); font-weight: 650; }
+  .seg label:has(input[value="dispute"]:checked) { background: #fbeaea; color: var(--danger); font-weight: 650; }
+  .opt { display: flex; gap: var(--space-2); align-items: flex-start; margin-block: var(--space-2); padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--control-radius); cursor: pointer; }
+  .opt input { margin-top: .35rem; flex: none; }
+  .opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .rec { font-size: .72rem; font-weight: 650; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 0 .5rem; margin-left: .3rem; white-space: nowrap; }
+  #reply { white-space: pre-wrap; font-family: var(--font-code); font-size: .82rem; overflow-wrap: anywhere; }
+  .reply-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; margin-top: var(--space-3); }
+  .reply-actions button.secondary { background: var(--surface); color: var(--ink); border-color: var(--line); }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="eyebrow">Journal versioning · before code · reference map</div>
+  <h1>What a saved board means today</h1>
+  <p class="lead">A saved board is a program, not a picture. <code>Store::save</code> writes the command journal with a version and a checksum; <code>Store::load</code> parses it, checks it and replays it into a fresh session. No fixture, spec or test pins those bytes, so this code is the only definition a versioned format has to stay compatible with.</p>
+  <blockquote class="prompt">
+    <p id="promptText">Today's Store::load and Store::save (crates/engine/src/store.rs) already behave the way versioned saved boards must keep behaving for every board saved so far. Read them and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood exactly what versioning the journal format must preserve before you build anything.</p>
+    <button class="secondary copy-prompt" type="button" data-copy="promptText">Copy prompt</button>
+  </blockquote>
+  <p><span class="status">Awaiting your confirmation</span></p>
+  <div class="paths">
+    <span><b>reference</b> crates/engine/src/store.rs (save_with, load)</span>
+    <span><b>also</b> Session::execute and replay, crates/engine/src/lib.rs</span>
+    <span><b>read</b> store_tests.rs · protocol.rs · docs/DRIVER.md · harness/workflows.json</span>
+    <span><b>ran</b> Store::save/load on hand-built files · starter-app driver</span>
+  </div>
+</header>
+
+<section aria-labelledby="s1">
+  <div class="sec-head"><span class="num">1</span><h2 id="s1">Matched excerpts</h2></div>
+  <p class="sub">Code on the left; on the right, what it produced when run. Hover, tap or tab to a highlight to light up its counterpart and the note it maps to.</p>
+
+  <div class="pair">
+    <h3><small>PAIR A / 3</small>What save writes</h3>
+    <div class="pair-grid">
+      <div class="codecard">
+        <div class="chead"><span>crates/engine/src/store.rs:10-21, 79-84</span><span class="kind">Rust</span></div>
+<pre><code><span class="cm">// both #[serde(deny_unknown_fields)]</span>
+<span class="kw">struct</span> Journal {
+    <mark class="hl" data-p="a3" tabindex="0">schema_version: u32,
+    commands: Vec&lt;Command&gt;,<sup>3</sup></mark>
+}
+<span class="kw">struct</span> Envelope { data: Journal, sha256: String }
+
+<span class="cm">// in save_with (map_err elided)</span>
+<span class="kw">let</span> data = Journal {
+    <mark class="hl" data-p="a1" tabindex="0">schema_version: 1,<sup>1</sup></mark>
+    <mark class="hl" data-p="a2" tabindex="0">commands: session.journal().to_vec(),<sup>2</sup></mark>
+};
+<span class="kw">let</span> sha256 = <mark class="hl" data-p="a3" tabindex="0">digest(&amp;serde_json::to_vec(&amp;data)?)<sup>3</sup></mark>;
+<span class="kw">let</span> bytes = serde_json::to_vec(&amp;Envelope { data, sha256 })?;</code></pre>
+      </div>
+      <div class="codecard">
+        <div class="chead"><span>board.json after save (one line on disk, wrapped here)</span><span class="kind">JSON</span></div>
+<pre><code>{"data":{<mark class="hl" data-p="a1" tabindex="0">"schema_version":1,<sup>1</sup></mark>
+  "commands":[
+    {"command":"add","title":"Review"},
+    <mark class="hl" data-p="a2" tabindex="0">{"command":"add","title":"  Zoë  "},<sup>2</sup></mark>
+    {"command":"complete","id":1},
+    <mark class="hl" data-p="a2" tabindex="0">{"command":"undo"},</mark>
+    {"command":"complete","id":2}]},
+ <mark class="hl" data-p="a3" tabindex="0">"sha256":"0a8c5b8cd0d1d0fd3d5b1ba75d40d98d
+           8adc7961ddcb4b0abe11673201df5b4f"<sup>3</sup></mark>}</code></pre>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note" data-p="a1"><span class="n">1</span><span><b>One version number, inside the checksummed data, always <code>1</code>.</b> The envelope has no version of its own and accepts no other key. <code>discover</code>'s <code>protocol_version: 1</code> (protocol.rs:33) is the request protocol, not the file.</span></div>
+      <div class="note" data-p="a2"><span class="n">2</span><span><b>Commands are stored as admitted, and nothing derived is stored.</b> <code>"  Zoë  "</code> keeps its spaces because <code>execute</code> journals the command it was given (lib.rs:88); only replay trims. Undo is an entry like any other. Ids, done flags and <code>next_id</code> are not in the file. The same <code>Command</code> enum also defines <code>execute</code>, <code>replay</code> and <code>capture</code> (protocol.rs:23-24, 94), so a new variant changes all four at once.</span></div>
+      <div class="note" data-p="a3"><span class="n">3</span><span><b>The hash covers serde's compact output of this private struct, in declaration order.</b> Whitespace, key order and escapes in the file do not matter, because load re-serializes before hashing. The Rust field order and every command's serialized shape do: change either and every saved board fails its checksum (section 2, “Hash over sorted keys”).</span></div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <h3><small>PAIR B / 3</small>What load checks, and what a newer file meets in today's build</h3>
+    <div class="pair-grid">
+      <div class="codecard">
+        <div class="chead"><span>crates/engine/src/store.rs:124-135, 100</span><span class="kind">Rust</span></div>
+<pre><code><span class="kw">if</span> bytes.len() &gt; MAX_BYTES {
+    <span class="kw">return</span> Err(Error::new(<span class="er">"capacity"</span>, …));
+}
+<span class="kw">let</span> envelope: Envelope =
+    <mark class="hl" data-p="b4" tabindex="0">serde_json::from_slice(&amp;bytes)
+        .map_err(json_error)?;<sup>4</sup></mark> <span class="cm">// invalid_store</span>
+<mark class="hl" data-p="b5" tabindex="0"><span class="kw">if</span> envelope.data.schema_version != 1 {<sup>5</sup></mark>
+    <span class="kw">return</span> Err(Error::new(<span class="er">"version"</span>,
+        "unsupported saved journal version"));
+}
+<span class="kw">let</span> expected = digest(&amp;serde_json::to_vec(&amp;envelope.data)?);
+<span class="kw">if</span> envelope.sha256 != expected {
+    <span class="kw">return</span> Err(Error::new(<span class="er">"corrupt_store"</span>,
+        "journal checksum mismatch"));
+}
+session.replay(envelope.data.commands)
+
+<span class="cm">// in save_with: nothing reads board.json first</span>
+<mark class="hl" data-p="b6" tabindex="0">fs::rename(&amp;temp, self.root.join("board.json"))?;<sup>6</sup></mark></code></pre>
+      </div>
+      <div class="codecard">
+        <div class="chead"><span>driver run, verbatim (wrapped)</span><span class="kind">transcript</span></div>
+<pre class="wrap"><code><span class="cm">$ cat board.json</span>
+{"data":{<mark class="hl" data-p="b5" tabindex="0">"schema_version":2<sup>5</sup></mark>,"commands":[{"command":"add","title":"Plan"},{"command":"rename","id":1,"title":"Plan v2"}]},<mark class="hl" data-p="b5" tabindex="0">"sha256":"0000"</mark>}
+<span class="cm">$ APP_DATA_DIR=. starter-app driver &lt;&lt;EOF</span>
+<span class="rq">{"schema_version":1,"id":1,"action":{"method":"load"}}
+{"schema_version":1,"id":2,"action":{"method":"execute","command":{"command":"add","title":"Oops"}}}
+{"schema_version":1,"id":3,"action":{"method":"save"}}</span>
+<span class="cm">EOF</span>
+{"error":{<mark class="hl" data-p="b4" tabindex="0">"code":"invalid_store","message":"unknown variant `rename`, expected one of `add`, `complete`, `remove`, `undo` at line 1 column 92"<sup>4</sup></mark>},"id":1,"ok":false,"schema_version":1}
+{"id":2,"ok":true,"result":{"id":1},"schema_version":1}
+<mark class="hl" data-p="b6" tabindex="0">{"id":3,"ok":true,"result":{"revision":1,"saved":true},"schema_version":1}<sup>6</sup></mark>
+<span class="cm">$ echo $?</span>
+2
+<span class="cm">$ cat board.json</span>
+<mark class="hl" data-p="b6" tabindex="0">{"data":{"schema_version":1,"commands":[{"command":"add","title":"Oops"}]},"sha256":"291408085f29f704897144394fd6731414865186cb8de4ff9bfa2e92956471ee"}</mark></code></pre>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note" data-p="b4"><span class="n">4</span><span><b>The whole file is parsed into v1 types before the version is read.</b> <code>deny_unknown_fields</code> on <code>Envelope</code>, <code>Journal</code> and <code>Command</code> makes any new command, any new field on an old command (<code>tags</code> on <code>add</code> gives “unknown field `tags`, expected `title`”) and any new envelope key an <code>invalid_store</code> parse error. Builds already shipped will answer every such file this way for good.</span></div>
+      <div class="note" data-p="b5"><span class="n">5</span><span><b>The version gate is exact and runs before the checksum</b>, but here it is never reached: the parse failed first, so neither the <code>2</code> nor the bogus hash was read. The code <code>version</code> is shared with the protocol's request-version error (protocol.rs:67-68), and neither message names a version.</span></div>
+      <div class="note" data-p="b6"><span class="n">6</span><span><b>Refusing to load does not protect the file.</b> A failed load keeps the live session as it was (empty here, as DRIVER.md promises), and save renames over <code>board.json</code> without reading it. One edit and one save later the newer board is gone; exit code 2 is the only trace. Shipped builds will do this to any file a new build writes.</span></div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <h3><small>PAIR C / 3</small>Replay is what gives a v1 board its meaning</h3>
+    <div class="pair-grid">
+      <div class="codecard">
+        <div class="chead"><span>crates/engine/src/lib.rs:107-119, 57-60</span><span class="kind">Rust</span></div>
+<pre><code><span class="kw">pub fn</span> replay(&amp;<span class="kw">mut</span> self, commands: Vec&lt;Command&gt;) -&gt; Result&lt;()&gt; {
+    <span class="kw">if</span> commands.len() &gt; MAX_COMMANDS { <span class="cm">// 256</span>
+        <span class="kw">return</span> Err(Error::new(<span class="er">"capacity"</span>, …));
+    }
+    <span class="kw">let mut</span> candidate = <mark class="hl" data-p="c7" tabindex="0">Self::default();<sup>7</sup></mark>
+    <span class="kw">for</span> (index, command) <span class="kw">in</span> commands.into_iter().enumerate() {
+        candidate.execute(command).map_err(|e| Error::new(
+            <span class="er">"replay_failed"</span>, format!("step {index}: {}", e.message)))?;
+    }
+    <mark class="hl" data-p="c9" tabindex="0">*self = candidate;<sup>9</sup></mark>
+    Ok(())
+}
+
+<span class="cm">// execute, Command::Add</span>
+<span class="kw">let</span> title = <mark class="hl" data-p="c8" tabindex="0">Title::try_from(title.as_str())<sup>8</sup></mark>
+    .map_err(|e| Error::new("invalid_title", e))?;
+<span class="kw">let</span> id = <mark class="hl" data-p="c7" tabindex="0">next.add(title)</mark>.map_err(|e| Error::new("capacity", e))?;</code></pre>
+      </div>
+      <div class="codecard">
+        <div class="chead"><span>the Pair A file after Store::load (wrapped)</span><span class="kind">JSON</span></div>
+<pre><code><span class="cm">// session.journal(): identical to what was saved</span>
+[{"command":"add","title":"Review"},
+ <mark class="hl" data-p="c8" tabindex="0">{"command":"add","title":"  Zoë  "}<sup>8</sup></mark>,
+ {"command":"complete","id":1},{"command":"undo"},
+ {"command":"complete","id":2}]
+
+<span class="cm">// session.inspect()</span>
+{<mark class="hl" data-p="c9" tabindex="0">"can_undo":true<sup>9</sup></mark>,<mark class="hl" data-p="c7" tabindex="0">"next_id":3</mark>,<mark class="hl" data-p="c9" tabindex="0">"revision":5</mark>,
+ "tasks":[{"done":false,<mark class="hl" data-p="c7" tabindex="0">"id":1</mark>,"title":"Review"},
+          {"done":true,<mark class="hl" data-p="c7" tabindex="0">"id":2<sup>7</sup></mark>,<mark class="hl" data-p="c8" tabindex="0">"title":"Zoë"</mark>}]}</code></pre>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note" data-p="c7"><span class="n">7</span><span><b>Ids come from replay, not from the file.</b> Every load starts at <code>next_id</code> 1, and undo restores <code>next_id</code> with the board, so ids are reused: replaying <code>add A, undo, add B, complete 1</code> completes B. Change allocation or undo and old <code>complete</code>/<code>remove</code> commands fail as <code>replay_failed</code> or silently hit a different task.</span></div>
+      <div class="note" data-p="c8"><span class="n">8</span><span><b>Domain rules run again on every load.</b> Title trimming and validation and the 64-task cap apply at replay time; a failure comes back as <code>replay_failed</code> “step N: …” with the inner code folded into the message. Tightening any rule strands boards that obeyed the old one, so the rules are part of what “v1” means.</span></div>
+      <div class="note" data-p="c9"><span class="n">9</span><span><b>All or nothing, history included.</b> The candidate replaces the live session only after the last step, and revision and <code>can_undo</code> come back because undo is journaled (store_tests <code>roundtrip_preserves_state_journal_and_undo</code> undoes after a reload).</span></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="s2">
+  <div class="sec-head"><span class="num">2</span><h2 id="s2">Edge cases at the load gates</h2></div>
+  <p class="sub">Pick a file to see which gate stops it in today's build and the error <code>Store::load</code> returned when run. In every failing case the live session was left unchanged. Long files are abbreviated with “…”.</p>
+  <div class="explorer">
+    <div class="chips" id="chips"></div>
+    <ol class="gates" id="gates" aria-label="Load pipeline">
+      <li data-g="0"><b>open</b><code>storage_io</code></li>
+      <li data-g="1"><b>≤ 262,144 bytes</b><code>capacity</code></li>
+      <li data-g="2"><b>typed parse, closed</b><code>invalid_store</code></li>
+      <li data-g="3"><b>version == 1</b><code>version</code></li>
+      <li data-g="4"><b>sha256 match</b><code>corrupt_store</code></li>
+      <li data-g="5"><b>replay</b><code>capacity</code> / <code>replay_failed</code></li>
+      <li data-g="6"><b>replace live session</b>ok</li>
+    </ol>
+    <div class="result">
+      <div><pre id="fileView"></pre></div>
+      <div>
+        <div class="verdict" id="verdict" aria-live="polite"></div>
+        <p class="why" id="why"></p>
+        <p class="ev" id="ev"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="s3">
+  <div class="sec-head"><span class="num">3</span><h2 id="s3">Confirm what must be preserved</h2></div>
+  <p class="sub">Each line is a claim this map makes about v1. Mark it confirmed or wrong; anything you leave alone goes back as unreviewed. The reply below updates as you go.</p>
+  <div class="surface reply-box" id="claims">
+    <div class="claim"><p><b>1. A v1 file is a journal replayed under v1 rules.</b> Titles, ids, <code>next_id</code> and undo history are re-derived on every load; nothing derived is stored.<small>Pair A note 2 · Pair C</small></p><div class="seg" data-claim="1. A v1 file is a journal replayed under v1 rules; nothing derived is stored."></div></div>
+    <div class="claim"><p><b>2. The v1 checksum is sha256 of compact <code>{"schema_version":1,"commands":[…]}</code></b> in that field order with today's command shapes, compared as exact lowercase hex.<small>Pair A note 3 · “Hash over sorted keys” · store.rs:24, 132</small></p><div class="seg" data-claim="2. The v1 checksum is defined by struct field order and today's command shapes."></div></div>
+    <div class="claim"><p><b>3. Any encoding of the same data is the same v1 board:</b> whitespace, key order and escapes in the file do not matter.<small>“Same board, reformatted”</small></p><div class="seg" data-claim="3. Any encoding of the same data is the same v1 board."></div></div>
+    <div class="claim"><p><b>4. v1 files keep today's gate order and codes</b>: <code>storage_io</code>, <code>capacity</code>, <code>invalid_store</code>, <code>version</code>, <code>corrupt_store</code>, then <code>capacity</code>/<code>replay_failed</code>, and no failure touches the live session.<small>Pair B · section 2</small></p><div class="seg" data-claim="4. v1 files keep today's gate order and codes; failures never touch the live session."></div></div>
+    <div class="claim"><p><b>5. Shipped builds are already fixed:</b> they answer any file with a new command, field or key as <code>invalid_store</code>, and overwrite it on the next save. Only builds from this change on can report a newer file as <code>version</code>.<small>Pair B notes 4–6</small></p><div class="seg" data-claim="5. Shipped builds already answer new content with invalid_store and overwrite it on save."></div></div>
+    <div class="claim"><p><b>6. Free to change:</b> load error message text (DRIVER.md promises a code and a message, not the wording) and the private <code>Journal</code>/<code>Envelope</code> types, as long as v1 re-serialization stays byte-identical.<small>store.rs:10-21 · DRIVER.md</small></p><div class="seg" data-claim="6. Message text and the private Journal/Envelope types are free to change."></div></div>
+  </div>
+
+  <fieldset style="padding: var(--space-3) var(--space-6)">
+    <legend>Pin v1 before the format changes?</legend>
+    <p class="muted" style="margin:0">Nothing pins v1 today. <code>corrupt_future_and_oversize_files_do_not_change_live_state</code> asserts only <code>is_err()</code> and unchanged state; no test asserts <code>invalid_store</code>, <code>version</code> or <code>corrupt_store</code>, and no fixture holds v1 bytes. Changing v1 hashing in writer and reader together, or reordering the gates, would pass today's suite.</p>
+    <label class="opt"><input type="radio" name="pin" value="Pin v1 first: add a reviewed board.json fixture with today's exact bytes, plus tests that assert each load gate's error code."><span><b>Pin first.</b> A reviewed fixture authored from today's save output, plus per-gate code assertions, before any format change. <span class="rec">my recommendation</span></span></label>
+    <label class="opt"><input type="radio" name="pin" value="Do not pin v1 bytes; rely on save/load round-trip tests within one build."><span><b>Rely on round-trip tests.</b> Simpler, but a round trip within one build cannot see v1 hashing change.</span></label>
+  </fieldset>
+
+  <label>Corrections or anything I missed
+    <textarea id="corr" rows="3" style="min-height:4.5rem" placeholder="e.g. note 7 is wrong because…"></textarea></label>
+
+  <output id="reply"></output>
+  <div class="reply-actions">
+    <button type="button" id="copyReply">Copy reply</button>
+    <span class="muted" id="copyState" aria-live="polite"></span>
+  </div>
+</section>
+
+<footer>Journal versioning · reference map of <code>Store::save</code> and <code>Store::load</code> before any change.</footer>
+</main>
+<script type="application/json" id="samples">[{"n": "Saved by save()", "stop": 6, "file": "{\"data\":{\"schema_version\":1,\"commands\":[{\"command\":\"add\",\"title\":\"Review\"},{\"command\":\"add\",\"title\":\"  Zoë  \"},{\"command\":\"complete\",\"id\":1},{\"command\":\"undo\"},{\"command\":\"complete\",\"id\":2}]},\"sha256\":\"0a8c5b8cd0d1d0fd3d5b1ba75d40d98d8adc7961ddcb4b0abe11673201df5b4f\"}", "code": "ok", "msg": "ok · {\"can_undo\":true,\"next_id\":3,\"revision\":5,\"tasks\":[{\"done\":false,\"id\":1,\"title\":\"Review\"},{\"done\":true,\"id\":2,\"title\":\"Zoë\"}]}", "keep": "The reference outcome: these exact bytes must keep producing this state in every later build.", "ev": "Store::save then Store::load"}, {"n": "Same board, reformatted", "stop": 6, "file": "{\n  \"sha256\": \"0a8c5b8cd0d1d0fd3d5b1ba75d40d98d8adc7961ddcb4b0abe11673201df5b4f\",\n  \"data\": {\n    \"commands\": [\n      {\n        \"command\": \"add\",\n        \"title\": \"Review\"\n      },\n      …\n    ],\n    \"schema_version\": 1\n  }\n}", "code": "ok", "msg": "ok · {\"can_undo\":true,\"next_id\":3,\"revision\":5,\"tasks\":[{\"done\":false,\"id\":1,\"title\":\"Review\"},{\"done\":true,\"id\":2,\"title\":\"Zoë\"}]}", "keep": "Pretty-printed, keys reordered, original hash: still the same board. A reader that hashes the raw bytes it read, instead of re-serializing, would reject this valid v1 file.", "ev": "Pair A file re-emitted pretty-printed with sha256 first and commands before schema_version"}, {"n": "v2 header, v1 commands", "stop": 3, "file": "{\"data\":{\"schema_version\":2,\"commands\":[{\"command\":\"add\",\"title\":\"Review\"},…]},\"sha256\":\"0a8c5b8cd0d1d0fd3d5b1ba75d40d98d8adc7961ddcb4b0abe11673201df5b4f\"}", "code": "version", "msg": "unsupported saved journal version", "keep": "The only newer file today's build refuses as version. The hash is stale for this data, yet the answer is version, not corrupt_store, because the version gate runs first.", "ev": "Pair A commands under schema_version 2, Pair A hash kept"}, {"n": "v2 with a new command", "stop": 2, "file": "{\"data\":{\"schema_version\":2,\"commands\":[{\"command\":\"add\",\"title\":\"Plan\"},{\"command\":\"rename\",\"id\":1,\"title\":\"Plan v2\"}]},\"sha256\":\"<valid for this data>\"}", "code": "invalid_store", "msg": "unknown variant `rename`, expected one of `add`, `complete`, `remove`, `undo` at line 1 column 92", "keep": "Even with a correct hash the version is never read. A new reader has to read schema_version before it parses commands, or it inherits this.", "ev": "hash computed in Journal field order"}, {"n": "Hash over sorted keys", "stop": 4, "file": "{\"data\":{\"commands\":[{\"command\":\"add\",\"title\":\"x\"}],\"schema_version\":1},\"sha256\":\"f1575a6e00410b7e8b4cc5bcf73f84f268301b058eaee8792bcb671024aabe91\"}", "code": "corrupt_store", "msg": "journal checksum mismatch", "keep": "Hashed through serde_json::Value, which sorts keys so commands comes first. Any migration or tool that re-hashes this way breaks every board it touches.", "ev": "digest(serde_json::to_vec(&Value))"}, {"n": "Completes a missing task", "stop": 5, "file": "{\"data\":{\"schema_version\":1,\"commands\":[{\"command\":\"complete\",\"id\":99}]},\"sha256\":\"<valid for this data>\"}", "code": "replay_failed", "msg": "step 0: task does not exist", "keep": "Well-formed, current and intact, and still not a board. Replay is the last validator, so v1 replay rules are part of the format.", "ev": "hash computed in Journal field order"}, {"n": "257 commands", "stop": 5, "file": "{\"data\":{\"schema_version\":1,\"commands\":[{\"command\":\"add\",\"title\":\"t\"},{\"command\":\"complete\",\"id\":1},… 255 more complete …]},\"sha256\":\"<valid for this data>\"}", "code": "capacity", "msg": "replay exceeds 256 commands", "keep": "Checked before the first step (lib.rs:108), and reported as capacity, not replay_failed. Save can never write this: execute refuses the 257th command.", "ev": "hash computed in Journal field order"}, {"n": "262,145 bytes", "stop": 1, "file": "(262,145 spaces)", "code": "capacity", "msg": "saved journal exceeds 256 KiB", "keep": "Read with take(MAX_BYTES + 1), so an oversized file is never fully read or parsed. The largest board today's rules allow (256 commands, 160 adds of 512-byte titles that escape to 632 bytes of JSON) saves to 108,653 bytes, so save's own capacity check cannot fire today; a bigger command or per-command overhead spends that headroom.", "ev": "262,145 spaces, the same input store_tests corrupt_future_and_oversize_files_do_not_change_live_state uses; the 108,653 bytes come from Store::save of that largest board"}, {"n": "No board.json", "stop": 0, "file": "(directory holds only writer.lock)", "code": "storage_io", "msg": "No such file or directory (os error 2)", "keep": "A missing board is an error, never an empty board (DRIVER.md). Orphan .board-*.tmp files are not consulted.", "ev": "DRIVER.md, Persistence and recovery"}]</script>
+<script>
+(function () {
+  var samples = JSON.parse(document.getElementById('samples').textContent);
+  var colors = { ok: 'var(--accent)', version: 'var(--warning)' };
+
+  // linked highlights
+  function setActive(p, on) {
+    document.querySelectorAll('[data-p="' + p + '"]').forEach(function (el) { el.classList.toggle('active', on); });
+  }
+  var pinned = null;
+  document.querySelectorAll('mark.hl, .note').forEach(function (el) {
+    var p = el.getAttribute('data-p');
+    el.addEventListener('mouseenter', function () { setActive(p, true); });
+    el.addEventListener('mouseleave', function () { if (pinned !== p) setActive(p, false); });
+    el.addEventListener('focus', function () { setActive(p, true); });
+    el.addEventListener('blur', function () { if (pinned !== p) setActive(p, false); });
+    el.addEventListener('click', function () {
+      if (pinned && pinned !== p) setActive(pinned, false);
+      pinned = pinned === p ? null : p;
+      setActive(p, pinned === p);
+    });
+  });
+
+  // gate explorer
+  var chips = document.getElementById('chips');
+  var buttons = samples.map(function (s, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'secondary';
+    b.setAttribute('aria-pressed', 'false');
+    var dot = document.createElement('span');
+    dot.className = 'dot';
+    dot.style.background = colors[s.code] || 'var(--danger)';
+    b.appendChild(dot);
+    b.appendChild(document.createTextNode(s.n));
+    b.addEventListener('click', function () { show(i); });
+    chips.appendChild(b);
+    return b;
+  });
+  var gates = document.querySelectorAll('#gates li');
+  function show(i) {
+    var s = samples[i];
+    buttons.forEach(function (b, j) { b.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+    gates.forEach(function (li) {
+      var g = +li.getAttribute('data-g');
+      if (s.stop === 6) li.className = g === 6 ? 'done' : 'pass';
+      else li.className = g < s.stop ? 'pass' : g === s.stop ? 'stop' : 'skip';
+    });
+    document.getElementById('fileView').textContent = s.file;
+    var v = document.getElementById('verdict');
+    v.className = 'verdict' + (s.code === 'ok' ? ' ok' : '');
+    v.textContent = s.code === 'ok' ? s.msg : s.code + ': ' + s.msg;
+    document.getElementById('why').textContent = s.keep;
+    document.getElementById('ev').textContent = 'Run through Store::load: ' + s.ev + '.';
+  }
+  show(3);
+
+  // claims: confirm / wrong, nothing preselected
+  var segs = document.querySelectorAll('.seg[data-claim]');
+  segs.forEach(function (seg, k) {
+    [['confirm', 'Confirm'], ['dispute', 'Wrong']].forEach(function (o) {
+      var l = document.createElement('label');
+      var r = document.createElement('input');
+      r.type = 'radio'; r.name = 'claim' + k; r.value = o[0];
+      l.appendChild(r);
+      l.appendChild(document.createTextNode(o[1]));
+      seg.appendChild(l);
+    });
+  });
+
+  function build() {
+    var groups = { confirm: [], dispute: [], none: [] };
+    segs.forEach(function (seg, k) {
+      var c = seg.querySelector('input:checked');
+      groups[c ? c.value : 'none'].push(seg.getAttribute('data-claim'));
+    });
+    var lines = ['Semantics map for journal versioning (Store::save / Store::load): ' +
+      groups.confirm.length + ' confirmed, ' + groups.dispute.length + ' wrong, ' +
+      groups.none.length + ' unreviewed of ' + segs.length + ' claims.'];
+    if (groups.dispute.length) { lines.push('', 'WRONG, revise the map before building:'); groups.dispute.forEach(function (t) { lines.push('- ' + t); }); }
+    if (groups.confirm.length) { lines.push('', 'Confirmed:'); groups.confirm.forEach(function (t) { lines.push('- ' + t); }); }
+    if (groups.none.length) { lines.push('', 'Unreviewed (not confirmed):'); groups.none.forEach(function (t) { lines.push('- ' + t); }); }
+    var pin = document.querySelector('input[name="pin"]:checked');
+    lines.push('', 'Pin v1: ' + (pin ? pin.value : 'unanswered.'));
+    var corr = document.getElementById('corr').value.trim();
+    if (corr) lines.push('', 'Corrections:', corr);
+    document.getElementById('reply').textContent = lines.join('\n');
+  }
+  document.querySelectorAll('section[aria-labelledby="s3"] input, section[aria-labelledby="s3"] textarea').forEach(function (el) {
+    el.addEventListener('input', build);
+    el.addEventListener('change', build);
+  });
+  build();
+
+  function copy(text, done) {
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(true); } catch (e) { done(false); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, fallback);
+    } else { fallback(); }
+  }
+  document.getElementById('copyReply').addEventListener('click', function () {
+    copy(document.getElementById('reply').textContent, function (ok) {
+      document.getElementById('copyState').textContent = ok ? 'Copied. Paste it back to me.' : 'Copy failed; select the text above.';
+    });
+  });
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var label = b.textContent;
+      copy(document.getElementById(b.getAttribute('data-copy')).textContent.trim(), function (ok) {
+        b.textContent = ok ? 'Copied' : 'Copy failed';
+        setTimeout(function () { b.textContent = label; }, 1600);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
