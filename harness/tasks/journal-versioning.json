@@ -1,0 +1,42 @@
+{
+  "schema_version": 6,
+  "id": "journal-versioning",
+  "status": "partial",
+  "requirements": [
+    "persistence"
+  ],
+  "related_gaps": [
+    {
+      "id": "product-acceptance",
+      "disposition": "unaffected",
+      "rationale": "Versioning the example's saved journal does not define acceptance for an adopted product."
+    },
+    {
+      "id": "platform-qualification",
+      "disposition": "unaffected",
+      "rationale": "File-format compatibility is checked locally; platform qualification still needs the declared matrix."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "No repository hosting or review rules change."
+    }
+  ],
+  "gap_review": "Reviewed the three open gaps; none is addressed or worsened by versioning the saved journal format.",
+  "discoveries": [],
+  "discovery_review": "Discovery in progress through the task's HTML pages.",
+  "documentation": {
+    "updated": [],
+    "rationale": "No documented behavior has changed yet."
+  },
+  "summary": "Version the saved-board journal format so new journal commands can be added without stranding saved boards, and so builds refuse files from newer builds with a clear error.",
+  "remaining": [
+    "Write and review the five discovery pages, then implement against the replies."
+  ],
+  "review": {
+    "acceptance": "",
+    "verification": "",
+    "assumptions": "",
+    "coverage": ""
+  }
+}
