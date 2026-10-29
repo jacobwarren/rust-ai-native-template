@@ -21,23 +21,63 @@
       "id": "hosting-enforcement",
       "disposition": "unaffected",
       "rationale": "The artifact gate runs in CI and opt-in hooks; it does not configure branch protection or reviewer authority on the host."
+    },
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "updated",
+      "rationale": "Opened by this task: its blindspot pass found three ways the new gate passes without the pages it requires."
     }
   ],
-  "gap_review": "Reviewed the three open gaps. None is addressed or worsened: the pages are local evidence for reviewers, not hosted enforcement, product acceptance or platform qualification.",
-  "discoveries": [],
-  "discovery_review": "Discovery in progress through this task's pages, written after the code.",
+  "gap_review": "Reviewed the three open gaps; none is addressed or worsened. Opened artifact-gate-holes for the gate bypasses this task's own pages found.",
+  "discoveries": [
+    {
+      "summary": "CI checks commit order on GitHub's PR merge commit, where the first-parent walk from the base finds no commits, so the order rule never fires in CI.",
+      "record": "gap:artifact-gate-holes"
+    },
+    {
+      "summary": "Commit order is checked only for tasks marked complete; a partial handoff, or a later branch that only flips the status, skips it.",
+      "record": "gap:artifact-gate-holes"
+    },
+    {
+      "summary": "The gate checks only that a page contains the style marker; a 36-byte file passes.",
+      "record": "gap:artifact-gate-holes"
+    },
+    {
+      "summary": "The task-artifacts requirement named a test renamed earlier in this branch, so it was implemented but never verified; fixed in this task.",
+      "record": "harness/readiness.json"
+    },
+    {
+      "summary": "Smaller gate defects: task-artifact check never checks order, artifact-hook is missing from help, only the first missing page is reported, and the stylesheet hint prints a literal ID.",
+      "record": "harness/task-artifacts/artifact-harness/plan.html"
+    }
+  ],
+  "discovery_review": "Five discovery pages, each judged by an independent reviewer, found three gate bypasses (recorded as gap artifact-gate-holes), a requirement that was never verified (fixed) and four smaller defects (recorded in the plan page). The pages were written after the code, so they review the change rather than shape it.",
   "documentation": {
-    "updated": [],
-    "rationale": "Filled in at handoff."
+    "updated": [
+      ".github/pull_request_template.md",
+      "AGENTS.md",
+      "ARCHITECTURE.md",
+      "README.md",
+      "docs/ARTIFACTS.md",
+      "docs/COMPLETION.md",
+      "docs/plans/TEMPLATE.md",
+      "docs/skills/author-artifact.md",
+      "docs/skills/review-artifact.md",
+      "examples/thariq/README.md"
+    ],
+    "rationale": "Added the artifact guide, author and reviewer briefs and vendored exemplars; updated the agent map, completion contract, PR and plan templates, architecture table and README to require the eight pages and their order."
   },
   "summary": "Require every schema-6 task to leave eight agent-written, independently reviewed HTML pages in the style of Thariq Shihipar's Know your unknowns, gated by presence, an inline stylesheet and commit order.",
   "remaining": [
-    "Write and review this change's five discovery pages, then answer the task review."
+    "Implementation notes, buy-in and quiz are not written: the code predates the method, so this record stays partial.",
+    "Close artifact-gate-holes: pass the PR head to handoff in CI, then decide on order checks for partial handoffs and on minimum page content.",
+    "Act on the plan page's placements once the owner answers the interview; every lean on these pages is the agent's.",
+    "Fix the smaller defects listed in the plan page's Part A."
   ],
   "review": {
-    "acceptance": "",
-    "verification": "",
-    "assumptions": "",
-    "coverage": ""
+    "acceptance": "Partial. The gate, guide, briefs, screenshots and exemplars are implemented and the task-artifacts and completion requirements verify. This task's own notes, buy-in and quiz are not written, and the gate holes in artifact-gate-holes remain open.",
+    "verification": "cargo xtask check ci passes. Each discovery page was judged by an independent Sonnet reviewer against Opus authors: interventions, interview and reference passed after one rewrite; blindspots and plan after two. The handoff failure on the first CI run (no task record, no policy receipt) was this PR not yet meeting its own gate, now addressed. No pre-existing failure was found.",
+    "assumptions": "The interview's leans are the agent's, not the owner's; the plan page lists them for placement. Assumed GitHub's actions/checkout without ref checks out the PR merge commit, as documented; the order-check hole was reproduced with a local merge commit, not on Actions.",
+    "coverage": "The new gate tests cover missing pages, sibling stylesheets, order violations, merges from the target, the guard and hook, and coordination for a started task. Not covered: CI on a merge commit, partial-task order, and minimum page content, all recorded in artifact-gate-holes. Only Claude was trialled as author and reviewer."
   }
 }
