@@ -1,3 +1,5 @@
+mod artifact_hook;
+mod artifacts;
 mod checks;
 mod completion;
 mod config;
@@ -56,14 +58,32 @@ fn dispatch() -> Result<Value> {
             "readiness [--report path]":"Compute implemented and verified requirements from source-bound evidence",
             "release scope --report path":"Fail unless the named scope is ready; never publishes",
             "gaps":"Read known project gaps (does not generate them); --base REV [--report PATH] validates transitions",
+            "task-artifact style --task ID":"Create the task's artifact folder and write the shared stylesheet block to paste into each page (docs/ARTIFACTS.md)",
+            "task-artifact check --task ID":"Check the task's required pages exist and carry the stylesheet inline",
+            "task-artifact screenshot --task ID":"Render the task's pages to PNG tiles under target/artifact-screenshots with local Chrome; reports console errors, phone overflow and network requests",
+            "task-artifact guard --task ID":"Fail until the five discovery pages are committed; for host hooks before product edits",
             "coordination":"Validate task record structure without demanding completion",
             "agent-stop --task ID --base REV --report PATH":"Hook gate: completion or explicit partial/blocked handoff",
             "complete --task ID --base REV --report PATH":"Gate a completion claim with reconciliation and current evidence",
             "handoff --base REV [--report PATH]":"Check changed tasks; partial/blocked handoffs are explicitly allowed",
             "run -- greet Ada":"Run example with isolated state and JSON logs",
             "env":"Show worktree-specific context"}})),
+        ["artifact-hook", "--task", id] => artifact_hook::run(&root, id),
         ["agent-stop", "--task", id, "--base", base, "--report", path] => {
             completion::agent_stop(&root, id, base, std::path::Path::new(path))
+        }
+        ["task-artifact", "style", "--task", id] => artifacts::install(&root, id),
+        ["task-artifact", "guard", "--task", id] => artifacts::guard(&root, id),
+        ["task-artifact", "screenshot", "--task", id] => artifacts::screenshots(&root, id),
+        ["task-artifact", "check", "--task", id] => {
+            let task = task_record::read(&root, id)?;
+            artifacts::check(
+                &root,
+                id,
+                task.status == task_record::Status::Complete,
+                None,
+            )?;
+            Ok(json!({"ok":true,"task":id}))
         }
         ["coordination"] => completion::validate(&root),
         ["complete", "--task", id, "--base", base, "--report", path] => {

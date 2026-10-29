@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interventions: getting agents to leave pages that teach</title>
+<style>
+.after { font-size: var(--text-small); color: var(--warning); background: var(--warning-soft); border-inline-start: 3px solid var(--warning); padding: var(--space-2) var(--space-4); margin: 0; }
+.ask { font-style: italic; }
+.legend, .chips, .seg { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.legend { font-size: var(--text-small); color: var(--muted); margin-block: var(--space-4); }
+.st { font-size: .75rem; font-weight: 650; border-radius: 999px; padding: 1px var(--space-3); border: 1px solid var(--line); white-space: nowrap; }
+.st.in, .ladder a.in { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.st.part, .ladder a.part { background: var(--warning-soft); color: var(--warning); border-color: var(--warning); }
+.st.out { background: var(--surface); color: var(--muted); }
+.ef { font: 650 .75rem var(--font-code); color: var(--muted); }
+.ladder { display: grid; grid-template-columns: repeat(11, 1fr); gap: 4px; margin-block: var(--space-4) var(--space-2); }
+.ladder a { display: block; text-align: center; text-decoration: none; font: 650 .8rem var(--font-code); padding: var(--space-2) 0; border-radius: var(--control-radius); border: 1px solid var(--line); background: var(--surface); color: var(--muted); }
+.ends { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); }
+.filter { margin-block: var(--space-6); }
+.filter button { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+.filter button.secondary[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.iv { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); margin-block: var(--space-4); scroll-margin-top: var(--space-4); transition: opacity .15s; }
+.iv.dim { opacity: .35; }
+.iv.hit { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.iv header { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); align-items: baseline; }
+.iv h3 { margin: 0; flex: 1 1 16rem; }
+.n { font: 700 .9rem var(--font-code); color: var(--accent); }
+.path { display: inline-block; font: .78rem var(--font-code); color: var(--muted); background: var(--paper); border-radius: var(--control-radius); padding: 0 var(--space-2); margin-top: var(--space-2); }
+.iv p { margin-block: var(--space-2); max-width: var(--reading-width); }
+.k { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-inline-end: var(--space-1); }
+.stops { font-size: var(--text-small); }
+.stops b { font-family: var(--font-code); }
+.seg { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px dashed var(--line); }
+.seg label { margin: 0; display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--text-small); border: 1px solid var(--line); border-radius: 999px; padding: var(--space-1) var(--space-3); cursor: pointer; }
+.seg input { margin: 0; }
+.seg label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+#reply { min-height: 6rem; margin: 0; }
+code { font-size: .88em; }
+</style>
+</head>
+<body>
+<main>
+<p class="after">Written after the code. The PR already took options 1&ndash;8, three of them only in part, and left out 9&ndash;11. Each card marks that choice and what the alternative would have changed.</p>
+<p class="eyebrow">Brainstorm the intervention &middot; artifact harness</p>
+<h1>Eleven places to make agents leave pages that teach</h1>
+<p class="ask">&ldquo;Here's the problem: agents in this harness finish tasks without leaving anything a person can use to understand the work, and template-driven pages had the right form but taught nothing. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate.&rdquo;</p>
+<p class="lead">The pattern in this branch's history: <strong>every mechanism that checks form got satisfied by form.</strong> The template era generated pages from typed records and registered them in a hashed ledger; they still taught nothing. What found real defects in the trial was a second model reading the page against the code. The gate only makes sure there is a page to read.</p>
+<p>The <a href="blindspots.html">blindspot pass</a> established seven holes in the gate; they are cited below as <b>B01</b>&ndash;<b>B07</b> rather than shown again.</p>
+
+<nav class="ladder" aria-label="Options by cost" id="ladder"></nav>
+<div class="ends"><span>edit a doc</span><span>change the gate</span><span>change who signs off</span></div>
+<div class="legend"><span class="st in">in this PR</span><span class="st part">in this PR, partly</span><span class="st out">not taken</span><span>Effort: S &lt; M &lt; L &lt; XL</span></div>
+
+<h2>Which layer stops which failure?</h2>
+<p>Five failures this repository has actually produced or allowed. Pick one to see which options stop it.</p>
+<div class="filter chips" id="filter">
+  <button class="secondary" type="button" data-f="A" aria-pressed="false">A &middot; no page at all</button>
+  <button class="secondary" type="button" data-f="B" aria-pressed="false">B &middot; right form, teaches nothing</button>
+  <button class="secondary" type="button" data-f="C" aria-pressed="false">C &middot; pages written after code</button>
+  <button class="secondary" type="button" data-f="D" aria-pressed="false">D &middot; marker-only stub</button>
+  <button class="secondary" type="button" data-f="E" aria-pressed="false">E &middot; a false claim on a page</button>
+</div>
+<p class="muted" id="fnote">A is <code>main</code> before this PR. B is the template era (597c689): the generated <code>html-tasks/interventions.html</code> ran 35,026 bytes, longer than the exemplar, and all four of its options cited the same three files. C is this task. D is B03's 36-byte page. E is the trial's reference page, sent back for &ldquo;an abridged transcript labelled as real output&rdquo;.</p>
+
+<section id="cards">
+
+<article class="iv" id="o1" data-s="in" data-stops="" data-change="Keep the AGENTS.md step but drop the gate behind it (the pilot docs/unknowns-review.md proposed).">
+<header><span class="n">#1</span><h3>A line in AGENTS.md</h3><span class="st in">in this PR</span><span class="ef">S</span></header>
+<span class="path">AGENTS.md step 2</span>
+<p>Step 2 now says to produce the eight pages. Before this PR, <code>main</code>'s step 2 said only &ldquo;Inspect the existing implementation&rdquo;, and agents left nothing. On its own, a line is the pilot that <code>docs/unknowns-review.md</code> (597c689) recommended: &ldquo;Pilot the workflow before enforcing new gates.&rdquo;</p>
+<p class="stops"><span class="k">Stops</span>nothing; it asks.</p>
+<p><span class="k">Alternative</span>Instruction only: no page is owed by a one-line PR (B04 goes away), and nothing stops A.</p>
+</article>
+
+<article class="iv" id="o2" data-s="in" data-stops="A~ B~ E~" data-change="Make the PR template's HTML task review section ask for each page's reviewer verdict and one finding it caught.">
+<header><span class="n">#2</span><h3>A section in the PR template</h3><span class="st in">in this PR</span><span class="ef">S</span></header>
+<span class="path">.github/pull_request_template.md &middot; &ldquo;HTML task review&rdquo;</span>
+<p>The template asks for links to the eight pages and warns that &ldquo;Quiz completion is not reviewer approval.&rdquo; It reaches the human at the moment of merge, which no other layer does, but nothing reads it except that human.</p>
+<p class="stops"><span class="k">Stops</span><b>A</b>, <b>B</b>, <b>E</b> partly: only when the merging person opens the links.</p>
+<p><span class="k">Change</span>Ask for each page's verdict and one finding the reviewer caught, which is B03's own fix and costs one edit.</p>
+</article>
+
+<article class="iv" id="o3" data-s="in" data-stops="B~" data-change="Keep the guide, briefs and vendored exemplars but remove the completion gate; evaluate on representative tasks before enforcing.">
+<header><span class="n">#3</span><h3>Prompts, briefs and real exemplars</h3><span class="st in">in this PR</span><span class="ef">M</span></header>
+<span class="path">docs/ARTIFACTS.md &middot; docs/skills/author-artifact.md &middot; examples/thariq/</span>
+<p>Tried twice. c7bcc78 wrote 159 lines of authoring rules and self-made &ldquo;studies&rdquo; (its interventions study: 4,253 bytes). e4051fd replaced &ldquo;~7,100 words of rules&rdquo; with one short prompt per page and Thariq's unmodified pages at 26&ndash;41 KB. The trial's eight pages, authored this way, passed review six of eight times first time.</p>
+<p class="stops"><span class="k">Stops</span><b>B</b> partly: it steers the author; it does not check.</p>
+<p><span class="k">Alternative</span>Ship this without #4&ndash;#5: lighter adoption, B04 and B05 disappear, A returns for any agent that skips the docs.</p>
+</article>
+
+<article class="iv" id="o4" data-s="in" data-stops="A" data-change="Keep the presence gate, but flag any page under half its exemplar's size in the completion output.">
+<header><span class="n">#4</span><h3>A presence gate</h3><span class="st in">in this PR</span><span class="ef">S</span></header>
+<span class="path">xtask/src/artifacts.rs &middot; check() :93, verify() :122</span>
+<p><code>handoff</code> fails until the five discovery pages exist, and <code>verify()</code> requires the inline <code>&lt;style data-artifact-foundation="1"&gt;</code> marker. That is all a page is to the code: B03 passed a README change with five 36-byte files.</p>
+<p class="stops"><span class="k">Stops</span><b>A</b>. Not <b>B</b> or <b>D</b>.</p>
+<p><span class="k">Change</span>A size floor relative to the exemplar would stop D but not B: the template era's generated page was already longer than the exemplar.</p>
+</article>
+
+<article class="iv" id="o5" data-s="part" data-stops="C~" data-change="Keep commit order; fix it to run on partial handoffs and to read commits back to the record's first commit (B02).">
+<header><span class="n">#5</span><h3>Presence plus commit order</h3><span class="st part">the PR's choice, with a hole</span><span class="ef">M</span></header>
+<span class="path">xtask/src/artifacts.rs &middot; order() :140&ndash;190 &middot; history::commits</span>
+<p>Discovery before the first code commit, notes before the last, buy-in and quiz at or after it. The trial obeyed it: five pages in 0e025fd before code, notes in bdc30fd after three of the six code commits, buy-in and quiz in 493ac6a after the last. aa48397 had tried the same rule as hashed &ldquo;checkpoints&rdquo; registered by hand; ed782ef replaced that with reading git.</p>
+<p class="stops"><span class="k">Stops</span><b>C</b> partly: only for <code>complete</code> records (B02), and administrative() counts docs as code (B05).</p>
+<p><span class="k">Change</span>Running order on partial handoffs closes B02, but this record is partial with pages after code, so this PR would then fail its own gate.</p>
+</article>
+
+<article class="iv" id="o6" data-s="part" data-stops="A C~" data-change="Make CI read the PR's own commits (check out pull_request.head.sha or walk HEAD^2) and add a merge-commit test (B01).">
+<header><span class="n">#6</span><h3>Enforce it in CI</h3><span class="st part">in this PR, with a hole</span><span class="ef">S</span></header>
+<span class="path">.github/workflows/ci.yml :35&ndash;41 &middot; history.rs :48</span>
+<p>Every PR runs <code>cargo xtask handoff --base</code>, so presence (#4) is enforced on the host. Order is not: CI checks out GitHub's merge commit, the first-parent walk finds zero commits, and <code>order()</code> returns ok (B01).</p>
+<p class="stops"><span class="k">Stops</span><b>A</b> in CI. <b>C</b> only after the fix.</p>
+<p><span class="k">Change</span>Check out the head SHA or walk <code>HEAD^2</code>. Without it, the order rule holds only where an agent runs <code>complete</code> locally.</p>
+</article>
+
+<article class="iv" id="o7" data-s="part" data-stops="A~ C~" data-change="Add a Claude Code PreToolUse hook for Edit/Write that runs task-artifact guard, alongside the Codex apply_patch one (B06).">
+<header><span class="n">#7</span><h3>Block product edits before discovery</h3><span class="st part">opt-in, one tool</span><span class="ef">M</span></header>
+<span class="path">examples/codex-artifact-hooks.json &middot; xtask/src/artifact_hook.rs &middot; scripts/agent-artifact-write.sh</span>
+<p>The only hook config matches <code>^apply_patch$</code> on Codex. There is no Claude Code config, and this PR was built on Claude. <code>guard()</code> checks that pages are committed at HEAD, not that they came first (B06).</p>
+<p class="stops"><span class="k">Stops</span><b>A</b> and <b>C</b> before they happen, for one tool on one host.</p>
+<p><span class="k">Change</span>A Claude Code hook for Edit and Write is a config file; shell writes stay uncovered on every host.</p>
+</article>
+
+<article class="iv" id="o8" data-s="in" data-stops="B D~ E" data-change="Keep the independent reviewer loop as written.">
+<header><span class="n">#8</span><h3>An independent reviewer per page</h3><span class="st in">in this PR, as a brief</span><span class="ef">L</span></header>
+<span class="path">docs/skills/review-artifact.md &middot; docs/ARTIFACTS.md step 5</span>
+<p>A fresh agent checks three claims against the code, uses every interaction and returns PASS or REVISE, with at most two rewrites. In the trial its reviews of the notes and quiz found two product bugs: save overwrote a newer board over 256 KiB, and the writer could pick a format older than the build reads. The cost driver is eight independently reviewed pages plus two rewrites (reference, quiz). Git shows 44 minutes from the discovery commit to the completion record, not counting the discovery pages written before it.</p>
+<p class="stops"><span class="k">Stops</span><b>B</b> and <b>E</b> (the trial's evidence). <b>D</b> only if a review runs; no code requires one.</p>
+<p><span class="k">Alternative</span>Without it, nothing in the stack distinguishes the trial's pages from the template era's.</p>
+</article>
+
+<article class="iv" id="o9" data-s="out" data-stops="D~" data-change="Add a structured per-page verdict (page, PASS/REVISE, reviewer model, claims checked) and make completion require PASS for every page.">
+<header><span class="n">#9</span><h3>Make the reviewer's verdict machine-checked</h3><span class="st out">not taken</span><span class="ef">M</span></header>
+<span class="path">xtask/src/task_record.rs review_errors() :122 &middot; review.verification</span>
+<p>Today the verdicts are prose in <code>review.verification</code>, checked only for being non-empty (B03). The template era had a structured per-page <code>verification</code> field in its ledger (597c689 <code>authored.rs</code>); in artifact-style's ledger every page holds one of three stock sentences, such as &ldquo;Pre-implementation reasoning and source inspection; no visual claim.&rdquo;</p>
+<p class="stops"><span class="k">Stops</span><b>D</b> partly: a stub has no PASS, but the agent writes the field itself.</p>
+<p><span class="k">If added</span>A schema bump (the record parser denies unknown fields) and every open record upgraded, which B07 shows is not free.</p>
+</article>
+
+<article class="iv" id="o10" data-s="out" data-stops="" data-change="Exempt docs-only, dependency and typo PRs, or let a task declare a smaller set of pages, and enforce it in handoff (B04).">
+<header><span class="n">#10</span><h3>Scale the pages to the task</h3><span class="st out">not taken</span><span class="ef">M</span></header>
+<span class="path">xtask/src/artifacts.rs administrative() :33 &middot; completion.rs handoff()</span>
+<p>The guide says &ldquo;a small task gets a smaller page&rdquo;, but the code has no lighter path: a one-line README change owes five pages or rides another task's record (B04). The trial wrote 334,651 bytes of pages for 388 inserted lines. The unknowns review advised against &ldquo;eleven compulsory documents&rdquo;.</p>
+<p class="stops"><span class="k">Stops</span>none of A&ndash;E; it lowers the cost that makes D and riding tempting.</p>
+<p><span class="k">If added</span>Decide before merge: from the merge on, every PR owes five pages.</p>
+</article>
+
+<article class="iv" id="o11" data-s="out" data-stops="A B C D E" data-change="Require a named human's recorded answer to the discovery replies before code, and configure required review on the host.">
+<header><span class="n">#11</span><h3>A human signs off on the pages</h3><span class="st out">not taken</span><span class="ef">XL</span></header>
+<span class="path">docs/ARTIFACTS.md &ldquo;Replies come back into the work&rdquo; &middot; harness/gaps.json hosting-enforcement</span>
+<p>The guide waits for a human reply when one is available and lets the agent answer itself otherwise; the trial's interview was answered by the agent. 597c689 had <code>task-artifact decide</code>, importing a human's choices with an actor and a hash; ed782ef removed it. The open gap <code>hosting-enforcement</code> says local code cannot make a reviewer required.</p>
+<p class="stops"><span class="k">Stops</span>all five, when the person reads the pages.</p>
+<p><span class="k">If added</span>Unattended runs stop at discovery until someone answers.</p>
+</article>
+
+</section>
+
+<h2>Your reply</h2>
+<p>Choose for each option; options you leave unset are left out of the reply.</p>
+<textarea id="reply" readonly aria-label="Reply"></textarea>
+<p><button type="button" id="copy" disabled>Copy reply</button></p>
+<footer>Sources: <code>git diff f78c3c1..HEAD</code>, commits 597c689, aa48397, c7bcc78, e4051fd, ed782ef, and branch <code>trial/journal-versioning</code>.</footer>
+</main>
+<script>
+(function () {
+  var cards = [].slice.call(document.querySelectorAll('.iv'));
+  var ladder = document.getElementById('ladder');
+  var taken = { 'in': ['Keep', 'Change before merge', 'Change after merge'], part: ['Keep', 'Change before merge', 'Change after merge'], out: ['Leave out', 'Add before merge', 'Add after merge'] };
+  cards.forEach(function (c, i) {
+    var n = i + 1, s = c.getAttribute('data-s');
+    var a = document.createElement('a');
+    a.href = '#o' + n; a.textContent = n; a.className = s;
+    a.title = c.querySelector('h3').textContent;
+    ladder.appendChild(a);
+    var seg = document.createElement('div');
+    seg.className = 'seg'; seg.setAttribute('role', 'radiogroup');
+    seg.setAttribute('aria-label', 'Decision for option ' + n);
+    taken[s].forEach(function (t, j) {
+      var l = document.createElement('label');
+      l.innerHTML = '<input type="radio" name="d' + n + '" value="' + j + '"> ' + t;
+      seg.appendChild(l);
+    });
+    c.appendChild(seg);
+  });
+
+  var btns = [].slice.call(document.querySelectorAll('#filter button'));
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var on = b.getAttribute('aria-pressed') !== 'true';
+      btns.forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      var f = on ? b.getAttribute('data-f') : null;
+      cards.forEach(function (c) {
+        var st = ' ' + c.getAttribute('data-stops') + ' ';
+        var full = f && st.indexOf(' ' + f + ' ') >= 0;
+        var part = f && st.indexOf(' ' + f + '~ ') >= 0;
+        c.classList.toggle('hit', !!full);
+        c.classList.toggle('dim', !!f && !full && !part);
+      });
+    });
+  });
+
+  var reply = document.getElementById('reply'), copy = document.getElementById('copy');
+  var EMPTY = 'Choose for each option above; the reply builds here.';
+  function build() {
+    var groups = { before: [], after: [], keep: [], out: [] };
+    cards.forEach(function (c, i) {
+      var r = c.querySelector('input:checked');
+      if (!r) return;
+      var v = +r.value, s = c.getAttribute('data-s');
+      var name = '#' + (i + 1) + ' ' + c.querySelector('h3').textContent;
+      if (v === 1) groups.before.push('- ' + name + ': ' + c.getAttribute('data-change'));
+      else if (v === 2) groups.after.push('- ' + name + ': ' + c.getAttribute('data-change'));
+      else (s === 'out' ? groups.out : groups.keep).push('#' + (i + 1));
+    });
+    var out = [];
+    if (groups.before.length) out.push('Change before merge:\n' + groups.before.join('\n'));
+    if (groups.after.length) out.push('Change after merge (follow-up tasks):\n' + groups.after.join('\n'));
+    if (groups.keep.length) out.push('Keep as merged: ' + groups.keep.join(', '));
+    if (groups.out.length) out.push('Leave out: ' + groups.out.join(', '));
+    reply.value = out.length ? 'On the artifact-harness interventions:\n\n' + out.join('\n\n') : EMPTY;
+    copy.disabled = !out.length;
+  }
+  document.getElementById('cards').addEventListener('change', build);
+  copy.addEventListener('click', function () {
+    var done = function () { copy.textContent = 'Copied'; setTimeout(function () { copy.textContent = 'Copy reply'; }, 1500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(reply.value).then(done, function () { reply.select(); document.execCommand('copy'); done(); });
+    } else { reply.select(); document.execCommand('copy'); done(); }
+  });
+  build();
+})();
+</script>
+</body>
+</html>

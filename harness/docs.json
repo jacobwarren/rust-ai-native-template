@@ -214,5 +214,29 @@
     "owner": "maintainers",
     "status": "archived",
     "verified_by": "cargo xtask docs; focused gap discovery and completion regression tests"
+  },
+  {
+    "path": "docs/ARTIFACTS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; human comparison of task artifacts against examples/thariq"
+  },
+  {
+    "path": "docs/skills/author-artifact.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; fresh-agent artifact trial"
+  },
+  {
+    "path": "docs/skills/review-artifact.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; independent review of trial pages"
+  },
+  {
+    "path": "examples/thariq/README.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; pages match upstream commit 1787245"
   }
 ]

@@ -1,5 +1,6 @@
 //! The same admission gate is callable from an agent hook and PR CI.
 use crate::{
+    artifacts,
     config::{self, Result},
     history, readiness, repo,
     task_record::{self, GapState, Status},
@@ -16,12 +17,14 @@ pub fn task(
     must_complete: bool,
 ) -> Result<Value> {
     let task = task_record::read(root, id)?;
+    let artifact_result = artifacts::check(root, id, task.status == Status::Complete, Some(base));
     let current = match tracking::load(root) {
         Ok(gaps) => gaps,
         Err(e)
             if task.status == Status::Blocked
                 && !must_complete
-                && task_record::review_errors(&task).is_empty() =>
+                && task_record::review_errors(&task).is_empty()
+                && artifact_result.is_ok() =>
         {
             return Ok(json!({"ok":true,"complete":false,"task":task.id,
                 "reconciliation_pending":true,"gap_register_error":e.to_string(),
@@ -31,6 +34,9 @@ pub fn task(
     };
     let old = tracking::load_from(|p| history::read(root, base, p))?;
     let mut errors = task_record::review_errors(&task);
+    if let Err(e) = artifact_result {
+        errors.push(format!("task HTML artifact: {e}"));
+    }
     if must_complete && task.status != Status::Complete {
         errors.push("task is partial/blocked; use handoff, do not claim completion".into());
     }
@@ -125,7 +131,18 @@ pub fn handoff(root: &Path, revision: &str, report: Option<&Path>) -> Result<Val
             errors.push(format!("task history deleted: {path}"));
         }
     }
-    for path in records.iter().filter(|p| before.get(*p) != after.get(*p)) {
+    for path in records.iter().filter(|p| {
+        let id = Path::new(p)
+            .file_stem()
+            .and_then(|s| s.to_str())
+            .unwrap_or("");
+        let prefix = format!("{}/", artifacts::directory(id));
+        before.get(*p) != after.get(*p)
+            || before
+                .keys()
+                .chain(after.keys())
+                .any(|name| name.starts_with(&prefix) && before.get(name) != after.get(name))
+    }) {
         let id = Path::new(path)
             .file_stem()
             .and_then(|s| s.to_str())
@@ -142,6 +159,18 @@ pub fn handoff(root: &Path, revision: &str, report: Option<&Path>) -> Result<Val
     }
     if changed && results.is_empty() {
         errors.push("changed source requires an added/updated task reconciliation record".into());
+    }
+    for path in before
+        .keys()
+        .chain(after.keys())
+        .filter(|p| p.starts_with("harness/task-artifacts/"))
+    {
+        if before.get(path) != after.get(path) {
+            let id = path.split('/').nth(2).unwrap_or("");
+            if !after.contains_key(&format!("harness/tasks/{id}.json")) {
+                errors.push(format!("artifact has no task record: {id}"));
+            }
+        }
     }
     let old = tracking::load_from(|p| history::read(root, &base, p))?;
     let new = tracking::load(root)?;
@@ -184,7 +213,13 @@ pub fn validate(root: &Path) -> Result<Value> {
             .file_stem()
             .and_then(|s| s.to_str())
             .ok_or("invalid task filename")?;
-        task_record::read(root, id)?;
+        let record = task_record::read(root, id)?;
+        // Handoff and completion demand pages; validation only checks the ones written.
+        if record.schema_version >= 6 && record.status == Status::Complete {
+            artifacts::check(root, id, true, None)?;
+        } else if record.schema_version >= 6 {
+            artifacts::check_written(root, id)?;
+        }
         ids.push(id.to_owned());
     }
     // Old records are retained but their evidence is not re-asserted on every edit.

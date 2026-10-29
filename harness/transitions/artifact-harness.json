@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "base_commit": "f78c3c15e89902d3071308c56e4243dc4054c16e",
+  "changes": [
+    {
+      "change": {
+        "after_sha256": "26acb9a8ab68d2c7165ce497fab21dc00725b2a427cea4fe68bbce53eda791b0",
+        "before_sha256": "f80807f95cac66c3da5a3e33fcf54fb9856a0342fecc2a2a786bb4899818e906",
+        "subject": "policy"
+      },
+      "rationale": "Require every schema-6 task to leave eight agent-written HTML pages modelled on Thariq Shihipar's vendored exemplars: five discovery pages committed before the first product-code commit, implementation notes before the last, and buy-in and quiz at or after it. Pages carry the shared stylesheet inline and load nothing. The gate checks presence, the inline marker and commit order only; quality is judged by an independent reviewer and the human. coordination checks only the pages a task in progress has written. The task-artifacts requirement now names its current tests. Known holes in the gate are recorded as gap artifact-gate-holes rather than claimed closed.",
+      "evidence": [
+        "docs/ARTIFACTS.md",
+        "docs/COMPLETION.md",
+        "docs/skills/author-artifact.md",
+        "docs/skills/review-artifact.md",
+        "xtask/tests/artifacts.rs",
+        "harness/task-artifacts/artifact-harness/blindspots.html",
+        "harness/task-artifacts/artifact-harness/plan.html"
+      ],
+      "manual_justification": null
+    }
+  ]
+}
