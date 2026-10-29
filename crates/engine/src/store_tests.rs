@@ -27,6 +27,22 @@ impl Drop for Fixture {
 const V1: &[u8] = include_bytes!("../tests/fixtures/journal/v1-board.json");
 const V1_PRETTY: &[u8] = include_bytes!("../tests/fixtures/journal/v1-board.pretty.json");
 const V1_STATE: &str = include_str!("../tests/fixtures/journal/v1-board.expected.json");
+// Files a newer build might write, each with a correct digest over its data bytes.
+const V2_ADD_ONLY: &[u8] = include_bytes!("../tests/fixtures/journal/v2-add-only.json");
+const V2_NEWER: [&[u8]; 4] = [
+    V2_ADD_ONLY,
+    include_bytes!("../tests/fixtures/journal/v2-new-command.json"),
+    include_bytes!("../tests/fixtures/journal/v2-new-field.json"),
+    include_bytes!("../tests/fixtures/journal/v2-envelope-key.json"),
+];
+
+fn forge(data: &str) -> Vec<u8> {
+    format!(
+        r#"{{"data":{data},"sha256":"{}"}}"#,
+        digest(data.as_bytes())
+    )
+    .into_bytes()
+}
 
 fn load_bytes(bytes: &[u8]) -> (Fixture, Store, Result<Session>) {
     let dir = Fixture::new();
@@ -82,6 +98,96 @@ fn boards_saved_by_the_first_format_still_load() {
     assert_eq!(fs::read(dir.0.join("board.json")).unwrap(), V1);
     loaded.execute(Command::Undo {}).unwrap();
     assert_eq!(loaded.inspect()["tasks"][1]["done"], false);
+}
+
+#[test]
+fn a_reformatted_v1_board_with_an_edited_title_is_corrupt() {
+    let edited = String::from_utf8(V1_PRETTY.to_vec())
+        .unwrap()
+        .replace("Zoë", "Zoe");
+    let (_dir, _store, loaded) = load_bytes(edited.as_bytes());
+    assert_eq!(loaded.unwrap_err().code, "corrupt_store");
+}
+
+#[test]
+fn newer_boards_are_refused_and_never_overwritten() {
+    for bytes in V2_NEWER {
+        let dir = Fixture::new();
+        fs::write(dir.0.join("board.json"), bytes).unwrap();
+        let store = Store::open(&dir.0).unwrap();
+        let mut live = session("keep");
+        let before = live.inspect();
+        let err = store.load(&mut live).unwrap_err();
+        assert_eq!(err.code, "store_too_new");
+        assert!(
+            err.message.contains("format 2; this build reads format 1"),
+            "{}",
+            err.message
+        );
+        assert_eq!(live.inspect(), before);
+        let err = store.save(&live).unwrap_err();
+        assert_eq!(err.code, "store_too_new");
+        assert!(
+            err.message.contains("It was not overwritten"),
+            "{}",
+            err.message
+        );
+        assert_eq!(fs::read(dir.0.join("board.json")).unwrap(), bytes);
+    }
+}
+
+#[test]
+fn a_build_reads_every_format_up_to_its_own() {
+    let mut s = Session::default();
+    assert_eq!(
+        Store::load_from(V2_ADD_ONLY, 1, &mut s).unwrap_err().code,
+        "store_too_new"
+    );
+    Store::load_from(V2_ADD_ONLY, 2, &mut s).unwrap();
+    assert_eq!(s.inspect()["tasks"][0]["title"], "Groceries");
+    assert!(check_format(1, 1, 1).is_ok());
+    assert!(check_format(2, 1, 2).is_ok());
+    assert_eq!(check_format(2, 1, 1).unwrap_err().code, "store_too_new");
+    assert_eq!(check_format(3, 1, 2).unwrap_err().code, "store_too_new");
+    assert_eq!(check_format(0, 1, 2).unwrap_err().code, "invalid_store");
+    assert!(
+        check_format(3, 1, 2)
+            .unwrap_err()
+            .message
+            .contains("reads formats 1 to 2")
+    );
+}
+
+#[test]
+fn saves_write_the_lowest_format_and_hash_the_bytes_they_write() {
+    let all = [
+        Command::Add { title: "a".into() },
+        Command::Complete { id: 1 },
+        Command::Remove { id: 1 },
+        Command::Undo {},
+    ];
+    assert_eq!(format_for(&[]), 1);
+    assert_eq!(format_for(&all), 1);
+    let dir = Fixture::new();
+    let store = Store::open(&dir.0).unwrap();
+    store
+        .save(&session("Zoë \"quoted\" </script> 漢字"))
+        .unwrap();
+    let bytes = fs::read(dir.0.join("board.json")).unwrap();
+    let (peek, format) = Peek::parse(&bytes).unwrap();
+    assert_eq!(format, JOURNAL_FORMAT);
+    assert_eq!(digest(peek.data.get().as_bytes()), peek.sha256);
+}
+
+#[test]
+fn saving_replaces_a_board_that_cannot_be_read() {
+    let dir = Fixture::new();
+    fs::write(dir.0.join("board.json"), b"{\"data\":{\"schema_vers").unwrap();
+    let store = Store::open(&dir.0).unwrap();
+    store.save(&session("recovered")).unwrap();
+    let mut loaded = Session::default();
+    store.load(&mut loaded).unwrap();
+    assert_eq!(loaded.inspect(), session("recovered").inspect());
 }
 
 #[test]
@@ -142,10 +248,11 @@ fn corrupt_future_and_oversize_files_do_not_change_live_state() {
     corrupt["data"]["commands"][0]["title"] = serde_json::json!("tampered");
     let mut future: serde_json::Value = serde_json::from_slice(&original).unwrap();
     future["data"]["schema_version"] = serde_json::json!(999);
+    let future = forge(&future["data"].to_string());
     for (data, code) in [
         (b"truncated".to_vec(), "invalid_store"),
         (serde_json::to_vec(&corrupt).unwrap(), "corrupt_store"),
-        (serde_json::to_vec(&future).unwrap(), "version"),
+        (future, "store_too_new"),
         (vec![b' '; MAX_BYTES + 1], "capacity"),
     ] {
         fs::write(dir.0.join("board.json"), data).unwrap();

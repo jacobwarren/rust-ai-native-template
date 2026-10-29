@@ -8,6 +8,10 @@ use starter_domain::board::{Board, Title};
 
 pub const MAX_COMMANDS: usize = 256;
 pub const MAX_BYTES: usize = 262_144;
+/// The newest saved-journal format this build reads and writes.
+pub const JOURNAL_FORMAT: u32 = 1;
+/// The oldest saved-journal format this build still reads.
+pub const OLDEST_JOURNAL_FORMAT: u32 = 1;
 
 #[derive(Debug, Clone, Serialize, PartialEq, Eq)]
 pub struct Error {
@@ -34,6 +38,16 @@ pub enum Command {
     Complete { id: u64 },
     Remove { id: u64 },
     Undo {},
+}
+
+impl Command {
+    /// The journal format that first stored this command. A new variant must name
+    /// its format and raise JOURNAL_FORMAT; there is deliberately no wildcard arm.
+    pub(crate) const fn introduced_in(&self) -> u32 {
+        match self {
+            Self::Add { .. } | Self::Complete { .. } | Self::Remove { .. } | Self::Undo {} => 1,
+        }
+    }
 }
 
 #[derive(Clone, Debug, Default)]
