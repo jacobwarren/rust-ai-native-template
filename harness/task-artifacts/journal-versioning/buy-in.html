@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ship journal-format versioning</title>
+<style>
+.prompt { margin-block: var(--space-6); }
+.prompt .lbl, .k { font-size: var(--text-small); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 650; margin: 0 0 var(--space-2); }
+.prompt blockquote { margin: 0; font-style: italic; }
+.ask { max-width: var(--reading-width); padding: var(--space-4); border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+h2 .n { font-family: var(--font-code); font-size: var(--text-small); color: var(--accent); margin-inline-end: var(--space-2); }
+section { border-top: 1px solid var(--line); margin-top: var(--space-8); }
+code { font-size: .9em; background: var(--accent-soft); padding: 0 .25em; border-radius: .25rem; overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block: var(--space-4); }
+.chips button { min-height: 36px; padding: var(--space-1) var(--space-3); background: var(--surface); color: var(--ink); border-color: var(--line); font-size: var(--text-small); }
+.chips button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.ondisk { font-size: var(--text-small); margin: 0 0 var(--space-4); }
+.panes { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+@media (max-width: 46rem) { .panes { grid-template-columns: 1fr; } }
+.pane { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4); min-width: 0; display: flex; flex-direction: column; }
+.pane h3 { margin: 0 0 var(--space-3); font-size: 1rem; }
+.pane h3 small { font-weight: 400; }
+.step { font-family: var(--font-code); font-size: .8rem; line-height: 1.5; padding: var(--space-2) 0; border-top: 1px dashed var(--line); transition: opacity .25s; }
+.step.off { opacity: 0; }
+.step .req { color: var(--muted); }
+.step .res { display: block; overflow-wrap: anywhere; }
+.bad { color: var(--danger); font-weight: 650; }
+.good { color: var(--accent); font-weight: 650; }
+.disk { margin-top: auto; padding: var(--space-3); border-radius: var(--control-radius); font-size: var(--text-small); }
+.disk.lost { background: #fbe9ea; border-inline-start: 4px solid var(--danger); }
+.disk.kept { background: var(--accent-soft); border-inline-start: 4px solid var(--accent); }
+.demo-foot { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap; font-size: var(--text-small); color: var(--muted); margin-top: var(--space-3); }
+.demo-foot button { min-height: 36px; padding: var(--space-1) var(--space-3); }
+.pitch { font-size: 1.125rem; max-width: var(--reading-width); }
+td code, th code { white-space: nowrap; }
+.dec { list-style: none; padding: 0; margin: 0; }
+.dec li { display: grid; grid-template-columns: 4.5rem 1fr auto; gap: var(--space-3); align-items: start; padding: var(--space-3) 0; border-bottom: 1px solid var(--line); }
+.dec .tag { font-family: var(--font-code); font-size: .75rem; background: var(--warning-soft); color: var(--warning); border-radius: .3rem; padding: .1rem .4rem; text-align: center; }
+.dec .tag.dev { background: var(--accent-soft); color: var(--accent); }
+.dec p { margin: 0; }
+.dec .why { font-size: var(--text-small); color: var(--muted); }
+.dec label { margin: 0; font-size: var(--text-small); white-space: nowrap; }
+@media (max-width: 40rem) { .dec li { grid-template-columns: 1fr; gap: var(--space-1); } .dec .tag { justify-self: start; } }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: var(--space-4); }
+.card { background: var(--surface); border: 1px solid var(--line); border-inline-start: 4px solid var(--warning); border-radius: var(--radius); padding: var(--space-4); }
+.card h3 { margin: 0 0 var(--space-2); font-size: 1rem; }
+.card p { margin: 0 0 var(--space-2); font-size: .95rem; }
+.card .do { color: var(--warning); font-weight: 650; }
+.card label { margin: var(--space-2) 0 0; font-size: var(--text-small); }
+.ev li { margin-block: var(--space-2); }
+.choice { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); }
+.choice label { margin: 0; }
+#out { white-space: pre-wrap; font-family: var(--font-code); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">journal-versioning · buy-in · before merge</p>
+<h1>Journal-format versioning is ready to ship</h1>
+
+<div class="prompt">
+<p class="lbl">The prompt</p>
+<blockquote>Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping journal-format versioning. Lead with the demo.</blockquote>
+</div>
+
+<p class="ask"><strong>Ask:</strong> approve shipping this reader in the next release, before any build writes format 2. Every design call below was made on a lean, not by a person, so this review is the first human check on them. The reply at the bottom assembles from your ticks.</p>
+
+<section aria-labelledby="s1">
+<h2 id="s1"><span class="n">01</span>Watch it: a board from a newer build</h2>
+<p>Each run copies one <code>board.json</code> into an empty data directory, then sends the driver <code>load</code>, <code>add "Groceries"</code> and <code>save</code>. Left is the build before this change; right is this build. The format-2 files are hand-made in the shape a later build might write, each with a valid checksum. The responses are verbatim, with <code>schema_version</code> and request ids removed.</p>
+<div class="chips" id="chips" role="group" aria-label="Pick the board on disk"></div>
+<p class="ondisk" id="ondisk"></p>
+<div class="panes">
+  <div class="pane" id="pa"><h3>Build before this change <small class="muted">· still shipped</small></h3></div>
+  <div class="pane" id="pb"><h3>With this change</h3></div>
+</div>
+<div class="demo-foot"><span id="cap">load → add → save → what is left on disk</span><button type="button" class="secondary" id="replay">Replay</button></div>
+</section>
+
+<section aria-labelledby="s2">
+<h2 id="s2"><span class="n">02</span>The pitch</h2>
+<p class="pitch">Today, a board saved by any later build that adds a command, a field or a key is a trap. The shipped build says <code>invalid_store</code> with a parser message, or <code>version</code>, and the next save silently replaces the newer board with whatever the user typed since. This change makes the build read a file's format before anything else. It refuses a newer board by name on load, and save leaves the newer board alone. Boards people already have load exactly as before, and what this build saves is byte-for-byte what the old build saved, so rolling back is safe. No command changes, and the driver protocol stays at version 1. Its value comes one release later, when the first format-2 command ships into a world where the previous release already knows to refuse it.</p>
+</section>
+
+<section aria-labelledby="s3">
+<h2 id="s3"><span class="n">03</span>What changes for boards people already have</h2>
+<p>Nothing that loads today stops loading. Every row was run against both builds.</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Format-1 board.json</th><th>Before: load / save</th><th>Now: load / save</th></tr></thead>
+<tbody>
+<tr><td>As any build saved it</td><td>loads / saves</td><td>loads / saves. The bytes written are identical, and the old build loads them.</td></tr>
+<tr><td>Pretty-printed by hand</td><td>loads / saves</td><td>loads / saves. Format 1 accepts the old checksum as well as the new one.</td></tr>
+<tr><td>Keys reordered by hand</td><td>loads / saves</td><td>loads / saves, same reason</td></tr>
+<tr><td>Reformatted, one title edited</td><td><code>corrupt_store</code> / replaces it</td><td>same</td></tr>
+<tr><td>Truncated or not JSON</td><td><code>invalid_store</code> / replaces it</td><td>same. Saving is still how a damaged board recovers.</td></tr>
+<tr><td>Extra top-level key</td><td><code>invalid_store</code> / replaces it</td><td>same. Format 1 is still parsed strictly.</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted">The next save rewrites a reformatted board compactly. From format 2 on, only the checksum of the bytes as stored is accepted. <code>discover</code> now also reports <code>"journal_formats":{"reads":[1],"writes":[1]}</code>; <code>protocol_version</code> stays 1.</p>
+</section>
+
+<section aria-labelledby="s4">
+<h2 id="s4"><span class="n">04</span>Decisions taken on your behalf</h2>
+<p>The interview was answered with the coordinating agent's leans (Q1–Q8). The plan's three open calls (A1–A3) took its recommendation. The build then forced the deviations marked <code>dev</code>. Tick any you want revisited; it goes into the reply.</p>
+<ul class="dec" id="dec"></ul>
+</section>
+
+<section aria-labelledby="s5">
+<h2 id="s5"><span class="n">05</span>Open risks and follow-ups</h2>
+<div class="cards" id="risks"></div>
+</section>
+
+<section aria-labelledby="s6">
+<h2 id="s6"><span class="n">06</span>Evidence</h2>
+<ul class="ev">
+<li><strong>Driver runs, both builds:</strong> the six fixtures in <code>crates/engine/tests/fixtures/journal/</code>, plus a 361,518-byte format-2 board, a reordered, a truncated and an edited v1 board, and a format-9 file with a bad checksum. The demo and the table above are their output. The board this build saved also loaded in the old build.</li>
+<li><strong>Engine tests:</strong> <code>boards_saved_by_the_first_format_still_load</code> (load, byte-identical re-save, undo still works), <code>a_reformatted_v1_board_with_an_edited_title_is_corrupt</code>, <code>newer_boards_are_refused_and_never_overwritten</code>, <code>a_build_reads_every_format_up_to_its_own</code> (a format-2 reader loads <code>v2-add-only</code>), <code>saves_write_the_lowest_format_and_hash_the_bytes_they_write</code>, <code>saving_replaces_a_board_that_cannot_be_read</code>, and <code>corrupt_future_and_oversize_files_do_not_change_live_state</code>, which now asserts each exact code. All 13 store tests pass.</li>
+<li><strong>Full gate:</strong> <code>cargo xtask check ci</code> passes on the change.</li>
+<li><strong>Docs:</strong> <code>docs/DRIVER.md</code> gains a "Journal formats" section with the load order, every code, the lowest-format rule and the rule-change rule.</li>
+</ul>
+</section>
+
+<section aria-labelledby="s7">
+<h2 id="s7"><span class="n">07</span>Your reply</h2>
+<fieldset>
+<legend>Verdict</legend>
+<div class="choice">
+<label><input type="radio" name="v" value="approve" checked>Approve</label>
+<label><input type="radio" name="v" value="block">Block</label>
+</div>
+<label for="note">Reasons or anything else</label>
+<textarea id="note" placeholder="Optional. Required in spirit if you block."></textarea>
+</fieldset>
+<output id="out" aria-live="polite"></output>
+<p><button type="button" id="copy">Copy reply</button></p>
+</section>
+
+<footer>Grounded in crates/engine/src/store.rs, lib.rs, protocol.rs, store_tests.rs, tests/protocol.rs, the journal fixtures, docs/DRIVER.md, the task's plan and implementation notes, and driver runs of the build before and after this change.</footer>
+</main>
+
+<script>
+(function () {
+  var NEW_LOAD = ['store_too_new', 'board.json uses journal format 2; this build reads format 1. Open it with a newer build. The file was not changed.'];
+  var NEW_SAVE = ['store_too_new', 'board.json uses journal format 2, newer than this build writes (up to 1). It was not overwritten.'];
+  var V1_LOAD = 'ok {"can_undo":true,"next_id":3,"revision":5,"tasks":[{"done":false,"id":1,"title":"Review"},{"done":true,"id":2,"title":"Zoë"}]}';
+  var LOST = 'board.json replaced by a format-1 board holding only "Groceries". The newer board is gone.';
+  var KEPT = 'board.json unchanged, byte for byte, still there for the build that wrote it.';
+  function v2(name, disk, before) {
+    return { name: name, disk: disk,
+      a: [before, 'ok {"id":1}', 'ok {"revision":1,"saved":true}', LOST, 0],
+      b: [NEW_LOAD, 'ok {"id":1}', NEW_SAVE, KEPT, 1] };
+  }
+  var F = [
+    v2('New command', 'Format 2: add "Groceries", then rename task 1 to "Shopping", a command no build has yet. v2-new-command.json',
+      ['invalid_store', 'unknown variant `rename`, expected one of `add`, `complete`, `remove`, `undo` at line 1 column 97']),
+    v2('New field', 'Format 2 with created_by on the data and tags on a command. v2-new-field.json',
+      ['invalid_store', 'unknown field `created_by`, expected `schema_version` or `commands` at line 1 column 40']),
+    v2('New envelope key', 'Format 2 with a signed_by key beside data and sha256. v2-envelope-key.json',
+      ['invalid_store', 'unknown field `signed_by`, expected `data` or `sha256` at line 1 column 167']),
+    v2('Old commands only', 'Format 2 holding a single add. Only the number is new. v2-add-only.json',
+      ['version', 'unsupported saved journal version']),
+    { name: 'Over 256 KiB', disk: 'A 361,518-byte format-2 board with a valid checksum, as a later build with a larger limit could write.',
+      a: [['capacity', 'saved journal exceeds 256 KiB'], 'ok {"id":1}', 'ok {"revision":1,"saved":true}', 'board.json replaced by a 156-byte board holding only "Groceries".', 0],
+      b: [['capacity', 'saved journal exceeds 256 KiB'], 'ok {"id":1}', ['capacity', 'board.json exceeds 256 KiB, so this build cannot tell which build wrote it. It was not overwritten.'], KEPT, 1] },
+    { name: 'v1 board', disk: 'A format-1 board exactly as the shipped build saves it: Review open, Zoë done, one undo available. v1-board.json',
+      a: [V1_LOAD, 'ok {"id":3}', 'ok {"revision":6,"saved":true}', 'Saved with Groceries added.', 1],
+      b: [V1_LOAD, 'ok {"id":3}', 'ok {"revision":6,"saved":true}', 'Saved with Groceries added: the same bytes, byte for byte, as the left. The old build loads it.', 1] },
+    { name: 'v1, pretty-printed', disk: 'The same v1 board, reformatted by hand with indentation. v1-board.pretty.json',
+      a: [V1_LOAD, 'ok {"id":3}', 'ok {"revision":6,"saved":true}', 'Saved with Groceries added, written compactly.', 1],
+      b: [V1_LOAD, 'ok {"id":3}', 'ok {"revision":6,"saved":true}', 'Saved with Groceries added: identical bytes to the left.', 1] }
+  ];
+  var REQ = ['load', 'execute add "Groceries"', 'save'];
+  var chips = document.getElementById('chips'), cur = 0, timers = [];
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function res(r) {
+    var s = el('span', 'res');
+    if (typeof r === 'string') { s.appendChild(el('span', 'good', 'ok ')); s.appendChild(document.createTextNode(r.slice(3))); }
+    else { s.appendChild(el('span', 'bad', r[0] + ' ')); s.appendChild(document.createTextNode('"' + r[1] + '"')); }
+    return s;
+  }
+  function fill(id, rows) {
+    var p = document.getElementById(id), h = p.querySelector('h3');
+    p.textContent = ''; p.appendChild(h);
+    for (var i = 0; i < 3; i++) {
+      var d = el('div', 'step off'); d.appendChild(el('span', 'req', '› ' + REQ[i]));
+      d.appendChild(res(rows[i])); p.appendChild(d);
+    }
+    var k = el('div', 'disk off ' + (rows[4] ? 'kept' : 'lost'));
+    k.appendChild(el('strong', null, 'On disk: ')); k.appendChild(document.createTextNode(rows[3]));
+    p.appendChild(k);
+  }
+  function play(now) {
+    timers.forEach(clearTimeout); timers = [];
+    var f = F[cur];
+    document.getElementById('ondisk').textContent = 'On disk before the run: ' + f.disk;
+    fill('pa', f.a); fill('pb', f.b);
+    var steps = document.querySelectorAll('.panes .off');
+    var per = steps.length / 2;
+    for (var i = 0; i < per; i++) (function (i) {
+      timers.push(setTimeout(function () {
+        steps[i].classList.remove('off'); steps[i + per].classList.remove('off');
+      }, now || reduce ? 0 : 150 + i * 450));
+    })(i);
+  }
+  F.forEach(function (f, i) {
+    var b = el('button', null, f.name); b.type = 'button';
+    b.setAttribute('aria-pressed', i === cur ? 'true' : 'false');
+    b.addEventListener('click', function () {
+      cur = i; chips.querySelectorAll('button').forEach(function (x, j) { x.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+      play();
+    });
+    chips.appendChild(b);
+  });
+  document.getElementById('replay').addEventListener('click', function () { play(); });
+  play(true);
+
+  var DEC = [
+    ['Q1', 'Same file, format read first', 'board.json keeps its name and envelope. Load reads data, sha256 and the format number before parsing anything strictly, ignoring keys it does not know.'],
+    ['Q2', 'Save writes the lowest format that holds the commands', 'A board that never used a newer command stays readable by older builds. Undo is journaled, so a board that once used one keeps that format.'],
+    ['Q3', 'One command type with a compile-time format table', 'Each command names the format that introduced it, with no catch-all arm, so a new command does not compile until it does. Renaming a wire field renames it on disk.'],
+    ['Q4', 'Rule changes: written down, not built', 'A rule change that makes an old journal fail replay must raise the format. Only the docs say so.'],
+    ['Q5', 'Save refuses to replace a newer board', 'It checks the format number only, not the checksum.'],
+    ['Q6', 'The checksum covers the data bytes as stored', 'Integrity no longer depends on how today\'s types re-serialize.'],
+    ['Q7', 'New code store_too_new; formats named in the message and in discover', 'The error shape is unchanged. store_too_old is not added: no format has been dropped. It comes with the first change that drops one.'],
+    ['Q8', 'Frozen v1 bytes plus format-2 fixtures', 'The v1 file and its expected board are reviewed by hand and never regenerated.'],
+    ['A1', 'Ship the mechanism only, no format-2 command', 'The format stays 1. Rename, the first format-2 command, is a separate change, so this reader can ship a release ahead of it.'],
+    ['A2', 'Format 1 accepts either checksum', 'Hand-reformatted v1 boards keep loading. Format 2 and later accept only the stored-bytes checksum.'],
+    ['A3', 'Save still replaces a damaged board', 'Only a board that reads as a newer format is protected; a truncated or non-JSON file is overwritten, as today.'],
+    ['dev', 'An oversized board.json is never replaced', 'Its format cannot be read, and a later build with a larger limit may have written it. A damaged file that large must be removed by hand.'],
+    ['dev', 'The v1 envelope stays strict', 'A v1 file with an extra top-level key is still invalid_store, as before. Only formats newer than this build get the lenient read.'],
+    ['dev', 'A v1 file failing both checksum and parse is corrupt_store', 'The checksum is the first check that fails, so that is the code reported.'],
+    ['dev', 'Messages say "format 1", not "formats 1 to 1"', 'Wording only. A build reading two formats says "formats 1 to 2".']
+  ];
+  var dec = document.getElementById('dec');
+  DEC.forEach(function (d, i) {
+    var li = el('li');
+    li.appendChild(el('span', 'tag' + (d[0] === 'dev' ? ' dev' : ''), d[0] === 'dev' ? 'dev' : 'lean ' + d[0]));
+    var t = el('div'); t.appendChild(el('p', null, d[1])); t.appendChild(el('p', 'why', d[2])); li.appendChild(t);
+    var l = el('label'); var c = el('input'); c.type = 'checkbox'; c.dataset.d = i; l.appendChild(c); l.appendChild(document.createTextNode('Revisit'));
+    li.appendChild(l); dec.appendChild(li);
+  });
+
+  var RISK = [
+    ['One release before format 2', 'The left pane above is what every shipped build will keep saying. Only builds with this reader refuse a newer board and keep it safe.', 'Ship this in a release before any build writes format 2.', 'Make it a release condition', 1],
+    ['Mislabelled files are unchecked', 'Nothing yet rejects a file that says format 1 but holds a format-2 command. With every command at format 1 the check cannot fire or be tested.', 'The Rename change must add it, with a test.', 'Track as a follow-up', 1],
+    ['Rule changes need a format bump', 'Load replays under today\'s rules. Tightening one, such as the title limit, would turn some saved boards into replay_failed. The v1 fixture catches it only for the rules it exercises.', 'Review rule changes for this; nothing enforces it.', 'Track as a follow-up', 1],
+    ['Answered by leans', 'Q1–Q8 and A1–A3 were chosen by the coordinating agent. No person has confirmed them before this review.', 'Tick any decision above you would decide differently.', 'I have read the decisions in 04', 0],
+    ['A damaged file can block save', 'Save trusts the format number without the checksum, so a damaged file that reads as format 9 refuses save until it is removed by hand. That case was run.', 'Accept, or ask save to also check the checksum.', 'Ask save to check the checksum too', 0]
+  ];
+  var risks = document.getElementById('risks');
+  RISK.forEach(function (r, i) {
+    var c = el('div', 'card'); c.appendChild(el('h3', null, r[0])); c.appendChild(el('p', null, r[1])); c.appendChild(el('p', 'do', r[2]));
+    var l = el('label'); var x = el('input'); x.type = 'checkbox'; x.dataset.r = i; x.checked = !!r[4]; l.appendChild(x); l.appendChild(document.createTextNode(r[3]));
+    c.appendChild(l); risks.appendChild(c);
+  });
+
+  var out = document.getElementById('out'), note = document.getElementById('note');
+  function reply() {
+    var v = document.querySelector('input[name=v]:checked').value, L = [];
+    L.push(v === 'approve' ? 'Approve shipping journal-format versioning.' : 'Block shipping journal-format versioning.');
+    var rs = [].filter.call(document.querySelectorAll('[data-r]'), function (x) { return x.checked; });
+    var ack = rs.filter(function (x) { return x.dataset.r === '3'; }).length;
+    rs = rs.filter(function (x) { return x.dataset.r !== '3'; });
+    if (rs.length) { L.push('', v === 'approve' ? 'Conditions and follow-ups:' : 'Must be addressed first:'); rs.forEach(function (x) { var r = RISK[x.dataset.r]; L.push('- ' + r[0] + ': ' + (x.dataset.r === '4' ? 'save should also verify the checksum before refusing.' : r[2])); }); }
+    var ds = [].filter.call(document.querySelectorAll('[data-d]'), function (x) { return x.checked; });
+    if (ds.length) { L.push('', 'Revisit these decisions:'); ds.forEach(function (x) { var d = DEC[x.dataset.d]; L.push('- ' + (d[0] === 'dev' ? 'Deviation' : d[0]) + ': ' + d[1]); }); }
+    if (ack) L.push('', ds.length ? 'I read the decisions taken on my behalf; the rest stand.' : 'I read the decisions taken on my behalf and accept them all.');
+    else L.push('', 'I have not checked the leans and deviations myself yet.');
+    if (note.value.trim()) L.push('', note.value.trim());
+    else if (v === 'block' && !rs.length && !ds.length) L.push('', '(Add a reason.)');
+    out.textContent = L.join('\n');
+  }
+  document.addEventListener('change', reply); note.addEventListener('input', reply); reply();
+  var copy = document.getElementById('copy');
+  copy.addEventListener('click', function () {
+    function done() { copy.textContent = 'Copied'; setTimeout(function () { copy.textContent = 'Copy reply'; }, 1500); }
+    function fallback() {
+      var ta = document.createElement('textarea'); ta.value = out.textContent; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(ta); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(out.textContent).then(done, fallback); else fallback();
+  });
+})();
+</script>
+</body>
+</html>

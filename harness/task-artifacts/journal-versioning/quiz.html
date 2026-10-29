@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz: versioning the saved-board journal</title>
+<style>
+.prompt { padding: var(--space-6); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.prompt blockquote { margin: 0; font-style: italic; }
+.lbl { font-size: .75rem; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--space-2); }
+code { font-size: .88em; background: var(--accent-soft); border-radius: .25rem; padding: 0 .25rem; white-space: pre-wrap; }
+pre code { background: none; padding: 0; }
+pre { font-size: .82rem; }
+section { margin-top: var(--space-12); }
+.sh { border-bottom: 2px solid var(--ink); padding-bottom: var(--space-2); margin-bottom: var(--space-4); }
+.sh h2 { margin: 0; }
+.sh p { margin: var(--space-1) 0 0; color: var(--muted); font-size: var(--text-small); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--min, 9rem), 1fr)); gap: var(--space-3); margin-top: var(--space-6); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4); }
+.stat b { display: block; font-size: 1.5rem; }
+.stat span { font-size: var(--text-small); color: var(--muted); }
+mark { background: var(--accent-soft); outline: 1px solid var(--accent); color: inherit; }
+.idea { border-top: 4px solid var(--accent); padding-inline: var(--space-6); }
+.idea h3 { margin: var(--space-2) 0; }
+.idea p { margin: var(--space-2) 0; font-size: .95rem; }
+.ladder { list-style: none; margin: 0; padding: 0; counter-reset: g; }
+.ladder li { counter-increment: g; display: grid; grid-template-columns: 1.5rem minmax(0, 1fr) auto; gap: var(--space-2); background: var(--surface); border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-2) var(--space-3); margin-bottom: var(--space-2); font-size: .92rem; line-height: 1.45; }
+.ladder li::before { content: counter(g); font-weight: 700; color: var(--muted); }
+.ladder li.new { border: 1px dashed var(--accent); background: var(--accent-soft); }
+.ladder .c { font-family: var(--font-code); font-size: .78rem; color: var(--danger); text-align: end; }
+.ladder .c.ok, .ok { color: var(--accent); font-weight: 650; }
+.ladder small { display: block; }
+@media (max-width: 40rem) { .ladder li { grid-template-columns: 1.5rem minmax(0, 1fr); } .ladder .c { grid-column: 2; text-align: start; } }
+.bad { color: var(--danger); font-weight: 650; }
+td { overflow-wrap: anywhere; }
+.callout p { margin: var(--space-1) 0 0; }
+.quiz-head { display: flex; justify-content: space-between; align-items: end; gap: var(--space-4); flex-wrap: wrap; }
+.score { font-family: var(--font-code); font-size: var(--text-small); }
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); margin-block: var(--space-4); }
+.q.right { border-color: var(--accent); }
+.q.wrong { border-color: var(--danger); }
+.q .t { font-weight: 600; margin: var(--space-2) 0 var(--space-3); }
+.q .opt { display: flex; gap: var(--space-3); width: 100%; text-align: start; margin-bottom: var(--space-2); background: var(--paper); color: var(--ink); line-height: 1.45; }
+.q .opt:hover:not(:disabled) { border-color: var(--ink); }
+.q .opt:disabled { cursor: default; opacity: 1; }
+.q .k { font-family: var(--font-code); color: var(--muted); }
+.q .picked-right { border: 2px solid var(--accent); background: var(--accent-soft); }
+.q .picked-wrong { border: 2px solid var(--danger); background: var(--warning-soft); }
+.q .was-right { border: 2px dashed var(--accent); }
+.q .dim { opacity: .55 !important; }
+.why { margin-top: var(--space-3); padding: var(--space-3) var(--space-4); font-size: .93rem; border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.why.no { border-color: var(--danger); background: var(--warning-soft); }
+.why b:first-child, .q .n { display: block; font-size: .75rem; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; }
+.q .n { color: var(--muted); }
+.result { border: 2px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); background: var(--surface); }
+.result.pass { border-color: var(--accent); }
+.result.fail { border-color: var(--danger); }
+.result h3 { margin: 0; }
+.actions { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-3); }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">journal-versioning · quiz me before I merge</p>
+<h1>Versioning the saved-board journal: what changed, then prove it</h1>
+
+<div class="prompt">
+  <p class="lbl">The prompt</p>
+  <blockquote>I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on versioning the saved-board journal format, covering context, intuition and what was done, with a quiz at the bottom that I must pass.</blockquote>
+</div>
+
+<p class="lead">A board saved by a newer build used to fail with <code>invalid_store</code> and then be silently overwritten on the next save. Now a build dates a <code>board.json</code> before it understands it, refuses a newer one on load, and never writes over it. Nothing a format-1 build wrote stops loading. The format number is still 1: this change ships the reader, not a new format.</p>
+
+<div class="grid">
+  <div class="card stat"><b>4</b><span>product files: store.rs, lib.rs, protocol.rs, Cargo.toml</span></div>
+  <div class="card stat"><b>+388 −31</b><span>lines in crates and docs</span></div>
+  <div class="card stat"><b>7</b><span>fixture files: 3 format-1, 4 format-2</span></div>
+  <div class="card stat"><b>6 + 1</b><span>new store tests, one rewritten</span></div>
+  <div class="card stat"><b>1</b><span>new error code, <code>store_too_new</code></span></div>
+</div>
+
+<section id="context">
+  <div class="sh"><h2>Context: what was on disk and what went wrong</h2><p>The file, and what the build before this change did with files from the future.</p></div>
+  <p><code>save</code> writes the whole command journal, not the board, to <code>APP_DATA_DIR/board.json</code>. <code>load</code> replays it from an empty session. This is the fixture <code>v1-board.json</code>, written by the format-1 build and never regenerated; the highlighted span is the <code>data</code> value whose SHA-256 is stored beside it.</p>
+<pre><code>{"data":<mark>{"schema_version":1,"commands":[{"command":"add","title":"  Review  "},{"command":"add","title":"Zoë"},{"command":"complete","id":2},{"command":"complete","id":1},{"command":"undo"}]}</mark>,"sha256":"ac20b819…4074091"}</code></pre>
+  <p>Before this change, <code>load</code> parsed the file strictly (<code>invalid_store</code>), then required <code>schema_version</code> 1 (<code>version</code>), then hashed a <em>re-serialization</em> of the parsed journal (<code>corrupt_store</code>). A newer file died at the first step that met something new, and <code>save</code> never looked at the old file. Each build, load then save:</p>
+  <div class="table-scroll"><table>
+    <thead><tr><th>board.json</th><th>Before: load, then save</th><th>Now: load, then save</th></tr></thead>
+    <tbody>
+      <tr><td>v2-new-command <small class="muted">a <code>rename</code> command</small></td><td><code>invalid_store</code>, then <span class="bad">overwritten</span></td><td><code>store_too_new</code>, then <span class="ok">refused, kept</span></td></tr>
+      <tr><td>v2-new-field <small class="muted"><code>created_by</code>, <code>tags</code></small></td><td><code>invalid_store</code>, then <span class="bad">overwritten</span></td><td><code>store_too_new</code>, then <span class="ok">refused, kept</span></td></tr>
+      <tr><td>v2-envelope-key <small class="muted">top-level <code>signed_by</code></small></td><td><code>invalid_store</code>, then <span class="bad">overwritten</span></td><td><code>store_too_new</code>, then <span class="ok">refused, kept</span></td></tr>
+      <tr><td>v2-add-only <small class="muted">format-1 commands only</small></td><td><code>version</code>, then <span class="bad">overwritten</span></td><td><code>store_too_new</code>, then <span class="ok">refused, kept</span></td></tr>
+      <tr><td>v1-board.pretty <small class="muted">reformatted by hand</small></td><td>loads, then saves</td><td>loads, then saves</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">The old store also reused <code>version</code>, the protocol's code for a bad request version, so a client could not tell "your request is old" from "your file is new".</p>
+</section>
+
+<section id="intuition">
+  <div class="sh"><h2>Intuition: three ideas carry the whole change</h2><p>Everything in the diff serves one of these.</p></div>
+  <div class="grid" style="--min:16rem">
+    <div class="card idea" id="idea-date">
+      <h3>1 · Date the file before you read it</h3>
+      <p>Every format keeps <code>data</code> and <code>sha256</code>, with <code>data.schema_version</code> inside. A lax <code>Peek</code> reads only those, so any build can verify and date a future file without understanding its commands.</p>
+      <p>That needs a digest over the bytes as stored: re-serializing the journal needs every command understood.</p>
+    </div>
+    <div class="card idea" id="idea-lowest">
+      <h3>2 · Write the lowest format the journal needs</h3>
+      <p>Each command names the format that introduced it (<code>Command::introduced_in</code>; with no wildcard arm, a new variant will not compile until it does). Save writes the highest over <code>session.journal()</code>, never below the oldest format the build reads.</p>
+      <p>So a board that never used a newer command stays readable by older builds.</p>
+    </div>
+    <div class="card idea" id="idea-overwrite">
+      <h3>3 · Never overwrite what you cannot date</h3>
+      <p>Before staging a save, the store reads the existing <code>board.json</code>. A newer format, or a file too large to peek, is left alone.</p>
+      <p>A missing, truncated or unparseable file is still replaced: saving is the in-app way to recover a damaged board.</p>
+    </div>
+  </div>
+</section>
+
+<section id="done">
+  <div class="sh"><h2>What was done</h2><p>Dashed gates are new or changed. The first gate that fails names the code.</p></div>
+  <p class="lbl">Load, now <span class="muted">(<code>Store::load_from</code>, store.rs:197)</span></p>
+      <ol class="ladder" id="load-gates">
+        <li><span>Read at most 256 KiB + 1 byte<small class="muted">store.rs:198</small></span><span class="c">capacity</span></li>
+        <li class="new"><span>Peek <code>data</code>, <code>sha256</code>, <code>schema_version</code>; ignore other keys<small class="muted">Peek::parse, store.rs:43</small></span><span class="c">invalid_store</span></li>
+        <li class="new"><span>Hash the raw <code>data</code> bytes. If that misses and the file says <code>schema_version</code> 1, try the hash of the re-serialized journal, as format-1 builds did<small class="muted">store.rs:202, reserialized_v1 :246</small></span><span class="c">corrupt_store</span></li>
+        <li class="new"><span>Format between oldest and newest this build reads (1 and 1)<small class="muted">check_format, store.rs:60</small></span><span class="c">store_too_new<br>invalid_store (0)</span></li>
+        <li><span>Strict parse, unknown keys still denied<small class="muted">Envelope, store.rs:206</small></span><span class="c">invalid_store</span></li>
+        <li><span>Replay every command under today's rules<small class="muted">Session::replay, lib.rs:121</small></span><span class="c">replay_failed</span></li>
+      </ol>
+
+  <p class="lbl" style="margin-top:var(--space-6)">Save, now <span class="muted">(<code>refuse_newer</code>, store.rs:214, before staging)</span></p>
+  <ol class="ladder" id="save-gates">
+    <li><span>No <code>board.json</code>: nothing to protect. Any other read error fails the save.</span><span class="c">storage_io</span></li>
+    <li class="new"><span>Over 256 KiB: refused before any peek. Kept.</span><span class="c">capacity</span></li>
+    <li class="new"><span><code>Peek::parse</code> succeeds and its format &gt; <code>JOURNAL_FORMAT</code>. Kept.<small class="muted">store.rs:226</small></span><span class="c">store_too_new</span></li>
+    <li><span>Anything else: replaced atomically, as before.</span><span class="c ok">written</span></li>
+  </ol>
+
+  <p>The writer sets <code>schema_version</code> to <code>format_for(commands)</code> (store.rs:53), the highest <code>introduced_in</code> but never below <code>OLDEST_JOURNAL_FORMAT</code>, so it cannot write a file it would then refuse. It serializes <code>data</code> once into a <code>RawValue</code>, hashes exactly those bytes and writes them (store.rs:144-158). For format 1 the raw bytes and the old re-serialization are identical, so <code>v1-board.json</code> re-saves to the same 269 bytes.</p>
+  <p>Also: <code>JOURNAL_FORMAT</code> and <code>OLDEST_JOURNAL_FORMAT</code> (both 1) in lib.rs; <code>load_from</code> takes the newest readable format, so a test can act as a format-2 build; <code>discover</code> reports <code>"journal_formats":{"reads":[1],"writes":[1]}</code>; DRIVER.md documents the gates. New store tests pin the v1 bytes, the pretty and edited v1 copies, every v2 fixture on load and save, the format bounds, raw-span hashing and recovery over a truncated file. The old corrupt, future and oversize test now asserts exact codes.</p>
+</section>
+
+<section id="watch">
+  <div class="sh"><h2>What this leans on, and what it leaves for later</h2><p>None blocks the merge.</p></div>
+  <div class="grid" style="--min:100%">
+    <div class="callout"><b>Replay never sees the format.</b><p><code>load_from</code> hands only <code>data.commands</code> to <code>Session::replay</code>, which runs today's <code>execute</code> on each. The journal keeps input as typed: after a load the fixture's first command is still <code>"  Review  "</code>; only the board shows <code>Review</code>.</p></div>
+    <div class="callout"><b>No check that a format-N file holds only format-N commands.</b><p>It cannot fire while every command is format 1; it comes with the first format-2 command.</p></div>
+    <div class="callout"><b>Builds from before this change are unchanged.</b><p>They still answer a newer file with <code>invalid_store</code> or <code>version</code> and overwrite it, which is why the reader ships before any writer of format 2.</p></div>
+  </div>
+</section>
+
+<section id="quiz-sec">
+  <div class="quiz-head">
+    <div class="sh" style="flex:1;min-width:16rem"><h2>Quiz: eight questions, all must be right</h2><p>Each answer is final and its explanation opens once you choose. A retake reshuffles the options.</p></div>
+    <div class="score card" aria-live="polite">Score <b id="sc">0</b> / 8 · <span id="an">0</span> answered · attempt <span id="at">1</span></div>
+  </div>
+  <div id="quiz"></div>
+  <div class="result" id="result">
+    <h3 id="rh">Answer all eight to get your result</h3>
+    <p id="rp" class="muted">Your reply appears here once every question is answered.</p>
+    <label for="reply" class="lbl">Your reply</label>
+    <textarea id="reply" readonly></textarea>
+    <div class="actions"><button id="copy" disabled>Copy reply</button><button id="retry" class="secondary" hidden>Retake the quiz</button></div>
+  </div>
+</section>
+
+<footer>From crates/engine/src/store.rs, lib.rs, protocol.rs, store_tests.rs, the journal fixtures and docs/DRIVER.md.</footer>
+</main>
+
+<script>
+(function () {
+  var QS = [
+    { topic: 'unknown keys are tolerated only long enough to date a file',
+      q: 'Two files reach this build. Both carry a correct <code>sha256</code> over their data bytes and an extra top-level key <code>"signed_by"</code>. One says <code>schema_version</code> 1, the other 2. What does load return for each?',
+      opts: ['Format 1: <code>invalid_store</code>, from the strict parse. Format 2: <code>store_too_new</code>, from the format gate.',
+             'Both <code>invalid_store</code>, from the peek, which rejects any key it was not built with.',
+             'Both <code>store_too_new</code>: an unknown envelope key is itself the sign of a newer writer.',
+             'Format 1 loads, because the peek dropped the key. Format 2: <code>store_too_new</code>.'],
+      why: 'The peek ignores unknown keys, so both pass gates 2 and 3. Gate 4 stops the format-2 file. The format-1 file reaches the strict parse, which still denies unknown keys. On this build: <code>unknown field `signed_by`</code>, then <code>store_too_new</code>.' },
+    { topic: 'why the digest runs before the format check',
+      q: 'Load checks the digest (gate 3) before the format (gate 4). One byte of a v1 board is damaged on disk: <code>"schema_version":1</code> now reads <code>7</code>. What does that order buy?',
+      opts: ['The user gets <code>corrupt_store</code>. Swapped, the damaged number would be trusted and they would get <code>store_too_new</code>.',
+             'Nothing but speed. The digest cannot run until the strict parse succeeds, so both orders see the same file.',
+             'It keeps reformatted v1 boards loading. Swapped, the fallback digest would run on a format it rejects.',
+             'It protects save. Swapped, save would see format 7 and overwrite the damaged file.'],
+      why: 'The format number lives inside <code>data</code>, so the digest covers it: checked first, any format gate 4 reports is one the checksum vouches for. Only a raw-byte digest can run that early; the old one needed the strict parse. On this build: <code>corrupt_store</code>, while <code>check_format(7, 1, 1)</code> alone gives <code>store_too_new</code>.' },
+    { topic: 'what save checks before it overwrites a damaged file',
+      q: 'Two copies of <code>v1-board.json</code> are each damaged in one byte: <code>"schema_version":1</code> reads <code>7</code> in one and <code>0</code> in the other. Both keep the old <code>sha256</code>. The user saves over each. What happens to each file?',
+      opts: ['The 7 copy is refused with <code>store_too_new</code> and kept; the 0 copy is replaced.',
+             'Both are replaced: neither matches its checksum, and saving is how a damaged board recovers.',
+             'Both are kept: save will not overwrite a file that load rejects as corrupt.',
+             'Both are refused with <code>store_too_new</code>: neither 0 nor 7 is a format this build writes.'],
+      why: '<code>refuse_newer</code> peeks and compares the format with <code>JOURNAL_FORMAT</code>; it never hashes. 7 is above 1, so that copy is kept though it is a damaged v1 board. 0 is not, so that copy is replaced. Both run on this build.' },
+    { topic: 'the re-serialized digest fallback is fixed to format 1',
+      q: '<code>v1-board.pretty.json</code> is the v1 fixture re-indented inside <code>data</code>, with <code>sha256</code> left as it was, and it loads. A future build writes a format-2 board. Someone re-indents its <code>data</code> the same way and leaves <code>sha256</code> alone. What does load return on <em>this</em> build, and on a format-2 build?',
+      opts: ['<code>corrupt_store</code> on both, before either build looks at the format.',
+             '<code>store_too_new</code> here; it loads on the format-2 build, just as the v1 copy loads here.',
+             '<code>store_too_new</code> here; <code>corrupt_store</code> on the format-2 build.',
+             '<code>corrupt_store</code> here; it loads on the format-2 build, which accepts a re-serialized hash for format 2.'],
+      why: 'The raw <code>data</code> bytes changed, so the stored digest misses on any build. The fallback is <code>format == 1</code> in <code>reserialized_v1</code>, a constant, not the build’s newest: reformatted v1 boards loaded before and must keep loading; format 2 was only ever hashed raw. The digest runs before <code>check_format</code>. On this build, <code>load_from(.., 1)</code> and <code>(.., 2)</code> both give <code>corrupt_store</code>. Re-indent only the envelope and the digest holds: <code>store_too_new</code> here, loaded by a format-2 build.' },
+    { topic: 'why the old future-file test changed code twice',
+      q: 'An old test saves a board, edits <code>schema_version</code> to 999 and writes it back, leaving <code>sha256</code> alone. Before this change load returned <code>version</code>. What did those bytes return once load was reordered, and why does the test now forge a file?',
+      opts: ['<code>corrupt_store</code>: the stale hash no longer matched and the digest now runs first. A freshly hashed file reaches the format gate.',
+             '<code>store_too_new</code> at once, since the peek reads 999; forging only removed a dependency on serde output.',
+             '<code>invalid_store</code>: 999 is out of range for the peek, so the forged file uses a smaller number.',
+             '<code>version</code> still, since the store kept that check; forging moved the test onto the new path.'],
+      why: 'The version check used to run before the digest; now the digest is gate 3 and the format gate 4. Asserting exact codes instead of <code>is_err()</code> exposed the move. On both builds: <code>version</code> before; now <code>corrupt_store</code> for the old bytes and <code>store_too_new</code> for <code>forge()</code>d ones.' },
+    { topic: 'the format follows the journal, and undo is journaled',
+      q: 'Suppose a later build adds <code>rename</code> as a format-2 command. A user renames a task, undoes it and saves. The board looks exactly as it did before. Which format does save write?',
+      opts: ['Format 2: the journal is saved, not the board, and undo is appended after the rename instead of removing it.',
+             'Format 1: <code>format_for</code> reads the board after replay, and the board shows no renamed task.',
+             'Format 1: an undo directly after a command cancels that command’s <code>introduced_in</code>.',
+             'Format 2: once a directory has held a format-2 board, saves there never go below it.'],
+      why: '<code>format_for</code> takes the highest <code>introduced_in</code> over <code>session.journal()</code>, and <code>execute</code> pushes <code>Undo</code> like any other command (lib.rs:102), so an older build replaying the file would meet the rename. On this build, add then undo leaves <code>[Add, Undo]</code>. The format is recomputed per save: a later add-only board saves as format 1.' },
+    { topic: 'save checks size before it tries to date a file',
+      q: 'Two <code>board.json</code> files hold nothing but spaces. One is exactly 256 KiB (262,144 bytes); the other is one byte longer. Neither is a board. The user saves over each. What happens?',
+      opts: ['The 256 KiB file is replaced; the longer one is refused with <code>capacity</code> and kept.',
+             'Both are replaced: neither parses, and an unparseable file is replaced so a board can recover.',
+             'Both are refused with <code>capacity</code>: neither can be peeked, so neither can be dated.',
+             'Both are replaced: the read stops at 256 KiB + 1 byte, so save peeks a cut-off prefix.'],
+      why: 'Save checks size first (store.rs:220). Past <code>MAX_BYTES</code> it refuses unread: this build never writes that much, but a build with a larger limit might. At exactly the limit the file is read whole, the peek fails, and it is replaced like any damaged file. Load gives <code>invalid_store</code>, then <code>capacity</code>. All run on this build.' },
+    { topic: 'replay runs every readable format under today’s rules',
+      q: 'A later build adds a rule: a new task may not share its title with an open task. It raises <code>JOURNAL_FORMAT</code> to 2 and changes nothing else in the store. An existing format-1 <code>board.json</code>, correctly hashed, holds <code>add "Milk"</code> twice. What does that build’s load return?',
+      opts: ['<code>replay_failed</code> at step 1: the file passes every gate before replay.',
+             'It loads both tasks: the file says format 1, so it is replayed under format-1 rules.',
+             'It loads one Milk: replay skips the command today’s rules reject.',
+             '<code>corrupt_store</code>: the replayed board no longer matches what was hashed.'],
+      why: 'Digest and format pass: 1 is between the oldest and newest that build reads. <code>Session::replay</code> runs today’s <code>execute</code> on each command and commits only if all succeed. The format never reaches replay, so raising it alone protects nothing: the build must also replay format-1 journals as written, as DRIVER.md now requires. With that rule added to this build: <code>replay_failed: step 1</code>. The checksum covers commands, not the board.' }
+  ];
+  var KEYS = 'ABCD', N = QS.length, order, answers, attempt = 1, $ = function (id) { return document.getElementById(id); };
+  function build(mix) {
+    answers = QS.map(function () { return null; });
+    // First render spreads the right answer over fixed positions; a retake shuffles.
+    order = [1, 0, 3, 2, 1, 0, 3, 2].map(function (p) {
+      var o = [1, 2, 3]; o.splice(p, 0, 0);
+      if (mix) for (var i = 3; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = o[i]; o[i] = o[j]; o[j] = t; }
+      return o;
+    });
+    $('quiz').innerHTML = QS.map(function (it, qi) {
+      return '<div class="q" id="q' + qi + '"><div class="n">Question ' + (qi + 1) + ' of ' + N + '</div><div class="t">' + it.q + '</div>' +
+        order[qi].map(function (oi, pos) { return '<button class="opt secondary" data-q="' + qi + '" data-o="' + oi + '"><span class="k">' + KEYS[pos] + '</span><span>' + it.opts[oi] + '</span></button>'; }).join('') +
+        '<div class="why" id="w' + qi + '" hidden></div></div>';
+    }).join('');
+    update();
+  }
+  $('quiz').addEventListener('click', function (e) {
+    var b = e.target.closest('button.opt'); if (!b || b.disabled) return;
+    var qi = +b.dataset.q, right = b.dataset.o === '0'; answers[qi] = right;
+    $('q' + qi).classList.add(right ? 'right' : 'wrong');
+    $('q' + qi).querySelectorAll('button.opt').forEach(function (x) {
+      x.disabled = true;
+      x.classList.add(x === b ? (right ? 'picked-right' : 'picked-wrong') : (x.dataset.o === '0' ? 'was-right' : 'dim'));
+    });
+    var w = $('w' + qi); w.className = 'why' + (right ? '' : ' no'); w.hidden = false;
+    w.innerHTML = '<b>' + (right ? 'Correct' : 'Not this one. The answer is ' + KEYS[order[qi].indexOf(0)]) + '</b>' + QS[qi].why;
+    update();
+  });
+  function update() {
+    var score = answers.filter(function (a) { return a === true; }).length, done = answers.filter(function (a) { return a !== null; }).length;
+    $('sc').textContent = score; $('an').textContent = done; $('at').textContent = attempt;
+    $('copy').disabled = done < N; $('retry').hidden = done < N || score === N;
+    $('result').className = 'result' + (done < N ? '' : score === N ? ' pass' : ' fail');
+    if (done < N) {
+      $('rh').textContent = 'Answer all eight to get your result';
+      $('rp').textContent = (N - done) + ' still open. Your reply appears here once every question is answered.';
+      $('reply').value = '';
+    } else if (score === N) {
+      $('rh').textContent = 'Passed: 8 of 8';
+      $('rp').textContent = 'You can explain the load gates, the save refusals and why the format follows the journal.';
+      $('reply').value = 'Journal versioning quiz: passed, 8/8 on attempt ' + attempt + '. I can explain why load dates a file before parsing it, why the digest runs before the format check, what save checks before it overwrites, why the format follows the journal and why replay ignores it. Noted for later: the format-N content check comes with the first format-2 command. Cleared to merge from my side.';
+    } else {
+      var missed = []; answers.forEach(function (a, i) { if (!a) missed.push('Q' + (i + 1) + ' (' + QS[i].topic + ')'); });
+      $('rh').textContent = 'Not yet: ' + score + ' of 8';
+      $('rp').textContent = 'Read the explanations above, then retake. The pass mark is all eight.';
+      $('reply').value = 'Journal versioning quiz: not passed, ' + score + '/8 on attempt ' + attempt + '. Missed ' + missed.join('; ') + '. Not ready to merge until I retake it.';
+    }
+  }
+  $('copy').addEventListener('click', function () {
+    var btn = this, done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy reply'; }, 1500); };
+    var fallback = function () { $('reply').select(); try { document.execCommand('copy'); } catch (e) {} done(); };
+    if (navigator.clipboard) navigator.clipboard.writeText($('reply').value).then(done, fallback); else fallback();
+  });
+  $('retry').addEventListener('click', function () { attempt++; build(true); $('quiz-sec').scrollIntoView(); });
+  build(false);
+})();
+</script>
+</body>
+</html>
