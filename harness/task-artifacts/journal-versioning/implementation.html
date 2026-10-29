@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implementation notes: versioning the saved-board journal</title>
+<style>
+.prompt { padding: var(--space-6); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.prompt blockquote { margin: 0; font-style: italic; }
+.lbl { font-size: .75rem; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--space-2); }
+code { font-size: .88em; background: var(--accent-soft); border-radius: .25rem; padding: 0 .25rem; }
+pre code { background: none; padding: 0; font-size: inherit; }
+section { margin-top: var(--space-12); }
+.sh { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: var(--space-2); }
+.sh h2 { margin: 0; }
+.sh .ct { font-size: var(--text-small); color: var(--muted); }
+.strip { list-style: none; padding: 0; margin: var(--space-6) 0 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-2); }
+.strip button { width: 100%; height: 100%; text-align: start; display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-3); font-size: .8rem; line-height: 1.35; background: var(--surface); color: var(--ink); border: 1px dashed var(--line); }
+.strip button b { font-size: .9rem; }
+.strip .st { font: 700 .68rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.strip .done button { border: 1px solid var(--accent); background: var(--accent-soft); }
+.strip .done .st { color: var(--accent); }
+.strip button[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--ink); }
+.filters { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-6) 0 var(--space-4); }
+.filters button { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: .8rem; background: var(--surface); color: var(--ink); border-color: var(--line); border-radius: 999px; }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.log { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--line); }
+.log > li { position: relative; padding: 0 0 var(--space-6) var(--space-6); }
+.log > li::before { content: ""; position: absolute; left: -7px; top: .45rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--paper); }
+.log > li.k-fix::before { background: var(--warning); }
+.log > li.k-you::before { background: var(--ink); }
+.log h3 { margin: var(--space-1) 0 var(--space-2); font-size: 1rem; }
+.log p { margin: var(--space-2) 0; max-width: var(--reading-width); }
+.badge { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border-radius: .3rem; padding: .1rem .5rem; background: var(--accent-soft); color: var(--accent); }
+.k-fix .badge { background: var(--warning-soft); color: var(--warning); }
+.k-you .badge { background: var(--ink); color: var(--surface); }
+.badge + .step { font-size: .75rem; color: var(--muted); margin-left: var(--space-2); }
+.src { font-size: var(--text-small); color: var(--muted); }
+.ws i { font-style: normal; color: var(--warning); }
+.bytes { font-size: .78rem; line-height: 1.6; }
+.bytes .span { background: var(--accent-soft); outline: 1px solid var(--accent); border-radius: .2rem; }
+.bytes .ws i { color: var(--danger); font-weight: 700; }
+.cmp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); margin: var(--space-3) 0; }
+.cmp > div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); font-size: var(--text-small); }
+.cmp .bad { border-color: var(--warning); background: var(--warning-soft); }
+.table-scroll { margin: var(--space-3) 0; }
+table { font-size: var(--text-small); background: var(--surface); }
+th { background: var(--accent-soft); }
+.table-scroll table { min-width: 34rem; }
+td code, td:first-child { white-space: nowrap; }
+td.pend { color: var(--muted); font-style: italic; }
+td.chg code { background: var(--warning-soft); color: var(--warning); }
+.q { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--ink); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-4) 0; }
+.q h3 { margin: 0 0 var(--space-2); }
+.opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); margin-top: var(--space-4); }
+.opt { margin: 0; border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3) var(--space-4); cursor: pointer; font-size: var(--text-small); }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
+.rec { font-size: .7rem; font-weight: 700; text-transform: uppercase; color: var(--accent); margin-left: var(--space-1); }
+.reply { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-6); margin-top: var(--space-12); }
+.reply h2 { margin-top: 0; }
+#out { margin: var(--space-4) 0; font-size: .82rem; }
+.acks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--space-4); }
+.acks label { margin: var(--space-1) 0; font-size: var(--text-small); }
+@media (max-width: 40rem) { .acks { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 52rem) { .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cmp, .opts { grid-template-columns: minmax(0, 1fr); } }
+.strip .done.joint button { border-style: solid; }
+.joint-note { grid-column: 2 / 5; text-align: center; font-size: .72rem; color: var(--accent); border-top: 2px solid var(--accent); padding-top: var(--space-1); margin-top: calc(-1 * var(--space-1)); }
+.gates { list-style: none; padding: 0; margin: var(--space-3) 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-2); counter-reset: g; }
+.gates li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-2) var(--space-3); font-size: .78rem; line-height: 1.4; }
+.gates li.new { border: 1px dashed var(--accent); background: var(--accent-soft); }
+.gates b { display: block; font-size: .85rem; }
+.gates b::before { counter-increment: g; content: counter(g) " · "; color: var(--muted); }
+.gates .cd { display: block; margin-top: var(--space-1); font-family: var(--font-code); color: var(--danger); overflow-wrap: anywhere; }
+.devs { list-style: none; padding: 0; margin: var(--space-6) 0 0; display: grid; gap: var(--space-4); }
+.devs > li { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--warning); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+.devs h3 { margin: 0 0 var(--space-3); font-size: 1rem; }
+.devgrid { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: var(--space-2) var(--space-4); font-size: var(--text-small); margin: 0; }
+.devgrid dt { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--warning); padding-top: .15rem; }
+.devgrid dt.ch { color: var(--accent); }
+.devgrid dd { margin: 0; }
+.q.done { border-left-color: var(--accent); }
+.q.done h3::after { content: " · answered"; color: var(--accent); font-size: .8rem; font-weight: 650; }
+td.ok code { background: var(--accent-soft); color: var(--accent); }
+td.bad code { background: var(--warning-soft); color: var(--danger); }
+@media (max-width: 52rem) { .gates { grid-template-columns: repeat(2, minmax(0, 1fr)); } .joint-note { grid-column: 1 / -1; } }
+@media (max-width: 40rem) { .devgrid { grid-template-columns: minmax(0, 1fr); gap: 0; } .devgrid dd { margin-bottom: var(--space-2); } .devs > li { padding: var(--space-4); } }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">journal-versioning · implementation notes · during the build</p>
+<h1>Implementation notes: versioning the saved-board journal</h1>
+
+<div class="prompt">
+<p class="lbl">The prompt</p>
+<blockquote>Keep implementation notes as you build journal-format versioning. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going.</blockquote>
+</div>
+
+<p class="lead">Steps 1 to 4 are in. A board from a newer build is now refused on load and never overwritten by save, and every board a format-1 build wrote still loads. Six deviations are logged below. The last one closes a gap the notes review found in A3. No questions are open.</p>
+
+<ol class="strip" id="strip">
+<li class="done"><button type="button" data-step="1" aria-pressed="false"><span class="st">Done</span><b>1 · Pin v1</b>Fixture, expected state, exact error codes</button></li>
+<li class="done joint"><button type="button" data-step="2" aria-pressed="false"><span class="st">Done</span><b>2 · Raw-span checksum</b>Peek, reorder load, v1 fallback</button></li>
+<li class="done joint"><button type="button" data-step="3" aria-pressed="false"><span class="st">Done</span><b>3 · Format gate</b>Constants, check_format, store_too_new</button></li>
+<li class="done joint"><button type="button" data-step="4" aria-pressed="false"><span class="st">Done</span><b>4 · Save refusal</b>Peek before staging (A3)</button></li>
+<li><button type="button" data-step="5" aria-pressed="false"><span class="st">Pending</span><b>5 · Surface</b>journal_formats, DRIVER.md</button></li>
+<li class="joint-note" aria-hidden="true">steps 2 to 4 landed together (deviation 1)</li>
+</ol>
+
+<section>
+<div class="sh"><h2>Log</h2><span class="ct" id="shown"></span></div>
+<div class="filters" id="filters">
+<button type="button" data-k="all" aria-pressed="true">All</button>
+<button type="button" data-k="ok" aria-pressed="false">As planned</button>
+<button type="button" data-k="fix" aria-pressed="false">Corrections and findings</button>
+</div>
+
+<ol class="log" id="log">
+<li class="k-ok" data-k="ok" data-step="1">
+<span class="badge">As planned</span><span class="step">Step 1</span>
+<h3>The v1 fixture is what the format-1 build writes, byte for byte</h3>
+<p>Written by the driver before any store change, from: add <code class="ws">"<i>··</i>Review<i>··</i>"</code>, add <code>"Zoë"</code>, complete 2, complete 1, undo, save. Replaying that script reproduces the same 269 bytes: one line, no trailing newline (<code>ë</code> is two bytes). The highlighted span is the <code>data</code> value, bytes 8 to 192, whose SHA-256 is the stored <code>sha256</code>.</p>
+<pre class="bytes"><code>{"data":<span class="span">{"schema_version":1,"commands":[{"command":"add","title":"<span class="ws"><i>··</i>Review<i>··</i></span>"},{"command":"add","title":"Zoë"},{"command":"complete","id":2},{"command":"complete","id":1},{"command":"undo"}]}</span>,"sha256":"ac20b819001004c9951ccdb974be80868b397cde055d1b53914d54b484074091"}</code></pre>
+<p class="src"><code class="ws"><i>·</i></code> marks one space byte. <code>boards_saved_by_the_first_format_still_load</code> (<code>store_tests.rs:81</code>) loads it to <code>v1-board.expected.json</code>, re-saves it to identical bytes, and runs one more undo to show undo history survives a load.</p>
+</li>
+
+<li class="k-fix" data-k="fix" data-step="1">
+<span class="badge">Plan correction</span><span class="step">Step 1</span>
+<h3>The plan shows the title with one space on each side; the file has two</h3>
+<p>The plan's B1 code block is right. The caption under it and the <code>v1-board.json</code> row in E put the title in inline code, where HTML collapses runs of spaces. It matters because the journal keeps the title as typed and replay trims it: the test asserts <code>journal()[0]</code> is <code class="ws">Add { title: "<i>··</i>Review<i>··</i>" }</code> while <code>inspect()</code> shows <code>"Review"</code>.</p>
+</li>
+
+<li class="k-ok" data-k="ok" data-step="2">
+<span class="badge">As planned</span><span class="step">Steps 2–4</span>
+<h3>Load checks the gates in the planned order</h3>
+<p>The format and digest are read through a lax <code>Peek</code> that ignores unknown keys, so a newer file is dated before anything tries to understand it (<code>store.rs:196-207</code>). Dashed gates are new.</p>
+<ol class="gates">
+<li><b>Read</b>≤ 256 KiB<span class="cd">storage_io<br>capacity</span></li>
+<li class="new"><b>Peek</b>data, format, sha256<span class="cd">invalid_store</span></li>
+<li class="new"><b>Digest</b>raw data bytes, v1 fallback<span class="cd">corrupt_store</span></li>
+<li class="new"><b>Format</b>1 ≤ found ≤ 1<span class="cd">store_too_new<br>invalid_store (0)</span></li>
+<li><b>Strict parse</b>today's Envelope<span class="cd">invalid_store</span></li>
+<li><b>Replay</b>all or nothing<span class="cd">replay_failed<br>capacity</span></li>
+</ol>
+<p class="src">Save writes <code>format_for(commands)</code>, the highest <code>introduced_in</code> (still 1), and hashes the exact bytes it writes through <code>RawValue</code> (<code>store.rs:143-156</code>). <code>introduced_in</code> has no wildcard arm (<code>lib.rs:46</code>). <code>raw_value</code> is a feature flag only; <code>Cargo.lock</code> did not change.</p>
+</li>
+
+<li class="k-ok" data-k="ok" data-step="3">
+<span class="badge">As planned</span><span class="step">Steps 2–4</span>
+<h3>Newer boards: refused on load, left alone on save</h3>
+<p>Each run loads <code>board.json</code>, adds "Groceries", then saves. The four format-2 fixtures carry a correct digest over their data bytes. <code>v2-envelope-key</code> is <code>v2-add-only</code> plus a top-level <code>signed_by</code>.</p>
+<div class="table-scroll"><table>
+<thead><tr><th>board.json</th><th>Before: load</th><th>Before: save</th><th>Now: load</th><th>Now: save</th></tr></thead>
+<tbody>
+<tr><td>v2-new-command</td><td class="bad"><code>invalid_store</code></td><td class="bad">overwrote it</td><td class="ok"><code>store_too_new</code></td><td class="ok">refused, unchanged</td></tr>
+<tr><td>v2-new-field</td><td class="bad"><code>invalid_store</code></td><td class="bad">overwrote it</td><td class="ok"><code>store_too_new</code></td><td class="ok">refused, unchanged</td></tr>
+<tr><td>v2-envelope-key</td><td class="bad"><code>invalid_store</code></td><td class="bad">overwrote it</td><td class="ok"><code>store_too_new</code></td><td class="ok">refused, unchanged</td></tr>
+<tr><td>v2-add-only</td><td class="bad"><code>version</code></td><td class="bad">overwrote it</td><td class="ok"><code>store_too_new</code></td><td class="ok">refused, unchanged</td></tr>
+<tr><td>v2, over 256 KiB</td><td><code>capacity</code></td><td class="bad">overwrote it</td><td><code>capacity</code></td><td class="ok">refused, unchanged</td></tr>
+<tr><td>v1-board, v1-board.pretty</td><td>loads</td><td>saves</td><td>loads</td><td>saves</td></tr>
+</tbody></table></div>
+<p>What the user now reads, on load and then on save:</p>
+<pre><code>board.json uses journal format 2; this build reads format 1. Open it with a newer build. The file was not changed.
+board.json uses journal format 2, newer than this build writes (up to 1). It was not overwritten.</code></pre>
+<p class="src">Driver runs of the build before step 2 and the build after step 4. Pinned by <code>newer_boards_are_refused_and_never_overwritten</code> (<code>store_tests.rs:113</code>). <code>a_build_reads_every_format_up_to_its_own</code> loads <code>v2-add-only</code> through <code>load_from(.., 2)</code> and refuses it through <code>load_from(.., 1)</code>.</p>
+</li>
+
+<li class="k-ok" data-k="ok" data-step="2">
+<span class="badge">As planned</span><span class="step">Steps 2–4</span>
+<h3>A2 settled: reformatted v1 boards load, edited ones do not</h3>
+<p>The pretty-printed fixture fails the raw digest and passes the re-serialized one (<code>reserialized_v1</code>, <code>store.rs:245</code>), so it still loads. The new test <code>a_reformatted_v1_board_with_an_edited_title_is_corrupt</code> changes <code>Zoë</code> to <code>Zoe</code> in that copy and gets <code>corrupt_store</code>: both digests fail. Format 2 and later accept only the raw digest.</p>
+</li>
+
+<li class="k-ok" data-k="ok" data-step="3">
+<span class="badge">As planned</span><span class="step">Steps 2–4</span>
+<h3>The format-999 test moved exactly as predicted</h3>
+<p>The step 1 file kept its old hash, so after the reorder it hit the digest gate and returned <code>corrupt_store</code>. It is now built by a <code>forge()</code> helper that hashes the data it writes, and it returns <code>store_too_new</code>.</p>
+<div class="table-scroll"><table>
+<thead><tr><th>Case</th><th>Step 1</th><th>Old 999 file, new load</th><th>Now</th></tr></thead>
+<tbody>
+<tr><td>truncated</td><td><code>invalid_store</code></td><td>same</td><td><code>invalid_store</code></td></tr>
+<tr><td>title tampered</td><td><code>corrupt_store</code></td><td>same</td><td><code>corrupt_store</code></td></tr>
+<tr><td>format 999</td><td><code>version</code></td><td class="bad"><code>corrupt_store</code></td><td class="ok"><code>store_too_new</code> (re-forged)</td></tr>
+<tr><td>over 256 KiB</td><td><code>capacity</code></td><td>same</td><td><code>capacity</code></td></tr>
+</tbody></table></div>
+<p class="src"><code>store_tests.rs:240-268</code>. The old file's save is refused too: save checks only the peeked format, not the digest, as A3 planned.</p>
+</li>
+
+<li class="k-ok" data-k="ok" data-step="4">
+<span class="badge">As planned</span><span class="step">Steps 2–4</span>
+<h3>A3 as recommended: a damaged board is replaced</h3>
+<p>A missing, non-JSON or truncated <code>board.json</code> is replaced, so saving still recovers a damaged board (<code>saving_replaces_a_board_that_cannot_be_read</code>). Any I/O error other than "not found" fails the save (<code>refuse_newer</code>, <code>store.rs:213</code>). One exception, an oversized file, is the next entry.</p>
+</li>
+
+<li class="k-fix" data-k="fix" data-step="4">
+<span class="badge">Found in notes review</span><span class="step">Step 4</span>
+<h3>A newer board over 256 KiB was overwritten; save now refuses it</h3>
+<p>The bounded read truncates an oversized file, so the peek failed and save treated the file as damaged. This build never writes past 256 KiB, but a later build that raises <code>MAX_BYTES</code> could. Repro: a 357 KB format-2 board with a valid digest loaded as <code>capacity</code>, and then save replaced it.</p>
+<p>Save now checks the size before peeking (<code>store.rs:219-224</code>). The same run returns, on save:</p>
+<pre><code>capacity: board.json exceeds 256 KiB, so this build cannot tell which build wrote it. It was not overwritten.</code></pre>
+<p class="src">The file is byte-for-byte unchanged afterwards. The oversize case in <code>corrupt_future_and_oversize_files_do_not_change_live_state</code> now also asserts that save is refused and the bytes are kept. Logged as deviation 6.</p>
+</li>
+
+<li class="k-ok" data-k="ok" data-step="3">
+<span class="badge">Not done, as planned</span><span class="step">Steps 2–4</span>
+<h3>No check yet that a format-N file holds only format-N commands</h3>
+<p>While every command is format 1, the check could never fire or be tested. It is left to the Rename task, which brings the first format-2 command.</p>
+</li>
+</ol>
+<p class="muted" id="none" hidden>Nothing logged for this step yet.</p>
+</section>
+
+<section>
+<div class="sh"><h2>Deviations</h2><span class="ct">6, all in steps 2–4</span></div>
+<ol class="devs">
+<li>
+<h3>1 · Steps 2 to 4 landed as one change</h3>
+<dl class="devgrid">
+<dt>Plan said</dt><dd>F: checksum, then format gate, then save refusal, as separate steps.</dd>
+<dt>Code revealed</dt><dd>All three use <code>Peek::parse</code>, and load and the save peek share the bounded <code>read()</code>. Splitting them would have committed intermediate states with no meaning of their own.</dd>
+<dt class="ch">Choice</dt><dd>One change. The order inside load is as planned.</dd>
+</dl>
+</li>
+<li>
+<h3>2 · The strict Envelope stays, with its hash field unused</h3>
+<dl class="devgrid">
+<dt>Plan said</dt><dd>C: Envelope and Journal unchanged and strict.</dd>
+<dt>Code revealed</dt><dd>The peek now checks the digest, so <code>Envelope.sha256</code> would be a field that is never read.</dd>
+<dt class="ch">Choice</dt><dd>Keep <code>deny_unknown_fields</code> for readable formats and rename the field <code>#[serde(rename = "sha256")] _sha256</code> (<code>store.rs:20-23</code>). A v1 file with an extra top-level key is still <code>invalid_store</code>, as before.</dd>
+</dl>
+</li>
+<li>
+<h3>3 · Messages say "format 1" when there is only one</h3>
+<dl class="devgrid">
+<dt>Plan said</dt><dd>D: "this build reads formats 1 to 1".</dd>
+<dt class="ch">Choice</dt><dd>A <code>formats()</code> helper says "format 1" when oldest equals newest and "formats 1 to 2" otherwise (<code>store.rs:75</code>). Load and save keep their own sentences, both built through <code>too_new()</code>. Wording only.</dd>
+</dl>
+</li>
+<li>
+<h3>4 · A v1 file that fails both digest and parse is corrupt_store</h3>
+<dl class="devgrid">
+<dt>Plan said</dt><dd>Nothing for this case.</dd>
+<dt>Code revealed</dt><dd>A format-1 file whose raw digest fails and whose <code>data</code> does not parse as a strict Journal cannot be re-serialized for the fallback.</dd>
+<dt class="ch">Choice</dt><dd><code>corrupt_store</code>, not <code>invalid_store</code>: the digest is the first gate that fails. The same data with a correct digest reaches the strict parse and is <code>invalid_store</code>.</dd>
+</dl>
+</li>
+<li>
+<h3>5 · The size check moved into load_from</h3>
+<dl class="devgrid">
+<dt>Plan said</dt><dd>C: <code>load_from(bytes, newest, session)</code> takes over the body after the read.</dd>
+<dt class="ch">Choice</dt><dd>The 256 KiB check runs first inside <code>load_from</code> (<code>store.rs:197-199</code>), so tests that call it directly cannot skip it.</dd>
+</dl>
+</li>
+<li>
+<h3>6 · An oversized board.json is not replaced</h3>
+<dl class="devgrid">
+<dt>Plan said</dt><dd>A3: save replaces a missing, unparseable or older file; only a peeked newer format refuses.</dd>
+<dt>Code revealed</dt><dd>A file over 256 KiB cannot be peeked, so a newer build's large board counted as damaged and was overwritten.</dd>
+<dt class="ch">Choice</dt><dd>Save returns <code>capacity</code> and keeps the file. A damaged file that large has to be removed by hand; this build could not load it anyway.</dd>
+</dl>
+</li>
+</ol>
+</section>
+
+<section>
+<div class="sh"><h2>Open questions</h2><span class="ct">none open, 2 answered</span></div>
+<div class="q done">
+<h3>Q1 · Keep the v1 fallback digest (plan A2)?</h3>
+<p>Kept. Pretty and reordered v1 boards load; an edited one is <code>corrupt_store</code>; format 2 and later use the raw digest only.</p>
+</div>
+<div class="q done">
+<h3>Q2 · Should save refuse to replace a board.json over 256 KiB?</h3>
+<p>Yes. Save returns <code>capacity</code> and leaves the file; see deviation 6.</p>
+</div>
+</section>
+
+<div class="reply">
+<h2>Your reply</h2>
+<p class="muted">Nothing is waiting on you. Untick any deviation you want revisited, then copy.</p>
+<div class="acks" id="acks">
+<label><input type="checkbox" value="1" checked>1 · Steps 2 to 4 as one change</label>
+<label><input type="checkbox" value="2" checked>2 · Strict Envelope kept, <code>_sha256</code></label>
+<label><input type="checkbox" value="3" checked>3 · "format 1" wording</label>
+<label><input type="checkbox" value="4" checked>4 · Both digest and parse fail: <code>corrupt_store</code></label>
+<label><input type="checkbox" value="5" checked>5 · Size check inside <code>load_from</code></label>
+<label><input type="checkbox" value="6" checked>6 · Oversized board.json not replaced</label>
+</div>
+<label>Anything else<textarea id="extra" placeholder="Optional"></textarea></label>
+<pre id="out" aria-live="polite"></pre>
+<button id="copy" type="button">Copy reply</button>
+</div>
+
+<footer>Grounded in crates/engine/src/store.rs, lib.rs, store_tests.rs and Cargo.toml, crates/engine/tests/fixtures/journal/, the plan's sections A to F, and driver runs of the build before step 2 and the build after step 4.</footer>
+</main>
+<script>
+(function () {
+  var step = null, kind = 'all';
+  var items = document.querySelectorAll('#log > li');
+  var stripBtns = document.querySelectorAll('#strip button');
+  var filterBtns = document.querySelectorAll('#filters button');
+  function apply() {
+    var n = 0;
+    items.forEach(function (li) {
+      var show = (!step || li.dataset.step === step || (step >= '2' && step <= '4' && li.dataset.step >= '2' && li.dataset.step <= '4')) && (kind === 'all' || li.dataset.k === kind);
+      li.hidden = !show; if (show) n++;
+    });
+    var label = step ? (step >= '2' && step <= '4' ? ', steps 2–4' : ', step ' + step) : '';
+    document.getElementById('shown').textContent = n + ' of ' + items.length + ' entries' + label;
+    var none = document.getElementById('none');
+    none.hidden = n > 0;
+    none.textContent = step === '5' ? 'Nothing logged for step 5 yet; it is pending.' : 'Nothing logged of this kind for this step.';
+  }
+  stripBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      step = step === b.dataset.step ? null : b.dataset.step;
+      stripBtns.forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.step === step)); });
+      apply();
+    });
+  });
+  filterBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      kind = b.dataset.k;
+      filterBtns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  apply();
+
+  var out = document.getElementById('out');
+  var names = {};
+  document.querySelectorAll('#acks input').forEach(function (c) { names[c.value] = c.parentNode.textContent.trim(); });
+  function reply() {
+    var lines = ['Re: journal-versioning implementation notes, steps 1 to 4'];
+    var redo = [];
+    document.querySelectorAll('#acks input').forEach(function (c) { if (!c.checked) redo.push(c.value); });
+    if (redo.length === 0) {
+      lines.push('Deviations 1 to 6 accepted as logged. Go ahead with step 5.');
+    } else {
+      lines.push('Accepted the other deviations. Revisit before step 5:');
+      redo.forEach(function (v) { lines.push('- Deviation ' + names[v]); });
+    }
+    var extra = document.getElementById('extra').value.trim();
+    if (extra) lines.push('Also: ' + extra);
+    out.textContent = lines.join('\n');
+  }
+  document.querySelectorAll('#acks input').forEach(function (c) { c.addEventListener('change', reply); });
+  document.getElementById('extra').addEventListener('input', reply);
+  reply();
+  var copy = document.getElementById('copy');
+  copy.addEventListener('click', function () {
+    var t = out.textContent;
+    function done() { copy.textContent = 'Copied'; setTimeout(function () { copy.textContent = 'Copy reply'; }, 1500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, function () { fallback(t); done(); });
+    } else { fallback(t); done(); }
+  });
+  function fallback(t) {
+    var ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>
