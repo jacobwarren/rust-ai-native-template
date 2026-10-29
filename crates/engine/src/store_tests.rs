@@ -23,6 +23,19 @@ impl Drop for Fixture {
         let _ = fs::remove_dir_all(&self.0);
     }
 }
+// Bytes written by the first journal format, reviewed by hand. Never regenerate them.
+const V1: &[u8] = include_bytes!("../tests/fixtures/journal/v1-board.json");
+const V1_PRETTY: &[u8] = include_bytes!("../tests/fixtures/journal/v1-board.pretty.json");
+const V1_STATE: &str = include_str!("../tests/fixtures/journal/v1-board.expected.json");
+
+fn load_bytes(bytes: &[u8]) -> (Fixture, Store, Result<Session>) {
+    let dir = Fixture::new();
+    fs::write(dir.0.join("board.json"), bytes).unwrap();
+    let store = Store::open(&dir.0).unwrap();
+    let mut session = Session::default();
+    let result = store.load(&mut session).map(|()| session);
+    (dir, store, result)
+}
 fn session(title: &str) -> Session {
     let mut s = Session::default();
     s.execute(Command::Add {
@@ -46,6 +59,29 @@ fn roundtrip_preserves_state_journal_and_undo() {
     before.execute(Command::Undo {}).unwrap();
     after.execute(Command::Undo {}).unwrap();
     assert_eq!(after.inspect(), before.inspect());
+}
+
+#[test]
+fn boards_saved_by_the_first_format_still_load() {
+    let expected: serde_json::Value = serde_json::from_str(V1_STATE).unwrap();
+    for bytes in [V1, V1_PRETTY] {
+        let (_dir, _store, loaded) = load_bytes(bytes);
+        let loaded = loaded.unwrap();
+        assert_eq!(loaded.inspect(), expected);
+        // The journal keeps the title as typed; replay trims it under today's rules.
+        assert_eq!(
+            loaded.journal()[0],
+            Command::Add {
+                title: "  Review  ".into()
+            }
+        );
+    }
+    let (dir, store, loaded) = load_bytes(V1);
+    let mut loaded = loaded.unwrap();
+    store.save(&loaded).unwrap();
+    assert_eq!(fs::read(dir.0.join("board.json")).unwrap(), V1);
+    loaded.execute(Command::Undo {}).unwrap();
+    assert_eq!(loaded.inspect()["tasks"][1]["done"], false);
 }
 
 #[test]
@@ -106,14 +142,14 @@ fn corrupt_future_and_oversize_files_do_not_change_live_state() {
     corrupt["data"]["commands"][0]["title"] = serde_json::json!("tampered");
     let mut future: serde_json::Value = serde_json::from_slice(&original).unwrap();
     future["data"]["schema_version"] = serde_json::json!(999);
-    for data in [
-        b"truncated".to_vec(),
-        serde_json::to_vec(&corrupt).unwrap(),
-        serde_json::to_vec(&future).unwrap(),
-        vec![b' '; MAX_BYTES + 1],
+    for (data, code) in [
+        (b"truncated".to_vec(), "invalid_store"),
+        (serde_json::to_vec(&corrupt).unwrap(), "corrupt_store"),
+        (serde_json::to_vec(&future).unwrap(), "version"),
+        (vec![b' '; MAX_BYTES + 1], "capacity"),
     ] {
         fs::write(dir.0.join("board.json"), data).unwrap();
-        assert!(store.load(&mut live).is_err());
+        assert_eq!(store.load(&mut live).unwrap_err().code, code);
         assert_eq!(live.inspect(), before);
     }
 }
