@@ -1,6 +1,6 @@
 #![allow(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
 use serde_json::{Value, json};
-use starter_engine::{Command, Driver, Session, capabilities};
+use starter_engine::{Command, Driver, JOURNAL_FORMAT, Session, capabilities};
 fn call(d: &mut Driver, action: Value) -> Value {
     d.handle(
         json!({"schema_version":1,"id":7,"action":action})
@@ -19,6 +19,9 @@ fn discovery_examples_are_real_commands_and_capture_replays() {
         let command: Command = serde_json::from_value(descriptor["example"].clone()).unwrap();
         assert!(s.clone().execute(command).is_ok(), "{descriptor}");
     }
+    let formats = &capabilities(&s, true)["journal_formats"];
+    assert_eq!(formats["reads"], json!([1]));
+    assert_eq!(formats["writes"], json!([JOURNAL_FORMAT]));
     let mut driver = Driver::default();
     assert_eq!(
         call(

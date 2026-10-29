@@ -1,6 +1,7 @@
 //! Strict adapter protocol. All adapters dispatch through this driver and Session.
 use crate::{
-    Command, Error, MAX_BYTES, MAX_COMMANDS, Result, Session,
+    Command, Error, JOURNAL_FORMAT, MAX_BYTES, MAX_COMMANDS, OLDEST_JOURNAL_FORMAT, Result,
+    Session,
     store::{Store, digest},
 };
 use serde::Deserialize;
@@ -34,6 +35,7 @@ pub fn capabilities(session: &Session, persistence: bool) -> Value {
         "limits":{"request_bytes":MAX_BYTES,"journal_commands":MAX_COMMANDS,"tasks":64,"title_chars":120},
         "methods":["discover","inspect","execute","replay","capture","save","load"],
         "persistence_available":persistence,
+        "journal_formats":{"reads":(OLDEST_JOURNAL_FORMAT..=JOURNAL_FORMAT).collect::<Vec<_>>(),"writes":(1..=JOURNAL_FORMAT).collect::<Vec<_>>()},
         "commands":[
             {"id":"add","example":{"command":"add","title":"Ship a change"},"effect":"Add a task; returns its id"},
             {"id":"complete","example":{"command":"complete","id":1},"effect":"Complete an existing open task"},

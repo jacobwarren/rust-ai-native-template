@@ -42,13 +42,13 @@ the tail is never interpreted as a new command. Output is flushed after each rep
 
 | Method | Inputs | Result and boundary |
 | --- | --- | --- |
-| discover | none | Version, limits, methods and typed command examples |
+| discover | none | Version, limits, methods, journal formats read and written, typed command examples |
 | execute | command | One edit through Session; domain rejection preserves all state |
 | inspect | none | Ordered tasks, next_id, revision, can_undo |
 | capture | none | Snapshot, journal, snapshot_sha256 and application_engine boundary |
 | replay | commands | Rebuild from an empty session; commit only if every command succeeds |
-| save | none | Persist journal to APP_DATA_DIR/board.json |
-| load | none | Validate stored version/checksum, replay, then replace live state |
+| save | none | Persist journal to APP_DATA_DIR/board.json unless it holds a newer or oversized board |
+| load | none | Validate stored checksum and format, replay, then replace live state |
 
 Commands are add {title}, complete {id}, remove {id}, undo {} with the discriminator
 command. Unknown fields at every request/command level fail admission, including
@@ -83,6 +83,32 @@ is running. A missing or corrupt primary file is an explicit error; the driver
 never silently replaces it with empty state. Loading bad data preserves the live
 session. Tests inject errors before/after replacement and exit a child process
 after syncing its staged file, then reopen the last committed state.
+
+### Journal formats
+
+board.json is `{"data":{"schema_version":N,"commands":[...]},"sha256":"..."}`, where
+sha256 is the hex SHA-256 of the data bytes exactly as stored. Every format keeps
+those two keys. Load reads the file (capacity), checks that data and sha256 parse
+while ignoring any other keys (invalid_store), checks the digest (corrupt_store),
+checks the format (store_too_new when newer than this build reads, invalid_store
+below the oldest), then parses strictly (invalid_store) and replays
+(replay_failed). Format 1 also accepts the digest of the re-serialized journal,
+which is what format 1 builds checked, so a reformatted v1 file still loads.
+
+Save writes the lowest format that holds the journal's commands, so a board that
+never used a newer command stays readable by older builds. Undo is journaled, so
+a board that once used a newer command keeps that format. Save refuses with
+store_too_new rather than replace a board.json from a newer build, and with
+capacity rather than replace one over 256 KiB, whose format it cannot read. A
+missing, truncated or unparseable file is replaced as before. discover reports
+the formats under journal_formats.
+
+A new command must name the format that introduced it and raise the format.
+Load replays the journal under today's rules, so a rule change that makes an
+existing journal fail replay must raise the format and keep replaying older
+formats as they were written; otherwise those boards fail with replay_failed.
+Builds from before formats were checked report a newer file as invalid_store or
+version.
 
 APP_DATA_DIR must be private to the operator. The advisory writer lock coordinates
 cooperating instances, not hostile filesystem writers. There is no path sandbox,
