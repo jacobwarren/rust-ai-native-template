@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "base_commit": "0f10071e886738923a6c2525e9f290896267c2a3",
+  "changes": [
+    {
+      "change": {
+        "after_sha256": "502883330aab7a7583a0ab95169deb2cacae01fca959279a075f8917b0407bc5",
+        "before_sha256": "26acb9a8ab68d2c7165ce497fab21dc00725b2a427cea4fe68bbce53eda791b0",
+        "subject": "policy"
+      },
+      "rationale": "Ship project hooks for Claude Code (.claude/settings.json) and Codex (.codex/hooks.json, .codex/rules/default.rules) on by default, replacing the opt-in Codex example's stop gate. scripts/agent-hook.sh guards edits and shell write destinations without Cargo: golden baselines and harness/config.json ask on Claude Code and are refused on Codex, other protected paths get a receipt note, a PR merge asks on Claude Code (refused on Codex) and a force-push is refused on both, and . and .. resolve before a path is tiered; any unexpected guard exit blocks; after an edit it runs cargo check --locked, cargo fmt --check and the built xtask's architecture check. scripts/agent-complete.sh now gates completion claims only. .claude/ and .codex/ join protected(), and Claude Code's per-machine settings.local.json and worktrees/ leave the source fingerprint. Hooks are speed bumps on the agent's machine: CI's check ci and handoff remain the enforcement, and only hosting rules stop a merge. The completion requirement lists the 16 new tests that gate it.",
+      "evidence": [
+        "docs/COMPLETION.md",
+        "xtask/tests/hooks_guard.rs",
+        "xtask/tests/hooks_stop.rs",
+        "xtask/tests/hooks_tree.rs",
+        "harness/task-artifacts/default-hooks/plan.html",
+        "harness/task-artifacts/default-hooks/implementation.html"
+      ],
+      "manual_justification": null
+    }
+  ]
+}

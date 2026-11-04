@@ -56,7 +56,7 @@ hosting-enforcement gap open until that has happened.
 ## Gap transitions and task completion
 
 See [COMPLETION.md](COMPLETION.md) for consequential-transition receipts, task
-reconciliation, task review and opt-in stop hooks. PR CI checks
+reconciliation, task review and the default agent hooks. PR CI checks
 changed task records as well as full verification. Partial handoffs may be valid
 without being complete; open product gaps remain release blockers. An invalid
 gap register blocks release even when local tests pass.

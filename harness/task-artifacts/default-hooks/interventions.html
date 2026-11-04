@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Where to intervene: default hooks</title>
+<style>
+.ask { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); max-width: var(--reading-width); }
+.ask blockquote { margin: var(--space-2) 0 0; font-style: italic; background: none; padding: 0 0 0 var(--space-4); }
+.tag { font-size: var(--text-small); letter-spacing: .08em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+.walk { border-inline-start: 3px solid var(--warning); background: var(--warning-soft); border-radius: 0 var(--control-radius) var(--control-radius) 0; max-width: var(--reading-width); padding: var(--space-4) var(--space-6); margin-block: var(--space-6); }
+.walk p { margin: var(--space-1) 0 0; }
+code { overflow-wrap: anywhere; font-size: .875em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+pre { font-size: .8125rem; line-height: 1.55; margin-block: var(--space-3); background: var(--paper); }
+.c { color: var(--muted); }
+.n { color: var(--danger); font-weight: 650; }
+.y { color: var(--accent); font-weight: 650; }
+sup a { font-size: .75em; text-decoration: none; }
+
+/* spectrum */
+.spectrum { margin: var(--space-8) 0 var(--space-6); }
+.spec-labels, .spec-ticks { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.spec-track { position: relative; height: 52px; }
+.spec-line { position: absolute; left: 0; right: 0; top: 25px; height: 2px; background: linear-gradient(90deg, var(--accent), var(--line) 50%, var(--warning)); }
+.spec-dot { position: absolute; top: 25px; transform: translate(-50%, -50%); width: 30px; height: 30px; min-height: 0; padding: 0; border-radius: 50%; background: var(--surface) !important; color: var(--ink) !important; border: 2px solid var(--muted) !important; font: 650 .75rem var(--font-code); }
+.spec-dot.on { background: var(--accent) !important; color: var(--surface) !important; border-color: var(--accent) !important; }
+
+/* cards */
+.card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-6); margin-block: var(--space-4); scroll-margin-top: var(--space-4); }
+.card.checked { border-color: var(--accent); box-shadow: inset 4px 0 0 var(--accent); }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); }
+.top h3 { margin: 0; flex: 1 1 16rem; font-size: 1.2rem; }
+.num { font-family: var(--font-code); font-size: var(--text-small); color: var(--muted); }
+.effort { font: 650 .75rem var(--font-code); padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); }
+.effort.s { background: var(--accent-soft); color: var(--accent); }
+.effort.m { background: var(--paper); color: var(--ink); }
+.effort.l { background: var(--warning-soft); color: var(--warning); }
+.effort.xl { background: var(--warning); color: var(--surface); border-color: var(--warning); }
+.paths { font: .75rem var(--font-code); color: var(--muted); margin: var(--space-2) 0 0; overflow-wrap: anywhere; }
+.card > p { max-width: var(--reading-width); }
+.found { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 650; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2) var(--space-6); margin: var(--space-4) 0 0; font-size: .9375rem; }
+.grid div { border-top: 1px dashed var(--line); padding-top: var(--space-2); }
+.grid .wide { grid-column: 1 / -1; }
+.grid b { display: block; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.grid .miss b { color: var(--danger); }
+.grid .fp b { color: var(--warning); }
+.foot { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); align-items: center; border-top: 1px solid var(--line); margin-top: var(--space-4); padding-top: var(--space-3); }
+.foot label { margin: 0; display: flex; align-items: center; font-weight: 650; }
+.variants { border-style: dashed; padding: var(--space-3) var(--space-4); margin: var(--space-4) 0 0; }
+.variants legend { font-size: var(--text-small); }
+.variants label { margin-block: var(--space-1); display: flex; gap: var(--space-2); align-items: flex-start; font-size: .9375rem; }
+.variants input { margin-top: .35em; flex: none; }
+.stop td, .stop th { font-size: .875rem; }
+.sub { font-weight: 650; margin-bottom: 0; }
+
+/* reply */
+.final { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-6); margin-top: var(--space-12); }
+.final h2 { margin-top: 0; }
+.row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3); }
+.covered { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-3) 0; }
+.chip { font-size: .75rem; border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; color: var(--muted); background: var(--paper); }
+.chip.on { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); font-weight: 650; }
+.chip.part { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+#reply-text { white-space: pre-wrap; }
+.sources { font-size: var(--text-small); color: var(--muted); }
+.replybar { position: fixed; left: 0; right: 0; bottom: 0; background: var(--ink); color: var(--paper); z-index: 5; }
+.replybar .in { max-width: var(--page-width); margin: 0 auto; padding: var(--space-2) var(--space-6); display: flex; gap: var(--space-4); align-items: center; }
+.replybar .cnt { font: .8125rem var(--font-code); white-space: nowrap; }
+.replybar .cnt b { font-size: 1rem; }
+.replybar .txt { flex: 1; min-width: 0; font: .8125rem var(--font-code); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: .8; }
+.replybar button { min-height: 36px; padding: var(--space-1) var(--space-4); background: var(--surface); color: var(--ink); border-color: var(--surface); }
+body { padding-bottom: 5rem; }
+@media (max-width: 40rem) {
+  .grid { grid-template-columns: 1fr; }
+  .card { padding: var(--space-4); }
+  .spec-dot { width: 24px; height: 24px; font-size: .6875rem; }
+  .spec-labels, .spec-ticks { font-size: .625rem; }
+  .flip thead { display: none; }
+  .flip, .flip tbody, .flip tr, .flip td { display: block; width: 100%; }
+  .flip tr { border: 1px solid var(--line); border-radius: var(--control-radius); margin-bottom: var(--space-3); padding: var(--space-2) var(--space-3); }
+  .flip td { border: 0; padding: var(--space-1) 0 var(--space-1) 7.5rem; position: relative; }
+  .flip td::before { content: attr(data-label); position: absolute; left: 0; width: 7rem; color: var(--muted); font-size: .8125rem; }
+  .flip td:first-child { padding-left: 0; }
+  .flip td:first-child::before { content: none; }
+  .replybar .in { flex-wrap: wrap; gap: var(--space-2); padding: var(--space-2) var(--space-4); }
+  .replybar .txt { order: 3; flex-basis: 100%; }
+}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">default-hooks · brainstorm the intervention · before code</p>
+<h1>Eight places to make the rules run instead of being read</h1>
+<div class="ask">
+  <span class="tag">The prompt</span>
+  <blockquote>Here's the problem: the template's rules on goldens, protected policy files, dependencies, merging and completion are instructions an agent can ignore until CI fails, and the only hooks are an opt-in Codex example that blocks every stop when unconfigured. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate.</blockquote>
+</div>
+
+<p class="lead">From <code>xtask/src</code>, <code>scripts/</code>, CI and both hosts' docs; commands ran in a clean clone. "(03)" cites that card of the blindspot pass.</p>
+
+<div class="walk"><span class="tag">The pattern</span>
+<p>Most of these rules already have an enforcer in <code>xtask</code> that runs last, in CI: <strong>new dependencies</strong> fail <code>ARCH004</code> unless the protected allowlist in <code>harness/config.json</code> changes (<code>checks.rs:68–69</code>), <strong>policy files</strong> need a receipt (<code>transitions.rs:37</code>), and <code>handoff</code> has a <strong>"nothing changed"</strong> path (<code>completion.rs:160</code>). The cheap rungs move those checks to edit time. Only <strong>goldens written by a script</strong>, which no hook sees (03), and <strong>merging</strong>, which happens on the host, need something new.</p>
+</div>
+
+<div class="spectrum" aria-label="Interventions from cheapest to most ambitious">
+  <div class="spec-labels"><span>config only</span><span>authority outside the repo</span></div>
+  <div class="spec-track">
+    <div class="spec-line"></div>
+    <button class="spec-dot secondary" style="left:3%" data-n="1" type="button" title="Permission rules only">1</button>
+    <button class="spec-dot secondary" style="left:16%" data-n="2" type="button" title="Protect .claude/ and .codex/">2</button>
+    <button class="spec-dot secondary" style="left:29%" data-n="3" type="button" title="Session-start context">3</button>
+    <button class="spec-dot secondary" style="left:42%" data-n="4" type="button" title="Read-only goldens">4</button>
+    <button class="spec-dot secondary" style="left:55%" data-n="5" type="button" title="Post-edit feedback">5</button>
+    <button class="spec-dot secondary" style="left:68%" data-n="6" type="button" title="Pre-edit guard">6</button>
+    <button class="spec-dot secondary" style="left:82%" data-n="7" type="button" title="Stop gate on claims">7</button>
+    <button class="spec-dot secondary" style="left:97%" data-n="8" type="button" title="Authority outside the repo">8</button>
+  </div>
+  <div class="spec-ticks"><span>settings</span><span>scripts</span><span>Rust</span><span>host</span></div>
+</div>
+
+<article class="card" id="iv1">
+  <div class="top"><span class="num">#1</span><h3>Permission rules only, no scripts</h3><span class="effort s">S</span></div>
+  <p class="paths">new .claude/settings.json "permissions" · new .codex/rules/default.rules · AGENTS.md:64–66</p>
+  <p><span class="found">Found in code:</span> <code>AGENTS.md:64–66</code> reserves merging for the owner; nothing configures it. Claude denies <code>Bash(gh pr merge *)</code>, <code>Bash(git push --force *)</code> and <code>-f</code>; it asks on <code>Bash(cargo add *)</code> and <code>Edit(/harness/goldens/**)</code><sup><a href="#s1">1</a></sup>. Codex gets the same commands as <code>prefix_rule</code>s<sup><a href="#s5">5</a></sup>. No code runs, so nothing fails open (blindspot 05).</p>
+  <div class="grid">
+    <div><b>Catches</b>The literal spellings. On Claude, also Edit/Write and <code>cp</code>/<code>sed</code> into goldens (blindspot 03's test).</div>
+    <div class="miss"><b>Misses</b><code>+x</code>, <code>--force-with-lease</code>, <code>git -C . push</code>, <code>gh api …/merge</code> (04); Python writes (03); golden paths on Codex, whose rules see commands, not paths.</div>
+    <div class="fp wide"><b>False positives</b>Ask on goldens, never deny: a committed deny can't be lifted (02). Codex loads the rules only once <code>.codex/</code> is trusted<sup><a href="#s5">5</a></sup>.</div>
+  </div>
+  <div class="foot"><label><input type="checkbox" data-n="1"> This resonates</label></div>
+</article>
+
+<article class="card" id="iv2">
+  <div class="top"><span class="num">#2</span><h3>Put <code>.claude/</code> and <code>.codex/</code> under <code>protected()</code></h3><span class="effort s">S</span></div>
+  <p class="paths">xtask/src/transitions.rs:37–61 · xtask/src/repo.rs:22–25</p>
+  <p><span class="found">Found in code:</span> Neither directory is protected (blindspot 02), so a later PR can delete the hooks with no receipt. Claude already prompts before writing <code>.claude/</code> in default and acceptEdits modes; <code>.codex</code> is not on its list<sup><a href="#s2">2</a></sup>, and no prompt binds a PR. With both prefixes added, I created the file Claude writes on "don't ask again":</p>
+<pre><span class="c">$ echo '{"permissions":{"allow":["Bash(ls:*)"]}}' &gt; .claude/settings.local.json</span>
+$ target/debug/xtask gaps --base HEAD
+"errors": ["missing exact transition rationale: policy"],
+"protected_files": [".claude/settings.local.json", "xtask/src/transitions.rs"]   <span class="n">exit 1</span></pre>
+  <p>The tree walk never reads <code>.gitignore</code> (06), so exclude <code>settings.local.json</code> and <code>.claude/worktrees/</code> from the prefix.</p>
+  <div class="grid">
+    <div><b>Catches</b>Weakening a hook reaches CI as a policy change that needs a rationale.</div>
+    <div class="miss"><b>Misses</b>Anything locally, and the agent can write the receipt (03). Authority is #8.</div>
+  </div>
+  <div class="foot"><label><input type="checkbox" data-n="2"> This resonates</label></div>
+</article>
+
+<article class="card" id="iv3">
+  <div class="top"><span class="num">#3</span><h3>A session-start hook that states the tiers and prebuilds the guard</h3><span class="effort s">S</span></div>
+  <p class="paths">SessionStart · AGENTS.md:70–71</p>
+  <p><span class="found">Found in code:</span> Both hosts add a SessionStart hook's plain stdout to the model's context<sup><a href="#s3">3</a>,<a href="#s4">4</a></sup>, so <code>AGENTS.md:70–71</code> becomes a few lines read every session: goldens ask, other <code>protected()</code> paths need a receipt. The same hook can build <code>xtask</code> once to a pinned path, so later hooks never build the tree they guard (05).</p>
+  <div class="grid">
+    <div><b>Catches</b>Nothing is blocked. Fewer first-try mistakes; #5 and the <code>xtask</code> guard get a binary that survives a broken <code>xtask/</code>.</div>
+    <div class="miss"><b>Misses</b>Anything the agent does anyway. On Codex it runs only once the hook is reviewed and trusted (02).</div>
+  </div>
+  <div class="foot"><label><input type="checkbox" data-n="3"> This resonates</label></div>
+</article>
+
+<article class="card" id="iv4">
+  <div class="top"><span class="num">#4</span><h3>Make the goldens read-only on disk</h3><span class="effort s">S</span></div>
+  <p class="paths">harness/goldens/ (3 files) · xtask/src/golden.rs:27–42</p>
+  <p><span class="found">Found in code:</span> Nothing in the harness writes a baseline: <code>golden::compare</code> writes its candidate under <code>target/</code> and stops. After <code>chmod -R a-w harness/goldens</code>, every write from blindspot 03 failed, including the Python one no hook or rule saw. Renaming the directory did not:</p>
+<pre>cp, sed, python3, rm on harness/goldens/kept.json: Permission denied     <span class="y">blocked</span>
+<span class="c">$ git checkout -- harness/goldens/kept.json</span>
+error: unable to unlink old 'harness/goldens/kept.json'                  <span class="n">exit 255</span>
+<span class="c">$ mv harness/goldens harness/g2          # needs write on harness/, not goldens/</span>
+$ mkdir harness/goldens; cp harness/g2/* harness/goldens/; chmod u+w harness/goldens/kept.json
+$ echo '{"rewritten":true}' &gt; harness/goldens/kept.json                 <span class="n">exit 0</span></pre>
+  <div class="grid">
+    <div><b>Catches</b>In-place writes by any process, on both hosts, with no parser.</div>
+    <div class="miss"><b>Misses</b>A rename-and-recreate or <code>chmod u+w</code>; both show in the transcript. A fresh clone is writable until something runs the chmod.</div>
+    <div class="fp wide"><b>False positives</b>Git can't update the goldens either: checkouts, rebases and pulls that touch them fail until <code>chmod -R u+w</code>.</div>
+  </div>
+  <fieldset class="variants">
+    <legend>Who runs the chmod?</legend>
+    <label><input type="radio" name="ro" value="applied by the session-start hook (#3)" checked> <span>#3's session-start hook (on Codex, only once the hook is trusted)</span></label>
+    <label><input type="radio" name="ro" value="a documented setup step, not a hook"> <span>A documented setup step, not a hook</span></label>
+  </fieldset>
+  <div class="foot"><label><input type="checkbox" data-n="4"> This resonates</label></div>
+</article>
+
+<article class="card" id="iv5">
+  <div class="top"><span class="num">#5</span><h3>Post-edit feedback that also flags new dependencies</h3><span class="effort s">S–M</span></div>
+  <p class="paths">PostToolUse · xtask/src/checks.rs:68–69 (ARCH004) · xtask/src/repo.rs:88 · harness/config.json "layers"</p>
+  <p><span class="found">Found in code:</span> The owner's post-edit <code>cargo check</code> must pass <code>--locked</code> or it rewrites the protected <code>Cargo.lock</code> (04). <code>architecture</code> already checks each external crate against its layer's allowlist. With <code>sha2</code> added to <code>crates/app</code>:</p>
+<pre>$ cargo check -q --locked -p starter-app
+error: cannot update the lock file …/Cargo.lock because --locked was passed   <span class="n">exit 101</span>
+$ target/debug/xtask architecture                        <span class="c"># 0.03 s prebuilt</span>
+"ARCH004 starter-app -&gt; sha2: external dependency not allowed for this layer;
+ justify it in an ADR and update the allowlist."                              <span class="n">exit 1</span></pre>
+  <div class="grid">
+    <div><b>Catches</b>Compile errors, formatting and new crates within a second (warm, after a one-line edit: 0.06–0.13 s), on both hosts.</div>
+    <div class="miss"><b>Misses</b>Bash writes, <code>cargo add</code> included, which don't fire PostToolUse on Edit|Write. It can't undo an edit. An allowed crate passes, by design.</div>
+    <div class="fp wide"><b>Cost</b>A path-to-package script calling #3's binary, not <code>cargo xtask</code>. Use <code>cargo fmt --check</code>: how Claude reacts to a formatter rewriting its file is undocumented.</div>
+  </div>
+  <div class="foot"><label><input type="checkbox" data-n="5"> This resonates</label></div>
+</article>
+
+<article class="card" id="iv6">
+  <div class="top"><span class="num">#6</span><h3>A pre-edit guard: shell first, <code>xtask</code> later</h3><span class="effort m">M–L</span></div>
+  <p class="paths">new scripts/agent-guard.sh · xtask/src/artifact_hook.rs:8–32 · transitions::protected</p>
+  <p><span class="found">Found in code:</span> Blindspot 05's first option. A dependency-free script greps the event (Claude's <code>file_path</code>, Codex's <code>apply_patch</code> text or a Bash <code>command</code>) for <code>harness/goldens/</code> and the protected names. It answers Claude with <code>"ask"</code> and Codex with exit 2, since Codex treats <code>ask</code> as a failed hook and proceeds<sup><a href="#s4">4</a></sup>. Never calling Cargo makes <code>onFailure: "block"</code> safe. Later, <code>xtask agent-hook</code> can reuse <code>artifact_hook::run</code>'s <code>apply_patch</code> parsing and CI's own <code>protected()</code>.</p>
+  <div class="grid">
+    <div><b>Catches</b>Edit, Write and apply_patch to goldens and policy files, and Bash commands naming a golden, on both hosts.</div>
+    <div class="miss"><b>Misses</b>Scripts that build the path (03's Python) and MCP writers. The shell copy of <code>protected()</code> drifts; the <code>xtask</code> one needs #3's binary (05).</div>
+    <div class="fp wide"><b>Cost and false positives</b>Shell: grep, since <code>jq</code> isn't on every Linux. <code>xtask</code>: a module, tests, a policy receipt. Both: <code>cat</code> or <code>git diff</code> on a golden needs an allowlist.</div>
+  </div>
+  <fieldset class="variants">
+    <legend>Which guard?</legend>
+    <label><input type="radio" name="guard" value="shell script now, port to xtask agent-hook later" checked> <span>Shell now, <code>xtask agent-hook</code> later</span></label>
+    <label><input type="radio" name="guard" value="shell script only"> <span>Shell script only</span></label>
+    <label><input type="radio" name="guard" value="straight to xtask agent-hook with a pinned binary"> <span>Straight to <code>xtask agent-hook</code></span></label>
+  </fieldset>
+  <div class="foot"><label><input type="checkbox" data-n="6"> This resonates</label></div>
+</article>
+
+<article class="card" id="iv7">
+  <div class="top"><span class="num">#7</span><h3>A Stop hook that gates only finished claims</h3><span class="effort m">M</span></div>
+  <p class="paths">scripts/agent-complete.sh:4–7 · completion.rs:120 handoff · completion.rs:232 agent_stop · examples/codex-artifact-hooks.json:27</p>
+  <p><span class="found">Found in code:</span> Stop fires after every turn, not every task. Today's script blocks question-only and mid-task turns; <code>handoff</code> fixes only the first (01). Two more cases, run on this branch:</p>
+  <div class="table-scroll">
+  <table class="stop flip">
+    <thead><tr><th>Situation</th><th>agent-complete.sh today</th><th>handoff --base main</th><th>Gate only claims</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Situation">Stray <code>.claude/settings.local.json</code>, record <code>partial</code></td><td data-label="today"><span class="n">blocks</span> on the unset variable, or on the partial record's own errors</td><td data-label="handoff"><span class="n">blocks</span> on the record's errors; with no record in the diff, on "changed source requires…" (06)</td><td data-label="claims"><span class="y">stops</span>, prints <code>remaining</code></td></tr>
+      <tr><td data-label="Situation">Record says <code>complete</code></td><td data-label="today">completion gate</td><td data-label="handoff">the same checks, since <code>task()</code> reads the status (<code>completion.rs:44</code>)</td><td data-label="claims">completion gate (<code>completion.rs:234</code>)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>"Gate only claims": find changed records as <code>handoff</code> does (<code>completion.rs:134</code>); run <code>complete</code> only for one marked <code>complete</code>, else exit 0 listing what remains. Drop SubagentStop, which sends subagents back (01).</p>
+  <div class="grid">
+    <div><b>Catches</b>"Done" claims without evidence, the one stop that should be refused.</div>
+    <div class="miss"><b>Misses</b>Stopping halfway without a claim; PR CI's <code>handoff</code> catches that.</div>
+  </div>
+  <fieldset class="variants">
+    <legend>Which Stop command?</legend>
+    <label><input type="radio" name="stop" value="gate only records that claim complete; otherwise exit 0 with the remaining list" checked> <span>Gate only claims (the last column)</span></label>
+    <label><input type="radio" name="stop" value="cargo xtask handoff --base origin/main"> <span><code>handoff --base origin/main</code> as is</span></label>
+    <label><input type="radio" name="stop" value="agent-complete.sh only when HARNESS_TASK_ID is set, else exit 0 with a reminder"> <span><code>agent-complete.sh</code> only when <code>HARNESS_TASK_ID</code> is set</span></label>
+  </fieldset>
+  <div class="foot"><label><input type="checkbox" data-n="7"> This resonates</label></div>
+</article>
+
+<article class="card" id="iv8">
+  <div class="top"><span class="num">#8</span><h3>Put the authority outside the repository</h3><span class="effort xl">L–XL</span></div>
+  <p class="paths">.github/workflows/ci.yml · harness/gaps.json hosting-enforcement · docs/COMPLETION.md:172–175 · .claude/settings.json "sandbox"</p>
+  <p class="sub">Hosting rules</p>
+  <p><span class="found">Found in code:</span> CI can't supply authority: the agent that copied the golden writes the receipt (03), and "local hooks and self-authored receipts cannot enforce that authority" (<code>COMPLETION.md:174</code>). CI runs after a push, so it can't stop a force-push or a merge. A ruleset can: required checks, CODEOWNERS on goldens, <code>xtask/</code>, <code>.claude/</code> and <code>.codex/</code>, owner approval to merge. That closes gap <code>hosting-enforcement</code>, which no file here can configure.</p>
+  <p class="sub">Claude's Bash sandbox (documented, not tested)</p>
+  <p><code>sandbox.filesystem.denyWrite</code> is OS-enforced for sandboxed commands and their children<sup><a href="#s6">6</a></sup>; Codex documents no per-path write deny<sup><a href="#s7">7</a></sup>.</p>
+  <div class="grid">
+    <div><b>Catches</b>Hosting: merges and force-pushes, with real authority. Sandbox: script writes to goldens on Claude.</div>
+    <div class="miss"><b>Misses</b>Hosting: everything during the session. Sandbox: Codex, and Windows outside WSL2.</div>
+    <div class="fp wide"><b>Cost</b>Hosting: per-adopter settings, documented because they can't ship. Sandbox: untried whether Cargo's <code>~/.cargo</code> writes and fetches work in it.</div>
+  </div>
+  <fieldset class="variants">
+    <legend>Which part?</legend>
+    <label><input type="radio" name="auth" value="hosting rules" checked> <span>Hosting rules</span></label>
+    <label><input type="radio" name="auth" value="Claude's Bash sandbox"> <span>Claude's Bash sandbox</span></label>
+    <label><input type="radio" name="auth" value="hosting rules and Claude's Bash sandbox"> <span>Both</span></label>
+  </fieldset>
+  <div class="foot"><label><input type="checkbox" data-n="8"> This resonates</label></div>
+</article>
+
+<section class="final" id="reply">
+  <div class="row"><h2>Your reply</h2><button type="button" id="copy">Copy reply</button></div>
+  <p class="muted">Chips are the owner's concerns: green when your picks close one, amber when they partly do. Three can't go green, since every rung touching them misses a route.</p>
+  <div class="covered" id="covered"></div>
+  <pre id="reply-text"></pre>
+</section>
+
+<ol class="sources">
+  <li id="s1">Claude Code permissions: <a href="https://code.claude.com/docs/en/permissions">code.claude.com/docs/en/permissions</a></li>
+  <li id="s2">Claude Code protected paths: <a href="https://code.claude.com/docs/en/permission-modes#protected-paths">code.claude.com/docs/en/permission-modes#protected-paths</a></li>
+  <li id="s3">Claude Code hooks: <a href="https://code.claude.com/docs/en/hooks">code.claude.com/docs/en/hooks</a></li>
+  <li id="s4">Codex hooks: <a href="https://learn.chatgpt.com/docs/hooks">learn.chatgpt.com/docs/hooks</a></li>
+  <li id="s5">Codex rules: <a href="https://learn.chatgpt.com/docs/agent-configuration/rules">learn.chatgpt.com/docs/agent-configuration/rules</a></li>
+  <li id="s6">Claude Code sandboxing: <a href="https://code.claude.com/docs/en/sandboxing">code.claude.com/docs/en/sandboxing</a></li>
+  <li id="s7">Codex sandboxing: <a href="https://learn.chatgpt.com/docs/sandboxing">learn.chatgpt.com/docs/sandboxing</a></li>
+</ol>
+</main>
+
+<div class="replybar"><div class="in">
+  <span class="cnt"><b id="count">0</b> resonate</span>
+  <span class="txt" id="bar-text">Tick the rungs that resonate; your reply builds below.</span>
+  <button type="button" class="secondary" id="jump">Reply ↓</button>
+</div></div>
+
+<script>
+(function () {
+  var NAMES = {1: "Permission rules only", 2: "Protect .claude/ and .codex/ (with local-file exclusions)", 3: "Session-start context + pinned xtask build", 4: "Read-only goldens", 5: "Post-edit cargo check --locked + architecture", 6: "Pre-edit guard", 7: "Stop gate", 8: "Authority outside the repo"};
+  var RADIO = {4: "ro", 6: "guard", 7: "stop", 8: "auth"};
+  function pick(name) { return document.querySelector("input[name=" + name + "]:checked").value; }
+  function hosting(p) { return p.indexOf(8) >= 0 && pick("auth").indexOf("hosting") >= 0; }
+  function sandbox(p) { return p.indexOf(8) >= 0 && pick("auth").indexOf("sandbox") >= 0; }
+  function has(p, n) { return p.indexOf(n) >= 0; }
+  function never() { return false; }
+  function notes(list) { return list.filter(Boolean).join("; "); }
+  function goldenOpen(p) {
+    return hosting(p) ? "writes that get past aren't blocked locally"
+      : "writes that get past reach CI only as a policy receipt the agent can write itself (blindspot 03)";
+  }
+  // [label, full?, partial note or "", what stays open]
+  // "full" only when a picked rung's own Misses leave no route to the concern.
+  var CONCERNS = [
+    ["Errors after an edit", never, function (p) {
+        return has(p, 5) ? "#5 checks edit-tool writes only; Bash writes get no check" : ""; },
+      function (p) { return (has(p, 5) ? "errors from Bash writes" : "errors") + " arrive as a CI failure after the push"; }],
+    ["Goldens via edit tools", function (p) { return has(p, 6); }, function (p) {
+        return notes([has(p, 1) && "#1 asks on Claude only",
+          has(p, 4) && ("#4 yields to a chmod u+w" + (pick("ro").indexOf("setup") >= 0 ? ", and a clone that skipped the setup step is writable" : "")),
+          hosting(p) && "#8 needs a CODEOWNER to approve the PR"]); },
+      goldenOpen],
+    ["Goldens via scripts", never, function (p) {
+        return notes([has(p, 1) && "#1 asks on cp and sed on Claude only",
+          has(p, 4) && "#4 yields to a rename or chmod u+w",
+          has(p, 6) && "#6 sees only commands that name the path",
+          sandbox(p) && "#8's sandbox is Claude-only and untested",
+          hosting(p) && "#8 needs a CODEOWNER to approve the PR"]); },
+      goldenOpen],
+    ["New dependencies", never, function (p) {
+        return notes([has(p, 5) && "#5 sees edit-tool writes only; cargo add via Bash reaches CI's ARCH004",
+          has(p, 1) && "#1 asks on the literal cargo add spelling only"]); },
+      function () { return "CI's architecture step fails them at the PR (ARCH004)"; }],
+    ["Merge and force-push", hosting, function (p) { return has(p, 1) ? "#1 matches literal spellings only" : ""; },
+      function () { return "only the host can stop these (#8 hosting rules, gap hosting-enforcement)"; }],
+    ["Honest stop", function (p) { return has(p, 7) && pick("stop").indexOf("HARNESS_TASK_ID") < 0; }, function (p) {
+        return has(p, 7) ? "#7 gates only sessions that set HARNESS_TASK_ID" : ""; },
+      function () { return "a done claim goes ungated until PR CI's handoff"; }],
+    ["Hooks can't be quietly removed", hosting, function (p) { return has(p, 2) ? "#2 asks for a receipt the agent can write" : ""; },
+      function () { return "a PR can delete them with no receipt"; }]
+  ];
+  var boxes = [].slice.call(document.querySelectorAll(".foot input[type=checkbox]"));
+  var dots = {};
+  [].forEach.call(document.querySelectorAll(".spec-dot"), function (d) {
+    dots[d.getAttribute("data-n")] = d;
+    d.addEventListener("click", function () {
+      document.getElementById("iv" + d.getAttribute("data-n")).scrollIntoView({behavior: "smooth", block: "start"});
+    });
+  });
+  function render() {
+    var picked = boxes.filter(function (b) { return b.checked; }).map(function (b) { return +b.getAttribute("data-n"); }).sort(function (a, b) { return a - b; });
+    boxes.forEach(function (b) {
+      var n = b.getAttribute("data-n");
+      document.getElementById("iv" + n).classList.toggle("checked", b.checked);
+      dots[n].classList.toggle("on", b.checked);
+    });
+    var cov = document.getElementById("covered");
+    cov.textContent = "";
+    var open = [];
+    CONCERNS.forEach(function (c) {
+      var full = c[1](picked), part = full ? "" : c[2](picked);
+      var s = document.createElement("span");
+      s.className = "chip" + (full ? " on" : part ? " part" : "");
+      s.textContent = (full ? "✓ " : part ? "◐ " : "") + c[0];
+      cov.appendChild(s);
+      if (!full) open.push("- " + c[0].toLowerCase() + (part ? " (partly covered: " + part + ")" : "") + ": " + c[3](picked));
+    });
+    document.getElementById("count").textContent = picked.length;
+    var text;
+    if (!picked.length) {
+      text = "Tick the rungs that resonate; your reply builds below.";
+      document.getElementById("reply-text").textContent = "(nothing ticked yet)";
+    } else {
+      var lines = picked.map(function (n) {
+        return "- #" + n + " " + NAMES[n] + (RADIO[n] ? ": " + pick(RADIO[n]) : "");
+      });
+      text = "These resonate: " + picked.map(function (n) { return "#" + n; }).join(", ") + ". Start with #" + picked[0] + ".";
+      var full = text + "\n" + lines.join("\n");
+      if (open.length) full += "\nStill open with these picks:\n" + open.join("\n");
+      document.getElementById("reply-text").textContent = full;
+    }
+    document.getElementById("bar-text").textContent = text;
+  }
+  document.addEventListener("change", function (e) {
+    if (e.target.matches(".foot input, .variants input")) render();
+  });
+  document.getElementById("jump").addEventListener("click", function () {
+    document.getElementById("reply").scrollIntoView({behavior: "smooth"});
+  });
+  function fallback(t) {
+    var ta = document.createElement("textarea"); ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta);
+  }
+  document.getElementById("copy").addEventListener("click", function () {
+    var b = this, t = document.getElementById("reply-text").textContent;
+    function done() { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy reply"; }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, function () { fallback(t); done(); });
+    } else { fallback(t); done(); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>

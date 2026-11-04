@@ -1,0 +1,22 @@
+# Command rules for Codex in this repository; see docs/COMPLETION.md
+# "Default hooks and CI". Prefix rules match literal spellings only; the
+# PreToolUse guard (scripts/agent-hook.sh) catches other merge and force-push
+# spellings.
+
+prefix_rule(
+    pattern = ["cargo", ["add", "remove"]],
+    decision = "prompt",
+    justification = "Changing dependencies rewrites the protected Cargo.lock; the owner approves new dependencies.",
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "merge"],
+    decision = "forbidden",
+    justification = "Merging the PR needs the owner (AGENTS.md, Operating rules).",
+)
+
+prefix_rule(
+    pattern = ["git", "push", ["--force", "-f", "--force-with-lease"]],
+    decision = "forbidden",
+    justification = "Force-pushing needs the owner (AGENTS.md, Operating rules).",
+)

@@ -105,5 +105,5 @@ persistence commit/failure semantics are in [DRIVER.md](DRIVER.md).
 Task reconciliation and gap transitions run after evidence production, avoiding
 recursive verification. Finalize source-owned records before running CI; emit
 completion output under target. Current acceptance may name tests, workflows,
-or both. The opt-in hook and PR job invoke the same Rust commands. See
+or both. The default stop hook and PR job invoke the same Rust commands. See
 [COMPLETION.md](COMPLETION.md) for the contract and authority limits.

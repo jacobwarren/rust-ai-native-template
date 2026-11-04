@@ -136,8 +136,10 @@ findings or mirror a backlog. Agents investigate and record material shortcoming
 
 Before stopping, review assigned acceptance, check failures, assumptions and
 missing coverage. Record discoveries or explicitly report none in the inspected
-scope. The opt-in scripts/agent-complete.sh hook checks this reconciliation and
-current evidence; it does not launch a broad audit or require new gaps.
+scope. The default stop hook (scripts/agent-complete.sh) checks this reconciliation and
+current evidence when a record claims completion; it does not launch a broad
+audit or require new gaps. Default Claude Code and Codex hooks also guard golden
+baselines and policy files; see docs/COMPLETION.md "Default hooks and CI".
 
 ```sh
 mkdir -p target/verification

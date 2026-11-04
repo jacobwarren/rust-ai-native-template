@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Default hooks: implementation notes</title>
+<style>
+.eyebrow { display: flex; align-items: center; gap: var(--space-3); }
+.prompt { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); }
+.prompt blockquote { background: none; border: 0; padding: 0; font-style: italic; max-width: var(--reading-width); }
+.prompt .copy { position: absolute; top: var(--space-4); right: var(--space-4); }
+@media (max-width: 40rem) { .prompt .copy { position: static; margin-top: var(--space-3); } }
+button.small { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+button.secondary { background: var(--surface); color: var(--accent); border-color: var(--accent); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block: var(--space-6); }
+.chip { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: var(--space-1) var(--space-4); font-size: var(--text-small); }
+.chip b { color: var(--accent); }
+.chip.warn b { color: var(--warning); }
+code { overflow-wrap: anywhere; } p code, li code, td code, .v code { font-size: .85em; }
+.intro { color: var(--muted); max-width: var(--reading-width); }
+pre.code { background: var(--ink); color: #e9efe9; border: 0; font-size: .78rem; line-height: 1.45; margin: var(--space-3) 0 0; }
+pre.code .c { color: #9fb5ad; }
+pre.code mark { background: rgba(255, 216, 168, .2); color: #ffd8a8; }
+.dev { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--warning); border-radius: var(--radius); padding: var(--space-3) var(--space-4) var(--space-4); margin-block: var(--space-4); }
+.dev.open { border-left-color: var(--danger); }
+.dev h3 { margin: var(--space-1) 0 var(--space-3); }
+.badge { display: inline-block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 650; border-radius: var(--control-radius); padding: 2px var(--space-2); }
+.b-dev { background: var(--warning); color: var(--surface); }
+.b-plan { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); }
+.b-disc { background: var(--paper); color: var(--muted); border: 1px solid var(--line); }
+.b-you { background: var(--ink); color: var(--surface); }
+.b-todo { background: var(--surface); color: var(--danger); border: 1px dashed var(--danger); }
+.grid { display: grid; grid-template-columns: 11rem minmax(0, 1fr); border: 1px solid var(--line); border-radius: var(--control-radius); overflow: hidden; font-size: var(--text-small); }
+.grid > div { padding: var(--space-2) var(--space-3); line-height: 1.5; border-top: 1px solid var(--line); }
+.grid > div:nth-child(-n+2) { border-top: 0; }
+.grid .k { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 650; color: var(--warning); background: var(--warning-soft); }
+.grid .k.ok { color: var(--accent); background: var(--accent-soft); }
+.grid .v.ok { font-weight: 600; }
+@media (max-width: 40rem) { .grid { grid-template-columns: minmax(0, 1fr); } .grid > div:nth-child(2) { border-top: 1px solid var(--line); } .grid .k { padding-bottom: var(--space-1); } }
+.filters { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block: var(--space-4); }
+.filters button { min-height: 36px; padding: var(--space-1) var(--space-4); border-radius: 999px; background: var(--surface); color: var(--ink); border-color: var(--line); font-size: var(--text-small); }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.slice { margin-top: var(--space-8); font-size: 1.15rem; display: flex; gap: var(--space-3); align-items: baseline; flex-wrap: wrap; }
+.slice small { font-weight: 400; }
+.entry { display: grid; grid-template-columns: 1.1rem minmax(0, 1fr); gap: var(--space-3); }
+.entry .rail { position: relative; }
+.entry .rail::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--line); transform: translateX(-50%); }
+.entry .dot { position: absolute; left: 50%; top: .55rem; width: .7rem; height: .7rem; border-radius: 50%; transform: translateX(-50%); background: var(--line); border: 2px solid var(--paper); }
+.entry[data-t="plan"] .dot { background: var(--accent); } .entry[data-t="disc"] .dot { background: var(--muted); } .entry[data-t="you"] .dot { background: var(--ink); } .entry[data-t="todo"] .dot { background: var(--surface); box-shadow: 0 0 0 2px var(--danger); }
+.entry .body { padding-bottom: var(--space-6); min-width: 0; }
+.entry h4 { margin: var(--space-1) 0; font-size: 1rem; }
+.entry p { margin: var(--space-1) 0 0; font-size: .95rem; max-width: var(--reading-width); }
+.entry[hidden] { display: none; }
+.unused { border: 1px dashed var(--danger); border-radius: var(--radius); padding: var(--space-4) var(--space-6); background: var(--surface); }
+.unused ul { padding-left: 1.2rem; margin: var(--space-2) 0 0; } .unused li { margin-bottom: var(--space-2); font-size: .95rem; }
+table.runs td, table.runs th { font-size: var(--text-small); padding-block: var(--space-2); }
+table.runs tbody tr { cursor: pointer; }
+table.runs tbody tr:hover, table.runs tbody tr[aria-selected="true"] { background: var(--accent-soft); }
+table.runs td.cmd code { font-size: .8rem; white-space: pre-wrap; }
+td.o { white-space: nowrap; font-weight: 650; }
+.o-ask { color: var(--warning); } .o-block { color: var(--danger); } .o-note { color: var(--accent); } .o-allow { color: var(--muted); font-weight: 400; }
+tr.gap td.cmd::after { content: "known gap"; margin-left: var(--space-2); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--danger); border: 1px solid var(--danger); border-radius: var(--control-radius); padding: 0 var(--space-1); }
+#msg { font-size: var(--text-small); margin-top: var(--space-3); }
+#msg b { display: block; margin-bottom: var(--space-1); }
+.reply label { display: flex; gap: var(--space-2); align-items: flex-start; margin-block: var(--space-2); }
+.reply label input { margin-top: .35rem; }
+.reply label.own { display: block; margin-top: var(--space-4); }
+.reply textarea { min-height: 4rem; }
+#replyText { white-space: pre-wrap; font-size: var(--text-small); }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">default-hooks · implementation notes · during the build</p>
+<h1>Default hooks: implementation notes</h1>
+
+<div class="prompt">
+  <p class="eyebrow">The prompt</p>
+  <blockquote id="thePrompt">Keep implementation notes as you build default project hooks for Claude Code and Codex in this template. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going.</blockquote>
+  <button class="small secondary copy" type="button" data-copy="thePrompt">Copy prompt</button>
+</div>
+
+<p class="lead">All three slices are built: the policy list, a guard before every edit and shell command, and a post-edit check plus a claims-only stop gate on both hosts. Eight deviations from the plan. Three are stricter. One corrects a plan reason you approved. Three were caught after they were built and are now fixed: a missing stale-binary warning, a rule that refused ordinary writes outside the repository, and a script bug that could fail open on Codex. One the owner asked for after review: a PR merge asks on Claude Code instead of being refused, while a force-push stays refused.</p>
+
+<div class="chips">
+  <span class="chip"><b>3 of 3</b> slices built</span>
+  <span class="chip warn"><b>8</b> deviations</span>
+  <span class="chip"><b>19</b> hook tests pass: the plan's 18 and one for Deviation 7</span>
+  <span class="chip"><b>45–70 ms</b> per guard call · <b>~1 s</b> per post-edit check</span>
+  <span class="chip"><b>1</b> for you</span>
+</div>
+
+<h2 id="deviations">Deviations</h2>
+
+<div class="dev" id="d1">
+  <span class="badge b-dev">Deviation 1 · slice 2 · stricter</span>
+  <h3>A shell write gets the same tier as an edit, not only the golden tier</h3>
+  <div class="grid">
+    <div class="k">Plan said</div><div class="v">A4: a Bash command is a golden write, a mention or a merge. The test table expects a heredoc into <code>xtask/tests/hooks.rs</code> that quotes a goldens path to print <code>{}</code>.</div>
+    <div class="k">Code does</div><div class="v">The shell parser's destinations go through the same <code>decide()</code> as edit paths (<code>scripts/agent-hook.sh:269–275</code>). <code>sed -i s/a/b/ harness/config.json</code> asks on Claude and is refused on Codex. A shell write to any protected path gets the receipt note.</div>
+    <div class="k">Why</div><div class="v">The allowlist ask is an <code>Edit(…)</code> rule (<code>.claude/settings.json:7</code>), and no shell command reaches an <code>Edit(…)</code> rule. Blindspot 03 showed the same for <code>cp</code> onto a golden. With goldens alone tiered, <code>sed -i</code> could widen a dependency allowlist without asking.</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">Each destination gets its strictest tier, exactly as for an edit. The test's heredoc fixture moved to <code>crates/app/tests/fixture.rs</code> (<code>xtask/tests/hooks_guard.rs:202</code>).</div>
+    <div class="k">Revisit</div><div class="v">Notes never block. If shell writes to <code>xtask/</code> make them noisy, narrow shell writes to golden and allowlist.</div>
+  </div>
+</div>
+
+<div class="dev" id="d2">
+  <span class="badge b-dev">Deviation 2 · slice 2 · stricter</span>
+  <h3>The error trap reaches every function, so paths travel as strings, never through a pipe</h3>
+  <div class="grid">
+    <div class="k">Plan said</div><div class="v">D: <code>set -u</code> and <code>trap '… exit 2' ERR</code>, never bare <code>set -e</code>.</div>
+    <div class="k">Code does</div><div class="v"><code>set -uE</code> in both scripts (<code>agent-hook.sh:7</code>, which now also has <code>-f</code>, see Deviation 6; <code>agent-complete.sh:11</code>). Paths go to <code>decide()</code> one per line through a here-doc (<code>agent-hook.sh:134–155</code>).</div>
+    <div class="k">Why</div><div class="v">Without <code>-E</code>, functions don't inherit the trap. In a repro, a <code>false</code> inside a function let the script carry on to exit 0, which fails open. The first version with <code>-E</code> piped paths into <code>decide</code>. The pipe ran it in a subshell, so its deliberate <code>exit 2</code> became a failed pipeline in the parent, and the trap added "internal error" to every block.</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">The trap stays fail-closed everywhere, and every deliberate exit runs in the main shell. Slice 3 follows the same rule: <code>try()</code> captures Cargo's status with <code>&amp;&amp; code=0 || code=$?</code> (<code>:295–304</code>).</div>
+    <div class="k">Revisit</div><div class="v">If someone brought the pipe back, no test would fail, because a block still exits 2 with its reason first. The trap also left a gap: <code>set -u</code> aborts on an unset variable without running it. Deviation 7 closes that gap.</div>
+  </div>
+</div>
+
+<div class="dev" id="d3">
+  <span class="badge b-dev">Deviation 3 · plan corrected before slice 1</span> <span class="badge b-you">For you</span>
+  <h3>The architecture check also runs after Rust edits, not only after manifest edits</h3>
+  <div class="grid">
+    <div class="k">Plan said</div><div class="v">In the version you approved, A5 ran <code>xtask architecture</code> only after <code>Cargo.toml</code>, <code>Cargo.lock</code> or <code>harness/config.json</code> edits, because the check "reads only <code>cargo metadata</code>".</div>
+    <div class="k">Code does</div><div class="v">A <code>.rs</code> edit also sets <code>arch=1</code> (<code>agent-hook.sh:323–324</code>). This is Q6 as you first answered it.</div>
+    <div class="k">Why</div><div class="v">The reason in the plan was false. <code>architecture()</code> reports <code>SIZE001</code> for any <code>.rs</code> file over 400 lines (<code>xtask/src/checks.rs:76–90</code>). It caught this task: the first <code>check fast</code> failed on "SIZE001 xtask/tests/hooks.rs: 610 lines exceeds 400".</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">Run the check after Rust edits too. A 450-line file now fails at edit time, not at CI.</div>
+  </div>
+</div>
+
+<div class="dev" id="d4">
+  <span class="badge b-dev">Deviation 4 · slice 3 · stricter</span>
+  <h3>The post-edit check compiles tests too</h3>
+  <div class="grid">
+    <div class="k">Plan said</div><div class="v">A5: <code>cargo check -q --locked -p PKG</code>.</div>
+    <div class="k">Code does</div><div class="v">It adds <code>--all-targets --message-format short</code> (<code>agent-hook.sh:334</code>, <code>:337</code>).</div>
+    <div class="k">Why</div><div class="v">An edit under <code>crates/*/tests/</code> resolves to its crate, but a plain <code>cargo check</code> never compiles integration tests, so their errors would go unreported. On a type error, the observed output names both the <code>lib</code> and the <code>lib test</code> targets.</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">Check every target of the crate that was edited. A warm no-op edit takes 0.9–1.0 s.</div>
+  </div>
+</div>
+
+<div class="dev" id="d5">
+  <span class="badge b-dev">Deviation 5 · slice 3 · caught by these notes, fixed</span>
+  <h3>When xtask can't be rebuilt, the check now says so</h3>
+  <div class="grid">
+    <div class="k">Plan said</div><div class="v">A5: when <code>cargo build --locked -p xtask</code> is refused, the older binary still runs, and "the report says it may predate this branch's <code>xtask/</code> edits".</div>
+    <div class="k">Code did</div><div class="v">The first slice-3 version threw away the build's failure with <code>|| true</code> and ran whatever binary existed, without comment. If there was no binary, it skipped <code>architecture</code> without saying so. These notes flagged both.</div>
+    <div class="k">Code does</div><div class="v">A failed build now sets <code>built=0</code> (<code>agent-hook.sh:341–342</code>). If the check fails on the old binary, the report ends with the caveat (<code>:345–348</code>). With no binary at all, the report says "xtask architecture was not checked: xtask could not be built." (<code>:349–351</code>). <code>post_edit_check_uses_the_built_xtask_when_the_lock_is_stale</code> asserts both messages.</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">Report the stale binary, as the plan said. Observed after adding <code>rand</code> to <code>crates/app/Cargo.toml</code>: the <code>--locked</code> error, then <code>ARCH004 starter-app -&gt; rand</code>, then "(xtask could not be rebuilt, so this architecture result comes from an older binary that may predate this branch's xtask/ edits.)"</div>
+  </div>
+</div>
+
+<div class="dev" id="d6">
+  <span class="badge b-dev">Deviation 6 · after slice 3 · fixed</span>
+  <h3>A <code>..</code> path is resolved, not refused</h3>
+  <div class="grid">
+    <div class="k">Plan said</div><div class="v">D: "Paths outside the root pass, and <code>..</code> is blocked." Slice 2 refused every path containing <code>..</code> with "agent-hook will not judge a path containing '..'".</div>
+    <div class="k">Code did</div><div class="v">The rule refused ordinary writes outside the repository. The live guard blocked an agent's <code>cp</code> into a scratch directory. Run against the slice-2 script, <code>cp x ../outside.txt</code> exits 2 on both hosts. So does <code>rm ../harness/goldens/kept.json</code> from <code>crates/</code>, but with the traversal message rather than the golden one.</div>
+    <div class="k">Code does</div><div class="v"><code>normalize()</code> resolves <code>.</code> and <code>..</code> by text alone, without reading the disk (<code>agent-hook.sh:92–103</code>). <code>relative()</code> resolves a relative path against the event's <code>cwd</code> and then strips the root spellings (<code>:105–120</code>). <code>set -uEf</code> turns globbing off, so a path splits on <code>/</code> safely. <code>guard_reads_every_patch_path_and_blocks_what_it_cannot_read</code> asserts the three new cases (<code>hooks_guard.rs:70–86</code>).</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">The block existed to stop traversal tricks. Resolving the path keeps that protection, because the resolved path is what gets tiered. <code>crates/../harness/goldens/kept.json</code> and <code>cp x ../&lt;checkout&gt;/harness/goldens/kept.json</code> both ask on Claude and exit 2 on Codex, while <code>cp x ../outside.txt</code> passes, as plan D intended.</div>
+    <div class="k">Revisit</div><div class="v">Resolution never reads the disk, so a symlink inside the checkout that points at <code>harness/goldens</code> is not followed. That was also true before.</div>
+  </div>
+</div>
+
+<div class="dev" id="d7">
+  <span class="badge b-dev">Deviation 7 · after slice 3 · fixed</span>
+  <h3>A guard bug now blocks on Codex too</h3>
+  <div class="grid">
+    <div class="k">Plan said</div><div class="v">D: the <code>ERR</code> trap turns any internal failure into exit 2. For a crash or timeout, the plan relied on Claude Code's <code>onFailure: "block"</code>, and accepted that Codex fails open.</div>
+    <div class="k">Code did</div><div class="v"><code>set -u</code> aborts on an unset variable without running the <code>ERR</code> trap. With an <code>echo "$undefined_variable"</code> injected, the slice-2 guard exits 1 with "unbound variable", and <code>bash -c</code> exits 127. Codex lets the call through on any exit other than 0 or 2. Claude Code's <code>onFailure</code> was the only thing catching this kind of bug.</div>
+    <div class="k">Code does</div><div class="v">An <code>EXIT</code> trap turns every exit other than 0 or 2 into exit 2 with "internal error" (<code>agent-hook.sh:9–11</code>). With the same injection, the guard now exits 2 on both hosts, under Homebrew bash 5.3 and macOS <code>/bin/bash</code> 3.2. <code>guard_fails_closed_on_an_internal_error</code> asserts this (<code>hooks_guard.rs:272–290</code>).</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">Fail closed. Only a guard that cannot start or times out still passes on Codex, as the docs now say.</div>
+    <div class="k">Found by CI</div><div class="v">The PR's macOS job runs macOS <code>/bin/bash</code> 3.2, where <code>set -E</code> runs the <code>ERR</code> trap inside a <code>$(…)</code> even when the caller guards it with <code>||</code>. A refused claim in <code>agent-complete.sh</code> was reported as "could not run (exit 2)", and the guard printed a stray "internal error" outside a checkout. <code>agent-complete.sh</code> drops <code>-E</code> (it has no functions), and the guard's two <code>git</code> probes end in <code>|| true</code> inside the substitution. Local runs had used Homebrew bash 5.3, which does not do this.</div>
+    <div class="k">Revisit</div><div class="v"><code>agent-complete.sh</code> keeps only its <code>ERR</code> trap. A stop gate that failed closed on its own bug would trap every turn, and a false claim it misses still fails at PR CI.</div>
+  </div>
+</div>
+
+<div class="dev" id="d8">
+  <span class="badge b-dev">Deviation 8 · after review · owner's call</span>
+  <h3>A PR merge asks on Claude Code; a force-push stays refused</h3>
+  <div class="grid">
+    <div class="k">Plan said</div><div class="v">A4 and the settled defaults: deny <code>gh pr merge</code>, <code>gh api …/merge</code> and every force-push spelling, refused on both hosts, with literal deny rules in <code>.claude/settings.json</code>.</div>
+    <div class="k">Code did</div><div class="v">The guard exited 2 on both hosts for both, and deny rules cannot be lifted from <code>settings.local.json</code>. A Claude Code session could not merge even when the owner asked it to, as the owner had done for the previous PR.</div>
+    <div class="k">Code does</div><div class="v">The shell parser now tells a merge (<code>gh pr merge</code>, <code>gh api …/merge</code>) from a force-push. On Claude Code a merge gets <code>permissionDecision: "ask"</code>, and the owner moved <code>Bash(gh pr merge *)</code> from <code>deny</code> to <code>ask</code>; Claude Code's auto-mode check refused the agent's own edit of that file as a self-permission change. A force-push is still refused on both hosts and its three deny rules stay. Codex, which cannot ask, refuses both, and its <code>forbidden</code> rules are unchanged.</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">A merge is reversible and recorded, and AGENTS.md asks for the owner's say-so, which the prompt gives. A force-push rewrites history, so it stays a hard stop. Chosen by the owner after reviewing the PR.</div>
+  </div>
+</div>
+
+<h2 id="slices">What each slice taught</h2>
+<div class="filters" role="group" aria-label="Filter entries">
+  <button type="button" data-f="all" aria-pressed="true">All</button>
+  <button type="button" data-f="plan" aria-pressed="false">As planned</button>
+  <button type="button" data-f="disc" aria-pressed="false">Discoveries</button>
+</div>
+
+<h3 class="slice">Slice 1 · tree and policy list</h3>
+
+<div class="entry" data-t="plan"><div class="rail"><span class="dot"></span></div><div class="body">
+  <span class="badge b-plan">As planned</span>
+  <h4>Two consts, and a host-local skip matched by full path</h4>
+<pre class="code"><span class="c">// xtask/src/repo.rs:18, :27–35</span>
+const HOST_LOCAL: [&amp;str; 2] = [".claude/settings.local.json", ".claude/worktrees"];
+            let rel = path.strip_prefix(base)?.to_string_lossy().replace('\\', "/");
+                <mark>|| HOST_LOCAL.contains(&amp;rel.as_str())</mark></pre>
+  <p>The same name at <code>docs/.claude/settings.local.json</code> still changes <code>source_sha256</code> and fails handoff (<code>hooks_tree.rs:24–28</code>). The parity test reads the guard's two list lines by prefix (<code>transitions.rs:209–225</code>), so the guard keeps its lists as two shell variables rather than the <code>tier()</code> case list the plan pictured. The test compares order too.</p>
+</div></div>
+
+<h3 class="slice">Slice 2 · the guard on both hosts</h3>
+
+<div class="entry" data-t="disc"><div class="rail"><span class="dot"></span></div><div class="body">
+  <span class="badge b-disc">Discovery</span>
+  <h4>On a real host, the note reached the agent building the guard</h4>
+  <p>Claude Code picked up <code>.claude/settings.json</code> mid-session as soon as the file was in the working tree. On the build's own <code>cat &gt;&gt; xtask/tests/hooks.rs</code>, the agent read "PreToolUse:Bash hook additional context: xtask/tests/hooks.rs is a protected policy file…". The plan had left "how a host shows the note" untested. This settles it for Claude Code. Codex is still unobserved.</p>
+</div></div>
+
+<div class="entry" data-t="disc"><div class="rail"><span class="dot"></span></div><div class="body">
+  <span class="badge b-disc">Discovery</span>
+  <h4>Codex rules catch literal spellings; the guard catches the rest</h4>
+<pre class="code"><span class="c">$ codex execpolicy check --rules .codex/rules/default.rules -- CMD   (codex-cli 0.161.0)</span>
+cargo add serde               prompt
+gh pr merge 3                 forbidden
+git push --force origin x     forbidden
+<mark>git -C . push --force         (no rule)       guard: exit 2 on both hosts</mark>
+<mark>git push origin +x            (no rule)       guard: exit 2 on both hosts</mark></pre>
+  <p>The guard skips git's global <code>-C</code>/<code>-c</code> options. It treats <code>--force*</code>, a short cluster containing <code>f</code>, or a <code>+refspec</code> as a force-push (<code>agent-hook.sh:181–191</code>).</p>
+</div></div>
+
+<div class="entry" data-t="disc"><div class="rail"><span class="dot"></span></div><div class="body">
+  <span class="badge b-disc">Discovery</span>
+  <h4>One root, four spellings. Codex finds the script through Git</h4>
+  <p>On macOS the event's <code>cwd</code> was <code>/var/folders/…</code> while Git reported <code>/private/var/folders/…</code>. <code>relative()</code> accepts four spellings (<code>:87–120</code>). Codex has no <code>$CLAUDE_PROJECT_DIR</code>, so its hook command locates the script with <code>$(git rev-parse --show-toplevel)</code> (<code>.codex/hooks.json:9</code>). Outside a checkout that becomes <code>bash /scripts/agent-hook.sh</code>, which exits 127, a non-blocking error. Codex fails open there, as interview Q2 expected.</p>
+</div></div>
+
+<h3 class="slice">Slice 3 · post-edit check and claims-only stop</h3>
+
+<div class="entry" data-t="plan"><div class="rail"><span class="dot"></span></div><div class="body">
+  <span class="badge b-plan">As planned</span>
+  <h4>The stop gate greps for a claim and lets the existing gate judge it</h4>
+<pre class="code"><span class="c"># scripts/agent-complete.sh:33, :45–47</span>
+CLAIM='"status"[[:space:]]*:[[:space:]]*"complete"'
+  out=$($xtask complete --task "$id" --base "$base" --report "$report" 2&gt;&amp;1) &amp;&amp; code=0 || code=$?
+  <mark>if [ "$code" -eq 1 ] &amp;&amp; [ "$(printf '%s\n' "$out" | head -n 1)" = "{" ]; then</mark>   <span class="c"># refused; else: could not run</span>
+<span class="c">$ stop, record partial                          → exit 0 in 0.43 s, no Cargo
+$ stop, same record set to "complete"           → exit 2 in 2.7 s:</span>
+Completion claim refused: harness/tasks/default-hooks.json says complete, but the completion gate failed:
+  "review.acceptance: Did any assigned acceptance criterion remain unmet? …"
+  "task HTML artifact: missing buy-in.html; see docs/ARTIFACTS.md"</pre>
+  <p><code>task_record::tests::stop_claim_pattern_matches_parsed_status</code> runs the script's own <code>CLAIM</code> through <code>grep</code> against every record, in compact, pretty-printed and spaced JSON. A stub xtask that exits 101 turns a claim into "could not run (exit 101)" (<code>hooks_stop.rs:46–64</code>).</p>
+</div></div>
+
+<div class="entry" data-t="disc"><div class="rail"><span class="dot"></span></div><div class="body">
+  <span class="badge b-disc">Discovery</span>
+  <h4><code>CARGO_TARGET_DIR</code> is how the check finds xtask, and it misled the tests</h4>
+  <p>The check runs <code>${CARGO_TARGET_DIR:-$root/target}/debug/xtask</code> (<code>agent-hook.sh:340</code>). The <code>check fast</code> profile sets that variable for each run, so two post-edit tests found the repository's real xtask instead of the fixture's stub. The helper now removes it (<code>support/hooks.rs:27–28</code>). In real use, the same variable is what points the hook at the right binary.</p>
+</div></div>
+
+<div class="entry" data-t="disc"><div class="rail"><span class="dot"></span></div><div class="body">
+  <span class="badge b-disc">Discovery</span>
+  <h4>Building hooks while they run</h4>
+  <p>Once the Stop entry existed in the working tree, the stop gate ran at the end of every turn of the session building it. Every shell write to <code>xtask/</code> or <code>scripts/</code> printed the receipt note. To avoid the self-lockout that plan D warned about, both scripts were edited as scratch copies, checked with <code>bash -n</code>, and copied into place. One process slip: a test-splitting script deleted <code>xtask/tests/hooks.rs</code> before the split had worked, and the file was restored from Git.</p>
+</div></div>
+
+<h2 id="runs">Guard runs, observed</h2>
+<p class="intro">Hand-written events against the guard in a fresh Git repository on macOS. For edit rows, Claude gets <code>Edit</code> and Codex gets <code>apply_patch</code>. Click a row to see what the agent reads.</p>
+<div class="table-scroll"><table class="runs" id="runs">
+<thead><tr><th>Event</th><th>Claude Code</th><th>Codex</th><th>Why</th></tr></thead>
+<tbody></tbody></table></div>
+<output id="msg" aria-live="polite"></output>
+
+<h2 id="reply">Your reply</h2>
+<div class="reply">
+  <p class="intro">Tick what you'd change. Anything you leave unticked stands as built.</p>
+  <label><input type="checkbox" data-r="D3: run xtask architecture only after Cargo.toml, Cargo.lock or harness/config.json edits, accepting that SIZE001 surfaces at CI."><span>Go back to architecture only after manifest edits (Deviation 3)</span></label>
+  <label><input type="checkbox" data-r="D1: narrow shell writes to the golden and allowlist tiers; drop the receipt note on shell writes to other protected paths."><span>Narrow shell writes to golden and allowlist (Deviation 1)</span></label>
+  <label><input type="checkbox" data-r="D2: add a guard test that every block's stderr is exactly one line with no 'internal error', so a reintroduced pipe fails a test."><span>Add a test that a block's stderr is one line (Deviation 2)</span></label>
+  <label><input type="checkbox" data-r="D6: refuse any path containing .. again, as plan D said, even for writes outside the repository."><span>Refuse <code>..</code> paths again (Deviation 6)</span></label>
+  <label><input type="checkbox" data-r="D4: drop --all-targets from the post-edit cargo check."><span>Drop <code>--all-targets</code> from the post-edit check (Deviation 4)</span></label>
+  <label class="own">Anything else<textarea id="replyOwn"></textarea></label>
+  <output id="replyText"></output>
+  <p><button type="button" id="copyReply">Copy reply</button></p>
+</div>
+
+<footer>default-hooks · implementation notes · builds on the plan and feeds the buy-in doc</footer>
+</main>
+
+<script>
+(function () {
+  function copy(text, btn) {
+    var old = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = old; }, 1500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); done(); } catch (e) {} document.body.removeChild(ta);
+    }
+  }
+  document.querySelectorAll("[data-copy]").forEach(function (b) {
+    b.addEventListener("click", function () { copy(document.getElementById(b.getAttribute("data-copy")).textContent, b); });
+  });
+
+  var filters = document.querySelectorAll("[data-f]"), entries = document.querySelectorAll(".entry");
+  filters.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var f = b.getAttribute("data-f");
+      filters.forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
+      entries.forEach(function (e) { e.hidden = !(f === "all" || e.getAttribute("data-t") === f); });
+    });
+  });
+
+  var G = "[ask] harness/goldens/kept.json is a golden baseline. Approve only a reviewed baseline change; the branch will also need a policy transition receipt.";
+  var GB = "Blocked: harness/goldens/kept.json is a golden baseline and Codex hooks cannot ask. Fix the implementation, or ask the owner to change the baseline by hand or from Claude Code.";
+  var DA = "[ask] harness/config.json holds the per-layer dependency allowlists that ARCH004 checks. Widening one adds a dependency, which the owner approves.";
+  var DB = "Blocked: harness/config.json holds the dependency allowlists and Codex hooks cannot ask. Ask the owner to widen it.";
+  var M = "Blocked: force-pushing rewrites history and needs the owner (AGENTS.md, Operating rules). Push without force, or ask the owner.";
+  function N(p) { return "[note, as additionalContext] " + p + " is a protected policy file. This branch will need a transition receipt: run cargo xtask gaps --base origin/main before completion."; }
+  var A = "Nothing from the guard ({}).";
+  var ROWS = [
+    ["edit harness/goldens/kept.json", "", "ask", G, "block", GB, "golden tier"],
+    ["edit harness/config.json", "", "ask", DA, "block", DB, "allowlist tier"],
+    ["edit .claude/settings.json", "", "note", N(".claude/settings.json"), "note", N(".claude/settings.json"), "policy since slice 1"],
+
+    ["edit crates/../harness/goldens/kept.json", "", "ask", G, "block", GB, "resolved first (D6)"],
+    ["cp x ../outside.txt", "", "allow", A, "allow", A, "outside the checkout (D6)"],
+    ["sed -i s/a/b/ harness/config.json", "", "ask", DA, "block", DB, "Deviation 1"],
+    ["cat > xtask/tests/hooks.rs <<'EOF'\n> harness/goldens/a.json\nEOF", "", "note", N("xtask/tests/hooks.rs"), "note", N("xtask/tests/hooks.rs"), "heredoc body dropped; D1"],
+
+    ["rm goldens/kept.json", "from harness/", "ask", G, "block", GB, "prefix prepended"],
+    ["cd harness && mv goldens old", "", "allow", A + " Left to completion and CI, as before.", "allow", A, "left to completion and CI (plan A4)", 1],
+    ["python3 -c \"open('harness/goldens/a.json','w')\"", "", "allow", A + " Left to completion and CI, as before.", "allow", A, "left to completion and CI (plan A4)", 1],
+
+    ["git push -uf origin x", "", "block", M, "block", M, "cluster with f"],
+    ["git -C . push --force", "", "block", M, "block", M, "rules miss it"],
+
+    ["cargo add serde", "", "allow", A + " Claude's Bash(cargo add *) ask rule prompts instead.", "allow", A + " The \"prompt\" rule in .codex/rules/default.rules asks instead.", "rules ask"]
+  ];
+  var WORD = { ask: "ask", block: "exit 2", note: "allow + note", allow: "allow" };
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  var tbody = document.querySelector("#runs tbody"), msg = document.getElementById("msg");
+  tbody.innerHTML = ROWS.map(function (r, i) {
+    return "<tr tabindex=\"0\" data-i=\"" + i + "\"" + (r[7] ? " class=\"gap\"" : "") + "><td class=\"cmd\"><code>" + esc(r[0]) + "</code>" + (r[1] ? " <small>" + r[1] + "</small>" : "") +
+      "</td><td class=\"o o-" + r[2] + "\">" + WORD[r[2]] + "</td><td class=\"o o-" + r[4] + "\">" + WORD[r[4]] + "</td><td><small>" + r[6] + "</small></td></tr>";
+  }).join("");
+  function pick(tr) {
+    var r = ROWS[+tr.getAttribute("data-i")];
+    tbody.querySelectorAll("tr").forEach(function (o) { o.setAttribute("aria-selected", String(o === tr)); });
+    msg.innerHTML = "<b>Claude Code</b>" + esc(r[3]) + "<br><br><b>Codex</b>" + esc(r[5]);
+  }
+  tbody.querySelectorAll("tr").forEach(function (tr) {
+    if (ROWS[+tr.getAttribute("data-i")][0].indexOf("sed -i") === 0) setTimeout(function () { pick(tr); });
+    tr.addEventListener("click", function () { pick(tr); });
+    tr.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(tr); } });
+  });
+
+  var out = document.getElementById("replyText"), own = document.getElementById("replyOwn");
+  function reply() {
+    var picks = [].slice.call(document.querySelectorAll("[data-r]:checked")).map(function (c) { return "- " + c.getAttribute("data-r"); });
+    var L = ["Default-hooks implementation notes."];
+    if (!picks.length && !own.value.trim()) L.push("All eight deviations stand as built.");
+    else { L.push("Keep the rest as built, except:"); L = L.concat(picks); if (own.value.trim()) L.push("- " + own.value.trim()); }
+    return L.join("\n");
+  }
+  function update() { out.textContent = reply(); }
+  document.querySelectorAll("[data-r]").forEach(function (c) { c.addEventListener("change", update); });
+  own.addEventListener("input", update);
+  document.getElementById("copyReply").addEventListener("click", function (e) { copy(reply(), e.currentTarget); });
+  update();
+})();
+</script>
+</body>
+</html>

@@ -34,30 +34,33 @@ struct Explanation {
     manual_justification: Option<String>,
 }
 
+/// Paths whose changes need a policy transition receipt. The default agent
+/// guard (scripts/agent-hook.sh) copies this table; a test keeps them equal.
+const PROTECTED_PREFIXES: [&str; 7] = [
+    "xtask/",
+    ".github/",
+    "scripts/",
+    ".cargo/",
+    "harness/goldens/",
+    ".claude/",
+    ".codex/",
+];
+const PROTECTED_FILES: [&str; 11] = [
+    "harness/config.json",
+    "harness/readiness.json",
+    "harness/tracking.json",
+    "harness/workflows.json",
+    "harness/scenarios.json",
+    "Cargo.toml",
+    "Cargo.lock",
+    "docs/PRODUCT.md",
+    "docs/READINESS.md",
+    "docs/COMPLETION.md",
+    "AGENTS.md",
+];
+
 fn protected(path: &str) -> bool {
-    [
-        "xtask/",
-        ".github/",
-        "scripts/",
-        ".cargo/",
-        "harness/goldens/",
-    ]
-    .iter()
-    .any(|p| path.starts_with(p))
-        || [
-            "harness/config.json",
-            "harness/readiness.json",
-            "harness/tracking.json",
-            "harness/workflows.json",
-            "harness/scenarios.json",
-            "Cargo.toml",
-            "Cargo.lock",
-            "docs/PRODUCT.md",
-            "docs/READINESS.md",
-            "docs/COMPLETION.md",
-            "AGENTS.md",
-        ]
-        .contains(&path)
+    PROTECTED_PREFIXES.iter().any(|p| path.starts_with(p)) || PROTECTED_FILES.contains(&path)
 }
 fn sensitive(old: &Gap, new: Option<&Gap>) -> bool {
     let Some(new) = new else {
@@ -197,4 +200,27 @@ pub fn check(root: &Path, revision: &str, report: Option<&Path>) -> Result<Value
         "required_changes":required,"protected_files":protected_files,"errors":errors,
         "review":"Rationale is not independent approval. Enforce reviewer authority in hosting rules."}),
     )
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{PROTECTED_FILES, PROTECTED_PREFIXES};
+
+    fn script_list(name: &str) -> Vec<String> {
+        let script = include_str!("../../scripts/agent-hook.sh");
+        let line = script
+            .lines()
+            .find_map(|l| l.strip_prefix(&format!("{name}=\"")))
+            .unwrap_or_else(|| panic!("{name} missing from scripts/agent-hook.sh"));
+        line.trim_end_matches('"')
+            .split_whitespace()
+            .map(String::from)
+            .collect()
+    }
+
+    #[test]
+    fn guard_tiers_match_protected_paths() {
+        assert_eq!(script_list("PROTECTED_PREFIXES"), PROTECTED_PREFIXES);
+        assert_eq!(script_list("PROTECTED_FILES"), PROTECTED_FILES);
+    }
 }

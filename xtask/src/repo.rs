@@ -12,6 +12,11 @@ pub fn root() -> Result<PathBuf> {
         .ok_or_else(|| "run from inside the starter workspace".into())
 }
 
+/// Per-machine files that agent hosts write at the repository root. They are
+/// ignored by git (`.gitignore`) and never part of the source fingerprint, so a
+/// "don't ask again" click cannot stale CI evidence. Matched by full path only.
+const HOST_LOCAL: [&str; 2] = [".claude/settings.local.json", ".claude/worktrees"];
+
 pub fn files(root: &Path) -> Result<Vec<PathBuf>> {
     fn walk(base: &Path, dir: &Path, out: &mut Vec<PathBuf>) -> Result<()> {
         for entry in std::fs::read_dir(dir)? {
@@ -19,10 +24,15 @@ pub fn files(root: &Path) -> Result<Vec<PathBuf>> {
             let path = entry.path();
             let name = entry.file_name();
             let name = name.to_string_lossy();
+            let rel = path
+                .strip_prefix(base)?
+                .to_string_lossy()
+                .replace('\\', "/");
             if [".git", "target", ".DS_Store", "__pycache__"].contains(&name.as_ref())
                 || name.ends_with(".pyc")
                 || name == ".env"
                 || name.starts_with(".env.") && name != ".env.example"
+                || HOST_LOCAL.contains(&rel.as_str())
             {
                 continue;
             }

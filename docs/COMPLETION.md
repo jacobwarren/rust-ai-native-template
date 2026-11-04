@@ -51,7 +51,8 @@ findings into existing gaps. No quota requires a new gap per task.
 4. Before stopping: answer the four review questions below, reconcile discoveries
    and docs, then run the appropriate completion/handoff command.
 
-The stop hook checks this bounded review. It does not launch a model or an audit.
+The completion gate checks this bounded review; the default stop hook runs it when
+a record claims completion. It does not launch a model or an audit.
 An explicitly requested bounded review is the right way to search more broadly;
 see [the maintenance procedure](MAINTENANCE.md).
 
@@ -144,25 +145,54 @@ The output lists protected_files. Existing receipts at the comparison base are
 immutable; add new records for later changes. Recompute and review unmerged active
 receipts after edits or rebasing. A receipt explains intent, not reviewer approval.
 
-## Optional hook and CI
+## Default hooks and CI
 
-[scripts/agent-complete.sh](../scripts/agent-complete.sh) is an opt-in stop hook:
+The repository ships project hooks for Claude Code (`.claude/settings.json`) and
+Codex (`.codex/hooks.json`, `.codex/rules/default.rules`). They move checks that
+CI would otherwise make at the PR to the moment an agent acts:
 
-```sh
-export HARNESS_TASK_ID=TASK-142
-export HARNESS_BASE=origin/main
-export HARNESS_REPORT=target/verification/ci.json
-bash scripts/agent-complete.sh
-```
+- **Before an edit or shell command**, [scripts/agent-hook.sh](../scripts/agent-hook.sh)
+  `guard` reads the event without running Cargo. Golden baselines and the
+  dependency allowlist in `harness/config.json` ask on Claude Code and are refused
+  on Codex, which cannot ask. Other protected policy files pass with a note that the
+  branch needs a transition receipt. A PR merge asks on Claude Code and is refused
+  on Codex; a force-push is refused on both. Shell
+  commands count only write destinations, so a commit message or fixture that
+  mentions a golden passes; a script that builds the path itself is caught only
+  at completion and CI.
+- **After an edit**, `check` runs `cargo check --locked` and `cargo fmt --check`
+  on the changed crate (the workspace for a manifest or `harness/config.json`),
+  then the built xtask's `architecture` check. Failures come back to the agent.
+- **At stop**, [scripts/agent-complete.sh](../scripts/agent-complete.sh) gates
+  completion claims only. A turn that claims nothing stops. When a task record
+  changed on this branch says `"status": "complete"`, `cargo xtask complete`
+  judges it and a refusal keeps the agent working; setting the record back to
+  partial with its remaining actions always clears the block. `HARNESS_BASE`
+  (default `origin/main`) and `HARNESS_REPORT` (default
+  `target/verification/ci.json`) still apply; `HARNESS_TASK_ID` no longer picks
+  the task. Partial handoffs, stray files and policy receipts surface at PR CI.
 
-Configure a supported host to treat exit 2 plus stderr as a blocking diagnostic,
-and exit 0 as permission to stop. Host event names and semantics vary; no vendor
-configuration is silently installed. Allow enough time for Cargo startup/build.
-The wrapper runs agent-stop: complete status requires the completion gate;
-partial/blocked status permits an honest reviewed handoff. A blocked record may
-stop when the gap register needs repair, explicitly reporting reconciliation_pending;
-PR admission and release still fail. No automatic retries, audits or network calls.
-User cancellation must remain possible independently of the gate.
+Command rules ask before `cargo add`, `cargo remove` and `gh pr merge`, and deny
+the literal force-push spellings (Codex forbids merges and force-pushes). They are speed bumps: the guard catches other
+spellings, and only hosting rules can stop a merge.
+
+Requirements and limits: an error inside the guard script exits 2 and blocks on
+both hosts. A guard that cannot start or runs past its 10 s timeout blocks on
+Claude Code only with `onFailure`, which needs v2.1.295 or later; older versions,
+and Codex, let that call through. Codex runs project hooks only after
+the project's `.codex/` layer is trusted and each hook is reviewed in `/hooks`. Hooks
+never run in CI, which still runs `cargo xtask check ci` and, on pull requests,
+`handoff`. To turn hooks off for a session, set `"disableAllHooks": true` in
+`.claude/settings.local.json` or run `claude --settings '{"disableAllHooks": true}'`;
+on Codex set `[features] hooks = false`. `.claude/` and `.codex/` are protected
+paths, so changing a hook on a branch needs a transition receipt. Claude Code's
+per-machine `.claude/settings.local.json` and `.claude/worktrees/` are ignored and
+never change the source fingerprint. User cancellation stays possible: neither
+host runs the stop gate after an interrupt.
+
+The discovery-page guard stays opt-in: [the Codex example](../examples/codex-artifact-hooks.json)
+blocks `apply_patch` edits to product code until a task's five discovery pages
+are committed when `HARNESS_TASK_ID` is set.
 
 PR CI fetches full history and passes the event base SHA through an environment
 variable. It checks handoff against the tested checkout; ordinary checks stay
@@ -197,5 +227,5 @@ discovery pages before the first product-code commit, implementation notes befor
 the last one, and buy-in and quiz at or after it. Product code and the task's pages
 must be committed; task records, gaps and reports need not be. Commit order shows
 sequence, not usefulness, and a rewritten history can fake it. An independent
-reviewer agent and human review against the exemplars judge quality. The stop hook invokes the same completion checks; the
-opt-in edit guard is separate.
+reviewer agent and human review against the exemplars judge quality. The default stop hook invokes the same completion checks for a claimed task; the
+opt-in discovery-page guard is separate.

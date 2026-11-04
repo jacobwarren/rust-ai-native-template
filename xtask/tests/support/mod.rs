@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+pub mod hooks;
 use serde_json::{Value, json};
 use std::{fs, path::PathBuf, process::Command};
 pub const STYLE: &str = "<style data-artifact-foundation=\"1\">body{}</style>";

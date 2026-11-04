@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Default hooks: buy-in</title>
+<style>
+.prompt { position: relative; margin-block: var(--space-6); }
+.prompt blockquote { font-style: italic; margin: 0; }
+.prompt .copy { position: absolute; top: var(--space-2); right: 0; }
+button.small { min-height: 34px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block: var(--space-4) var(--space-8); }
+.chip { font-size: var(--text-small); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: var(--space-1) var(--space-3); }
+.chip.warn { background: var(--warning-soft); border-color: var(--warning); }
+h2 .n { font-family: var(--font-code); font-size: .8rem; color: var(--accent); margin-right: var(--space-2); font-weight: 400; }
+code { font-size: .88em; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; overflow-wrap: anywhere; }
+pre code, .term code { border: 0; padding: 0; background: none; }
+/* demo */
+.demo { display: grid; grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); gap: var(--space-4); align-items: start; }
+.cases { display: flex; flex-direction: column; gap: 2px; }
+.cases .grp { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: var(--space-3) 0 var(--space-1); font-weight: 650; }
+.cases .grp:first-child { margin-top: 0; }
+.cases button.case { min-height: 0; background: transparent; color: var(--ink); text-align: start; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto auto; gap: var(--space-2); align-items: center; padding: 6px var(--space-3); border-radius: var(--control-radius); border: 1px solid transparent; font-size: var(--text-small); line-height: 1.3; }
+.cases button.case:hover { background: var(--surface); }
+.cases button.case[aria-selected="true"] { background: var(--surface); border-color: var(--accent); }
+.cases button.case:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; }
+.v { font-family: var(--font-code); font-size: .7rem; border-radius: 999px; padding: 1px 7px; white-space: nowrap; border: 1px solid currentColor; }
+.v.ask { color: var(--warning); background: var(--warning-soft); }
+.v.blocked, .v.refused { color: var(--danger); background: #fbecee; }
+.v.passes { color: var(--accent); background: var(--accent-soft); }
+.v.note { color: var(--ink); background: var(--surface); }
+.v.reported { color: var(--danger); background: var(--surface); }
+.v.missed { color: var(--muted); background: var(--paper); border-style: dashed; }
+.legend { font-size: .75rem; color: var(--muted); margin-top: var(--space-2); }
+.pane { min-width: 0; }
+.pane h3 { margin: 0 0 var(--space-3); }
+.hosts { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.hosts.one { grid-template-columns: 1fr; }
+.host { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+.host .hd { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); font-size: var(--text-small); font-weight: 650; }
+.host .hd small { font-weight: 400; font-family: var(--font-code); }
+.term { margin: 0; border: 0; border-radius: 0; background: #17302b; color: #e9efe9; font-size: .74rem; line-height: 1.5; padding: var(--space-3); max-height: 24rem; overflow: auto; }
+.hosts.one .term { max-height: none; }
+.term .call { color: #9fd8c4; display: block; margin-bottom: var(--space-2); }
+.host .how { font-size: var(--text-small); margin: 0; padding: var(--space-3); }
+.src { font-family: var(--font-code); font-size: .68rem; border-radius: 4px; padding: 0 5px; margin-right: var(--space-1); white-space: nowrap; border: 1px solid var(--line); background: var(--paper); color: var(--muted); }
+.src.live { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.demo-nav { display: flex; gap: var(--space-2); margin-top: var(--space-3); align-items: center; font-size: var(--text-small); color: var(--muted); }
+/* tables, cards */
+table { font-size: var(--text-small); }
+td:first-child { font-weight: 600; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.card { border: 1px solid var(--line); border-left: 4px solid var(--warning); border-radius: var(--radius); background: var(--surface); padding: var(--space-3) var(--space-4); font-size: var(--text-small); }
+.card h3 { font-size: 1rem; margin: 0 0 var(--space-1); }
+.card p { margin: 0; }
+.st { font-family: var(--font-code); font-size: .7rem; white-space: nowrap; border-radius: 999px; padding: 1px 7px; }
+.st.done { background: var(--accent-soft); color: var(--accent); }
+.st.open { background: var(--warning-soft); color: var(--warning); border: 1px solid var(--warning); }
+.reply fieldset { border: 0; padding: 0; margin: 0 0 var(--space-3); }
+.reply legend { font-weight: 650; font-size: var(--text-small); padding: 0; margin-bottom: var(--space-1); }
+.reply label { margin-block: var(--space-1); }
+.reply .opts { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-6); }
+.reply .opts.three { grid-template-columns: 1fr 1fr 1fr; }
+.reply textarea { min-height: 0; height: 3.5rem; }
+.reply output { display: block; white-space: pre-wrap; font-family: var(--font-code); font-size: .8rem; margin-block: var(--space-3); }
+@media (max-width: 52rem) { .demo { grid-template-columns: 1fr; } .hosts, .cards, .reply .opts, .reply .opts.three { grid-template-columns: 1fr; } .prompt .copy { position: static; margin-top: var(--space-2); } }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">default-hooks · buy-in doc · before merge</p>
+<h1>Default hooks for Claude Code and Codex are ready to ship</h1>
+
+<div class="prompt">
+  <p class="eyebrow">The prompt</p>
+  <blockquote id="thePrompt">Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping default project hooks for Claude Code and Codex in this template. Lead with the demo.</blockquote>
+  <button class="small secondary copy" type="button" data-copy="thePrompt">Copy prompt</button>
+</div>
+
+<p class="lead">Agents in this template are told never to regenerate golden test baselines, to ask before adding a dependency, and never to force-push or merge without the owner. Until now only CI enforced that, after the fact. This change ships project hooks for Claude Code and Codex that apply the same rules as the agent acts: a guard before each edit and shell command, a compile check after each edit, and a gate when the agent stops. No new policy; CI is unchanged.</p>
+<p class="muted">Ships <code>.claude/settings.json</code>, <code>.codex/hooks.json</code>, <code>.codex/rules/default.rules</code>, a new <code>scripts/agent-hook.sh</code> and a rewritten <code>scripts/agent-complete.sh</code>. The repository owner asked for it and settled the design in chat, including the two behaviours added during the build (04).</p>
+
+<div class="chips">
+  <span class="chip"><b>11</b> cases of real script output</span>
+  <span class="chip"><b>~50 ms</b> per guard call</span>
+  <span class="chip"><b>0.5–1.0 s</b> per post-edit check</span>
+  <span class="chip"><b>19</b> hook tests pass</span>
+  <span class="chip"><b>2</b> build-time changes, approved by the owner</span>
+</div>
+
+<h2><span class="n">01</span>Watch it work</h2>
+<p class="muted">Each case feeds the committed scripts a hand-written event in the host's documented shape; output and timing are real. The line under each output says what the host then does, from its docs or seen live.</p>
+<div class="demo">
+  <div>
+    <div class="cases" id="cases" role="listbox" aria-label="Demo cases"></div>
+    <p class="legend">Left chip Claude Code, right chip Codex.</p>
+  </div>
+  <div class="pane" id="pane" aria-live="polite"></div>
+</div>
+
+<h2><span class="n">02</span>What it costs</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Moment</th><th>Measured (warm build)</th><th>Ceremony it adds</th></tr></thead>
+<tbody>
+<tr><td>Every edit and command</td><td>47–57 ms median, 67 ms max</td><td>A prompt on Claude Code for goldens, <code>harness/config.json</code> and <code>cargo add|remove</code>; Codex refuses the first two, as its hooks cannot ask. A note on other protected files.</td></tr>
+<tr><td>After a Rust edit</td><td>0.5–1.0 s no-op, by machine load; ~0.6 s to report an error; 56 ms for docs</td><td>The first check after a fresh clone builds xtask first. Formatting is reported, not applied.</td></tr>
+<tr><td>Every stop</td><td>76–86 ms; 2.6 s if a record says complete</td><td>A refused claim feeds the agent about 2.8 KB of gate output.</td></tr>
+<tr><td>Upkeep</td><td>—</td><td>Codex users trust <code>.codex/</code> and review each hook in <code>/hooks</code>, again after every hook edit. Changing a hook needs a policy receipt. <code>disableAllHooks</code> turns hooks off for a session.</td></tr>
+</tbody></table></div>
+
+<h2><span class="n">03</span>What it does not do</h2>
+<div class="cards">
+  <div class="card"><h3>Failing closed depends on the host</h3><p>An error inside the guard script exits 2 and blocks on both hosts. A guard that cannot start (exit 127 outside a checkout) or runs past its 10 s timeout blocks only on Claude Code v2.1.295+ (<code>onFailure: "block"</code>); older versions and Codex let that call through, and no setting can require the version (<code>docs/COMPLETION.md</code>). Codex runs nothing until <code>.codex/</code> is trusted and each hook reviewed. Both scripts are tested under macOS <code>/bin/bash</code> 3.2 as well as bash 5: the PR's macOS CI job caught a 3.2 trap quirk that local bash 5 runs missed.</p></div>
+  <div class="card"><h3>Rules and the parser are speed bumps</h3><p>Command rules match literal prefixes, so <code>git -C . push --force</code> and <code>+main</code> match none; the guard catches them (case 3). A script that builds the path (case 11), <code>cd harness &amp;&amp; mv goldens old</code>, and <code>sh -c</code> or <code>eval</code> strings pass the guard. Shell writes to <code>.rs</code> files get no post-edit check.</p></div>
+  <div class="card"><h3>The stop gate does not give up by itself</h3><p><code>agent-complete.sh</code> ignores <code>stop_hook_active</code> on purpose: passing a repeated false claim would mean not gating it. Its refusal tells the agent to set the record back to partial, which always clears the block (case 10). Failing that, Claude Code ends the turn after 8 consecutive continuations (<code>CLAUDE_CODE_STOP_HOOK_BLOCK_CAP</code>; the count resets whenever the agent calls a tool). Codex's hooks page names no cap; the user can interrupt.</p></div>
+  <div class="card"><h3>Hooks never run in CI, and cannot replace hosting rules</h3><p>CI still runs <code>cargo xtask check ci</code> and, on pull requests, <code>handoff</code> (<code>.github/workflows/ci.yml:33</code>, <code>:41</code>); stray files and missing receipts surface only there. The guard asks before or refuses the agent's merge commands; it does not stop an agent with the owner's credentials merging another way. Each adopter still sets branch rules (open <code>hosting-enforcement</code> gap, <code>harness/gaps.json</code>).</p></div>
+  <div class="card" style="grid-column: 1 / -1"><h3>Most host reactions come from docs</h3><p>Seen live in the Claude Code session that built this change: the policy-file note reaching the agent (case 6) and the stop gate ending each turn silently (case 9). Not seen live: Claude Code's ask and deny prompts, how it shows a post-edit or stop exit 2, and any hook inside a Codex session. Codex's rules were checked offline with <code>codex execpolicy check</code> (case 5), never loaded in a session. An edit whose paths the guard cannot read is refused, since Codex's patch format and Claude Code's <code>MultiEdit</code> input are undocumented. <code>..</code> is resolved first: <code>crates/../harness/goldens/kept.json</code> is a golden; a write outside the checkout passes.</p></div>
+</div>
+
+<h2><span class="n">04</span>Decisions</h2>
+<p class="muted">The owner answered the design questions in chat on 4 November 2026. Rows 3 and 5 were changed during the build, stricter than the first answers; the owner approved both after reviewing the PR.</p>
+<div class="table-scroll"><table>
+<thead><tr><th>Decision</th><th>As built</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>1. When stopping is blocked</td><td>Only when a task record changed on the branch says <code>"status": "complete"</code> and the existing gate (<code>cargo xtask complete</code>) rejects it. Partial handoffs are left to PR CI.</td><td><span class="st done">owner decided</span></td></tr>
+<tr><td>2. The guard</td><td>Bash and awk, never Cargo; a test keeps its path lists equal to <code>xtask/src/transitions.rs</code>. Goldens and <code>harness/config.json</code>: Claude Code asks, Codex refuses. Other protected files, now including <code>.claude/</code> and <code>.codex/</code>, get a receipt note. Shell commands are judged by where they write, not what they mention (case 2).</td><td><span class="st done">owner decided</span></td></tr>
+<tr><td>3. Shell writes get the edit tiers</td><td>The plan tiered only shell writes to goldens, so <code>sed -i</code> could widen the allowlist unasked: the <code>Edit(/harness/config.json)</code> ask rule never sees shell commands. Now each shell write gets the tier an edit would (case 4), notes included.</td><td><span class="st done">owner approved</span></td></tr>
+<tr><td>4. After an edit</td><td><code>cargo check --locked</code> and <code>cargo fmt --check</code> on the edited crate, then <code>xtask architecture</code> (cases 7, 8). A narrowing to manifest edits only was approved on a false premise (its 400-line check reads every <code>.rs</code> file, <code>xtask/src/checks.rs:76–90</code>) and dropped.</td><td><span class="st done">owner decided</span></td></tr>
+<tr><td>5. The check compiles tests too</td><td><code>--all-targets</code>: a plain <code>cargo check</code> never compiles <code>crates/*/tests/</code>, so errors there would go unreported.</td><td><span class="st done">owner approved</span></td></tr>
+<tr><td>6. Dependencies and merging</td><td>Ask before <code>cargo add|remove</code>. A PR merge (<code>gh pr merge</code>, the merge API) asks on Claude Code and is refused on Codex; every force-push spelling is refused on both; local <code>git merge</code> is allowed.</td><td><span class="st done">owner decided</span></td></tr>
+</tbody></table></div>
+<p class="muted">Two build fixes restore what the plan said: the fail-closed error trap reaches every function, and a check that cannot rebuild xtask says its result may be stale.</p>
+
+<div class="reply" id="reply">
+<fieldset>
+<legend>Your verdict</legend>
+<div class="opts three">
+<label><input type="radio" name="verdict" value="Ship as built, including rows 3 and 5.">Ship as built</label>
+<label><input type="radio" name="verdict" value="Ship with the changes below.">Ship with the changes below</label>
+<label><input type="radio" name="verdict" value="Hold.">Hold (say why below)</label>
+</div>
+</fieldset>
+<fieldset>
+<legend>Changes or conditions</legend>
+<div class="opts">
+<label><input type="checkbox" data-r="Row 3: give shell writes only the golden and allowlist tiers; no note on shell writes to other policy files.">Row 3: no notes on shell writes</label>
+<label><input type="checkbox" data-r="Row 5: check library and binary targets only after an edit, not tests.">Row 5: don't compile tests after an edit</label>
+<label><input type="checkbox" data-r="Apply cargo fmt after an edit instead of only reporting it.">Apply formatting instead of reporting it</label>
+<label><input type="checkbox" data-r="Set up branch rules (required checks, merge protection) before this ships.">Branch rules first</label>
+</div>
+</fieldset>
+<label>Anything else<textarea id="other" rows="2"></textarea></label>
+<output id="replyText"></output>
+<button type="button" id="copyReply">Copy reply</button>
+</div>
+</main>
+<script>
+(function () {
+  var DATA = {"cases":[{"title":"Copy a candidate over a golden baseline","group":"guard","claude":{"call":"Bash  cp /tmp/candidate.json harness/goldens/kept.json","verdict":"ask","exit":0,"ms":54,"out":"{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"harness/goldens/kept.json is a golden baseline. Approve only a reviewed baseline change; the branch will also need a policy transition receipt.\"}}","how":"Claude Code pauses and shows the user a permission prompt with this reason. Nothing runs until they approve.","src":"docs"},"codex":{"call":"Bash  cp /tmp/candidate.json harness/goldens/kept.json","verdict":"blocked","exit":2,"ms":50,"out":"Blocked: harness/goldens/kept.json is a golden baseline and Codex hooks cannot ask. Fix the implementation, or ask the owner to change the baseline by hand or from Claude Code.","how":"Codex refuses the call and hands the agent this text. Golden changes are made by hand or from Claude Code.","src":"docs"},"short":"cp over a golden"},{"title":"Commit with a message that names a golden","group":"guard","claude":{"call":"Bash  git commit -m \"Keep harness/goldens/kept.json unchanged; fix the replay instead\"","verdict":"passes","exit":0,"ms":47,"out":"{}","how":"The call runs. Nothing is added to the conversation. A mention is not a write.","src":"docs"},"codex":{"call":"Bash  git commit -m \"Keep harness/goldens/kept.json unchanged; fix the replay instead\"","verdict":"passes","exit":0,"ms":46,"out":"{}","how":"The call runs. Nothing is added to the conversation. A mention is not a write.","src":"docs"},"short":"Commit message names a golden"},{"title":"Force-push in spellings the rules miss","group":"guard","claude":{"call":"Bash  git push origin +main\nBash  git -C . push --force origin harness/default-hooks","verdict":"blocked","exit":2,"ms":44,"out":"Blocked: force-pushing rewrites history and needs the owner (AGENTS.md, Operating rules). Push without force, or ask the owner.","how":"Claude Code refuses the call and hands the agent this text. All three exit 2 with this text. No deny rule in .claude/settings.json matches these spellings; the guard does.","src":"docs"},"codex":{"call":"Bash  git push origin +main\nBash  git -C . push --force origin harness/default-hooks","verdict":"blocked","exit":2,"ms":44,"out":"Blocked: force-pushing rewrites history and needs the owner (AGENTS.md, Operating rules). Push without force, or ask the owner.","how":"Codex refuses the call and hands the agent this text. All three exit 2 with this text. No rule in .codex/rules/default.rules (codex execpolicy check: no match) matches these spellings; the guard does.","src":"docs"},"short":"Force-push, other spellings"},{"title":"Widen the dependency allowlist from the shell","group":"guard","claude":{"call":"Bash  sed -i '' s/serde/rand/ harness/config.json","verdict":"ask","exit":0,"ms":55,"out":"{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"harness/config.json holds the per-layer dependency allowlists that ARCH004 checks. Widening one adds a dependency, which the owner approves.\"}}","how":"Claude Code pauses and shows the user a permission prompt with this reason. Nothing runs until they approve. The Edit(/harness/config.json) rule never sees a shell write; the guard does.","src":"docs"},"codex":{"call":"Bash  sed -i '' s/serde/rand/ harness/config.json","verdict":"blocked","exit":2,"ms":53,"out":"Blocked: harness/config.json holds the dependency allowlists and Codex hooks cannot ask. Ask the owner to widen it.","how":"Codex refuses the call and hands the agent this text.","src":"docs"},"short":"sed -i on the allowlist"},{"title":"Add a crate with cargo add","group":"guard","claude":{"call":"Bash  cargo add serde","verdict":"ask","exit":0,"ms":47,"out":"guard: {}\n\n# Not hook output: the rule that prompts, quoted from the file\n.claude/settings.json:4  \"ask\": [\"Bash(cargo add *)\", …]","how":"The guard stays out of it; the ask rule prompts the user. A spelling the rule misses still meets ARCH004 after the edit and at CI.","src":"docs"},"codex":{"call":"Bash  cargo add serde","verdict":"ask","exit":0,"ms":48,"out":"guard: {}\n$ codex execpolicy check --rules .codex/rules/default.rules -- cargo add serde\n{\"matchedRules\":[{\"prefixRuleMatch\":{\"matchedPrefix\":[\"cargo\",\"add\"],\"decision\":\"prompt\",\"justification\":\"Changing dependencies rewrites the protected Cargo.lock; the owner approves new dependencies.\"}}],\"decision\":\"prompt\"}","how":"Codex asks for approval through its command rule, which loads only once .codex/ is trusted.","src":"docs"},"short":"cargo add"},{"title":"Edit a protected policy file","group":"guard","claude":{"call":"Edit  xtask/src/repo.rs","verdict":"note","exit":0,"ms":46,"out":"{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"additionalContext\":\"xtask/src/repo.rs is a protected policy file. This branch will need a transition receipt: run cargo xtask gaps --base origin/main before completion.\"}}","how":"The edit runs and the agent reads this as hook context. While building the hooks: \"PreToolUse:Bash hook additional context: xtask/tests/hooks.rs is a protected policy file…\"","src":"live"},"codex":{"call":"apply_patch  *** Update File: xtask/src/repo.rs","verdict":"note","exit":0,"ms":49,"out":"{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"additionalContext\":\"xtask/src/repo.rs is a protected policy file. This branch will need a transition receipt: run cargo xtask gaps --base origin/main before completion.\"}}","how":"The edit runs. Codex records the note as a developer message before the call.","src":"source"},"short":"Edit a policy file"},{"title":"An edit leaves a compile error","group":"check","claude":{"call":"Edit  crates/engine/src/lib.rs   (appends: pub fn broken() -> u32 { missing_name })","verdict":"reported","exit":2,"ms":614,"out":"Post-edit check failed. Fix these before continuing:\n$ cargo check -q --locked -p starter-engine --all-targets --message-format short  (exit 101)\ncrates/engine/src/lib.rs:122:26: error[E0425]: cannot find value `missing_name` in this scope: not found in this scope\nerror: could not compile `starter-engine` (lib test) due to 1 previous error\nerror: could not compile `starter-engine` (lib) due to 1 previous error\n$ cargo fmt --check -p starter-engine  (exit 1)\nDiff in /private/var/folders/_j/blxt10_j0d73hb96_62q0r0h0000gn/T/tmp.rO7N73OytR/c/crates/engine/src/lib.rs:119:\n     }\n }\n \n-pub fn broken() -> u32 { missing_name }\n+pub fn broken() -> u32 {\n+    missing_name\n+}","how":"The edit stays. Claude Code shows the agent this text right after the edit, so the next step is the fix.","src":"docs"},"codex":{"call":"apply_patch  *** Update File: crates/engine/src/lib.rs   (same function, formatted)","verdict":"reported","exit":2,"ms":735,"out":"Post-edit check failed. Fix these before continuing:\n$ cargo check -q --locked -p starter-engine --all-targets --message-format short  (exit 101)\ncrates/engine/src/lib.rs:123:5: error[E0425]: cannot find value `missing_name` in this scope: not found in this scope\nerror: could not compile `starter-engine` (lib) due to 1 previous error\nerror: could not compile `starter-engine` (lib test) due to 1 previous error","how":"The patch stays. Codex hands the agent this text after the patch.","src":"docs"},"short":"Compile error after an edit"},{"title":"A new file runs past 400 lines","group":"check","both":{"call":"Write  crates/engine/src/long_demo.rs   (450 lines)","verdict":"reported","exit":2,"ms":610,"out":"Post-edit check failed. Fix these before continuing:\n$ /private/var/folders/_j/blxt10_j0d73hb96_62q0r0h0000gn/T/tmp.rO7N73OytR/c/target/debug/xtask architecture  (exit 1)\n{\n  \"errors\": [\n    \"SIZE001 crates/engine/src/long_demo.rs: 450 lines exceeds 400; split by responsibility\"\n  ],\n  \"ok\": false\n}","how":"Same script on both hosts (Codex runs it after apply_patch). Before, SIZE001 first appeared at cargo xtask check or in CI.","src":"docs"},"short":"New file over 400 lines"},{"title":"Stop with an honest partial record","group":"stop","both":{"call":"Stop   harness/tasks/default-hooks.json  \"status\": \"partial\"","verdict":"passes","exit":0,"ms":86,"out":"(nothing printed; no Cargo runs)","how":"The turn ends. The old opt-in script blocked every stop until HARNESS_TASK_ID and HARNESS_BASE were set.","src":"live_claude"},"short":"Stop, record partial"},{"title":"Stop after falsely marking the task complete","group":"stop","both":{"call":"Stop   harness/tasks/default-hooks.json  \"status\": \"complete\"","verdict":"refused","exit":2,"ms":2590,"out":"Completion claim refused: harness/tasks/default-hooks.json says complete, but the completion gate failed:\n{\n  \"kind\": \"completion\",\n  \"ok\": false,\n  ⋮\n    \"errors\": [\n      \"review.acceptance: Did any assigned acceptance criterion remain unmet? Explain the result and record remaining work.\",\n      \"review.verification: Did checks reveal a pre-existing problem or unresolved failure? …\",\n      \"review.assumptions: Did this task rely on an unverified assumption? …\",\n      \"review.coverage: Did you discover a material missing test, recovery path or platform check? …\",\n      \"task HTML artifact: missing buy-in.html; see docs/ARTIFACTS.md\",\n      \"complete task requires current full-CI evidence\",\n      \"acceptance requirement completion is not verified\"\n    ],\n  ⋮\n}\n\nFix what it reports (run cargo xtask check ci > target/verification/ci.json for fresh evidence), or set the record back to partial with its remaining actions. Do not claim completion.","how":"The agent keeps working with this as the reason (2,789 bytes in all; ⋮ marks the base commit, source hash and 16 protected files left out here, and three review lines are cut after their question). Setting the record back to partial clears the block: the next stop exited 0 in 76 ms.","src":"docs"},"short":"Stop, false \"complete\""},{"title":"A script builds the golden path itself","group":"limit","claude":{"call":"Bash  python3 -c \"p='harness/'+'goldens/kept.json'; open(p,'w').write('{}')\"","verdict":"missed","exit":0,"ms":48,"out":"{}","how":"The write goes through. The parser sees no destination it can name; only the completion gate and CI's golden comparison see the result.","src":"docs"},"codex":{"call":"Bash  python3 -c \"p='harness/'+'goldens/kept.json'; open(p,'w').write('{}')\"","verdict":"missed","exit":0,"ms":46,"out":"{}","how":"Same on Codex.","src":"docs"},"short":"Script builds the golden path"}]};
+  var LABEL = { ask: "asks", blocked: "blocked", passes: "passes", note: "note", reported: "reported", refused: "refused", missed: "not caught" };
+  var GROUP = { guard: "Before an edit or command", check: "After an edit", stop: "At stop", limit: "A known gap" };
+  var SRC = { docs: "from host docs", live: "seen live", source: "from Codex source", live_claude: "seen live on Claude Code" };
+  var list = document.getElementById("cases"), pane = document.getElementById("pane");
+  var cur = 0, btns = [];
+  function chip(v) { var s = document.createElement("span"); s.className = "v " + v; s.textContent = LABEL[v]; return s; }
+  function hostBox(name, s) {
+    var box = document.createElement("div"); box.className = "host";
+    var hd = document.createElement("div"); hd.className = "hd";
+    var t = document.createElement("span"); t.textContent = name; hd.appendChild(t);
+    var m = document.createElement("small"); m.textContent = "exit " + s.exit + " · " + s.ms + " ms "; m.appendChild(chip(s.verdict)); hd.appendChild(m);
+    var pre = document.createElement("pre"); pre.className = "term";
+    var c = document.createElement("span"); c.className = "call"; c.textContent = s.call; pre.appendChild(c);
+    pre.appendChild(document.createTextNode(s.out));
+    var how = document.createElement("p"); how.className = "how";
+    var src = document.createElement("span"); src.className = "src" + (s.src.indexOf("live") === 0 ? " live" : ""); src.textContent = SRC[s.src];
+    how.appendChild(src); how.appendChild(document.createTextNode(s.how));
+    box.appendChild(hd); box.appendChild(pre); box.appendChild(how); return box;
+  }
+  function show(i) {
+    cur = i; var c = DATA.cases[i];
+    btns.forEach(function (b, j) { b.setAttribute("aria-selected", j === i ? "true" : "false"); b.tabIndex = j === i ? 0 : -1; });
+    pane.textContent = "";
+    var h = document.createElement("h3"); h.textContent = (i + 1) + ". " + c.title; pane.appendChild(h);
+    var hosts = document.createElement("div");
+    if (c.both) { hosts.className = "hosts one"; hosts.appendChild(hostBox("Claude Code and Codex", c.both)); }
+    else { hosts.className = "hosts"; hosts.appendChild(hostBox("Claude Code", c.claude)); hosts.appendChild(hostBox("Codex", c.codex)); }
+    pane.appendChild(hosts);
+    var nav = document.createElement("div"); nav.className = "demo-nav";
+    var prev = document.createElement("button"); prev.className = "small secondary"; prev.type = "button"; prev.textContent = "← Previous"; prev.disabled = i === 0;
+    prev.onclick = function () { show(cur - 1); };
+    var next = document.createElement("button"); next.className = "small"; next.type = "button"; next.textContent = "Next case →"; next.disabled = i === DATA.cases.length - 1;
+    next.onclick = function () { show(cur + 1); };
+    var pos = document.createElement("span"); pos.textContent = (i + 1) + " of " + DATA.cases.length;
+    nav.appendChild(prev); nav.appendChild(next); nav.appendChild(pos); pane.appendChild(nav);
+  }
+  var last = "";
+  DATA.cases.forEach(function (c, i) {
+    if (c.group !== last) { var g = document.createElement("div"); g.className = "grp"; g.textContent = GROUP[c.group]; list.appendChild(g); last = c.group; }
+    var b = document.createElement("button"); b.type = "button"; b.className = "case secondary"; b.setAttribute("role", "option");
+    var t = document.createElement("span"); t.textContent = (i + 1) + ". " + c.short; b.appendChild(t);
+    var a = c.both || c.claude, x = c.both || c.codex;
+    b.appendChild(chip(a.verdict)); b.appendChild(chip(x.verdict));
+    b.onclick = function () { show(i); if (window.matchMedia("(max-width: 52rem)").matches) pane.scrollIntoView({ block: "start" }); };
+    b.onkeydown = function (e) {
+      if (e.key === "ArrowDown" && i < DATA.cases.length - 1) { e.preventDefault(); show(i + 1); btns[i + 1].focus(); }
+      if (e.key === "ArrowUp" && i > 0) { e.preventDefault(); show(i - 1); btns[i - 1].focus(); }
+    };
+    btns.push(b); list.appendChild(b);
+  });
+  show(0);
+
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done();
+    }
+  }
+  document.querySelectorAll("[data-copy]").forEach(function (b) {
+    b.addEventListener("click", function () { copy(document.getElementById(b.getAttribute("data-copy")).textContent.trim(), b); });
+  });
+  var radios = document.querySelectorAll("#reply input[name=verdict]"), boxes = document.querySelectorAll("#reply input[data-r]");
+  var other = document.getElementById("other"), out = document.getElementById("replyText");
+  function build() {
+    var v = null, ticked = [];
+    radios.forEach(function (r, j) { if (r.checked) v = j; });
+    boxes.forEach(function (b) { if (b.checked) ticked.push(b.getAttribute("data-r")); });
+    var note = other.value.trim();
+    var lines = ["Default hooks for Claude Code and Codex (branch harness/default-hooks):"];
+    lines.push("Verdict: " + (v === null ? "not chosen yet." : radios[v].value));
+    ticked.forEach(function (t) { lines.push("- " + t); });
+    if (note) lines.push("- " + note);
+    if (v === 0 && ticked.length) lines.push("(Changes are ticked, so read this as ship with changes.)");
+    if (v === 1 && !ticked.length && !note) lines.push("(No change ticked yet.)");
+    if (v === 2 && !ticked.length && !note) lines.push("(No reason given yet.)");
+    out.textContent = lines.join("\n");
+  }
+  radios.forEach(function (r) { r.addEventListener("change", build); });
+  boxes.forEach(function (b) { b.addEventListener("change", build); });
+  other.addEventListener("input", build);
+  build();
+  document.getElementById("copyReply").addEventListener("click", function () { copy(out.textContent, this); });
+})();
+</script>
+</body>
+</html>

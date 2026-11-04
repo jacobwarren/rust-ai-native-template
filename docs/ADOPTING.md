@@ -77,6 +77,8 @@ archive cannot configure your hosting settings. See [READINESS.md](READINESS.md)
 
 Keep task coordination wherever your team works. The task record may contain an
 opaque work_item reference; prompts need no ticket. Keep only material engineering
-shortcomings in the project gap register. Use the task-review checkpoint and
-optional stop hook before completion claims. See [COMPLETION.md](COMPLETION.md).
+shortcomings in the project gap register. Use the task-review checkpoint before
+completion claims; the default hooks gate them. Codex users trust the project's
+`.codex/` layer and review its hooks in `/hooks`; Claude Code needs v2.1.295 or
+later for the guard to fail closed. See [COMPLETION.md](COMPLETION.md).
 Live tracker synchronization is an optional team integration outside the core.
