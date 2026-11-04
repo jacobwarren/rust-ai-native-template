@@ -6,6 +6,9 @@
 # something to say. See docs/COMPLETION.md "Default hooks and CI".
 set -uEf
 trap 'echo "agent-hook: internal error at line $LINENO. Tell the owner the hook needs a fix." >&2; exit 2' ERR
+# set -u aborts without the ERR trap; turn every exit other than 0 or 2 into a
+# block, because Codex lets the call through on any other exit code.
+trap 'rc=$?; case $rc in 0 | 2) ;; *) echo "agent-hook: internal error (exit $rc). Tell the owner the hook needs a fix." >&2; exit 2 ;; esac' EXIT
 
 # Copied from xtask/src/transitions.rs; transitions::tests keeps them equal.
 PROTECTED_PREFIXES="xtask/ .github/ scripts/ .cargo/ harness/goldens/ .claude/ .codex/"

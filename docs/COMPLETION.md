@@ -175,9 +175,10 @@ Command rules ask before `cargo add` and `cargo remove`, and deny the literal
 merge and force-push spellings. They are speed bumps: the guard catches other
 spellings, and only hosting rules can stop a merge.
 
-Requirements and limits: the guard fails closed on Claude Code only with
-`onFailure`, which needs Claude Code v2.1.295 or later; older versions, and Codex
-on any crash or timeout, let the call through. Codex runs project hooks only after
+Requirements and limits: an error inside the guard script exits 2 and blocks on
+both hosts. A guard that cannot start or runs past its 10 s timeout blocks on
+Claude Code only with `onFailure`, which needs v2.1.295 or later; older versions,
+and Codex, let that call through. Codex runs project hooks only after
 the project's `.codex/` layer is trusted and each hook is reviewed in `/hooks`. Hooks
 never run in CI, which still runs `cargo xtask check ci` and, on pull requests,
 `handoff`. To turn hooks off for a session, set `"disableAllHooks": true` in

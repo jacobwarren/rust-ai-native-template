@@ -89,6 +89,7 @@
         "guard_catches_shell_writes_to_goldens_but_not_mentions",
         "guard_refuses_pr_merge_and_force_push_spellings",
         "guard_never_runs_cargo",
+        "guard_fails_closed_on_an_internal_error",
         "transitions::tests::guard_tiers_match_protected_paths",
         "stop_allows_turns_that_claim_nothing",
         "stop_refuses_an_unverified_claim_and_allows_a_verified_one",

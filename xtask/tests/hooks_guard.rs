@@ -267,3 +267,24 @@ fn guard_never_runs_cargo() {
     }
     assert!(!marker.exists(), "the guard ran cargo");
 }
+
+#[test]
+fn guard_fails_closed_on_an_internal_error() {
+    let f = Fixture::new();
+    let script = std::fs::read_to_string(HOOK).unwrap();
+    // An unset variable aborts a `set -u` script without running its ERR trap.
+    let broken = script.replacen("\nmode=", "\necho \"$undefined_variable\"\nmode=", 1);
+    assert_ne!(broken, script);
+    let path = f.0.join("target/broken-hook.sh");
+    std::fs::write(&path, broken).unwrap();
+    for host in ["claude", "codex"] {
+        let o = Command::new("bash")
+            .args([path.to_str().unwrap(), "guard", host])
+            .current_dir(&f.0)
+            .stdin(std::process::Stdio::null())
+            .output()
+            .unwrap();
+        assert_eq!(o.status.code(), Some(2), "{host}");
+        assert!(String::from_utf8_lossy(&o.stderr).contains("internal error"));
+    }
+}
