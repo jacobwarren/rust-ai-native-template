@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Blindspot pass: agent-workflow</title>
+<style>
+  .prompt-q { font-style: italic; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-block: var(--space-8); }
+  .vs > div { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); background: var(--surface); }
+  .vs > div.actual { border-color: var(--warning); background: var(--warning-soft); }
+  .vs p { margin: 0; }
+  .tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--muted); margin-bottom: var(--space-2); }
+  .actual .tag { color: var(--warning); }
+  .stats { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); padding: var(--space-3) var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); font-family: var(--font-code); font-size: .8rem; background: var(--surface); }
+  .stats b { color: var(--danger); }
+  .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-6); margin-block: var(--space-6); }
+  .card h3 { margin: var(--space-2) 0 var(--space-3); font-size: 1.2rem; }
+  .head { display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; }
+  .badge { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px; border-radius: var(--control-radius); border: 1px solid; }
+  .badge.landmine { color: var(--danger); border-color: var(--danger); }
+  .badge.convention { color: var(--muted); border-color: var(--line); }
+  .badge.history { color: var(--warning); border-color: var(--warning); }
+  .num { font-family: var(--font-code); font-size: .8rem; color: var(--muted); }
+  .card p { margin-block: var(--space-3); }
+  code { font-size: .85em; overflow-wrap: anywhere; }
+  .card pre { font-size: .8rem; margin-block: var(--space-3); }
+  .bite { border-inline-start: 3px solid var(--danger); background: var(--warning-soft); padding: var(--space-3) var(--space-4); border-radius: 0 var(--control-radius) var(--control-radius) 0; font-size: .95rem; }
+  .bite b { color: var(--danger); }
+  .card table { font-size: .85rem; margin-block: var(--space-3); }
+  .choice { border: 1px dashed var(--line); border-radius: var(--control-radius); padding: var(--space-2) var(--space-4); margin-block: var(--space-3); }
+  .choice legend { font-size: var(--text-small); }
+  .choice label { margin-block: var(--space-2); font-size: .95rem; }
+  .chip { font-family: var(--font-code); font-size: .8rem; background: var(--accent-soft); border-radius: var(--control-radius); padding: var(--space-3) var(--space-4); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .chip::before { content: "› "; color: var(--accent); font-weight: 700; }
+  .short li { margin-block: var(--space-2); }
+  .final { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-6); margin-top: var(--space-12); }
+  .final-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+  .final h2 { margin: 0; }
+  #final-prompt { font-size: .8rem; line-height: 1.6; }
+  @media (max-width: 40rem) {
+    .vs { grid-template-columns: 1fr; } .card { padding: var(--space-4); }
+    .stack thead { display: none; } .stack, .stack tbody, .stack tr, .stack td { display: block; }
+    .stack tr { border-bottom: 1px solid var(--line); padding-block: var(--space-2); }
+    .stack td { border: 0; padding: 2px 0; }
+    .stack td::before { content: attr(data-label) ": "; font-weight: 650; color: var(--muted); }
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">agent-workflow · Blindspot pass · before code</p>
+  <h1>Unknown unknowns: tiers, skills and subagents in this harness</h1>
+  <blockquote class="prompt-q">I'm about to scale the task-page ceremony to task size with a tier the gate checks against the diff, turn the agent briefs in docs/skills/ into real Claude Code and Codex skills, define the page author and reviewer as subagents for both hosts, and trim AGENTS.md, in this Rust harness template's xtask gate, docs and agent configuration. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation.</blockquote>
+
+  <div class="vs">
+    <div>
+      <div class="tag">What it sounds like</div>
+      <p>An optional <code>tier</code> field, an <code>if small</code> in the completion gate, three files copied into skill folders, two agent definitions and a shorter AGENTS.md.</p>
+    </div>
+    <div class="actual">
+      <div class="tag">What you're walking into</div>
+      <p>A page check reached from <strong>seven commands</strong>, none of which reads anything but <code>status</code>, a diff counter that <strong>misses moves and binaries, and untracked files wherever <code>order()</code> doesn't run</strong>, a tier you <strong>cannot leave</strong> once code is committed, a file walker that <strong>fails every check on one symlink</strong>, and subagent write limits that <strong>Claude enforces only for Edit/Write, and Codex not at all</strong>.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <span><b>7</b> xtask commands reach the page check</span>
+    <span><b>2</b> diff blind spots and 1 scoped gap, reproduced</span>
+    <span><b>1 of 3</b> seed-path references caught by DOC006</span>
+    <span><b>0 of 2</b> hosts can confine a subagent's Bash writes</span>
+  </div>
+
+  <h2>The blindspots</h2>
+
+  <section class="card">
+    <div class="head"><span class="badge landmine">Landmine</span><span class="num">01</span></div>
+    <h3>The tier has to reach every caller of the page check, and three of them bypass the completion gate</h3>
+    <p><code>artifacts::check</code> (artifacts.rs:93) is the only place pages are demanded, but four functions call it from seven xtask commands, and none of them reads anything but <code>status</code>:</p>
+    <div class="table-scroll"><table class="stack">
+      <thead><tr><th>Entry point</th><th>Path to the check</th><th>Demands today</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Entry">Stop hook on a "complete" claim (agent-complete.sh:47); the <code>agent-stop</code> command</td><td data-label="Path"><code>complete</code> / <code>agent_stop</code> → <code>task()</code>, completion.rs:20</td><td data-label="Demands">8 pages + commit order</td></tr>
+        <tr><td data-label="Entry">CI <code>handoff --base base.sha</code></td><td data-label="Path"><code>handoff</code> → <code>task(.., false)</code>, completion.rs:158</td><td data-label="Demands"><strong>5 discovery pages even when partial</strong>; 8 + order when complete</td></tr>
+        <tr><td data-label="Entry"><code>check fast</code> / <code>check ci</code> step <code>coordination</code></td><td data-label="Path"><code>validate</code>, completion.rs:218-222</td><td data-label="Demands">8 pages for any complete schema-6 record</td></tr>
+        <tr><td data-label="Entry"><code>task-artifact guard</code> and the opt-in Codex <code>artifact-hook</code></td><td data-label="Path"><code>guard</code>, artifacts.rs:193, artifact_hook.rs:44</td><td data-label="Demands">5 committed pages; <strong>never reads the record</strong></td></tr>
+        <tr><td data-label="Entry"><code>task-artifact check</code></td><td data-label="Path">main.rs:79-87</td><td data-label="Demands">5 or 8</td></tr>
+      </tbody>
+    </table></div>
+    <p>With default-hooks' pages moved away, <code>xtask coordination</code> returns <code>missing blindspots.html</code>; a new partial record plus a one-line product edit makes <code>handoff</code> report <code>task HTML artifact: missing blindspots.html</code>.</p>
+    <p class="bite"><b>Why it bites:</b> teach only <code>task()</code> about the tier and a small, complete task fails <code>coordination</code> inside <code>check ci</code>. <code>complete</code> then refuses with "complete task requires current full-CI evidence" (completion.rs:44-50), an error that points at CI evidence rather than the tier. Small partial handoffs fail too, because the discovery set is unconditional at artifacts.rs:95.</p>
+    <div class="chip" id="chip-1">Add one function that returns the required page set from the task record (tier and status), and call it from all four callers: completion::task (complete, agent-stop, handoff), completion::validate (coordination), artifacts::guard (task-artifact guard, artifact-hook) and the task-artifact check command. Write a failing test for each of the seven commands with a small task that has no pages before changing any of them.</div>
+  </section>
+
+  <section class="card">
+    <div class="head"><span class="badge landmine">Landmine</span><span class="num">02</span></div>
+    <h3><code>git diff --numstat</code> misses the three cheapest ways to grow a diff</h3>
+    <p>A branch commits a move of a 225-line file with one edited line plus a 4 KB binary, and leaves one new <code>.rs</code> file untracked:</p>
+<pre>$ git diff --numstat BASE
+-	-	crates/app/blob.bin
+1	1	xtask/src/{workflows.rs => flows.rs}
+$ git diff --numstat --no-renames BASE
+-	-	crates/app/blob.bin
+225	0	xtask/src/flows.rs
+0	225	xtask/src/workflows.rs
+# the untracked file appears in neither</pre>
+    <p>Rename detection is on by default (git 2.55 here), so a move counts as 2 lines, and its path is printed as <code>{a => b}</code>, which never matches a prefix in <code>administrative()</code> or the protected lists. Binaries print <code>-</code> instead of a count, so a parser has to decide what that means. A GitHub merge ref behaves the same: merged with <code>--no-ff</code>, plain <code>git diff --numstat BASE HEAD</code> still prints <code>1 1 xtask/src/{workflows.rs =&gt; flows.rs}</code>, and only <code>--no-renames</code> shows 225/225. The repo already sets the precedent: <code>history::commits</code> passes <code>--no-renames</code> (history.rs:58). On that merge ref the same function's <code>--first-parent --no-merges</code> log lists no commits at all, which is gap <code>artifact-gate-holes</code>: a rule that reads commits passes vacuously in CI, so the tier has to read the tree.</p>
+    <p>Untracked files are already covered at completion: <code>order()</code> refuses while <code>history::uncommitted</code> (history.rs:79-96, <code>--untracked-files=all</code>) lists any non-administrative path (artifacts.rs:140-148). The gap is everywhere <code>order()</code> doesn't run: partial handoffs, and a small tier if its check returns before <code>order()</code>.</p>
+    <p class="bite"><b>Why it bites:</b> a small-tier check written the obvious way lets a large move or a vendored binary through as "small", and an unstaged file too wherever <code>order()</code> is skipped. The diff also belongs to the branch, not the task, so two records on one branch share one count. Splitting a big change across several small branches can't be detected from inside one branch, by design.</p>
+    <fieldset class="choice" data-card="2"><legend>How should moved lines count?</legend>
+      <label><input type="radio" name="c2" value="a" checked>Moves count in full (<code>--no-renames</code>); any binary file makes the task standard</label>
+      <label><input type="radio" name="c2" value="b">Moves are free (keep rename detection, but classify both sides of <code>{a => b}</code>)</label>
+    </fieldset>
+    <div class="chip" id="chip-2"></div>
+  </section>
+
+  <section class="card">
+    <div class="head"><span class="badge landmine">Landmine</span><span class="num">03</span></div>
+    <h3>Once a small task has a product commit, it can never become standard on that branch</h3>
+    <p><code>order()</code> requires every discovery page to exist at the base or to be committed before the first product-code commit (artifacts.rs:166-172). A small task's first code commit comes before any pages, and the rule reads the earliest commit that touched each page (<code>touched</code>, artifacts.rs:160-165), so no later commit can satisfy it. The existing test <code>discovery_must_be_committed_before_the_first_code_commit</code> (xtask/tests/artifacts.rs:96-107) asserts exactly this case. Extended to code, then discovery pages, then a second slice with notes, then final pages with blindspots.html re-touched, <code>complete</code> still answers:</p>
+<pre>task HTML artifact: blindspots.html must be committed before the first product-code commit</pre>
+    <p> Until then nothing warns: order is checked only when the record says complete and a base is given (artifacts.rs:105), so a partial "standard" task with pages written late passes handoff.</p>
+    <p>Rewriting history is ruled out after a push. <code>.claude/settings.json</code> denies <code>Bash(git push --force *)</code>, <code>Bash(git push -f *)</code> and <code>Bash(git push --force-with-lease *)</code>, and agent-hook.sh:275-277 blocks force-pushes on both hosts.</p>
+    <p class="bite"><b>Why it bites:</b> the failure arrives at the completion claim, after the work is done, and the message names a page rather than the tier switch that caused it.</p>
+    <fieldset class="choice" data-card="3"><legend>When a small task outgrows its tier</legend>
+      <label><input type="radio" name="c3" value="a" checked>Start a new branch: commit the pages first, cherry-pick the code after them; the gate's error says exactly that</label>
+      <label><input type="radio" name="c3" value="b">Allow the switch on the same branch and record it as a deviation (an exception in <code>order()</code>, needs your approval)</label>
+    </fieldset>
+    <div class="chip" id="chip-3"></div>
+  </section>
+
+  <section class="card">
+    <div class="head"><span class="badge convention">Convention</span><span class="num">04</span></div>
+    <h3><code>tier</code> is rejected until xtask knows it, and eight pages are built into the fixtures and the readiness list</h3>
+<pre>$ xtask coordination      # default-hooks.json with "tier": "small" added
+{"error":"unknown field `tier`, expected one of `schema_version`, `id`, ... at line 79 column 8","ok":false}</pre>
+    <p><code>Task</code> is <code>deny_unknown_fields</code> (task_record.rs:16-17), so the field, <code>#[serde(default)]</code>, and the record that uses it must land in the same commit. Leave <code>schema_version</code> at 6: <code>read</code> accepts 1-6 (line 67), <code>review_errors</code> requires exactly 6 (line 124), and <code>validate</code> branches on <code>&gt;= 6</code>.</p>
+    <p>The test helper <code>Fixture::task()</code> (tests/support/mod.rs:107-118) commits all eight pages before returning a record; its 22 call sites in completion.rs, gap_discovery.rs and hooks_stop.rs never exercise a task without pages. The <code>task-artifacts</code> requirement in the protected <code>harness/readiness.json</code> lists test names, including <code>completion_requires_eight_pages_carrying_the_stylesheet_inline</code>, and <code>readiness::assess</code> marks it unverified when a listed name is missing from the CI log (readiness.rs:77-90).</p>
+    <p class="bite"><b>Why it bites:</b> a tier test left out of readiness.json proves nothing to the readiness gate, and renaming a listed test leaves the requirement unverified.</p>
+    <div class="chip" id="chip-4">Add tier as Option with serde(default) and no schema bump. Give the test fixture a way to build a task with no pages. Add the new tier tests to harness/readiness.json's task-artifacts list in the same change and include it in the transition receipt, and don't rename the existing eight-page test.</div>
+  </section>
+
+  <section class="card">
+    <div class="head"><span class="badge landmine">Landmine</span><span class="num">05</span></div>
+    <h3>One skill in two folders: a symlink breaks every check, and copies break links and protection</h3>
+<pre>$ ln -s ../.claude/skills .agents/skills
+$ xtask docs; xtask coordination; xtask env
+{"error":"source symlink …/.agents/skills is unsupported; use a real file","ok":false}   # all three
+$ # copy docs/skills/author-artifact.md to .claude/skills/author-artifact/SKILL.md
+DOC004 .claude/skills/author-artifact/SKILL.md: add ownership and verification to harness/docs.json
+DOC006 .claude/skills/author-artifact/SKILL.md: broken or escaping link ../ARTIFACTS.md</pre>
+    <p><code>repo::files</code> (repo.rs:39-45) returns an error, not a lint, so one symlink stops docs, coordination, readiness and the source fingerprint. Both host folders sit three levels deep, so identical copies can share a <code>../../../docs/ARTIFACTS.md</code> link. <code>docs/skills/</code> is two levels deep and can't be a byte-identical third copy. Protection is uneven: the default guard returns a policy note for <code>cp … .claude/skills/x/SKILL.md</code> and <code>{}</code> for the same copy into <code>.agents/skills/</code>, because <code>PROTECTED_PREFIXES</code> (transitions.rs:39-47) includes <code>.claude/</code> but not <code>.agents/</code>.</p>
+    <p class="bite"><b>Why it bites:</b> every wording change to a Claude skill becomes a policy change that needs a receipt, while the Codex copy needs none. That's the kind of red tape item 5 is meant to remove, and a parity check only partly makes up for it.</p>
+    <fieldset class="choice" data-card="5"><legend>Protection for skill folders</legend>
+      <label><input type="radio" name="c5" value="a" checked>Carve <code>.claude/skills/</code> out of the protected <code>.claude/</code> prefix; skills are documentation, and an xtask parity check catches drift between the copies</label>
+      <label><input type="radio" name="c5" value="b">Add <code>.agents/</code> to protection; every skill edit needs a receipt on both hosts</label>
+    </fieldset>
+    <div class="chip" id="chip-5"></div>
+  </section>
+
+  <section class="card">
+    <div class="head"><span class="badge history">Hidden dependency</span><span class="num">06</span></div>
+    <h3>Moving investigate.md leaves the experiment seed path stale without a warning, and a committed skill would leak into trials</h3>
+    <p>After moving <code>docs/skills/investigate.md</code> (with docs.json updated), <code>xtask docs</code> flagged only README.md:111. experiments/README.md:37 sits inside a <code>```sh</code> fence, which <code>local_links</code> skips (checks.rs:107-113), and experiments/gepa/README.md:5 is plain text. Both still give the old path as the seed.</p>
+    <p>The evaluator pastes the candidate into the agent prompt verbatim (stdin_agent.py:14-17), and GEPA optimizes the whole seed text (optimize.py:68). Frontmatter would become part of what is mutated and scored. Trials run in a <code>git archive</code> snapshot of the task commit (workspace.py:16-20). If a product repo built from this template commits <code>.claude/skills/investigate/SKILL.md</code>, the agent under test can load that copy in addition to the candidate. This is read from the code, not observed in a trial run.</p>
+    <fieldset class="choice" data-card="6"><legend>investigate.md</legend>
+      <label><input type="radio" name="c6" value="a" checked>Keep it as the evaluator seed, not a host skill; convert only the two artifact briefs and add the new one</label>
+      <label><input type="radio" name="c6" value="b">Make it a skill too; the evaluator strips frontmatter and drops skill folders from trial snapshots</label>
+    </fieldset>
+    <div class="chip" id="chip-6"></div>
+  </section>
+
+  <section class="card">
+    <div class="head"><span class="badge landmine">Landmine</span><span class="num">07</span></div>
+    <h3>"Writes only under harness/task-artifacts/" is enforceable for Edit/Write on Claude, and nowhere else</h3>
+    <p><strong>Claude Code:</strong> <code>tools</code> takes tool names with no path scope, so confinement means a per-agent PreToolUse hook that exits 2 (<a href="https://code.claude.com/docs/en/sub-agents.md">sub-agents docs</a>). That hook does enforce Edit/Write. But a project agent's frontmatter hooks run only after the folder is accepted in the workspace trust dialog, and a <code>-p</code> session never counts as trusted, so a headless author runs without it. The author brief requires Bash, though: it clones the repo, runs <code>cargo xtask task-artifact style</code> (which writes <code>target/artifact-style.html</code>, artifacts.rs:81-84) and runs the screenshot script under <code>target/</code>. If a Bash path filter reuses the guard's parser, it sees only redirects plus <code>mv rm tee truncate cp install sed</code> and <code>git checkout/restore</code> (agent-hook.sh:198):</p>
+<pre>python3 -c "open('xtask/src/main.rs','w').write('x')"   -> {}   (allowed, no note)
+perl -pi -e s/a/b/ xtask/src/main.rs                    -> {}
+git apply fix.patch                                     -> {}
+echo x > xtask/src/main.rs                              -> policy note</pre>
+    <p>A read-only reviewer conflicts with step 2 of its own brief: "Run builds and tests in a clean copy." Without Bash it can't check claims, and the brief says that is not a pass.</p>
+    <p><strong>Codex:</strong> a custom agent file can't override <code>sandbox_mode</code> or <code>approval_policy</code> (<a href="https://learn.chatgpt.com/docs/agent-configuration/subagents">subagents docs</a>). In openai/codex, <code>codex-rs/core/src/agent/role_tests.rs</code> asserts it: <code>apply_role_cannot_expand_parent_authority</code> (line 436) checks "role must not control" each sandbox key, and <code>apply_role_preserves_parent_sandbox_permissions</code> (line 396) shows a role's <code>writable_roots</code> is ignored.</p>
+    <fieldset class="choice" data-card="7"><legend>Subagent limits</legend>
+      <label><input type="radio" name="c7" value="a" checked>State the limits honestly: a Claude hook blocks Edit/Write outside the folder in trusted sessions; Bash and all of Codex rely on instructions</label>
+      <label><input type="radio" name="c7" value="b">Make the Claude reviewer truly read-only (no Bash), accepting that it can't reproduce claims</label>
+    </fieldset>
+    <div class="chip" id="chip-7"></div>
+  </section>
+
+  <h2>Short answers</h2>
+  <ul class="short">
+    <li><strong>DOC005 is not pushing the trim.</strong> AGENTS.md has 73 lines, and the limit is 100 (checks.rs:164). The rule applies to all six files named AGENTS.md. Step 7 links to docs/COMPLETION.md, which is protected, so moving text there needs a receipt. Step 2 links to docs/ARTIFACTS.md, which isn't protected, even though the tier prose would live there.</li>
+    <li><strong>Codex agent files are <code>.toml</code>,</strong> so DOC004 doesn't apply to them. Every <code>.md</code> file under <code>.claude/agents/</code>, <code>.claude/skills/</code> and <code>.agents/skills/</code> needs a docs.json entry.</li>
+  </ul>
+
+  <section class="final">
+    <div class="final-head">
+      <h2>Your improved prompt</h2>
+      <button type="button" id="copy">Copy prompt</button>
+    </div>
+    <p class="muted">This prompt updates as you change the choices above.</p>
+    <pre id="final-prompt"></pre>
+  </section>
+</main>
+<script>
+(function () {
+  var text = {
+    "2": {
+      a: "Measure the tier on the tree, never on commits: git diff --numstat --no-renames against the merge base, plus git ls-files -o --exclude-standard for untracked files. Any binary file makes the task standard. Exclude only administrative() paths. Test a 225-line move, a binary and an untracked file, and run on a merge commit whose first parent is the base.",
+      b: "Measure the tier on the tree, never on commits: git diff --numstat against the merge base with rename detection, plus untracked files. Classify both sides of {a => b} paths. Any binary file makes the task standard. Test a move with edits, a binary and an untracked file, and run on a merge commit."
+    },
+    "3": {
+      a: "When a small task exceeds the limit, the gate's error must say: start a new branch, commit the five discovery pages first, then cherry-pick the code. Leave order() unchanged, and make its error mention this route when the record was small.",
+      b: "Allow small to standard on the same branch: order() accepts discovery pages after code when the record names the switch, and a test covers that exception and nothing wider."
+    },
+    "5": {
+      a: "Use .claude/skills/<name>/SKILL.md as the source and .agents/skills/<name>/SKILL.md as an identical copy, with no symlinks. Carve .claude/skills/ out of the protected .claude/ prefix in transitions.rs and agent-hook.sh together (.claude/agents/ stays protected), and add an xtask check that the copies match. Register both in docs.json, and fix links for depth 3.",
+      b: "Use .claude/skills/<name>/SKILL.md as the source and .agents/skills/<name>/SKILL.md as an identical copy, with no symlinks. Add .agents/ to protection in transitions.rs and agent-hook.sh together, and add an xtask check that the copies match. Register both in docs.json, and fix links for depth 3."
+    },
+    "6": {
+      a: "Leave docs/skills/investigate.md where it is, as the evaluator/GEPA seed. Convert only author-artifact, review-artifact and the new add-a-product-command skill.",
+      b: "Move investigate into the skill folders too. Update experiments/README.md:37 and experiments/gepa/README.md:5 by hand (DOC006 won't catch them), make the evaluator strip frontmatter, and drop skill folders from trial snapshots."
+    },
+    "7": {
+      a: "Subagents: the Claude author gets a per-agent PreToolUse hook that blocks Edit/Write outside harness/task-artifacts/. Its definition must say the hook runs only in a trusted folder (never under -p), and that Bash and Codex limits rely on instructions only. The reviewer keeps Bash so it can reproduce claims in a clean copy.",
+      b: "Subagents: the Claude reviewer gets Read/Grep/Glob only, and the author gets an Edit/Write path hook. Note in the brief that the reviewer can't reproduce claims, and that Codex roles inherit the parent sandbox."
+    }
+  };
+  var fixed = { "1": "chip-1", "4": "chip-4" };
+  function pick(card) {
+    var el = document.querySelector('input[name="c' + card + '"]:checked');
+    return text[card][el ? el.value : "a"];
+  }
+  function render() {
+    ["2", "3", "5", "6", "7"].forEach(function (c) { document.getElementById("chip-" + c).textContent = pick(c); });
+    var lines = [];
+    for (var i = 1; i <= 7; i++) {
+      var id = fixed[i] || ("chip-" + i);
+      lines.push(i + ". " + document.getElementById(id).textContent.trim());
+    }
+    document.getElementById("final-prompt").textContent =
+      "Implement agent-workflow items 1, 3, 4 and 5. Constraints from the blindspot pass:\n\n" +
+      lines.join("\n\n") +
+      "\n\nKeep AGENTS.md's red-tape line short. Move step 7's procedure into docs/COMPLETION.md under a transition receipt. Work in this order: failing tests for every caller of the page check and for the diff-count rules, then the tier code, then skills and parity, then subagents, then the AGENTS.md trim.";
+  }
+  document.addEventListener("change", function (e) { if (e.target.name && /^c\d$/.test(e.target.name)) render(); });
+  document.getElementById("copy").addEventListener("click", function () {
+    var btn = this, t = document.getElementById("final-prompt").textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy prompt"; }, 1500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(t).then(done, done); } else { done(); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>
