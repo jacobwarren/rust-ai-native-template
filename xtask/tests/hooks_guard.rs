@@ -67,8 +67,23 @@ fn guard_reads_every_patch_path_and_blocks_what_it_cannot_read() {
     assert_eq!(hook(&f, "guard", "codex", &garbage, None).code, 2);
     let no_path = event(&f, "Edit", json!({"old_string":"a"}));
     assert_eq!(hook(&f, "guard", "claude", &no_path, None).code, 2);
+    // `..` resolves before the tier is chosen, so it neither hides nor invents a golden.
     let traversal = edit(&f, "src/../harness/goldens/kept.json");
-    assert_eq!(hook(&f, "guard", "claude", &traversal, None).code, 2);
+    assert_eq!(
+        decision(&hook(&f, "guard", "claude", &traversal, None)),
+        json!("ask")
+    );
+    let name = f.0.file_name().unwrap().to_str().unwrap().to_string();
+    let back_in = shell(&f, &format!("cp x ../{name}/harness/goldens/kept.json"));
+    assert_eq!(hook(&f, "guard", "codex", &back_in, None).code, 2);
+    let outside = hook(
+        &f,
+        "guard",
+        "codex",
+        &shell(&f, "cp x ../outside.txt"),
+        None,
+    );
+    assert_eq!((outside.code, outside.stdout.trim()), (0, "{}"));
 }
 
 #[test]

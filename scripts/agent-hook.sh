@@ -4,7 +4,7 @@
 # The guard never runs Cargo, so a broken xtask/ cannot break it. Exit 2 blocks
 # with the reason on stderr; exit 0 allows, with JSON on stdout when there is
 # something to say. See docs/COMPLETION.md "Default hooks and CI".
-set -uE
+set -uEf
 trap 'echo "agent-hook: internal error at line $LINENO. Tell the owner the hook needs a fix." >&2; exit 2' ERR
 
 # Copied from xtask/src/transitions.rs; transitions::tests keeps them equal.
@@ -86,19 +86,33 @@ root_cwd=${cwd%/}
 [ -z "$prefix" ] || root_cwd=${root_cwd%/"${prefix%/}"}
 root_short=${root#/private}
 
+# Resolve . and .. in an absolute path without touching the disk.
+normalize() {
+  local IFS=/ part out=""
+  for part in $1; do
+    case "$part" in
+      "" | .) ;;
+      ..) case "$out" in */*) out=${out%/*} ;; *) out="" ;; esac ;;
+      *) out=${out:+$out/}$part ;;
+    esac
+  done
+  printf '/%s\n' "$out"
+}
+
 # Repository-relative path for $1, or "" when it lies outside the checkout.
+# Relative paths resolve against the event's cwd, so climbing out of the
+# checkout and back in through its own name still lands inside it.
 relative() {
-  local p=$1 r
-  case "$p" in
+  local p r
+  case "$1" in
     /*)
+      p=$(normalize "$1")
       for r in "$root" "$root_cwd" "$root_short" "/private$root_cwd"; do
         case "$p" in "$r"/*) p=${p#"$r"/}; break ;; esac
       done
-      case "$p" in /*) echo ""; return ;; esac ;;
-    *) p="$prefix$p" ;;
+      case "$p" in /*) p="" ;; esac ;;
+    *) relative "${cwd%/}/$1"; return ;;
   esac
-  while :; do case "$p" in ./*) p=${p#./} ;; *) break ;; esac; done
-  case "/$p/" in */../*) echo "UNSAFE:$1"; return ;; esac
   echo "$p"
 }
 
@@ -131,7 +145,6 @@ decide() {
   local best=none best_path="" p t
   while IFS= read -r p; do
     [ -n "$p" ] || continue
-    case "$p" in UNSAFE:*) block "Blocked: agent-hook will not judge a path containing '..' (${p#UNSAFE:}). Use a path inside the repository." ;; esac
     t=$(tier "$p")
     if [ "$(rank "$t")" -gt "$(rank "$best")" ]; then best=$t; best_path=$p; fi
   done <<EOF
@@ -302,7 +315,7 @@ check() {
   rels=$(relatives "$paths")
   while IFS= read -r p; do
     case "$p" in
-      "" | UNSAFE:*) ;;
+      "") ;;
       Cargo.lock | Cargo.toml | */Cargo.toml | harness/config.json) workspace=1; arch=1 ;;
       *.rs)
         arch=1
