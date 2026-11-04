@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+
+<title>Default hooks: the interview</title>
+<style>
+.ask { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); max-width: var(--reading-width); position: relative; }
+.ask blockquote { margin: var(--space-2) 0 0; font-style: italic; background: none; border: 0; padding: 0; }
+.tag { font-size: var(--text-small); letter-spacing: .08em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+code { overflow-wrap: anywhere; font-size: .875em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+pre { font-size: .8125rem; line-height: 1.55; margin-block: var(--space-3); background: var(--paper); }
+
+/* interview frame */
+.iv { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; margin-top: var(--space-8); }
+.iv-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-4); padding: var(--space-3) var(--space-6); background: var(--paper); border-bottom: 1px solid var(--line); }
+.iv-head b { font-size: 1.05rem; }
+.iv-head span { font: .8125rem var(--font-code); color: var(--muted); margin-right: auto; }
+.iv-body { display: grid; grid-template-columns: 15rem minmax(0, 1fr); min-height: 34rem; }
+.rail { display: block; border-right: 1px solid var(--line); border-bottom: 0; padding: var(--space-4); background: var(--paper); }
+.rail-label { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 650; margin-bottom: var(--space-2); }
+.iv button.ri { display: flex; align-items: center; gap: var(--space-2); width: 100%; min-height: 36px; padding: var(--space-1) var(--space-2); margin: 2px 0; background: none; border: 0; border-radius: var(--control-radius); color: var(--muted); text-align: left; font-size: .875rem; }
+.iv button.ri:hover { background: var(--surface); }
+.iv button.ri.cur { background: var(--surface); color: var(--ink); font-weight: 650; box-shadow: inset 3px 0 0 var(--accent); }
+.iv button.ri.done { color: var(--ink); }
+.dot { width: 11px; height: 11px; border-radius: 50%; flex: none; border: 2px solid var(--dc); }
+.ri.done .dot { background: var(--dc); }
+.ri .rq { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.ri .mk { font-size: .7rem; color: var(--muted); flex: none; }
+.rail-meta { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--line); font-size: .75rem; color: var(--muted); line-height: 1.9; }
+.rail-meta i { font-style: normal; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; }
+.stage { padding: var(--space-6) var(--space-8) var(--space-8); min-width: 0; }
+.qcard { animation: qin .22s ease both; }
+@keyframes qin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.badge { display: inline-block; font: 650 .7rem var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--surface); padding: 2px 8px; border-radius: 4px; }
+.qnum { font: .8125rem var(--font-code); color: var(--muted); margin-left: var(--space-2); }
+.qtext { font-size: clamp(1.25rem, 2.6vw, 1.55rem); margin: var(--space-3) 0 var(--space-2); max-width: 36em; }
+.why { color: var(--muted); max-width: var(--reading-width); margin: 0 0 var(--space-2); font-size: .9375rem; }
+.decides { font: .75rem var(--font-code); color: var(--muted); margin: 0 0 var(--space-4); overflow-wrap: anywhere; }
+.decides b { font-family: var(--font-body); letter-spacing: .08em; text-transform: uppercase; }
+.ev { margin: 0 0 var(--space-4); }
+.opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+.iv button.opt { display: block; text-align: left; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4); font-size: .875rem; line-height: 1.5; position: relative; }
+.iv button.opt:hover { border-color: var(--accent); background: var(--surface); }
+.iv button.opt.picked { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent); }
+.opt .ol { font: 650 .75rem var(--font-code); color: var(--muted); }
+.opt .ot { display: block; font-weight: 650; font-size: .9375rem; margin: 2px 0 var(--space-1); padding-right: 4.5rem; }
+.opt .od { display: block; color: var(--muted); }
+.opt .lean { position: absolute; top: var(--space-3); right: var(--space-3); font: 650 .65rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 0 6px; background: var(--surface); }
+.leanwhy { margin: var(--space-4) 0 0; padding: var(--space-3) var(--space-4); font-size: .9375rem; }
+.leanwhy b { color: var(--accent); }
+.other { display: flex; gap: var(--space-2); margin-top: var(--space-3); }
+.other input { flex: 1; min-width: 0; }
+.nav { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: var(--space-4); flex-wrap: wrap; }
+.iv button.link { background: none; border: 0; color: var(--accent); padding: var(--space-2) 0; min-height: 0; text-decoration: underline; text-underline-offset: .18em; }
+.iv button.link[disabled] { visibility: hidden; }
+.hint { font-size: .8125rem; color: var(--muted); }
+.conflict { border-inline-start: 3px solid var(--danger); background: var(--warning-soft); padding: var(--space-2) var(--space-3); margin: var(--space-2) 0; font-size: .875rem; }
+.dtable td, .dtable th { font-size: .875rem; }
+.dtable th { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.dtable .src { font-size: .75rem; color: var(--muted); white-space: nowrap; }
+.evt { font-size: .8125rem; }
+.evt th { font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.evt td, .evt th { padding: var(--space-2) var(--space-3) var(--space-2) 0; }
+.evt td:first-child { width: 28%; }
+.ev .hint { margin: var(--space-2) 0 0; }
+.row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: var(--space-6); }
+.row h3 { margin: 0; }
+#reply { max-height: 26rem; overflow: auto; font-size: .8125rem; }
+.settled li { margin-block: var(--space-2); max-width: var(--reading-width); }
+.settled { font-size: .9375rem; }
+
+@media (max-width: 48rem) {
+  .iv-body { grid-template-columns: 1fr; min-height: 0; }
+  .rail { border-right: 0; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); padding: var(--space-2) var(--space-4); }
+  .rail-label, .rail-meta, .ri .rq, .ri .mk { display: none; }
+  .iv button.ri { width: auto; min-width: 36px; justify-content: center; margin: 0; }
+  .stage { padding: var(--space-4); }
+  .opts { grid-template-columns: 1fr; }
+  .iv-head { padding: var(--space-3) var(--space-4); }
+}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">default-hooks · the interview · before code</p>
+<h1>Six decisions that move the hooks build</h1>
+
+<div class="ask">
+  <span class="tag">The prompt</span>
+  <blockquote>Interview me one question at a time about anything still ambiguous in shipping default project hooks for Claude Code and Codex in this template. Prioritize questions where my answer would change the architecture.</blockquote>
+</div>
+
+<p class="lead">The blindspot pass and the brainstorm left six choices open. Each one changes which files get written, not just a setting. They're ordered by how much of the build each answer moves. My lean is marked on each card, and the leans fit together: take all of them, then change only the ones you disagree with. If one pick clashes with another, the reply says so, and it marks answers in your own words as unchecked.</p>
+<p class="muted">"Blindspot 03" and "rung 6" refer to the cards on the two earlier pages for this task. Code was read and commands were run in a clean clone of this branch. Host behaviour comes from Claude Code's hooks reference and from Codex's own source and tests.</p>
+
+<section class="iv" aria-label="Interview">
+  <div class="iv-head">
+    <b>Default hooks: spec interview</b>
+    <span id="progress">0 of 6 answered</span>
+    <button type="button" id="takeLeans" class="secondary">Take all my leans</button>
+  </div>
+  <div class="iv-body">
+    <nav class="rail" id="rail" aria-label="Interview progress"></nav>
+    <div class="stage" id="stage" aria-live="polite"></div>
+  </div>
+</section>
+
+<h2 id="settled">Not asked: settled by your request, the earlier pages or the hosts</h2>
+<p class="muted">These go into the reply as defaults. One is my call rather than yours and says so. Strike any you disagree with when you paste it.</p>
+<ul class="settled" id="settledList"></ul>
+
+<footer>default-hooks · interview · answers feed the reference map and the plan</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var RADII = {
+    arch: { label: "Architecture", color: "var(--accent)" },
+    data: { label: "Data model", color: "var(--ink)" },
+    pol:  { label: "Policy", color: "var(--warning)" },
+    cov:  { label: "Coverage", color: "var(--muted)" }
+  };
+
+  var Q = [
+    {
+      id: "stop", radius: "arch", short: "What Stop gates", topic: "Stop hook",
+      q: "What should the default Stop hook gate?",
+      why: "Stop fires after every turn, not every task. Today's script blocks any turn that doesn't name a task (blindspot 01), and rung 7 showed that `handoff` still blocks partway through a task. Your answer decides whether `completion.rs` gains a stop mode or only the script changes.",
+      decides: "xtask/src/completion.rs · scripts/agent-complete.sh · Stop in both configs",
+      lean: 0,
+      leanWhy: "it's the only option that lets a question-only turn stop and still refuses a false \"complete\" (rung 7's table). A record marked complete already has to carry current full-CI evidence (`completion.rs:44–49`), so a claim can't be waved through.",
+      opts: [
+        { t: "Gate only claims", d: "New xtask mode: find changed task records the way `handoff` does (`completion.rs:134–145`). Run `complete` only for a record marked complete; otherwise exit 0 and print `remaining`. Costs a module and tests. Stopping halfway without a claim is caught only by PR CI." },
+        { t: "handoff --base origin/main, as is", d: "No new Rust. It blocks partway through a task on the partial record's empty `review.*` answers (blindspot 01) and on any stray file (blindspot 06). The cap of 8 continuations resets every time the agent runs a tool, so it can loop." },
+        { t: "agent-complete.sh only when HARNESS_TASK_ID is set", d: "A three-line script change. Nothing in the repo sets the variable, so default sessions are never gated, and a \"done\" claim goes unchecked until PR CI." }
+      ]
+    },
+    {
+      id: "runtime", radius: "arch", short: "Guard runtime", topic: "Pre-edit guard runtime",
+      q: "Where does the pre-edit guard run, and what happens when it breaks?",
+      why: "If the guard fails open, a missing variable becomes a silent \"allowed\". If an xtask guard fails closed, it blocks the edit that would fix a broken xtask/ (blindspot 05). This answer picks the language, the tests, and whether a SessionStart build exists. Whatever runs it, Codex hands the hook the raw patch text, so the four line prefixes `artifact_hook.rs:24–35` already looks for are the right ones:",
+      evidence: "// openai/codex core/src/tools/handlers/apply_patch.rs:414–418\nfn pre_tool_use_payload(&self, invocation: &ToolInvocation) -> Option<PreToolUsePayload> {\n    apply_patch_payload_command(&invocation.payload).map(|command| PreToolUsePayload {\n        tool_name: HookToolName::apply_patch(),\n        tool_input: serde_json::json!({ \"command\": command }),\n// pinned by test pre_tool_use_payload_uses_freeform_patch_input; the command is\n// \"*** Begin Patch\\n*** Update File: path\\n@@ …\" with Add/Delete File and Move to lines",
+      decides: "new scripts/agent-guard.sh or a new xtask/src module · SessionStart hook · onFailure",
+      lean: 0,
+      leanWhy: "a guard that never calls Cargo is the only one that can block on failure safely. The drift between its list and `protected()` becomes a test failure instead of a silent gap. Codex has no way to fail closed whichever you pick.",
+      opts: [
+        { t: "Shell script, never calls Cargo, fails closed on Claude", d: "Reads the event: Claude's `file_path`, the `*** Add/Update/Delete File:` and `*** Move to:` lines of Codex's patch, or the Bash `command`. `onFailure: \"block\"` on Claude is safe because no edit can break what it runs. Codex has no such field: any exit but 0 or 2 marks the hook failed and the edit goes ahead (Codex `hooks/src/events/pre_tool_use.rs:278–283`). Its path list copies what Q4 guards from `protected()` (`transitions.rs:37–61`); an xtask test that reads the script fails when they differ." },
+        { t: "xtask agent-hook, prebuilt at session start, fails open", d: "One classifier shared with CI's `protected()` and the apply_patch parser in `artifact_hook.rs:24–35`. Needs rung 3's SessionStart build to a pinned path. If the binary is missing it allows the edit with a warning. Changing xtask needs a policy receipt." },
+        { t: "Shell now, xtask agent-hook later", d: "Rung 6's first choice: option 1 today, with option 2 as a promise. Nothing sets when \"later\" happens, so the parity test is needed anyway." }
+      ]
+    },
+    {
+      id: "tree", radius: "data", short: "What counts as the tree", topic: "Self-protection and local files",
+      q: "Do .claude/ and .codex/ join protected(), and how do local host files stop counting as changes?",
+      why: "`repo::files` ignores .gitignore (`repo.rs:22–25`). Everything that fingerprints the tree uses it: `handoff` (blindspot 06), and also the full-CI evidence that a completion claim must match (`readiness.rs:112–119`). If .claude/ is protected without a fix, Claude's own settings.local.json triggers a receipt demand (rung 2).",
+      evidence: "$ target/debug/xtask env | grep source_sha256\n  \"source_sha256\": \"670671d88c0e…\"\n$ echo '{\"permissions\":{\"allow\":[\"Bash(ls:*)\"]}}' > .claude/settings.local.json\n$ target/debug/xtask env | grep source_sha256\n  \"source_sha256\": \"bfd6d7745a00…\"     a CI report from before \"don't ask again\" is now stale\n$ git check-ignore -v .claude/settings.local.json\n~/.config/git/ignore:1:**/.claude/settings.local.json     ignored only by this machine's global exclude",
+      decides: "transitions::protected · repo::files and so every source_sha256 · a regression test",
+      lean: 0,
+      leanWhy: "it keeps one machine-independent definition of the tree, and that is what CI evidence compares against. The skip list is short and gets tested.",
+      opts: [
+        { t: "Protect both; skip Claude's local files in repo::files", d: "Add the two prefixes. Skip `.claude/settings.local.json` and `.claude/worktrees/` in the walk, with a regression test. The tree keeps one definition, and the skip list grows when a host adds a local file." },
+        { t: "Protect both; build the tree from git instead", d: "`git ls-files` plus untracked files that aren't ignored. This honours .gitignore, but also each machine's global excludes (above), so two machines would fingerprint the same checkout differently. It touches every user of `source_sha256`: readiness, workflows, runner and completion." },
+        { t: "Don't protect them; still skip the local files", d: "A PR that removes or weakens a hook reaches CI without a receipt. CODEOWNERS on .claude/ and .codex/ (rung 8) would be the only check." }
+      ]
+    },
+    {
+      id: "tiers", radius: "pol", short: "Guard tiers per host", topic: "Guard tiers",
+      q: "What does the guard do with goldens, and with the rest of protected()?",
+      why: "protected() means \"needs a receipt\", not \"never edit\". A committed Claude deny can't be lifted, and Codex can't ask (blindspot 02). `harness/config.json` and the root `Cargo.toml` are in protected() too, and Q6 may make either one ask; each option says how the two answers combine. A note that lets an edit through has to be JSON, because neither host shows the agent anything else a passing hook prints:",
+      table: {
+        head: ["PreToolUse exits 0 with", "Claude Code", "Codex"],
+        rows: [
+          ["plain stdout or stderr", "debug log only; \"Claude never sees stderr from a hook that exits 0\"", "ignored (test `plain_stdout_is_ignored`)"],
+          ["JSON `additionalContext`", "added to Claude's context with the tool result", "a developer message on the next request"],
+          ["JSON decision `ask`", "prompts you", "\"unsupported\": hook marked failed, call runs"],
+          ["JSON decision `allow`", "skips the prompt", "\"unsupported\": hook marked failed, call runs"]
+        ],
+        src: "Claude Code hooks reference, \"Exit code 0\" and \"PreToolUse decision control\"; Codex `hooks/src/events/pre_tool_use.rs` and its tests."
+      },
+      decides: "the guard's decision table per host · permission rules in .claude/settings.json",
+      lean: 0,
+      leanWhy: "this is the closest each host can get to \"review it first\": Claude asks, and Codex, which can't ask, refuses. The harness's own edits still go through, and the note reaches the agent because it's sent as `additionalContext`.",
+      opts: [
+        { t: "Goldens: Claude asks, Codex denies. Other paths: allow with a note", d: "On Codex, a golden changes only by hand or from a Claude session. Edits to scripts/, xtask/ and docs/ (this task's own) go through with a note, and the completion gate and PR CI still demand the receipt. A file Q6 makes ask (config.json in its lean) asks instead." },
+        { t: "Goldens: Claude asks, Codex allows with a note", d: "Same on Claude. On Codex an agent can rewrite a golden, and the only check is the policy receipt, which the same agent writes (blindspot 03). Other paths as in option 1." },
+        { t: "Deny every protected() path unless HARNESS_POLICY_EDIT=1", d: "Same on both hosts, with no deny rule so the override still works. config.json and the root Cargo.toml are denied too, so adding a crate means setting the variable. 11 of 17 non-merge commits on main touch the list (blindspot 02), so the override becomes routine." },
+        { t: "Guard goldens only", d: "Goldens as in option 1. The guard needs one prefix, plus whatever Q6 makes ask. Other policy-file edits reach the completion gate and CI with no notice at edit time." }
+      ]
+    },
+    {
+      id: "routes", radius: "cov", short: "Script writes to goldens", topic: "Golden writes outside edit tools",
+      q: "How far should golden protection reach beyond the edit tools?",
+      why: "The harness prints the candidate path whose `cp` re-blesses a golden, and an Edit|Write hook never sees that command (blindspot 03). Making the goldens read-only stopped every write, but it also broke git (rung 4).",
+      decides: "a PreToolUse Bash matcher on both hosts · SessionStart chmod or none",
+      lean: 0,
+      leanWhy: "it closes the route the harness itself hands the agent, on both hosts, without breaking git for you. The Python route stays open until the completion gate, and the reply says so.",
+      opts: [
+        { t: "Bash guard on commands that name the path", d: "A PreToolUse Bash hook on both hosts gives commands naming harness/goldens/ the decision Q4 gives golden edits, except read-only ones (cat, git diff/show/log, rg). Python that builds the path itself still gets through until the completion gate or CI. The allowlist will grow." },
+        { t: "Read-only goldens, set at session start", d: "`chmod -R a-w` blocked cp, sed, python and rm (rung 4). It also blocks every write Q4 lets through, an approved Claude ask included. `git checkout` of a golden failed with \"unable to unlink\", and rebases and pulls that touch goldens fail until `chmod u+w`. Adds a SessionStart hook, which runs on Codex only once trusted." },
+        { t: "Both", d: "Covers every route rung 4 tried except rename-and-recreate, and carries option 2's git friction." },
+        { t: "Edit tools only", d: "The guard sees Edit, Write and apply_patch only. Claude's `Edit(/harness/goldens/**)` ask rule still stops cp and sed there (blindspot 03), not Python. On Codex a `cp` from the printed candidate reaches CI only as a receipt." }
+      ]
+    },
+    {
+      id: "deps", radius: "pol", short: "What a new dependency is", topic: "Dependency ask",
+      q: "What should \"ask before adding a dependency\" attach to?",
+      why: "Command rules match spellings, and editing a manifest then running `cargo check` adds a dependency without any `cargo add` (blindspot 04). ARCH004 rejects any external crate missing from its layer's allowlist in harness/config.json (`checks.rs:68–69`), and every member, xtask included, declares a layer (`package.metadata.harness.layer`). The allowlists today:",
+      evidence: "harness/config.json  layers.*.external\n  domain    []\n  runtime   [\"serde_json\"]\n  engine    [\"serde\", \"serde_json\", \"sha2\"]\n  tooling   [\"serde\", \"serde_json\", \"sha2\"]",
+      decides: "guard tier for harness/config.json · Cargo.toml rules · post-edit architecture check",
+      lean: 0,
+      leanWhy: "a crate its layer hasn't allowed can't pass ARCH004 without a change to this one file, however the agent spells it. Crates a layer already allows go through unasked, but you approved those when they entered the list.",
+      opts: [
+        { t: "Ask on edits to harness/config.json", d: "Claude asks and Codex denies, as Q4's lean does for goldens, so on Codex only you or a Claude session can widen the allowlist. The post-edit check runs `--locked` and `xtask architecture`, so ARCH004 reports a new crate right after the manifest edit. A crate the layer already allows, such as sha2 in a second engine crate, needs no config edit and never asks. Edits to profiles or max_rust_lines in the same file ask too." },
+        { t: "Ask on any Cargo.toml edit", d: "Path-based on both hosts, plus cargo add/remove rules (blindspot 04's first option). Catches already-allowed crates too, but version bumps and feature flags ask, and on Codex every manifest edit is denied." },
+        { t: "cargo add rule and --locked only", d: "Manifest edits go through without asking. CI's ARCH004 catches the crate at the PR." }
+      ]
+    }
+  ];
+
+  var SETTLED = [
+    "The discovery-page guard stays opt-in. You listed four hooks, and scaling artifact ceremony is outside this task. The example drops its Stop and SubagentStop entries (`codex-artifact-hooks.json:16–37`), so enabling it next to the defaults doesn't add a second Stop gate.",
+    "Merging means merging the PR. Deny `gh pr merge`, `gh api …/merge` and every force-push spelling in blindspot 04's table, including `--force-with-lease` and `+ref`. Keep `git merge` from main allowed: completion reads the branch with `--first-parent --no-merges` (`history.rs:56–57`). Literal rules are a speed bump. Document hosting rules for adopters (rung 8).",
+    "Post-edit feedback is a PostToolUse hook on Edit|Write (Claude) and apply_patch (Codex), not on Bash writes. It runs `cargo check --locked` on the changed crate plus `xtask architecture`, and returns errors as exit 2 with stderr, which both hosts give the agent (Codex `post_tool_use.rs:264–272`). `--locked` keeps it from rewriting the protected Cargo.lock (rung 5, blindspot 04).",
+    "My call, not yours: formatting is `cargo fmt --check` and is reported, not applied. You asked for \"formatting\"; Claude's hooks guide does use a post-edit `prettier --write` as its example, but neither host documents how the agent handles a file rewritten under it, and Codex shows no example (rung 5). Strike this for an applied `cargo fmt` on the changed crate.",
+    "Hooks resolve the repository root from the event's `cwd`, not `$CLAUDE_PROJECT_DIR`, which stays on the main checkout inside a worktree (both of blindspot 06's options).",
+    "Every note the guard sends is JSON `hookSpecificOutput.additionalContext` with no `permissionDecision`, and every block is exit 2 with the reason on stderr, which both hosts show the agent. Codex runs the call anyway if that stderr is empty (`pre_tool_use.rs:261–276`).",
+    "SubagentStop is not wired. With a record marked complete, a reviewer subagent would be sent back to fix work it doesn't own (blindspot 01, rung 7).",
+    "The commit that adds the hooks carries a policy transition receipt, and rewrites \"no vendor configuration is silently installed\" (`COMPLETION.md:159–160`) and the other opt-in sentences listed in the blindspot page's improved prompt."
+  ];
+
+  // Every pair of options that contradicts, checked against the effective answer
+  // (your pick, or the lean when unanswered). The leans trigger none of these.
+  var CONFLICTS = [
+    { when: { tiers: [0, 1, 3], routes: [1, 2] }, text: "Q4 has Claude ask before a golden edit, but Q5's read-only bit makes the approved edit fail until chmod u+w." },
+    { when: { tiers: 1, routes: [1, 2] }, text: "Q4 lets Codex edit goldens with a note, but Q5's read-only goldens refuse that write on disk. One of them has to give." },
+    { when: { tiers: 2, routes: [1, 2] }, text: "Q4's HARNESS_POLICY_EDIT=1 override can't lift Q5's read-only bit, which stays on disk from earlier sessions. Goldens stay unwritable until someone runs chmod u+w." },
+    { when: { tiers: 2, deps: 0 }, text: "Q4 already denies harness/config.json unless HARNESS_POLICY_EDIT=1 is set, so Q6's ask never fires. Adding a crate means setting the variable." },
+    { when: { tiers: 2, deps: 1 }, text: "Q4 denies the root Cargo.toml, where workspace dependencies are declared, while Q6 asks on it. Q6's ask then covers member manifests only." },
+    { when: { tiers: 1, deps: [0, 1] }, text: "On Codex, Q6 denies dependency edits while Q4 lets goldens through with a note, so the dependency list ends up better guarded than the goldens." }
+  ];
+
+  var answers = Q.map(function () { return null; }); // {oi} or {text}
+  var cur = 0;
+  var rail = document.getElementById("rail"), stage = document.getElementById("stage");
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function fmt(s) { return esc(s).replace(/`([^`]+)`/g, "<code>$1</code>"); }
+  function plain(s) { return s.replace(/`/g, ""); }
+  function idx(id) { for (var i = 0; i < Q.length; i++) if (Q[i].id === id) return i; return -1; }
+  function answerText(i) {
+    var a = answers[i]; if (!a) return null;
+    return a.text != null ? a.text : Q[i].opts[a.oi].t;
+  }
+  function count() { return answers.filter(Boolean).length; }
+
+  function renderRail() {
+    var h = '<div class="rail-label">Ordered by blast radius</div>';
+    Q.forEach(function (q, i) {
+      var a = answers[i];
+      var mark = !a ? "" : (a.text != null ? "own" : (a.oi === q.lean ? "lean" : "✓"));
+      h += '<button type="button" class="ri' + (i === cur ? " cur" : "") + (a ? " done" : "") + '" data-i="' + i +
+        '" style="--dc:' + RADII[q.radius].color + '" aria-label="Question ' + (i + 1) + ': ' + esc(q.short) + '">' +
+        '<span class="dot"></span><span class="rq">' + (i + 1) + '. ' + esc(q.short) + '</span><span class="mk">' + mark + '</span></button>';
+    });
+    h += '<button type="button" class="ri' + (cur === Q.length ? " cur" : "") + '" data-i="' + Q.length + '" style="--dc:var(--line)" aria-label="Summary and reply">' +
+      '<span class="dot"></span><span class="rq">Reply</span><span class="mk"></span></button>';
+    h += '<div class="rail-meta">' + Object.keys(RADII).map(function (k) {
+      return '<i style="background:' + RADII[k].color + '"></i>' + RADII[k].label; }).join("<br>") + '</div>';
+    rail.innerHTML = h;
+    document.getElementById("progress").textContent = count() + " of " + Q.length + " answered";
+  }
+
+  function renderQuestion() {
+    var q = Q[cur], r = RADII[q.radius], a = answers[cur];
+    var h = '<div class="qcard"><span class="badge" style="background:' + r.color + '">' + r.label + '</span>' +
+      '<span class="qnum">Question ' + (cur + 1) + ' of ' + Q.length + '</span>' +
+      '<h2 class="qtext">' + esc(q.q) + '</h2>' +
+      '<p class="why">' + fmt(q.why) + '</p>' +
+      '<p class="decides"><b>Decides</b> ' + esc(q.decides) + '</p>' +
+      (q.evidence ? '<pre class="ev">' + esc(q.evidence) + '</pre>' : '') +
+      (q.table ? '<div class="table-scroll ev"><table class="evt"><thead><tr>' + q.table.head.map(function (h) { return '<th>' + esc(h) + '</th>'; }).join("") +
+        '</tr></thead><tbody>' + q.table.rows.map(function (r) { return '<tr>' + r.map(function (c) { return '<td>' + fmt(c) + '</td>'; }).join("") + '</tr>'; }).join("") +
+        '</tbody></table><p class="hint">' + fmt(q.table.src) + '</p></div>' : '') +
+      '<div class="opts">';
+    q.opts.forEach(function (o, oi) {
+      var picked = a && a.text == null && a.oi === oi;
+      h += '<button type="button" class="opt' + (picked ? " picked" : "") + '" data-oi="' + oi + '" aria-pressed="' + picked + '">' +
+        (oi === q.lean ? '<span class="lean">my lean</span>' : '') +
+        '<span class="ol">' + (oi + 1) + '</span><span class="ot">' + esc(o.t) + '</span><span class="od">' + fmt(o.d) + '</span></button>';
+    });
+    h += '</div><p class="leanwhy callout"><b>Agent\'s lean: ' + (q.lean + 1) + '.</b> ' + fmt(q.leanWhy.charAt(0).toUpperCase() + q.leanWhy.slice(1)) + '</p>' +
+      '<div class="other"><input type="text" id="otherIn" aria-label="Your own answer" placeholder="Or answer in your own words…" value="' +
+      (a && a.text != null ? esc(a.text) : "") + '"><button type="button" id="otherGo" class="secondary">Answer</button></div>' +
+      '<div class="nav"><button type="button" class="link" id="back"' + (cur === 0 ? " disabled" : "") + '>← Previous</button>' +
+      '<span class="hint">Pick a card to continue</span>' +
+      '<button type="button" class="link" id="skip">' + (cur === Q.length - 1 ? "To the reply →" : "Skip →") + '</button></div></div>';
+    stage.innerHTML = h;
+    stage.querySelectorAll(".opt").forEach(function (el) {
+      el.addEventListener("click", function () {
+        answers[cur] = { oi: +el.getAttribute("data-oi") };
+        stage.querySelectorAll(".opt").forEach(function (b) { b.classList.remove("picked"); });
+        el.classList.add("picked");
+        renderRail();
+        setTimeout(function () { go(cur + 1); }, 220);
+      });
+    });
+    var inp = document.getElementById("otherIn");
+    function own() { var v = inp.value.trim(); if (!v) { inp.focus(); return; } answers[cur] = { text: v }; go(cur + 1); }
+    document.getElementById("otherGo").addEventListener("click", own);
+    inp.addEventListener("keydown", function (e) { if (e.key === "Enter") own(); });
+    document.getElementById("back").addEventListener("click", function () { go(cur - 1); });
+    document.getElementById("skip").addEventListener("click", function () { go(cur + 1); });
+  }
+
+  // The option that will be built: your pick, or the lean if unanswered. Own wording has none.
+  function effective(i) { var a = answers[i]; return !a ? Q[i].lean : a.text != null ? -1 : a.oi; }
+  function conflicts() {
+    return CONFLICTS.filter(function (c) {
+      return Object.keys(c.when).every(function (id) {
+        var want = [].concat(c.when[id]); return want.indexOf(effective(idx(id))) >= 0;
+      });
+    });
+  }
+
+  function unchecked() {
+    return Q.map(function (q, i) { return answers[i] && answers[i].text != null ? "Q" + (i + 1) : null; }).filter(Boolean);
+  }
+
+  function reply() {
+    var L = ["Answers to the default-hooks interview, most architectural first.", ""];
+    Q.forEach(function (q, i) {
+      var a = answers[i], t = answerText(i);
+      var tag = !a ? "" : a.text != null ? " [my wording; ask if unclear]" : (a.oi === q.lean ? " [agent's lean]" : " [not the agent's lean]");
+      L.push((i + 1) + ". " + q.topic + ": " + (t ? t : "(unanswered; use the agent's lean: " + q.opts[q.lean].t + ")") + tag);
+    });
+    var cs = conflicts();
+    if (cs.length) { L.push("", "Conflicts to resolve before writing code:"); cs.forEach(function (c) { L.push("- " + c.text); }); }
+    var sk = unchecked(); if (sk.length) L.push("", "Conflict check skipped for " + sk.join(", ") + ": answered in my own words.");
+    L.push("", "Defaults I accept unless struck:");
+    SETTLED.forEach(function (s) { L.push("- " + plain(s)); });
+    return L.join("\n");
+  }
+
+  function renderSummary() {
+    var rows = Q.map(function (q, i) {
+      var a = answers[i], t = answerText(i);
+      var src = !a ? "unanswered" : a.text != null ? "your wording" : (a.oi === q.lean ? "agent's lean" : "your pick");
+      return '<tr><td>' + (i + 1) + '</td><td>' + esc(q.topic) + '</td><td>' + (t ? esc(t) : '<span class="muted">—</span>') +
+        '</td><td class="src">' + src + '</td><td><button type="button" class="link" data-i="' + i + '">edit</button></td></tr>';
+    }).join("");
+    var cs = conflicts().map(function (c) { return '<p class="conflict">' + esc(c.text) + '</p>'; }).join("");
+    var sk = unchecked(); if (sk.length) cs += '<p class="hint">Conflict check skipped for ' + sk.join(", ") + ': answered in your own words.</p>';
+    stage.innerHTML = '<div class="qcard"><span class="badge" style="background:var(--accent)">Your reply</span>' +
+      '<h2 class="qtext">' + count() + ' of ' + Q.length + ' decided</h2>' +
+      '<p class="why">Unanswered questions go back as "use the agent\'s lean", so the plan never guesses silently.</p>' + cs +
+      '<div class="table-scroll"><table class="dtable"><thead><tr><th>#</th><th>Question</th><th>Decision</th><th>Source</th><th></th></tr></thead><tbody>' +
+      rows + '</tbody></table></div>' +
+      '<div class="row"><h3>Copy this back</h3><button type="button" id="copyReply">Copy reply</button></div>' +
+      '<pre id="reply"></pre>' +
+      '<button type="button" class="link" id="restart">↺ Clear answers and start over</button></div>';
+    document.getElementById("reply").textContent = reply();
+    stage.querySelectorAll(".dtable .link").forEach(function (b) { b.addEventListener("click", function () { go(+b.getAttribute("data-i")); }); });
+    document.getElementById("restart").addEventListener("click", function () { answers = Q.map(function () { return null; }); go(0); });
+    document.getElementById("copyReply").addEventListener("click", function (e) { copy(reply(), e.currentTarget); });
+  }
+
+  function go(i) {
+    cur = Math.max(0, Math.min(i, Q.length));
+    renderRail();
+    if (cur === Q.length) renderSummary(); else renderQuestion();
+  }
+
+  function copy(text, btn) {
+    function done() { var t = btn.textContent; btn.textContent = "Copied"; setTimeout(function () { btn.textContent = t; }, 1400); }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { fallback(); done(); });
+    else { fallback(); done(); }
+  }
+
+  rail.addEventListener("click", function (e) {
+    var b = e.target.closest("button.ri"); if (b) go(+b.getAttribute("data-i"));
+  });
+  document.getElementById("takeLeans").addEventListener("click", function () {
+    Q.forEach(function (q, i) { if (!answers[i]) answers[i] = { oi: q.lean }; });
+    go(Q.length);
+  });
+  document.getElementById("settledList").innerHTML = SETTLED.map(function (s) { return "<li>" + fmt(s) + "</li>"; }).join("");
+
+  go(0);
+})();
+</script>
+</body>
+</html>
