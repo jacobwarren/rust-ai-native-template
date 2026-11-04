@@ -1,0 +1,47 @@
+{
+  "schema_version": 6,
+  "id": "default-hooks",
+  "status": "partial",
+  "requirements": [
+    "completion"
+  ],
+  "related_gaps": [
+    {
+      "id": "product-acceptance",
+      "disposition": "unaffected",
+      "rationale": "Agent hooks shape how work is done on the template; they do not define acceptance for an adopted product."
+    },
+    {
+      "id": "platform-qualification",
+      "disposition": "unaffected",
+      "rationale": "Hooks run on the developer's machine; the declared platform matrix is unchanged."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "Local hooks cannot configure branch protection or reviewer authority on the host."
+    },
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "unaffected",
+      "rationale": "Under review in the discovery pages; not yet changed."
+    }
+  ],
+  "gap_review": "Reviewed the four open gaps at task start; none is changed yet.",
+  "discoveries": [],
+  "discovery_review": "Discovery pages are being written.",
+  "documentation": {
+    "updated": [],
+    "rationale": "No documented behavior has changed yet."
+  },
+  "summary": "Ship project hooks for Claude Code and Codex on by default: feedback after edits, a guard before edits to protected files, and the completion gate at stop.",
+  "remaining": [
+    "Write and review the five discovery pages, then get the owner's answers before product code."
+  ],
+  "review": {
+    "acceptance": "",
+    "verification": "",
+    "assumptions": "",
+    "coverage": ""
+  }
+}

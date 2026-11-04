@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Default hooks: blindspot pass</title>
+<style>
+.ask { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); max-width: var(--reading-width); }
+.ask blockquote { margin: var(--space-2) 0 0; font-style: italic; background: none; padding: 0 0 0 var(--space-4); }
+.tag { font-size: var(--text-small); letter-spacing: .08em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+.walk, .bite { border-inline-start: 3px solid var(--warning); background: var(--warning-soft); border-radius: 0 var(--control-radius) var(--control-radius) 0; max-width: var(--reading-width); }
+.walk { padding: var(--space-4) var(--space-6); margin-block: var(--space-6); }
+.walk p { margin: var(--space-1) 0 0; }
+.bite { padding: var(--space-3) var(--space-4); margin-block: var(--space-4); }
+.bite strong { color: var(--warning); font-size: var(--text-small); text-transform: uppercase; letter-spacing: .08em; margin-inline-end: var(--space-2); }
+.card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-6); margin-block: var(--space-6); }
+.card > h3 { margin: var(--space-2) 0 var(--space-3); font-size: 1.2rem; }
+.card p { max-width: var(--reading-width); }
+.badge { font-size: .75rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px; border-radius: var(--control-radius); border: 1px solid; margin-inline-end: var(--space-3); }
+.landmine { color: var(--danger); background: #fbecee; }
+.concept { color: var(--accent); background: var(--accent-soft); }
+.num { font-family: var(--font-code); font-size: var(--text-small); color: var(--muted); }
+code { font-size: .875em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+pre { font-size: .8125rem; line-height: 1.55; margin-block: var(--space-3); background: var(--paper); }
+.c { color: var(--muted); }
+.bad, .n { color: var(--danger); font-weight: 650; }
+.ok, .y { color: var(--accent); font-weight: 650; }
+.choose { border-style: dashed; padding: var(--space-3) var(--space-4); margin: var(--space-4) 0 0; }
+.choose legend { font-size: var(--text-small); }
+.choose label { margin-block: var(--space-2); display: flex; gap: var(--space-2); align-items: flex-start; font-size: .9375rem; }
+.choose input { margin-top: .35em; flex: none; }
+.who td, .who th { font-size: .875rem; }
+.final { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-6); margin-top: var(--space-12); }
+.final h2 { margin-top: 0; }
+.row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3); }
+@media (max-width: 40rem) {
+  .who thead { display: none; }
+  .who, .who tbody, .who tr, .who td { display: block; width: 100%; }
+  .who tr { border: 1px solid var(--line); border-radius: var(--control-radius); margin-bottom: var(--space-3); padding: var(--space-2) var(--space-3); }
+  .who td { border: 0; padding: var(--space-1) 0 var(--space-1) 8.5rem; position: relative; }
+  .who td::before { content: attr(data-label); position: absolute; left: 0; width: 8rem; color: var(--muted); font-size: .8125rem; }
+  .who td:first-child { padding-left: 0; font-weight: 650; }
+  .card { padding: var(--space-4); }
+}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">default-hooks · blindspot pass · before code</p>
+<h1>Blindspots in turning the hooks on by default</h1>
+<div class="ask">
+  <span class="tag">The prompt</span>
+  <blockquote>I'm about to ship project hooks for Claude Code and Codex that are on by default (feedback after each edit, a guard before edits to golden baselines and protected policy files, the completion gate at stop, and permission rules for dependencies, merging and force-pushing) in this Rust harness template's xtask, scripts and agent configuration. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation.</blockquote>
+</div>
+
+<p class="lead">From <code>scripts/</code>, seven <code>xtask/src</code> modules, the docs and both hosts' hook references. Probes ran in a clean clone; host behaviour marked <em>tested</em> ran in Claude Code in a throwaway project.</p>
+
+<div class="walk"><span class="tag">What you're walking into</span>
+<p>It looks like two JSON files around scripts that already exist, but the stop script <strong>blocks every turn that names no task</strong>, "protected" means <strong>"needs a receipt"</strong>, the harness prints the <strong>one <code>cp</code> that re-blesses a golden</strong>, the feedback <code>cargo check</code> <strong>writes a protected file</strong>, and <strong>any stray file</strong> makes the tree look changed.</p></div>
+
+<h2>The blindspots</h2>
+
+<article class="card" id="c1">
+  <span class="badge landmine">Landmine</span><span class="num">01</span>
+  <h3>The stop gate you're turning on blocks every stop that doesn't name a finished-enough task, including "what does this do?"</h3>
+  <p><code>scripts/agent-complete.sh:4–7</code> exits 2, "keep working", when <code>HARNESS_TASK_ID</code> or <code>HARNESS_BASE</code> is unset. On by default, that fires at the end of every turn in every clone, because nothing in the repository sets them.</p>
+  <p>Setting them doesn't help mid-task. <code>agent_stop</code> (<code>completion.rs:232</code>) runs <code>task()</code>, which reports every empty <code>review.*</code> answer (<code>completion.rs:36</code>, <code>task_record.rs:122</code>) and every missing discovery page, even on a partial record (<code>artifacts.rs:91–95</code>, "Discovery pages are always required"). Against this task's own partial record, before any page was committed:</p>
+<pre><code><span class="c">$ env -u HARNESS_TASK_ID -u HARNESS_BASE bash scripts/agent-complete.sh</span>
+Set HARNESS_TASK_ID and HARNESS_BASE before using the completion hook.   <span class="bad">exit 2</span>
+<span class="c">$ HARNESS_TASK_ID=default-hooks HARNESS_BASE=HEAD bash scripts/agent-complete.sh</span>
+<span class="c">(errors array; each line below is cut after its question)</span>
+"review.acceptance: Did any assigned acceptance criterion remain unmet? …",
+"review.verification: Did checks reveal a pre-existing problem or unresolved failure? …",
+"review.assumptions: Did this task rely on an unverified assumption? …",
+"review.coverage: Did you discover a material missing test, recovery path or platform check? …",
+<span class="c">(plus one "task HTML artifact: missing …" line)</span>                       <span class="bad">exit 2</span>
+<span class="c">$ cargo xtask handoff --base HEAD        # clean tree, no task named</span>
+"errors": [], "ok": true, "tasks": []                                  <span class="ok">exit 0</span></code></pre>
+  <p>Only <code>handoff</code> has a "nothing changed, nothing owed" path (<code>completion.rs:160</code>). The base must be a fresh remote ref: a stale local <code>main</code> counts already-merged commits as this branch's changes.</p>
+  <div class="bite"><strong>Why it bites</strong>Claude Code overrides a Stop block after eight consecutive continuations, but "the count of consecutive continuations resets each time Claude calls a tool" (hooks reference, "Stop input"), so an agent that reacts by running tools never reaches the cap. <code>onFailure</code> "has no effect" on Stop and SubagentStop. The example config also wires <code>SubagentStop</code>, so the author and reviewer subagents this repository requires get sent back too.</div>
+  <fieldset class="choose" data-card="Stop gate" data-test="In a clean clone, show the Stop decision for: no changes and no task; a partial task with no pages; a partial task with pages and review answers; a complete task. Only the second may block. Base on origin/main, never a local ref."><legend>What should a default Stop hook do?</legend>
+    <label><input type="radio" name="d01" checked><span>Gate only when the branch has changed against <code>origin/main</code>: find changed task records as <code>handoff</code> does, allow the stop when nothing changed, and drop SubagentStop.</span></label>
+    <label><input type="radio" name="d01"><span>Gate only when <code>HARNESS_TASK_ID</code> is set; otherwise exit 0 with a one-line reminder on stderr.</span></label>
+    <label><input type="radio" name="d01"><span>Keep <code>agent-complete.sh</code> as is and document that every session must export <code>HARNESS_TASK_ID</code> and <code>HARNESS_BASE</code>.</span></label>
+  </fieldset>
+</article>
+
+<article class="card" id="c2">
+  <span class="badge concept">Missing concept</span><span class="num">02</span>
+  <h3>"Protected" means "needs a receipt", not "never edit", and the two hosts can't share one decision table</h3>
+  <p><code>transitions::protected()</code> (<code>transitions.rs:37–61</code>) covers the prefixes <code>xtask/</code>, <code>.github/</code>, <code>scripts/</code>, <code>.cargo/</code> and <code>harness/goldens/</code>, plus <code>harness/{config,readiness,tracking,workflows,scenarios}.json</code>, the root <code>Cargo.toml</code> and <code>Cargo.lock</code>, <code>docs/{PRODUCT,READINESS,COMPLETION}.md</code> and <code>AGENTS.md</code>. Its job is to make CI ask for a rationale (<code>transitions.rs:111–127</code>), not to forbid edits. This task must itself edit <code>scripts/</code>, <code>xtask/</code> and <code>docs/COMPLETION.md</code>, and 11 of the 17 non-merge commits on <code>main</code> touch the list.</p>
+  <p>Goldens differ in kind: <code>AGENTS.md:70–71</code> says never regenerate them to make an implementation pass, and <code>golden.rs:39</code> allows updates only as "an explicit reviewed source change". That is an <em>ask</em>. The specs that produce them, <code>workflows.json</code> and <code>scenarios.json</code>, sit in the same list; card 03 edits one. A committed Claude deny can't be lifted: "if a tool is denied at any level, no other level can allow it" (permissions reference, "Settings precedence"). Codex parses <code>permissionDecision: "ask"</code> but "marks the hook run as failed, reports the error, and continues the tool call" (Codex hooks page, PreToolUse), so on Codex an <em>ask</em> guard is an <em>allow</em>.</p>
+  <p>Nothing under <code>.claude/</code> or <code>.codex/</code> is protected, so a later PR can delete the guard without a receipt. Codex is stricter: "new or changed hooks are marked for review and skipped until trusted", so its hooks stay off in a fresh clone until someone trusts them in <code>/hooks</code>.</p>
+  <div class="bite"><strong>Why it bites</strong>Deny the whole list and most of the harness's own history, this task included, couldn't have been written; allow it and the guard adds nothing CI didn't already do.</div>
+  <fieldset class="choose" data-card="Guard tiers" data-test="Give me a table of path classes (goldens, golden specs, other policy files, hook config, product) with the decision on each host, counting Codex ask as allow, and say how the owner makes a reviewed golden update."><legend>Which tiers should the pre-edit guard have?</legend>
+    <label><input type="radio" name="d02" checked><span>Goldens: ask on Claude, deny on Codex. Other <code>protected()</code> paths: allow with a stderr note (the stop gate collects the receipt). Add <code>.claude/</code> and <code>.codex/</code> to <code>protected()</code>.</span></label>
+    <label><input type="radio" name="d02"><span>Deny every <code>protected()</code> path in the hook on both hosts unless the session sets <code>HARNESS_POLICY_EDIT=1</code> (no Claude deny rule, so the override works). Add <code>.claude/</code> and <code>.codex/</code> to <code>protected()</code>.</span></label>
+    <label><input type="radio" name="d02"><span>Guard goldens only; leave other policy files to the stop gate and CI receipts.</span></label>
+  </fieldset>
+</article>
+
+<article class="card" id="c3">
+  <span class="badge landmine">Landmine</span><span class="num">03</span>
+  <h3>The harness hands the agent the exact <code>cp</code> that re-blesses a golden, and an <code>Edit|Write</code> hook never sees it</h3>
+  <p>When a workflow's result differs from its baseline, <code>golden::compare</code> writes the actual result to a candidate file and prints its path (<code>golden.rs:35–36</code>, <code>workflows.rs:130</code>). Copying it over the baseline is all it takes:</p>
+<pre><code><span class="c">$ sed -i '' 's/"Keep"/"Kept"/' harness/workflows.json; cargo xtask workflow</span>
+"baseline": "harness/goldens/kept.json",
+"candidate": "$PWD/target/harness/runs/1793810325969804000-48271/rejected-edit-0-5.candidate.json",
+"error": "baseline mismatch",
+<span class="c">(clone path shown as $PWD; three more candidates follow for other cases that share kept.json)</span>
+"ok": false                                                                <span class="bad">exit 1</span>
+<span class="c">$ cp target/harness/runs/1793810325969804000-48271/rejected-edit-0-5.candidate.json harness/goldens/kept.json
+$ cargo xtask workflow</span>
+"ok": true                                                    <span class="bad">exit 0, golden rewritten by Bash</span>
+<span class="c">$ cargo xtask gaps --base HEAD</span>
+"errors": ["missing exact transition rationale: policy"],
+"protected_files": ["harness/goldens/kept.json", "harness/workflows.json"]   <span class="ok">exit 1</span></code></pre>
+  <p>A PreToolUse matcher filters on <code>tool_name</code>, so an <code>Edit|Write</code> hook is never called for this. Claude's <code>Edit(path)</code> deny rules do reach "file commands Claude Code recognizes in Bash, such as <code>cat</code>, <code>head</code>, <code>tail</code>, <code>sed</code>, and <code>tee</code>", but not "arbitrary subprocesses" (permissions reference). Tested with <code>Edit(/goldens/**)</code> denied and each command explicitly allowed:</p>
+<div class="table-scroll">
+<table class="who">
+<thead><tr><th>Write to a denied golden</th><th>Claude <code>Edit|Write</code> hook</th><th>Claude <code>Edit()</code> deny</th><th>Codex hook and rules</th><th>Stop gate, PR CI</th></tr></thead>
+<tbody>
+<tr><td><code>cp cand.json goldens/a.json</code></td><td data-label="Edit|Write hook" class="n">not called</td><td data-label="Edit() deny" class="y">denied</td><td data-label="Codex" class="n">not seen: rules match command prefixes, not paths</td><td data-label="Stop, CI" class="y">policy receipt</td></tr>
+<tr><td><code>sed -i '' … goldens/b.json</code></td><td data-label="Edit|Write hook" class="n">not called</td><td data-label="Edit() deny" class="y">denied</td><td data-label="Codex" class="n">not seen</td><td data-label="Stop, CI" class="y">policy receipt</td></tr>
+<tr><td><code>python3 -c "open('goldens/d.json','w')…"</code></td><td data-label="Edit|Write hook" class="n">not called</td><td data-label="Edit() deny" class="n">written</td><td data-label="Codex" class="n">not seen</td><td data-label="Stop, CI" class="y">policy receipt</td></tr>
+</tbody>
+</table>
+</div>
+  <p>A control run let the same <code>cp</code> and <code>sed</code> write to an undenied directory, so the rule did the blocking. The hook log held four PreToolUse events, all <code>"tool_name": "Bash"</code>.</p>
+  <div class="bite"><strong>Why it bites</strong>The guard exists to stop "make the test pass by changing the expectation", and the shortest route to that is one it can't see. The stop gate then asks for a <code>policy</code> receipt, which the same agent can write.</div>
+  <fieldset class="choose" data-card="Goldens via Bash" data-test="Add hook tests that feed Bash events: 'cp target/harness/runs/x.candidate.json harness/goldens/kept.json' blocks, 'git diff harness/goldens/' is allowed. List the writers that stay uncovered on each host."><legend>How should Bash writes to goldens be handled?</legend>
+    <label><input type="radio" name="d03" checked><span>A PreToolUse Bash hook on both hosts blocks commands naming <code>harness/goldens/</code> unless read-only (<code>cat</code>, <code>git diff</code>, <code>git show</code>, <code>rg</code>), plus a Claude <code>Edit(/harness/goldens/**)</code> ask rule. Scripts that open files themselves stay uncovered until stop.</span></label>
+    <label><input type="radio" name="d03"><span>Only the Claude <code>Edit(/harness/goldens/**)</code> rule; on Codex rely on the stop gate's policy receipt and document it.</span></label>
+    <label><input type="radio" name="d03"><span>Leave Bash uncovered on both hosts and document that the stop gate catches it later.</span></label>
+  </fieldset>
+</article>
+
+<article class="card" id="c4">
+  <span class="badge landmine">Landmine</span><span class="num">04</span>
+  <h3>The post-edit <code>cargo check</code> adds dependencies to <code>Cargo.lock</code>, and the permission rules match spellings, not effects</h3>
+  <p><code>protected()</code> holds the root <code>Cargo.toml</code> by exact name, not <code>crates/*/Cargo.toml</code>. Adding a workspace dependency to a member manifest is an ordinary edit, and a plain <code>cargo check</code> then rewrites the lockfile, which <em>is</em> protected:</p>
+<pre><code><span class="c"># add  sha2.workspace = true  under [dependencies] in crates/app/Cargo.toml</span>
+<span class="c">$ cargo check -q --locked -p starter-app</span>
+error: cannot update the lock file $PWD/Cargo.lock because --locked was passed to prevent this   <span class="ok">exit 101</span>
+<span class="c">$ cargo check -q -p starter-app && git status --short</span>
+ M Cargo.lock                                  <span class="bad">written by the feedback check</span>
+ M crates/app/Cargo.toml
+<span class="c">$ cargo xtask gaps --base HEAD</span>
+"errors": ["missing exact transition rationale: policy"], "protected_files": ["Cargo.lock"]</code></pre>
+  <p>Only the <code>cargo xtask</code> alias is locked (<code>.cargo/config.toml:2</code>), not plain <code>cargo</code>. A <code>Bash(cargo add *)</code> rule never sees a manifest edit, and the push and merge rules are as literal. <code>codex execpolicy check</code> with prefix rules for <code>cargo add</code>, <code>git push --force|-f</code> and <code>gh pr merge</code>:</p>
+<pre><code>cargo add serde                          prompt
+git push --force origin x                forbidden
+gh pr merge 3                            forbidden
+git push origin x --force                <span class="bad">no rule matched</span>
+git push origin +x                       <span class="bad">no rule matched</span>
+git push --force-with-lease origin x     <span class="bad">no rule matched</span>
+git -C . push --force                    <span class="bad">no rule matched</span>
+gh api -X PUT repos/o/r/pulls/3/merge    <span class="bad">no rule matched</span></code></pre>
+  <p>Claude's reference says the same: <code>Bash(git push *)</code> does not match <code>git -C . push origin main</code>. "Merging" needs a definition too. Completion reads the branch with <code>--first-parent --no-merges</code> (<code>history.rs:56–57</code>), which expects merges from main into the branch; what <code>AGENTS.md:64–66</code> reserves for the owner is merging the PR.</p>
+  <div class="bite"><strong>Why it bites</strong>The feedback hook makes the stop gate demand a receipt nobody meant to need, and the dependency rule suggests new crates are reviewed when the real gate is still CI's architecture check.</div>
+  <fieldset class="choose" data-card="Dependencies, merge, force-push" data-test="Show execpolicy check output and the Claude rule result for every force-push and merge spelling, caught and missed, and a test that a [dependencies] edit in a member Cargo.toml triggers the ask."><legend>What counts as "adding a dependency"?</legend>
+    <label><input type="radio" name="d04" checked><span>Run the feedback check with <code>--locked</code>; any edit to a <code>[dependencies]</code> table in any <code>Cargo.toml</code> asks (Claude ask, Codex deny with a note), plus <code>cargo add/remove</code> rules; deny <code>gh pr merge</code> and each force-push spelling above, accepting command rules as a speed bump.</span></label>
+    <label><input type="radio" name="d04"><span>Command rules for <code>cargo add</code>, force-push and <code>gh pr merge</code> plus <code>--locked</code> only; leave manifest edits to the architecture check in CI.</span></label>
+  </fieldset>
+</article>
+
+<article class="card" id="c5">
+  <span class="badge landmine">Landmine</span><span class="num">05</span>
+  <h3>A broken hook either lets everything through or blocks the fix, depending on its exit code</h3>
+  <p>For Claude Code, an exit code other than 0 or 2, a timeout, or a script that won't start is a non-blocking error and "the action goes ahead" (hooks reference, "Exit code output"). The existing edit wrapper takes that path when its variable is unset, and since it runs <code>target/debug/xtask</code> without building it (<code>agent-artifact-write.sh:7</code>), a fresh clone blocks for the wrong reason. Fed a patch that only touches <code>harness/task-artifacts/</code>:</p>
+<pre><code><span class="c">$ echo '{}' | env -u HARNESS_TASK_ID bash scripts/agent-artifact-write.sh</span>
+scripts/agent-artifact-write.sh: line 4: HARNESS_TASK_ID: Set HARNESS_TASK_ID for this session
+                                                              <span class="bad">exit 1 → edit proceeds</span>
+<span class="c">$ HARNESS_TASK_ID=default-hooks bash scripts/agent-artifact-write.sh &lt; patch.json</span>
+"scope": "Artifact/administrative edit; source boundary not crossed"   <span class="ok">exit 0</span>
+<span class="c">$ mv target/debug/xtask elsewhere; HARNESS_TASK_ID=default-hooks bash scripts/agent-artifact-write.sh &lt; patch.json</span>
+scripts/agent-artifact-write.sh: line 7: $PWD/target/debug/xtask: No such file or directory
+Write and commit the five discovery pages (docs/ARTIFACTS.md) before editing product code. Artifact-only patches remain allowed.
+                                                              <span class="bad">exit 2: artifact-only patch blocked</span></code></pre>
+  <p>Claude Code's <code>"onFailure": "block"</code> (v2.1.295 and later) makes a crash or timeout block. Tested with a Bash hook that only runs <code>exit 1</code>: without the field the <code>cp</code> ran; with it, it was blocked. That is the opposite trap for a guard built from the tree it guards: once an edit breaks <code>xtask/</code> (<code>error: this file contains an unclosed delimiter</code>), <code>cargo xtask</code> exits 101 on every call, and the guard blocks the edit that would fix it. The Codex hooks page documents no <code>onFailure</code> equivalent.</p>
+  <div class="bite"><strong>Why it bites</strong>Fail-open turns a missing variable into a silent "allowed"; fail-closed turns a typo in <code>xtask/</code> into a session that can't edit its way out. Only a path check that never calls Cargo avoids both.</div>
+  <fieldset class="choose" data-card="Failure modes" data-test="For each hook on each host, show what happens when the script is missing, a variable is unset, xtask doesn't compile, and the hook times out. None may silently allow a golden edit; none may block an edit to xtask/."><legend>Where should the pre-edit path check run?</legend>
+    <label><input type="radio" name="d05" checked><span>Classify paths in a dependency-free shell script that never calls Cargo, with <code>onFailure: "block"</code> on Claude; keep the artifact guard, which needs git history, as a separate opt-in check.</span></label>
+    <label><input type="radio" name="d05"><span>Keep the check in <code>xtask</code>, prebuilt to a pinned path under <code>target/</code> at session start, falling back to allow with a warning when the binary is missing.</span></label>
+  </fieldset>
+</article>
+
+<article class="card" id="c6">
+  <span class="badge landmine">Landmine</span><span class="num">06</span>
+  <h3>Any untracked or ignored file makes the tree look changed, and <code>$CLAUDE_PROJECT_DIR</code> points at the wrong tree in a worktree</h3>
+  <p><code>handoff</code> fingerprints the tree with <code>history::current</code>, which walks it via <code>repo::files</code>. That skips only <code>.git</code>, <code>target</code>, <code>.DS_Store</code>, <code>__pycache__</code>, <code>*.pyc</code> and <code>.env*</code> (<code>repo.rs:22–25</code>) and never consults <code>.gitignore</code>. One scratch file removes card 01's "nothing changed" path:</p>
+<pre><code><span class="c">$ echo hi &gt; zzz.txt && cargo xtask handoff --base HEAD</span>
+"errors": ["changed source requires an added/updated task reconciliation record"], "ok": false   <span class="bad">exit 1</span>
+<span class="c">$ rm zzz.txt; echo '{"permissions":{"allow":["Bash(ls:*)"]}}' &gt; .claude/settings.local.json
+$ git status --short          # empty here only because of a global git exclude; this repo's .gitignore has no rule for it
+$ cargo xtask handoff --base HEAD</span>
+"errors": ["changed source requires an added/updated task reconciliation record"], "ok": false   <span class="bad">exit 1</span></code></pre>
+  <p>Claude Code writes that file on the first "Yes, and don't ask again" (settings reference) and puts <code>claude -w</code> worktrees under <code>.claude/worktrees/</code>, where ignoring them in <code>.gitignore</code> doesn't help. Hook paths have a related trap: <code>$CLAUDE_PROJECT_DIR</code> "still points at the project root where the session started" after Claude enters a worktree, while the event's <code>cwd</code> follows Claude (hooks reference, "Reference scripts by path"). <code>"$CLAUDE_PROJECT_DIR"/scripts/agent-complete.sh</code> runs <code>cd "$(dirname "$0")/.."</code> and checks the main checkout, not the worktree being edited.</p>
+  <fieldset class="choose" data-card="Clean-tree detection and worktrees" data-test="Add a test that creates .claude/settings.local.json and an untracked scratch file and expects the Stop decision to stay 'nothing changed'. Start every hook from the event's cwd (git rev-parse --show-toplevel) and show me a run from inside a worktree."><legend>How should the Stop hook decide that nothing changed?</legend>
+    <label><input type="radio" name="d06" checked><span>Ask git (<code>git status --porcelain</code> plus the diff against <code>origin/main</code>), which honours ignore rules, instead of the <code>repo::files</code> fingerprint; resolve the root from the event's <code>cwd</code>, not <code>$CLAUDE_PROJECT_DIR</code>.</span></label>
+    <label><input type="radio" name="d06"><span>Make <code>repo::files</code> skip <code>.claude/settings.local.json</code> and <code>.claude/worktrees/</code> (and Codex's local files) with a regression test, so <code>handoff</code> and the hook agree; resolve the root from the event's <code>cwd</code>.</span></label>
+  </fieldset>
+</article>
+
+<h2>Checked and fine</h2>
+<ul>
+  <li>A cold <code>cargo build -p xtask</code> took 4.7&nbsp;s and a warm <code>cargo check --locked -p starter-app</code> 0.08&nbsp;s, well inside a 30&nbsp;s hook timeout. The margin shrinks as an adopted product grows, and each worktree builds its own <code>target/</code>.</li>
+  <li>"User cancellation must remain possible" (<code>docs/COMPLETION.md:165</code>) holds: Claude's Stop "does not run if the stoppage occurred due to a user interrupt", and Codex's Interrupt hook "can't prevent the interruption". Its neighbour, "no vendor configuration is silently installed", doesn't; the prompt covers that rewrite.</li>
+</ul>
+
+<section class="final" aria-labelledby="final-h">
+  <div class="row"><h2 id="final-h">Your improved prompt</h2><button data-copy="final-prompt">Copy prompt</button></div>
+  <p class="muted">Built from your choice on each card, with the check that would prove it. Change a choice and the prompt updates.</p>
+<pre id="final-prompt"></pre>
+</section>
+</main>
+<script>
+(function () {
+  var base = "Ship default project hooks for Claude Code (.claude/settings.json) and Codex (.codex/hooks.json + .codex/rules/). Constraints from the blindspot pass:\n\n";
+  var tail = "\n\nDocs: rewrite every \"opt-in\" and \"no vendor configuration is silently installed\" sentence (COMPLETION.md:159, README.md:139, HARNESS.md:108, READINESS.md:59, ARTIFACTS.md:112, COMPLETION.md:149 and :201, both script headers, artifact_hook.rs:1), say how to turn the hooks off (disableAllHooks in .claude/settings.local.json; /hooks on Codex), and add the policy transition receipt in the commit that adds the hooks.\n\nOrder: show me the Stop decision table (1), the path-class table (2) and the failure table (5) before writing any config. Then config, tests, docs. Check every host claim against the installed claude and `codex execpolicy check`, not from memory.";
+  function build() {
+    var lines = [];
+    document.querySelectorAll("fieldset.choose").forEach(function (fs, i) {
+      var pick = fs.querySelector("input:checked");
+      var text = pick ? pick.parentNode.textContent.replace(/\s+/g, " ").trim() : "(no choice)";
+      lines.push((i + 1) + ". " + fs.getAttribute("data-card") + ": " + text + "\n   Prove it: " + fs.getAttribute("data-test"));
+    });
+    document.getElementById("final-prompt").textContent = base + lines.join("\n") + tail;
+  }
+  document.addEventListener("change", function (e) { if (e.target.matches("fieldset.choose input")) build(); });
+  function fallback(text) {
+    var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta);
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-copy]"); if (!b) return;
+    var text = document.getElementById(b.getAttribute("data-copy")).textContent.trim();
+    function done() { var t = b.textContent; b.textContent = "Copied"; setTimeout(function () { b.textContent = t; }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  });
+  build();
+})();
+</script>
+</body>
+</html>
