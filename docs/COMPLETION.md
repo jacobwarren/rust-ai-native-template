@@ -155,7 +155,8 @@ CI would otherwise make at the PR to the moment an agent acts:
   `guard` reads the event without running Cargo. Golden baselines and the
   dependency allowlist in `harness/config.json` ask on Claude Code and are refused
   on Codex, which cannot ask. Other protected policy files pass with a note that the
-  branch needs a transition receipt. PR merges and force-pushes are refused. Shell
+  branch needs a transition receipt. A PR merge asks on Claude Code and is refused
+  on Codex; a force-push is refused on both. Shell
   commands count only write destinations, so a commit message or fixture that
   mentions a golden passes; a script that builds the path itself is caught only
   at completion and CI.
@@ -171,8 +172,8 @@ CI would otherwise make at the PR to the moment an agent acts:
   `target/verification/ci.json`) still apply; `HARNESS_TASK_ID` no longer picks
   the task. Partial handoffs, stray files and policy receipts surface at PR CI.
 
-Command rules ask before `cargo add` and `cargo remove`, and deny the literal
-merge and force-push spellings. They are speed bumps: the guard catches other
+Command rules ask before `cargo add`, `cargo remove` and `gh pr merge`, and deny
+the literal force-push spellings (Codex forbids merges and force-pushes). They are speed bumps: the guard catches other
 spellings, and only hosting rules can stop a merge.
 
 Requirements and limits: an error inside the guard script exits 2 and blocks on

@@ -87,7 +87,7 @@
         "guard_asks_before_the_dependency_allowlist_changes",
         "cargo_add_asks_through_rules_not_the_guard",
         "guard_catches_shell_writes_to_goldens_but_not_mentions",
-        "guard_refuses_pr_merge_and_force_push_spellings",
+        "guard_asks_before_merges_and_refuses_force_pushes",
         "guard_never_runs_cargo",
         "guard_fails_closed_on_an_internal_error",
         "transitions::tests::guard_tiers_match_protected_paths",

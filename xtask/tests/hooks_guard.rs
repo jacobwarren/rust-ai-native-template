@@ -213,21 +213,36 @@ fn guard_catches_shell_writes_to_goldens_but_not_mentions() {
 }
 
 #[test]
-fn guard_refuses_pr_merge_and_force_push_spellings() {
+fn guard_asks_before_merges_and_refuses_force_pushes() {
     let f = Fixture::new();
+    for command in ["gh pr merge 3", "gh api -X PUT repos/o/r/pulls/3/merge"] {
+        let claude = hook(&f, "guard", "claude", &shell(&f, command), None);
+        assert_eq!(
+            decision(&claude),
+            json!("ask"),
+            "{command}: {}",
+            claude.stdout
+        );
+        assert!(
+            claude.stdout.contains("owner's approval"),
+            "{}",
+            claude.stdout
+        );
+        let codex = hook(&f, "guard", "codex", &shell(&f, command), None);
+        assert_eq!(codex.code, 2, "{command}");
+        assert!(codex.stderr.contains("needs the owner"), "{}", codex.stderr);
+    }
     for command in [
         "git push --force origin x",
-        "gh pr merge 3",
         "git push origin x --force",
         "git push origin +x",
         "git push --force-with-lease",
         "git -C . push --force",
-        "gh api -X PUT repos/o/r/pulls/3/merge",
     ] {
         for host in ["claude", "codex"] {
             let o = hook(&f, "guard", host, &shell(&f, command), None);
             assert_eq!(o.code, 2, "{host} {command}");
-            assert!(o.stderr.contains("need the owner"), "{}", o.stderr);
+            assert!(o.stderr.contains("rewrites history"), "{}", o.stderr);
         }
     }
     for command in [

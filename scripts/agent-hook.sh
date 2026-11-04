@@ -166,7 +166,7 @@ EOF
   esac
 }
 
-# Shell commands: print "merge" for PR merges and force-pushes, and "write WORD"
+# Shell commands: print "merge" for PR merges, "force" for force-pushes, and "write WORD"
 # for each word a command writes to. Quoted words and heredoc bodies stay whole,
 # so a commit message or a fixture that only mentions a path is not a write.
 shell_targets() {
@@ -188,7 +188,7 @@ shell_targets() {
           if (sub1 == "push" && (arg ~ /^--force/ || arg ~ /^-[A-Za-z]*f[A-Za-z]*$/ || arg ~ /^\+/)) force = 1
           if ((sub1 == "checkout" || sub1 == "restore") && arg !~ /^-/) print "write " arg
         }
-        if (force) print "merge"
+        if (force) print "force"
       } else if (cmd == "gh") {
         if (w[k + 1] == "pr" && w[k + 2] == "merge") print "merge"
         if (w[k + 1] == "api") for (j = k + 2; j <= nw; j++) if (w[j] ~ /\/merge([?\/]|$)/) print "merge"
@@ -269,8 +269,12 @@ guard() {
     Bash)
       cmd=$(jget command) || cmd=""
       found=$(shell_targets "$cmd")
+      if printf '%s\n' "$found" | grep -qx force; then
+        block "Blocked: force-pushing rewrites history and needs the owner (AGENTS.md, Operating rules). Push without force, or ask the owner."
+      fi
       if printf '%s\n' "$found" | grep -qx merge; then
-        block "Blocked: force-pushing and merging the PR need the owner (AGENTS.md, Operating rules). Push without force, or ask the owner."
+        ask "This merges a PR, which needs the owner's approval (AGENTS.md, Operating rules). Approve only if the owner asked for it." \
+          "Blocked: merging the PR needs the owner (AGENTS.md, Operating rules) and Codex hooks cannot ask. Ask the owner to merge it."
       fi
       decide "$(relatives "$(printf '%s\n' "$found" | sed -n 's/^write //p')")" ;;
     *) allow ;;

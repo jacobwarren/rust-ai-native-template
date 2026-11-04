@@ -1,13 +1,13 @@
 {
   "permissions": {
     "ask": [
+      "Bash(gh pr merge *)",
       "Bash(cargo add *)",
       "Bash(cargo remove *)",
       "Edit(/harness/goldens/**)",
       "Edit(/harness/config.json)"
     ],
     "deny": [
-      "Bash(gh pr merge *)",
       "Bash(git push --force *)",
       "Bash(git push -f *)",
       "Bash(git push --force-with-lease *)"
