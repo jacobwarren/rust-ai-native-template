@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Default hooks: reference semantics map</title>
+<style>
+.ask { position: relative; padding: var(--space-6); margin-block: var(--space-6); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.tag { display: block; font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--muted); margin-bottom: var(--space-2); }
+.ask blockquote { margin: 0; font-style: italic; }
+.ask .copy { position: absolute; top: var(--space-4); right: var(--space-4); min-height: 32px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+@media (max-width: 40rem) { .ask .copy { position: static; margin-top: var(--space-3); } }
+code { font-size: .88em; }
+p code, li code, td code, .note code { background: var(--accent-soft); border-radius: .3rem; padding: 0 .25em; }
+.facts { display: grid; gap: var(--space-2); padding: 0; list-style: none; }
+.facts li { padding: var(--space-3) var(--space-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--control-radius); }
+.pair { margin-block: var(--space-8) var(--space-12); }
+.pair h3 { margin: 0 0 var(--space-3); }
+.pt { font-family: var(--font-code); font-size: var(--text-small); color: var(--accent); margin-right: var(--space-2); }
+.grid2 { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-4); }
+@media (max-width: 52rem) { .grid2 { grid-template-columns: minmax(0,1fr); } }
+.cc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.ch { display: flex; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); font-family: var(--font-code); font-size: .78rem; color: var(--muted); }
+.ch b { color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+.ch .k { flex: none; text-transform: uppercase; letter-spacing: .08em; }
+.ch .k.new { color: var(--warning); }
+.cc pre { margin: 0; border: 0; border-radius: 0; white-space: pre; overflow-x: auto; overflow-wrap: normal; font-size: .76rem; line-height: 1.55; padding: var(--space-3) var(--space-4); flex: 1; }
+.cm { color: var(--muted); font-style: italic; }
+.el { color: var(--muted); }
+mark { background: var(--accent-soft); color: inherit; border-bottom: 2px solid var(--accent); border-radius: .2rem; padding: 0 .1em; }
+mark sup, .nm { font-family: var(--font-code); font-size: .68rem; color: var(--accent); font-weight: 700; }
+mark.on { background: var(--warning-soft); border-bottom-color: var(--warning); }
+mark.x { background: #f7e4e5; border-bottom-color: var(--danger); }
+mark.x sup { color: var(--danger); }
+.notes { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+.note { display: flex; gap: var(--space-3); align-items: baseline; font-size: .92rem; padding: var(--space-1) var(--space-2); border-radius: var(--control-radius); }
+.note.on { background: var(--warning-soft); }
+.nm { flex: none; width: 1.4rem; height: 1.4rem; border: 1.5px solid var(--accent); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+.note.x .nm { border-color: var(--danger); color: var(--danger); }
+.pill { display: inline-block; font-size: .72rem; font-weight: 650; padding: .1rem .5rem; border-radius: 999px; white-space: nowrap; }
+.pill.chg { background: var(--warning-soft); color: var(--warning); }
+.pill.open { background: #f7e4e5; color: var(--danger); }
+.dec { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); margin-block: var(--space-4); }
+.dec h3 { margin: 0 0 var(--space-2); }
+.dec p { margin-block: var(--space-2); font-size: .95rem; }
+.dec label { margin-block: var(--space-2); display: flex; gap: var(--space-2); align-items: baseline; }
+.lean { font-size: .75rem; font-weight: 650; color: var(--accent); margin-left: var(--space-1); }
+#reply { white-space: pre-wrap; font-size: .85rem; }
+.btns { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-3); }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">default-hooks · point at a reference · before code</p>
+<h1>Semantics map: the opt-in hooks and the PR gate, ported to default hooks</h1>
+<div class="ask">
+  <span class="tag">The prompt</span>
+  <button type="button" class="copy secondary" id="copyPrompt">Copy prompt</button>
+  <blockquote id="promptText">The existing opt-in hooks (examples/codex-artifact-hooks.json, scripts/agent-artifact-write.sh with xtask/src/artifact_hook.rs, scripts/agent-complete.sh with completion::agent_stop) and the PR CI gate (completion::handoff and transitions::check) already behave the way the default hooks should: classify a tool event's paths, decide on the repository's own policy tables, and refuse a false completion. Read them and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything.</blockquote>
+</div>
+
+<p class="lead">Each part of the design you chose in the interview, set beside the code it reuses or copies. Left columns are real excerpts. Right columns are sketches of the new code, written to show the mapping, not to be merged. Every behaviour marked <em>observed</em> was run in a clean clone of this branch.</p>
+
+<h2>What the reference actually does</h2>
+<ul class="facts">
+  <li><b>Classification is by repository-relative path.</b> <code>artifact_hook::run</code> takes paths from four line prefixes of a Codex patch; <code>artifacts::relative</code> rejects paths outside the canonical root and any <code>.</code> or <code>..</code> component; no path at all is an error, not an allow.</li>
+  <li><b>The policy table is one private function.</b> <code>transitions::protected</code> (<code>transitions.rs:37–61</code>): five prefixes and eleven exact names, called only on file paths from the tree walk (<code>:111–112</code>). It means "needs a receipt", not "never edit" (blindspot 02).</li>
+</ul>
+
+<h2>Side by side: reference → default hooks</h2>
+<p class="muted">Hover or tap a highlight to light up its counterpart and its note. Red marks reference code the new hooks deliberately change or leave out.</p>
+
+<!-- Pair A -->
+<section class="pair">
+  <h3><span class="pt">A / 5</span>Stop: keep handoff's record search and agent_stop's claim branch, drop the rest</h3>
+  <div class="grid2">
+    <div class="cc"><div class="ch"><b>xtask/src/completion.rs:134–160 · 232–247</b><span class="k">reference</span></div>
+<pre><code><span class="cm">// handoff</span>
+for path in records.iter().filter(|p| {
+    <mark data-p="a1">let id = Path::new(p).file_stem()…;
+    let prefix = format!("{}/", artifacts::directory(id));
+    before.get(*p) != after.get(*p)
+        || before.keys().chain(after.keys())
+            .any(|name| name.starts_with(&amp;prefix)
+                 &amp;&amp; before.get(name) != after.get(name))<sup>1</sup></mark>
+}) {
+    <span class="el">⋮</span>
+    results.push(<mark class="x" data-p="a3">task(root, id, &amp;base, report, false)?<sup>3</sup></mark>);
+}
+<mark class="x" data-p="a4">if changed &amp;&amp; results.is_empty() {
+    errors.push("changed source requires …".into());
+}<sup>4</sup></mark>
+
+<span class="cm">// agent_stop</span>
+let record = task_record::read(root, id)?;
+<mark data-p="a2">if record.status == Status::Complete {
+    return complete(root, id, revision, report);
+}<sup>2</sup></mark>
+let base = history::merge_base(root, revision)?;
+<mark class="x" data-p="a3">let task = task(root, id, &amp;base, Some(report), false)?;<sup>3</sup></mark>
+<span class="el">⋮</span>  <span class="cm">// blocked_handoff exception, then transitions::check</span>
+Ok(json!({"ok":task["ok"] == true &amp;&amp; transitions["ok"] == true, …}))</code></pre>
+    </div>
+    <div class="cc"><div class="ch"><b>xtask/src/completion.rs · new stop mode</b><span class="k new">sketch</span></div>
+<pre><code><span class="cm">/// Stop: refuse only a false completion claim.</span>
+pub fn agent_stop_claims(root: &amp;Path, revision: &amp;str,
+                         report: &amp;Path) -&gt; Result&lt;Value&gt; {
+    let base = history::merge_base(root, revision)?;
+    let before = history::before(root, &amp;base)?;
+    let after = history::current(root)?;
+    let mut remaining = Vec::new();
+    for id in <mark data-p="a1">changed_records(root, &amp;before, &amp;after)?<sup>1</sup></mark> {
+        let record = task_record::read(root, &amp;id)?;
+        <mark data-p="a2">if record.status == Status::Complete {
+            let gate = complete(root, &amp;id, revision, report)?;
+            if gate["ok"] != true { return Ok(gate); }
+        }<sup>2</sup></mark> else {
+            <mark data-p="a3">remaining.push(json!({"task": id,
+                "remaining": record.remaining}));<sup>3</sup></mark>
+        }
+    }
+    <mark data-p="a4">Ok(json!({"ok": true, "kind": "stop",
+        "remaining": remaining}))<sup>4</sup></mark>
+}</code></pre>
+    </div>
+  </div>
+  <div class="notes">
+    <div class="note" data-p="a1"><span class="nm">1</span><span><b>Same record search, extracted.</b> A record counts when its JSON or anything in its artifact folder changed since the merge base. Sharing <code>changed_records()</code> keeps <code>handoff</code> and the stop mode in step, and needs no <code>HARNESS_TASK_ID</code>. A stale base makes it treat already-merged records as this branch's work; the hook won't fetch ("no … network calls", <code>COMPLETION.md:164</code>).</span></div>
+    <div class="note" data-p="a2"><span class="nm">2</span><span><b>The claim branch is reused unchanged.</b> <code>complete()</code> (<code>:110–118</code>) also runs <code>transitions::check</code>, so a claim on a branch that edited a protected file still needs its policy receipt. <em>Observed:</em> this record set to <code>complete</code> with no CI report gets seven errors: four <code>review.*</code>, a missing <code>reference.html</code>, CI evidence and requirement completion.</span></div>
+    <div class="note x" data-p="a3"><span class="nm">3</span><span><b>Deliberately different: no partial path.</b> Both references run <code>task(…, false)</code> on a partial record, which blocks mid-task on empty <code>review.*</code> answers (blindspot 01). The stop mode only collects <code>remaining</code>; whether an allowed stop shows it to the agent depends on the host.</span></div>
+    <div class="note x" data-p="a4"><span class="nm">4</span><span><b>Deliberately different: no stray-file error and no gap reconciliation.</b> Line 160 fires on any untracked file when no record changed (blindspot 06). Deleted task history, pages without a record and unaccounted gaps (<code>:129–133</code>, <code>:163–198</code>) also stay with <code>handoff</code>, which PR CI still runs (<code>ci.yml:35–41</code>).</span></div>
+  </div>
+</section>
+
+<!-- Pair B -->
+<section class="pair">
+  <h3><span class="pt">B / 5</span>Exit codes: a refused claim, a passing stop and a broken gate need three answers</h3>
+  <div class="grid2">
+    <div class="cc"><div class="ch"><b>scripts/agent-complete.sh:4–15 · xtask/src/main.rs:24–35</b><span class="k">reference</span></div>
+<pre><code><mark class="x" data-p="b1">if [[ -z "${HARNESS_TASK_ID:-}" || -z "${HARNESS_BASE:-}" ]]; then
+  echo 'Set HARNESS_TASK_ID and HARNESS_BASE …' &gt;&amp;2
+  exit 2
+fi<sup>5</sup></mark>
+<mark class="x" data-p="b2">cd "$(dirname "$0")/.."<sup>6</sup></mark>
+if <mark data-p="b3">cargo xtask agent-stop --task "$HARNESS_TASK_ID" --base "$HARNESS_BASE" \
+  --report "${HARNESS_REPORT:-target/verification/ci.json}" &gt;&amp;2<sup>7</sup></mark>; then
+  printf '{}\n'
+  exit 0
+else
+  <mark class="x" data-p="b4">echo 'Completion gate failed. Answer the task-review questions …' &gt;&amp;2
+  exit 2<sup>8</sup></mark>
+fi
+
+<span class="cm">// main.rs</span>
+Ok(value) =&gt; { let ok = value["ok"].as_bool().unwrap_or(true);
+    <mark data-p="b4">println!("{value:#}");<sup>8</sup></mark>  <span class="cm">// pretty, multi-line</span>
+    if ok { ExitCode::SUCCESS } else { ExitCode::FAILURE } }
+Err(error) =&gt; {
+    <mark data-p="b4">println!("{}", json!({"ok":false,"error":error.to_string()}));<sup>8</sup></mark>
+    ExitCode::FAILURE }</code></pre>
+    </div>
+    <div class="cc"><div class="ch"><b>scripts/agent-stop.sh · new default Stop</b><span class="k new">sketch</span></div>
+<pre><code><mark data-p="b1"><span class="cm"># no variables required; records are found</span><sup>5</sup></mark>
+<mark data-p="b2">root=$(git -C "$(event_field cwd)" rev-parse --show-toplevel)
+cd "$root"<sup>6</sup></mark>
+<mark data-p="b3">out=$(cargo xtask agent-stop --claims \
+      --base "${HARNESS_BASE:-origin/main}" \
+      --report target/verification/ci.json 2&gt;&amp;1)<sup>7</sup></mark>
+<mark data-p="b4">case $? in
+  0)   printf '{}\n' ;;         <span class="cm"># no claim, or a verified one</span>
+  1)   case $out in
+         '{"error"'*) gate_broken "$out" ;;  <span class="cm"># D1</span>
+         *) printf '%s\n' "$out" &gt;&amp;2
+            echo 'Completion claim refused …' &gt;&amp;2
+            exit 2 ;;
+       esac ;;
+  *)   gate_broken "$out" ;;    <span class="cm"># 101: build or lock failure</span>
+esac<sup>8</sup></mark></code></pre>
+    </div>
+  </div>
+  <div class="notes">
+    <div class="note x" data-p="b1"><span class="nm">5</span><span><b>Dropped: the unset-variable block.</b> On by default, it sends every turn in every clone back to work (blindspot 01). The new mode needs no task id. The base keeps <code>HARNESS_BASE</code> as an override.</span></div>
+    <div class="note x" data-p="b2"><span class="nm">6</span><span><b>Changed: the root comes from the event, not from the script's location.</b> Settled in the interview: <code>$CLAUDE_PROJECT_DIR</code> and <code>$0</code> both point at the main checkout inside a worktree (blindspot 06). The same applies to the guard in pair C.</span></div>
+    <div class="note" data-p="b3"><span class="nm">7</span><span><b>Kept: <code>cargo xtask</code> at stop.</b> Unlike the pre-edit guard, the stop gate has to read git history and evidence, so it calls Cargo. The alias is <code>--locked</code> (<code>.cargo/config.toml:2</code>). A cold build took 4.7 s against a 30 s timeout (blindspot, "checked and fine").</span></div>
+    <div class="note x" data-p="b4"><span class="nm">8</span><span><b>Changed: a broken gate is not a refused claim.</b> <em>Observed:</em> with a syntax error in <code>xtask/src/main.rs</code>, <code>agent-complete.sh</code> exits 2 and says "Answer the task-review questions". Without a JSON parser the wrapper can tell the cases apart only by exit code (Cargo's build failure is 101, blindspot 05) and print style: errors are one line starting <code>{"error"</code>, results are pretty-printed. <em>Observed:</em> after a manifest edit that needs a new lock entry (note 15), <code>cargo xtask agent-stop</code> exits 101 with Cargo's plain-text lock error, not JSON; the sketch sends it to <code>gate_broken</code>.</span></div>
+  </div>
+</section>
+
+<!-- Pair C -->
+<section class="pair">
+  <h3><span class="pt">C / 5</span>Path parsing: the same four patch prefixes and the same safety rules, in a shell that has no JSON parser</h3>
+  <div class="grid2">
+    <div class="cc"><div class="ch"><b>xtask/src/artifact_hook.rs:15–38 · artifacts.rs:46–57</b><span class="k">reference</span></div>
+<pre><code><mark class="x" data-p="c1">if event["tool_name"] != "apply_patch" {
+    return Err("adapter only supports apply_patch; …".into());
+}<sup>9</sup></mark>
+let patch = event["tool_input"]["command"].as_str()…;
+let mut paths = vec![];
+<mark data-p="c2">for line in patch.lines() {
+    for prefix in ["*** Add File: ", "*** Update File: ",
+                   "*** Delete File: ", "*** Move to: "] {
+        if let Some(p) = line.strip_prefix(prefix) {<sup>10</sup></mark>
+            paths.push(<mark data-p="c3">artifacts::relative(root, p)?<sup>11</sup></mark>);
+        }
+    }
+}
+<mark data-p="c4">if paths.is_empty() {
+    return Err("no recognized patch paths; cannot classify boundary".into());
+}<sup>12</sup></mark>
+
+<span class="cm">// artifacts::relative</span>
+<mark data-p="c3">let rel = if path.is_absolute() {
+    path.strip_prefix(root)
+        .map_err(|_| format!("{raw} is outside the repository"))?
+} else { path };
+if rel.as_os_str().is_empty()
+    || rel.components().any(|c| !matches!(c, Component::Normal(_))) {
+    return Err(format!("unsafe path {raw}").into());
+}<sup>11</sup></mark></code></pre>
+    </div>
+    <div class="cc"><div class="ch"><b>scripts/agent-guard.sh · new, never calls Cargo</b><span class="k new">sketch</span></div>
+<pre><code>ev=$(cat); root=$(field cwd)    <span class="cm"># grep/sed, no jq</span>
+<mark data-p="c1">case $(field tool_name) in
+  Write|Edit|MultiEdit) paths=$(field file_path) ;;
+  NotebookEdit)         paths=$(field notebook_path) ;;
+  apply_patch)          paths=$(patch_paths) ;;
+  Bash)                 bash_tier "$(field command)" ;;
+esac<sup>9</sup></mark>
+
+<mark data-p="c2">patch_paths() {   <span class="cm"># the JSON string is one line: split on \n</span>
+  field command | sed 's/\\n/\n/g' | sed -nE \
+   's/^\*\*\* (Add File|Update File|Delete File|Move to): //p'
+}<sup>10</sup></mark>
+
+<mark data-p="c3">rel() {           <span class="cm"># event spelling on both sides</span>
+  p=${1#"$root"/}; p=${p#./}
+  case $p in /*) echo OUTSIDE ;; *..*) echo UNSAFE ;;
+             *) echo "$p" ;; esac
+}<sup>11</sup></mark>
+<mark data-p="c4">[ -n "$paths" ] || {
+  echo 'cannot read the paths in this edit' &gt;&amp;2; exit 2; }<sup>12</sup></mark></code></pre>
+    </div>
+  </div>
+  <div class="notes">
+    <div class="note x" data-p="c1"><span class="nm">9</span><span><b>Changed: four tool shapes instead of one.</b> Claude sends an absolute <code>file_path</code> (<code>notebook_path</code> for NotebookEdit), Codex sends patch text, and both send a Bash <code>command</code> (interview, Q2). The reference refuses anything but <code>apply_patch</code>: exit 1 called directly, so the edit goes ahead; exit 2 through its wrapper. <em>Observed:</em> a Claude Edit event got both.</span></div>
+    <div class="note" data-p="c2"><span class="nm">10</span><span><b>Kept: the four prefixes, anchored at line start.</b> Codex's own source builds exactly this text (interview, Q2). <em>Observed:</em> the event is one JSON line with the patch's newlines escaped, so <code>grep '^\*\*\* Update File: '</code> on raw stdin matches nothing until it is split on <code>\n</code>. Unanchored, it would also match a <code>+*** Update File:</code> line inside a hunk.</span></div>
+    <div class="note x" data-p="c3"><span class="nm">11</span><span><b>Changed: strip the root in the event's own spelling, and let outside paths through.</b> <code>main.rs:41</code> canonicalizes the root but not the path. <em>Observed:</em> in a clone under <code>/var/folders/…</code>, that spelling got "is outside the repository"; the <code>/private/var/…</code> one, which <code>git rev-parse --show-toplevel</code> also returns, passed. A Write to <code>/tmp</code> isn't a policy file, so the guard allows it. <code>./x</code> got "unsafe path"; the guard strips <code>./</code> and still refuses <code>..</code>.</span></div>
+    <div class="note" data-p="c4"><span class="nm">12</span><span><b>Kept, and made explicit: a patch the guard can't read is blocked.</b> On Codex, any exit other than 0 or 2 marks the hook failed and the patch goes ahead (interview, Q2). The script has to choose exit 2 itself and must not let <code>set -e</code> crash it first. On Claude, <code>onFailure: "block"</code> covers crashes, but only from v2.1.295; older versions ignore the field.</span></div>
+  </div>
+</section>
+
+<!-- Pair D -->
+<section class="pair">
+  <h3><span class="pt">D / 5</span>Tiers: protected() stays the source of truth; goldens and config.json are carved out of it</h3>
+  <div class="grid2">
+    <div class="cc"><div class="ch"><b>xtask/src/transitions.rs:37–61 · 111</b><span class="k">reference</span></div>
+<pre><code><mark data-p="d1">fn protected(path: &amp;str) -&gt; bool {<sup>13</sup></mark>
+    [
+        "xtask/", ".github/", "scripts/", ".cargo/",
+        <mark data-p="d2">"harness/goldens/",<sup>14</sup></mark>
+    ]
+    .iter()
+    .any(|p| path.starts_with(p))
+        || [
+            <mark data-p="d3">"harness/config.json",<sup>15</sup></mark>
+            "harness/readiness.json", "harness/tracking.json",
+            "harness/workflows.json", "harness/scenarios.json",
+            <mark data-p="d4">"Cargo.toml", "Cargo.lock",<sup>16</sup></mark>
+            "docs/PRODUCT.md", "docs/READINESS.md",
+            "docs/COMPLETION.md", "AGENTS.md",
+        ]
+        .contains(&amp;path)
+}
+<span class="el">⋮</span>
+<mark data-p="d2">let before: BTreeMap&lt;_, _&gt; =
+    before.into_iter().filter(|(p, _)| protected(p)).collect();<sup>14</sup></mark></code></pre>
+    </div>
+    <div class="cc"><div class="ch"><b>scripts/agent-guard.sh · tier per path</b><span class="k new">sketch</span></div>
+<pre><code><mark data-p="d1"><span class="cm"># Copied from protected(); an xtask test fails on drift.</span><sup>13</sup></mark>
+tier() {
+  case $1 in
+    <mark data-p="d2">harness/goldens|harness/goldens/*) echo golden ;;<sup>14</sup></mark>
+    <mark data-p="d3">harness/config.json)                echo deps ;;<sup>15</sup></mark>
+    xtask/*|.github/*|scripts/*|.cargo/*|.claude/*|.codex/*|\
+    harness/readiness.json|harness/tracking.json|\
+    harness/workflows.json|harness/scenarios.json|\
+    <mark data-p="d4">Cargo.toml|Cargo.lock|<sup>16</sup></mark>docs/PRODUCT.md|docs/READINESS.md|\
+    docs/COMPLETION.md|AGENTS.md)      echo note ;;
+    *)                                 echo none ;;
+  esac
+}
+<span class="cm"># strictest tier over all paths decides the call:</span>
+<span class="cm"># golden|deps: Claude "ask", Codex exit 2 · note: additionalContext · none: {}</span></code></pre>
+    </div>
+  </div>
+  <div class="notes">
+    <div class="note" data-p="d1"><span class="nm">13</span><span><b>The parity test needs the list to be data.</b> <code>protected</code> is a private <code>fn</code> with its lists in the body; a test can compare against them only as <code>pub const</code> arrays. That edit, and adding <code>.claude/</code> and <code>.codex/</code>, touches <code>xtask/</code>, so the hooks commit carries the policy receipt (settled default).</span></div>
+    <div class="note" data-p="d2"><span class="nm">14</span><span><b>Goldens: Claude asks, Codex refuses.</b> <code>protected()</code> only ever sees file paths from the tree walk, so a trailing slash is safe there. A Bash command can name the directory itself: <code>rm -r harness/goldens</code> never contains <code>harness/goldens/</code>. The guard matches both spellings.</span></div>
+    <div class="note" data-p="d3"><span class="nm">15</span><span><b>config.json asks instead of getting a note.</b> It holds the layer allowlists ARCH004 checks (<code>checks.rs:68–69</code>). <em>Observed:</em> adding <code>rand</code>, absent from <code>Cargo.lock</code>, to <code>crates/app/Cargo.toml</code>: <code>cargo check --locked</code> refused, and the xtask binary still reported <code>ARCH004 starter-app -&gt; rand</code>, since <code>cargo metadata --no-deps</code> (<code>repo.rs:88</code>) needs no resolution. <code>cargo xtask</code> itself dies first on the same lock refusal (exit 101): the alias is <code>run --quiet --locked</code> (<code>.cargo/config.toml:2</code>). So dependency feedback must call the built binary, or treat 101 as "gate broken, but <code>cargo check --locked</code> already said why".</span></div>
+    <div class="note" data-p="d4"><span class="nm">16</span><span><b>Exact names mean the root only.</b> <code>crates/app/Cargo.toml</code> is not protected and gets no tier, by your Q6 choice. The guard mirrors this exactly; matching <code>*/Cargo.toml</code> would make every manifest edit ask (blindspot 04).</span></div>
+  </div>
+</section>
+
+<!-- Pair E -->
+<section class="pair">
+  <h3><span class="pt">E / 5</span>The tree: Claude's local files leave the walk, but git's side of the comparison still sees them</h3>
+  <div class="grid2">
+    <div class="cc"><div class="ch"><b>xtask/src/repo.rs:17–28 · history.rs:102–114</b><span class="k">reference</span></div>
+<pre><code>for entry in std::fs::read_dir(dir)? {
+    let entry = entry?;
+    let path = entry.path();
+    <mark data-p="e1">let name = entry.file_name();
+    let name = name.to_string_lossy();
+    if [".git", "target", ".DS_Store", "__pycache__"]
+            .contains(&amp;name.as_ref())
+        || name.ends_with(".pyc")
+        || name == ".env"
+        || name.starts_with(".env.") &amp;&amp; name != ".env.example"
+    {
+        continue;
+    }<sup>17</sup></mark>
+<span class="el">⋮</span>
+<span class="cm">// history.rs: the two sides every comparison uses</span>
+<mark data-p="e2">pub fn current(root: &amp;Path) -&gt; … { repo::files(root)? … }
+pub fn before(root: &amp;Path, base: &amp;str) -&gt; … {
+    paths(root, base)?   <span class="cm">// git ls-tree -r at base</span><sup>18</sup></mark></code></pre>
+    </div>
+    <div class="cc"><div class="ch"><b>xtask/src/repo.rs · local host files</b><span class="k new">sketch</span></div>
+<pre><code><mark data-p="e1">const HOST_LOCAL: [&amp;str; 2] =
+    [".claude/settings.local.json", ".claude/worktrees"];
+
+let rel = path.strip_prefix(base)?
+    .to_string_lossy().replace('\\', "/");
+if HOST_LOCAL.contains(&amp;rel.as_str()) {
+    continue;
+}<sup>17</sup></mark>
+
+<mark data-p="e2"><span class="cm">// before() still lists a committed copy; see D2.</span>
+<span class="cm">// .gitignore: /.claude/settings.local.json</span>
+<span class="cm">//             /.claude/worktrees/</span><sup>18</sup></mark></code></pre>
+    </div>
+  </div>
+  <div class="notes">
+    <div class="note x" data-p="e1"><span class="nm">17</span><span><b>Changed: match by path, not by name.</b> Today's skip is four names and three patterns (<code>*.pyc</code>, <code>.env</code>, <code>.env.*</code> except <code>.env.example</code>), each at any depth, and never reads <code>.gitignore</code> (hence blindspot 06's stray file). The new entries match the full relative path. <em>Observed:</em> with <code>.claude/</code> and <code>.codex/</code> in <code>protected()</code> and this skip, <code>settings.local.json</code> and a file under <code>.claude/worktrees/w/</code> left <code>gaps</code> and <code>handoff</code> clean; <code>docs/.claude/settings.local.json</code> still counted.</span></div>
+    <div class="note x" data-p="e2"><span class="nm">18</span><span><b>Gotcha: the skip applies to one side only.</b> <code>before()</code> reads git, not the walk. <em>Observed:</em> once <code>.claude/settings.local.json</code> is committed and still on disk, every later comparison sees it deleted: <code>gaps</code> demands a policy receipt and <code>handoff</code> a record. <code>.gitignore</code> has no rule for it (blindspot 06), so the regression test covers this case too.</span></div>
+  </div>
+</section>
+
+<p class="muted">Also left out of the defaults: the <code>blocked_handoff</code> exception (<code>completion.rs:239–243</code>), since a non-claim stops anyway; and the discovery-page guard and SubagentStop, which stay opt-in or unwired (settled in the interview).</p>
+
+<h2>An edge case the pairs don't cover</h2>
+<p><b>Bash writing to goldens: <code>rm -r harness/goldens</code>, <code>cat x &gt; harness/goldens/a.json</code>, <code>git checkout -- harness/goldens/…</code></b> <span class="pill chg">new</span><br>Today nothing sees these until the receipt at stop or in CI (blindspot 03). The guard matches the directory name without its slash, a redirect makes <code>cat</code> a write, and only <code>git diff|show|log</code> count as read-only git. Scripts that build the path still get through.</p>
+
+<h2>Two things to decide, then confirm</h2>
+<div class="dec" id="d1">
+  <h3>D1. When the stop gate can't run</h3>
+  <p>The base doesn't resolve, or <code>cargo xtask</code> won't run (a broken <code>xtask/</code>, or the lock refusal in note 15). <em>Observed:</em> xtask exits 1 with "Needed a single revision" and a failed build exits 101; <code>agent-complete.sh</code> turns both into exit 2 and "Answer the task-review questions". The pre-edit guard depends on neither. A Stop that exits 2 sends the agent back with nothing it can act on. Claude Code's loop cap resets every time the agent runs a tool (blindspot 01).</p>
+  <label><input type="radio" name="d1" value="claim" checked><span>Block only if a record changed since the base claims complete, found without xtask as below. Otherwise allow the stop with a warning. With no base there is no changed set, so it allows.<span class="lean">my lean</span></span></label>
+  <label><input type="radio" name="d1" value="allow"><span>Always allow the stop with a warning on stderr. PR CI's <code>handoff</code> catches a false claim.</span></label>
+  <label><input type="radio" name="d1" value="block"><span>Always block with exit 2, as <code>agent-complete.sh</code> does today, but with a message saying the gate itself broke.</span></label>
+  <p class="muted">Finding a claim without xtask: list records as <code>handoff</code> does, with <code>git diff --name-only BASE</code> plus <code>git ls-files -o</code> over <code>harness/tasks/</code> and <code>harness/task-artifacts/</code> (<em>observed:</em> <code>git diff</code> alone missed a new record). The two folders play different roles: the grep runs only on <code>harness/tasks/*.json</code>, and a change under <code>harness/task-artifacts/ID/</code> only puts record <code>ID</code> in the changed set (<code>handoff</code>'s prefix check, <code>completion.rs:134–147</code>). Match <code>grep -E '"status"[[:space:]]*:[[:space:]]*"complete"'</code>; <em>observed:</em> a literal <code>"status": "complete"</code> missed <code>"status":"complete"</code>, which xtask gated as a claim. Only the top-level field can match, since every record struct denies unknown fields and none nests a <code>status</code> (<code>task_record.rs:16–120</code>). A record that doesn't parse has no such guarantee, so a test must compare the grep with <code>task_record::read</code> on every record and on spacing variants.</p>
+</div>
+<div class="dec" id="d2">
+  <h3>D2. A committed copy of a skipped file</h3>
+  <p>The walk skips it, git at the base still lists it, and every later branch looks changed (pair E, note 18).</p>
+  <label><input type="radio" name="d2" value="ignore" checked><span>Add both paths to <code>.gitignore</code>, and have the regression test show that a committed copy is reported, so it can't happen unnoticed.<span class="lean">my lean</span></span></label>
+  <label><input type="radio" name="d2" value="both"><span>Skip the paths in <code>history::before</code> too, so both sides agree. A committed <code>settings.local.json</code> with broad allow rules would then be invisible to <code>protected()</code>.</span></label>
+</div>
+<div class="dec">
+  <h3>Your reply</h3>
+  <p>Built from the two choices. Add a correction for any pair, note or row before you send it.</p>
+<pre id="reply"></pre>
+  <div class="btns">
+    <button type="button" id="copyReply">Copy reply</button>
+    <button type="button" class="secondary" id="copyFix">Copy correction template</button>
+  </div>
+</div>
+
+<footer>default-hooks · point at a reference · feeds the implementation plan</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  var $ = function (q) { return document.querySelector(q); }, all = function (q) { return Array.prototype.slice.call(document.querySelectorAll(q)); };
+  function copy(text, btn, label) {
+    var orig = btn.textContent;
+    function done() { btn.textContent = label; setTimeout(function () { btn.textContent = orig; }, 1600); }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  }
+  var D1 = {
+    claim: "D1: when the gate can't run, block only if a record changed since the base (git diff plus untracked files) claims complete by a whitespace-tolerant grep, tested against task_record::read; otherwise allow with a warning.",
+    allow: "D1: always allow the stop with a warning when the gate can't run; PR CI catches a false claim.",
+    block: "D1: always block with exit 2 when the gate can't run, with a message saying the gate broke."
+  };
+  var D2 = {
+    ignore: "D2: add .claude/settings.local.json and .claude/worktrees/ to .gitignore; the regression test shows a committed copy is reported.",
+    both: "D2: skip the two paths in history::before as well as repo::files."
+  };
+  function val(n) { var el = $('input[name="' + n + '"]:checked'); return el ? el.value : null; }
+  function render() {
+    $("#reply").textContent = "Semantics confirmed for pairs A–E and the edge case.\n" + D1[val("d1")] + "\n" + D2[val("d2")] + "\nProceed to the implementation plan.";
+  }
+  all('input[type="radio"]').forEach(function (r) { r.addEventListener("change", render); });
+  render();
+  $("#copyPrompt").addEventListener("click", function () { copy($("#promptText").textContent.trim(), this, "Copied"); });
+  $("#copyReply").addEventListener("click", function () { copy($("#reply").textContent, this, "Copied: paste it back"); });
+  $("#copyFix").addEventListener("click", function () {
+    copy("Correction to the semantics map:\n- pair / note / row: \n- what you got wrong: \n- what the code actually does: ", this, "Copied");
+  });
+  function setOn(p, on) { all('[data-p="' + p + '"]').forEach(function (el) { el.classList.toggle("on", on); }); }
+  var current = null;
+  all("mark[data-p], .note[data-p]").forEach(function (el) {
+    var p = el.getAttribute("data-p");
+    el.addEventListener("mouseenter", function () { setOn(p, true); });
+    el.addEventListener("mouseleave", function () { if (current !== p) setOn(p, false); });
+    el.addEventListener("click", function () {
+      if (current && current !== p) setOn(current, false);
+      current = current === p ? null : p;
+      setOn(p, current === p);
+    });
+  });
+})();
+</script>
+</body>
+</html>
