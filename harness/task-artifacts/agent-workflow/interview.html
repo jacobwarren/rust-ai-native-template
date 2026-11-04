@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent workflow: the interview</title>
+<style>
+.ask { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); max-width: var(--reading-width); }
+.ask blockquote { margin: var(--space-2) 0 0; font-style: italic; background: none; border: 0; padding: 0; }
+.tag { font-size: var(--text-small); letter-spacing: .08em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+code { overflow-wrap: anywhere; font-size: .875em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+pre { font-size: .8125rem; line-height: 1.55; margin: 0 0 var(--space-4); background: var(--paper); }
+.iv { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; margin-top: var(--space-8); }
+.iv-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); padding: var(--space-3) var(--space-6); background: var(--paper); border-bottom: 1px solid var(--line); }
+.iv-head b { font-size: 1.05rem; }
+.iv-head span { font: .8125rem var(--font-code); color: var(--muted); margin-right: auto; }
+.iv-body { display: grid; grid-template-columns: 15rem minmax(0, 1fr); min-height: 34rem; }
+.rail { display: block; border-right: 1px solid var(--line); border-bottom: 0; padding: var(--space-4); background: var(--paper); }
+.rail-label { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 650; margin-bottom: var(--space-2); }
+.iv button.ri { display: flex; align-items: center; gap: var(--space-2); width: 100%; min-height: 36px; padding: var(--space-1) var(--space-2); margin: 2px 0; background: none; border: 0; border-radius: var(--control-radius); color: var(--muted); text-align: left; font-size: .875rem; }
+.iv button.ri:hover { background: var(--surface); }
+.iv button.ri.cur { background: var(--surface); color: var(--ink); font-weight: 650; box-shadow: inset 3px 0 0 var(--accent); }
+.iv button.ri.done { color: var(--ink); }
+.dot { width: 11px; height: 11px; border-radius: 50%; flex: none; border: 2px solid var(--dc); }
+.ri.done .dot { background: var(--dc); }
+.ri .rq { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.ri .mk { font-size: .7rem; color: var(--muted); flex: none; }
+.ri .rn { display: none; font: 650 .8125rem var(--font-body); }
+.stage { padding: var(--space-6) var(--space-8) var(--space-8); min-width: 0; }
+.qcard { animation: qin .22s ease both; }
+@keyframes qin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.badge { display: inline-block; font: 650 .7rem var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--surface); padding: 2px 8px; border-radius: 4px; }
+.qnum { font: .8125rem var(--font-code); color: var(--muted); margin-left: var(--space-2); }
+.qtext { font-size: clamp(1.25rem, 2.6vw, 1.55rem); margin: var(--space-3) 0 var(--space-2); max-width: 36em; }
+.why { color: var(--muted); max-width: var(--reading-width); margin: 0 0 var(--space-4); font-size: .9375rem; }
+.why b { color: var(--accent); }
+.evt { font-size: .8125rem; margin-bottom: var(--space-2); }
+.evt th { font-size: .7rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.evt td, .evt th { padding: var(--space-2) var(--space-3) var(--space-2) 0; }
+.evt td.n { font-variant-numeric: tabular-nums; }
+.evt td.s { color: var(--accent); font-weight: 650; }
+.evt td.x { color: var(--warning); }
+.evt tr.grp td { font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 650; padding-top: var(--space-3); }
+.opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); margin-top: var(--space-4); }
+.iv button.opt { display: flex; flex-direction: column; justify-content: flex-start; text-align: left; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4); font-size: .875rem; line-height: 1.5; position: relative; min-width: 0; }
+.iv button.opt:hover { border-color: var(--accent); background: var(--surface); }
+.iv button.opt.picked { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent); }
+.opt .ot { display: block; font-weight: 650; font-size: .9375rem; margin-bottom: var(--space-1); padding-right: 6rem; }
+.opt .od { display: block; color: var(--muted); }
+.opt .lean { position: absolute; top: var(--space-3); right: var(--space-3); font: 650 .65rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 0 6px; background: var(--surface); }
+.other { display: flex; gap: var(--space-2); margin-top: var(--space-3); }
+.other input { flex: 1; min-width: 0; }
+.nav { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: var(--space-4); flex-wrap: wrap; }
+.iv button.link { background: none; border: 0; color: var(--accent); padding: var(--space-2) 0; min-height: 0; text-decoration: underline; text-underline-offset: .18em; }
+.iv button.link[disabled] { visibility: hidden; }
+.hint { font-size: .8125rem; color: var(--muted); margin: 0 0 var(--space-2); }
+.conflict { border-inline-start: 3px solid var(--danger); background: var(--warning-soft); padding: var(--space-2) var(--space-3); margin: var(--space-2) 0; font-size: .875rem; }
+.clean { border-inline-start: 3px solid var(--accent); background: var(--accent-soft); padding: var(--space-2) var(--space-3); margin: var(--space-2) 0; font-size: .875rem; }
+.dtable td, .dtable th { font-size: .875rem; }
+.dtable th { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.dtable .src { font-size: .75rem; color: var(--muted); white-space: nowrap; }
+.row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: var(--space-6); }
+.row h3 { margin: 0; }
+#reply { max-height: 26rem; overflow: auto; font-size: .8125rem; }
+.settled { font-size: .9375rem; }
+.settled li { margin-block: var(--space-2); max-width: var(--reading-width); }
+.mine { font: 650 .65rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--warning); border: 1px solid var(--warning); border-radius: 999px; padding: 0 6px; margin-right: 4px; }
+@media (max-width: 48rem) {
+  .iv-body { grid-template-columns: 1fr; min-height: 0; }
+  .rail { border-right: 0; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); padding: var(--space-2) var(--space-4); }
+  .rail-label, .ri .rq, .ri .mk { display: none; }
+  .ri .rn { display: inline; }
+  .iv button.ri { width: auto; min-width: 36px; justify-content: center; margin: 0; }
+  .stage { padding: var(--space-4); }
+  .opts { grid-template-columns: 1fr; }
+  .iv-head { padding: var(--space-3) var(--space-4); }
+}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">agent-workflow · the interview · before code</p>
+<h1>Seven decisions left before the ceremony scales</h1>
+
+<div class="ask">
+  <span class="tag">The prompt</span>
+  <blockquote>Interview me one question at a time about anything still ambiguous in scaling ceremony to task size, making the agent briefs real skills, defining the page author and reviewer as subagents, and trimming AGENTS.md. Prioritize questions where my answer would change the architecture.</blockquote>
+</div>
+
+<p class="lead">The blindspot pass and the brainstorm settled the mechanics; these seven choices change which files get written, ordered by how much of the build each one moves. You delegated the decisions, so each card marks the agent's lean: take them all, change what you disagree with, and the reply flags picks that contradict each other.</p>
+
+<section class="iv" aria-label="Interview">
+  <div class="iv-head">
+    <b>Agent workflow: spec interview</b>
+    <span id="progress">0 of 7 answered</span>
+    <button type="button" id="takeLeans" class="secondary">Take all my leans</button>
+  </div>
+  <div class="iv-body">
+    <nav class="rail" id="rail" aria-label="Interview progress"></nav>
+    <div class="stage" id="stage" aria-live="polite"></div>
+  </div>
+</section>
+
+<h2 id="settled">Not asked</h2>
+<p class="muted">These go into the reply as defaults. "My call" marks the agent's decisions rather than yours; strike any you disagree with.</p>
+<ul class="settled" id="settledList"></ul>
+
+<footer>agent-workflow · interview · answers feed the reference map and the plan</footer>
+</main>
+
+<script>
+(function () {
+"use strict";
+var RADII = {
+  arch: { label: "Architecture", color: "var(--accent)" },
+  pol: { label: "Policy", color: "var(--warning)" },
+  files: { label: "File layout", color: "var(--ink)" },
+  scope: { label: "Scope", color: "var(--muted)" }
+};
+
+var Q = [
+{ id: "owes", radius: "arch", short: "What small still owes", topic: "What a small task owes", lean: 0,
+  q: "Once a task is small, what does it still owe besides the code?",
+  why: "Under any option a small task still owes a changed record (`completion.rs:160-161`), the four review answers (`task_record.rs:122`), and CI evidence and a verified requirement to claim complete (`completion.rs:44-60`).",
+  leanWhy: "under Q4's lean small can't touch the gate, hooks, policy or the ceremony's own definitions, where all of default-hooks' code sat; what's left is a product or docs change of at most 100 lines that full CI checks.",
+  opts: [
+    { t: "Record and review answers, no pages", d: "16+ subagent runs become none. `order()` has nothing to order, so its uncommitted-file check (`artifacts.rs:142-148`) moves into the size check." },
+    { t: "Record plus the quiz page", d: "Two runs, after the last code commit. Keeps the check that the human understood the diff." },
+    { t: "Record plus a diff reviewer, no page", d: "Its verdict goes in `review.verification`, free text no gate can check, and it needs a third agent definition on each host." }
+  ] },
+{ id: "measure", radius: "arch", short: "Size measure and limit", topic: "Size measure and limit", lean: 0,
+  q: "What counts toward a small task's size, and where is the limit?",
+  why: "Blindspot 02 settled how to count: `--no-renames`, untracked files by line count, any binary forces standard, records, receipts and pages left out. What no count sees: a dense or minified line counts as one (the trial's `v2-*.json` fixtures are 156 to 203 bytes on one line each), and a feature split across several small branches passes branch by branch, undetectable from inside one (blindspot 02). Reviewers and CI remain the check on both. Below, real commits are treated as one-commit tasks.",
+  leanWhy: "once Q4's lean applies, 100 and 150 admit the same three product fixes (last column); the extra 50 lines only widen what the count can't see.",
+  table: {
+    head: ["Change", "Lines", "Tests", "All ≤100", "All ≤150", "tests/ free", "≤100 + Q4 lean"],
+    groups: [
+      ["Product fixes, trial/journal-versioning branch", [
+        ["`88d73ae` refuse to save over an oversized board", "16", "8", "S", "S", "S", "S"],
+        ["`77523ae` report journal formats in discover", "41", "5", "S", "S", "S", "S"],
+        ["`40e3291` pin the first format's bytes", "93", "93", "S", "S", "S", "S"],
+        ["`daef9e0` read the format before parsing", "270", "113", "std", "std", "std", "std"],
+        ["the whole trial as one task", "419", "217", "std", "std", "std", "std"]]],
+      ["Harness fixes on main", [
+        ["`9053735` resolve `..` in guarded paths", "48", "17", "S", "S", "S", "std"],
+        ["`7fa7665` protect agent host config", "118", "57", "std", "S", "S", "std"],
+        ["`78ce822` fixes from the journal trial", "123", "35", "std", "S", "S", "std"],
+        ["`468c563` review pages independently", "204", "23", "std", "std", "std", "std"]]]
+    ],
+    src: "S small, std standard. Lines added plus deleted per `git show --numstat --no-renames`, administrative paths left out (`artifacts.rs:33`). Tests: lines in `tests/` and `*_tests.rs`; \"tests/ free\" exempts only the former. The last column is the lean pair, limit 100 plus Q4's paths: each harness fix touches xtask/ or scripts/, `daef9e0` a crate manifest."
+  },
+  opts: [
+    { t: "Every changed line, limit 100", d: "The starting design, on blindspot 02's count. A fix and its test count together, so a fix whose test takes it past 100 turns standard; no product fix here does." },
+    { t: "Every changed line, limit 150", d: "Admits `7fa7665` and `78ce822` by size, but both edit xtask/, which Q4's lean makes standard anyway. Among the product fixes it admits nothing 100 refuses." },
+    { t: "Lines, tests/ directories free (limit 100)", d: "Free lines are uncapped and the matcher is a guess: a path component frees `src/tests/` product code, a prefix misses `store_tests.rs`. The trial put JSON fixtures under tests/." }
+  ] },
+{ id: "outgrow", radius: "arch", short: "Outgrowing small", topic: "When a small task outgrows its tier", lean: 0,
+  q: "What happens when a task declared small grows past the limit?",
+  why: "Blindspot 03 settled that a small task can't turn standard once it commits code; what's open is when the gate notices. CI's handoff runs `task()` on every PR push, partial or not (`ci.yml:41`, `completion.rs:158`); `order()` runs only at completion (`artifacts.rs:105`).",
+  leanWhy: "it's the only option where a task that grew can't merge without pages, and it catches the growth on the next push.",
+  opts: [
+    { t: "Refuse at the first gate with a base", d: "The size check runs in `task()` whatever the status, so CI's handoff refuses. The error names both exits: restart as standard on a new branch, pages first, or finish the small part and open a standard task for the rest." },
+    { t: "Allow the switch on the same branch", d: "A record field names the commit where the task turned standard, and `order()` measures from there. The agent picks that commit, so discovery before code becomes optional." },
+    { t: "Check size only at completion", d: "Fewest code paths, but partial tasks pass CI's handoff, so a small PR that grew can merge as partial with no pages." }
+  ] },
+{ id: "paths", radius: "pol", short: "Paths that force standard", topic: "Paths that force standard", lean: 0,
+  q: "Which paths make a task standard however few lines change?",
+  why: "The starting list (goldens, Cargo files, config.json, .github/) leaves the gate open to small tasks: every harness fix in Q2's table edits xtask/ or scripts/ in 48 to 204 lines. A receipt is no reader; it \"explains intent, not reviewer approval\" (`COMPLETION.md:146`), and the agent writes it.",
+  evidence: "transitions.rs:39-60\n  prefixes  xtask/ .github/ scripts/ .cargo/ harness/goldens/ .claude/ .codex/\n  files     harness/{config,readiness,tracking,workflows,scenarios}.json AGENTS.md\n            docs/{PRODUCT,READINESS,COMPLETION}.md Cargo.toml Cargo.lock  # exact: root only\nagent-hook.sh:329  also matches */Cargo.toml",
+  leanWhy: "gate, guard, policy, dependency and ceremony-definition changes always get pages and reviewers, the tier's limits and the briefs included. The cost: nearly every task on this template is standard; small serves adopters' product fixes and docs.",
+  opts: [
+    { t: "Protected paths, any Cargo.toml, the ceremony definitions", d: "Reuse `protected()` (`transitions.rs:62`), add `*/Cargo.toml` for the crate manifests it misses, and add what says what pages and reviewers must do: docs/ARTIFACTS.md, docs/skills/, .agents/skills/ (.claude/skills/, .claude/agents/ and .codex/agents/ are already under protected prefixes). Other docs stay small-eligible; rust-toolchain.toml and clippy.toml are in neither list." },
+    { t: "The starting list", d: "The readiness, scenarios, workflows and tracking files still redefine what passes, and a small edit to xtask/ or scripts/, the tier's limits included, ships with no reader." },
+    { t: "None: size alone decides", d: "A three-line golden regeneration or a new crate dependency is small. The guard still asks before golden and config.json edits." }
+  ] },
+{ id: "parity", radius: "files", short: "Skills and agents per host", topic: "Host parity for skills and agents", lean: 0,
+  q: "Which hosts get the skills and agent definitions, and how do the copies stay equal?",
+  why: "Blindspot 05: one real copy per host folder, since a symlink fails every xtask check. A Codex role can't preload a skill, only disable one (codex-rs `core/src/agent/role.rs:106-110`), so its `developer_instructions` must tell it to invoke the skill.",
+  leanWhy: "the smallest change that loads on both hosts; an edit to one copy fails naming the other.",
+  opts: [
+    { t: "Both hosts, copies checked equal", d: "Each skill byte for byte in .claude/skills/ and .agents/skills/; `xtask docs` fails on drift. Claude agents preload with `skills:`; Codex TOML names the skill in `developer_instructions`." },
+    { t: "Both hosts, generated from docs/skills/", d: "A new `cargo xtask skills` writes both copies (rung S4). One file to edit, but more code than the 115 lines it copies, and agents must remember to regenerate." },
+    { t: "Claude Code only", d: "Codex keeps finding the briefs through links in ARTIFACTS.md. Half the files, but item 3 asked for both hosts." }
+  ] },
+{ id: "scope", radius: "pol", short: "Author's write scope", topic: "Enforcing the author's write scope", lean: 0,
+  q: "How is the author's \"writes only under harness/task-artifacts/\" enforced?",
+  why: "Neither host can confine Bash, and Codex agents inherit sandbox and approval (blindspot 07). The one enforcement that exists is a per-agent Claude Code hook on Edit and Write, which runs only in a trusted folder.",
+  leanWhy: "the most either host offers, in a script that already resolves tool paths.",
+  opts: [
+    { t: "An Edit/Write hook on Claude's author", d: "An `author` mode in scripts/agent-hook.sh reuses its path resolution (`agent-hook.sh:95-124`) to block Edit and Write outside harness/task-artifacts/ and target/. The definition names what it misses: Bash, headless runs, Codex." },
+    { t: "Scope stated in prose only", d: "No change under scripts/, and short of item 4's \"writes only under\" on both hosts." }
+  ] },
+{ id: "command", radius: "scope", short: "Product-command skill", topic: "What the add-product-command skill teaches", lean: 0,
+  q: "What should the add-product-command skill teach, given the template has no Command::introduced_in?",
+  why: "The trial added `introduced_in` on a branch that never merged; here the journal format is a fixed 1 that load refuses to change (`store.rs:80`, `:128`).",
+  evidence: "$ git grep -n introduced_in HEAD -- crates     # no matches\n$ git grep -n introduced_in origin/trial/journal-versioning -- crates\n…:crates/engine/src/lib.rs:46:    pub(crate) const fn introduced_in(&self) -> u32 {\n…:crates/engine/src/store.rs:56:        .map(Command::introduced_in)",
+  leanWhy: "the skill exists so agents don't miss a step, and here the steps are four files plus a decision about the journal.",
+  opts: [
+    { t: "Teach the template as it is", d: "The `Command` enum (`lib.rs:32`), its descriptor in `capabilities()` (`protocol.rs:38`), a workflow in harness/workflows.json (protected) and DRIVER.md. Then the journal: a saved board still says format 1 and older builds don't know the variant; the skill names the trial's per-command version as one answer." },
+    { t: "Merge journal versioning first", d: "387 lines in 13 files under crates/, a crate manifest among them, so the skill can name `introduced_in`. This harness task becomes a product change too." },
+    { t: "Leave the skill out", d: "Ship only the brief skills; add this one when versioning lands or with the first real new command." }
+  ] }
+];
+
+var CONFLICTS = [
+  { when: { owes: 2 }, text: "Q1's diff reviewer needs a third agent definition on each host; Q5 and Q6 define only the author and reviewer." },
+  { when: { paths: [1, 2] }, text: "Q4's answer lets a small task edit xtask/, scripts/, docs/ARTIFACTS.md and the skill and agent definitions, so a change within the size limit could move the tier's own limits, the gate or what pages and reviewers must do with no page and no reviewer. A receipt, where one is needed, records intent, not approval." },
+  { when: { outgrow: 1 }, text: "Q3's same-branch switch lets the agent name the commit where the task turned standard, so Q2's limit and Q4's paths become advisory: any task can start small, write code, then switch, and discovery before code is optional." },
+  { when: { outgrow: 2 }, text: "Q3 checks size only at completion, so a small PR past Q2's limit or touching Q4's paths passes CI's handoff as partial and can merge with no pages, the hole Q3's question is about." },
+  { when: { measure: 2, paths: 0 }, text: "Q2 frees tests/ directories, but Q4 makes xtask/tests/ standard with the rest of xtask/, so the exemption helps only under crates/." },
+  { when: { parity: 1 }, text: "Q5's generator reads docs/skills/, where investigate.md stays as the evaluator seed. It needs an explicit list, or the seed gains frontmatter GEPA would mutate." }
+];
+
+var SETTLED = [
+  "Mechanics as in blindspots 01, 02 and 04: an optional `tier` field (absent is standard, no schema bump), one page-set function for all four callers of the page check, size from the merge base to the working tree, new tests listed in harness/readiness.json.",
+  "The limits are constants in xtask/, so under Q4's lean changing one is a standard task with pages and reviewers.",
+  "Opus writes and Sonnet reviews on Claude Code (item 4); the reviewer keeps Bash to reproduce claims (blindspot 07).",
+  "MINE .claude/skills/ stays under the protected .claude/ prefix, against blindspot 05's carve-out: a skill edit keeps needing a receipt, as agent definitions do.",
+  "MINE investigate.md stays in docs/skills/ as the GEPA seed, against item 3's wording (blindspot 06).",
+  "MINE Codex agent files, if any, inherit the session's model; a pinned name goes stale.",
+  "MINE AGENTS.md steps 2 and 7 shrink to a linked line each, step 4's \"Small changes need no ceremony\" (`AGENTS.md:18`) names the tier, and item 5's red-tape line joins Operating rules. At 73 of DOC005's 100 lines (`checks.rs:164`), this is for reading, not the limit."
+];
+
+var answers = Q.map(function () { return null; }); // {oi} or {text}
+var cur = 0, pending = null; // pending: auto-advance timer after a pick
+var rail = document.getElementById("rail"), stage = document.getElementById("stage");
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function fmt(s) { return esc(s).replace(/`([^`]+)`/g, "<code>$1</code>"); }
+function plain(s) { return s.replace(/^MINE /, "(agent's call) ").replace(/`/g, ""); }
+function idx(id) { for (var i = 0; i < Q.length; i++) if (Q[i].id === id) return i; return -1; }
+function own(i) { return answers[i] && answers[i].text != null; }
+function answerText(i) { var a = answers[i]; return !a ? null : own(i) ? a.text : Q[i].opts[a.oi].t; }
+function source(i) { var a = answers[i]; return !a ? "unanswered" : own(i) ? "your wording" : a.oi === Q[i].lean ? "agent's lean" : "your pick"; }
+function count() { return answers.filter(Boolean).length; }
+
+function renderRail() {
+  var mk = { "agent's lean": "lean", "your pick": "✓", "your wording": "own", unanswered: "" };
+  var h = '<div class="rail-label">Ordered by build impact</div>';
+  Q.forEach(function (q, i) {
+    h += '<button type="button" class="ri' + (i === cur ? " cur" : "") + (answers[i] ? " done" : "") + '" data-i="' + i +
+      '" style="--dc:' + RADII[q.radius].color + '" title="' + esc((i + 1) + ". " + q.short + (answers[i] ? " (" + source(i) + ")" : "")) +
+      '" aria-label="Question ' + (i + 1) + ': ' + esc(q.short) + '"><span class="dot"></span><span class="rn">' + (i + 1) + '</span><span class="rq">' +
+      (i + 1) + '. ' + esc(q.short) + '</span><span class="mk">' + mk[source(i)] + '</span></button>';
+  });
+  h += '<button type="button" class="ri' + (cur === Q.length ? " cur" : "") + '" data-i="' + Q.length +
+    '" style="--dc:var(--line)" title="Your reply" aria-label="Your reply"><span class="dot"></span><span class="rn">Reply</span><span class="rq">Reply</span></button>';
+  rail.innerHTML = h;
+  $("progress").textContent = count() + " of " + Q.length + " answered";
+}
+
+function cell(c) {
+  var cls = c === "S" ? "s" : c === "std" ? "x" : /^\d+$/.test(c) ? "n" : "";
+  return '<td' + (cls ? ' class="' + cls + '"' : "") + '>' + fmt(c) + '</td>';
+}
+function evidence(q) {
+  var t = q.table, h = q.evidence ? '<pre>' + esc(q.evidence) + '</pre>' : "";
+  if (t) h += '<div class="table-scroll"><table class="evt"><thead><tr>' + t.head.map(function (c) { return '<th>' + esc(c) + '</th>'; }).join("") +
+    '</tr></thead><tbody>' + t.groups.map(function (g) {
+      return '<tr class="grp"><td colspan="' + t.head.length + '">' + esc(g[0]) + '</td></tr>' +
+        g[1].map(function (r) { return '<tr>' + r.map(cell).join("") + '</tr>'; }).join("");
+    }).join("") + '</tbody></table></div><p class="hint">' + fmt(t.src) + '</p>';
+  return h;
+}
+
+function renderQuestion() {
+  var q = Q[cur], r = RADII[q.radius], a = answers[cur], at = cur; // at: the question these controls belong to
+  var h = '<div class="qcard"><span class="badge" style="background:' + r.color + '">' + r.label + '</span>' +
+    '<span class="qnum">Question ' + (cur + 1) + ' of ' + Q.length + '</span><h2 class="qtext">' + esc(q.q) + '</h2>' +
+    '<p class="why">' + fmt(q.why) + ' <b>Lean ' + (q.lean + 1) + ':</b> ' + fmt(q.leanWhy) + '</p>' + evidence(q) + '<div class="opts">';
+  q.opts.forEach(function (o, oi) {
+    var p = !!(a && !own(cur) && a.oi === oi);
+    h += '<button type="button" class="opt' + (p ? " picked" : "") + '" data-oi="' + oi + '" aria-pressed="' + p + '">' +
+      (oi === q.lean ? '<span class="lean">agent\'s lean</span>' : '') +
+      '<span class="ot">' + (oi + 1) + '. ' + esc(o.t) + '</span><span class="od">' + fmt(o.d) + '</span></button>';
+  });
+  h += '</div><div class="other"><input type="text" id="otherIn" aria-label="Your own answer" placeholder="Or answer in your own words…" value="' +
+    (own(cur) ? esc(a.text) : "") + '"><button type="button" id="otherGo" class="secondary">Answer</button></div>' +
+    '<div class="nav"><button type="button" class="link" id="back"' + (cur === 0 ? " disabled" : "") + '>← Previous</button>' +
+    '<button type="button" class="link" id="skip">Skip →</button></div></div>';
+  stage.innerHTML = h;
+  stage.querySelectorAll(".opt").forEach(function (el) {
+    el.addEventListener("click", function () {
+      if (pending !== null || cur !== at) return; // ignore repeat clicks while advancing
+      answers[at] = { oi: +el.getAttribute("data-oi") };
+      stage.querySelectorAll(".opt").forEach(function (b) { b.classList.toggle("picked", b === el); b.setAttribute("aria-pressed", b === el); });
+      renderRail();
+      pending = setTimeout(function () { pending = null; if (cur === at) go(at + 1); }, 220);
+    });
+  });
+  var inp = $("otherIn");
+  function submit() {
+    if (pending !== null || cur !== at) return;
+    var v = inp.value.trim(); if (!v) { inp.focus(); return; }
+    answers[at] = { text: v }; go(at + 1);
+  }
+  $("otherGo").addEventListener("click", submit);
+  inp.addEventListener("keydown", function (e) { if (e.key === "Enter") submit(); });
+  $("back").addEventListener("click", function () { go(at - 1); });
+  $("skip").addEventListener("click", function () { go(at + 1); });
+}
+
+// The option that will be built: the pick, or the lean when unanswered. Own wording has none.
+function effective(i) { return !answers[i] ? Q[i].lean : own(i) ? -1 : answers[i].oi; }
+function conflicts() {
+  return CONFLICTS.filter(function (c) {
+    return Object.keys(c.when).every(function (id) { return [].concat(c.when[id]).indexOf(effective(idx(id))) >= 0; });
+  });
+}
+function unchecked() { return Q.map(function (q, i) { return own(i) ? "Q" + (i + 1) : null; }).filter(Boolean); }
+
+function reply() {
+  var L = ["Answers to the agent-workflow interview, in order of build impact.", ""], tags = { "agent's lean": " [agent's lean]", "your pick": " [not the agent's lean]", "your wording": " [my wording; ask if unclear]", unanswered: "" };
+  Q.forEach(function (q, i) {
+    L.push((i + 1) + ". " + q.topic + ": " + (answerText(i) || "(unanswered; use the agent's lean: " + q.opts[q.lean].t + ")") + tags[source(i)]);
+  });
+  var cs = conflicts(), sk = unchecked();
+  if (cs.length) { L.push("", "Conflicts to resolve before writing code:"); cs.forEach(function (c) { L.push("- " + c.text); }); }
+  else L.push("", "No conflicts between these answers.");
+  if (sk.length) L.push("Conflict check skipped for " + sk.join(", ") + ": answered in my own words.");
+  if (Q.every(function (q, i) { return effective(i) === q.lean; })) L.push("Every answer is the agent's lean, taken as delegated.");
+  L.push("", "Defaults I accept unless struck:");
+  SETTLED.forEach(function (s) { L.push("- " + plain(s)); });
+  return L.join("\n");
+}
+
+function renderSummary() {
+  var cs = conflicts(), sk = unchecked();
+  var ch = cs.length ? cs.map(function (c) { return '<p class="conflict">' + esc(c.text) + '</p>'; }).join("") : '<p class="clean">No conflicts between these answers.</p>';
+  if (sk.length) ch += '<p class="hint">Conflict check skipped for ' + sk.join(", ") + ': answered in your own words.</p>';
+  stage.innerHTML = '<div class="qcard"><span class="badge" style="background:var(--accent)">Your reply</span>' +
+    '<h2 class="qtext">' + count() + ' of ' + Q.length + ' decided</h2>' +
+    '<p class="why">Unanswered questions go back as "use the agent\'s lean", so the plan never guesses silently.</p>' + ch +
+    '<div class="table-scroll"><table class="dtable"><thead><tr><th>#</th><th>Question</th><th>Decision</th><th>Source</th><th></th></tr></thead><tbody>' +
+    Q.map(function (q, i) {
+      var t = answerText(i);
+      return '<tr><td>' + (i + 1) + '</td><td>' + esc(q.topic) + '</td><td>' + (t ? esc(t) : '<span class="muted">—</span>') +
+        '</td><td class="src">' + source(i) + '</td><td><button type="button" class="link" data-i="' + i + '">edit</button></td></tr>';
+    }).join("") + '</tbody></table></div>' +
+    '<div class="row"><h3>Copy this back</h3><button type="button" id="copyReply">Copy reply</button></div><pre id="reply"></pre>' +
+    '<button type="button" class="link" id="restart">↺ Clear answers and start over</button></div>';
+  $("reply").textContent = reply();
+  stage.querySelectorAll(".dtable .link").forEach(function (b) { b.addEventListener("click", function () { go(+b.getAttribute("data-i")); }); });
+  $("restart").addEventListener("click", function () { answers = Q.map(function () { return null; }); go(0); });
+  $("copyReply").addEventListener("click", function (e) { copy(reply(), e.currentTarget); });
+}
+
+function go(i) {
+  if (pending !== null) { clearTimeout(pending); pending = null; }
+  cur = Math.max(0, Math.min(i, Q.length));
+  renderRail();
+  if (cur === Q.length) renderSummary(); else renderQuestion();
+}
+
+function copy(text, btn) {
+  function done() { var t = btn.textContent; btn.textContent = "Copied"; setTimeout(function () { btn.textContent = t; }, 1400); }
+  function fallback() {
+    var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done();
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+
+rail.addEventListener("click", function (e) { var b = e.target.closest("button.ri"); if (b) go(+b.getAttribute("data-i")); });
+$("takeLeans").addEventListener("click", function () {
+  Q.forEach(function (q, i) { if (!answers[i]) answers[i] = { oi: q.lean }; });
+  go(Q.length);
+});
+$("settledList").innerHTML = SETTLED.map(function (s) {
+  return "<li>" + (s.indexOf("MINE ") === 0 ? '<span class="mine">my call</span>' + fmt(s.slice(5)) : fmt(s)) + "</li>";
+}).join("");
+go(0);
+})();
+</script>
+</body>
+</html>
