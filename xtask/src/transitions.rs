@@ -201,3 +201,26 @@ pub fn check(root: &Path, revision: &str, report: Option<&Path>) -> Result<Value
         "review":"Rationale is not independent approval. Enforce reviewer authority in hosting rules."}),
     )
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{PROTECTED_FILES, PROTECTED_PREFIXES};
+
+    fn script_list(name: &str) -> Vec<String> {
+        let script = include_str!("../../scripts/agent-hook.sh");
+        let line = script
+            .lines()
+            .find_map(|l| l.strip_prefix(&format!("{name}=\"")))
+            .unwrap_or_else(|| panic!("{name} missing from scripts/agent-hook.sh"));
+        line.trim_end_matches('"')
+            .split_whitespace()
+            .map(String::from)
+            .collect()
+    }
+
+    #[test]
+    fn guard_tiers_match_protected_paths() {
+        assert_eq!(script_list("PROTECTED_PREFIXES"), PROTECTED_PREFIXES);
+        assert_eq!(script_list("PROTECTED_FILES"), PROTECTED_FILES);
+    }
+}
