@@ -199,7 +199,7 @@ button.opt.dim { opacity: .55; }
     <h3>After, on this branch</h3>
     <ul>
       <li><code>.claude/settings.json</code> and <code>.codex/hooks.json</code> wire <code>scripts/agent-hook.sh</code> (new: <code>guard</code>, <code>check</code>) and <code>scripts/agent-complete.sh</code> (rewritten). The Codex example keeps only its discovery-page guard.</li>
-      <li><b>New rules:</b> (1) <code>.claude/</code> and <code>.codex/</code> are protected, so weakening a hook needs a transition receipt; (2) Codex refuses edits to goldens and <code>harness/config.json</code> where Claude Code asks; (3) PR merges and force-pushes are refused; (4) <code>cargo add</code> and <code>cargo remove</code> ask first.</li>
+      <li><b>New rules:</b> (1) <code>.claude/</code> and <code>.codex/</code> are protected, so weakening a hook needs a transition receipt; (2) Codex refuses edits to goldens and <code>harness/config.json</code> where Claude Code asks; (3) a PR merge asks on Claude Code and is refused on Codex, and a force-push is refused on both; (4) <code>cargo add</code> and <code>cargo remove</code> ask first.</li>
     </ul>
   </div>
 </div>
@@ -399,7 +399,7 @@ trap 'rc=$?; case $rc in 0 | 2) ;; *) echo "agent-hook: internal error (exit $rc
           'Claude Code asks before the push, and Codex refuses it.',
           'All three commands run, on both hosts.'],
       c: 3,
-      ok: 'The guard refuses PR merges (<code>gh pr merge</code>, the merge API) and force-pushes. A local merge and a plain push are neither, and no permission or Codex rule names them. Stopping a direct push to main is the host\'s branch protection.',
+      ok: 'The guard acts on PR merges (<code>gh pr merge</code>, the merge API: an ask on Claude Code, refused on Codex) and refuses force-pushes. A local merge and a plain push are neither, and no permission or Codex rule names them. Stopping a direct push to main is the host\'s branch protection.',
       a: 'leans', lab: 'Existing behaviour this leans on'
     }
   ];

@@ -395,7 +395,7 @@ Completion claim refused: harness/tasks/default-hooks.json says complete, but th
   var GB = "Blocked: harness/goldens/kept.json is a golden baseline and Codex hooks cannot ask. Fix the implementation, or ask the owner to change the baseline by hand or from Claude Code.";
   var DA = "[ask] harness/config.json holds the per-layer dependency allowlists that ARCH004 checks. Widening one adds a dependency, which the owner approves.";
   var DB = "Blocked: harness/config.json holds the dependency allowlists and Codex hooks cannot ask. Ask the owner to widen it.";
-  var M = "Blocked: force-pushing and merging the PR need the owner (AGENTS.md, Operating rules). Push without force, or ask the owner.";
+  var M = "Blocked: force-pushing rewrites history and needs the owner (AGENTS.md, Operating rules). Push without force, or ask the owner.";
   function N(p) { return "[note, as additionalContext] " + p + " is a protected policy file. This branch will need a transition receipt: run cargo xtask gaps --base origin/main before completion."; }
   var A = "Nothing from the guard ({}).";
   var ROWS = [
