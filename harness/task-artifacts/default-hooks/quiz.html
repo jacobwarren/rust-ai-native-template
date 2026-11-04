@@ -270,7 +270,7 @@ CLAIM='"status"[[:space:]]*:[[:space:]]*"complete"'   <span class="c"># task_rec
 
 <div class="beh" id="b5">
   <h3><span class="num">05</span>Failing closed: the script's part and the host's part</h3>
-  <p>Inside the script, an ERR trap turns a failed command into exit 2. <code>set -u</code> aborts on an unset variable without that trap, so an EXIT trap rewrites every other exit code to 2 as well. A guard that can't start, or runs past its 10 s timeout, is the host's call: Claude Code blocks it with <code>onFailure: "block"</code> from v2.1.295; older Claude Code and Codex let the call through.</p>
+  <p>Inside the script, an ERR trap turns a failed command into exit 2. <code>set -u</code> aborts on an unset variable without that trap, so an EXIT trap rewrites every other exit code to 2 as well. A guard that can't start, or runs past its 10 s timeout, is the host's call: Claude Code blocks it with <code>onFailure: "block"</code> from v2.1.295; older Claude Code and Codex let the call through. The stop gate keeps its ERR trap but not <code>-E</code>: under macOS <code>/bin/bash</code> 3.2, <code>-E</code> runs that trap inside a guarded <code>$(…)</code> and misreports a refused claim.</p>
 <pre>set -uEf
 trap '… exit 2' ERR
 trap 'rc=$?; case $rc in 0 | 2) ;; *) echo "agent-hook: internal error (exit $rc). …" &gt;&amp;2; exit 2 ;; esac' EXIT</pre>

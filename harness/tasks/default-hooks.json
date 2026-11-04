@@ -46,6 +46,10 @@
       "record": "scripts/agent-hook.sh"
     },
     {
+      "summary": "Under set -E, macOS /bin/bash 3.2 runs an inherited ERR trap inside a $(...) even when the caller guards the failure, so the stop gate misreported a refused claim on the PR's macOS CI job; the stop gate drops -E and the guard's git probes keep || true inside the substitution. Local runs on bash 5.3 had passed.",
+      "record": "scripts/agent-complete.sh"
+    },
+    {
       "summary": "Known guard limits left as speed bumps: shell writers the parser does not know (perl -pi, dd, patch, git apply, rsync, ln), paths built in variables or sh -c strings, a gh pr merge wrapped in bash -c, and a needless receipt note on .claude/settings.local.json. Editing an old task record that says complete makes the stop gate judge it again.",
       "record": "harness/task-artifacts/default-hooks/buy-in.html"
     }
