@@ -8,7 +8,9 @@
 #   HARNESS_BASE    base ref (default origin/main)
 #   HARNESS_REPORT  CI evidence (default target/verification/ci.json)
 #   HARNESS_XTASK   tests only: replaces `cargo xtask`
-set -uE
+# No -E: there are no functions, and bash 3.2 would run the ERR trap inside the
+# guarded $(...) calls below.
+set -u
 trap 'echo "agent-complete: internal error at line $LINENO. Tell the owner the stop gate needs a fix." >&2; exit 2' ERR
 
 event=""

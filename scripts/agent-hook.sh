@@ -81,8 +81,11 @@ cwd=$(jget cwd) || cwd=""
 [ -n "$cwd" ] || cwd=$PWD
 [ -n "$tool" ] || block "Blocked: agent-hook could not read this event. Tell the owner the hook needs a fix."
 # Outside a Git checkout nothing here applies.
-root=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null) || allow
-prefix=$(git -C "$cwd" rev-parse --show-prefix 2>/dev/null) || prefix=""
+# `|| true` stays inside each $(...): bash 3.2 runs an inherited ERR trap in the
+# substitution even when the caller handles the failure.
+root=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null || true)
+[ -n "$root" ] || allow
+prefix=$(git -C "$cwd" rev-parse --show-prefix 2>/dev/null || true)
 
 # The same root can be spelled /private/var/... (Git) or /var/... (the event).
 root_cwd=${cwd%/}
