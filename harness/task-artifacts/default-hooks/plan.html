@@ -169,7 +169,7 @@ table.compact td, table.compact th { font-size: var(--text-small); line-height: 
   <button class="small secondary copy" type="button" data-copy="thePrompt">Copy prompt</button>
 </div>
 
-<p class="lead">This plan builds your six interview answers and the reference map's D1 and D2 leans. It narrows them in three places, each one tick away in the reply: a shell claim search at stop (A3), golden writes matched by destination (A4), and <code>xtask architecture</code> only after manifest or allowlist edits (A5).</p>
+<p class="lead">This plan builds your six interview answers and the reference map's D1 and D2 leans. It narrows them in two places, each one tick away in the reply: a shell claim search at stop (A3) and golden writes matched by destination (A4).</p>
 
 <div class="chips">
   <span class="chip"><b>4</b> new config and script files</span>
@@ -305,12 +305,11 @@ if HOST_LOCAL.contains(&amp;rel.as_str()) { continue; }
 <div class="table-scroll"><table class="compact">
 <thead><tr><th>Edited path</th><th>Runs</th></tr></thead>
 <tbody>
-<tr><td><code>*.rs</code> under a crate</td><td><code>cargo check -q --locked -p PKG</code> and <code>cargo fmt --check -p PKG</code>, reported, not applied. PKG is the <code>name =</code> of the nearest <code>Cargo.toml</code>: <code>starter-app</code>, <code>-engine</code>, <code>-domain</code>, <code>xtask</code>.</td></tr>
+<tr><td><code>*.rs</code> under a crate</td><td><code>cargo check -q --locked -p PKG</code> and <code>cargo fmt --check -p PKG</code>, reported, not applied, then <code>xtask architecture</code> from the built binary, whose SIZE001 check reads every <code>.rs</code> file (<code>checks.rs:76–90</code>). PKG is the <code>name =</code> of the nearest <code>Cargo.toml</code>: <code>starter-app</code>, <code>-engine</code>, <code>-domain</code>, <code>xtask</code>.</td></tr>
 <tr><td>any <code>Cargo.toml</code>, <code>Cargo.lock</code>, <code>harness/config.json</code></td><td><code>cargo check -q --locked --workspace</code>, then <code>xtask architecture</code> from the built binary</td></tr>
 <tr><td>anything else</td><td>nothing, exit 0</td></tr>
 </tbody></table></div>
 <p>Because <code>cargo xtask</code> exits 101 after an edit adds a crate (A3), <code>check</code> runs <code>${CARGO_TARGET_DIR:-target}/debug/xtask architecture</code> after <code>cargo build -q --locked -p xtask</code>; when that build is refused too, the older binary still prints <code>ARCH004 starter-app -&gt; rand</code> and the report says it may predate this branch's <code>xtask/</code> edits.</p>
-<div class="callout warning"><strong>Narrows your Q6</strong>, which reads as running <code>xtask architecture</code> after every edit. It reads only <code>cargo metadata</code> and <code>harness/config.json</code> (<code>checks.rs:76–78</code>), so after any other edit it would repeat its last answer.</div>
 
 <h3 class="sub">A6 · What users see and change</h3>
 <div class="table-scroll"><table class="compact">
@@ -346,7 +345,7 @@ if HOST_LOCAL.contains(&amp;rel.as_str()) { continue; }
 <tr><td><code>host_local_files_do_not_change_the_tree</code></td><td>With <code>.claude/settings.local.json</code> and <code>.claude/worktrees/w/x</code>, <code>handoff</code> and <code>gaps</code> pass. <code>docs/.claude/…</code> still fails.</td></tr>
 <tr><td><code>committed_local_settings_are_still_reported</code></td><td>Committed, it appears in <code>gaps --base</code> <code>protected_files</code> (D2)</td></tr>
 <tr><td><code>hook_configs_wire_existing_scripts_and_no_subagent_stop</code></td><td>Both configs parse and name existing scripts. The Claude guard has <code>onFailure: "block"</code>. No SubagentStop.</td></tr>
-<tr><td><code>post_edit_check_reports_errors_from_the_changed_crate</code> <span class="tag lo">not listed</span></td><td>The stub <code>cargo</code> sees <code>check --locked -p starter-app</code>. Its failure exits 2 with its output.</td></tr>
+<tr><td><code>post_edit_check_reports_errors_from_the_changed_crate</code> <span class="tag lo">not listed</span></td><td>The stub <code>cargo</code> sees <code>check --locked -p starter-app</code>. Its failure exits 2 with its output, and a binary stub's SIZE001 line after a <code>.rs</code> edit reaches stderr too.</td></tr>
 <tr><td><code>post_edit_check_uses_the_built_xtask_when_the_lock_is_stale</code> <span class="tag lo">not listed</span></td><td>Build stub exits 101, binary stub prints ARCH004, and stderr carries it</td></tr>
 </tbody></table></div>
 </details>
@@ -387,7 +386,6 @@ if HOST_LOCAL.contains(&amp;rel.as_str()) { continue; }
 <label><input type="checkbox" data-r="Build A3 as my Q1 answer: a new agent-stop --claims xtask mode, with the shell grep only as fallback."><span>Build the stop gate as my Q1 said: a new xtask mode (A3 alternative)</span></label>
 <label><input type="checkbox" data-r="When HARNESS_TASK_ID is set, keep running today's agent-stop for that task at every stop, so opt-in users keep the per-turn handoff and receipt checks."><span>Keep today's per-turn checks when <code>HARNESS_TASK_ID</code> is set (A3)</span></label>
 <label><input type="checkbox" data-r="Treat any command naming harness/goldens/ as golden unless it is read-only, as my Q5 said, accepting the commit-message and fixture false positives."><span>Match any command naming <code>harness/goldens/</code>, as my Q5 said (A4)</span></label>
-<label><input type="checkbox" data-r="Run xtask architecture after every edit, as my Q6 said, not only after Cargo.toml, Cargo.lock or harness/config.json edits."><span>Run <code>xtask architecture</code> after every edit, as my Q6 said (A5)</span></label>
 <label><input type="checkbox" data-r="Keep the protected list in one data file read by both protected() and the guard (A1 alternative)."><span>One protected-paths data file instead of two consts (A1 alternative)</span></label>
 <label><input type="checkbox" data-r="Drop the cargo add/remove ask and prompt rules; Q6's harness/config.json ask is enough."><span>Drop the <code>cargo add</code> ask (A2, note 1)</span></label>
 <label><input type="checkbox" data-r="Make edits under .claude/ and .codex/ ask on Claude and deny on Codex, so an agent can't switch its own hooks off."><span>Guard <code>.claude/</code> and <code>.codex/</code> like goldens (A6)</span></label>
@@ -476,7 +474,7 @@ if HOST_LOCAL.contains(&amp;rel.as_str()) { continue; }
   function reply() {
     var picks = [].slice.call(document.querySelectorAll("[data-r]:checked")).map(function (c) { return "- " + c.getAttribute("data-r"); });
     var L = ["Default-hooks plan review."];
-    if (!picks.length && !own.value.trim()) L.push("Approved as written: shell claim search with xtask complete at stop and no per-turn checks, golden writes matched by destination, architecture only after manifest or allowlist edits, consts plus a parity test, the tier table as shown, three product commits and the receipt last.");
+    if (!picks.length && !own.value.trim()) L.push("Approved as written: shell claim search with xtask complete at stop and no per-turn checks, golden writes matched by destination, architecture from the built binary after every Rust or manifest edit, consts plus a parity test, the tier table as shown, three product commits and the receipt last.");
     else { L.push("Approve everything except:"); L = L.concat(picks); if (own.value.trim()) L.push("- " + own.value.trim()); }
     return L.join("\n");
   }
