@@ -34,30 +34,33 @@ struct Explanation {
     manual_justification: Option<String>,
 }
 
+/// Paths whose changes need a policy transition receipt. The default agent
+/// guard (scripts/agent-hook.sh) copies this table; a test keeps them equal.
+const PROTECTED_PREFIXES: [&str; 7] = [
+    "xtask/",
+    ".github/",
+    "scripts/",
+    ".cargo/",
+    "harness/goldens/",
+    ".claude/",
+    ".codex/",
+];
+const PROTECTED_FILES: [&str; 11] = [
+    "harness/config.json",
+    "harness/readiness.json",
+    "harness/tracking.json",
+    "harness/workflows.json",
+    "harness/scenarios.json",
+    "Cargo.toml",
+    "Cargo.lock",
+    "docs/PRODUCT.md",
+    "docs/READINESS.md",
+    "docs/COMPLETION.md",
+    "AGENTS.md",
+];
+
 fn protected(path: &str) -> bool {
-    [
-        "xtask/",
-        ".github/",
-        "scripts/",
-        ".cargo/",
-        "harness/goldens/",
-    ]
-    .iter()
-    .any(|p| path.starts_with(p))
-        || [
-            "harness/config.json",
-            "harness/readiness.json",
-            "harness/tracking.json",
-            "harness/workflows.json",
-            "harness/scenarios.json",
-            "Cargo.toml",
-            "Cargo.lock",
-            "docs/PRODUCT.md",
-            "docs/READINESS.md",
-            "docs/COMPLETION.md",
-            "AGENTS.md",
-        ]
-        .contains(&path)
+    PROTECTED_PREFIXES.iter().any(|p| path.starts_with(p)) || PROTECTED_FILES.contains(&path)
 }
 fn sensitive(old: &Gap, new: Option<&Gap>) -> bool {
     let Some(new) = new else {
