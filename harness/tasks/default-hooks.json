@@ -1,7 +1,7 @@
 {
   "schema_version": 6,
   "id": "default-hooks",
-  "status": "partial",
+  "status": "complete",
   "requirements": [
     "completion"
   ],
@@ -14,34 +14,62 @@
     {
       "id": "platform-qualification",
       "disposition": "unaffected",
-      "rationale": "Hooks run on the developer's machine; the declared platform matrix is unchanged."
+      "rationale": "The hook scripts and tests ran on local macOS (bash 3.2 and 5.3) and run in the existing Ubuntu and macOS CI jobs; the declared platform matrix is unchanged."
     },
     {
       "id": "hosting-enforcement",
       "disposition": "unaffected",
-      "rationale": "Local hooks cannot configure branch protection or reviewer authority on the host."
+      "rationale": "Local hooks are speed bumps on the agent's machine; only hosting rules can stop a merge, and they are still not configured here."
     },
     {
       "id": "artifact-gate-holes",
       "disposition": "unaffected",
-      "rationale": "Under review in the discovery pages; not yet changed."
+      "rationale": "The default stop gate runs the existing completion check for claims; it neither closes nor widens the artifact gate's holes."
     }
   ],
-  "gap_review": "Reviewed the four open gaps at task start; none is changed yet.",
-  "discoveries": [],
-  "discovery_review": "Discovery pages are being written.",
-  "documentation": {
-    "updated": [],
-    "rationale": "No documented behavior has changed yet."
-  },
-  "summary": "Ship project hooks for Claude Code and Codex on by default: feedback after edits, a guard before edits to protected files, and the completion gate at stop.",
-  "remaining": [
-    "Write and review the five discovery pages, then get the owner's answers before product code."
+  "gap_review": "Reviewed the four open gaps; none is resolved or worsened. The hooks move CI's checks earlier and add host-side rules, but CI and hosting rules remain the enforcement.",
+  "discoveries": [
+    {
+      "summary": "repo::files ignored .gitignore, so Claude Code's per-machine .claude/settings.local.json changed source_sha256 and made earlier CI evidence stale; fixed with a host-local skip list and .gitignore entries.",
+      "record": "xtask/src/repo.rs"
+    },
+    {
+      "summary": "After an edit adds a crate, cargo xtask cannot start because its alias passes --locked, so hooks run the built xtask binary for the architecture check and report when it may be stale.",
+      "record": "scripts/agent-hook.sh"
+    },
+    {
+      "summary": "xtask architecture also enforces SIZE001 on every .rs file, so it must run after Rust edits; an owner approval to run it only after manifest edits rested on the opposite claim and was reversed.",
+      "record": "harness/task-artifacts/default-hooks/implementation.html"
+    },
+    {
+      "summary": "Under set -u an unset variable exits without the ERR trap, and Codex lets a call through on any exit other than 0 or 2; an EXIT trap now makes guard errors block on both hosts.",
+      "record": "scripts/agent-hook.sh"
+    },
+    {
+      "summary": "Known guard limits left as speed bumps: shell writers the parser does not know (perl -pi, dd, patch, git apply, rsync, ln), paths built in variables or sh -c strings, a gh pr merge wrapped in bash -c, and a needless receipt note on .claude/settings.local.json. Editing an old task record that says complete makes the stop gate judge it again.",
+      "record": "harness/task-artifacts/default-hooks/buy-in.html"
+    }
   ],
+  "discovery_review": "Eight pages, each from a dedicated author and judged by an independent reviewer, shaped the design before code and caught four real defects during the work (listed in discoveries). Remaining guard limits are documented in docs/COMPLETION.md and the buy-in page rather than claimed closed.",
+  "documentation": {
+    "updated": [
+      "ARCHITECTURE.md",
+      "README.md",
+      "docs/ADOPTING.md",
+      "docs/ARTIFACTS.md",
+      "docs/COMPLETION.md",
+      "docs/HARNESS.md",
+      "docs/READINESS.md",
+      "examples/codex-artifact-hooks.json"
+    ],
+    "rationale": "COMPLETION.md's opt-in hook section became 'Default hooks and CI' with the guard, post-edit check, claims-only stop gate, limits, minimum Claude Code version, Codex trust step and how to turn hooks off; the other docs stop calling the hooks opt-in, and the Codex example keeps only the opt-in discovery-page guard."
+  },
+  "summary": "Ship project hooks for Claude Code and Codex on by default: a guard before edits and shell writes (goldens and the dependency allowlist ask on Claude Code and are refused on Codex; other policy files get a receipt note; PR merges and force-pushes are refused), a post-edit compile, format and architecture check, and a stop gate that judges only completion claims. .claude/ and .codex/ are protected and host-local files leave the source fingerprint.",
+  "remaining": [],
   "review": {
-    "acceptance": "",
-    "verification": "",
-    "assumptions": "",
-    "coverage": ""
+    "acceptance": "Met. All four parts the owner chose ship on both hosts: post-edit feedback, the pre-edit guard for goldens and policy files, the completion gate at stop, and permission rules for dependencies, merging and force-pushing. Each follows the owner's interview and plan answers; deviations are logged in implementation.html and the two not yet approved (shell writes take the edit tiers; the check compiles all targets) are flagged for sign-off on buy-in.html.",
+    "verification": "cargo xtask check ci passes on the final tree; 19 new tests (9 guard, 6 stop, 2 tree, 2 unit) drive the real scripts with hand-written events and 17 gate the completion requirement. Codex rules were checked with codex execpolicy check (codex-cli 0.161.0). Page review verdicts: blindspots PASS after one rewrite; interventions, interview, reference and plan committed as best after two rewrites with open findings recorded on those pages' final reviews; implementation PASS (later extensions not re-reviewed); buy-in PASS after two rewrites; quiz PASS after one rewrite. No pre-existing failure found.",
+    "assumptions": "Host behaviour comes from current Claude Code and Codex docs and the openai/codex source (ecc78e4cf5), not live sessions, except the guard's receipt note and the silent stop gate, both seen live in the Claude Code session that built this. Assumes Claude Code v2.1.295 or later for onFailure and a trusted .codex/ layer for Codex; both are documented, neither can be required by the repo.",
+    "coverage": "Covered: every guard tier on both hosts, patch path parsing, shell write destinations versus mentions, merge and force-push spellings, .. resolution, fail-closed errors, no Cargo in the guard, the post-edit check with stubs for cargo and xtask, the stop gate's claim detection against task_record parsing, host-local files and committed copies. Not covered: live Codex sessions, Claude Code's ask and deny prompts, cold-build timeouts, and the guard limits listed in discoveries."
   }
 }
