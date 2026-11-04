@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interventions: agent-workflow</title>
+<style>
+main { padding-bottom: 9rem; }
+.prompt { position: relative; padding: var(--space-4) var(--space-6); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.prompt blockquote { margin: 0; font-style: italic; background: none; border: 0; padding: 0; max-width: var(--reading-width); }
+.prompt .secondary { margin-top: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+.proof { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--space-4); align-items: start; }
+.proof pre { margin: 0; font-size: .8rem; }
+.stats { display: grid; gap: var(--space-3); margin: 0; }
+.stats div { border-inline-start: 3px solid var(--warning); padding-inline-start: var(--space-3); }
+.stats dd { margin: 0; }
+p code, dd code { font-size: .88em; }
+.stats b { display: block; font-size: 1.5rem; line-height: 1.1; }
+.stats span { font-size: var(--text-small); color: var(--muted); }
+.ladders { display: grid; gap: var(--space-2); margin-block: var(--space-6); }
+.lrow { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: var(--space-3); align-items: center; }
+.lrow > span { font-size: var(--text-small); font-weight: 650; }
+.rungs { display: flex; flex-wrap: wrap; gap: var(--space-2); position: relative; }
+.rungs a { display: inline-block; font: 650 .8rem/1 var(--font-code); text-decoration: none; padding: .45rem .6rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); }
+.rungs a.on { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.scale { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); margin-inline-start: 10.5rem; }
+section.problem > p.ask { max-width: var(--reading-width); color: var(--muted); }
+.rung { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6); margin-block: var(--space-3); scroll-margin-top: var(--space-6); }
+.rung.checked { border-color: var(--accent); box-shadow: inset 4px 0 0 var(--accent); }
+.rtop { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); align-items: baseline; }
+.rtop h3 { margin: 0; flex: 1 1 16rem; }
+.rid { font: 700 .85rem var(--font-code); color: var(--accent); }
+.tag { font-size: .72rem; font-weight: 650; border-radius: 999px; padding: .1rem .55rem; border: 1px solid var(--line); color: var(--muted); }
+.tag.rc { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+.paths { font: .78rem var(--font-code); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0 0; }
+.rung > p { margin-block: var(--space-2); max-width: var(--reading-width); }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2) var(--space-6); margin: var(--space-3) 0 0; font-size: .92rem; }
+.grid dt { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+.grid dd { margin: 0 0 var(--space-2); }
+.grid .miss dt { color: var(--warning); }
+label.res { margin: var(--space-3) 0 0; font-size: var(--text-small); font-weight: 650; display: inline-flex; align-items: center; cursor: pointer; }
+.note { font-size: var(--text-small); color: var(--muted); }
+#reply { white-space: pre-wrap; font: .85rem/1.5 var(--font-code); background: var(--surface); border: 1px solid var(--line); }
+.bar { position: fixed; inset: auto 0 0 0; background: var(--ink); color: var(--surface); z-index: 5; }
+.bar-in { max-width: var(--page-width); margin: 0 auto; padding: var(--space-2) var(--space-6); display: flex; gap: var(--space-4); align-items: center; }
+.bar-in span { flex: 1; min-width: 0; font: .82rem var(--font-code); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-in b { color: #9fd9c4; }
+.bar button { background: var(--accent-soft); color: var(--ink); border-color: var(--accent-soft); min-height: 40px; padding: var(--space-2) var(--space-4); }
+@media (max-width: 40rem) {
+  .proof, .grid { grid-template-columns: 1fr; }
+  .lrow { grid-template-columns: 1fr; gap: var(--space-1); }
+  .scale { margin-inline-start: 0; }
+  .rung { padding: var(--space-4); }
+  .bar-in { padding: var(--space-2) var(--space-4); }
+}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">agent-workflow · Brainstorm the intervention · before code</p>
+<h1>Sixteen places to intervene, on four ladders</h1>
+
+<div class="prompt">
+  <blockquote id="prompt">“Here's the problem: every task in this template pays the same eight-page, author-and-reviewer ceremony whatever its size, the agent briefs are plain Markdown agents only find through links, the author and reviewer roles live only in prose, and AGENTS.md carries procedure that belongs in deeper docs. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate.”</blockquote>
+  <button class="secondary" id="copyPrompt" type="button">Copy prompt</button>
+</div>
+
+<p class="lead">The ceremony isn't a habit you can talk agents out of. CI's handoff refuses a changed file without a task record, and a record without five pages. A one-character README edit fails on both:</p>
+
+<div class="proof">
+<pre>$ git commit -am typo   # README.md, 1 char
+$ xtask handoff --base origin/main
+changed source requires an added/updated task reconciliation record
+<span class="muted"># completion.rs:161</span>
+$ git add harness/tasks/typo.json   # partial record
+$ xtask handoff --base origin/main
+review.acceptance: Did any assigned acceptance …
+review.verification: Did checks reveal a pre-existing …
+review.assumptions: Did this task rely on an unverified …
+review.coverage: Did you discover a material missing test …
+<span class="muted"># task_record.rs:122, one per empty review field</span>
+task HTML artifact: missing blindspots.html
+<span class="muted"># artifacts.rs:102</span></pre>
+<dl class="stats">
+  <div><dt><b>16</b></dt><dd><span>subagent runs at minimum: an author and a reviewer per page (ARTIFACTS.md:13, :38)</span></dd></div>
+  <div><dt><b>3,619 vs 1,543</b></dt><dd><span>lines added plus deleted under harness/task-artifacts/ vs every other path in the default-hooks merge, docs and tests included, its 102 task and transition record lines left out. Summed from <code>git diff --numstat --no-renames</code> across that merge; scripts/, xtask/ and hook config alone are 1,395.</span></dd></div>
+</dl>
+</div>
+
+<p>Cheap rungs change what agents read; expensive ones change what the gate demands. Misses cite the blindspot pass by number. <span class="tag rc">receipt</span> marks a rung that edits a protected path (transitions.rs:38-58). Your reply carries each pick's misses forward.</p>
+
+<nav class="ladders" aria-label="Rungs by problem">
+  <div class="lrow"><span>Ceremony</span><div class="rungs" data-p="c"></div></div>
+  <div class="lrow"><span>Skills</span><div class="rungs" data-p="s"></div></div>
+  <div class="lrow"><span>Subagents</span><div class="rungs" data-p="r"></div></div>
+  <div class="lrow"><span>AGENTS.md</span><div class="rungs" data-p="m"></div></div>
+  <div class="scale"><span>cheapest</span><span>most ambitious →</span></div>
+</nav>
+
+<section class="problem" id="p-c">
+<h2>1 · Ceremony scaled to the task</h2>
+<p class="ask">AGENTS.md:18 says “Small changes need no ceremony”; ARTIFACTS.md:64 says “All eight are required”. The gate sides with the second.</p>
+
+<article class="rung" id="C1">
+  <div class="rtop"><span class="rid">C1</span><h3>Docs only: brief pages, no reviewer, for small tasks</h3><span class="tag">small</span></div>
+  <p class="paths">docs/ARTIFACTS.md (unprotected)</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>Half the runs on small tasks.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>The typo still needs five files. Short pages pass only through the marker-only hole in gap <code>artifact-gate-holes</code>.</dd></div>
+  <div><dt>Cost</dt><dd>About ten lines.</dd></div>
+  <div><dt>Risk</dt><dd>Agents judge “small”; default-hooks' reviews caught four real defects.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="C1">Resonates</label>
+</article>
+
+<article class="rung" id="C2">
+  <div class="rtop"><span class="rid">C2</span><h3>One author and one reviewer per stage, not per page</h3><span class="tag">small</span></div>
+  <p class="paths">docs/ARTIFACTS.md:13, :18, :38</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>16 runs become about 6 on every task. Pages are already written in sequence (:18).</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Page count unchanged. Gives up “one short, specific prompt, given its full attention” (:7).</dd></div>
+  <div><dt>Cost</dt><dd>Docs only.</dd></div>
+  <div><dt>Risk</dt><dd>Later pages thin out in a long context.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="C2">Resonates</label>
+</article>
+
+<article class="rung" id="C3">
+  <div class="rtop"><span class="rid">C3</span><h3>Declared tier, checked against diff size</h3><span class="tag">large</span><span class="tag rc">receipt</span></div>
+  <p class="paths">task_record.rs:16 · artifacts.rs:93 · completion.rs:20, :219 · readiness.json:105</p>
+  <p>The starting design: <code>"tier": "small"</code>, refused above ~100 non-administrative lines or on goldens, Cargo files, config.json, .github/.</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>The typo; a large change labelled small.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Moves, binaries, unstaged files (blindspot 02); four callers (blindspot 01); no way up to standard after code (blindspot 03).</dd></div>
+  <div><dt>Cost</dt><dd>Field, fixture and readiness names in one commit (blindspot 04).</dd></div>
+  <div><dt>Risk</dt><dd>Splitting across branches is undetectable (blindspot 02).</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="C3">Resonates</label>
+</article>
+
+<article class="rung" id="C4">
+  <div class="rtop"><span class="rid">C4</span><h3>Risk-based tier: which paths, not how many lines</h3><span class="tag">medium</span><span class="tag rc">receipt</span></div>
+  <p class="paths">transitions.rs:62 protected() · git diff --name-only --no-renames</p>
+  <p>Small means no path in the 18 protected entries: goldens, config.json, xtask/, and the root Cargo.toml and Cargo.lock. Those are exact paths, so crates/*/Cargo.toml is not protected. No numstat parsing, no binary rule.</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>Protected-path edits to tracked files: policy, golden, lockfile and xtask changes.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>A 2,000-line change under crates/ is small, and so is a crate manifest edit that leaves Cargo.lock alone (edition, features). Untracked files at handoff: the diff lists only tracked changes, so a new xtask/src file is invisible until <code>order()</code> runs at completion (blindspot 02). Blindspots 01 and 03 remain.</dd></div>
+  <div><dt>Cost</dt><dd>C3's callers; <code>protected()</code> is private today.</dd></div>
+  <div><dt>Risk</dt><dd>All three earlier tasks here touched xtask/, so in this template few tasks would qualify; it bites in adopted repos.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="C4">Resonates</label>
+</article>
+
+<article class="rung" id="C5">
+  <div class="rtop"><span class="rid">C5</span><h3>A middle tier with fewer pages</h3><span class="tag">large</span><span class="tag rc">receipt</span></div>
+  <p class="paths">artifacts.rs:14-22 page constants · order() :140-190</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>Mid-size work, e.g. blindspots, plan and quiz only.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Whatever C3 or C4 misses. <code>order()</code> hard-codes notes and final-page timing per page set.</dd></div>
+  <div><dt>Cost</dt><dd>Page sets become data, per-tier tests.</dd></div>
+  <div><dt>Risk</dt><dd>Two boundaries to argue about.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="C5">Resonates</label>
+</article>
+
+<article class="rung" id="C6">
+  <div class="rtop"><span class="rid">C6</span><h3>Drop the gate; pages become guidance</h3><span class="tag">medium</span><span class="tag rc">receipt</span></div>
+  <p class="paths">completion.rs:20, :219 · artifacts.rs:193 · readiness.json:105</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>All ceremony cost; <code>artifact-gate-holes</code> goes with it.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Nothing makes discovery precede code.</dd></div>
+  <div><dt>Cost</dt><dd>Deletions, reversing PR #1's mechanism.</dd></div>
+  <div><dt>Risk</dt><dd>Highest; item 1 asked to scale, not remove.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="C6">Resonates</label>
+</article>
+</section>
+
+<section class="problem" id="p-s">
+<h2>2 · Briefs agents can load</h2>
+<p class="ask">The author (49 lines) and reviewer (66) briefs are reached only via ARTIFACTS.md:14, :39. investigate stays put as the GEPA seed (blindspot 06); the new “add a product command” skill fits any rung.</p>
+
+<article class="rung" id="S1">
+  <div class="rtop"><span class="rid">S1</span><h3>List the briefs in the map</h3><span class="tag">small</span><span class="tag rc">receipt</span></div>
+  <p class="paths">AGENTS.md:33-51</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>Agents reading the entry point see them.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>No on-demand loading; nothing to preload.</dd></div>
+  <div><dt>Cost</dt><dd>Three lines.</dd></div>
+  <div><dt>Risk</dt><dd>Minimal.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="S1">Resonates</label>
+</article>
+
+<article class="rung" id="S2">
+  <div class="rtop"><span class="rid">S2</span><h3>SKILL.md for Claude Code only</h3><span class="tag">small</span><span class="tag rc">receipt</span></div>
+  <p class="paths">.claude/skills/{author,review}-artifact/SKILL.md</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>On-demand loading; subagents preload via <code>skills:</code> (<a href="https://code.claude.com/docs/en/sub-agents.md">docs</a>).</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Codex gets nothing.</dd></div>
+  <div><dt>Cost</dt><dd>Two files, docs.json entries, two links.</dd></div>
+  <div><dt>Risk</dt><dd>A receipt per wording fix (blindspot 05).</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="S2">Resonates</label>
+</article>
+
+<article class="rung" id="S3">
+  <div class="rtop"><span class="rid">S3</span><h3>Copies for both hosts plus a parity check</h3><span class="tag">medium</span><span class="tag rc">receipt</span></div>
+  <p class="paths">.claude/skills/ · .agents/skills/ · check modelled on transitions.rs:207-224</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>Both hosts; drift between copies.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Only the .claude/ copy is protected (blindspot 05).</dd></div>
+  <div><dt>Cost</dt><dd>Four files, a check.</dd></div>
+  <div><dt>Risk</dt><dd>Agents edit one copy, then fight the check.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="S3">Resonates</label>
+</article>
+
+<article class="rung" id="S4">
+  <div class="rtop"><span class="rid">S4</span><h3>Generate both copies from docs/skills</h3><span class="tag">large</span><span class="tag rc">receipt</span></div>
+  <p class="paths">new <code>cargo xtask skills</code>, like <code>task-artifact style</code> (artifacts.rs:81-84)</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>One file to edit; link depth; both hosts.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Regenerating still edits protected .claude/ (blindspot 05).</dd></div>
+  <div><dt>Cost</dt><dd>A command and tests.</dd></div>
+  <div><dt>Risk</dt><dd>More code than the 115 lines it copies.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="S4">Resonates</label>
+</article>
+</section>
+
+<section class="problem" id="p-r">
+<h2>3 · Author and reviewer as configuration</h2>
+<p class="ask">ARTIFACTS.md:13 and :38 describe the roles; model and tools are whatever the orchestrator remembers.</p>
+
+<article class="rung" id="R1">
+  <div class="rtop"><span class="rid">R1</span><h3>Claude Code agent files</h3><span class="tag">small</span><span class="tag rc">receipt</span></div>
+  <p class="paths">.claude/agents/artifact-author.md (Opus) · artifact-reviewer.md (Sonnet)</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>Model split and brief become config.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Write scope is prose; the reviewer needs Bash to verify (blindspot 07).</dd></div>
+  <div><dt>Cost</dt><dd>Two files, docs.json entries.</dd></div>
+  <div><dt>Risk</dt><dd>Low.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="R1">Resonates</label>
+</article>
+
+<article class="rung" id="R2">
+  <div class="rtop"><span class="rid">R2</span><h3>The same roles for Codex</h3><span class="tag">medium</span><span class="tag rc">receipt</span></div>
+  <p class="paths">.codex/agents/artifact-author.toml · artifact-reviewer.toml</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>Codex gets roles and model split.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd><code>developer_instructions</code> repeats the brief; no per-agent sandbox (blindspot 07).</dd></div>
+  <div><dt>Cost</dt><dd>Two TOML files.</dd></div>
+  <div><dt>Risk</dt><dd>Host definitions drift.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="R2">Resonates</label>
+</article>
+
+<article class="rung" id="R3">
+  <div class="rtop"><span class="rid">R3</span><h3>Plus a per-agent Edit/Write hook</h3><span class="tag">medium</span><span class="tag rc">receipt</span></div>
+  <p class="paths">artifact-author.md <code>hooks:</code> · script under scripts/</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>The author's Edit/Write outside its folder, in trusted sessions.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Bash writes, headless <code>-p</code> runs, Codex (blindspot 07).</dd></div>
+  <div><dt>Cost</dt><dd>A script and test.</dd></div>
+  <div><dt>Risk</dt><dd>Looks like confinement.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="R3">Resonates</label>
+</article>
+</section>
+
+<section class="problem" id="p-m">
+<h2>4 · A map, not a manual</h2>
+<p class="ask">Steps 2 and 7 (AGENTS.md:7-14, 23-29) are 15 of 73 lines; DOC005's 100-line limit isn't forcing it (checks.rs:164).</p>
+
+<article class="rung" id="M1">
+  <div class="rtop"><span class="rid">M1</span><h3>Trim steps 2 and 7 into the docs they link</h3><span class="tag">small</span><span class="tag rc">receipt</span></div>
+  <p class="paths">→ docs/ARTIFACTS.md, docs/COMPLETION.md</p>
+  <p>Step 7's four questions already arrive as gate errors: the partial record above failed with each as its message (task_record.rs:122).</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>A shorter map, no lost enforcement.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>AGENTS.md:18 stays false without a gate rung.</dd></div>
+  <div><dt>Cost</dt><dd>One receipt for both files.</dd></div>
+  <div><dt>Risk</dt><dd>Low.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="M1">Resonates</label>
+</article>
+
+<article class="rung" id="M2">
+  <div class="rtop"><span class="rid">M2</span><h3>Trim plus one line against red tape</h3><span class="tag">small</span><span class="tag rc">receipt</span></div>
+  <p class="paths">AGENTS.md Operating rules</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>Future tasks adding their own procedure.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Prose. Sits against “All eight are required” (ARTIFACTS.md:64) unless C3–C6 replaces that rule.</dd></div>
+  <div><dt>Cost</dt><dd>One line.</dd></div>
+  <div><dt>Risk</dt><dd>Read as license to drop existing asks; AGENTS.md:56 counters.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="M2">Resonates</label>
+</article>
+
+<article class="rung" id="M3">
+  <div class="rtop"><span class="rid">M3</span><h3>Move the steps into skills</h3><span class="tag">medium</span><span class="tag rc">receipt</span></div>
+  <p class="paths">“write task pages”, “finish a task” · needs S2–S4</p>
+  <dl class="grid"><div><dt>Catches</dt><dd>Procedure loads only when it applies.</dd></div>
+  <div class="miss"><dt>Misses</dt><dd>Loading is the model's call; a skip surfaces late, at stop or CI.</dd></div>
+  <div><dt>Cost</dt><dd>Two more skills.</dd></div>
+  <div><dt>Risk</dt><dd>COMPLETION.md and skill drift.</dd></div></dl>
+  <label class="res"><input type="checkbox" data-id="M3">Resonates</label>
+</article>
+</section>
+
+<h2>Your reply</h2>
+<p class="note">Each pick carries its misses, so no problem reads as solved beyond what the picks catch.</p>
+<output id="reply">Tick the rungs that resonate.</output>
+</main>
+
+<div class="bar" role="region" aria-label="Reply">
+  <div class="bar-in"><span id="barText"><b id="count">0</b> picked · tick the rungs that resonate</span><button id="copyReply" type="button" disabled>Copy reply</button></div>
+</div>
+
+<script>
+(function () {
+  var P = {c: "Ceremony", s: "Skills", r: "Subagents", m: "AGENTS.md"};
+  function tier(has) { return ["C3", "C4", "C5"].some(has); }
+  var R = {
+    C1: ["c", "docs-only brief pages, no reviewer", "the typo still needs a record and five pages; relies on the marker-only hole"],
+    C2: ["c", "one author and reviewer per stage", "page count unchanged; gives up one prompt per page"],
+    C3: ["c", "declared size tier", "moves, binaries and unstaged files (blindspot 02), four callers (01), no upgrade path (03)"],
+    C4: ["c", "risk-based tier by protected paths", "large changes under crates/ and crates/*/Cargo.toml edits count as small; untracked files at handoff are invisible to the tier check (blindspot 02); blindspots 01 and 03 remain"],
+    C5: ["c", "middle tier with fewer pages", function (has) {
+      var t = ["C3", "C4"].filter(has);
+      return "per-tier order rules; " + (t.length ? "whatever " + t.join(" and ") + " miss" + (t.length > 1 ? "" : "es") : "needs a tier boundary (C3 or C4), none picked"); }],
+    C6: ["c", "drop the gate", "nothing makes discovery happen before code"],
+    S1: ["s", "list briefs in AGENTS.md", "no on-demand loading in either host"],
+    S2: ["s", "Claude-only SKILL.md", function (has) { return (has("S3") || has("S4") ? "" : "Codex gets nothing; ") + "receipt per wording edit (blindspot 05)"; }],
+    S3: ["s", "copies plus parity check", "uneven protection (blindspot 05); docs.json entry per copy"],
+    S4: ["s", "generated copies via xtask", "regeneration still touches protected .claude/ (blindspot 05)"],
+    R1: ["r", "Claude agent files", function (has) { return [has("R3") ? "" : "write scope is prose", "reviewer needs Bash to verify (blindspot 07)", has("R2") ? "" : "Codex unchanged"].filter(Boolean).join("; "); }],
+    R2: ["r", "Codex agent files too", "instructions duplicated; no per-agent sandbox (blindspot 07)"],
+    R3: ["r", "per-agent Edit/Write hook", "Bash writes, headless runs and Codex unconfined (blindspot 07)"],
+    M1: ["m", "trim steps 2 and 7", function (has) {
+      if (tier(has)) return "AGENTS.md:18 must be rewritten to match the picked tier";
+      if (has("C6")) return "drop AGENTS.md:18 and 'All eight are required' (ARTIFACTS.md:64), since no gate remains";
+      if (has("C1")) return "AGENTS.md:18 stays false: C1 lightens small tasks but the gate still wants five pages, so reword it";
+      if (has("C2")) return "AGENTS.md:18 stays false: C2 cuts runs, not pages";
+      return "AGENTS.md:18 stays false without a gate rung"; }],
+    M2: ["m", "trim plus anti-red-tape line", function (has) {
+      if (tier(has)) return "prose only; word it to agree with the tier rule that replaces 'All eight are required' (ARTIFACTS.md:64)";
+      if (has("C6")) return "prose only; word it for pages as guidance, once 'All eight are required' (ARTIFACTS.md:64) goes with the gate";
+      return "prose only; sits against 'All eight are required' (ARTIFACTS.md:64), which " + (has("C1") || has("C2") ? ["C1", "C2"].filter(has).join(" and ") + " leave" + (has("C1") && has("C2") ? "" : "s") + " in place" : "no picked rung changes"); }],
+    M3: ["m", "move steps into skills", function (has) {
+      var m = "loading is optional; skipped skills surface late";
+      if (!["S2", "S3", "S4"].some(has)) return m + "; needs a skill rung (S2-S4), none picked";
+      return (has("S3") || has("S4")) ? m : m + "; Claude Code only with S2 alone"; }]
+  };
+  var boxes = [].slice.call(document.querySelectorAll("input[data-id]"));
+  var chips = {};
+  Object.keys(R).forEach(function (id) {
+    var a = document.createElement("a");
+    a.href = "#" + id; a.textContent = id; a.title = R[id][1];
+    document.querySelector('.rungs[data-p="' + R[id][0] + '"]').appendChild(a);
+    chips[id] = a;
+  });
+  var out = document.getElementById("reply"), bar = document.getElementById("barText"),
+      count = document.getElementById("count"), btn = document.getElementById("copyReply"), text = "";
+  function render() {
+    var picked = boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.getAttribute("data-id"); });
+    boxes.forEach(function (b) {
+      var id = b.getAttribute("data-id");
+      document.getElementById(id).classList.toggle("checked", b.checked);
+      chips[id].classList.toggle("on", b.checked);
+    });
+    count.textContent = picked.length;
+    if (!picked.length) {
+      text = ""; out.textContent = "Tick the rungs that resonate.";
+      bar.innerHTML = '<b id="count">0</b> picked · tick the rungs that resonate';
+      count = document.getElementById("count"); btn.disabled = true; return;
+    }
+    var has = function (x) { return picked.indexOf(x) >= 0; };
+    var lines = ["These resonate: " + picked.join(", ") + "."];
+    Object.keys(P).forEach(function (p) {
+      var mine = picked.filter(function (id) { return R[id][0] === p; });
+      if (!mine.length) { lines.push("- " + P[p] + ": nothing picked; leave as is for now."); return; }
+      lines.push("- " + P[p] + ": " + mine.map(function (id) { return id + " (" + R[id][1] + ")"; }).join(" + ") +
+        ". Still open: " + mine.map(function (id) { var m = R[id][2]; return typeof m === "function" ? m(has) : m; }).join("; ") + ".");
+      var alt = ["C3", "C4", "C6"].filter(has);
+      if (p === "c" && alt.length > 1) lines.push("  Pick one of " + alt.join("/") + ": they are alternatives (" +
+        [has("C3") && has("C4") ? "two tier designs" : "", has("C6") ? "a tier needs the gate C6 drops" : ""].filter(Boolean).join("; ") + ").");
+    });
+    text = lines.join("\n");
+    out.textContent = text;
+    bar.innerHTML = '<b id="count">' + picked.length + "</b> picked · " + picked.join(", ");
+    count = document.getElementById("count"); btn.disabled = false;
+  }
+  function copy(t, b, label) {
+    function done() { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1400); }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      if (ok) done(); else { b.textContent = "Select the text to copy"; }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, fallback); else fallback();
+  }
+  boxes.forEach(function (b) { b.addEventListener("change", render); });
+  btn.addEventListener("click", function () { if (text) copy(text, btn, "Copy reply"); });
+  var pb = document.getElementById("copyPrompt");
+  pb.addEventListener("click", function () { copy(document.getElementById("prompt").textContent.replace(/^“|”$/g, ""), pb, "Copy prompt"); });
+  render();
+})();
+</script>
+</body>
+</html>
