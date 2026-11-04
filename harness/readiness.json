@@ -97,7 +97,8 @@
         "task_record::tests::stop_claim_pattern_matches_parsed_status",
         "host_local_files_do_not_change_the_tree",
         "committed_local_settings_are_still_reported",
-        "hook_configs_wire_existing_scripts_and_no_subagent_stop"
+        "hook_configs_wire_existing_scripts_and_no_subagent_stop",
+        "guard_folds_case_where_git_ignores_case"
       ],
       "workflows": []
     },
@@ -108,7 +109,9 @@
         "xtask/src/artifact_hook.rs",
         "scripts/agent-artifact-write.sh",
         "scripts/artifact-screenshots.cjs",
-        "xtask/src/size.rs"
+        "xtask/src/size.rs",
+        "xtask/src/checks.rs",
+        ".claude/agents/artifact-author.md"
       ],
       "tests": [
         "completion_requires_eight_pages_carrying_the_stylesheet_inline",
@@ -125,7 +128,10 @@
         "moves_untracked_and_binary_files_count_toward_size",
         "protected_cargo_and_ceremony_paths_force_standard",
         "every_page_check_reads_the_tier",
-        "tier_is_small_or_standard_and_defaults_to_standard"
+        "tier_is_small_or_standard_and_defaults_to_standard",
+        "skill_copies_must_match_and_name_their_folder",
+        "author_mode_allows_only_the_artifact_folder_and_outside_paths",
+        "agent_definitions_preload_their_skills_and_limit_writes"
       ],
       "workflows": []
     }

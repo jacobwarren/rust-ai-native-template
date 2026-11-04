@@ -1,6 +1,6 @@
 # Task artifacts
 
-Every task leaves HTML pages that let a human understand it: what was unknown
+A standard task leaves HTML pages that let a human understand it: what was unknown
 before code, what the code taught us during the work, and why the result is
 ready to merge. The method is Thariq Shihipar's
 [Know your unknowns](../examples/thariq/index.html): each page is what a capable
@@ -11,7 +11,7 @@ a dedicated author and an independent reviewer do.
 ## How to produce a page
 
 1. **Use a dedicated author.** Start a fresh subagent for each page and give it
-   the [author-artifact brief](skills/author-artifact.md), the prompt below with
+   the [author-artifact brief](../.claude/skills/author-artifact/SKILL.md), the prompt below with
    the task filled in, the exemplar path, the task context and the task's pages
    written so far. If your host has no subagents, give the page its own turn and
    do nothing else in it. Write the pages in the order of the table below.
@@ -36,7 +36,7 @@ a dedicated author and an independent reviewer do.
    and fix what the report flags before committing. Without Node or Chrome, say
    so rather than implying visual review.
 5. **Get an independent review.** Start another fresh subagent, never the
-   author, with the [reviewer brief](skills/review-artifact.md), the page, its
+   author, with the [reviewer brief](../.claude/skills/review-artifact/SKILL.md), the page, its
    prompt, the exemplar and the task context. A different model is better when
    your host offers one. On REVISE, give the findings to a fresh author to
    rewrite the page, then have a fresh reviewer judge the whole page again:
@@ -61,7 +61,7 @@ instruction. The exemplar is the bar.
 | Before merge | Buy-in doc | "Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping {task}. Lead with the demo." | [10](../examples/thariq/10-pitch-doc.html) |
 | Before merge | Quiz me before I merge | "I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass." | [11](../examples/thariq/11-change-quiz.html) |
 
-All eight are required. When no external reference exists, the reference is
+A standard task needs all eight; a small task needs none (see Task size). When no external reference exists, the reference is
 the existing code path that the change extends or most resembles. Add these
 when the task calls for them: [teach me my unknowns](../examples/thariq/02-color-grading-explainer.html)
 for unfamiliar domains, [design directions](../examples/thariq/03-design-directions.html)
@@ -70,6 +70,30 @@ for new UI.
 
 Write implementation notes during the work: after the first implementation slice
 and at each material milestone. Never write them all at the end.
+
+## Task size
+
+A task record carries `"tier": "small"` or `"tier": "standard"`; a record without
+a tier is standard. Choose the tier at task start: discovery pages must be
+committed before the first product-code commit, so a task cannot become standard
+after its code lands.
+
+A small task needs no pages and no page reviews. It still owes its task record,
+the four review answers, current CI evidence and any transition receipt. The
+completion and handoff gates measure the branch against its merge base and
+refuse a small task when:
+
+- its changed lines, added plus deleted, exceed 100 outside administrative paths
+  (moves count on both sides; untracked files count; any binary file refuses);
+- it touches a protected policy path, any `Cargo.toml`, or the ceremony's own
+  definitions (this guide, `docs/skills/`, the skill and agent folders under
+  `.claude/`, `.agents/` and `.codex/`).
+
+A small task that outgrows the tier is split, or restarted as a standard task on
+a new branch. The limit counts lines, not meaning: dense or minified lines count
+once, and one feature split across several small branches passes each gate. CI
+and reviewers remain the check on both. The limits live in `xtask/src/size.rs`;
+changing them is a standard task.
 
 ## Replies come back into the work
 
@@ -103,7 +127,7 @@ human's call.
    nothing else, not even from its own folder, so it renders the same in a file
    preview, on a code host or as an attachment, and a later style change never
    alters it.
-3. Commit as you go. Completion reads the branch's own commits since the base:
+3. Commit as you go. For a standard task, completion reads the branch's own commits since the base:
    the five discovery pages before the first product-code commit, notes before
    the last one, and buy-in and quiz at or after it. Code and pages must be
    committed when you claim completion. Git history keeps every earlier version.

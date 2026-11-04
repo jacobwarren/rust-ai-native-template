@@ -303,3 +303,47 @@ fn guard_fails_closed_on_an_internal_error() {
         assert!(String::from_utf8_lossy(&o.stderr).contains("internal error"));
     }
 }
+
+#[test]
+fn guard_folds_case_where_git_ignores_case() {
+    let f = Fixture::new();
+    f.git(&["config", "core.ignorecase", "true"]);
+    let o = hook(
+        &f,
+        "guard",
+        "codex",
+        &edit(&f, "HARNESS/goldens/kept.json"),
+        None,
+    );
+    assert_eq!(o.code, 2, "{}", o.stdout);
+    let o = hook(
+        &f,
+        "guard",
+        "claude",
+        &edit(&f, "Harness/Config.json"),
+        None,
+    );
+    assert_eq!(decision(&o), json!("ask"));
+    let o = hook(&f, "guard", "claude", &edit(&f, "XTASK/src/main.rs"), None);
+    assert!(o.stdout.contains("additionalContext"), "{}", o.stdout);
+    // Where Git compares case, or the key is unset, other spellings are other files.
+    for setting in [Some("false"), None] {
+        match setting {
+            Some(v) => f.git(&["config", "core.ignorecase", v]),
+            None => f.git(&["config", "--unset", "core.ignorecase"]),
+        };
+        let o = hook(
+            &f,
+            "guard",
+            "codex",
+            &edit(&f, "HARNESS/goldens/kept.json"),
+            None,
+        );
+        assert_eq!(
+            (o.code, o.stdout.trim()),
+            (0, "{}"),
+            "{setting:?}: {}",
+            o.stderr
+        );
+    }
+}

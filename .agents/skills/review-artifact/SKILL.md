@@ -1,3 +1,8 @@
+---
+name: review-artifact
+description: Independently judge one of this repository's task HTML pages against its prompt and exemplar, and return PASS or REVISE with grounded findings. Use when docs/ARTIFACTS.md asks for a page review.
+---
+
 # Artifact reviewer brief
 
 You are judging one HTML page another agent wrote for a task in this repository.

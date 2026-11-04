@@ -1,3 +1,8 @@
+---
+name: author-artifact
+description: Write one of this repository's task HTML pages (blindspots, interventions, interview, reference, plan, implementation notes, buy-in or quiz) from its prompt and exemplar. Use when docs/ARTIFACTS.md asks for a page.
+---
+
 # Artifact author brief
 
 You are writing one HTML page that a human reads to understand a task in this
@@ -26,7 +31,7 @@ anything.
    help the reader reason or reply. End with a way to send a reaction back, such
    as a reply assembled from their choices that they can copy.
 4. Write a single self-contained HTML file at the output path. Paste the shared
-   style block first in the head as described in [the guide](../ARTIFACTS.md)
+   style block first in the head as described in [the guide](../../../docs/ARTIFACTS.md)
    and use its tokens. Inline your own layout CSS and scripts. Load nothing,
    neither from the network nor from files beside the page.
 5. Keep the page about the feature. No harness mechanics, hashes, revision

@@ -178,8 +178,53 @@ pub fn docs(root: &Path) -> Result<Value> {
             }
         }
     }
+    errors.extend(skill_copies(root)?);
     Ok(json!({"ok":errors.is_empty(),"errors":errors,
-        "scope":"Markdown catalog and relative inline file links; semantic accuracy and heading anchors need review"}))
+        "scope":"Markdown catalog, relative inline file links and skill copies; semantic accuracy and heading anchors need review"}))
+}
+
+/// Claude Code reads skills from .claude/skills and Codex from .agents/skills. The
+/// harness rejects symlinks, so each skill is two copies that must stay identical,
+/// and each SKILL.md must name its own folder (the Agent Skills spec requires it).
+fn skill_copies(root: &Path) -> Result<Vec<String>> {
+    const HOSTS: [&str; 2] = [".claude/skills/", ".agents/skills/"];
+    let mut copies: [std::collections::BTreeMap<String, Vec<u8>>; 2] = Default::default();
+    for path in repo::files(root)? {
+        let path = path.to_string_lossy().replace('\\', "/");
+        for (i, host) in HOSTS.iter().enumerate() {
+            if let Some(rest) = path.strip_prefix(host) {
+                copies[i].insert(rest.to_owned(), std::fs::read(root.join(&path))?);
+            }
+        }
+    }
+    let mut errors = Vec::new();
+    let names: BTreeSet<&String> = copies[0].keys().chain(copies[1].keys()).collect();
+    for rest in names {
+        if copies[0].get(rest) != copies[1].get(rest) {
+            errors.push(format!(
+                "DOC007 skills/{rest}: the .claude/skills and .agents/skills copies must be identical"
+            ));
+        }
+    }
+    for (i, host) in HOSTS.iter().enumerate() {
+        for (rest, bytes) in &copies[i] {
+            let Some(folder) = rest.strip_suffix("/SKILL.md") else {
+                continue;
+            };
+            let text = String::from_utf8_lossy(bytes);
+            let mut lines = text.lines();
+            let named = lines.next() == Some("---")
+                && lines
+                    .take_while(|l| *l != "---")
+                    .any(|l| l.strip_prefix("name:").map(str::trim) == Some(folder));
+            if !named {
+                errors.push(format!(
+                    "DOC008 {host}{rest}: frontmatter must open with --- and set name: {folder}"
+                ));
+            }
+        }
+    }
+    Ok(errors)
 }
 
 #[cfg(test)]
