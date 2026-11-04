@@ -166,12 +166,12 @@ tr.gap td.cmd::after { content: "known gap"; margin-left: var(--space-2); font-s
   <button class="small secondary copy" type="button" data-copy="thePrompt">Copy prompt</button>
 </div>
 
-<p class="lead">All three slices are built: the policy list, a guard before every edit and shell command, and a post-edit check plus a claims-only stop gate on both hosts. Six deviations from the plan. Three are stricter. One corrects a plan reason you approved. Two were caught after they were built and are now fixed: one looser than the plan, and one rule that refused ordinary writes outside the repository.</p>
+<p class="lead">All three slices are built: the policy list, a guard before every edit and shell command, and a post-edit check plus a claims-only stop gate on both hosts. Seven deviations from the plan. Three are stricter. One corrects a plan reason you approved. Three were caught after they were built and are now fixed: a missing stale-binary warning, a rule that refused ordinary writes outside the repository, and a script bug that could fail open on Codex.</p>
 
 <div class="chips">
   <span class="chip"><b>3 of 3</b> slices built</span>
-  <span class="chip warn"><b>6</b> deviations</span>
-  <span class="chip"><b>18</b> named tests pass, as the plan listed</span>
+  <span class="chip warn"><b>7</b> deviations</span>
+  <span class="chip"><b>19</b> hook tests pass: the plan's 18 and one for Deviation 7</span>
   <span class="chip"><b>45–70 ms</b> per guard call · <b>~1 s</b> per post-edit check</span>
   <span class="chip"><b>1</b> for you</span>
 </div>
@@ -183,9 +183,9 @@ tr.gap td.cmd::after { content: "known gap"; margin-left: var(--space-2); font-s
   <h3>A shell write gets the same tier as an edit, not only the golden tier</h3>
   <div class="grid">
     <div class="k">Plan said</div><div class="v">A4: a Bash command is a golden write, a mention or a merge. The test table expects a heredoc into <code>xtask/tests/hooks.rs</code> that quotes a goldens path to print <code>{}</code>.</div>
-    <div class="k">Code does</div><div class="v">The shell parser's destinations go through the same <code>decide()</code> as edit paths (<code>scripts/agent-hook.sh:266–272</code>). <code>sed -i s/a/b/ harness/config.json</code> asks on Claude and is refused on Codex. A shell write to any protected path gets the receipt note.</div>
+    <div class="k">Code does</div><div class="v">The shell parser's destinations go through the same <code>decide()</code> as edit paths (<code>scripts/agent-hook.sh:269–275</code>). <code>sed -i s/a/b/ harness/config.json</code> asks on Claude and is refused on Codex. A shell write to any protected path gets the receipt note.</div>
     <div class="k">Why</div><div class="v">The allowlist ask is an <code>Edit(…)</code> rule (<code>.claude/settings.json:7</code>), and no shell command reaches an <code>Edit(…)</code> rule. Blindspot 03 showed the same for <code>cp</code> onto a golden. With goldens alone tiered, <code>sed -i</code> could widen a dependency allowlist without asking.</div>
-    <div class="k ok">Conservative choice</div><div class="v ok">Each destination gets its strictest tier, exactly as for an edit. The test's heredoc fixture moved to <code>crates/app/tests/fixture.rs</code> (<code>xtask/tests/hooks_guard.rs:187</code>).</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">Each destination gets its strictest tier, exactly as for an edit. The test's heredoc fixture moved to <code>crates/app/tests/fixture.rs</code> (<code>xtask/tests/hooks_guard.rs:202</code>).</div>
     <div class="k">Revisit</div><div class="v">Notes never block. If shell writes to <code>xtask/</code> make them noisy, narrow shell writes to golden and allowlist.</div>
   </div>
 </div>
@@ -195,10 +195,10 @@ tr.gap td.cmd::after { content: "known gap"; margin-left: var(--space-2); font-s
   <h3>The error trap reaches every function, so paths travel as strings, never through a pipe</h3>
   <div class="grid">
     <div class="k">Plan said</div><div class="v">D: <code>set -u</code> and <code>trap '… exit 2' ERR</code>, never bare <code>set -e</code>.</div>
-    <div class="k">Code does</div><div class="v"><code>set -uE</code> in both scripts (<code>agent-hook.sh:7</code>, which now also has <code>-f</code>, see Deviation 6; <code>agent-complete.sh:11</code>). Paths go to <code>decide()</code> one per line through a here-doc (<code>agent-hook.sh:131–152</code>).</div>
+    <div class="k">Code does</div><div class="v"><code>set -uE</code> in both scripts (<code>agent-hook.sh:7</code>, which now also has <code>-f</code>, see Deviation 6; <code>agent-complete.sh:11</code>). Paths go to <code>decide()</code> one per line through a here-doc (<code>agent-hook.sh:134–155</code>).</div>
     <div class="k">Why</div><div class="v">Without <code>-E</code>, functions don't inherit the trap. In a repro, a <code>false</code> inside a function let the script carry on to exit 0, which fails open. The first version with <code>-E</code> piped paths into <code>decide</code>. The pipe ran it in a subshell, so its deliberate <code>exit 2</code> became a failed pipeline in the parent, and the trap added "internal error" to every block.</div>
-    <div class="k ok">Conservative choice</div><div class="v ok">The trap stays fail-closed everywhere, and every deliberate exit runs in the main shell. Slice 3 follows the same rule: <code>try()</code> captures Cargo's status with <code>&amp;&amp; code=0 || code=$?</code> (<code>:292–301</code>).</div>
-    <div class="k">Revisit</div><div class="v">If someone brought the pipe back, no test would fail, because a block still exits 2 with its reason first.</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">The trap stays fail-closed everywhere, and every deliberate exit runs in the main shell. Slice 3 follows the same rule: <code>try()</code> captures Cargo's status with <code>&amp;&amp; code=0 || code=$?</code> (<code>:295–304</code>).</div>
+    <div class="k">Revisit</div><div class="v">If someone brought the pipe back, no test would fail, because a block still exits 2 with its reason first. The trap also left a gap: <code>set -u</code> aborts on an unset variable without running it. Deviation 7 closes that gap.</div>
   </div>
 </div>
 
@@ -207,7 +207,7 @@ tr.gap td.cmd::after { content: "known gap"; margin-left: var(--space-2); font-s
   <h3>The architecture check also runs after Rust edits, not only after manifest edits</h3>
   <div class="grid">
     <div class="k">Plan said</div><div class="v">In the version you approved, A5 ran <code>xtask architecture</code> only after <code>Cargo.toml</code>, <code>Cargo.lock</code> or <code>harness/config.json</code> edits, because the check "reads only <code>cargo metadata</code>".</div>
-    <div class="k">Code does</div><div class="v">A <code>.rs</code> edit also sets <code>arch=1</code> (<code>agent-hook.sh:320–321</code>). This is Q6 as you first answered it.</div>
+    <div class="k">Code does</div><div class="v">A <code>.rs</code> edit also sets <code>arch=1</code> (<code>agent-hook.sh:323–324</code>). This is Q6 as you first answered it.</div>
     <div class="k">Why</div><div class="v">The reason in the plan was false. <code>architecture()</code> reports <code>SIZE001</code> for any <code>.rs</code> file over 400 lines (<code>xtask/src/checks.rs:76–90</code>). It caught this task: the first <code>check fast</code> failed on "SIZE001 xtask/tests/hooks.rs: 610 lines exceeds 400".</div>
     <div class="k ok">Conservative choice</div><div class="v ok">Run the check after Rust edits too. A 450-line file now fails at edit time, not at CI.</div>
   </div>
@@ -218,7 +218,7 @@ tr.gap td.cmd::after { content: "known gap"; margin-left: var(--space-2); font-s
   <h3>The post-edit check compiles tests too</h3>
   <div class="grid">
     <div class="k">Plan said</div><div class="v">A5: <code>cargo check -q --locked -p PKG</code>.</div>
-    <div class="k">Code does</div><div class="v">It adds <code>--all-targets --message-format short</code> (<code>agent-hook.sh:331</code>, <code>:334</code>).</div>
+    <div class="k">Code does</div><div class="v">It adds <code>--all-targets --message-format short</code> (<code>agent-hook.sh:334</code>, <code>:337</code>).</div>
     <div class="k">Why</div><div class="v">An edit under <code>crates/*/tests/</code> resolves to its crate, but a plain <code>cargo check</code> never compiles integration tests, so their errors would go unreported. On a type error, the observed output names both the <code>lib</code> and the <code>lib test</code> targets.</div>
     <div class="k ok">Conservative choice</div><div class="v ok">Check every target of the crate that was edited. A warm no-op edit takes 0.9–1.0 s.</div>
   </div>
@@ -230,7 +230,7 @@ tr.gap td.cmd::after { content: "known gap"; margin-left: var(--space-2); font-s
   <div class="grid">
     <div class="k">Plan said</div><div class="v">A5: when <code>cargo build --locked -p xtask</code> is refused, the older binary still runs, and "the report says it may predate this branch's <code>xtask/</code> edits".</div>
     <div class="k">Code did</div><div class="v">The first slice-3 version threw away the build's failure with <code>|| true</code> and ran whatever binary existed, without comment. If there was no binary, it skipped <code>architecture</code> without saying so. These notes flagged both.</div>
-    <div class="k">Code does</div><div class="v">A failed build now sets <code>built=0</code> (<code>agent-hook.sh:338–339</code>). If the check fails on the old binary, the report ends with the caveat (<code>:342–345</code>). With no binary at all, the report says "xtask architecture was not checked: xtask could not be built." (<code>:346–348</code>). <code>post_edit_check_uses_the_built_xtask_when_the_lock_is_stale</code> asserts both messages.</div>
+    <div class="k">Code does</div><div class="v">A failed build now sets <code>built=0</code> (<code>agent-hook.sh:341–342</code>). If the check fails on the old binary, the report ends with the caveat (<code>:345–348</code>). With no binary at all, the report says "xtask architecture was not checked: xtask could not be built." (<code>:349–351</code>). <code>post_edit_check_uses_the_built_xtask_when_the_lock_is_stale</code> asserts both messages.</div>
     <div class="k ok">Conservative choice</div><div class="v ok">Report the stale binary, as the plan said. Observed after adding <code>rand</code> to <code>crates/app/Cargo.toml</code>: the <code>--locked</code> error, then <code>ARCH004 starter-app -&gt; rand</code>, then "(xtask could not be rebuilt, so this architecture result comes from an older binary that may predate this branch's xtask/ edits.)"</div>
   </div>
 </div>
@@ -241,9 +241,21 @@ tr.gap td.cmd::after { content: "known gap"; margin-left: var(--space-2); font-s
   <div class="grid">
     <div class="k">Plan said</div><div class="v">D: "Paths outside the root pass, and <code>..</code> is blocked." Slice 2 refused every path containing <code>..</code> with "agent-hook will not judge a path containing '..'".</div>
     <div class="k">Code did</div><div class="v">The rule refused ordinary writes outside the repository. The live guard blocked an agent's <code>cp</code> into a scratch directory. Run against the slice-2 script, <code>cp x ../outside.txt</code> exits 2 on both hosts. So does <code>rm ../harness/goldens/kept.json</code> from <code>crates/</code>, but with the traversal message rather than the golden one.</div>
-    <div class="k">Code does</div><div class="v"><code>normalize()</code> resolves <code>.</code> and <code>..</code> by text alone, without reading the disk (<code>agent-hook.sh:89–100</code>). <code>relative()</code> resolves a relative path against the event's <code>cwd</code> and then strips the root spellings (<code>:102–117</code>). <code>set -uEf</code> turns globbing off, so a path splits on <code>/</code> safely. <code>guard_reads_every_patch_path_and_blocks_what_it_cannot_read</code> asserts the three new cases (<code>hooks_guard.rs:70–86</code>).</div>
+    <div class="k">Code does</div><div class="v"><code>normalize()</code> resolves <code>.</code> and <code>..</code> by text alone, without reading the disk (<code>agent-hook.sh:92–103</code>). <code>relative()</code> resolves a relative path against the event's <code>cwd</code> and then strips the root spellings (<code>:105–120</code>). <code>set -uEf</code> turns globbing off, so a path splits on <code>/</code> safely. <code>guard_reads_every_patch_path_and_blocks_what_it_cannot_read</code> asserts the three new cases (<code>hooks_guard.rs:70–86</code>).</div>
     <div class="k ok">Conservative choice</div><div class="v ok">The block existed to stop traversal tricks. Resolving the path keeps that protection, because the resolved path is what gets tiered. <code>crates/../harness/goldens/kept.json</code> and <code>cp x ../&lt;checkout&gt;/harness/goldens/kept.json</code> both ask on Claude and exit 2 on Codex, while <code>cp x ../outside.txt</code> passes, as plan D intended.</div>
     <div class="k">Revisit</div><div class="v">Resolution never reads the disk, so a symlink inside the checkout that points at <code>harness/goldens</code> is not followed. That was also true before.</div>
+  </div>
+</div>
+
+<div class="dev" id="d7">
+  <span class="badge b-dev">Deviation 7 · after slice 3 · fixed</span>
+  <h3>A guard bug now blocks on Codex too</h3>
+  <div class="grid">
+    <div class="k">Plan said</div><div class="v">D: the <code>ERR</code> trap turns any internal failure into exit 2. For a crash or timeout, the plan relied on Claude Code's <code>onFailure: "block"</code>, and accepted that Codex fails open.</div>
+    <div class="k">Code did</div><div class="v"><code>set -u</code> aborts on an unset variable without running the <code>ERR</code> trap. With an <code>echo "$undefined_variable"</code> injected, the slice-2 guard exits 1 with "unbound variable", and <code>bash -c</code> exits 127. Codex lets the call through on any exit other than 0 or 2. Claude Code's <code>onFailure</code> was the only thing catching this kind of bug.</div>
+    <div class="k">Code does</div><div class="v">An <code>EXIT</code> trap turns every exit other than 0 or 2 into exit 2 with "internal error" (<code>agent-hook.sh:9–11</code>). With the same injection, the guard now exits 2 on both hosts, under Homebrew bash 5.3 and macOS <code>/bin/bash</code> 3.2. <code>guard_fails_closed_on_an_internal_error</code> asserts this (<code>hooks_guard.rs:272–290</code>).</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">Fail closed. Only a guard that cannot start or times out still passes on Codex, as the docs now say.</div>
+    <div class="k">Revisit</div><div class="v"><code>agent-complete.sh</code> keeps only its <code>ERR</code> trap. A stop gate that failed closed on its own bug would trap every turn, and a false claim it misses still fails at PR CI.</div>
   </div>
 </div>
 
@@ -283,13 +295,13 @@ gh pr merge 3                 forbidden
 git push --force origin x     forbidden
 <mark>git -C . push --force         (no rule)       guard: exit 2 on both hosts</mark>
 <mark>git push origin +x            (no rule)       guard: exit 2 on both hosts</mark></pre>
-  <p>The guard skips git's global <code>-C</code>/<code>-c</code> options. It treats <code>--force*</code>, a short cluster containing <code>f</code>, or a <code>+refspec</code> as a force-push (<code>agent-hook.sh:178–188</code>).</p>
+  <p>The guard skips git's global <code>-C</code>/<code>-c</code> options. It treats <code>--force*</code>, a short cluster containing <code>f</code>, or a <code>+refspec</code> as a force-push (<code>agent-hook.sh:181–191</code>).</p>
 </div></div>
 
 <div class="entry" data-t="disc"><div class="rail"><span class="dot"></span></div><div class="body">
   <span class="badge b-disc">Discovery</span>
   <h4>One root, four spellings. Codex finds the script through Git</h4>
-  <p>On macOS the event's <code>cwd</code> was <code>/var/folders/…</code> while Git reported <code>/private/var/folders/…</code>. <code>relative()</code> accepts four spellings (<code>:84–117</code>). Codex has no <code>$CLAUDE_PROJECT_DIR</code>, so its hook command locates the script with <code>$(git rev-parse --show-toplevel)</code> (<code>.codex/hooks.json:9</code>). Outside a checkout that becomes <code>bash /scripts/agent-hook.sh</code>, which exits 127, a non-blocking error. Codex fails open there, as interview Q2 expected.</p>
+  <p>On macOS the event's <code>cwd</code> was <code>/var/folders/…</code> while Git reported <code>/private/var/folders/…</code>. <code>relative()</code> accepts four spellings (<code>:87–120</code>). Codex has no <code>$CLAUDE_PROJECT_DIR</code>, so its hook command locates the script with <code>$(git rev-parse --show-toplevel)</code> (<code>.codex/hooks.json:9</code>). Outside a checkout that becomes <code>bash /scripts/agent-hook.sh</code>, which exits 127, a non-blocking error. Codex fails open there, as interview Q2 expected.</p>
 </div></div>
 
 <h3 class="slice">Slice 3 · post-edit check and claims-only stop</h3>
@@ -312,7 +324,7 @@ Completion claim refused: harness/tasks/default-hooks.json says complete, but th
 <div class="entry" data-t="disc"><div class="rail"><span class="dot"></span></div><div class="body">
   <span class="badge b-disc">Discovery</span>
   <h4><code>CARGO_TARGET_DIR</code> is how the check finds xtask, and it misled the tests</h4>
-  <p>The check runs <code>${CARGO_TARGET_DIR:-$root/target}/debug/xtask</code> (<code>agent-hook.sh:337</code>). The <code>check fast</code> profile sets that variable for each run, so two post-edit tests found the repository's real xtask instead of the fixture's stub. The helper now removes it (<code>support/hooks.rs:27–28</code>). In real use, the same variable is what points the hook at the right binary.</p>
+  <p>The check runs <code>${CARGO_TARGET_DIR:-$root/target}/debug/xtask</code> (<code>agent-hook.sh:340</code>). The <code>check fast</code> profile sets that variable for each run, so two post-edit tests found the repository's real xtask instead of the fixture's stub. The helper now removes it (<code>support/hooks.rs:27–28</code>). In real use, the same variable is what points the hook at the right binary.</p>
 </div></div>
 
 <div class="entry" data-t="disc"><div class="rail"><span class="dot"></span></div><div class="body">
@@ -416,7 +428,7 @@ Completion claim refused: harness/tasks/default-hooks.json says complete, but th
   function reply() {
     var picks = [].slice.call(document.querySelectorAll("[data-r]:checked")).map(function (c) { return "- " + c.getAttribute("data-r"); });
     var L = ["Default-hooks implementation notes."];
-    if (!picks.length && !own.value.trim()) L.push("All six deviations stand as built.");
+    if (!picks.length && !own.value.trim()) L.push("All seven deviations stand as built.");
     else { L.push("Keep the rest as built, except:"); L = L.concat(picks); if (own.value.trim()) L.push("- " + own.value.trim()); }
     return L.join("\n");
   }
