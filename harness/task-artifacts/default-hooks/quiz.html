@@ -296,7 +296,7 @@ trap 'rc=$?; case $rc in 0 | 2) ;; *) echo "agent-hook: internal error (exit $rc
 
 <div class="result" id="pass" hidden>
   <h3>Cleared: 7 / 7</h3>
-  <p>You can predict what each hook does on input you haven't seen. Two rows in the buy-in doc still need your sign-off before merge: shell writes taking the edit tiers, and the post-edit check compiling tests.</p>
+  <p>You can predict what each hook does on input you haven't seen. The two build-time changes in the buy-in doc, shell writes taking the edit tiers and the post-edit check compiling tests, are approved.</p>
   <output id="passOut"></output>
   <div class="row"><button type="button" class="small" id="copyPass">Copy result</button></div>
 </div>
@@ -478,7 +478,7 @@ trap 'rc=$?; case $rc in 0 | 2) ;; *) echo "agent-hook: internal error (exit $rc
     ans.forEach(function (a, i) {
       if (a !== QS[i].c) lines.push('Missed Q' + (i + 1) + ': ' + QS[i].lab);
     });
-    if (s === QS.length) lines.push('I understand the change. Before merging I still need to sign off buy-in rows 3 (shell writes take edit tiers) and 5 (post-edit check compiles tests).');
+    if (s === QS.length) lines.push('I understand the change.');
     return lines.join('\n');
   }
 

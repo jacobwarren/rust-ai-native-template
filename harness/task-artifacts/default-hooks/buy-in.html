@@ -164,14 +164,14 @@ td:first-child { font-weight: 600; }
 </div>
 
 <p class="lead">Agents in this template are told never to regenerate golden test baselines, to ask before adding a dependency, and never to force-push or merge without the owner. Until now only CI enforced that, after the fact. This change ships project hooks for Claude Code and Codex that apply the same rules as the agent acts: a guard before each edit and shell command, a compile check after each edit, and a gate when the agent stops. No new policy; CI is unchanged.</p>
-<p class="muted">Ships <code>.claude/settings.json</code>, <code>.codex/hooks.json</code>, <code>.codex/rules/default.rules</code>, a new <code>scripts/agent-hook.sh</code> and a rewritten <code>scripts/agent-complete.sh</code>. The repository owner asked for it and settled the design in chat; two behaviours added during the build need your sign-off (04).</p>
+<p class="muted">Ships <code>.claude/settings.json</code>, <code>.codex/hooks.json</code>, <code>.codex/rules/default.rules</code>, a new <code>scripts/agent-hook.sh</code> and a rewritten <code>scripts/agent-complete.sh</code>. The repository owner asked for it and settled the design in chat, including the two behaviours added during the build (04).</p>
 
 <div class="chips">
   <span class="chip"><b>11</b> cases of real script output</span>
   <span class="chip"><b>~50 ms</b> per guard call</span>
   <span class="chip"><b>0.5–1.0 s</b> per post-edit check</span>
   <span class="chip"><b>19</b> hook tests pass</span>
-  <span class="chip warn"><b>2</b> build-time changes need sign-off</span>
+  <span class="chip"><b>2</b> build-time changes, approved by the owner</span>
 </div>
 
 <h2><span class="n">01</span>Watch it work</h2>
@@ -203,16 +203,16 @@ td:first-child { font-weight: 600; }
   <div class="card" style="grid-column: 1 / -1"><h3>Most host reactions come from docs</h3><p>Seen live in the Claude Code session that built this change: the policy-file note reaching the agent (case 6) and the stop gate ending each turn silently (case 9). Not seen live: Claude Code's ask and deny prompts, how it shows a post-edit or stop exit 2, and any hook inside a Codex session. Codex's rules were checked offline with <code>codex execpolicy check</code> (case 5), never loaded in a session. An edit whose paths the guard cannot read is refused, since Codex's patch format and Claude Code's <code>MultiEdit</code> input are undocumented. <code>..</code> is resolved first: <code>crates/../harness/goldens/kept.json</code> is a golden; a write outside the checkout passes.</p></div>
 </div>
 
-<h2><span class="n">04</span>Decisions, and what needs your sign-off</h2>
-<p class="muted">The owner answered the design questions in chat on 4 November 2026. Rows marked <span class="st open">needs sign-off</span> were changed during the build; both are stricter than what the owner approved.</p>
+<h2><span class="n">04</span>Decisions</h2>
+<p class="muted">The owner answered the design questions in chat on 4 November 2026. Rows 3 and 5 were changed during the build, stricter than the first answers; the owner approved both after reviewing the PR.</p>
 <div class="table-scroll"><table>
 <thead><tr><th>Decision</th><th>As built</th><th>Status</th></tr></thead>
 <tbody>
 <tr><td>1. When stopping is blocked</td><td>Only when a task record changed on the branch says <code>"status": "complete"</code> and the existing gate (<code>cargo xtask complete</code>) rejects it. Partial handoffs are left to PR CI.</td><td><span class="st done">owner decided</span></td></tr>
 <tr><td>2. The guard</td><td>Bash and awk, never Cargo; a test keeps its path lists equal to <code>xtask/src/transitions.rs</code>. Goldens and <code>harness/config.json</code>: Claude Code asks, Codex refuses. Other protected files, now including <code>.claude/</code> and <code>.codex/</code>, get a receipt note. Shell commands are judged by where they write, not what they mention (case 2).</td><td><span class="st done">owner decided</span></td></tr>
-<tr><td>3. Shell writes get the edit tiers</td><td>The plan tiered only shell writes to goldens, so <code>sed -i</code> could widen the allowlist unasked: the <code>Edit(/harness/config.json)</code> ask rule never sees shell commands. Now each shell write gets the tier an edit would (case 4), notes included.</td><td><span class="st open">needs sign-off</span></td></tr>
+<tr><td>3. Shell writes get the edit tiers</td><td>The plan tiered only shell writes to goldens, so <code>sed -i</code> could widen the allowlist unasked: the <code>Edit(/harness/config.json)</code> ask rule never sees shell commands. Now each shell write gets the tier an edit would (case 4), notes included.</td><td><span class="st done">owner approved</span></td></tr>
 <tr><td>4. After an edit</td><td><code>cargo check --locked</code> and <code>cargo fmt --check</code> on the edited crate, then <code>xtask architecture</code> (cases 7, 8). A narrowing to manifest edits only was approved on a false premise (its 400-line check reads every <code>.rs</code> file, <code>xtask/src/checks.rs:76–90</code>) and dropped.</td><td><span class="st done">owner decided</span></td></tr>
-<tr><td>5. The check compiles tests too</td><td><code>--all-targets</code>: a plain <code>cargo check</code> never compiles <code>crates/*/tests/</code>, so errors there would go unreported.</td><td><span class="st open">needs sign-off</span></td></tr>
+<tr><td>5. The check compiles tests too</td><td><code>--all-targets</code>: a plain <code>cargo check</code> never compiles <code>crates/*/tests/</code>, so errors there would go unreported.</td><td><span class="st done">owner approved</span></td></tr>
 <tr><td>6. Dependencies and merging</td><td>Ask before <code>cargo add|remove</code>. A PR merge (<code>gh pr merge</code>, the merge API) asks on Claude Code and is refused on Codex; every force-push spelling is refused on both; local <code>git merge</code> is allowed.</td><td><span class="st done">owner decided</span></td></tr>
 </tbody></table></div>
 <p class="muted">Two build fixes restore what the plan said: the fail-closed error trap reaches every function, and a check that cannot rebuild xtask says its result may be stale.</p>
