@@ -166,11 +166,11 @@ tr.gap td.cmd::after { content: "known gap"; margin-left: var(--space-2); font-s
   <button class="small secondary copy" type="button" data-copy="thePrompt">Copy prompt</button>
 </div>
 
-<p class="lead">All three slices are built: the policy list, a guard before every edit and shell command, and a post-edit check plus a claims-only stop gate on both hosts. Seven deviations from the plan. Three are stricter. One corrects a plan reason you approved. Three were caught after they were built and are now fixed: a missing stale-binary warning, a rule that refused ordinary writes outside the repository, and a script bug that could fail open on Codex.</p>
+<p class="lead">All three slices are built: the policy list, a guard before every edit and shell command, and a post-edit check plus a claims-only stop gate on both hosts. Eight deviations from the plan. Three are stricter. One corrects a plan reason you approved. Three were caught after they were built and are now fixed: a missing stale-binary warning, a rule that refused ordinary writes outside the repository, and a script bug that could fail open on Codex. One the owner asked for after review: a merge or force-push asks on Claude Code instead of being refused.</p>
 
 <div class="chips">
   <span class="chip"><b>3 of 3</b> slices built</span>
-  <span class="chip warn"><b>7</b> deviations</span>
+  <span class="chip warn"><b>8</b> deviations</span>
   <span class="chip"><b>19</b> hook tests pass: the plan's 18 and one for Deviation 7</span>
   <span class="chip"><b>45–70 ms</b> per guard call · <b>~1 s</b> per post-edit check</span>
   <span class="chip"><b>1</b> for you</span>
@@ -256,6 +256,17 @@ tr.gap td.cmd::after { content: "known gap"; margin-left: var(--space-2); font-s
     <div class="k">Code does</div><div class="v">An <code>EXIT</code> trap turns every exit other than 0 or 2 into exit 2 with "internal error" (<code>agent-hook.sh:9–11</code>). With the same injection, the guard now exits 2 on both hosts, under Homebrew bash 5.3 and macOS <code>/bin/bash</code> 3.2. <code>guard_fails_closed_on_an_internal_error</code> asserts this (<code>hooks_guard.rs:272–290</code>).</div>
     <div class="k ok">Conservative choice</div><div class="v ok">Fail closed. Only a guard that cannot start or times out still passes on Codex, as the docs now say.</div>
     <div class="k">Revisit</div><div class="v"><code>agent-complete.sh</code> keeps only its <code>ERR</code> trap. A stop gate that failed closed on its own bug would trap every turn, and a false claim it misses still fails at PR CI.</div>
+  </div>
+</div>
+
+<div class="dev" id="d8">
+  <span class="badge b-dev">Deviation 8 · after review · owner's call</span>
+  <h3>A merge or force-push asks on Claude Code instead of being refused</h3>
+  <div class="grid">
+    <div class="k">Plan said</div><div class="v">A4 and the settled defaults: deny <code>gh pr merge</code>, <code>gh api …/merge</code> and every force-push spelling, refused on both hosts, with literal deny rules in <code>.claude/settings.json</code>.</div>
+    <div class="k">Code did</div><div class="v">The guard exited 2 on both hosts, and the deny rules could not be lifted from <code>settings.local.json</code>. A Claude Code session could not merge even when the owner asked it to, as the owner had done for the previous PR.</div>
+    <div class="k">Code does</div><div class="v">On Claude Code the guard returns <code>permissionDecision: "ask"</code> for a merge or force-push, and the four literal rules moved from <code>deny</code> to <code>ask</code>. Codex, which cannot ask, still refuses with exit 2, and its <code>forbidden</code> rules are unchanged.</div>
+    <div class="k ok">Conservative choice</div><div class="v ok">AGENTS.md says merging needs the owner's say-so; an ask puts that decision in front of the owner rather than forbidding it. Asked for by the owner after reviewing the PR.</div>
   </div>
 </div>
 
@@ -428,7 +439,7 @@ Completion claim refused: harness/tasks/default-hooks.json says complete, but th
   function reply() {
     var picks = [].slice.call(document.querySelectorAll("[data-r]:checked")).map(function (c) { return "- " + c.getAttribute("data-r"); });
     var L = ["Default-hooks implementation notes."];
-    if (!picks.length && !own.value.trim()) L.push("All seven deviations stand as built.");
+    if (!picks.length && !own.value.trim()) L.push("All eight deviations stand as built.");
     else { L.push("Keep the rest as built, except:"); L = L.concat(picks); if (own.value.trim()) L.push("- " + own.value.trim()); }
     return L.join("\n");
   }
