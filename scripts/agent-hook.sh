@@ -261,7 +261,87 @@ guard() {
   esac
 }
 
+# Nearest package name for a repository-relative path, or "" when none.
+package_of() {
+  local dir=${1%/*} name
+  [ "$dir" != "$1" ] || dir=.
+  while :; do
+    if [ -f "$root/$dir/Cargo.toml" ]; then
+      name=$(sed -n '/^\[package\]/,/^\[/s/^name[[:space:]]*=[[:space:]]*"\([^"]*\)".*/\1/p' "$root/$dir/Cargo.toml" | head -n 1)
+      echo "$name"; return
+    fi
+    [ "$dir" != . ] || { echo ""; return; }
+    case "$dir" in */*) dir=${dir%/*} ;; *) dir=. ;; esac
+  done
+}
+
+# Run a command from the root; on failure append its tail to $report.
+try() {
+  local out code
+  out=$(cd "$root" && "$@" 2>&1) && code=0 || code=$?
+  if [ "$code" -ne 0 ]; then
+    report="$report\$ $*  (exit $code)
+$(printf '%s\n' "$out" | tail -n 40)
+"
+  fi
+  return 0
+}
+
+# PostToolUse: compile and lint what an edit touched, then run the built
+# xtask's architecture check (ARCH004 dependencies, SIZE001 file length).
+# `cargo xtask` cannot start after an edit adds a crate (its alias passes
+# --locked), so the binary is run directly.
+check() {
+  local paths="" rels p pkg packages="" workspace=0 arch=0 xtask
+  case "$tool" in
+    Edit | Write | MultiEdit) paths=$(jget file_path) || paths="" ;;
+    apply_patch)
+      paths=$(printf '%s\n' "$(jget command)" | sed -n -e 's/^\*\*\* Add File: //p' -e 's/^\*\*\* Update File: //p' -e 's/^\*\*\* Move to: //p') ;;
+    *) allow ;;
+  esac
+  rels=$(relatives "$paths")
+  while IFS= read -r p; do
+    case "$p" in
+      "" | UNSAFE:*) ;;
+      Cargo.lock | Cargo.toml | */Cargo.toml | harness/config.json) workspace=1; arch=1 ;;
+      *.rs)
+        arch=1
+        pkg=$(package_of "$p")
+        case " $packages " in *" $pkg "*) ;; *) [ -z "$pkg" ] || packages="$packages $pkg" ;; esac ;;
+    esac
+  done <<EOF
+$rels
+EOF
+  [ "$arch" -eq 1 ] || allow
+  report=""
+  if [ "$workspace" -eq 1 ]; then
+    try cargo check -q --locked --workspace --all-targets --message-format short
+  fi
+  for pkg in $packages; do
+    [ "$workspace" -eq 1 ] || try cargo check -q --locked -p "$pkg" --all-targets --message-format short
+    try cargo fmt --check -p "$pkg"
+  done
+  xtask="${CARGO_TARGET_DIR:-$root/target}/debug/xtask"
+  built=1
+  (cd "$root" && cargo build -q --locked -p xtask >/dev/null 2>&1) || built=0
+  if [ -x "$xtask" ]; then
+    try "$xtask" architecture
+    if [ "$built" -eq 0 ] && [ -n "$report" ]; then
+      report="${report}(xtask could not be rebuilt, so this architecture result comes from an older binary that may predate this branch's xtask/ edits.)
+"
+    fi
+  elif [ "$built" -eq 0 ]; then
+    report="${report}xtask architecture was not checked: xtask could not be built.
+"
+  fi
+  if [ -n "$report" ]; then
+    printf 'Post-edit check failed. Fix these before continuing:\n%s' "$report" | head -c 12000 >&2
+    exit 2
+  fi
+  allow
+}
+
 case "$mode" in
   guard) guard ;;
-  check) allow ;;
+  check) check ;;
 esac

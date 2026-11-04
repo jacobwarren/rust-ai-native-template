@@ -25,6 +25,7 @@ or Python dependency. Product intent lives in docs/PRODUCT.md.
 | Gap authority and history | xtask/src/tracking.rs, transitions.rs, history.rs | Project register with opaque links; merge-base transition receipts |
 | Task HTML artifacts and hook adapter | xtask/src/artifacts.rs, artifact_hook.rs, artifact_foundation.css, scripts/artifact-screenshots.cjs | Required self-contained pages, inline shared stylesheet, commit-order gate, opt-in edit guard and Chrome screenshots |
 | Task reconciliation | xtask/src/task_record.rs, completion.rs | Task review, acceptance evidence and honest handoffs |
+| Default agent hooks | scripts/agent-hook.sh, agent-complete.sh, .claude/settings.json, .codex/ | Edit guard, post-edit check and claims-only stop gate for Claude Code and Codex |
 | Source identity | xtask/src/repo.rs: metadata, fingerprint, worktree_id | Workspace discovery and inspected-source identity |
 | Independent agent trials | experiments/evaluator: Suite, Task, evaluate | Frozen task, disposable checkout, permitted patch, separate grading tree |
 | Skill search and final evaluation | experiments/gepa: Experiment, optimize, compare | Optional GEPA adapter and explicit paired holdout comparison |

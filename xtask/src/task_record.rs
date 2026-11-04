@@ -154,3 +154,58 @@ pub fn review_errors(task: &Task) -> Vec<String> {
     }
     errors
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{Status, Task};
+    use std::io::Write;
+    use std::process::{Command, Stdio};
+
+    /// The Stop hook finds a completion claim with grep; it must agree with
+    /// how this module reads the top-level status, in any JSON spelling.
+    #[test]
+    fn stop_claim_pattern_matches_parsed_status() {
+        let script = include_str!("../../scripts/agent-complete.sh");
+        let pattern = script
+            .lines()
+            .find_map(|l| l.strip_prefix("CLAIM='"))
+            .and_then(|l| l.strip_suffix('\''))
+            .expect("CLAIM pattern in scripts/agent-complete.sh");
+        let grep = |text: &str| {
+            let mut child = Command::new("grep")
+                .args(["-Eq", pattern])
+                .stdin(Stdio::piped())
+                .spawn()
+                .unwrap();
+            child
+                .stdin
+                .take()
+                .unwrap()
+                .write_all(text.as_bytes())
+                .unwrap();
+            child.wait().unwrap().success()
+        };
+        let dir = concat!(env!("CARGO_MANIFEST_DIR"), "/../harness/tasks");
+        let mut checked = 0;
+        for entry in std::fs::read_dir(dir).unwrap() {
+            let record: serde_json::Value =
+                serde_json::from_slice(&std::fs::read(entry.unwrap().path()).unwrap()).unwrap();
+            for status in ["complete", "partial", "blocked"] {
+                let mut record = record.clone();
+                record["status"] = status.into();
+                let compact = record.to_string();
+                let spaced = compact.replace("\":", "\" :  ");
+                for text in [
+                    compact.clone(),
+                    serde_json::to_string_pretty(&record).unwrap(),
+                    spaced,
+                ] {
+                    let task: Task = serde_json::from_str(&text).unwrap();
+                    assert_eq!(grep(&text), task.status == Status::Complete, "{text}");
+                    checked += 1;
+                }
+            }
+        }
+        assert!(checked >= 9);
+    }
+}

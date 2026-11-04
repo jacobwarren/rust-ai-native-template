@@ -67,7 +67,10 @@
         "xtask/src/completion.rs",
         "xtask/src/tracking.rs",
         "xtask/src/transitions.rs",
-        "scripts/agent-complete.sh"
+        "scripts/agent-complete.sh",
+        "scripts/agent-hook.sh",
+        ".claude/settings.json",
+        ".codex/hooks.json"
       ],
       "tests": [
         "completion_requires_acceptance_and_fresh_evidence_but_not_closing_unrelated_gaps",
@@ -77,7 +80,23 @@
         "hook_rejects_unverified_completion_and_accepts_explicit_partial_handoff",
         "prompt_only_work_needs_no_ticket_or_new_gap",
         "stop_hook_returns_specific_questions_for_missing_review",
-        "material_discovery_requires_durable_record_but_can_remain_open_after_task"
+        "material_discovery_requires_durable_record_but_can_remain_open_after_task",
+        "guard_asks_claude_and_blocks_codex_on_golden_edits",
+        "guard_reads_every_patch_path_and_blocks_what_it_cannot_read",
+        "guard_notes_policy_files_and_passes_product_files",
+        "guard_asks_before_the_dependency_allowlist_changes",
+        "cargo_add_asks_through_rules_not_the_guard",
+        "guard_catches_shell_writes_to_goldens_but_not_mentions",
+        "guard_refuses_pr_merge_and_force_push_spellings",
+        "guard_never_runs_cargo",
+        "transitions::tests::guard_tiers_match_protected_paths",
+        "stop_allows_turns_that_claim_nothing",
+        "stop_refuses_an_unverified_claim_and_allows_a_verified_one",
+        "stop_blocks_a_claim_when_the_gate_cannot_run",
+        "task_record::tests::stop_claim_pattern_matches_parsed_status",
+        "host_local_files_do_not_change_the_tree",
+        "committed_local_settings_are_still_reported",
+        "hook_configs_wire_existing_scripts_and_no_subagent_stop"
       ],
       "workflows": []
     },

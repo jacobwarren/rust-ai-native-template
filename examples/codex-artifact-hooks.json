@@ -1,5 +1,5 @@
 {
-  "description": "Opt-in artifact boundaries. Configure HARNESS_TASK_ID/HARNESS_BASE/HARNESS_REPORT, build xtask, review and trust hooks before use. The PreToolUse guard covers apply_patch only; shell/MCP writers are not covered.",
+  "description": "Opt-in discovery-page guard: blocks apply_patch edits to product code until the task's five discovery pages are committed. Set HARNESS_TASK_ID, build xtask, and merge this PreToolUse entry into .codex/hooks.json next to the default hooks. Shell and MCP writers are not covered.",
   "hooks": {
     "PreToolUse": [
       {
@@ -8,28 +8,6 @@
           {
             "type": "command",
             "command": "bash \"$(git rev-parse --show-toplevel)/scripts/agent-artifact-write.sh\"",
-            "timeout": 30
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$(git rev-parse --show-toplevel)/scripts/agent-complete.sh\"",
-            "timeout": 30
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$(git rev-parse --show-toplevel)/scripts/agent-complete.sh\"",
             "timeout": 30
           }
         ]

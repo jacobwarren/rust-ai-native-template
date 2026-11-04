@@ -109,9 +109,10 @@ human's call.
    committed when you claim completion. Git history keeps every earlier version.
 
 `cargo xtask task-artifact guard --task ID` fails until the discovery pages are
-committed. The opt-in [Codex hooks](../examples/codex-artifact-hooks.json) run it
-before `apply_patch` edits to product code, and run completion at stop. They do
-not cover shell or MCP writes.
+committed. The opt-in [Codex example](../examples/codex-artifact-hooks.json) runs it
+before `apply_patch` edits to product code. It does not cover shell or MCP
+writes. The default stop hook gates completion claims; see
+[COMPLETION.md](COMPLETION.md).
 
 Examples are from Thariq Shihipar's
 [html-effectiveness](https://github.com/ThariqS/html-effectiveness), vendored
