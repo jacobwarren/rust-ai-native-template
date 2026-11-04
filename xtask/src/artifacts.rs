@@ -137,7 +137,8 @@ fn verify(dir: &Path, page: &str) -> Result<bool> {
     Ok(true)
 }
 
-fn order(root: &Path, id: &str, base: &str) -> Result<()> {
+/// Completion reads commits, so product changes and the task's pages must be committed.
+pub fn committed(root: &Path, id: &str) -> Result<()> {
     let prefix = format!("{}/", directory(id));
     let dirty: Vec<String> = history::uncommitted(root)?
         .into_iter()
@@ -150,6 +151,12 @@ fn order(root: &Path, id: &str, base: &str) -> Result<()> {
         )
         .into());
     }
+    Ok(())
+}
+
+fn order(root: &Path, id: &str, base: &str) -> Result<()> {
+    committed(root, id)?;
+    let prefix = format!("{}/", directory(id));
     let commits = history::commits(root, base)?;
     let code: Vec<usize> = (0..commits.len())
         .filter(|&i| commits[i].iter().any(|p| !administrative(p)))
@@ -190,7 +197,13 @@ fn order(root: &Path, id: &str, base: &str) -> Result<()> {
 }
 
 /// Host boundary before product-code edits: the discovery pages must already be committed.
+/// A small task needs no pages; the completion gate holds it to its size instead.
 pub fn guard(root: &Path, id: &str) -> Result<Value> {
+    if crate::task_record::read(root, id).is_ok_and(|t| t.tier == crate::task_record::Tier::Small) {
+        check_written(root, id)?;
+        return Ok(json!({"ok":true,"task":id,
+            "scope":"Small task: no pages required; completion and handoff check its size"}));
+    }
     check(root, id, false, None)?;
     let committed = history::paths(root, "HEAD")?;
     for page in DISCOVERY {

@@ -13,6 +13,16 @@ pub enum Status {
     Partial,
     Blocked,
 }
+/// How much ceremony a task owes. A small task changes at most a few product lines,
+/// touches no policy, dependency or ceremony path, and needs no task pages; the
+/// gate measures the branch to hold it to that (see size.rs and docs/ARTIFACTS.md).
+#[derive(Deserialize, PartialEq, Eq, Clone, Copy, Debug, Default)]
+#[serde(rename_all = "snake_case")]
+pub enum Tier {
+    Small,
+    #[default]
+    Standard,
+}
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Task {
@@ -20,6 +30,8 @@ pub struct Task {
     pub id: String,
     pub work_item: Option<String>,
     pub status: Status,
+    #[serde(default)]
+    pub tier: Tier,
     pub requirements: Vec<String>,
     pub related_gaps: Vec<Disposition>,
     pub gap_review: String,

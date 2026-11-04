@@ -107,7 +107,8 @@
         "xtask/src/artifacts.rs",
         "xtask/src/artifact_hook.rs",
         "scripts/agent-artifact-write.sh",
-        "scripts/artifact-screenshots.cjs"
+        "scripts/artifact-screenshots.cjs",
+        "xtask/src/size.rs"
       ],
       "tests": [
         "completion_requires_eight_pages_carrying_the_stylesheet_inline",
@@ -118,7 +119,13 @@
         "guard_blocks_code_edits_until_discovery_is_committed",
         "merged_target_commits_do_not_count_as_task_code",
         "concurrent_fixtures_have_independent_directories",
-        "screenshots_need_pages_and_a_valid_task"
+        "screenshots_need_pages_and_a_valid_task",
+        "small_task_completes_with_no_pages",
+        "small_task_is_refused_past_100_lines_at_handoff",
+        "moves_untracked_and_binary_files_count_toward_size",
+        "protected_cargo_and_ceremony_paths_force_standard",
+        "every_page_check_reads_the_tier",
+        "tier_is_small_or_standard_and_defaults_to_standard"
       ],
       "workflows": []
     }
