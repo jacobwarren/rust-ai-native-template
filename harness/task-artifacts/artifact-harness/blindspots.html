@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Blindspot pass: the artifact gate</title>
+<style>
+main{max-width:62rem;}
+.after{font-size:var(--text-small);color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:var(--space-3);margin:0;}
+.prompt{font-style:italic;}
+code{font-size:.86em;background:var(--surface);border:1px solid var(--line);border-radius:.3rem;padding:0 .3em;overflow-wrap:anywhere;}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-block:var(--space-6);}
+.vs > div{border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-4);background:var(--surface);}
+.vs .real{border-color:var(--danger);background:#fbeff0;}
+.vs h3{margin:0 0 var(--space-2);font-size:var(--text-small);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.vs p{margin:0;}
+.stats{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-6);font:var(--text-small)/1.5 var(--font-code);padding:var(--space-3) var(--space-4);border:1px solid var(--line);border-radius:var(--radius);background:var(--accent-soft);}
+.card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-6);margin-block:var(--space-6);}
+.card h3{margin:var(--space-2) 0 var(--space-3);font-size:1.2rem;}
+.card p{margin-block:var(--space-3);}
+.tag{display:inline-block;font:650 .75rem/1 var(--font-code);letter-spacing:.08em;text-transform:uppercase;padding:.3rem .55rem;border-radius:.3rem;border:1px solid;}
+.tag.mine{color:var(--danger);border-color:var(--danger);background:#fbeff0;}
+.tag.conv{color:var(--muted);border-color:var(--line);background:var(--paper);}
+.tag.hist{color:var(--warning);border-color:var(--warning);background:var(--warning-soft);}
+.tag.idea{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
+.num{font:var(--text-small) var(--font-code);color:var(--muted);margin-inline-start:var(--space-2);}
+.proof{font-size:var(--text-small);border-inline-start:3px solid var(--ink);background:var(--paper);padding:var(--space-3) var(--space-4);margin-block:var(--space-3);}
+.proof b, .bite b{font:650 .72rem var(--font-code);letter-spacing:.08em;text-transform:uppercase;margin-inline-end:var(--space-2);}
+.bite{font-size:var(--text-small);border-inline-start:3px solid var(--danger);background:#fbeff0;padding:var(--space-3) var(--space-4);}
+.chip{font:.85rem/1.55 var(--font-code);background:var(--accent-soft);border-radius:var(--control-radius);padding:var(--space-3) var(--space-4);margin-block:var(--space-3);}
+.chip::before{content:"› ";color:var(--accent);font-weight:700;}
+.pick{display:flex;flex-wrap:wrap;gap:var(--space-2);border:0;padding:0;margin:var(--space-4) 0 0;}
+.pick legend{font-size:var(--text-small);color:var(--muted);font-weight:500;padding:0;margin-bottom:var(--space-2);}
+.pick label{display:inline-flex;align-items:center;margin:0;padding:var(--space-2) var(--space-3);border:1px solid var(--line);border-radius:var(--control-radius);font-size:var(--text-small);cursor:pointer;min-height:44px;}
+.pick label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.final{border:2px solid var(--ink);border-radius:var(--radius);background:var(--surface);padding:var(--space-6);margin-top:var(--space-12);}
+.final h2{margin-top:0;}
+.row{display:flex;justify-content:space-between;align-items:center;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-6);}
+.row h3{margin:0;}
+pre{font-size:.82rem;margin:var(--space-3) 0 0;}
+@media (max-width:40rem){.vs{grid-template-columns:1fr;} .card, .final{padding:var(--space-4);}}
+</style>
+</head>
+<body>
+<main>
+<p class="after">Written after the code: PR #1 has to pass the gate it adds, so its discovery pages come last.</p>
+<p class="eyebrow">Blindspot pass · xtask artifact gate</p>
+<h1>What the artifact gate actually enforces</h1>
+<blockquote class="prompt">I'm about to merge a harness change that requires every task to leave eight agent-written HTML pages, gated by an inline stylesheet and commit order. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the next change here.</blockquote>
+<p>I read <code>xtask/src/artifacts.rs</code>, <code>completion.rs</code>, <code>history.rs</code>, <code>artifact_hook.rs</code>, their tests and CI. Then I ran one probe per blindspot with the repo's own test fixture in a clean copy; every quoted result is from those runs.</p>
+
+<div class="vs">
+  <div><h3>What you think you're merging</h3><p>CI checks every PR. Each task explains itself in eight pages, in order: discovery before code, notes during the work, buy-in and quiz after it.</p></div>
+  <div class="real"><h3>What the code enforces</h3><p>In CI the order check <strong>reads zero commits</strong>. It runs <strong>only for tasks marked complete</strong>. A page is <strong>any file containing one style tag</strong>. And every PR, even a typo fix, owes five pages unless it <strong>rides on another task's record</strong>.</p></div>
+</div>
+
+<div class="stats"><span><b>3</b> landmines</span><span><b>2</b> missing concepts</span><span><b>1</b> convention</span><span><b>1</b> history</span><span><b>7</b> probes run</span></div>
+
+<h2>The blindspots</h2>
+
+<section class="card" data-id="1" data-short="CI's order check reads no commits on the PR merge commit">
+<span class="tag mine">Landmine</span><span class="num">01</span>
+<h3>In CI, the order check reads zero commits and passes</h3>
+<p>The CI handoff step runs <code>actions/checkout</code> with no <code>ref:</code> (<code>.github/workflows/ci.yml</code> lines 21–24). On a <code>pull_request</code> event that checks out GitHub's test merge commit, whose first parent is the base. <code>history::commits</code> walks <code>base..HEAD --first-parent --no-merges</code> (<code>history.rs:48</code>). It skips the merge and stops at the base, so the list is empty. <code>order()</code> then returns <code>Ok</code> when it finds no code commits (<code>artifacts.rs:157–159</code>).</p>
+<div class="proof"><b>Probe</b>A branch commits code, then all eight pages. At the branch tip, <code>complete</code> fails: "blindspots.html must be committed before the first product-code commit". After <code>git merge --no-ff</code> onto the base, <code>git log --first-parent --no-merges base..HEAD</code> prints nothing and <code>complete</code> returns <code>ok=true</code> with no errors. The existing test <code>merged_target_commits_do_not_count_as_task_code</code> covers only the opposite case, where the target is merged into the task branch.</div>
+<div class="bite"><b>Why it bites</b>Local runs enforce order. The one gate every PR passes through does not. I reproduced this with a local merge commit, not on GitHub.</div>
+<div class="chip">Make the CI handoff read the PR's own commits: check out pull_request.head.sha, or walk HEAD^2 when HEAD is a merge whose first parent is the base. Add a test that builds a GitHub-style merge commit with pages committed after code and expects a failure.</div>
+</section>
+
+<section class="card" data-id="2" data-short="order is checked only for complete tasks; partial-then-flip skips it">
+<span class="tag mine">Landmine</span><span class="num">02</span>
+<h3>Order is checked only when a task says it is complete, and this PR takes the other route</h3>
+<p><code>completion::task</code> passes <code>task.status == Status::Complete</code> as the final stage (<code>completion.rs:20</code>). <code>check</code> calls <code>order()</code> only in that case (<code>artifacts.rs:105</code>). A partial handoff checks only that five files exist. <code>order()</code> reads only commits since the base. Once the code has merged, a later branch that only flips the status has no code commits to compare against.</p>
+<div class="proof"><b>Probe</b>A partial task commits code, then discovery pages. Its handoff returns <code>ok=true</code>. In another run the code and all eight pages, written after it, merge as partial. A later branch that only flips the record to complete passes <code>complete</code> with <code>ok=true</code> and no errors. This PR's record is <code>"status": "partial"</code> with discovery "written after the code".</div>
+<div class="bite"><b>Why it bites</b>Splitting a task into "partial now, complete later" is the normal shape of multi-PR work, and it erases the ordering rule without anyone meaning to.</div>
+<div class="chip">Decide whether commit order belongs to the task or to the branch. If it belongs to the task, run order() on partial handoffs too. When a record flips to complete, read commits back to the record's first commit, not to the merge base.</div>
+</section>
+
+<section class="card" data-id="3" data-short="the gate sees a style tag, not a page">
+<span class="tag idea">Missing concept</span><span class="num">03</span>
+<h3>The gate sees a style tag, not a page</h3>
+<p><code>verify()</code> accepts any file that contains the marker string (<code>artifacts.rs:131</code>). The test fixture's pages, about 145 bytes each (a doctype, the style block, one paragraph; <code>tests/support/mod.rs:119–127</code>), pass completion. The reviewer's verdict goes into <code>review.verification</code>, which <code>review_errors</code> checks only for being non-empty (<code>task_record.rs:136–137, 151</code>; <code>tracking.rs:47</code>).</p>
+<div class="proof"><b>Probe</b>Five pages whose whole content is the 36-byte marker <code>&lt;style data-artifact-foundation="1"&gt;</code> let a README change pass <code>task-artifact check</code> and <code>handoff</code> with <code>ok=true</code>.</div>
+<div class="bite"><b>Why it bites</b>The trial's record credits reviewers, not the gate, with its two code defects: save overwriting an oversized board, and a writer below the oldest readable format. When time is short, the cheapest passing page is the 36-byte marker alone.</div>
+<div class="chip">Treat the gate as a reminder, not evidence. Report each page's reviewer verdict and one finding it caught, and explain any page under half its exemplar's size.</div>
+</section>
+
+<section class="card" data-id="4" data-short="every PR owes five pages or rides an existing task">
+<span class="tag idea">Missing concept</span><span class="num">04</span>
+<h3>Every PR owes five pages, or rides on someone else's task</h3>
+<p><code>handoff</code> compares every file in the checkout (<code>completion.rs:124</code>). Any change at all needs an added or updated task record (<code>:161</code>). The record must be schema 6 (<code>task_record.rs:124</code>), and its check requires the five discovery pages (<code>artifacts.rs:94–104</code>). The guide says "a small task gets a smaller page"; the code has no lighter path.</p>
+<div class="proof"><b>Probe</b>A one-line README change fails with "changed source requires an added/updated task reconciliation record". With a new record it fails with "missing blindspots.html". With five stub pages it passes. Editing only the <code>remaining</code> text of a merged partial task also passes, with no new pages.</div>
+<div class="bite"><b>Why it bites</b>The journal-versioning trial wrote 334,651 bytes over eight pages (4,004 lines) for 388 inserted lines in 14 files (13 under <code>crates/engine</code>, plus <code>docs/DRIVER.md</code>; task record excluded). Its record's <code>review.verification</code>: six pages passed review first time, two after one rewrite each. A typo fix pays the same, or rides an open task for free.</div>
+<div class="chip">Before the next change, tell me which PRs are exempt (docs-only, dependency bumps, typo fixes) and whether unrelated work may ride an open task record. Make handoff enforce both.</div>
+</section>
+
+<section class="card" data-id="5" data-short="administrative() counts docs, README, CI and readiness.json as product code">
+<span class="tag conv">Convention</span><span class="num">05</span>
+<h3><code>administrative()</code> lists six paths, and everything else is product code</h3>
+<p>Only <code>harness/task-artifacts/</code>, <code>harness/tasks/</code>, <code>harness/transitions/</code>, <code>docs/plans/</code>, <code>harness/docs.json</code> and <code>harness/gaps.json</code> are exempt (<code>artifacts.rs:33–43</code>). Every Markdown doc, <code>README.md</code>, <code>AGENTS.md</code>, <code>examples/</code>, <code>scripts/</code> and <code>.github/</code> count as product code, and so does <code>harness/readiness.json</code>, which COMPLETION.md tells you to edit in the same change. By this rule, 39 of this PR's 42 files are product code.</p>
+<div class="proof"><b>Probe</b>A commit of <code>docs/GUIDE.md</code> before the discovery pages fails completion: "blindspots.html must be committed before the first product-code commit".</div>
+<div class="bite"><b>Why it bites</b>Sketching the doc first, the natural start for a docs-led change, trips the order rule, and the Codex hook blocks that edit before discovery.</div>
+<div class="chip">Before committing anything, list every path you will touch and say which ones administrative() counts as product code.</div>
+</section>
+
+<section class="card" data-id="6" data-short="the pre-edit hook covers apply_patch on Codex only">
+<span class="tag mine">Landmine</span><span class="num">06</span>
+<h3>The pre-edit guard covers one tool on one host</h3>
+<p>The only hook config, <code>examples/codex-artifact-hooks.json</code>, guards edits by <code>^apply_patch$</code> only (<code>artifact_hook.rs:15–19</code>). Its Stop hooks run <code>agent-stop</code>, which sees any writer but checks only the named task (<code>completion.rs:232</code>). There is no Claude Code hook config. <code>guard()</code> checks the pages exist at HEAD, not that they preceded the code (<code>artifacts.rs:192–206</code>). Both hooks read <code>HARNESS_TASK_ID</code>, fixed per session.</p>
+<div class="proof"><b>Probe</b>Partial <code>TASK-1</code>'s pages and code are in <code>main</code>. A new branch, still naming it, edits <code>implementation.rs</code> (<code>event.json</code> patches it):
+<pre>$ xtask artifact-hook --task TASK-1 &lt; event.json
+  ok:true
+$ xtask task-artifact guard --task TASK-1
+  ok:true
+$ git commit -qam 'new work'
+$ xtask agent-stop --task TASK-1 --base main --report target/report.json
+  ok:true, task errors []
+$ xtask handoff --base main
+  ok:false "changed source requires an added/updated task reconciliation record"</pre>
+Editing only the record's <code>remaining</code> line then passes <code>handoff</code> (04).</div>
+<div class="bite"><b>Why it bites</b>Shell writes, <code>cargo fmt</code> and the Claude host that built this PR all bypass the pre-edit guard. Only <code>handoff</code>, which CI runs, looks at the diff, and blindspot 01 shows CI does not check order.</div>
+<div class="chip">Tell me the next agent's host and tools, and set HARNESS_TASK_ID to the new task. Unless it is Codex apply_patch, there is no pre-edit guard: run cargo xtask task-artifact guard yourself before the first code commit.</div>
+</section>
+
+<section class="card" data-id="7" data-short="schemas 3-5 never shipped; touching an old record forces v6 pages">
+<span class="tag hist">History</span><span class="num">07</span>
+<h3>Schemas 3–5 never shipped, and an old record can't be touched in passing</h3>
+<p>Main accepted schema 1–2 and required 2. The experiment commits earlier on this branch added 3, 4 and 5. This PR reads 1–6 and requires 6 (<code>task_record.rs:67, 124</code>). <code>coordination</code> skips the page check below 6 (<code>completion.rs:218–220</code>). <code>completion-gate.json</code> is schema 2 and complete. Editing it puts it through handoff, which then demands an upgrade to schema 6 and eight pages for work that merged long ago.</p>
+<div class="proof"><b>Probe</b>A schema-5 partial record with code passes <code>coordination</code> with <code>ok=true</code>. <code>handoff</code> rejects it: "Upgrade this active task to schema_version 6…" and "missing blindspots.html".</div>
+<div class="bite"><b>Why it bites</b>The PR's rollback note says records below schema 6 are unaffected. That holds only while nobody edits them.</div>
+<div class="chip">Upgrade an old task record in its own commit, and tell me which pages it then needs.</div>
+</section>
+
+<section class="final">
+<h2>Your reply</h2>
+<p>Choose what happens to each blindspot; the reply builds itself.</p>
+<div id="picks"></div>
+<div class="row"><h3>Reply</h3><button type="button" data-copy="reply">Copy reply</button></div>
+<pre id="reply"></pre>
+<div class="row"><h3>A better prompt for the next change here</h3><button type="button" data-copy="better">Copy prompt</button></div>
+<pre id="better">I'm changing the task-artifact gate (xtask/src/artifacts.rs, completion.rs,
+history.rs, artifact_hook.rs). Before writing code:
+
+1. Run the order check at the branch tip AND at a GitHub-style merge commit
+   (first parent = base); CI checks out the merge, where commits() is empty.
+2. Say whether the change applies to partial handoffs; order() only runs for
+   status complete, and a later flip to complete sees no code commits.
+3. List every path the change touches and how administrative() classifies it.
+4. For each rule, show the cheapest file that satisfies it (today a 36-byte
+   file holding only the marker) and say whether that is acceptable.
+5. Name the hosts and tools the guards cover (today: Codex apply_patch
+   before edits; Codex stop checks only the session's task).
+6. State the cost for a one-line PR under the new rule, and its exemption.
+7. Upgrade any task record below schema 6 in its own commit.
+
+Prove each claim with a test in xtask/tests/artifacts.rs, run in a
+git-archive copy under target/ with its own CARGO_TARGET_DIR.</pre>
+</section>
+</main>
+<script>
+(function () {
+var cards = [].slice.call(document.querySelectorAll(".card")), picks = document.getElementById("picks");
+var opts = [["fix", "Fix now"], ["follow", "Follow-up"], ["accept", "Accept"]];
+cards.forEach(function (c) {
+var fs = document.createElement("fieldset"), lg = document.createElement("legend");
+fs.className = "pick";
+lg.textContent = c.dataset.id.padStart(2, "0") + " · " + c.querySelector("h3").textContent;
+fs.appendChild(lg);
+opts.forEach(function (o) {
+var l = document.createElement("label"), i = document.createElement("input");
+i.type = "radio"; i.name = "b" + c.dataset.id; i.value = o[0];
+l.append(i, o[1]); fs.appendChild(l);
+});
+picks.appendChild(fs);
+});
+function build() {
+var g = { fix: [], follow: [], accept: [], open: [] }, out = ["Blindspot pass on the artifact gate, my decisions:"];
+cards.forEach(function (c) {
+var s = document.querySelector('input[name="b' + c.dataset.id + '"]:checked');
+g[s ? s.value : "open"].push("- " + c.dataset.id + " (" + c.dataset.short + ")");
+});
+[["fix", "Fix before merge"], ["follow", "Open a follow-up for"], ["accept", "Accept and document in docs/ARTIFACTS.md"], ["open", "Undecided, ask me again"]].forEach(function (k) {
+if (g[k[0]].length) out.push("", k[1] + ":", g[k[0]].join("\n"));
+});
+if (g.fix.length) out.push("", "For each fix, add a failing test first in xtask/tests/artifacts.rs.");
+document.getElementById("reply").textContent = out.join("\n");
+}
+picks.addEventListener("change", build);
+build();
+document.addEventListener("click", function (e) {
+var b = e.target.closest("button[data-copy]");
+if (!b) return;
+var t = document.getElementById(b.dataset.copy).textContent, prev = b.textContent;
+function done() { b.textContent = "Copied"; setTimeout(function () { b.textContent = prev; }, 1500); }
+if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, done); else done();
+});
+})();
+</script>
+</body>
+</html>

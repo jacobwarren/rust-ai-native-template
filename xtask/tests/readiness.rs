@@ -9,8 +9,13 @@ impl Fixture {
             .duration_since(std::time::UNIX_EPOCH)
             .unwrap()
             .as_nanos();
-        let path =
-            std::env::temp_dir().join(format!("starter-readiness-{stamp}-{}", std::process::id()));
+        // Tests in this binary run in parallel; the clock alone can repeat on macOS.
+        static NEXT: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+        let serial = NEXT.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+        let path = std::env::temp_dir().join(format!(
+            "starter-readiness-{stamp}-{}-{serial}",
+            std::process::id()
+        ));
         fs::create_dir_all(path.join("harness")).unwrap();
         fs::create_dir_all(path.join("target")).unwrap();
         fs::write(path.join("Cargo.toml"), "[workspace]\n").unwrap();

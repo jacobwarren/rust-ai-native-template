@@ -35,6 +35,14 @@ and passes after; compilation alone is not acceptance.
 Split partially completed steps into finished and remaining work. Record the
 next exact action before stopping, including relevant artifact paths.
 
+## HTML task review
+
+Produce the task's [discovery artifacts](../ARTIFACTS.md) before code, each from
+its prompt and exemplar.
+Link it here; append notes as work progresses and publish the buy-in brief and
+scenario quiz before completion. Keep detailed reasoning in those artifacts and link it from
+this plan instead of duplicating it. Preserve the initial snapshot and revisions.
+
 ## Discoveries
 
 Record unexpected behavior, failed hypotheses, relevant tool/library behavior,

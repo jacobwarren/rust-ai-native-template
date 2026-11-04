@@ -34,5 +34,20 @@
     "evidence": "This starter is delivered as an archive, without a hosted GitHub repository.",
     "next_action": "Configure the documented required checks and protected baseline/policy review in the adopted repository.",
     "resolution": null
+  },
+  {
+    "id": "artifact-gate-holes",
+    "rank": 3,
+    "state": "open",
+    "blocks": [
+      "product"
+    ],
+    "impact": "The task-page gate can pass without the pages it is meant to require: CI checks commit order on the PR merge commit, where it reads no commits; order is checked only for tasks marked complete; and a page holding only the 36-byte style marker passes.",
+    "evidence": "harness/task-artifacts/artifact-harness/blindspots.html cards 01-03, each reproduced by an independent reviewer in a clean copy.",
+    "next_action": "Pass the PR head to handoff so CI reads the branch's own commits, then decide whether partial handoffs check discovery order; see the placements in harness/task-artifacts/artifact-harness/plan.html.",
+    "resolution": null,
+    "requirements": [
+      "task-artifacts"
+    ]
   }
 ]

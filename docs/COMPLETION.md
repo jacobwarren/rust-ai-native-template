@@ -41,7 +41,9 @@ findings into existing gaps. No quota requires a new gap per task.
 
 1. Task start: read relevant requirements and the project gaps. Identify which
    gaps the assignment addresses and create harness/tasks/ID.json using
-   examples/task-record.json. A ticket URL, ID or plan reference is optional.
+   examples/task-record.json. A ticket URL, ID or plan reference is optional. Before
+   implementation, write and commit its five discovery pages; commit notes during the
+   work and the buy-in doc and quiz last ([task artifacts](ARTIFACTS.md)).
 2. Material discovery: investigate immediately. Fix it within authorized scope,
    update an existing gap, or record a new durable gap/observation. Do not silently
    expand the task into a project-wide audit.
@@ -55,7 +57,8 @@ see [the maintenance procedure](MAINTENANCE.md).
 
 ## Task review and record contract
 
-Schema version 2 adds review, with four nonempty answers:
+Schema version 6 requires the [HTML task artifacts](ARTIFACTS.md) in addition to
+review, with four nonempty answers:
 
 - acceptance: Did any assigned acceptance criterion remain unmet? Explain the
   outcome and remaining work; unmet assigned acceptance means partial or blocked.
@@ -75,6 +78,9 @@ The other fields are demonstrated in [the example](../examples/task-record.json)
 
 - requirements names registered acceptance IDs. Complete requires current passing
   full-CI evidence and verified requirements that actually represent the task.
+  When the task adds tests that prove a requirement, list them under that
+  requirement in `harness/readiness.json` in the same change; otherwise the
+  requirement verifies against its old tests alone.
 - related_gaps includes rationale and disposition. resolved requires a closed gap
   and verified linked requirements. updated means changed against base; unaffected
   means unchanged. retired means removed with a matching transition receipt.
@@ -89,8 +95,10 @@ The other fields are demonstrated in [the example](../examples/task-record.json)
   Complete may retain follow-up work outside its accepted scope.
 
 References are not proof that a remote document exists or its contents are true.
-Unknown fields are rejected. Archived v1 task records remain readable; upgrade any
-active record making a new handoff/completion claim to v2 and answer the review.
+Unknown fields are rejected. Archived v1–v5 task records remain readable; upgrade any
+active record making a new handoff/completion claim to v6, write its
+[artifacts](ARTIFACTS.md) and answer the review. Git history preserves earlier page
+versions; artifact-only edits also trigger reconciliation.
 
 ## Commands and source-bound evidence
 
@@ -180,3 +188,14 @@ reconcile the authoritative records into local gaps with reviewed resolution fil
 before switching; the harness rejects that legacy mode rather than trusting a
 stale local copy. Historical external-authority comparisons require a deliberate
 migration baseline; there is no automatic remote migration or completeness claim.
+
+## Artifact admission
+
+Completion requires the task's eight pages, each carrying the shared stylesheet
+inline, and reads the branch's own commits since the base (merge commits skipped): the five
+discovery pages before the first product-code commit, implementation notes before
+the last one, and buy-in and quiz at or after it. Product code and the task's pages
+must be committed; task records, gaps and reports need not be. Commit order shows
+sequence, not usefulness, and a rewritten history can fake it. An independent
+reviewer agent and human review against the exemplars judge quality. The stop hook invokes the same completion checks; the
+opt-in edit guard is separate.

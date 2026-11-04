@@ -150,3 +150,16 @@ Create a task record and review any transition receipts first. Completion is
 scoped to assigned work; release gates check the selected project scope. Use
 handoff for partial/blocked work. Read [the workflow](docs/COMPLETION.md) for
 schemas, discovery guidance, hook setup and authority limits.
+
+## HTML task reviews
+
+Each task leaves [HTML artifacts](docs/ARTIFACTS.md) a human can review: five
+discovery pages before code, implementation notes during the work, and a buy-in
+doc and quiz before merge. Each page comes from one prompt adapted from Thariq
+Shihipar's [Know your unknowns](examples/thariq/index.html) examples, which set
+the quality bar. A dedicated subagent writes each page and another reviews it
+against its exemplar before it is committed. Each page is a single file carrying
+the shared stylesheet from `cargo xtask task-artifact style --task ID` inline.
+Completion reads commit order: discovery pages before the first code commit,
+notes during the work, buy-in and quiz last.
+The harness preserves bytes and provenance without prescribing presentation.

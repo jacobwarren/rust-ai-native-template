@@ -6,6 +6,12 @@ Problem and observable outcome.
 
 Behavior, boundaries, contracts, and intentional policy changes.
 
+## HTML task review
+
+Link the pages in harness/task-artifacts/ID/: the five discovery pages,
+implementation notes, buy-in doc and quiz. Distinguish demonstration from
+observed behavior. Quiz completion is not reviewer approval.
+
 ## Evidence
 
 Exact commands, report paths, affected acceptance criteria, and source identity.

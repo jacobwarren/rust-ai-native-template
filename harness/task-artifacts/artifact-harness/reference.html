@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Reference map: Know your unknowns → artifact harness</title>
+<style>
+.sub{color:var(--muted);max-width:var(--reading-width)}
+.paths{font:var(--text-small)/1.6 var(--font-code);color:var(--muted);display:flex;flex-wrap:wrap;gap:var(--space-1) var(--space-6)}
+.paths b{color:var(--ink)}
+.facts{list-style:none;padding:0;margin:0}
+.facts li{padding:var(--space-3) 0;border-bottom:1px dashed var(--line)}
+.facts li:last-child{border-bottom:0}
+.pair{margin-block:var(--space-8)}
+.pair h3{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-3);align-items:baseline;margin-bottom:var(--space-3)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+@media (max-width:48rem){.grid2{grid-template-columns:1fr}}
+.cc{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden;min-width:0}
+.cc header{padding:var(--space-2) var(--space-4);background:var(--accent-soft);font:var(--text-small) var(--font-code);color:var(--muted);overflow-wrap:anywhere}
+.cc.th header{background:var(--warning-soft)}
+.cc pre{margin:0;border:0;border-radius:0;font-size:.8rem;line-height:1.55}
+mark{background:var(--warning-soft);border-bottom:2px solid var(--warning);color:inherit;padding:0 2px}
+mark sup,.n{font:600 .7rem var(--font-code);color:var(--warning)}
+.notes{margin:var(--space-3) 0 0;padding:0;list-style:none;font-size:.94rem}
+.notes li{margin-block:var(--space-2)}
+.n{display:inline-block;min-width:1.4rem;height:1.4rem;line-height:1.3rem;text-align:center;border:1.5px solid var(--warning);border-radius:50%;margin-inline-end:var(--space-2)}
+.pill{display:inline-block;font:600 .72rem var(--font-code);letter-spacing:.05em;text-transform:uppercase;padding:.1rem .55rem;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.same{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+.pill.chg{color:var(--warning);border-color:var(--warning);background:var(--warning-soft)}
+.pill.lost{color:var(--danger);border-color:var(--danger)}
+.gotchas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:var(--space-3)}
+.gotchas article{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-4) var(--space-6)}
+.gotchas h3{margin:var(--space-2) 0}
+.gotchas p{margin-block:var(--space-2);font-size:.94rem}
+.reply fieldset{padding:var(--space-4)}
+.reply label{display:inline-block;margin:var(--space-1) var(--space-4) var(--space-1) 0}
+.reply input[type=text]{width:100%;margin-top:var(--space-2)}
+#out{white-space:pre-wrap;font:var(--text-small)/1.6 var(--font-code);margin-block:var(--space-4)}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Point at a reference · artifact harness</p>
+<p class="callout warning">Written after the code: PR #1 builds the harness these pages describe, so this map checks a port that already exists.</p>
+<h1>Semantics map: Know your unknowns → this harness</h1>
+<blockquote>“Thariq Shihipar's html-effectiveness pages already behave the way this harness's task pages should. Read them and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood them before you build anything.”</blockquote>
+<p class="paths"><span><b>reference</b> examples/thariq/ · index + 11 pages · 377,965 bytes</span><span><b>port</b> docs/ARTIFACTS.md · docs/skills/author-artifact.md · review-artifact.md · xtask/src/artifacts.rs</span><span><b>measured</b> both page sets, and the trial branch's eight pages</span></p>
+<p class="sub">Earlier pages are cited, not repeated: the gate's holes are the blindspot page's cards 01–07, cited here as B01–B07 (blindspot 03 is B03); the alternatives are interventions #1–#11; the open decisions are interview questions 1–7.</p>
+
+<h2>1 · What Thariq's pages actually do</h2>
+<div class="surface"><ul class="facts">
+<li><b>One prompt, one page.</b> Every page opens with the exact prompt, then “What Claude produced” (index.html:352; 07-reference-port.html:336–342). 07's prompt is 230 bytes in the reader's own voice and assumes a session that already knows the client being ported.</li>
+<li><b>The page is the bar, not a template.</b> The index promises “paste the prompt, get something like the page” (index.html:352–353). The targets are stock products: 07's prompt names a crate in <code>vendor/rate-limiter</code> (07:338) and ports it to <code>acme-web</code> (:353). Only the HTML was vendored; no tracked path here contains “rate-limiter” or “acme”.</li>
+<li><b>Grounding by location.</b> 07 names what it read (“bucket.rs · backoff.rs · budget.rs · 14 tests”, :354), heads each excerpt with a file and line (:381) and cites crate tests by name (<code>burst_at_t0</code>, :548).</li>
+<li><b>Interactions carry the reasoning.</b> 07 links matched regions to their notes on hover (:632–647). 06 asks one question at a time, ordered by blast radius (06:339), and each option is a title and a consequence with no recommendation (06:369–373).</li>
+<li><b>A reply goes back before code.</b> 07 says “Nothing gets implemented until you sign off on this page” (:350) and copies either “semantics confirmed” or a correction template (:625–630).</li>
+<li><b>They load nothing.</b> None of the 12 files contains “http”. Fonts are system stacks (07:22–24). The PR's screenshot script reports 0 external requests and 0 local files for all 12.</li>
+</ul></div>
+
+<h2>2 · Matched excerpts: Thariq's page → the PR's guide, brief or gate</h2>
+<p class="sub">Left: the exemplar. Right: the PR text or code meant to carry it. Numbered marks match the notes beneath.</p>
+
+<section class="pair" id="m1">
+<h3><span class="pill">M1</span> One prompt per page <span class="pill chg">changed</span></h3>
+<div class="grid2">
+<div class="cc th"><header>examples/thariq/index.html:351–353</header><pre>self-contained .html artifacts […]
+Each page shows <mark>the exact prompt<sup>1</sup></mark> at the top
+and the artifact Claude produced below it</pre></div>
+<div class="cc"><header>docs/ARTIFACTS.md:6–8, 13–15, 58</header><pre>each page is what a capable model produces from
+<mark>one short, specific prompt<sup>1</sup></mark>, given its full attention
+[…] <mark>Start a fresh subagent for each page<sup>2</sup></mark> and give it
+the author-artifact brief, the prompt below […]
+"{reference} already behaves the way {task} should. …"</pre></div>
+</div>
+<ul class="notes">
+<li><span class="n">1</span><b>Kept.</b> One prompt per page, shown at the top; this task's pages quote theirs.</li>
+<li><span class="n">2</span><b>The context moves into a brief.</b> Thariq's 230-byte prompt leans on a conversation. Here a fresh agent gets a 198-byte template with braces, the 3,195-byte author brief and the earlier pages, so whatever the coordinator leaves out, the author never learns.</li>
+</ul>
+</section>
+
+<section class="pair" id="m2">
+<h3><span class="pill">M2</span> The exemplar as the bar <span class="pill chg">made explicit</span></h3>
+<div class="grid2">
+<div class="cc th"><header>examples/thariq/index.html:352–353</header><pre><mark>paste the prompt, get something like the page<sup>3</sup></mark></pre></div>
+<div class="cc"><header>docs/ARTIFACTS.md:22–24 · author-artifact.md:41–42</header><pre>Match its depth, density and the job its
+interactions do, not its layout or domain.
+<mark>Those pages run 27–41 KB.<sup>4</sup></mark>
+[…] If your page runs longer than the exemplar,
+cut what a reader would skim</pre></div>
+</div>
+<ul class="notes">
+<li><span class="n">3</span><b>“Something like” becomes a comparison.</b> The author reads the matching exemplar first; the reviewer renders both side by side (review-artifact.md:9–11).</li>
+<li><span class="n">4</span><b>Size is the only part of the bar anyone can measure.</b> Measured range 26,697–41,116 bytes. G9 shows where the trial pages went over.</li>
+</ul>
+</section>
+
+<section class="pair" id="m3">
+<h3><span class="pill">M3</span> Grounding <span class="pill chg">checked, not just shown</span></h3>
+<div class="grid2">
+<div class="cc th"><header>examples/thariq/07-reference-port.html:354, 381</header><pre>&lt;b&gt;read&lt;/b&gt; <mark>bucket.rs · backoff.rs · budget.rs · 14 tests<sup>5</sup></mark>
+…
+&lt;span class="fp"&gt;<mark>vendor/rate-limiter/src/bucket.rs:41<sup>5</sup></mark>&lt;/span&gt;</pre></div>
+<div class="cc"><header>author-artifact.md:13–15 · review-artifact.md:12–14 · artifacts.rs:131</header><pre>needs a concrete basis the reader can follow:
+a file and line, function, test, commit or command output
+[…] <mark>Pick at least three concrete claims<sup>6</sup></mark> […]
+One false or unsupported claim fails the page.
+[…] if !text.contains(MARKER) {   <span class="muted">// all the gate reads</span></pre></div>
+</div>
+<ul class="notes">
+<li><span class="n">5</span><b>The exemplar's grounding is form.</b> Paths and test names look checkable, but there is no Acme crate to check them against.</li>
+<li><span class="n">6</span><b>The port adds verification the bar never faced.</b> The reviewer must check three claims against the code. The gate checks none: it reads the marker only (B03). In the trial, review sent the first reference page back for “an abridged transcript labelled as real output” (interventions, failure E).</li>
+</ul>
+</section>
+
+<section class="pair" id="m4">
+<h3><span class="pill">M4</span> Interactions that change a decision <span class="pill chg">stricter than the bar</span></h3>
+<div class="grid2">
+<div class="cc th"><header>examples/thariq/07-reference-port.html:641–646</header><pre>(function (el) {
+  var p = el.getAttribute('data-p');
+  if (!p) return;
+  <mark>el.addEventListener('mouseenter', …)<sup>7</sup></mark>;
+  el.addEventListener('mouseleave', …);
+})(linked[i]);</pre></div>
+<div class="cc"><header>author-artifact.md:24–26 · review-artifact.md:28</header><pre>toggles that change a visible consequence.
+Interactions exist to help the reader reason or reply.
+[…] Fails when: <mark>A control is decorative, broken,
+or reveals text that could simply be shown.<sup>8</sup></mark></pre></div>
+</div>
+<ul class="notes">
+<li><span class="n">7</span><b>The exemplar's only interaction is hover.</b> Marks are not focusable and there is no touch handler, so on a phone or keyboard it does nothing. It changes what is lit, not what you decide.</li>
+<li><span class="n">8</span><b>So the port's rule is stricter than its bar.</b> Under review-artifact.md:28, 07's hover is at best borderline. This page drops it: the marks are numbered statically and the controls feed the reply.</li>
+</ul>
+</section>
+
+<section class="pair" id="m5">
+<h3><span class="pill">M5</span> A reply the reader copies back <span class="pill lost">lost when unattended</span></h3>
+<div class="grid2">
+<div class="cc th"><header>examples/thariq/07-reference-port.html:350, 626–629</header><pre><mark>Nothing gets implemented until you sign off<sup>9</sup></mark>
+on this page.
+copy('semantics confirmed', this, …)
+copy('Correction to the semantics map:\n- section/row: …')</pre></div>
+<div class="cc"><header>docs/ARTIFACTS.md:76–80 · review-artifact.md:54–55</header><pre>When a human is available, present the discovery pages
+and <mark>wait for their reply before writing product code<sup>9</sup></mark>
+[…] When running unattended, <mark>answer the interview with
+your recommendation, label it as yours<sup>10</sup></mark> […]
+Discovery pages (the first five) must end with a reply</pre></div>
+</div>
+<ul class="notes">
+<li><span class="n">9</span><b>The wait is advice, and nothing reads the reply.</b> No xtask code reads a reply; <code>order()</code> reads commits, not answers (artifacts.rs:140–190). A removed command once imported a person's choices (interventions #11).</li>
+<li><span class="n">10</span><b>Unattended, the agent replies to itself.</b> 06's options carry no recommendation; this task's interview gives “the agent's lean” on each question, and the trial's interview was answered with the agent's leans.</li>
+</ul>
+</section>
+
+<h2>3 · Gotchas: where the port diverges or loses something</h2>
+<p class="sub">Candidates were checked, not assumed. One of them is false.</p>
+<div class="gotchas">
+<article><span class="pill">could not check</span><h3>G1 · One steered session vs subagents and a reviewer</h3><p>The vendored files say only “What Claude produced” (07:342); the blog post that describes how they were made is not vendored. The port replaces a person's steering with a brief, a fresh author per page and a fresh reviewer, rewritten at most twice (ARTIFACTS.md:13–15, 38–46). In the trial, six of eight pages passed review first time (PR description).</p></article>
+<article><span class="pill same">holds</span><h3>G2 · His pages have no gate</h3><p>Thariq gives order as advice: “Before any code is written is the cheapest place to find an unknown” (index.html:372). The PR enforces presence and order (artifacts.rs:100–104, 166–188). But order is skipped in CI (B01) and for partial tasks (B02), and a 36-byte marker counts as a page (B03).</p></article>
+<article><span class="pill same">holds</span><h3>G3 · A person answers his interview</h3><p>06 lists options and waits. Unattended, the port lets the agent answer with its own recommendation (ARTIFACTS.md:79–80). The questions that would change the architecture are then settled by the agent that will build it.</p></article>
+<article><span class="pill lost">does not hold</span><h3>G4 · “His pages load fonts or other resources”</h3><p>They do not: 0 occurrences of “http” in the 12 files, system font stacks (07:22–24), and 0 requests and 0 local files in the screenshot report. The only outbound references are links to <code>index.html</code> and <code>../index.html</code>, which README.md:10–11 says do not resolve here. Self-containment is kept, not added. The port adds one marker block that the gate checks (artifacts.rs:24).</p></article>
+<article><span class="pill chg">partly</span><h3>G5 · The inline stylesheet's cost</h3><p>The block is 5,125 bytes: 14% of 07's 36,665, and 41,000 bytes across a task's eight pages. It does not stack, though. The trial pages' total CSS, block included, runs 9,356–15,176 bytes each against 9,682–17,103 for the eight exemplars they pair with; the trial's low end sits 326 bytes below theirs, and all eight hold 98,975 against 100,302. The block takes the place of CSS a page would otherwise write.</p></article>
+<article><span class="pill lost">holds, and it matters</span><h3>G6 · The bar fails the port's own checks</h3><p>At 390 px, 04-toolbar-mock.html overflows horizontally (<code>div.stage</code>, <code>span.ann-chip</code>) in the screenshot report, and 07's hover would be questioned under review-artifact.md:28. Reviewers are told to match the exemplar's depth, not its layout, so neither difference should be treated as acceptable because the exemplar has it.</p></article>
+<article><span class="pill chg">changed</span><h3>G7 · Eleven pages to choose from become eight required</h3><p>The index picks pages by situation: “Ask for a blindspot pass when the territory is unfamiliar” (index.html:372). The port requires all eight on every task (ARTIFACTS.md:64), so a one-line change owes five pages before its code (B04). 02, 03 and 04 are optional.</p></article>
+<article><span class="pill lost">lost here</span><h3>G8 · “Before you build anything”</h3><p>07 waits for sign-off. This PR's own pages, this one included, were written after the code, which the gate allows because the record is partial (B02). A correction you send back now changes the next task, not this diff.</p></article>
+<article><span class="pill chg">over the bar</span><h3>G9 · The trial's overage is script, not CSS</h3><p>The eight trial pages total 334,651 bytes against 247,710 for their exemplars (1.35×). Of the 86,941 extra, script is 67,354, markup and text 20,914, and CSS 1,327 fewer. The trial interview alone holds 35,739 bytes of script to 06's 13,661.</p></article>
+</div>
+
+<h2>4 · Edge cases: what each side does</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Case</th><th>Thariq's pages</th><th>This harness</th><th>Match</th></tr></thead>
+<tbody>
+<tr><td><b>Nobody to answer</b></td><td>Not a case: the reader is the person who asked.</td><td>The agent answers with its lean, labelled (ARTIFACTS.md:79–80); open questions go to the buy-in doc.</td><td><span class="pill chg">changed</span></td></tr>
+<tr><td><b>No external reference</b></td><td>You point at a reference “when words run out” (index.html:372); otherwise no page.</td><td>The page is still owed; the reference is the code path the change extends (ARTIFACTS.md:64–65).</td><td><span class="pill chg">changed</span></td></tr>
+<tr><td><b>One-line change</b></td><td>Pick the page the situation needs, or none.</td><td>Five pages, or ride an open task record (B04).</td><td><span class="pill chg">changed</span></td></tr>
+<tr><td><b>Pages after code</b></td><td>07 refuses to implement before sign-off (:350).</td><td>Allowed for partial tasks and in CI (B01, B02); caught locally at completion.</td><td><span class="pill lost">weaker</span></td></tr>
+<tr><td><b>Opened offline or as an attachment</b></td><td>Renders: 0 requests, 0 local files.</td><td>Renders: loads are forbidden (author-artifact.md:30–31) and reported by the screenshot script.</td><td><span class="pill same">identical</span></td></tr>
+<tr><td><b>Phone and touch</b></td><td>04 overflows at 390 px; 07's hover does nothing.</td><td>Overflow is flagged at 390 px (artifact-screenshots.cjs:14, 119); the reviewer must use each control.</td><td><span class="pill chg">stricter</span></td></tr>
+<tr><td><b>A page is wrong</b></td><td>No reviewer; the reader catches it, or nobody does.</td><td>REVISE: fresh author, fresh full review, at most two rewrites (ARTIFACTS.md:38–46).</td><td><span class="pill chg">added</span></td></tr>
+</tbody></table></div>
+
+<h2>5 · Your reply</h2>
+<div class="surface reply">
+<p>Confirm or correct each mapping. A correction opens a line for what I got wrong; the reply below updates as you go.</p>
+<div id="maps"></div>
+<label>Gotchas or edge cases I got wrong, or that matter for the next task<textarea id="extra"></textarea></label>
+<output id="out"></output>
+<button type="button" id="copy">Copy reply</button>
+</div>
+</main>
+<script>
+(function(){
+var M=[["M1","One prompt per page: kept, with the conversation's context moved into a brief"],["M2","Exemplar as the bar: made explicit as a side-by-side read and a size range"],["M3","Grounding: the reviewer checks three claims; the gate checks none"],["M4","Interactions: the port's rule is stricter than the exemplar's hover"],["M5","Reply: advice only; nothing reads it, and unattended the agent answers itself"]];
+var st=M.map(function(){return null;}),box=document.getElementById("maps");
+M.forEach(function(m,i){
+var fs=document.createElement("fieldset");
+fs.innerHTML='<legend>'+m[0]+' · '+m[1]+'</legend><label><input type="radio" name="r'+i+'" value="c">Confirmed</label><label><input type="radio" name="r'+i+'" value="x">Correct it</label><input type="text" hidden aria-label="Correction for '+m[0]+'" placeholder="What the map gets wrong, and the right behaviour">';
+box.appendChild(fs);
+var t=fs.querySelector("input[type=text]");
+fs.addEventListener("change",function(e){if(e.target.type=="radio"){st[i]=e.target.value;t.hidden=st[i]!="x";if(!t.hidden)t.focus();}build();});
+t.addEventListener("input",build);
+});
+document.getElementById("extra").addEventListener("input",build);
+function build(){
+var L=["Reference map (Know your unknowns → artifact harness):"],n=0;
+M.forEach(function(m,i){var fs=box.children[i],t=fs.querySelector("input[type=text]").value.trim();
+if(st[i]=="c"){n++;L.push("- "+m[0]+" confirmed.");}
+else if(st[i]=="x")L.push("- "+m[0]+" wrong: "+(t||"(say what)"));
+else L.push("- "+m[0]+" not answered yet.");});
+var x=document.getElementById("extra").value.trim();if(x)L.push("Gotchas and edge cases: "+x);
+if(n==M.length&&!x)L.push("Semantics confirmed.");
+document.getElementById("out").textContent=L.join("\n");
+}
+build();
+document.getElementById("copy").addEventListener("click",function(){
+var b=this,s=document.getElementById("out").textContent;
+function ok(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy reply";},1600);}
+function fb(){var a=document.createElement("textarea");a.value=s;document.body.appendChild(a);a.select();try{document.execCommand("copy");ok();}catch(e){}a.remove();}
+if(navigator.clipboard)navigator.clipboard.writeText(s).then(ok,fb);else fb();
+});
+})();
+</script>
+</body>
+</html>

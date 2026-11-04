@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Interview: the artifact gate</title>
+<style>
+.note{font-size:var(--text-small);color:var(--muted);margin:0}
+.prompt{font-style:italic;max-width:var(--reading-width)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:var(--space-8)}
+.box-head{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4);align-items:baseline;padding:var(--space-3) var(--space-6);border-bottom:1px solid var(--line);background:var(--accent-soft)}
+.box-head span{font:var(--text-small)/1.4 var(--font-code);color:var(--muted)}
+.grid{display:grid;grid-template-columns:13rem 1fr}
+.rail{display:block;border-bottom:0;border-right:1px solid var(--line);padding:var(--space-4);background:var(--paper)}
+.rail button{all:unset;box-sizing:border-box;display:flex;gap:var(--space-2);align-items:center;width:100%;padding:var(--space-2);border-radius:var(--control-radius);font-size:var(--text-small);color:var(--muted);cursor:pointer}
+.rail button[aria-current="step"]{background:var(--surface);color:var(--ink);font-weight:650;outline:1px solid var(--line)}
+.rail button.done{color:var(--ink)}
+.dot{width:.7rem;height:.7rem;border-radius:50%;border:2px solid var(--c);flex:none}
+.done .dot{background:var(--c)}
+.rail .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.legend{margin-top:var(--space-4);padding-top:var(--space-3);border-top:1px solid var(--line);font-size:.78rem;color:var(--muted);line-height:1.9}
+.legend i{display:inline-block;width:.6rem;height:.6rem;border-radius:50%;margin-right:.3rem}
+.stage{padding:var(--space-6) var(--space-8) var(--space-8);min-width:0}
+.badge{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:650;color:var(--surface);padding:.15rem .5rem;border-radius:.3rem}
+.qn{font:.8rem var(--font-code);color:var(--muted);margin-left:var(--space-2)}
+.q{font-size:1.45rem;margin:var(--space-3) 0 var(--space-2)}
+.why{margin:0 0 var(--space-3);color:var(--muted);font-size:.95rem;max-width:var(--reading-width)}
+.probe{margin:0 0 var(--space-3);padding:var(--space-2) var(--space-3);border-inline-start:3px solid var(--ink);background:var(--paper);font-size:.9rem}
+.meta{margin:0 0 var(--space-4);font-size:.85rem;display:grid;gap:var(--space-1)}
+.meta b{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:var(--space-2)}
+.stage code{font-size:.85em}
+.opts{display:grid;gap:var(--space-3)}
+.opt.secondary{all:unset;box-sizing:border-box;display:block;cursor:pointer;border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-3) var(--space-4);background:var(--paper)}
+.opt:hover,.opt:focus-visible{border-color:var(--accent);background:var(--surface)}
+.opt.picked{border:2px solid var(--accent);background:var(--accent-soft)}
+.opt b{display:block}
+.opt .d{display:block;font-size:.9rem;color:var(--muted);margin-top:.15rem}
+.opt code{display:block;font-size:.78rem;margin-top:.35rem;color:var(--accent);overflow-wrap:anywhere}
+.tag{font-size:.7rem;font-weight:650;text-transform:uppercase;letter-spacing:.06em;color:var(--warning);background:var(--warning-soft);border-radius:.3rem;padding:.05rem .4rem;margin-left:.4rem}
+.lean{margin:var(--space-4) 0 0;font-size:.92rem}
+.other{display:flex;gap:var(--space-2);margin-top:var(--space-4)}
+.other input{flex:1;min-width:0}
+.nav{display:flex;justify-content:space-between;margin-top:var(--space-4);font-size:var(--text-small);color:var(--muted)}
+.link{all:unset;cursor:pointer;color:var(--accent);text-decoration:underline;text-underline-offset:.18em}
+.link[disabled]{visibility:hidden}
+.rail button:focus-visible,.opt:focus-visible,.link:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.sum td:first-child{width:32%;color:var(--muted)}
+pre#reply{margin:0;max-height:26rem;overflow:auto;font-size:.82rem}
+.copyrow{display:flex;justify-content:space-between;align-items:center;margin:var(--space-6) 0 var(--space-2)}
+@media (max-width:46rem){.grid{grid-template-columns:1fr}
+.rail{border-right:0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;align-content:flex-start;gap:var(--space-1);padding:var(--space-3)}
+.rail button{width:auto}
+.rail .t,.legend{display:none}
+.stage{padding:var(--space-4)}
+.other{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<main>
+<p class="note">Written after the code. These questions are still open before PR #1 merges.</p>
+<p class="eyebrow">The interview · artifact gate</p>
+<h1>Seven questions before the artifact gate merges</h1>
+<blockquote class="prompt">Interview me one question at a time about anything still ambiguous in requiring agent-authored HTML task pages in this harness. Prioritize questions where my answer would change the architecture.</blockquote>
+<p class="lead">Each question is a finding from the blindspot (B01–B07) or interventions (#1–#11) page that only you can settle. Questions 1 and 2 come first because later options depend on them. The rest are ranked by the most code an answer can move: a new command, then a schema bump, then files and functions touched. Each carries the agent's lean, a suggestion, not your answer.</p>
+
+<section class="box" aria-label="Interview">
+<div class="box-head"><b>Artifact gate: open decisions</b><span>artifacts.rs · completion.rs · CI · 7 questions</span></div>
+<div class="grid">
+<nav class="rail" id="rail" aria-label="Questions"></nav>
+<div class="stage" id="stage" aria-live="polite"></div>
+</div>
+</section>
+<footer>Sources: <code>git diff f78c3c1..HEAD</code>, <code>harness/tasks/artifact-harness.json</code>, the <code>trial/journal-versioning</code> branch, and this task's earlier pages.</footer>
+</main>
+<script>
+(function(){
+"use strict";
+var R={
+pre:["Settle first","var(--danger)"],
+big:["Command or schema","var(--warning)"],
+code:["Code only","var(--accent)"]
+};
+var Q=[
+{r:"pre",s:"Order check in CI",
+q:"In CI, which commits should the order check read?",
+y:"B01, reproduced with a local merge commit, not on GitHub:",
+p:"After `git merge --no-ff` onto the base, `git log --first-parent --no-merges base..HEAD` prints nothing and `complete` returns `ok=true` with no errors.",
+c:"option 2: a `--head` flag through `handoff()`, `task()`, `check()` and `order()` to `commits()`, 4 files plus ci.yml.",
+x:"Question 5's options 2–3 and question 6's option 3 need CI to check order; it cannot until this is settled.",
+o:[
+["Check out the PR head for the whole job","One line in ci.yml; CI then builds and tests the head, not the merge.","ci.yml checkout ref: pull_request.head.sha"],
+["Pass the head SHA to handoff","The build still tests the merge; only the commit walk reads base..head. Checking out the head for the handoff step alone fails once main moves: that tree no longer matches ci.json (readiness.rs:112–119), so a complete task's evidence check fails.","main.rs handoff gains --head; history.rs commits() range; ci.yml passes head.sha"],
+["Detect the merge in history","If HEAD is a merge whose first parent is the base, walk HEAD^2. No CI change, but a real merge on a branch looks the same.","history.rs commits() :48"],
+["Leave it; order is a local check","Document that only local completion enforces order.","docs/ARTIFACTS.md only"]
+],
+l:1,w:"Keeps CI testing the merge and makes the commit range explicit and testable."},
+{r:"pre",s:"What is product code",
+q:"What counts as product code for the order rule?",
+y:"`administrative()` (artifacts.rs:33) exempts six paths, so docs, README, examples, scripts and harness/readiness.json are code: this PR has 39 product-code files (B05). The list drives `order()` (:144, :155) and the hook (artifact_hook.rs:39).",
+c:"1 function, `administrative()`, either way.",
+x:"Question 4's option 2 exempts docs-only PRs; this answer says what docs are.",
+o:[
+["Everything outside six paths (today)","Fails closed. Sketching a doc before discovery trips the order rule.","no change"],
+["Add docs, examples and readiness","Markdown, examples/ and harness/readiness.json join the list. New directories still count as code; a docs-led task orders only its code.","artifacts.rs administrative() :33"],
+["List product roots instead","crates/, xtask/, Cargo files, .github/ and scripts/ are code; the rest is not. A new top-level directory is exempt until someone adds it.","artifacts.rs administrative() inverted to an allowlist of code"]
+],
+l:1,w:"Keeps the fail-closed default and stops a docs-first change from tripping order."},
+{r:"big",s:"Reviewer verdict",
+q:"Should the reviewer's verdict be machine-checked, signed by a human, or stay prose?",
+y:"`review.verification` is checked only for being non-empty (task_record.rs:151). In the trial that prose was accurate: six first-time passes, two rewrites, two product defects found.",
+c:"option 3: a new command, `completion.rs task()` and an approval store; a person, not the agent, approves. Option 2: schema 7.",
+x:"Option 2 shares one schema 7 bump with question 4's option 3; requiring 7 adds every schema-6 record to question 7.",
+o:[
+["Prose, and the PR template asks for it","Each PR lists every page's verdict and one finding its reviewer caught (interventions #2). No code changes.",".github/pull_request_template.md"],
+["Structured verdicts in the record","Completion requires PASS for all eight pages. It stops forgetting, not lying: the agent fills the field itself.","task_record.rs Review gains per-page verdicts (schema 7, since the parser denies unknown fields); review_errors() :122"],
+["A human signs off","A command records who approved which pages; completion requires it, so unattended runs stop at discovery. 597c689 had this as task-artifact decide; ed782ef removed it.","new command in main.rs; completion.rs task() checks it"]
+],
+l:0,w:"Only the host can require a reviewer (open gap hosting-enforcement); a field the agent writes proves little more than prose."},
+{r:"big",s:"Which PRs owe pages",
+q:"Should every PR owe the pages, or only some?",
+y:"`handoff()` needs a task record whenever any file changed (completion.rs:124, :160); a schema-6 record needs five pages. B04: a one-line README fix owes five pages or rides an open record for free. The trial: 334,651 bytes of pages for 388 inserted lines.",
+c:"option 3: schema 7, the `Task` struct and `check()`. Option 2: 1 function, `handoff()`.",
+x:"Option 2 needs question 2's answer. Option 3 shares question 3's schema bump.",
+o:[
+["Every PR, as now","Uniform. Small changes pay full price or ride an open record.","no change"],
+["Exempt listed kinds of change","Docs-only and lockfile-only PRs need no record; everything else owes all eight. Question 2 defines docs.","completion.rs handoff(): filter the changed paths (:124) through an exemption list before the :160 check"],
+["Scale the pages with the task","A record field picks full or light (say, blindspots and quiz), as the guide's “a small task gets a smaller page” suggests; the agent picks its own tier.","task_record.rs Task gains a tier (schema 7); artifacts.rs check() reads it"]
+],
+l:1,w:"The smallest rule that lets a typo fix stop riding someone else's record. A self-chosen tier invites everyone to pick light."},
+{r:"code",s:"Order on partial tasks",
+q:"Does commit order belong to the branch, or to the task?",
+y:"B02, after code and pages merged as a partial task:",
+p:"A later branch that only flips the record to complete passes `complete` with `ok=true` and no errors.",
+c:"option 3: 3 functions in 2 files (`check()`, `order()`, `commits()`) and a merged-history walk.",
+x:"Options 2–3 reach CI only after question 1, and both fail this PR's own partial record.",
+o:[
+["The branch, at completion only (today)","Keep the rule and say so in ARTIFACTS.md. Tasks split over several PRs skip it.","docs/ARTIFACTS.md only"],
+["Every handoff checks discovery order","Partial PRs commit the five discovery pages before code; later pages still wait for completion. This PR's record fails it, so it starts with the next task.","artifacts.rs check() :105 runs the discovery half of order() whenever a base is given"],
+["The task, across all its PRs","As above, and completion reads commits back to the one that added the record, so a flip-only branch fails. That walks merged history, which the first-parent walk avoids.","history.rs commits() :48 gains a range from the record's first commit; artifacts.rs order()"]
+],
+l:1,w:"One condition closes the common split without new history walking; the flip-only hole stays open."},
+{r:"code",s:"Hosts covered",
+q:"Which agent hosts must the pre-edit guard cover?",
+y:"B06: the only hook config matches Codex's ^apply_patch$, and `run()` rejects other tools (artifact_hook.rs:15). No hook covers Claude Code, which built this PR, or shell writes.",
+c:"option 2: 1 function, `run()`, and a new config file. Option 3 deletes 3 files.",
+x:"Option 3 leaves order to CI, which checks it only after question 1.",
+o:[
+["Codex apply_patch only (today)","Document that agents on other hosts run task-artifact guard before their first code commit.","docs/ARTIFACTS.md only"],
+["Codex and Claude Code","Add a Claude Code config for its Edit and Write tools and read the path from the event.","artifact_hook.rs run() :15–35; new examples/claude-artifact-hooks.json"],
+["No pre-edit hooks; CI is the gate","Remove the opt-in hooks; handoff in CI is the gate, and it enforces order only after question 1.","remove artifact_hook.rs, scripts/agent-artifact-write.sh and the example config"]
+],
+l:1,w:"One small adapter for the host in use. It checks presence at HEAD, not order, so CI stays the backstop."},
+{r:"code",s:"Older records",
+q:"What happens when someone edits a record older than schema 6?",
+y:"Editing a record sends it through handoff, where `review_errors()` demands schema 6 (task_record.rs:124): touching completion-gate.json (schema 2, complete) demands eight pages for long-merged work (B07).",
+c:"1 function either way: `handoff()` or `review_errors()`.",
+x:"If question 3 or 4 requires schema 7, every schema-6 record joins this case.",
+o:[
+["Upgrade and write the pages (today)","Strict. The PR's rollback note holds only while nobody edits old records.","no change"],
+["Completed records are frozen","handoff rejects any edit to a record that was complete at the base; open a new task instead.","completion.rs handoff() record loop :134–158"],
+["Completed records are exempt","Edits pass without an upgrade; only active records need schema 6.","task_record.rs review_errors() :124 skips complete records below 6"]
+],
+l:1,w:"It enforces what the error already says (“historical records may remain archived”) and keeps finished history fixed."}
+];
+var ans=Q.map(function(){return null;}),cur=0,$=function(s){return stage.querySelector(s);};
+var rail=document.getElementById("rail"),stage=document.getElementById("stage");
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function fmt(s) { return esc(s).replace(/`([^`]+)`/g, "<code>$1</code>"); }
+function drawRail(){
+var h="";
+Q.forEach(function(q,i){
+h+='<button type="button" data-i="'+i+'" class="secondary'+(ans[i]?" done":"")+'"'+(i===cur?' aria-current="step"':"")+
+' style="--c:'+R[q.r][1]+'"><span class="dot"></span><span class="t">'+(i+1)+". "+esc(q.s)+"</span></button>";
+});
+var n=ans.filter(Boolean).length;
+h+='<button type="button" data-i="'+Q.length+'"'+(cur===Q.length?' aria-current="step"':"")+' style="--c:var(--ink)"'+
+' class="secondary'+(n?' done':'')+'"'+'><span class="dot"></span><span class="t">Reply ('+n+" of "+Q.length+")</span></button>";
+h+='<div class="legend">';
+Object.keys(R).forEach(function(k){h+='<i style="background:'+R[k][1]+'"></i>'+R[k][0]+"<br>";});
+rail.innerHTML=h+"</div>";
+}
+rail.addEventListener("click",function(e){var b=e.target.closest("button");if(b)go(+b.dataset.i);});
+function drawQ(){
+var q=Q[cur],a=ans[cur],h='<span class="badge" style="background:'+R[q.r][1]+'">'+R[q.r][0]+'</span><span class="qn">Question '+(cur+1)+" of "+Q.length+"</span>"+
+'<h2 class="q">'+esc(q.q)+'</h2><p class="why">'+fmt(q.y)+"</p>"+(q.p?'<p class="probe"><b>Probe</b> '+fmt(q.p)+"</p>":"")+
+'<div class="meta"><span><b>Most it moves</b>'+fmt(q.c)+"</span><span><b>Interacts</b>"+fmt(q.x)+'</span></div><div class="opts">';
+q.o.forEach(function(o,i){
+h+='<button type="button" class="opt secondary'+(a&&a.i===i?" picked":"")+'" data-o="'+i+'"><b>'+esc(o[0])+
+(q.l===i?'<span class="tag">agent’s lean</span>':"")+'</b><span class="d">'+esc(o[1])+"</span><code>Changes: "+esc(o[2])+"</code></button>";
+});
+h+='</div><p class="lean callout"><b>Agent’s lean: '+esc(q.o[q.l][0])+".</b> "+esc(q.w)+"</p>"+
+'<div class="other"><input id="oth" aria-label="Your own answer" placeholder="Or write your own answer" value="'+(a&&a.i<0?esc(a.t):"")+'"><button type="button" id="othGo">Answer</button></div>'+
+'<div class="nav"><button type="button" class="link secondary" id="back"'+(cur?"":" disabled")+'>← Previous</button><span>Pick an option to continue</span></div>';
+stage.innerHTML=h;
+stage.querySelectorAll(".opt").forEach(function(b){
+b.addEventListener("click",function(){var i=+b.dataset.o;ans[cur]={i:i,t:q.o[i][0],c:q.o[i][2]};go(cur+1);});
+});
+var inp=$("#oth");
+function own(){var v=inp.value.trim();if(!v){inp.focus();return;}ans[cur]={i:-1,t:v,c:""};go(cur+1);}
+$("#othGo").addEventListener("click",own);
+inp.addEventListener("keydown",function(e){if(e.key==="Enter")own();});
+$("#back").addEventListener("click",function(){go(cur-1);});
+}
+function reply(){
+var L=["My answers to the artifact-gate interview:",""];
+Q.forEach(function(q,i){
+var a=ans[i];
+L.push((i+1)+". "+q.s+": "+(a?a.t+(a.i<0?" (my wording; ask if unclear)":""):"unanswered; take your lean ("+q.o[q.l][0]+") and flag it in the buy-in doc"));
+if(a&&a.c&&a.c!=="no change")L.push("   Change: "+a.c);
+});
+var s3=ans[2]&&ans[2].i===1,s4=ans[3]&&ans[3].i===2,n=[];
+if(s3||s4)n.push((s3&&s4?"Answers 3 and 4 share one":"Answer "+(s3?3:4)+" needs a")+" schema 7 bump; answer 7 then covers schema-6 records too.");
+if(ans[0]&&ans[0].i===3&&(ans[4]&&ans[4].i>0||ans[5]&&ans[5].i===2))n.push("With answer 1, CI checks no order, so answers 5 and 6 bind only in local complete runs.");
+if(n.length)L.push("","Interactions:","- "+n.join("\n- "));
+L.push("","Before writing code, sort these into changes for this PR and follow-up tasks.",
+"Anything that would fail this PR's own partial record, whose pages came after the code, goes in a follow-up.",
+"Add a failing test in xtask/tests/artifacts.rs before each gate change.");
+return L.join("\n");
+}
+function drawSum(){
+var rows="";
+Q.forEach(function(q,i){
+var a=ans[i];
+rows+="<tr><td>"+(i+1)+". "+esc(q.s)+"</td><td>"+(a?esc(a.t):'<span class="muted">unanswered; lean: '+esc(q.o[q.l][0])+"</span>")+
+'</td><td><button type="button" class="link secondary" data-i="'+i+'">edit</button></td></tr>';
+});
+stage.innerHTML='<span class="badge" style="background:var(--ink)">Your reply</span><h2 class="q">'+ans.filter(Boolean).length+" of "+Q.length+" answered</h2>"+
+'<div class="table-scroll"><table class="sum"><tbody>'+rows+"</tbody></table></div>"+
+'<div class="copyrow"><b>Reply to send back</b><button type="button" id="copy">Copy reply</button></div><pre id="reply">'+esc(reply())+"</pre>";
+stage.querySelectorAll("td .link").forEach(function(b){b.addEventListener("click",function(){go(+b.dataset.i);});});
+var c=$("#copy");
+c.addEventListener("click",function(){
+var t=reply(),done=function(){c.textContent="Copied";setTimeout(function(){c.textContent="Copy reply";},1500);};
+try{navigator.clipboard.writeText(t).then(done,done);}catch(e){done();}
+});
+}
+function go(i){cur=Math.max(0,Math.min(i,Q.length));drawRail();if(cur===Q.length)drawSum();else drawQ();}
+go(0);
+})();
+</script>
+</body>
+</html>

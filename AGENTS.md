@@ -4,7 +4,12 @@ Start here. This is a map; follow the linked source for the current task.
 
 1. Read [product intent](docs/PRODUCT.md), [architecture](ARCHITECTURE.md),
    and the nearest package's AGENTS.md before editing.
-2. Inspect the existing implementation and applicable acceptance criteria.
+2. Produce the task's [HTML artifacts](docs/ARTIFACTS.md): five discovery pages
+   before code, implementation notes during the work, buy-in and quiz before
+   merge. Each page comes from its prompt in that guide, written by a dedicated
+   author against its exemplar and judged by an independent reviewer.
+   Inspect the existing implementation and
+   applicable acceptance criteria.
    Use `cargo xtask gaps` for ranked work and the driver to observe product behavior.
    Use `cargo xtask map` and `rg` to locate owners and dependencies.
 3. Run `cargo xtask doctor` on first setup and `cargo xtask check fast`
