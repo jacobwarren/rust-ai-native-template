@@ -83,6 +83,29 @@ fn small_task_is_refused_past_100_lines_at_handoff() {
         e.contains("restart it as a standard task on a new branch"),
         "{v}"
     );
+    // A blocked handoff may stop while the gap register is broken, but not past the size limit.
+    let mut blocked = small(&f, "blocked");
+    blocked["remaining"] = json!(["Repair the gap register"]);
+    f.write("harness/tasks/TASK-1.json", blocked);
+    std::fs::remove_file(f.0.join("harness/gaps.json")).unwrap();
+    let o = Command::new(env!("CARGO_BIN_EXE_xtask"))
+        .args([
+            "agent-stop",
+            "--task",
+            "TASK-1",
+            "--base",
+            &base,
+            "--report",
+            "target/none.json",
+        ])
+        .current_dir(&f.0)
+        .output()
+        .unwrap();
+    let out = String::from_utf8_lossy(&o.stdout);
+    assert!(
+        !o.status.success() && !out.contains("blocked_handoff"),
+        "{out}"
+    );
 }
 
 #[test]
@@ -153,9 +176,23 @@ fn every_page_check_reads_the_tier() {
         true
     );
     assert_eq!(
-        f.run(&["task-artifact", "guard", "--task", "TASK-1"])["ok"],
-        true
+        f.run(&["task-artifact", "guard", "--task", "TASK-1"])["tier"],
+        "small"
     );
+    // The opt-in apply_patch hook asks the same guard.
+    let mut hook = Command::new(env!("CARGO_BIN_EXE_xtask"))
+        .args(["artifact-hook", "--task", "TASK-1"])
+        .current_dir(&f.0)
+        .stdin(std::process::Stdio::piped())
+        .stdout(std::process::Stdio::piped())
+        .spawn()
+        .unwrap();
+    std::io::Write::write_all(
+        hook.stdin.as_mut().unwrap(),
+        br#"{"tool_name":"apply_patch","tool_input":{"command":"*** Begin Patch\n*** Update File: implementation.rs\n*** End Patch"}}"#,
+    )
+    .unwrap();
+    assert!(hook.wait().unwrap().success());
     // A page a small task chooses to write must still carry the stylesheet.
     f.text("harness/task-artifacts/TASK-1/plan.html", "<p>no style</p>");
     let o = Command::new(env!("CARGO_BIN_EXE_xtask"))
@@ -191,6 +228,22 @@ fn tier_is_small_or_standard_and_defaults_to_standard() {
         !o.status.success() && out.contains("unknown variant"),
         "{out}"
     );
+    // The guard reports a bad tier as itself, never as missing pages.
+    for bad in [json!("Small"), Value::Null] {
+        let mut r = f.record("partial");
+        r["tier"] = bad;
+        f.write("harness/tasks/TASK-1.json", r);
+        let o = Command::new(env!("CARGO_BIN_EXE_xtask"))
+            .args(["task-artifact", "guard", "--task", "TASK-1"])
+            .current_dir(&f.0)
+            .output()
+            .unwrap();
+        let out = String::from_utf8_lossy(&o.stdout);
+        assert!(
+            !o.status.success() && !out.contains("missing blindspots"),
+            "{out}"
+        );
+    }
     // No tier field means standard: discovery pages are required.
     f.write("harness/tasks/TASK-1.json", f.record("complete"));
     let o = Command::new(env!("CARGO_BIN_EXE_xtask"))

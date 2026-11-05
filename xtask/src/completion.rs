@@ -28,13 +28,18 @@ pub fn task(
             }
         }),
     };
+    let size_result = match task.tier {
+        Tier::Small => size::check_small(root, base),
+        Tier::Standard => Ok(()),
+    };
     let current = match tracking::load(root) {
         Ok(gaps) => gaps,
         Err(e)
             if task.status == Status::Blocked
                 && !must_complete
                 && task_record::review_errors(&task).is_empty()
-                && artifact_result.is_ok() =>
+                && artifact_result.is_ok()
+                && size_result.is_ok() =>
         {
             return Ok(json!({"ok":true,"complete":false,"task":task.id,
                 "reconciliation_pending":true,"gap_register_error":e.to_string(),
@@ -47,9 +52,7 @@ pub fn task(
     if let Err(e) = artifact_result {
         errors.push(format!("task HTML artifact: {e}"));
     }
-    if task.tier == Tier::Small
-        && let Err(e) = size::check_small(root, base)
-    {
+    if let Err(e) = size_result {
         errors.push(format!("task tier small: {e}"));
     }
     if must_complete && task.status != Status::Complete {

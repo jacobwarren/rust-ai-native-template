@@ -34,6 +34,23 @@ fn author_mode_allows_only_the_artifact_folder_and_outside_paths() {
         json!({"file_path":"/tmp/notes.txt","content":"x"}),
     );
     assert_eq!(hook(&f, "author", "claude", &outside, None).code, 0);
+    // Where Git ignores case, a differently spelled root is still the checkout.
+    f.git(&["config", "core.ignorecase", "true"]);
+    let upper = f.0.to_str().unwrap().to_uppercase();
+    let cased = event(
+        &f,
+        "Edit",
+        json!({"file_path":format!("{upper}/xtask/src/main.rs")}),
+    );
+    assert_eq!(hook(&f, "author", "claude", &cased, None).code, 2);
+    f.git(&["config", "--unset", "core.ignorecase"]);
+    // Known limit: a symlink outside the checkout reads as outside (the hook never
+    // touches the disk); Bash and the default guard are the other line.
+    let link = f.0.with_extension("link");
+    std::os::unix::fs::symlink(f.0.join("xtask"), &link).unwrap();
+    let via = event(&f, "Edit", json!({"file_path":link.join("src/main.rs")}));
+    assert_eq!(hook(&f, "author", "claude", &via, None).code, 0);
+    std::fs::remove_file(&link).unwrap();
     // Bash is not this hook's job: the default guard and the brief cover it.
     assert_eq!(
         hook(&f, "author", "claude", &shell(&f, "rm -rf xtask"), None).code,

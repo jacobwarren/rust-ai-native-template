@@ -108,7 +108,7 @@ pub fn check_small(root: &Path, base: &str) -> Result<()> {
         return Ok(());
     }
     Err(format!(
-        "{}; a small task needs none of these. Split the work into small tasks, or restart it as a standard task on a new branch with its discovery pages committed before code (docs/ARTIFACTS.md)",
+        "{}; a small task changes at most {SMALL_LINES} lines and none of these paths. Narrow the change, or restart it as a standard task on a new branch with its discovery pages committed before code (docs/ARTIFACTS.md)",
         problems.join("; ")
     )
     .into())
