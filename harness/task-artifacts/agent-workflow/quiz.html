@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Quiz before merge: agent-workflow</title>
+<style>
+  main{max-width:62rem;line-height:1.55;padding-top:var(--space-6)}
+  h1{margin-block:var(--space-4) var(--space-4)}
+  h2{margin-block:var(--space-8) var(--space-3)}
+  .lead{font-size:1.12rem}
+  p{margin-block:var(--space-3)}
+  table{font-size:.94rem}
+  th,td{padding:var(--space-2) var(--space-3)}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
+  @media (max-width:48rem){.opts{grid-template-columns:1fr}}
+  code{font-size:.88em;background:var(--accent-soft);padding:.05em .3em;border-radius:.25rem}
+  pre code{background:none;padding:0}
+  .promptcard{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-4) var(--space-6);margin-block:var(--space-6)}
+  .promptcard .label{font-size:var(--text-small);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:650}
+  .promptcard blockquote{background:none;border:none;padding:0;margin:var(--space-2) 0 0;font-style:italic;padding-right:7.5rem}
+  .promptcard button{position:absolute;top:var(--space-3);right:var(--space-3);min-height:36px;padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+  .stats{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-block:var(--space-6)}
+  .stat{flex:1;min-width:8.5rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-3) var(--space-4)}
+  .stat b{display:block;font-size:1.4rem;line-height:1.15}
+  .stat span{font-size:var(--text-small);color:var(--muted)}
+  .add{color:var(--accent)} .del{color:var(--danger)}
+  /* before / after */
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-top:var(--space-4)}
+  @media (max-width:44rem){.pair{grid-template-columns:1fr}}
+  .flow{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-4)}
+  .flow.after{border-color:var(--accent)}
+  .flow h3{margin:0 0 var(--space-3);font-size:var(--text-small);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .flow.after h3{color:var(--accent)}
+  .node{border:1px solid var(--line);border-radius:var(--control-radius);padding:var(--space-2) var(--space-3);font:var(--text-small)/1.45 var(--font-code);text-align:center;background:var(--paper)}
+  .node.new{border-color:var(--accent);background:var(--accent-soft)}
+  .node.stop{border-color:var(--danger);background:#fbeeee;color:var(--danger)}
+  .arrow{text-align:center;color:var(--muted);font-size:var(--text-small);line-height:1.6}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
+  /* code excerpt */
+  .excerpt{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-block:var(--space-4);overflow:hidden}
+  .excerpt .where{font:var(--text-small) var(--font-code);color:var(--muted);padding:var(--space-2) var(--space-4);border-bottom:1px solid var(--line);background:var(--paper)}
+  .excerpt pre{border:none;margin:0;border-radius:0;font-size:.8rem;line-height:1.45;padding:var(--space-3) var(--space-4)}
+  .excerpt .hl{background:var(--warning-soft);display:inline-block;width:100%}
+  .excerpt .note{font-size:var(--text-small);padding:var(--space-2) var(--space-4);border-top:1px solid var(--line);color:var(--ink)}
+  /* behaviours */
+  .beh{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-block:var(--space-3);overflow:hidden}
+  .beh h3{margin:0;padding:var(--space-3) var(--space-4);background:var(--paper);border-bottom:1px solid var(--line);font-size:1.02rem}
+  .beh h3 span{font-family:var(--font-code);color:var(--accent);margin-right:var(--space-2)}
+  .beh dl{display:grid;grid-template-columns:4.5rem 1fr;gap:var(--space-1) var(--space-3);font-size:.96rem;margin:0;padding:var(--space-3) var(--space-4)}
+  .beh dt{font-size:var(--text-small);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:.15em}
+  .beh dd{margin:0}
+  @media (max-width:40rem){.beh dl{grid-template-columns:1fr}.beh dt{padding-top:0}}
+  .chip{font:.8rem var(--font-code);background:var(--paper);border:1px solid var(--line);border-radius:.3rem;padding:.05em .4em;white-space:nowrap}
+  .done th{white-space:nowrap;font-size:var(--text-small);width:8rem}
+  @media (max-width:40rem){.done th{white-space:normal;width:auto}}
+  /* quiz */
+  .rule{display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-8);color:var(--muted);font-size:var(--text-small);text-transform:uppercase;letter-spacing:.1em}
+  .rule::before,.rule::after{content:"";flex:1;height:1px;background:var(--line)}
+  .qhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-3)}
+  .score{font:var(--text-small) var(--font-code);background:var(--surface);border:1px solid var(--line);border-radius:var(--control-radius);padding:var(--space-2) var(--space-3)}
+  .q{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-3) var(--space-4);margin-block:var(--space-3)}
+  .q.right{border-color:var(--accent)} .q.wrong{border-color:var(--danger)}
+  .q .n{font:650 var(--text-small) var(--font-code);color:var(--accent);margin-right:var(--space-1)}
+  .q .text{margin:0 0 var(--space-3)}
+  .q pre{font-size:.8rem;margin:0 0 var(--space-3)}
+  .opt{display:flex;gap:var(--space-3);width:100%;text-align:left;margin:0;font-size:.94rem;line-height:1.45;background:var(--paper) !important;color:var(--ink) !important;border:1px solid var(--line) !important;min-height:auto;padding:var(--space-2) var(--space-3)}
+  .opt:hover:not(:disabled){border-color:var(--muted) !important}
+  .opt .k{font-family:var(--font-code);color:var(--muted);flex:none}
+  .opt:disabled{opacity:1;cursor:default}
+  .opt.sel-right{border-color:var(--accent) !important;background:var(--accent-soft) !important}
+  .opt.sel-wrong{border-color:var(--danger) !important;background:#fbeeee !important}
+  .opt.reveal{border-color:var(--accent) !important}
+  .opt.dim{opacity:.55}
+  .fb{display:none;margin-top:var(--space-3);border-radius:var(--control-radius);padding:var(--space-3);font-size:var(--text-small)}
+  .fb.show{display:block}
+  .fb.good{background:var(--accent-soft);border:1px solid var(--accent)}
+  .fb.bad{background:var(--warning-soft);border:1px solid var(--warning)}
+  .fb .tag{font-weight:650;margin-bottom:var(--space-1)}
+  .fb .ran{display:block;margin-top:var(--space-2);font-family:var(--font-code);font-size:.78rem;color:var(--muted);overflow-wrap:anywhere}
+  .result{display:none;margin-top:var(--space-6)}
+  .result.show{display:block}
+  .pass{border:1px solid var(--accent);background:var(--accent-soft);border-radius:var(--radius);padding:var(--space-4) var(--space-6)}
+  .fail{border:1px solid var(--warning);background:var(--warning-soft);border-radius:var(--radius);padding:var(--space-4) var(--space-6)}
+  .pass h3,.fail h3{margin-top:0}
+  .checks{list-style:none;padding:0;margin:0}
+  .checks li{padding:var(--space-1) 0;border-bottom:1px dashed var(--line);font-size:var(--text-small)}
+  .checks li:last-child{border:none}
+  .reply{margin-top:var(--space-6)} .reply h2{margin-top:0} .reply label{margin-block:var(--space-2)}
+  main > footer{margin-top:var(--space-6);padding-top:var(--space-3)}
+  .reply output{white-space:pre-wrap;font:var(--text-small)/1.5 var(--font-code)}
+  .row{display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">agent-workflow · Before merge</div>
+  <h1>Ceremony that scales: what changed and why</h1>
+  <p class="lead">This branch lets a small task skip the eight task pages, makes the page briefs loadable skills for Claude Code and Codex, defines the page author and reviewer as subagents, and shortens AGENTS.md. Read the four sections, then pass the quiz. No question is answered on the page: each one puts two of its facts together in a case it does not spell out.</p>
+
+  <div class="promptcard">
+    <div class="label">The prompt</div>
+    <button type="button" id="copyPrompt">Copy prompt</button>
+    <blockquote id="promptText">I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass.</blockquote>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>34</b><span>files outside the task pages</span></div>
+    <div class="stat"><b class="add">+1,213</b><span>lines added</span></div>
+    <div class="stat"><b class="del">&minus;98</b><span>lines removed</span></div>
+    <div class="stat"><b>10</b><span>new tests in tiers, hooks_author, hooks_guard</span></div>
+  </div>
+
+  <section id="context">
+    <h2>1 · Context</h2>
+    <p>Every task that touched product code owed eight HTML pages, each with its own author and reviewer: sixteen or more agent runs for a one-line fix, while AGENTS.md step 4 said "Small changes need no ceremony". The owner asked for the context-engineering version: rules say what to do, hooks always run, skills load on demand, subagents isolate context, no red tape.</p>
+  </section>
+
+  <section id="model">
+    <h2>2 · The mental model</h2>
+    <p>The tier is a promise written into the task record at the start; nothing infers it. Gates that know the merge base hold the branch to it.</p>
+    <div class="pair">
+      <div class="flow">
+        <h3>Before · one path for every task</h3>
+        <div class="node">task record</div>
+        <div class="arrow">&darr;</div>
+        <div class="node">5 discovery pages before code, then notes, buy-in, quiz</div>
+        <div class="arrow">&darr; 8 authors + 8 reviewers</div>
+        <div class="node">complete: pages present, commit order read</div>
+      </div>
+      <div class="flow after">
+        <h3>After · the record picks the path</h3>
+        <div class="node new">task record &middot; "tier" (absent = standard)</div>
+        <div class="split">
+          <div><div class="arrow">&darr; standard</div><div class="node">the same eight pages</div></div>
+          <div><div class="arrow">&darr; small</div><div class="node new">no pages; size::check_small at handoff and complete</div></div>
+        </div>
+        <div class="arrow">&darr; too many lines, or a forcing path</div>
+        <div class="node stop">refused: narrow it, or restart standard on a new branch</div>
+      </div>
+    </div>
+    <p>Only <code>handoff</code>, <code>complete</code> and <code>agent-stop</code> hold a base, so only they run <code>size::check_small</code>; <code>coordination</code>, <code>task-artifact guard</code> and <code>check</code> parse the tier but do not measure. Growth surfaces at the next handoff, which CI runs on every pull request. There is no same-branch switch to standard: its discovery pages would have to precede a code commit that already exists.</p>
+  </section>
+
+  <section id="behaviours">
+    <h2>3 · Intuition: four behaviours a diff skim misses</h2>
+
+    <div class="beh" id="b1">
+      <h3><span>01</span>The count is Git's own, with rename detection off, and administrative paths skipped first</h3>
+      <dl>
+        <dt>What</dt><dd><code>size::changes</code> takes added plus deleted per path from <code>git diff --numstat --no-renames BASE</code>, committed or not, plus each untracked file's line count. A binary file is a problem by itself.</dd>
+      </dl>
+      <div class="excerpt" id="loop" style="margin:0 var(--space-4) var(--space-4)">
+        <div class="where">xtask/src/size.rs: check_small</div>
+<pre><code>for (path, lines) in changes(root, base)? {
+<span class="hl">    if artifacts::administrative(&amp;path) { continue; }</span>
+    if forces_standard(&amp;path) { problems.push(… "is a policy, dependency or ceremony path") }
+    match lines { Some(n) =&gt; total += n, None =&gt; problems.push(… "is a binary file") }
+}
+if total &gt; SMALL_LINES { problems.push(… "changed lines exceed the small limit") }   // SMALL_LINES = 100</code></pre>
+        <div class="note">The first test skips a path entirely: task records and pages, transition receipts, the docs and gap registers and anything under <code>docs/plans/</code> are neither counted nor checked (<code>artifacts::administrative</code>).</div>
+      </div>
+    </div>
+
+    <div class="beh" id="b2">
+      <h3><span>02</span>Some paths force a standard task however few lines they change</h3>
+      <div class="excerpt" style="margin:var(--space-4)">
+        <div class="where">xtask/src/size.rs: forces_standard · xtask/src/transitions.rs: protected</div>
+<pre><code>transitions::protected(path)       // PREFIXES.any(|p| path.starts_with(p)) || FILES.contains(&amp;path)
+<span class="hl">    || path == "Cargo.toml" || path.ends_with("/Cargo.toml")</span>
+    || CEREMONY.iter().any(|c| path == *c || (c.ends_with('/') &amp;&amp; path.starts_with(c)))
+
+PREFIXES  xtask/  .github/  scripts/  .cargo/  harness/goldens/  .claude/  .codex/
+FILES     Cargo.toml  Cargo.lock  AGENTS.md  docs/{COMPLETION,PRODUCT,READINESS}.md
+          harness/{config,readiness,tracking,workflows,scenarios}.json
+CEREMONY  docs/ARTIFACTS.md  docs/skills/  .agents/skills/  .claude/skills/  .claude/agents/  .codex/agents/</code></pre>
+        <div class="note">Three lists over repository-relative paths. The first is the table that already demanded transition receipts; it names only the root manifest, so <code>size.rs</code> adds the highlighted line for crate manifests. The ceremony list stops a small task rewriting what small means.</div>
+      </div>
+    </div>
+
+    <div class="beh" id="b3">
+      <h3><span>03</span>The record and the blocked stop both fail closed</h3>
+      <dl>
+        <dt>Tier</dt><dd><code>#[serde(rename_all = "snake_case")] enum Tier { Small, #[default] Standard }</code> in a <code>#[serde(default)]</code> field on <code>Task</code>. Older records stay standard and the schema stays at 6. Every command that reads a record parses it this way.</dd>
+        <dt>Stop</dt><dd>A blocked task may stop while <code>harness/gaps.json</code> does not parse only when its review answers, page check and size check are all clean. Otherwise <code>completion::task</code> returns the register's error at once, before it gathers the task's own errors.</dd>
+      </dl>
+    </div>
+
+    <div class="beh" id="b4">
+      <h3><span>04</span>Skills live twice, and the author's write limit is a hook with known edges</h3>
+      <dl>
+        <dt>Skills</dt><dd>Claude Code reads <code>.claude/skills/</code>, Codex reads <code>.agents/skills/</code>, and the harness rejects symlinks, so author-artifact, review-artifact and the new add-product-command each exist twice. <code>checks::skill_copies</code> runs two independent checks: DOC007 compares each file with its twin byte for byte, and DOC008 reads the frontmatter of every SKILL.md in both trees and wants its <code>name:</code> to equal its folder.</dd>
+        <dt>Agents</dt><dd><code>artifact-author</code> (Opus) runs <code>agent-hook.sh author claude</code> before every Edit and Write; <code>artifact-reviewer</code> (Sonnet) has no Edit or Write but keeps Bash. Codex roles have no write limit.</dd>
+        <dt>Hook</dt><dd><code>author</code> makes the path relative to the checkout Git reports for the event's cwd, as text, without resolving symlinks. Inside, only <code>harness/task-artifacts/&lt;task&gt;/&lt;file&gt;</code> passes. Outside, it finds the main checkout through Git's shared directory and blocks a path there, which can only happen when the session runs in a linked worktree; every other outside path passes, for screenshots and scratch files.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="done">
+    <h2>4 · What was done</h2>
+    <table class="done">
+      <tbody>
+        <tr><th scope="row">Tier and gate</th><td><code>Tier</code> on <code>Task</code>; new <code>size.rs</code>; <code>check_small</code> in <code>completion::task</code>; validate, guard and <code>task-artifact check</code> skip pages for small. Tests: <code>tiers.rs</code>.</td></tr>
+        <tr><th scope="row">Skills and roles</th><td>Two briefs moved from <code>docs/skills/</code> into both host folders (<code>investigate.md</code> stays as the GEPA seed); add-product-command is new. Roles in <code>.claude/agents/</code> and <code>.codex/agents/</code>; author mode and case folding in <code>agent-hook.sh</code>. Tests: <code>hooks_author.rs</code>, <code>hooks_guard.rs</code>.</td></tr>
+        <tr><th scope="row">Docs</th><td>AGENTS.md steps 2 and 7 trimmed to 71 lines, plus one rule: prefer cargo, clippy and xtask over new scripts, and add no setup steps or approval gates unasked. ARTIFACTS.md gains "Task size".</td></tr>
+      </tbody>
+    </table>
+    <blockquote id="leans"><strong>Existing behaviour this leans on.</strong> The gate borrows two tables it does not own: <code>transitions::protected</code> (what forces standard) and <code>artifacts::administrative</code> (what is skipped, and which commits count as product code for page order). Widening either for its own reason silently changes what a small task may do; <code>tiers.rs</code> pins sample paths, not the tables.</blockquote>
+  </section>
+  <div class="rule">Prove it</div>
+  <div class="qhead">
+    <div><h2 style="margin-bottom:var(--space-1)">Seven cases before you merge</h2><div class="muted">Work each case out from the sections above; the feedback shows what the command printed.</div></div>
+    <div class="score">Score <b id="scoreNow">0</b>/<b id="scoreMax">7</b> · <span id="answered">0</span> answered</div>
+  </div>
+  <div id="quiz"></div>
+
+  <div class="result" id="resPass">
+    <div class="pass">
+      <h3>Cleared to merge</h3>
+      <p>7/7. You can explain to the next agent why its branch was refused. What remains is judgement, not understanding:</p>
+      <ul class="checks">
+        <li>&#9675; The limit of 100 is the agent's recommendation; changing it later is a standard task</li>
+        <li>&#9675; Codex roles have no write limit, and Claude agent hooks need a trusted workspace</li>
+        <li>&#9675; A feature split across several small branches passes each gate; reviewers are the check</li>      </ul>
+    </div>
+  </div>
+  <div class="result" id="resFail">
+    <div class="fail">
+      <h3 id="failTitle">Not yet</h3>
+      <p>Re-read these, then reset:</p>
+      <ul id="failLinks"></ul>
+      <button type="button" class="secondary" id="retry">Reset quiz</button>
+    </div>
+  </div>
+
+  <section class="reply" id="reply">
+    <h2>Your reply</h2>
+    <label>Anything that should change before merge (optional)
+      <textarea id="comment" style="min-height:3rem" rows="2" placeholder="e.g. administrative() should not skip binaries; or: raise the limit to 150"></textarea>
+    </label>
+    <div class="row"><button type="button" id="copyReply">Copy reply</button><span class="muted" id="copied"></span></div>
+    <output id="replyText"></output>
+  </section>
+
+  <footer>agent-workflow · quiz before merge</footer>
+</main>
+
+<script>
+(function(){
+  function copy(text, done){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select();
+      try{document.execCommand('copy');}catch(e){} document.body.removeChild(t); done();
+    }
+  }
+  var cp=document.getElementById('copyPrompt');
+  cp.addEventListener('click',function(){copy(document.getElementById('promptText').textContent,function(){cp.textContent='Copied';setTimeout(function(){cp.textContent='Copy prompt';},1500);});});
+
+  // Each question: options[0] is the correct one; display order is shuffled.
+  var QS=[
+    {q:'A small task’s only product change is <code>git mv crates/engine/src/journal.rs crates/engine/src/log.rs</code>: a 60-line file, contents untouched. <code>git diff --stat main</code> prints <code>{journal.rs =&gt; log.rs} | 0</code>. The agent runs handoff. What happens?',
+     opts:['Refused: the gate sees 120 changed lines',
+           'Passes: an untouched file adds nothing to the count',
+           'Passes: the gate sees 60 changed lines',
+           'Refused: deleting a source file needs a standard task'],
+     good:'With rename detection off, Git reports the move as 60 deleted lines in journal.rs and 60 added lines in log.rs. The stat line that shows 0 uses Git’s default diff, which pairs the two.',
+     ran:'handoff → "task tier small: 120 changed lines exceed the small limit of 100"',
+     anchor:'b1', label:'01 · The count is Git’s own, with rename detection off'},
+    {q:'Two small branches add the same two-line <code>[build] rustflags</code> entry. Branch A appends it to <code>.cargo/config.toml</code>; branch B creates <code>crates/engine/.cargo/config.toml</code>, which Cargo reads when run inside that crate. Nothing else changes outside the task record. Handoff on each?',
+     opts:['A is refused and B passes',
+           'Both pass: neither file is a Cargo.toml',
+           'Both are refused: Cargo config forces standard anywhere',
+           'A passes and B is refused'],
+     good:'The policy prefixes are tested with <code>starts_with</code> on the repository-relative path, so <code>.cargo/</code> catches the root folder and nothing deeper. The any-depth rule exists only for files named <code>Cargo.toml</code>. B therefore counts as two ordinary lines.',
+     ran:'handoff A → "task tier small: .cargo/config.toml is a policy, dependency or ceremony path"; handoff B → "ok": true',
+     anchor:'b2', label:'02 · Paths that force a standard task'},
+    {q:'An agent creates its record with <code>"tier": "Small"</code> and changes 12 lines in <code>crates/app</code>. It runs <code>cargo xtask coordination</code>. What does it get?',
+     opts:['An error naming Small; guard and handoff fail the same way',
+           'ok: an unknown tier falls back to standard',
+           'ok: tiers match case-insensitively, so the task is small',
+           'ok: coordination ignores the tier; only handoff would fail'],
+     good:'<code>#[serde(default)]</code> only fills a missing field. A present value must be one of the snake_case variants, so serde rejects "Small" as an unknown variant, and every command that reads the record fails with it.',
+     ran:'coordination, task-artifact guard, task-artifact check, handoff → "unknown variant `Small`, expected `small` or `standard`"',
+     anchor:'b3', label:'03 · The record and the blocked stop fail closed'},
+    {q:'A small task is blocked. Its record lists remaining work and answers all four review questions. The branch adds 30 lines in <code>crates/domain</code> and one line to <code>docs/COMPLETION.md</code>, and <code>harness/gaps.json</code> is half-edited and does not parse. The stop hook runs agent-stop. What comes back?',
+     opts:['Refused with the register’s parse error alone',
+           'ok: blocked handoff; size waits until the register parses',
+           'Refused, listing docs/COMPLETION.md among the task’s errors',
+           'ok: 31 lines is under the limit, so the stop is allowed'],
+     good:'COMPLETION.md forces standard, so the size result is an error and the early return is not taken. The next arm returns the register error at once, before any task errors are collected. Without the COMPLETION.md line the same branch stops as a blocked handoff.',
+     ran:'agent-stop → the gap register’s parse error, "ok": false; without that line → "kind":"blocked_handoff", "ok": true',
+     anchor:'b3', label:'03 · The record and the blocked stop fail closed'},
+    {q:'To rename a skill for Codex only, someone changes one line in <code>.agents/skills/review-artifact/SKILL.md</code>: <code>name: review-artifact</code> becomes <code>name: artifact-review</code>. The folder and the <code>.claude/skills/</code> copy are untouched. How many errors does <code>cargo xtask docs</code> report?',
+     opts:['Two: the pair differs, and the edited copy misnames its folder',
+           'One: the pair differs; the folder rule reads only .claude/skills/',
+           'One: the edited copy’s name; the pair check skips frontmatter',
+           'Three: the pair, plus a folder error in each tree'],
+     good:'The two checks do not know about each other. DOC007 sees one changed line, so the pair differs. DOC008 reads every SKILL.md in both trees; the <code>.claude/skills/</code> copy still names its folder, and only the edited copy fails. A rename means a new folder in both trees.',
+     ran:'docs → "DOC007 skills/review-artifact/SKILL.md: the .claude/skills and .agents/skills copies must be identical", "DOC008 .agents/skills/review-artifact/SKILL.md: frontmatter must open with --- and set name: review-artifact"',
+     anchor:'b4', label:'04 · Skills live twice'},
+    {q:'The artifact-author subagent runs in the main checkout <code>/work/tpl</code>. A linked worktree of the same repository sits beside it at <code>/work/tpl-wt</code>. The subagent calls Write on <code>/work/tpl-wt/xtask/src/size.rs</code>. What does its author hook do?',
+     opts:['Lets the write through',
+           'Refuses: size.rs is not a task page',
+           'Refuses: the target is a checkout of the same repository',
+           'Lets it through, noting the branch now owes a receipt'],
+     good:'Relative to the session’s checkout, <code>/work/tpl-wt</code> is outside, so the task-page rule never runs. The outside branch blocks only paths in the main checkout, and the session is the main checkout. The default guard sees an outside path too, so no receipt note either. The reverse direction, worktree to main checkout, is blocked.',
+     ran:'agent-hook.sh author claude, cwd = main checkout, path in the worktree → exit 0 {}; agent-hook.sh guard claude, same event → exit 0 {}',
+     anchor:'b4', label:'04 · The author hook’s outside-path rule'},
+    {q:'Two small branches each add 20 lines to <code>crates/domain/src/lib.rs</code>. Branch A also adds a new 90-line <code>docs/plans/rollout.md</code>; branch B adds a new 90-line <code>docs/GUIDE.md</code> instead. Handoff on each?',
+     opts:['A passes and B is refused',
+           'Both pass: Markdown is not code, so neither file counts',
+           'Both are refused: each branch has 110 changed lines',
+           'Both are refused: a small task may not change anything under docs/'],
+     good:'Only <code>docs/plans/</code> is administrative, so A counts 20 lines. <code>docs/GUIDE.md</code> counts like any file, so B totals 110. Under <code>docs/</code>, only ARTIFACTS.md, COMPLETION.md, PRODUCT.md, READINESS.md and <code>skills/</code> force standard; GUIDE.md is none of them.',
+     ran:'handoff A → "ok": true; handoff B → "110 changed lines exceed the small limit of 100"',
+     anchor:'loop', label:'The check_small loop and what it skips'}
+  ];
+  var KEYS=['A','B','C','D'];
+  var answers, order;
+  var quiz=document.getElementById('quiz');
+  function shuffle(n){var a=[];for(var i=0;i<n;i++)a.push(i);for(var j=n-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[k];a[k]=t;}return a;}
+  function build(){
+    answers=QS.map(function(){return null;}); order=[]; quiz.innerHTML='';
+    QS.forEach(function(it,qi){
+      var ord=shuffle(it.opts.length); order.push(ord);
+      var d=document.createElement('div'); d.className='q'; d.id='q'+qi;
+      var h='<div class="text"><span class="n">'+(qi+1)+'/'+QS.length+'</span> '+it.q+'</div>';
+      h+='<div class="opts">';
+      ord.forEach(function(oi,pos){h+='<button type="button" class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="k">'+KEYS[pos]+'</span><span>'+it.opts[oi]+'</span></button>';});
+      h+='</div><div class="fb" id="fb'+qi+'"></div>'; d.innerHTML=h; quiz.appendChild(d);
+    });
+    document.getElementById('scoreMax').textContent=QS.length;
+    update(); document.getElementById('resPass').classList.remove('show'); document.getElementById('resFail').classList.remove('show');
+  }
+  quiz.addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    var qi=+b.dataset.q, oi=+b.dataset.o, it=QS[qi]; if(answers[qi]!==null) return;
+    var right=oi===0; answers[qi]=right;
+    var d=document.getElementById('q'+qi); d.classList.add(right?'right':'wrong');
+    d.querySelectorAll('.opt').forEach(function(x){
+      x.disabled=true; var xo=+x.dataset.o;
+      if(xo===oi) x.classList.add(right?'sel-right':'sel-wrong');
+      else if(xo===0) x.classList.add('reveal'); else x.classList.add('dim');
+    });
+    var pos=order[qi].indexOf(0), fb=document.getElementById('fb'+qi);
+    fb.className='fb show '+(right?'good':'bad');
+    fb.innerHTML='<div class="tag">'+(right?'Correct':'Not quite: the answer is '+KEYS[pos])+'</div>'+it.good+'<span class="ran">Ran: '+it.ran+'</span>'
+      +(right?'':'<div style="margin-top:.4rem">Re-read <a href="#'+it.anchor+'">'+it.label+'</a>.</div>');
+    update(); if(answers.every(function(a){return a!==null;})) finish();
+  });
+  function score(){return answers.filter(function(a){return a===true;}).length;}
+  function update(){
+    document.getElementById('scoreNow').textContent=score();
+    document.getElementById('answered').textContent=answers.filter(function(a){return a!==null;}).length;
+    reply();
+  }
+  function finish(){
+    if(score()===QS.length){var p=document.getElementById('resPass');p.classList.add('show');p.scrollIntoView({behavior:'smooth',block:'nearest'});return;}
+    document.getElementById('failTitle').textContent='Not yet: '+score()+'/'+QS.length;
+    var ul=document.getElementById('failLinks'), seen={}; ul.innerHTML='';
+    answers.forEach(function(a,i){ if(a===true) return; var it=QS[i]; if(seen[it.anchor]) return; seen[it.anchor]=1;
+      var li=document.createElement('li'); li.innerHTML='<a href="#'+it.anchor+'">'+it.label+'</a>'; ul.appendChild(li); });
+    var f=document.getElementById('resFail'); f.classList.add('show'); f.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  function reply(){
+    var done=answers.filter(function(a){return a!==null;}).length;
+    var missed=[]; answers.forEach(function(a,i){if(a===false) missed.push(i+1);});
+    var lines=['agent-workflow quiz: '+score()+'/'+QS.length+(done<QS.length?' ('+done+' answered)':'')+(score()===QS.length?' — understood, ready to merge':'')];
+    if(missed.length) lines.push('Missed: question '+missed.join(', ')+'. Explain these before I merge.');
+    var c=document.getElementById('comment').value.trim(); if(c) lines.push('Before merge: '+c);
+    document.getElementById('replyText').textContent=lines.join('\n');
+  }
+  document.getElementById('comment').addEventListener('input',reply);
+  document.getElementById('copyReply').addEventListener('click',function(){copy(document.getElementById('replyText').textContent,function(){var s=document.getElementById('copied');s.textContent='Copied';setTimeout(function(){s.textContent='';},1500);});});
+  document.getElementById('retry').addEventListener('click',function(){build();quiz.scrollIntoView({behavior:'smooth',block:'start'});});
+  build();
+})();
+</script>
+</body>
+</html>
