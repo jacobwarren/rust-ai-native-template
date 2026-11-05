@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "blindspots.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "8c189c5491a8e3249289e75852363e4225e043a84a7d0fde146903aa8ee39532",
+      "reviewer": "artifact-reviewer",
+      "notes": "Card 07 states DOC004 as live though e6daad7 fixed it; Landmine 02 line counts depend on field position; ~70% over exemplar height, cards 03 and 07 thinnest."
+    },
+    {
+      "page": "blindspots.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "98312cbf2b8dea5a8d178d1c07770482adde135bcd3709322aa9c2f067beac39",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: Codex reviewer inheriting the parent's model is hedged, not verified; three decisions carry the author's recommended labels."
+    }
+  ]
+}
