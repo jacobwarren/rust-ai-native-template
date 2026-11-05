@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Plan: workflow-router</title>
+<style>
+.chips{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-block:var(--space-4)}
+.chip{border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+.chip b{color:var(--accent)}
+.banner{display:grid;grid-template-columns:auto 1fr;gap:var(--space-4);align-items:center;border:1px dashed var(--accent);border-radius:var(--radius);padding:var(--space-4);background:var(--surface)}
+.banner .g{font:700 .8rem/1.3 var(--font-code);color:var(--accent);white-space:pre}
+.sec{margin-block:var(--space-8)}
+.sh{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-3);border-bottom:2px solid var(--ink);padding-bottom:var(--space-2)}
+.sh h2{margin:0}.L{font:700 1.4rem var(--font-code);color:var(--accent)}
+.lk{margin-inline-start:auto;font-size:var(--text-small);font-weight:650;padding:2px var(--space-2);border-radius:var(--control-radius)}
+.hi{background:var(--warning-soft);color:var(--warning)}.lo{background:var(--accent-soft);color:var(--accent)}
+h3{margin-block:var(--space-6) var(--space-2)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:var(--space-4);align-items:start}
+@media (max-width:52rem){.grid2{grid-template-columns:minmax(0,1fr)}}
+pre{font-size:.8rem;line-height:1.5;margin:0}
+.notes{list-style:none;padding:0;margin:0;font-size:var(--text-small)}
+.notes li{border-inline-start:3px solid var(--line);padding:var(--space-1) var(--space-3);margin-bottom:var(--space-3)}
+.notes b.n{display:inline-block;min-width:1.4em;color:var(--accent)}
+.fl{background:var(--warning-soft);border-radius:3px}
+.ch{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-3) var(--space-4);margin-block:var(--space-3)}
+.ch .hd{display:flex;flex-wrap:wrap;gap:var(--space-2);align-items:center}
+.ch .hd b{flex:1 1 14rem}
+.ch.one .hd span.t{flex:1 1 18rem;font-size:var(--text-small)}
+.ch.one.on .hd span.t{text-decoration:line-through;color:var(--muted)}
+.ch.one .alt{font-size:var(--text-small);margin:var(--space-2) 0 0}
+.tag{font-size:var(--text-small);font-weight:700;color:var(--warning)}
+.ch button,.tabs button{min-height:36px;padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+.ch .alt{display:none}.ch.on .alt{display:block}.ch.on .pick{display:none}
+.ch p{margin-block:var(--space-2)}
+td code,li code,p code{font-size:.85em}
+td{font-size:var(--text-small)}td code{overflow-wrap:anywhere}
+.label{font-size:var(--text-small);font-weight:650;color:var(--muted);margin:var(--space-4) 0 var(--space-1)}
+.tabs{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-2)}
+.tabs button[aria-pressed=false]{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.state{font-size:var(--text-small);margin:var(--space-2) 0}
+tr.edge td{background:var(--warning-soft)}
+.seq{list-style:none;padding:0;counter-reset:s}
+.seq li{display:grid;grid-template-columns:2rem minmax(0,1fr) auto;gap:var(--space-3);padding:var(--space-3) 0;border-bottom:1px solid var(--line)}
+.seq li::before{counter-increment:s;content:counter(s);font:700 1rem var(--font-code);color:var(--accent)}
+.k{font-size:.75rem;font-weight:700;border-radius:var(--control-radius);padding:1px var(--space-2);align-self:start;white-space:nowrap}
+.k.p{background:var(--warning-soft);color:var(--warning)}.k.a{background:var(--accent-soft);color:var(--accent)}
+.mech li{margin-bottom:var(--space-2);font-size:var(--text-small)}
+#out{white-space:pre-wrap}
+.reply{border:2px solid var(--accent);border-radius:var(--radius);padding:var(--space-6);background:var(--surface)}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">workflow-router · The tweakable plan · before code</p>
+<h1>Implementation plan: a page router, a verdict log, a stacked-branch stop gate and a ticket skill</h1>
+<blockquote><p id="prompt" style="margin:0">Write an implementation plan for workflow-router as HTML, but lead with the decisions I'm most likely to tweak: data model changes, new type interfaces and anything user-facing. Bury the mechanical work at the bottom; I trust you on that part.</p></blockquote>
+<button class="secondary" id="cp" type="button">Copy prompt</button>
+
+<div class="chips">
+<span class="chip">Product commits <b>3</b></span>
+<span class="chip">New files <b>4</b> + receipt</span>
+<span class="chip">New tests <b>7</b></span>
+<span class="chip">Changed lines <b>~890</b></span>
+<span class="chip">Receipt <b>1</b> policy change, 11 protected files</span>
+<span class="chip">Task record schema <b>stays 6</b></span>
+</div>
+
+<div class="banner"><div class="g">↑ tweak
+↓ trust</div><div><b>Sorted by how likely you are to change it.</b> A: judgment calls and the strings people and agents read. B: commit order. C: plumbing and tests, folded.</div></div>
+
+<section class="sec">
+<div class="sh"><span class="L">A</span><h2>Decisions you'll probably want to change</h2><span class="lk hi">High tweak likelihood</span></div>
+
+<h3>A1 · Data model: <code>reviews.json</code> beside the pages</h3>
+<div class="grid2">
+<pre><code>// xtask/src/router.rs (new, 313 lines)
+pub const LOG: &amp;str = "reviews.json";
+const REVIEWS: usize = 3;       // first draft + two rewrites
+
+#[serde(rename_all = "snake_case")]
+pub enum Verdict { Pass, Revise, Best }   <span class="fl">①</span>
+
+#[serde(deny_unknown_fields)]
+pub struct Row {
+    pub page: String,       // one of the eight
+    pub round: usize,       <span class="fl">②</span>
+    pub verdict: Verdict,
+    pub sha256: String,     // the file as reviewed
+    pub reviewer: String,   // an id: letters, digits, - _
+    pub notes: String,      // may be ""
+}
+#[serde(deny_unknown_fields)]
+pub struct Log { pub schema_version: u32, pub rows: Vec&lt;Row&gt; }
+// written pretty-printed to harness/task-artifacts/&lt;task&gt;/reviews.json</code></pre>
+<ul class="notes">
+<li><b class="n">·</b><b>One file per task, committed with the page it judges.</b> Its folder is administrative, so it never counts as product code.</li>
+<li><b class="n">·</b><b>Strict.</b> A hand-typed <code>"Pass"</code> stops <code>next</code> with exit 1: <code>reviews.json: unknown variant `Pass`, expected one of `pass`, `revise`, `best` at line 15 column 23</code>.</li>
+<li><b class="n">·</b><b>The hash is of the working file</b> when <code>verdict</code> runs. Whether a page is committed is asked of <code>git status</code>, because <code>eol=lf</code> makes a CRLF page hash differently from what git stores while status calls it clean.</li>
+</ul>
+</div>
+
+<div class="ch" id="c1"><div class="hd"><span class="tag">Choice ①</span><b><code>best</code> as a third verdict</b><button type="button" class="secondary" data-c="1">View alternative</button></div>
+<div class="pick"><p><b>Plan's pick: a third value, <code>best</code>, allowed only after three <code>revise</code> rows and only on a version some row reviewed.</b> It records which version "commit the best" kept, by taking that version's round. Refusals read <code>best is for a page whose 3 reviews all asked for revision; interview.html has 0</code> and <code>… differs from every reviewed version; restore the best one first</code>.</p></div>
+<div class="alt"><p><b>Alternative: two verdicts only</b>; the notes say a page ran out of rewrites. Simpler, but the log can't tell "passed" from "gave up", the rewrite-rate data the request asked for.</p></div></div>
+
+<div class="ch" id="c2"><div class="hd"><span class="tag">Choice ②</span><b><code>round</code> means the version reviewed</b><button type="button" class="secondary" data-c="2">View alternative</button></div>
+<div class="pick"><p><b>Plan's pick: round = number of <code>revise</code> rows so far + 1.</b> 1 is the first draft, 2 the first rewrite, 3 the second; <code>best</code> takes the round of the version it keeps (router.rs:104-133). Consequence: pass a page, hand-edit it, review it again, and both rows say <code>"round": 1</code>, since no rewrite happened.</p></div>
+<div class="alt"><p><b>Alternative: round = this page's review count + 1</b>, unique per row. No ties, but "round 3" no longer means "second rewrite", and the cap still has to count <code>revise</code> rows.</p></div></div>
+
+<h3>A2 · Two commands and what they print</h3>
+<pre><code>cargo xtask task-artifact next --task ID
+cargo xtask task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --notes TEXT</code></pre>
+<p>Every <code>verdict</code> flag is required, in that order; <code>--notes ""</code> is allowed.</p>
+<p class="label">Illustration: one step from <code>next</code>, with an advisory</p>
+<pre><code>{ "advisories": [ "interview.html was edited after its Pass verdict; review it again or list the hand edit in the task record" ],
+  "next": { "action": "rewrite", "page": "reference.html", "round": 2,
+            "say": "Start a fresh artifact-author to rewrite reference.html from the round 1 findings (rewrite 1 of 2)." },
+  "ok": true, "task": "workflow-router" }                                   → exit 3</code></pre>
+<details><summary>The eight actions and what each tells the agent</summary>
+<div class="table-scroll"><table>
+<tr><th><code>action</code></th><th>When</th><th>What <code>say</code> tells the agent</th></tr>
+<tr><td><code>record</code></td><td>No harness/tasks/ID.json</td><td>Write it; write-ticket drafts a stub.</td></tr>
+<tr><td><code>build</code></td><td>Small tier, or discovery done and no notes page</td><td>Small: build, <code>check ci</code>, complete. Standard: first slice, then notes.</td></tr>
+<tr><td><code>author</code></td><td>The next page in table order is missing</td><td>Fresh artifact-author with prompt and exemplar; buy-in and quiz add "at or after the last product commit".</td></tr>
+<tr><td><code>review</code></td><td>Page has no row, or changed since its last <code>revise</code></td><td>Fresh artifact-reviewer, "never the author", then the <code>verdict</code> line.</td></tr>
+<tr><td><code>rewrite</code></td><td>Last row is <code>revise</code>, page unchanged</td><td>Fresh author, "rewrite n of 2".</td></tr>
+<tr><td><code>best</code></td><td>Three <code>revise</code> rows</td><td>Restore the best reviewed version, record <code>--verdict best</code>, commit.</td></tr>
+<tr><td><code>commit</code></td><td>Passed (or best), but the page or the log is uncommitted</td><td>"Commit blindspots.html and …/reviews.json together."</td></tr>
+<tr><td><code>complete</code></td><td>Every page reviewed and committed</td><td>Copy final verdicts and open notes "from …/reviews.json" into <code>review.verification</code> (with no log, "from each page's review"); <code>check ci</code>; <code>complete</code>.</td></tr>
+</table></div></details>
+<p><code>verdict</code> refuses an unknown page or word, a reviewer that isn't an id, a re-review of the identical version (<code>was already reviewed in this exact version</code>) and a fourth review (<code>has used its two rewrites; commit the best version and record --verdict best</code>).</p>
+
+<div class="ch" id="c3"><div class="hd"><span class="tag">Choice ③</span><b>Exit 3 for advice</b><button type="button" class="secondary" data-c="3">View alternative</button></div>
+<div class="pick"><p><b>Plan's pick: 0 for a plain step, 1 for an error, 3 when <code>ok</code> and <code>advisories</code> is non-empty</b> (main.rs:29-39; <code>cargo xtask</code> passes the 3 through). Two advisories exist: <code>… was edited after its Pass verdict</code> (or Best), checked on every logged page, not only those before the next step; and <code>reviews.json no longer starts with its committed rows; record verdicts only with task-artifact verdict</code>. No script calls <code>next</code>, so no <code>set -e</code> trips on it.</p></div>
+<div class="alt"><p><b>Alternative: always exit 0; advice lives only in the JSON.</b> Safe for any wrapper, but an agent that checks only the status misses the signal aimed at this task's drift: hand edits after a final review.</p></div></div>
+
+<h3>A3 · Tasks from before the log</h3>
+<p><b>With no reviews.json, a committed page counts as reviewed elsewhere</b> (router.rs:187), so agent-workflow reads <code>complete</code> unchanged. The first verdict turns the rule off. What <code>next</code> prints for this task at each stage:</p>
+<div class="tabs" role="group" aria-label="Log state"><button type="button" data-s="0" aria-pressed="true">No log yet</button><button type="button" data-s="1" aria-pressed="false">First verdict recorded</button><button type="button" data-s="2" aria-pressed="false">Earlier pages backfilled</button></div>
+<p class="state" id="sdesc"></p>
+<pre id="sout"></pre>
+<div class="ch one" id="c4"><div class="hd"><span class="tag">Choice ④</span><span class="t">Task-wide while no log exists; a task that starts logging midway backfills a <code>pass</code> row per reviewed page.</span><button type="button" class="secondary" data-c="4">View alternative</button></div>
+<p class="alt">Alternative: per page; a page committed before the log counts as reviewed. No backfill, but a page committed unreviewed is never asked about.</p></div>
+
+<h3>A4 · The stop gate's base on a stacked branch</h3>
+<div class="grid2">
+<pre><code># scripts/agent-complete.sh:30-56, condensed
+if [ -z "${HARNESS_BASE:-}" ]; then          <span class="fl">①</span>
+  others=remote branches minus */HEAD, upstream,
+         */&lt;this branch's name&gt;              <span class="fl">②</span>
+  first=$(git rev-list --first-parent --reverse \
+          HEAD --not $others | head -n 1)
+  fork=${first:+$first^}   # none of our own: HEAD
+  [ base is an ancestor of fork ] &amp;&amp; base=$fork  <span class="fl">③</span>
+fi
+# then, as before: records changed since $base or
+# untracked; complete --base "$base" for each claim</code></pre>
+<ul class="notes">
+<li><b class="n">①</b>An explicit <code>HARNESS_BASE</code> skips detection.</li>
+<li><b class="n">②</b>This branch's own remote copy is not "other".</li>
+<li><b class="n">③</b>The fork picks the records and is the <code>--base</code> for <code>complete</code>, so page order is judged from it too. CI's handoff is untouched; it already uses the PR's base.</li>
+</ul>
+</div>
+<div class="table-scroll"><table>
+<tr><th>Situation</th><th>Base the gate uses</th><th>Records whose <code>complete</code> it judges</th></tr>
+<tr><td>Stacked on an unmerged PR's branch</td><td>The lower branch's tip</td><td>This branch's only</td></tr>
+<tr><td>Same, with <code>HARNESS_BASE=origin/main</code></td><td>Merge base with <code>origin/main</code></td><td>The lower branch's too</td></tr>
+<tr><td>Lower PR merged (this branch today)</td><td>Merge base; the fork is the same commit</td><td>This branch's</td></tr>
+<tr class="edge"><td>Pushed under another name, no upstream set</td><td>The last commit pushed under that name (HEAD if all were)</td><td>Uncommitted and untracked only</td></tr>
+<tr><td>Same, upstream set to that name</td><td>Fork point</td><td>This branch's</td></tr>
+<tr class="edge"><td>Someone pushed a branch built on top of this one</td><td>HEAD: every commit here is on that branch, so none counts as this branch's own</td><td>Uncommitted and untracked only</td></tr>
+<tr class="edge"><td>Detached HEAD at a pushed commit</td><td>HEAD</td><td>Uncommitted and untracked only</td></tr>
+<tr><td>No remotes</td><td>None: "no merge base with origin/main", exit 0</td><td>None, unchanged fail-open</td></tr>
+</table></div>
+<p><b>The three shaded rows end the same way: only uncommitted and untracked records are judged.</b> A committed <code>complete</code> claim passes the stop and waits for PR CI, which judges every record.</p>
+<div class="ch one" id="c5"><div class="hd"><span class="tag">Choice ⑤</span><span class="t">Detect the fork point from the remote branches; <code>HARNESS_BASE</code> overrides.</span><button type="button" class="secondary" data-c="5">View alternative</button></div>
+<p class="alt">Alternative: no detection; document <code>HARNESS_BASE=origin/&lt;lower branch&gt;</code>. About 30 fewer protected lines, but a session that forgets the export is refused at every stop once CI evidence goes stale.</p></div>
+
+<h3>A5 · The author can't edit the log</h3>
+<p>In author mode an Edit or Write of any task's <code>reviews.json</code> gets (agent-hook.sh:403, case-folded): <code>Blocked: the verdict log records reviews and only cargo xtask task-artifact verdict writes it; the author does not grade its own page.</code> Both agents keep Bash (artifact-author.md:5, artifact-reviewer.md:5); a rewrite of committed rows shows as the second advisory.</p>
+
+<h3>A6 · write-ticket and its record stub</h3>
+<div class="grid2">
+<pre><code># .claude/skills/write-ticket/SKILL.md  ┐ byte-identical
+# .agents/skills/write-ticket/SKILL.md  ┘ (81 lines)
+1. Read: the request, gaps.json, readiness ids, the code
+2. Ticket: Problem · Scope + tier ("When unsure, say
+   standard") · Acceptance as test_name: given …,
+   when …, then … · Validation · Out of scope
+3. The stub, then coordination and next
+
+{ "schema_version": 6, "id": "T-142",
+  "work_item": "https://tracker.example/T-142",
+  "status": "partial", "tier": "small",
+  "requirements": ["completion"],
+  "summary": "&lt;Problem, one sentence&gt;",
+  "remaining": [ "stop_ignores_lower_branch_records: given …",
+                 "cargo xtask check ci &gt; target/verification/ci.json" ],
+  … gap_review, discovery_review and documentation.rationale
+    filled in; no review }</code></pre>
+<ul class="notes">
+<li><b class="n">·</b><b>The stub against the gates:</b> <code>coordination</code> ok; <code>next</code> → <code>build</code> (standard: <code>author blindspots.html</code>); the stop hook skips it as partial; handoff (<code>agent-stop</code>, CI) refuses it with the four <code>review.acceptance … review.coverage</code> questions.</li>
+<li><b class="n">·</b><b>The skill warns of that:</b> "before a PR, handoff asks the record its four review questions … Requirement ids are checked at handoff too, not by <code>coordination</code>."</li>
+<li><b class="n">·</b>Named tests sit in <code>remaining</code> until they land in readiness.json; the ticket itself goes to the tracker, the PR description or <code>docs/plans/&lt;id&gt;.md</code>.</li>
+</ul>
+</div>
+<div class="ch" id="c6"><div class="hd"><span class="tag">Choice ⑥</span><b>The stub is partial with no review answers</b><button type="button" class="secondary" data-c="6">View alternative</button></div>
+<div class="pick"><p><b>Plan's pick: <code>partial</code>, <code>review</code> absent.</b> Valid at once, never blocks a stop, and handoff demands real answers before a PR passes.</p></div>
+<div class="alt"><p><b>Alternative: four "Not started" review answers</b>, so a ticket-only PR passes handoff. Placeholders that satisfy a gate tend to survive to <code>complete</code>, which checks that answers exist, not that they're true.</p></div></div>
+
+<h3>A7 · The two doc passages a reader meets first</h3>
+<p class="label">docs/ARTIFACTS.md, opening "How to produce a page"</p>
+<blockquote><p style="margin:0">"<code>cargo xtask task-artifact next --task ID</code> reads the task record, the pages and the task's verdict log and prints the one next step: author, review, rewrite, commit, build or complete. It advises and never blocks. It exits 3 when it also has a warning, such as a page edited after its last review. Completion does not read the log."</p></blockquote>
+<p class="label">docs/COMPLETION.md, "At stop"</p>
+<blockquote><p style="margin:0">"On a branch stacked on another remote branch (an unmerged PR), it judges from where this branch's own commits start, so the lower branch's records are left to its own PR. A copy of this branch pushed under another name, a branch someone pushed on top of it, or a detached HEAD hides its commits the same way, leaving only uncommitted records to judge; PR CI still judges them all."</p></blockquote>
+</section>
+
+<section class="sec">
+<div class="sh"><span class="L">B</span><h2>Commit order the gate accepts</h2><span class="lk lo">Execution order</span></div>
+<ol class="seq">
+<li><span><b>reference.html</b>, then <b>plan.html</b>, each with its rows in reviews.json. The code waits for both.</span><span class="k a">pages</span></li>
+<li><span><b>Router</b>, its hook arm and tests. First product commit.</span><span class="k p">product</span></li>
+<li><span><b>Implementation notes</b>, first slice; later updates are free.</span><span class="k a">pages</span></li>
+<li><span><b>Stacked base</b>, its stop test, COMPLETION.md "At stop".</span><span class="k p">product</span></li>
+<li><span><b>Ticket skill and the other docs</b>. Last product commit.</span><span class="k p">product</span></li>
+<li><span><b>Receipt, record, buy-in, quiz</b>, then <code>check ci</code> and <code>complete</code>. The receipt hashes the final protected tree.</span><span class="k a">after</span></li>
+</ol>
+</section>
+
+<section class="sec">
+<div class="sh"><span class="L">C</span><h2>Mechanical work (trust me)</h2><span class="lk lo">Low tweak likelihood</span></div>
+<details><summary>Plumbing, tests, docs and the receipt · 6 items</summary>
+<ul class="mech">
+<li><b>Tests (7).</b> In xtask/tests/router.rs: <code>next_walks_author_review_rewrite_and_commit</code>, <code>two_rewrites_end_in_the_best_version</code>, <code>next_reaches_completion_and_reads_tasks_from_before_the_log</code>, <code>the_artifact_author_cannot_write_the_verdict_log</code>, <code>a_crlf_page_that_git_calls_clean_reads_as_committed</code>, <code>an_edit_after_review_shows_on_any_page</code>. In hooks_stop.rs: <code>stop_judges_only_this_branchs_records_when_stacked</code>.</li>
+<li><b>Readiness.</b> The six router tests, <code>xtask/src/router.rs</code> and <code>.claude/skills/write-ticket/SKILL.md</code> join <code>task-artifacts</code>; the stop test joins <code>completion</code>, which the task record's <code>requirements</code> gains.</li>
+<li><b>Receipt</b> harness/transitions/workflow-router.json: one <code>policy</code> change over the 11 protected files <code>gaps --base</code> lists.</li>
+<li><code>artifacts::exists</code> (artifacts.rs:122) wraps <code>verify</code> for the router. main.rs: <code>mod router</code>, two arms, two help lines, exit 3. The .agents skill copy; two docs.json entries.</li>
+<li>Other docs: ARTIFACTS.md step 5 (record every review, <code>best</code>, commit the log) and its file list; COMPLETION.md task start links write-ticket; three README lines; AGENTS.md step 2 names <code>next</code>. The task record lists the five docs.</li>
+<li>Known limits kept: <code>next</code> has no base, so an order breach still surfaces only at completion; requirement ids are checked at handoff, not coordination.</li>
+</ul>
+</details>
+</section>
+
+<div class="reply">
+<h2 style="margin-top:0">Your reply</h2>
+<p>Flip any choice above to its alternative, add a line, copy.</p>
+<label>Anything else (optional)<textarea id="extra" placeholder="e.g. Put next in the README command table too."></textarea></label>
+<output id="out"></output>
+<p><button type="button" id="copy">Copy reply</button></p>
+</div>
+
+<footer>workflow-router · implementation plan · feeds the implementation notes</footer>
+</main>
+<script>
+(function(){
+"use strict";
+var $=function(i){return document.getElementById(i);};
+function copy(t,b){var o=b.textContent,d=function(){b.textContent="Copied";setTimeout(function(){b.textContent=o;},1500);};
+ function fb(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");}catch(e){}a.remove();d();}
+ if(navigator.clipboard)navigator.clipboard.writeText(t).then(d,fb);else fb();}
+var C={1:["Keep best as a third verdict, after three revises, on a reviewed version.","Drop best: two verdicts, and the notes say a page ran out of rewrites."],
+2:["Round stays the version reviewed (revise count + 1).","Make round this page's review count + 1, unique per row."],
+3:["next exits 3 when it has advisories.","next always exits 0; advisories only in the JSON."],
+4:["Legacy rule stays task-wide while no log exists; backfill pass rows when a log starts midway.","Make the legacy rule per page: a page committed before the log's first commit counts as reviewed."],
+5:["Detect the stacked fork point in the stop hook; HARNESS_BASE overrides.","No detection: document HARNESS_BASE=origin/<lower branch> only."],
+6:["Stub stays partial with no review answers.","Stub carries four \"Not started\" review answers so a ticket-only PR passes handoff."]};
+var st={};Object.keys(C).forEach(function(k){st[k]=0;});
+function render(){var l=["Plan reply for workflow-router:"],any=false;
+ Object.keys(C).forEach(function(k){if(st[k])any=true;l.push((st[k]?"CHANGE ":"OK ")+"choice "+k+": "+C[k][st[k]]);});
+ var x=$("extra").value.trim();if(x)l.push("Also: "+x);
+ if(!x&&!any)l.push("Build as planned.");
+ $("out").textContent=l.join("\n");}
+document.querySelectorAll("[data-c]").forEach(function(b){b.onclick=function(){var k=b.getAttribute("data-c");st[k]=st[k]?0:1;$("c"+k).classList.toggle("on",!!st[k]);b.textContent=st[k]?"Back to plan's pick":"View alternative";render();};});
+var S=[
+["reviews.json absent. blindspots, interventions and interview are committed, so they count as reviewed; reference.html exists but is uncommitted.",
+'$ cargo xtask task-artifact next --task workflow-router\n"next": { "action": "review", "page": "reference.html", "round": 1,\n  "say": "Start a fresh artifact-reviewer, never the author, on reference.html; then record it: cargo xtask task-artifact verdict … --verdict pass|revise …" }\nexit 0'],
+["After one verdict (revise on reference.html) the log exists, the rule is off, and the three committed pages have no rows.",
+'$ cargo xtask task-artifact verdict --task workflow-router --page reference.html --verdict revise --reviewer artifact-reviewer --notes "two findings"\n"recorded": { "page": "reference.html", "round": 1, "verdict": "revise", … }\n\n$ cargo xtask task-artifact next --task workflow-router\n"next": { "action": "review", "page": "blindspots.html", "round": 1, … }\nexit 0'],
+["A pass row per earlier page, from its prose verdict, then the log committed. next goes back to the page actually in progress.",
+'rows: reference.html revise · blindspots.html pass · interventions.html pass · interview.html pass\n      (notes: "Logged after the fact. Open: …")\n\n$ cargo xtask task-artifact next --task workflow-router\n"next": { "action": "rewrite", "page": "reference.html", "round": 2,\n  "say": "Start a fresh artifact-author to rewrite reference.html from the round 1 findings (rewrite 1 of 2)." }\nexit 0']];
+function show(i){$("sdesc").textContent=S[i][0];$("sout").textContent=S[i][1];
+ document.querySelectorAll("[data-s]").forEach(function(o){o.setAttribute("aria-pressed",String(o.getAttribute("data-s")===String(i)));});}
+document.querySelectorAll("[data-s]").forEach(function(b){b.onclick=function(){show(+b.getAttribute("data-s"));};});
+$("extra").oninput=render;
+$("copy").onclick=function(){copy($("out").textContent,this);};
+$("cp").onclick=function(){copy($("prompt").textContent,this);};
+show(0);render();
+})();
+</script>
+</body>
+</html>

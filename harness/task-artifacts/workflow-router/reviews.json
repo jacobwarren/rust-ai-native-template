@@ -48,6 +48,14 @@
       "sha256": "36a78a4f5868eba17dea4850769637491d968575e8709f9806e9230e807bf7d5",
       "reviewer": "artifact-reviewer",
       "notes": "Open: CI row's sketch needs the head ref passed in (detached merge); 'own-commit log' CI cell is the plain --remotes result; note 15 and order() sub-claims in notes 3, 5, 6 not re-run."
+    },
+    {
+      "page": "plan.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "1489dd5a8d1a5a58560b770046ec62fdcdbf627c5669555f7b062180ede54211",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: A4 renamed-push row's Records cell omits commits not yet pushed under that name (partial push); still 1.6x exemplar height, A7 cuttable; commit order traced by hand, not run."
     }
   ]
 }
