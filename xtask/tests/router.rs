@@ -43,6 +43,10 @@ fn verdict(f: &Fixture, page: &str, verdict: &str) -> Value {
             verdict,
             "--reviewer",
             "artifact-reviewer",
+            "--model",
+            "claude-sonnet-5-5",
+            "--findings",
+            "2",
             "--notes",
             "findings",
         ],
@@ -250,5 +254,105 @@ fn an_edit_after_review_shows_on_any_page() {
             .unwrap()
             .starts_with("interventions.html was edited"),
         "{v}"
+    );
+}
+
+#[test]
+fn commit_step_names_the_page_whose_row_is_uncommitted() {
+    let f = started();
+    f.page("blindspots.html");
+    assert_eq!(verdict(&f, "blindspots.html", "pass")["ok"], true);
+    f.commit("blindspots");
+    f.page("interventions.html");
+    f.commit("interventions draft");
+    assert_eq!(verdict(&f, "interventions.html", "pass")["ok"], true);
+    // Both pages are committed; only the log row for interventions is not.
+    assert_eq!(step(&f), ("commit".into(), "interventions.html".into(), 1));
+    f.commit("interventions verdict");
+    assert_eq!(step(&f), ("author".into(), "interview.html".into(), 1));
+}
+
+#[test]
+fn verdict_records_findings_and_model() {
+    let f = started();
+    // A log written before the fields existed still parses and is left as written.
+    let old = r#"{"schema_version":1,"rows":[{"page":"blindspots.html","round":1,"verdict":"revise","sha256":"x","reviewer":"r","notes":"n"}]}"#;
+    f.text("harness/task-artifacts/TASK-1/reviews.json", old);
+    f.page("blindspots.html");
+    let v = verdict(&f, "blindspots.html", "pass");
+    assert_eq!(v["recorded"]["findings"], 2, "{v}");
+    assert_eq!(v["recorded"]["model"], "claude-sonnet-5-5", "{v}");
+    let log =
+        std::fs::read_to_string(f.0.join("harness/task-artifacts/TASK-1/reviews.json")).unwrap();
+    assert!(!log.contains("null"), "{log}");
+    assert_eq!(log.matches("\"findings\": ").count(), 1, "{log}");
+    let args = |findings: &str, model: &str| {
+        run_raw(
+            &f,
+            &[
+                "task-artifact",
+                "verdict",
+                "--task",
+                "TASK-1",
+                "--page",
+                "plan.html",
+                "--verdict",
+                "pass",
+                "--reviewer",
+                "r",
+                "--model",
+                model,
+                "--findings",
+                findings,
+                "--notes",
+                "n",
+            ],
+        )
+    };
+    f.page("plan.html");
+    assert!(
+        args("two", "m")["error"]
+            .as_str()
+            .unwrap()
+            .contains("--findings two")
+    );
+    assert!(
+        args("1", "gpt 5")["error"]
+            .as_str()
+            .unwrap()
+            .contains("--model")
+    );
+    assert_eq!(args("0", "gpt-5.1")["recorded"]["model"], "gpt-5.1");
+    // The old six-flag form is gone: a verdict without a count or model is refused.
+    let short = run_raw(
+        &f,
+        &[
+            "task-artifact",
+            "verdict",
+            "--task",
+            "TASK-1",
+            "--page",
+            "plan.html",
+            "--verdict",
+            "pass",
+            "--reviewer",
+            "r",
+            "--notes",
+            "n",
+        ],
+    );
+    assert!(
+        short["error"]
+            .as_str()
+            .unwrap()
+            .contains("--model and --findings are required"),
+        "{short}"
+    );
+    let long = "m".repeat(65);
+    assert!(
+        args("1", &long)["error"]
+            .as_str()
+            .unwrap()
+            .contains("at most 64")
     );
 }

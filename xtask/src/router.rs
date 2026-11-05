@@ -36,6 +36,12 @@ pub struct Row {
     pub sha256: String,
     pub reviewer: String,
     pub notes: String,
+    /// Findings the reviewer listed, blocking or not. Absent on rows logged before it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub findings: Option<u32>,
+    /// The reviewer's model, as the host names it. Absent on rows logged before it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub model: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Default)]
@@ -86,15 +92,26 @@ fn kept(id: &str, page: &str, round: usize) -> String {
     format!("target/artifact-reviews/{id}/{stem}.round{round}.html")
 }
 
+/// One review as given on the command line, before it is checked.
+pub struct Review<'a> {
+    pub page: &'a str,
+    pub verdict: &'a str,
+    pub reviewer: &'a str,
+    pub notes: &'a str,
+    pub findings: &'a str,
+    pub model: &'a str,
+}
+
 /// Append one review of a page to the task's verdict log.
-pub fn verdict(
-    root: &Path,
-    id: &str,
-    page: &str,
-    verdict: &str,
-    reviewer: &str,
-    notes: &str,
-) -> Result<Value> {
+pub fn verdict(root: &Path, id: &str, review: &Review) -> Result<Value> {
+    let Review {
+        page,
+        verdict,
+        reviewer,
+        notes,
+        findings,
+        model,
+    } = *review;
     task_record::read(root, id)?;
     if !pages().any(|p| p == page) {
         return Err(format!("{page} is not a task page; see docs/ARTIFACTS.md").into());
@@ -103,6 +120,15 @@ pub fn verdict(
         .map_err(|_| format!("verdict {verdict} must be pass, revise or best"))?;
     if !valid_id(reviewer) {
         return Err("--reviewer names who reviewed, in letters, digits, - and _".into());
+    }
+    let findings: u32 = findings.parse().map_err(|_| {
+        format!("--findings {findings} must count the findings the reviewer listed")
+    })?;
+    if model.is_empty() || model.chars().any(char::is_whitespace) {
+        return Err("--model names the reviewer's model as the host does, without spaces".into());
+    }
+    if model.len() > 64 {
+        return Err("--model must be at most 64 characters".into());
     }
     let sha = page_sha(root, id, page)?.ok_or(format!("{page} does not exist"))?;
     let mut log = read(root, id)?.unwrap_or(Log {
@@ -149,6 +175,8 @@ pub fn verdict(
         sha256: sha,
         reviewer: reviewer.into(),
         notes: notes.trim().into(),
+        findings: Some(findings),
+        model: Some(model.into()),
     };
     if verdict != Verdict::Best {
         let copy = root.join(kept(id, page, round));
@@ -171,7 +199,14 @@ fn step(action: &str, page: &str, round: usize, say: String) -> Option<Value> {
 }
 
 /// The next step for one page, or None when it is reviewed and committed.
-fn page_step(root: &Path, id: &str, page: &str, log: Option<&Log>) -> Result<Option<Value>> {
+/// `committed_rows` is how many of the log's rows are in the last commit; the log only grows.
+fn page_step(
+    root: &Path,
+    id: &str,
+    page: &str,
+    log: Option<&Log>,
+    committed_rows: usize,
+) -> Result<Option<Value>> {
     let rows: Vec<&Row> = log
         .map(|l| l.rows.iter().filter(|r| r.page == page).collect())
         .unwrap_or_default();
@@ -196,7 +231,7 @@ fn page_step(root: &Path, id: &str, page: &str, log: Option<&Log>) -> Result<Opt
             page,
             round,
             format!(
-                "Start a fresh artifact-reviewer, never the author, on {page}; then record it: cargo xtask task-artifact verdict --task {id} --page {page} --verdict pass|revise --reviewer NAME --notes TEXT"
+                "Start a fresh artifact-reviewer, never the author, on {page}; then record it: cargo xtask task-artifact verdict --task {id} --page {page} --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes TEXT"
             ),
         )
     };
@@ -233,7 +268,10 @@ fn page_step(root: &Path, id: &str, page: &str, log: Option<&Log>) -> Result<Opt
         }
         Some(_) => {}
     }
-    if committed && !dirty.contains(&log_path(id)) {
+    // Only this page's own unrecorded rows hold it back: another page's verdict
+    // in the same uncommitted log is that page's commit step.
+    let pending = log.is_some_and(|l| l.rows.iter().skip(committed_rows).any(|r| r.page == page));
+    if committed && !pending {
         return Ok(None);
     }
     Ok(step(
@@ -273,16 +311,23 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
             "{LOG} no longer starts with its committed rows; record verdicts only with task-artifact verdict"
         ));
     }
+    let committed_rows = match (&log, history::read(root, "HEAD", &log_path(id))?) {
+        (Some(log), Some(bytes)) => parse(&bytes)
+            .ok()
+            .filter(|c| log.rows.starts_with(&c.rows))
+            .map_or(0, |c| c.rows.len()),
+        _ => 0,
+    };
     let mut found = None;
     for page in DISCOVERY {
-        found = page_step(root, id, page, log.as_ref())?;
+        found = page_step(root, id, page, log.as_ref(), committed_rows)?;
         if found.is_some() {
             break;
         }
     }
     if found.is_none() {
         found = if artifacts::exists(root, id, NOTES)? {
-            page_step(root, id, NOTES, log.as_ref())?
+            page_step(root, id, NOTES, log.as_ref(), committed_rows)?
         } else {
             step("build", NOTES, 1, "Discovery is done. Build and commit the first product slice, then write implementation.html and commit it before the last product commit.".into())
         };
@@ -292,7 +337,7 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
             break;
         }
         found = if artifacts::exists(root, id, page)? {
-            page_step(root, id, page, log.as_ref())?
+            page_step(root, id, page, log.as_ref(), committed_rows)?
         } else {
             step(
                 "author",

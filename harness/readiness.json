@@ -140,7 +140,9 @@
         "next_reaches_completion_and_reads_tasks_from_before_the_log",
         "the_artifact_author_cannot_write_the_verdict_log",
         "a_crlf_page_that_git_calls_clean_reads_as_committed",
-        "an_edit_after_review_shows_on_any_page"
+        "an_edit_after_review_shows_on_any_page",
+        "commit_step_names_the_page_whose_row_is_uncommitted",
+        "verdict_records_findings_and_model"
       ],
       "workflows": []
     }

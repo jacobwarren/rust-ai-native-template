@@ -49,7 +49,9 @@ read the log.
    each review samples different claims, and rewrites can break what was
    right. After two rewrites, commit the best
    version. Record every review with `cargo xtask task-artifact verdict --task ID
-   --page PAGE --verdict pass|revise|best --reviewer NAME --notes TEXT`. It
+   --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL
+   --findings N --notes TEXT`, where N counts every finding the reviewer listed,
+   blocking or not, and MODEL is the reviewer's model as the host names it. It
    appends a row with the page's SHA-256 to `reviews.json` in the task's folder
    and keeps a copy of the reviewed version under `target/artifact-reviews/`;
    `best` marks the reviewed version restored after two rewrites. Commit the log
