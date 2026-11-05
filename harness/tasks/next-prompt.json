@@ -1,0 +1,31 @@
+{
+  "schema_version": 6,
+  "id": "next-prompt",
+  "work_item": null,
+  "status": "partial",
+  "tier": "standard",
+  "requirements": [
+    "task-artifacts"
+  ],
+  "related_gaps": [
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "unaffected",
+      "rationale": "Handing over a filled-in prompt is advice; it does not change what the gate checks."
+    }
+  ],
+  "gap_review": "Read the open gaps; only artifact-gate-holes is near this work and it is unaffected.",
+  "discoveries": [],
+  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "documentation": {
+    "updated": [],
+    "rationale": "docs/ARTIFACTS.md and README will say next hands over the filled-in prompt."
+  },
+  "summary": "Make task-artifact next hand over the filled-in page prompt, exemplar and output path for each author, review and rewrite step, so the orchestrator no longer assembles it from docs/ARTIFACTS.md by hand.",
+  "remaining": [
+    "next_hands_over_the_filled_in_prompt: given the prompt inputs, the author step carries the page's prompt with every brace filled, the exemplar and the output path.",
+    "review_and_rewrite_steps_carry_their_prompt: review steps carry the page's prompt; rewrite steps carry the last review's notes and the kept version's path.",
+    "next_prompts_match_the_artifacts_guide: the prompt text next hands over is docs/ARTIFACTS.md's.",
+    "Run cargo xtask check ci > target/verification/ci.json and cargo xtask complete --task next-prompt --base origin/main."
+  ]
+}
