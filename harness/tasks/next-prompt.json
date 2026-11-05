@@ -21,6 +21,13 @@
     "updated": [],
     "rationale": "docs/ARTIFACTS.md and README will say next hands over the filled-in prompt."
   },
+  "prompt": {
+    "task": "make `cargo xtask task-artifact next` hand over the filled-in page prompt, the exemplar and the output path for each author, review and rewrite step",
+    "task_noun": "the filled-in page prompt hand-over in `cargo xtask task-artifact next`",
+    "area": "xtask's page router (xtask/src/router.rs) and the prompt table in docs/ARTIFACTS.md",
+    "problem": "`cargo xtask task-artifact next` tells the orchestrating agent which page step comes next and which subagent to start, but not what to hand that subagent, so for every author, review and rewrite the agent assembles the prompt, exemplar and findings by hand",
+    "reference": "The shared stylesheet that xtask/src/artifacts.rs compiles in with include_str!"
+  },
   "summary": "Make task-artifact next hand over the filled-in page prompt, exemplar and output path for each author, review and rewrite step, so the orchestrator no longer assembles it from docs/ARTIFACTS.md by hand.",
   "remaining": [
     "next_hands_over_the_filled_in_prompt: given the prompt inputs, the author step carries the page's prompt with every brace filled, the exemplar and the output path.",

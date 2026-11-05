@@ -4,7 +4,7 @@
 use crate::{
     artifacts::{self, DISCOVERY, FINAL, NOTES},
     config::{Result, valid_id},
-    history,
+    handover, history,
     task_record::{self, Tier},
 };
 use serde::{Deserialize, Serialize};
@@ -216,9 +216,7 @@ fn page_step(
             "author",
             page,
             revisions + 1,
-            format!(
-                "Start a fresh artifact-author on {page} with its prompt and exemplar (docs/ARTIFACTS.md) and the task context."
-            ),
+            format!("Start a fresh artifact-author on {page} and give it the handover verbatim."),
         ));
     };
     // Git's view, not a hash of the blob: eol=lf normalises a CRLF page that status calls clean.
@@ -231,7 +229,7 @@ fn page_step(
             page,
             round,
             format!(
-                "Start a fresh artifact-reviewer, never the author, on {page}; then record it: cargo xtask task-artifact verdict --task {id} --page {page} --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes TEXT"
+                "Start a fresh artifact-reviewer, never the author, on {page} and give it the handover verbatim; then pipe its whole reply into: cargo xtask task-artifact verdict --task {id} --page {page} --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes -"
             ),
         )
     };
@@ -261,7 +259,7 @@ fn page_step(
                 page,
                 revisions + 1,
                 format!(
-                    "Start a fresh artifact-author to rewrite {page} from the round {} findings (rewrite {revisions} of 2).",
+                    "Start a fresh artifact-author to rewrite {page} from the round {} findings and give it the handover verbatim (rewrite {revisions} of 2).",
                     last.round
                 ),
             ));
@@ -329,7 +327,7 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
         found = if artifacts::exists(root, id, NOTES)? {
             page_step(root, id, NOTES, log.as_ref(), committed_rows)?
         } else {
-            step("build", NOTES, 1, "Discovery is done. Build and commit the first product slice, then write implementation.html and commit it before the last product commit.".into())
+            step("build", NOTES, 1, "Discovery is done. Build and commit the first product slice, then start a fresh artifact-author on implementation.html with the handover, and commit the notes before the last product commit.".into())
         };
     }
     for page in FINAL {
@@ -344,10 +342,13 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
                 page,
                 1,
                 format!(
-                    "Finish and commit the product work and its notes; then start a fresh artifact-author on {page}, which must be committed at or after the last product commit."
+                    "Finish and commit the product work and its notes; then start a fresh artifact-author on {page} with the handover; it must be committed at or after the last product commit."
                 ),
             )
         };
+    }
+    if let Some(step) = found.as_mut() {
+        handover::attach(root, id, task.prompt.as_ref(), log.as_ref(), step)?;
     }
     // Every page, not only those before the next step: a hand edit anywhere shows.
     for row in log.iter().flat_map(|l| &l.rows) {

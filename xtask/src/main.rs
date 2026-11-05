@@ -4,6 +4,7 @@ mod checks;
 mod completion;
 mod config;
 mod golden;
+mod handover;
 mod history;
 mod readiness;
 mod repo;
