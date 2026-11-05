@@ -234,6 +234,12 @@
     "verified_by": "cargo xtask docs; focused gap discovery and completion regression tests"
   },
   {
+    "path": "docs/plans/router-polish.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; harness/tasks/router-polish.json"
+  },
+  {
     "path": "docs/plans/tech-debt.md",
     "owner": "maintainers",
     "status": "active",
