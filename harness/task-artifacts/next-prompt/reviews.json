@@ -20,6 +20,26 @@
       "notes": "PASS. Non-blocking: B01-B08 cited without a gloss and costs phrased in ceremony terms; effort labels S..XL have no legend; the rewrite sample in the 'run in a clean copy' panel is built from the step template, not a run.",
       "findings": 3,
       "model": "sonnet"
+    },
+    {
+      "page": "interview.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "398f2d6de45a0d7eedf77b986b207a758f857d4c275b559a58138b8a9695ae04",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE. 1 (blocking): Q4 option 1 and its leanWhy describe verdict reading --notes from stdin and the guide saying to pipe the reviewer's reply as existing behavior; neither exists (main.rs verdict arm takes --notes as a plain argument; ARTIFACTS.md and review-artifact say nothing about piping). Reword as new work with its cost, and drop or cost the guide sentence. 2 (non-blocking): 39.5 KB vs 27 KB; trim why-paragraphs that repeat their evidence block and the B-number restatements in Q2 and Q5.",
+      "findings": 2,
+      "model": "sonnet"
+    },
+    {
+      "page": "interview.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "6b83448c3dcd4b6b15e6106ed6667fcff1656827bfac38a2c256786f4038a0f2",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. Non-blocking: 37.5 KB vs 27 KB (Q6 and Q7 first to trim); Q5's list of verbs past tasks used is not tied to a cited record.",
+      "findings": 2,
+      "model": "sonnet"
     }
   ]
 }
