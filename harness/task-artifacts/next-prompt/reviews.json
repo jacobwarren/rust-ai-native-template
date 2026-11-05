@@ -10,6 +10,16 @@
       "notes": "PASS. Non-blocking: page runs past the exemplar (08 and the top banner cheapest to cut); 08 has no excerpt; 02 calls workflow-router's skill mapping a recommendation; 03's prompt_inputs error was not reproduced by the reviewer.",
       "findings": 4,
       "model": "sonnet"
+    },
+    {
+      "page": "interventions.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "10028df3ff54050bf63e15f7a02fe579379752eaa5ea34c069e95026f1096ece",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. Non-blocking: B01-B08 cited without a gloss and costs phrased in ceremony terms; effort labels S..XL have no legend; the rewrite sample in the 'run in a clean copy' panel is built from the step template, not a run.",
+      "findings": 3,
+      "model": "sonnet"
     }
   ]
 }
