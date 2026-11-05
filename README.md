@@ -108,7 +108,9 @@ python3 -m experiments.evaluator.demo --output target/experiments/demo
 GEPA installation, budgets, split controls, and the separate final comparison are
 in [the GEPA guide](experiments/gepa/README.md). Normal CI makes no model calls.
 Only measured, independently reviewed improvements should replace the canonical
-[repository-investigation skill](docs/skills/investigate.md).
+[repository-investigation skill](docs/skills/investigate.md). Claude Code and
+Codex load the same text as the `investigate` skill; `cargo xtask docs` (DOC009)
+keeps the skill's body equal to that seed.
 
 ## Product feedback loop
 
