@@ -56,6 +56,22 @@
       "sha256": "b693cc0308d3e4e1cde583be8a69fa61599530853edf0f9b3b37e33298ca8a5a",
       "reviewer": "artifact-reviewer",
       "notes": "Open: edge rows 'best row' and 'Log reformatted' not run by the reviewer; ~20% over exemplar height."
+    },
+    {
+      "page": "plan.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "d96dfbda250f579c294864c2b16d18d7d6b814f1ce31d8af9c9e77b3e1fc4332",
+      "reviewer": "artifact-reviewer",
+      "notes": "A1 error line/column from an older log (67 now, not 51); A1 example row invented without a label; 65% over exemplar height, A5 belongs in C, alternatives re-derive blindspots."
+    },
+    {
+      "page": "plan.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "2fd98024cb819cebbbd1fabe1ff8ddb7c72020839bfb41c7edbe671edf0c259e",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: ~10% over exemplar height (33% on phone), carried by the A2 refusal table and limit callouts; A3 Today column not re-run by this reviewer."
     }
   ]
 }
