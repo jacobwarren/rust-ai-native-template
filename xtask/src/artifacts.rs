@@ -137,7 +137,8 @@ fn verify(dir: &Path, page: &str) -> Result<bool> {
     Ok(true)
 }
 
-fn order(root: &Path, id: &str, base: &str) -> Result<()> {
+/// Completion reads commits, so product changes and the task's pages must be committed.
+pub fn committed(root: &Path, id: &str) -> Result<()> {
     let prefix = format!("{}/", directory(id));
     let dirty: Vec<String> = history::uncommitted(root)?
         .into_iter()
@@ -145,11 +146,17 @@ fn order(root: &Path, id: &str, base: &str) -> Result<()> {
         .collect();
     if !dirty.is_empty() {
         return Err(format!(
-            "commit product changes and this task's pages before completion; order is read from commits: {}",
+            "commit product changes, and a standard task's pages, before completion; completion reads commits: {}",
             dirty.join(", ")
         )
         .into());
     }
+    Ok(())
+}
+
+fn order(root: &Path, id: &str, base: &str) -> Result<()> {
+    committed(root, id)?;
+    let prefix = format!("{}/", directory(id));
     let commits = history::commits(root, base)?;
     let code: Vec<usize> = (0..commits.len())
         .filter(|&i| commits[i].iter().any(|p| !administrative(p)))
@@ -190,7 +197,19 @@ fn order(root: &Path, id: &str, base: &str) -> Result<()> {
 }
 
 /// Host boundary before product-code edits: the discovery pages must already be committed.
+/// A small task needs no pages; the completion gate holds it to its size instead.
 pub fn guard(root: &Path, id: &str) -> Result<Value> {
+    // A record that exists but does not parse is reported as itself, not as missing pages.
+    let tier = match crate::task_record::read(root, id) {
+        Ok(task) => task.tier,
+        Err(e) if root.join(format!("harness/tasks/{id}.json")).is_file() => return Err(e),
+        Err(_) => crate::task_record::Tier::Standard,
+    };
+    if tier == crate::task_record::Tier::Small {
+        check_written(root, id)?;
+        return Ok(json!({"ok":true,"task":id,"tier":"small",
+            "scope":"Small task: no pages required; completion and handoff check its size"}));
+    }
     check(root, id, false, None)?;
     let committed = history::paths(root, "HEAD")?;
     for page in DISCOVERY {

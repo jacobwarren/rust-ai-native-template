@@ -9,6 +9,7 @@ mod readiness;
 mod repo;
 mod runner;
 mod scenarios;
+mod size;
 mod task_record;
 mod tracking;
 mod transitions;
@@ -77,12 +78,16 @@ fn dispatch() -> Result<Value> {
         ["task-artifact", "screenshot", "--task", id] => artifacts::screenshots(&root, id),
         ["task-artifact", "check", "--task", id] => {
             let task = task_record::read(&root, id)?;
-            artifacts::check(
-                &root,
-                id,
-                task.status == task_record::Status::Complete,
-                None,
-            )?;
+            if task.tier == task_record::Tier::Small {
+                artifacts::check_written(&root, id)?;
+            } else {
+                artifacts::check(
+                    &root,
+                    id,
+                    task.status == task_record::Status::Complete,
+                    None,
+                )?;
+            }
             Ok(json!({"ok":true,"task":id}))
         }
         ["coordination"] => completion::validate(&root),

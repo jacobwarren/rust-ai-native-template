@@ -17,8 +17,8 @@ PROTECTED_FILES="harness/config.json harness/readiness.json harness/tracking.jso
 mode=${1:-}
 host=${2:-}
 case "$mode/$host" in
-  guard/claude | guard/codex | check/claude | check/codex) ;;
-  *) echo "usage: agent-hook.sh guard|check claude|codex < event.json" >&2; exit 2 ;;
+  guard/claude | guard/codex | check/claude | check/codex | author/claude) ;;
+  *) echo "usage: agent-hook.sh guard|check claude|codex, or author claude < event.json" >&2; exit 2 ;;
 esac
 event=$(head -c 1048576)
 
@@ -84,7 +84,17 @@ cwd=$(jget cwd) || cwd=""
 # `|| true` stays inside each $(...): bash 3.2 runs an inherited ERR trap in the
 # substitution even when the caller handles the failure.
 root=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null || true)
-[ -n "$root" ] || allow
+if [ -z "$root" ]; then
+  [ "$mode" != author ] || block "Blocked: the artifact author runs only inside the repository's Git checkout."
+  allow
+fi
+# On a case-insensitive checkout XTASK/x.rs is xtask/x.rs, so paths compare folded.
+fold=$(git -C "$root" config --bool core.ignorecase 2>/dev/null || true)
+lower() {
+  if [ "$fold" = true ]; then printf '%s' "$1" | tr '[:upper:]' '[:lower:]'; else printf '%s' "$1"; fi
+}
+PREFIXES_CMP=$(lower "$PROTECTED_PREFIXES")
+FILES_CMP=$(lower "$PROTECTED_FILES")
 prefix=$(git -C "$cwd" rev-parse --show-prefix 2>/dev/null || true)
 
 # The same root can be spelled /private/var/... (Git) or /var/... (the event).
@@ -109,12 +119,13 @@ normalize() {
 # Relative paths resolve against the event's cwd, so climbing out of the
 # checkout and back in through its own name still lands inside it.
 relative() {
-  local p r
+  local p r lp
   case "$1" in
     /*)
       p=$(normalize "$1")
+      lp=$(lower "$p")
       for r in "$root" "$root_cwd" "$root_short" "/private$root_cwd"; do
-        case "$p" in "$r"/*) p=${p#"$r"/}; break ;; esac
+        case "$lp" in "$(lower "$r")"/*) p=${p:$((${#r} + 1))}; break ;; esac
       done
       case "$p" in /*) p="" ;; esac ;;
     *) relative "${cwd%/}/$1"; return ;;
@@ -124,10 +135,11 @@ relative() {
 
 # Tier of one repository-relative path: golden, deps, policy or none.
 tier() {
-  local p=$1 x
+  local p x
+  p=$(lower "$1")
   case "$p" in "" ) echo none; return ;; harness/goldens | harness/goldens/*) echo golden; return ;; harness/config.json) echo deps; return ;; esac
-  for x in $PROTECTED_PREFIXES; do case "$p" in "$x"*) echo policy; return ;; esac; done
-  for x in $PROTECTED_FILES; do [ "$p" = "$x" ] && { echo policy; return; }; done
+  for x in $PREFIXES_CMP; do case "$p" in "$x"*) echo policy; return ;; esac; done
+  for x in $FILES_CMP; do [ "$p" = "$x" ] && { echo policy; return; }; done
   echo none
 }
 
@@ -364,7 +376,35 @@ EOF
   allow
 }
 
+# The artifact author subagent's own PreToolUse hook (.claude/agents/artifact-author.md):
+# it may edit task pages and files outside the checkout, nothing else in the repository.
+# Bash is not covered; the author's brief and the default guard still apply there.
+author() {
+  local path="" rel common main
+  case "$tool" in
+    Edit | Write | MultiEdit) path=$(jget file_path) || path="" ;;
+    NotebookEdit) path=$(jget notebook_path) || path="" ;;
+    *) allow ;;
+  esac
+  [ -n "$path" ] || block "Blocked: agent-hook could not read the path of this edit. Tell the owner the hook needs a fix."
+  rel=$(relative "$path")
+  if [ -z "$rel" ]; then
+    # From a linked worktree, the main checkout is outside this tree but still the repository.
+    common=$(git -C "$root" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)
+    main=${common%/.git}
+    case "$path" in /*) ;; *) path="${cwd%/}/$path" ;; esac
+    case "$(lower "$(normalize "$path")")/" in
+      "$(lower "$main")"/* | "$(lower "${main#/private}")"/* | "$(lower "/private$main")"/*)
+        [ "$main" = "$common" ] || block "Blocked: the artifact author does not edit the main checkout from a worktree ($path)." ;;
+    esac
+    allow
+  fi
+  case "$(lower "$rel")" in harness/task-artifacts/?*/?*) allow ;; esac
+  block "Blocked: the artifact author edits only task pages under harness/task-artifacts/<task>/, and $rel is not one. Report the change you need instead of making it."
+}
+
 case "$mode" in
   guard) guard ;;
   check) check ;;
+  author) author ;;
 esac

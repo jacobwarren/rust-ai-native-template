@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Plan: agent-workflow</title>
+<style>
+.chips{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-block:var(--space-4)}
+.chip{border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+.chip b{color:var(--accent)}
+.banner{display:grid;grid-template-columns:auto 1fr;gap:var(--space-4);align-items:center;border:1px dashed var(--accent);border-radius:var(--radius);padding:var(--space-4);background:var(--surface)}
+.banner .g{font:700 .8rem/1.3 var(--font-code);color:var(--accent);white-space:pre}
+.sec{margin-block:var(--space-8)}
+.sh{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-3);border-bottom:2px solid var(--ink);padding-bottom:var(--space-2)}
+.sh h2{margin:0}.L{font:700 1.4rem var(--font-code);color:var(--accent)}
+.lk{margin-inline-start:auto;font-size:var(--text-small);font-weight:650;padding:2px var(--space-2);border-radius:var(--control-radius)}
+.hi{background:var(--warning-soft);color:var(--warning)}.lo{background:var(--accent-soft);color:var(--accent)}
+h3{margin-block:var(--space-6) var(--space-2)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:var(--space-4);align-items:start}
+@media (max-width:52rem){.grid2{grid-template-columns:minmax(0,1fr)}}
+pre{font-size:.8rem;line-height:1.5;margin:0}
+.notes{list-style:none;padding:0;margin:0;font-size:var(--text-small)}
+.notes li{border-inline-start:3px solid var(--line);padding:var(--space-1) var(--space-3);margin-bottom:var(--space-3)}
+.notes b.n{display:inline-block;min-width:1.4em;color:var(--accent)}
+.fl{background:var(--warning-soft);border-radius:3px}
+.ch{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-3) var(--space-4);margin-block:var(--space-3)}
+.ch .hd{display:flex;flex-wrap:wrap;gap:var(--space-2);align-items:center}
+.ch .hd b{flex:1 1 14rem}
+.tag{font-size:var(--text-small);font-weight:700;color:var(--warning)}
+.ch button{min-height:36px;padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+.ch .alt{display:none}.ch.on .alt{display:block}.ch.on .pick{display:none}
+.ch p{margin-block:var(--space-2)}
+td code,li code,p code{font-size:.85em}
+td{font-size:var(--text-small)}
+.msg{font:.8rem/1.5 var(--font-code);background:var(--surface);border:1px solid var(--line);border-inline-start:3px solid var(--danger);padding:var(--space-2) var(--space-3);margin-block:var(--space-2);overflow-wrap:anywhere}
+.msg small{display:block;font-family:var(--font-body)}
+.tabs{display:flex;gap:var(--space-2);margin-bottom:var(--space-2)}
+.tabs button{min-height:36px;padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+.tabs button[aria-pressed=false]{background:var(--surface);color:var(--ink);border-color:var(--line)}
+del{background:#f8e1e3;text-decoration:none}ins{background:var(--accent-soft);text-decoration:none}
+.seq{list-style:none;padding:0;counter-reset:s}
+.seq li{display:grid;grid-template-columns:2rem minmax(0,1fr) auto;gap:var(--space-3);padding:var(--space-3) 0;border-bottom:1px solid var(--line)}
+.seq li::before{counter-increment:s;content:counter(s);font:700 1rem var(--font-code);color:var(--accent)}
+.k{font-size:.75rem;font-weight:700;border-radius:var(--control-radius);padding:1px var(--space-2);align-self:start;white-space:nowrap}
+.k.p{background:var(--warning-soft);color:var(--warning)}.k.a{background:var(--accent-soft);color:var(--accent)}
+.mech li{margin-bottom:var(--space-2);font-size:var(--text-small)}
+#out{white-space:pre-wrap}td code{overflow-wrap:anywhere}
+.reply{border:2px solid var(--accent);border-radius:var(--radius);padding:var(--space-6);background:var(--surface)}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">agent-workflow · The tweakable plan · before code</p>
+<h1>Implementation plan: tiers, skills, subagents and a shorter map</h1>
+<blockquote><p id="prompt" style="margin:0">Write an implementation plan for scaling ceremony to task size, turning the agent briefs into skills for both hosts, defining the page author and reviewer as subagents for both hosts, and trimming AGENTS.md, as HTML, but lead with the decisions I'm most likely to tweak: data model changes, new type interfaces and anything user-facing. Bury the mechanical work at the bottom; I trust you on that part.</p></blockquote>
+<button class="secondary" id="cp" type="button">Copy prompt</button>
+<p class="lead">The interview's answers are the design (Q1–Q7) and the reference map's sketches the starting code. This page adds what they left open: exact lists, messages, file contents, tests and commit order.</p>
+<p class="muted">Builds on: blindspots 01–07 (seven callers, diff blind spots, no tier switch, strict record, symlinks, seed path, write limits) · interventions C3+C4, S3, R1–R3, M2 · interview Q1–Q7 · reference map sketches A–E and notes 1–19.</p>
+
+<div class="chips">
+<span class="chip">Product commits <b>3</b></span>
+<span class="chip">New files <b>13</b> + receipt · deleted <b>2</b></span>
+<span class="chip">New tests <b>10</b></span>
+<span class="chip">Receipt <b>1</b>, policy</span>
+<span class="chip">Schema <b>stays 6</b></span>
+</div>
+
+<div class="banner"><div class="g">↑ tweak
+↓ trust</div><div><b>Sorted by how likely you are to change it.</b> A holds every judgment call and the strings an agent reads first. B is the tests, with the exact messages they pin. C is the commit order the gate accepts. D is plumbing, folded.</div></div>
+
+<section class="sec">
+<div class="sh"><span class="L">A</span><h2>Decisions you'll probably want to change</h2><span class="lk hi">High tweak likelihood</span></div>
+
+<h3>A1 · Data model: one field on the task record</h3>
+<div class="grid2">
+<pre><code>// xtask/src/task_record.rs
+#[derive(Deserialize, Default, PartialEq, Eq, Clone, Copy)]
+#[serde(rename_all = "snake_case")]
+pub enum Tier { Small, #[default] Standard }   <span class="fl">①</span>
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Task {
+    pub schema_version: u32,          <span class="fl">②</span>
+    …
+    pub status: Status,
+    #[serde(default)]
+    pub tier: Tier,                   <span class="fl">③</span>
+    …
+}
+
+// harness/tasks/ID.json, the only new spelling
+"tier": "small"</code></pre>
+<ul class="notes">
+<li><b class="n">①</b>Two variants. A middle tier with fewer pages (rung C5) is out; adding one later is a variant plus a <code>required()</code> arm.</li>
+<li><b class="n">②</b>Stays 6. <code>read</code> accepts 1–6 (task_record.rs:67) and <code>review_errors</code> demands exactly 6 (:124); old records parse as standard.</li>
+<li><b class="n">③</b>Plain enum, not <code>Option</code> (reference note 3): absent means standard, <code>"tier": null</code> is rejected, and a typo fails as serde's <code>unknown variant `Small`, expected `small` or `standard`</code>. The field lands in the same commit as its first reader (blindspot 04).</li>
+</ul>
+</div>
+
+<h3>A2 · The size rule, the paths that force standard, and the refusal</h3>
+<div>
+<pre><code>// xtask/src/size.rs (new, ~90 lines)
+pub const SMALL_LINES: u64 = 100;
+const CEREMONY_PREFIXES: [&amp;str; 5] = [
+    "docs/skills/", ".agents/skills/",
+    ".claude/skills/", ".claude/agents/",
+    ".codex/agents/",
+];
+const CEREMONY_FILES: [&amp;str; 1] = ["docs/ARTIFACTS.md"];
+
+pub fn forces_standard(p: &amp;str) -&gt; bool {
+    transitions::protected(p)          // now pub(crate)
+        || p == "Cargo.toml" || p.ends_with("/Cargo.toml")
+        || CEREMONY_FILES.contains(&amp;p)
+        || CEREMONY_PREFIXES.iter().any(|c| p.starts_with(c))
+}
+/// Merge base to working tree, untracked files included.
+pub fn small(root: &amp;Path, base: &amp;str) -&gt; Result&lt;()&gt;</code></pre>
+<div class="table-scroll"><table>
+<tr><th>Forces standard, however few lines</th><th>Paths</th></tr>
+<tr><td><code>protected()</code>, transitions.rs:39, :48</td><td><code>xtask/ .github/ scripts/ .cargo/ harness/goldens/ .claude/ .codex/ harness/{config,readiness,tracking,workflows,scenarios}.json Cargo.toml Cargo.lock docs/{PRODUCT,READINESS,COMPLETION}.md AGENTS.md</code></td></tr>
+<tr><td>Crate manifests</td><td><code>*/Cargo.toml</code> at any depth, as agent-hook.sh:329 already matches</td></tr>
+<tr><td>Ceremony definitions</td><td><code>docs/ARTIFACTS.md docs/skills/ .agents/skills/</code> are new reach; the other three are protected already</td></tr>
+<tr><td>Binary content</td><td><code>- -</code> in numstat, or a NUL in an untracked file's first 8,000 bytes</td></tr>
+</table></div>
+</div>
+<p>Everything else counts: added plus deleted lines, moves in full, untracked files by git's line rule, administrative paths (artifacts.rs:33) skipped. More than <code>SMALL_LINES</code> refuses with:</p>
+<div class="msg">task tier: declared small, but it changes 101 lines, over 100; restart as standard on a new branch with the discovery pages committed first, or finish the small part here and open a standard task for the rest (docs/ARTIFACTS.md)<small>Variants: <code>but it changes crates/app/Cargo.toml</code> · <code>but assets/logo.png is binary</code>. Both exits are interview Q3's. The lists live in Rust, so the hook's table copy and its test (transitions.rs:221) don't change.</small></div>
+
+<div class="ch" id="c1"><div class="hd"><span class="tag">Choice ①</span><b>Where the 100 lives</b><button type="button" class="secondary" data-c="1">View alternative</button></div>
+<div class="pick"><p><b>Plan's pick: a <code>const</code> in xtask/src/size.rs.</b> Changing it edits <code>xtask/</code>, so it needs a receipt, CI and a standard task with pages: the limit can't be loosened by the change it would admit.</p></div>
+<div class="alt"><p><b>Alternative: <code>small_lines</code> in harness/config.json.</b> Adopters tune it without Rust, and the guard asks before edits (agent-hook.sh:128), but config.json is <code>deny_unknown_fields</code> (config.rs): one more schema field to version.</p></div></div>
+
+<h3>A3 · Where the tier switches</h3>
+<div class="table-scroll"><table>
+<tr><th>Entry point</th><th>Change</th></tr>
+<tr><td><code>completion::task</code> (complete, agent-stop, handoff), completion.rs:20</td><td>Pages from <code>artifacts::required(tier, complete)</code>; order only for standard + complete + base. Small runs <code>size::small(base)</code> at any status; the blocked early return (:23-28) needs it ok too.</td></tr>
+<tr><td><code>completion::validate</code> (coordination), :218</td><td>Small demands no pages; <code>check_written</code> still applies. No base, no size.</td></tr>
+<tr><td><code>artifacts::guard</code> (task-artifact guard, artifact-hook), artifacts.rs:193</td><td>Reads the record first; small returns ok and CI measures it later.</td></tr>
+<tr><td><code>task-artifact check</code>, main.rs:78-86</td><td>Passes <code>task.tier</code>.</td></tr>
+</table></div>
+
+<div class="ch" id="c2"><div class="hd"><span class="tag">Choice ②</span><b>Where the size check is called</b><button type="button" class="secondary" data-c="2">View alternative</button></div>
+<div class="pick"><p><b>Plan's pick: beside <code>artifacts::check</code> in <code>completion::task</code></b>, the only caller with a base, under its own <code>task tier:</code> prefix.</p></div>
+<div class="alt"><p><b>Alternative: inside <code>artifacts::check</code></b> (reference sketch B). One owner, but the error arrives as <code>task HTML artifact: …</code> (completion.rs:38) for a task with no pages.</p></div></div>
+
+<h3>A4 · Three skills, two host folders</h3>
+<div class="grid2">
+<pre><code>.claude/skills/&lt;name&gt;/SKILL.md   ┐ byte-identical
+.agents/skills/&lt;name&gt;/SKILL.md   ┘ (DOC007)
+  name: author-artifact | review-artifact
+        | add-product-command
+docs/skills/investigate.md       stays
+docs/skills/{author,review}-artifact.md  deleted
+
+---
+name: author-artifact
+description: Write one task HTML page from its
+  prompt in docs/ARTIFACTS.md against its exemplar
+  in examples/thariq/. Use when you are the
+  dedicated author of a task page.
+---
+(brief body, unchanged except one link:
+ ../ARTIFACTS.md → ../../../docs/ARTIFACTS.md)</code></pre>
+<ul class="notes">
+<li><b class="n">·</b><b>Frontmatter:</b> <code>name</code> and <code>description</code> only, the spec subset both hosts load; descriptions under 1,024 characters. Both copies sit three deep, so one link resolves in both (today's <code>../ARTIFACTS.md</code> drew DOC006, reference note 14). Six docs.json entries; the brief entries at :225 and :231 go.</li>
+<li><b class="n">·</b><b>DOC007</b> compares the two folders file by file after the DOC004–006 loop (checks.rs:153); today an edited copy passes (reference note 15).</li>
+<li><b class="n">·</b><b>DOC008</b> checks the name only, by a hand-rolled scan: line 1 is <code>---</code> and a line before the next <code>---</code> reads <code>name: &lt;folder&gt;</code>. No YAML crate: xtask has serde, serde_json and sha2 (xtask/Cargo.toml), and ARCH004 rejects more (checks.rs:69). Without a parser, a wrapped <code>description</code> can't be measured, so nothing checks its length.</li>
+<li><b class="n">·</b><b>add-product-command</b> teaches the template as it is (interview Q7): the <code>Command</code> enum, <code>capabilities()</code> at crates/engine/src/protocol.rs:32, harness/workflows.json scenarios, docs/DRIVER.md and the journal-format decision. No <code>introduced_in</code>: it exists only on the trial branch.</li>
+<li><b class="n">·</b><b>investigate</b> stays in docs/skills/ as the GEPA seed (blindspot 06).</li>
+</ul>
+</div>
+
+<h3>A5 · Author and reviewer as subagents on both hosts</h3>
+<div class="grid2">
+<pre><code># .claude/agents/artifact-author.md
+---
+name: artifact-author
+description: Writes one task page. Use once per page,
+  in the order of docs/ARTIFACTS.md.
+model: opus
+tools: Read, Grep, Glob, Bash, Edit, Write
+skills:
+  - author-artifact
+hooks:
+  PreToolUse:
+    - matcher: "Edit|Write|MultiEdit|NotebookEdit"
+      hooks:
+        - type: command
+          command: bash "$CLAUDE_PROJECT_DIR/scripts/agent-hook.sh" author claude
+---
+Write only the page you were given. Report anything
+else that needs changing to your caller.
+
+# .claude/agents/artifact-reviewer.md
+model: sonnet · tools: Read, Grep, Glob, Bash
+skills: [review-artifact]          (no Edit, no Write)
+
+# .codex/agents/artifact-author.toml (reviewer alike)
+name = "artifact-author"
+description = "Writes one task page …"
+developer_instructions = """Invoke $author-artifact and
+follow it. Write only under harness/task-artifacts/ …"""</code></pre>
+<ul class="notes">
+<li><b class="n">·</b><b>Author mode</b> in scripts/agent-hook.sh takes three edits: the usage <code>case "$mode/$host"</code> (:19-22) admits <code>author/claude</code>; the final <code>case "$mode"</code> (:367) gains <code>author) author ;;</code>; and <code>author()</code> resolves the edit path through <code>relative()</code> (:111, case-folded per A6), allowing <code>harness/task-artifacts/?*/</code> or an empty result (outside the checkout) and blocking the rest with exit 2: <code>Blocked: the artifact author writes only under harness/task-artifacts/ or outside this repository; xtask/src/main.rs is neither. Report the change to the caller instead.</code> No Codex arm: a Codex role runs no hooks of its own. Outside Git the early allow (:87) stands.</li>
+<li><b class="n">·</b><b>Limits, stated and pinned by tests:</b> Bash writes pass (the author clones, builds and screenshots with it; blindspot 07). A symlink outside the checkout that points into it also passes, because <code>relative()</code> never touches the disk: today's guard returns <code>{}</code> for <code>link/src/main.rs</code> with <code>link → xtask/</code>. Claude runs these frontmatter hooks only after workspace trust, never under <code>-p</code> (code.claude.com sub-agents docs).</li>
+<li><b class="n">·</b><b>Codex:</b> a role gets no sandbox or write limit of its own (codex-rs role_tests.rs:396, :436), so its author is held by instructions plus the default guard, and names <code>$author-artifact</code> because it can't preload a skill (interview Q5).</li>
+</ul>
+</div>
+
+<div class="ch" id="c3"><div class="hd"><span class="tag">Choice ③</span><b>Codex model for the two roles</b><button type="button" class="secondary" data-c="3">View alternative</button></div>
+<div class="pick"><p><b>Plan's pick: no <code>model</code> key; both roles inherit the session's.</b> Codex model names change faster than this template, and a stale name fails the spawn.</p></div>
+<div class="alt"><p><b>Alternative: pin a model and effort per role</b>, mirroring Opus/Sonnet, as ARTIFACTS.md:40 prefers; you'd own the names' upkeep.</p></div></div>
+
+<h3>A6 · Case folding: the guard's bypass, and the author's</h3>
+<p>On a case-insensitive volume (<code>core.ignorecase=true</code> here) the hook matches spellings, not files. Today's guard, in a clean clone:</p>
+<pre><code>Write xtask/src/main.rs                → note: protected policy file, receipt needed
+Write XTASK/src/main.rs                → {}
+Write HARNESS/goldens/a.json           → {}   (golden: ask on Claude, block on Codex)
+Write &lt;root, lowercased&gt;/xtask/src/main.rs → {}   relative() returns "", "outside"</code></pre>
+<p>For the default guard, git still reports <code>xtask/</code>, so the receipt and the size check force standard; only the note and the asks are lost. For author mode the last line is a hole: it allows "outside", so a lowercased root lets the author write product code. The fix asks git once and folds both sides of each comparison:</p>
+<pre><code># after root is known (agent-hook.sh:87); || true stays inside $(...):
+# an unset key exits 1 and would trip the ERR trap (:8), as :84-85 warn
+fold=$(git -C "$root" config --bool core.ignorecase 2>/dev/null || true)
+lower() {   # bash 3.2: no ${p,,}
+  if [ "$fold" = true ]; then printf '%s\n' "$1" | LC_ALL=C tr '[:upper:]' '[:lower:]'
+  else printf '%s\n' "$1"; fi
+}
+# relative() (:111-123): match the roots folded, keep the tail's spelling
+lp=$(lower "$p")
+for r in "$root" "$root_cwd" "$root_short" "/private$root_cwd"; do
+  case "$lp" in "$(lower "$r")"/*) p=${p:${#r}+1}; break ;; esac
+done
+# tier() (:126): compare $(lower "$p") with lowered table entries</code></pre>
+<p>Run under macOS <code>/bin/bash</code> 3.2: a lowercased root plus <code>XTASK/src/main.rs</code> yields <code>XTASK/src/main.rs</code>; with the key unset nothing folds, as a case-sensitive checkout needs.</p>
+<div class="ch" id="c4"><div class="hd"><span class="tag">Choice ④</span><b>How much of the folding to do here</b><button type="button" class="secondary" data-c="4">View alternative</button></div>
+<div class="pick"><p><b>Plan's pick: fold the roots and the tier tables in this task.</b> Same file, same receipt as author mode.</p></div>
+<div class="alt"><p><b>Alternative: fold only the roots</b>, which author mode needs regardless, and record the tier-table bypass as <code>guard-case-folding</code> in harness/gaps.json. The receipt and CI already catch that change; the gap entry is about as large as the fix.</p></div></div>
+
+<h3>A7 · AGENTS.md: the trim and the new line</h3>
+<p>All but one cut sentence already live in the linked doc: ARTIFACTS.md:13, :38 (author and reviewer); COMPLETION.md:40-52 (checkpoints), :47-49 and :66-67 (durable findings), :76 ("No material gaps discovered"), :106-107 (finalize before CI, reports under target), :120-124 (partial handoff). "Do not force broader gaps closed" has no twin (nearest: :38 and :48), so step 7 keeps it. 73 lines become 68, counted on the rebuilt file; DOC005 allows 100 (checks.rs:164).</p>
+<div class="tabs"><button type="button" data-v="diff" aria-pressed="true">Changes</button><button type="button" data-v="after" aria-pressed="false">After</button></div>
+<pre id="agdiff"><code>2. <del>Produce the task's [HTML artifacts](docs/ARTIFACTS.md): five discovery pages
+   before code, implementation notes during the work, buy-in and quiz before
+   merge. Each page comes from its prompt in that guide, written by a dedicated
+   author against its exemplar and judged by an independent reviewer.
+   </del>Inspect the existing implementation and<del>
+  </del> applicable acceptance criteria.
+   Use `cargo xtask gaps` for ranked work and the driver to observe product behavior.
+   Use `cargo xtask map` and `rg` to locate owners and dependencies.
+   <ins>Write the task's [HTML artifacts](docs/ARTIFACTS.md); a task declared small there needs none.</ins>
+4. For multi-step or risky work, create a plan from
+   [the plan template](docs/plans/TEMPLATE.md). <del>Small changes need no ceremony.</del><ins>Other work needs no plan.</ins>
+7. <del>Reconcile task records and gaps at task start, material discovery, milestone,
+   and handoff. Follow [completion and gap discovery guidance](docs/COMPLETION.md).
+   Before claiming done, run `cargo xtask complete --task ID --base REV --report PATH`.
+   Partial/blocked work uses handoff with explicit remaining actions; do not force
+   broader gaps closed. Answer the four task-review questions before stopping;
+   "no material gaps discovered" is valid. Record durable findings during work,
+   not transient failures already fixed. Finalize records before CI; put reports under target.
+   </del><ins>Keep the task record current from start to handoff, then finish through the gate
+   in [completion guidance](docs/COMPLETION.md): `cargo xtask complete --task ID
+   --base REV --report PATH`, or handoff for partial or blocked work, leaving open
+   the gaps it did not resolve.</ins>
+## Operating rules   (appended after the last rule)
+<ins>- Prefer existing tools (cargo, clippy, xtask) over new scripts. Add no manual
+  setup steps or human approval gates unless the task asks.</ins></code></pre>
+
+<h3>A8 · Other docs whose claims change</h3>
+<div class="table-scroll"><table>
+<tr><th>Where</th><th>Says today</th><th>Becomes</th></tr>
+<tr><td>docs/ARTIFACTS.md:3, :64, :106-108</td><td>"Every task leaves HTML pages"; "All eight are required."; the commit-order list</td><td>Each says "standard task"; :64 adds "a small task needs none". New <b>Task size</b> section: the A2 rule, both exits, "declare the tier before the first commit".</td></tr>
+<tr><td>docs/ARTIFACTS.md:13-14, :38-39</td><td>Start a fresh subagent and give it the brief</td><td>Start <code>artifact-author</code> / <code>artifact-reviewer</code>; link the <code>.claude/skills/</code> copies; old wording stays the fallback.</td></tr>
+<tr><td>docs/COMPLETION.md:44-46, :61, :194, :224</td><td>Discovery pages before implementation; schema 6 requires the artifacts; the opt-in guard waits for "five discovery pages"; completion requires eight</td><td>Each gains "for a standard task"; Artifact admission adds the size check, run at handoff too.</td></tr>
+<tr><td>ARCHITECTURE.md:26</td><td>"Required self-contained pages"</td><td>"Pages for standard tasks, small-tier size check"; modules gain <code>size.rs</code>.</td></tr>
+<tr><td>README.md:158-166</td><td>"Each task leaves HTML artifacts … A dedicated subagent writes each page"</td><td>"Each standard task …"; one sentence names the two agents and the small tier.</td></tr>
+</table></div>
+</section>
+
+<section class="sec">
+<div class="sh"><span class="L">B</span><h2>Tests, and the messages they pin</h2><span class="lk hi">Worth a skim</span></div>
+<p>Ten new tests, each with an independent expected result. Fixtures as in tests/support/mod.rs; <code>Fixture::task()</code> keeps its eight pages, a new <code>Fixture::small()</code> writes none. No existing test is renamed.</p>
+<details><summary>The ten tests: tier and size (6), skill copies (1), author mode and agent files (2), case folding (1)</summary>
+<div class="table-scroll"><table>
+<tr><th>Test (file)</th><th>Expected</th></tr>
+<tr><td><code>small_task_completes_with_no_pages</code> (tiers.rs)</td><td>3-line change, CI evidence, no artifact folder: <code>"complete": true</code>.</td></tr>
+<tr><td><code>small_task_is_refused_past_100_lines_at_handoff</code> (tiers.rs)</td><td>Partial record, a 100-line file: handoff ok. One more line: the A2 message, <code>changes 101 lines, over 100</code>.</td></tr>
+<tr><td><code>moves_untracked_and_binary_files_count_toward_size</code> (tiers.rs)</td><td><code>git mv</code> of a 60-line file: <code>120 lines</code>. Untracked 101-line file: <code>101 lines</code>. A NUL, committed or untracked: <code>is binary</code>.</td></tr>
+<tr><td><code>protected_cargo_and_ceremony_paths_force_standard</code> (tiers.rs)</td><td>One line each in <code>scripts/x.sh</code>, <code>crates/a/Cargo.toml</code>, <code>.agents/skills/x/SKILL.md</code>, <code>docs/ARTIFACTS.md</code>: error names that path. One line in <code>docs/GUIDE.md</code> plus 300 in <code>harness/tasks/</code>: ok.</td></tr>
+<tr><td><code>every_page_check_reads_the_tier</code> (tiers.rs)</td><td>Small complete record, no pages: coordination, check and artifact-hook ok; guard prints <code>{"ok":true,"task":"ID","tier":"small","scope":"Small task: no pages required; handoff and completion measure its size"}</code>. Same record as standard: each reports <code>blindspots.html</code>.</td></tr>
+<tr><td><code>tier_is_small_or_standard_and_defaults_to_standard</code> (tiers.rs)</td><td><code>"Small"</code>: <code>unknown variant `Small`</code>. <code>null</code>: error. Absent: guard demands the discovery pages.</td></tr>
+<tr><td><code>skill_copies_must_match_and_name_their_folder</code> (contracts.rs)</td><td>Identical copies: docs ok. One byte changed, or a file in one host only: <code>DOC007 skills/x/SKILL.md: .claude/skills/ and .agents/skills/ differ; make both copies identical</code>. <code>name: y</code> in folder <code>x</code>, or no opening <code>---</code>: <code>DOC008 .agents/skills/x/SKILL.md: frontmatter must open the file and say name: x</code>.</td></tr>
+<tr><td><code>author_mode_allows_only_the_artifact_folder_and_outside_paths</code> (hooks_author.rs)</td><td>Under <code>harness/task-artifacts/T/</code> and <code>/tmp/out.txt</code>: <code>{}</code>. <code>xtask/src/main.rs</code>, <code>target/debug/xtask</code> (the binary the hooks run), <code>harness/task-artifacts/T/../../../xtask/src/main.rs</code> and, with <code>core.ignorecase=true</code>, the uppercased fixture root + <code>/xtask/src/main.rs</code>: exit 2, <code>Blocked: the artifact author writes only under harness/task-artifacts/ or outside this repository; xtask/src/main.rs is neither. Report the change to the caller instead.</code> Pinned limits: a Bash redirect into xtask/ and an outside symlink to xtask/ get <code>{}</code>. The match never reads the disk, so this runs on Linux CI too.</td></tr>
+<tr><td><code>agent_definitions_preload_their_skills_and_limit_writes</code> (hooks_author.rs)</td><td>On the repository's own files: each <code>skills:</code> entry exists in both host folders; the author's hook ends <code>agent-hook.sh" author claude</code>; the reviewer lacks Edit and Write; each TOML names its <code>$skill</code>.</td></tr>
+<tr><td><code>guard_folds_case_where_git_ignores_case</code> (hooks_guard.rs)</td><td><code>core.ignorecase=true</code>: <code>XTASK/src/main.rs</code> and the uppercased root + <code>/xtask/src/main.rs</code> get the policy note; <code>HARNESS/goldens/a.json</code> asks. <code>false</code>: <code>XTASK/src/main.rs</code> returns <code>{}</code>. Key unset (<code>git config --unset</code>): <code>{}</code>, exit 0, empty stderr.</td></tr>
+</table></div>
+</details>
+<p>Nine tests join the <code>task-artifacts</code> requirement in harness/readiness.json and the case test joins <code>completion</code>, each name in the commit that adds the test: the six tiers.rs names (and <code>xtask/src/size.rs</code> under <code>implementation</code>) with the tier commit, the other four (with <code>checks.rs</code> and <code>artifact-author.md</code>) with the skills-and-agents commit. Author tests get their own file: hooks_guard.rs is 305 of 400 allowed lines.</p>
+</section>
+
+<section class="sec">
+<div class="sh"><span class="L">C</span><h2>Commit order the gate accepts</h2><span class="lk lo">Execution order</span></div>
+<p>This task is standard (it changes <code>xtask/</code>). <code>order()</code> (artifacts.rs:140-190) wants discovery before the first product commit, notes before the last, buy-in and quiz at or after it.</p>
+<ol class="seq">
+<li><span><b>plan.html</b>, the fifth discovery page; the other four are committed.</span><span class="k a">pages</span></li>
+<li><span><b>Tier.</b> <code>Tier</code>, <code>required()</code>, size.rs, the four callers, <code>protected()</code> pub(crate), <code>Fixture::small()</code>, the six tiers.rs tests and their readiness names. The first product commit.</span><span class="k p">product</span></li>
+<li><span><b>Implementation notes, first slice.</b> Before the last product commit; later updates are free.</span><span class="k a">pages</span></li>
+<li><span><b>Skills and subagents.</b> Six SKILL.md, two briefs deleted, docs.json, DOC007/DOC008; four agent files; author mode and case folding in agent-hook.sh; the agent-artifact-write.sh message; the four remaining tests and their readiness names.</span><span class="k p">product</span></li>
+<li><span><b>Docs, last product commit.</b> AGENTS.md trim and rule, and the A8 edits to ARTIFACTS.md, COMPLETION.md, ARCHITECTURE.md and README.md.</span><span class="k p">product</span></li>
+<li><span><b>Receipt, record, buy-in, quiz.</b> <code>cargo xtask gaps --base origin/main</code> gives the policy change to explain; the receipt hashes the final protected tree, so any later product fix means refreshing it. Then <code>check ci</code> and <code>complete</code>.</span><span class="k a">after</span></li>
+</ol>
+</section>
+
+<section class="sec">
+<div class="sh"><span class="L">D</span><h2>Mechanical work (trust me)</h2><span class="lk lo">Low tweak likelihood</span></div>
+<details><summary>Plumbing and the receipt · 8 items</summary>
+<ul class="mech">
+<li><b>Receipt</b> harness/transitions/agent-workflow.json, one <code>policy</code> change: the A2 tier rule, skills with DOC007/DOC008, the two agents and author mode, case folding, and the new readiness names. Evidence: the ten tests and the five docs.</li>
+<li><code>transitions::protected</code> becomes <code>pub(crate)</code>. The tables and their hook copy are unchanged.</li>
+<li><code>size::changed()</code> runs <code>git -c core.quotePath=false diff --numstat --no-renames -z BASE</code> and <code>ls-files -o --exclude-standard -z</code>, not <code>history::uncommitted</code>, which would count modified files twice (reference note 8).</li>
+<li>agent-artifact-write.sh:10 gives discovery-page advice for any failure (reference note 7); it becomes <code>The discovery-page guard refused this patch; its error is above. A small task needs no pages; a standard one commits its five discovery pages first (docs/ARTIFACTS.md).</code></li>
+<li>main.rs help text for <code>task-artifact check</code> and <code>guard</code> mentions the tier; agent-hook.sh's usage line names <code>author claude</code>.</li>
+<li>docs.json: eight entries added (six SKILL.md, two agent .md), two removed.</li>
+<li>Task record: requirements gain <code>completion</code>; <code>documentation.updated</code> lists AGENTS.md, docs/ARTIFACTS.md, docs/COMPLETION.md, ARCHITECTURE.md and README.md; <code>artifact-gate-holes</code> stays <code>unaffected</code>, rationale updated: size reads the tree, so the merge-ref hole doesn't reach the tier.</li>
+<li>Untouched on purpose: examples/task-record.json (absent is standard), docs/skills/investigate.md, README.md:111, both experiments READMEs, the stop hook, <code>check_written</code>, and earlier receipts (append-only, so artifact-harness.json keeps the old brief paths).</li>
+</ul>
+</details>
+</section>
+
+<div class="reply">
+<h2 style="margin-top:0">Your reply</h2>
+<p>Flip any choice card above to its alternative, add a line, copy.</p>
+<label>Anything else (optional)<textarea id="extra" placeholder="e.g. Drop the anti-red-tape line's second sentence."></textarea></label>
+<output id="out"></output>
+<p><button type="button" id="copy">Copy reply</button></p>
+</div>
+
+<footer>agent-workflow · implementation plan · feeds the implementation notes</footer>
+</main>
+<script>
+(function(){
+"use strict";
+var $=function(i){return document.getElementById(i);};
+function copy(t,b){var o=b.textContent,d=function(){b.textContent="Copied";setTimeout(function(){b.textContent=o;},1500);};
+ function fb(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");}catch(e){}a.remove();d();}
+ if(navigator.clipboard)navigator.clipboard.writeText(t).then(d,fb);else fb();}
+var C={1:["Keep SMALL_LINES = 100 as a const in xtask/src/size.rs.","Move the 100-line limit into harness/config.json as small_lines."],
+2:["Call size::small from completion::task with its own \"task tier:\" prefix.","Call the size check inside artifacts::check, as reference sketch B drew it."],
+3:["Codex roles inherit the session's model.","Pin a model and reasoning effort per Codex role."],
+4:["Fold case for both the roots and the tier tables in this task, keyed on core.ignorecase.","Fold only the roots (author mode needs it) and record the tier-table bypass as gap guard-case-folding."]};
+var st={1:0,2:0,3:0,4:0};
+function render(){var l=["Plan reply for agent-workflow:"];
+ Object.keys(C).forEach(function(k){l.push((st[k]?"CHANGE ":"OK ")+"choice "+k+": "+C[k][st[k]]);});
+ var x=$("extra").value.trim();if(x)l.push("Also: "+x);
+ if(!x&&!st[1]&&!st[2]&&!st[3]&&!st[4])l.push("Build as planned.");
+ $("out").textContent=l.join("\n");}
+document.querySelectorAll("[data-c]").forEach(function(b){b.onclick=function(){var k=b.getAttribute("data-c"),c=$("c"+k);st[k]=st[k]?0:1;c.classList.toggle("on",!!st[k]);b.textContent=st[k]?"Back to plan's pick":"View alternative";render();};});
+var orig=$("agdiff").innerHTML;
+document.querySelectorAll("[data-v]").forEach(function(b){b.onclick=function(){document.querySelectorAll("[data-v]").forEach(function(o){o.setAttribute("aria-pressed",o===b);});
+ var p=$("agdiff");p.innerHTML=orig;if(b.getAttribute("data-v")==="after"){p.querySelectorAll("del").forEach(function(d){d.remove();});p.querySelectorAll("ins").forEach(function(i){i.replaceWith(document.createTextNode(i.textContent));});}};});
+$("extra").oninput=render;
+$("copy").onclick=function(){copy($("out").textContent,this);};
+$("cp").onclick=function(){copy($("prompt").textContent,this);};
+render();
+})();
+</script>
+</body>
+</html>

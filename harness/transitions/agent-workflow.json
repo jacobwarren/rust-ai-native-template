@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "base_commit": "6da4cde94cd7e08d458333cd49fc00a115dfe4ed",
+  "changes": [
+    {
+      "change": {
+        "after_sha256": "bb6dc3b5153c222600c29ef9fb9282556128ecd1d3aa43645a2e5e2567d0c640",
+        "before_sha256": "502883330aab7a7583a0ab95169deb2cacae01fca959279a075f8917b0407bc5",
+        "subject": "policy"
+      },
+      "rationale": "Scale task-page ceremony to task size and package the page workflow for both agent hosts. A task record may declare tier small (absent means standard); a small task needs no HTML pages, and completion and handoff measure its branch against the merge base, refusing it past 100 changed lines (moves count both sides, untracked files count, any binary refuses) or when it touches a protected path, any Cargo.toml or the ceremony's own definitions, so gate, guard, policy and ceremony changes always keep the full pages and reviews. The author and reviewer briefs become SKILL.md files for Claude Code (.claude/skills) and Codex (.agents/skills), kept identical by xtask docs (DOC007, DOC008), with a new add-product-command skill; artifact-author and artifact-reviewer subagents are defined for both hosts, and an author mode of agent-hook.sh confines the Claude author's Edit/Write to task pages and paths outside the checkout. The default guard now folds case where Git ignores it, closing an XTASK/ spelling bypass. AGENTS.md is trimmed and gains a rule against adding tools, manual steps or approval gates the task did not ask for. Limits: the line count cannot see dense lines or a feature split across small branches; the author hook covers Edit/Write on Claude Code in a trusted workspace only.",
+      "evidence": [
+        "docs/ARTIFACTS.md",
+        "xtask/tests/tiers.rs",
+        "xtask/tests/hooks_author.rs",
+        "harness/task-artifacts/agent-workflow/plan.html",
+        "harness/task-artifacts/agent-workflow/implementation.html"
+      ],
+      "manual_justification": null
+    }
+  ]
+}

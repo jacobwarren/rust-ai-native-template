@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implementation notes: agent-workflow</title>
+<style>
+.prompt{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-4) var(--space-6)}
+.prompt q{display:block;font-style:italic;max-width:62ch;padding-inline-end:6.5rem}
+.prompt .copy{position:absolute;top:var(--space-3);right:var(--space-3)}
+button.small{min-height:36px;padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+button.ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
+button.ghost[aria-pressed=true]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.stats{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-block:var(--space-6)}
+.stat{flex:1 1 8.5rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-3) var(--space-4)}
+.stat b{display:block;font-size:1.8rem;line-height:1.1}
+.stat span{font-size:var(--text-small);color:var(--muted)}
+.stat.w b{color:var(--warning)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-block:var(--space-4)}
+.dev{border:1px solid var(--line);border-inline-start:4px solid var(--warning);border-radius:var(--radius);background:var(--surface);padding:var(--space-4);margin-block:var(--space-4)}
+.dev.fixed{border-inline-start-color:var(--accent)}
+.dev h3{margin:0 0 var(--space-2)}
+.badge{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1px var(--space-2);border-radius:var(--control-radius);background:var(--warning-soft);color:var(--warning);margin-bottom:var(--space-2)}
+.fixed .badge{background:var(--accent-soft);color:var(--accent)}
+.dg{display:grid;grid-template-columns:9.5rem minmax(0,1fr);gap:var(--space-1) var(--space-4);font-size:var(--text-small);margin:0}
+.dg dt{font-weight:700;color:var(--muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.06em;padding-top:.2rem}
+.dg dd{margin:0 0 var(--space-2)}
+.dg dt.c{color:var(--accent)}.dg dd.c{font-weight:600}
+@media (max-width:40rem){.dg{grid-template-columns:minmax(0,1fr)}.dg dd{margin-bottom:var(--space-3)}}
+pre{font-size:.78rem;line-height:1.5;margin-block:var(--space-2)}
+pre .f{display:block;color:var(--muted);font-size:.72rem;margin-bottom:var(--space-1)}
+mark{background:var(--warning-soft);color:inherit;border-radius:2px}
+code{font-size:.88em}
+td{font-size:var(--text-small)}th{white-space:nowrap}
+td.a{color:var(--accent);font-weight:700;white-space:nowrap}td.b{color:var(--danger);font-weight:700;white-space:nowrap}
+.slice{margin-block:var(--space-8)}
+.slice > h2{border-bottom:2px solid var(--ink);padding-bottom:var(--space-2)}
+.slice h2 small{font-weight:400;font-size:var(--text-small)}
+.learn{list-style:none;padding:0;margin:0}
+.learn > li{border-inline-start:3px solid var(--line);padding:0 0 0 var(--space-4);margin-block:var(--space-6)}
+.learn > li > b:first-child{display:block}
+.hidden{display:none}
+#reply{white-space:pre-wrap;font:.8rem/1.5 var(--font-code)}
+.mini td:first-child{font-weight:650}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">agent-workflow · During implementation</p>
+<h1>Implementation notes: tiers, skills, subagents and a shorter map</h1>
+<p class="lead">Three slices are built: the small tier and its size gate, the briefs as skills with the author and reviewer as subagents, and the docs trim. Six deviations were logged while building, each settled on the conservative side. Reading the diff against the plan turned up five more that nobody had logged. All five are now fixed, each with the conservative option, and they come first because they changed the code.</p>
+
+<div class="prompt">
+  <p class="eyebrow" style="margin-top:0">The prompt</p>
+  <button class="small ghost copy" id="copyPrompt">Copy prompt</button>
+  <q id="promptText">Keep implementation notes as you build scaling ceremony to task size, the skills, the subagents and the AGENTS.md trim. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going.</q>
+</div>
+<p class="muted" style="font-size:var(--text-small)">Builds on the plan's sections A1–A8 and its test list B; the interview's Q1–Q7 fixed the design, and blindspot 07 already showed that Bash writes are out of any edit hook's reach. All runs below are from a clean copy of the branch with the docs slice applied.</p>
+
+<div class="stats">
+  <div class="stat"><b>3</b><span>slices: tier, skills and agents, docs</span></div>
+  <div class="stat"><b>5</b><span>caught by these notes, now fixed</span></div>
+  <div class="stat w"><b>6</b><span>logged while building</span></div>
+  <div class="stat"><b>4</b><span>bugs the build caught in itself</span></div>
+  <div class="stat"><b>19/19</b><span>tests in tiers, hooks_author, hooks_guard</span></div>
+</div>
+
+<h2 id="deviations">Deviations from the plan</h2>
+<div class="chips" role="group" aria-label="Filter deviations">
+  <button class="small ghost" data-f="all" aria-pressed="true">All 11</button>
+  <button class="small ghost" data-f="fixed" aria-pressed="false">Caught here, fixed 5</button>
+  <button class="small ghost" data-f="log" aria-pressed="false">Logged while building 6</button>
+</div>
+
+<div id="devs">
+<article class="dev fixed" data-t="fixed" data-id="1">
+  <span class="badge">Caught here, fixed · 1</span>
+  <h3>A blocked small task could stop past the size limit when the gap register was broken</h3>
+  <dl class="dg">
+    <dt>Plan said</dt><dd>"the blocked early return (:23-28) needs it ok too" (A3).</dd>
+    <dt>Code did</dt><dd>The early return checked status, review answers and <code>artifact_result</code> only; the size check ran after the register load.</dd>
+    <dt>Caught by</dt><dd>Blocked small task, 150 added lines, broken <code>harness/gaps.json</code>: <code>agent-stop</code> returned <code>"ok": true, "kind": "blocked_handoff"</code>. Admission was safe, since <code>handoff</code> still failed, but the stop slipped through.</dd>
+    <dt class="c">Fixed</dt><dd class="c"><code>size_result</code> is computed before the register load and required by the early return (completion.rs:31-42). The same probe now ends in an error; small_task_is_refused_past_100_lines_at_handoff asserts it (tiers.rs:86-106).</dd>
+  </dl>
+</article>
+
+<article class="dev fixed" data-t="fixed" data-id="2">
+  <span class="badge">Caught here, fixed · 2</span>
+  <h3>A mistyped tier made the guard ask for discovery pages</h3>
+  <dl class="dg">
+    <dt>Plan said</dt><dd>The guard prints <code>"tier":"small"</code> for a small record, and <code>"Small"</code> fails as serde's unknown variant (A1, B).</dd>
+    <dt>Code did</dt><dd><code>read(root, id).is_ok_and(|t| t.tier == Small)</code>: a record that failed to parse fell through to the standard check, and the output had no <code>tier</code> key.</dd>
+    <dt>Caught by</dt><dd>With <code>"tier": "Small"</code> or <code>null</code>, <code>task-artifact guard</code> said <code>missing blindspots.html</code>.</dd>
+    <dt class="c">Fixed</dt><dd class="c">A record that exists but doesn't parse is now returned as its own error (artifacts.rs:203-207). The guard now says <code>unknown variant `Small`, expected `small` or `standard`</code>, and a small record gets <code>"tier":"small"</code>. tiers.rs asserts both bad tiers and the opt-in <code>artifact-hook</code>.</dd>
+  </dl>
+</article>
+
+<article class="dev fixed" data-t="fixed" data-id="3">
+  <span class="badge">Caught here, fixed · 3</span>
+  <h3>The refusal suggested the split that the docs call undetectable</h3>
+  <dl class="dg">
+    <dt>Plan said</dt><dd><code>… changes 101 lines, over 100; restart as standard on a new branch …, or finish the small part here and open a standard task for the rest</code></dd>
+    <dt>Code did</dt><dd><code>101 changed lines exceed the small limit of 100; a small task needs none of these. Split the work into small tasks, or restart …</code></dd>
+    <dt>Why it mattered</dt><dd>ARTIFACTS.md names "one feature split across several small branches" as the residual no gate catches, and here the gate recommended it.</dd>
+    <dt class="c">Fixed</dt><dd class="c">size.rs:111 now reads <code>…; a small task changes at most 100 lines and none of these paths. Narrow the change, or restart it as a standard task on a new branch …</code></dd>
+  </dl>
+</article>
+
+<article class="dev fixed" data-t="fixed" data-id="4">
+  <span class="badge">Caught here, fixed · 4</span>
+  <h3>The AGENTS.md trim had dropped two lines the plan kept, and kept one it replaced</h3>
+  <dl class="dg">
+    <dt>Plan said</dt><dd>Keep "Inspect the existing implementation and applicable acceptance criteria" in step 2, and "do not force broader gaps closed" in step 7, which "has no twin". Replace step 4's "Small changes need no ceremony." with "Other work needs no plan." (A7)</dd>
+    <dt>Code did</dt><dd>Both kept lines were gone; neither has a twin elsewhere (the nearest to the second are COMPLETION.md:38 and :48). Step 4 still said "Small changes need no ceremony", eight lines below a tier that defines "small" differently.</dd>
+    <dt class="c">Fixed</dt><dd class="c">AGENTS.md:10 restores the inspect line. Step 7 ends "and does not force broader gaps closed" (:24-25). Step 4 reads "…plan template; a small task needs none." (:16). The map is 71 lines of the 100 allowed.</dd>
+  </dl>
+</article>
+
+<article class="dev fixed" data-t="fixed" data-id="5">
+  <span class="badge">Caught here, fixed · 5</span>
+  <h3>Limits the plan said tests would pin were unpinned</h3>
+  <dl class="dg">
+    <dt>Plan said</dt><dd>The author test covers the uppercased root, an outside symlink to <code>xtask/</code> and a Bash redirect; tiers.rs covers a <code>null</code> tier and <code>artifact-hook</code> for a small record (B).</dd>
+    <dt>Code did</dt><dd>Only the Bash case was asserted, and <code>agent-artifact-write.sh</code> still blamed missing pages for any refusal.</dd>
+    <dt class="c">Fixed</dt><dd class="c">hooks_author.rs:37-53 now pins the uppercased root (blocked) and an outside symlink to <code>xtask/</code> (passes, a documented limit). tiers.rs covers the tiers, as above. The wrapper now says <code>The discovery-page guard refused this edit; see its error above.</code></dd>
+  </dl>
+</article>
+
+<article class="dev" data-t="log">
+  <span class="badge">Logged · 6</span>
+  <h3>A small task's completion still requires committed product changes</h3>
+  <dl class="dg">
+    <dt>Plan said</dt><dd>Pages come from <code>artifacts::required(tier, complete)</code>, and commit order is read only for standard + complete (A3).</dd>
+    <dt>Code does</dt><dd>The uncommitted-files check moves out of <code>order()</code> into <code>artifacts::committed</code> (artifacts.rs:141), which a complete small task also runs (completion.rs:23-29).</dd>
+    <dt class="c">Conservative choice</dt><dd class="c">Keep the commit requirement for every tier. Probe: 3 uncommitted lines are refused with <code>commit product changes, and a standard task's pages, before completion; completion reads commits</code>. That wording was reworded together with fix 5, because it used to talk about pages and order to a task that has neither.</dd>
+  </dl>
+</article>
+
+<article class="dev" data-t="log">
+  <span class="badge">Logged · 7</span>
+  <h3>From a linked worktree, the main checkout is not "outside"</h3>
+  <dl class="dg">
+    <dt>Plan said</dt><dd>An empty <code>relative()</code> result means outside the checkout, so the edit is allowed (A5).</dd>
+    <dt>Code does</dt><dd><code>author()</code> asks for <code>--git-common-dir</code> and blocks a path under the main checkout (agent-hook.sh:391-399; hooks_author.rs:42-49).</dd>
+    <dt class="c">Conservative choice</dt><dd class="c">Block it, because hosts often run sessions in worktrees. Bug caught: the fixture sits under <code>/var/folders</code>, but Git reports <code>/private/var</code>, so all three spellings are matched. A separate clone is still outside: my probe from a clone into the shared checkout's <code>xtask/src/main.rs</code> got <code>{}</code>.</dd>
+  </dl>
+</article>
+
+<div class="table-scroll" data-t="log"><table class="mini">
+<caption>Logged 8–11: smaller departures, each the conservative side</caption>
+<thead><tr><th>#</th><th>Plan said</th><th>Code does, and why</th></tr></thead>
+<tbody>
+<tr><td>8</td><td>Outside Git, the hook's early allow stands.</td><td>Author mode blocks (agent-hook.sh:87-90). With no root, every path is "outside", so the early allow would let the author write anywhere.</td></tr>
+<tr><td>9</td><td>Earlier task records stay untouched.</td><td><code>harness/tasks/artifact-harness.json</code> now points at the moved briefs. Bug caught: coordination requires every referenced file to exist.</td></tr>
+<tr><td>10</td><td>AGENTS.md: 73 lines become 68.</td><td>It ends at 71 after fix 4 restored two lines; DOC005 allows 100.</td></tr>
+<tr><td>11</td><td>Leave <code>examples/task-record.json</code> alone.</td><td>It gains <code>"tier": "standard"</code>, so the agents who copy it see that a choice exists.</td></tr>
+<tr><td>Accepted</td><td>The author tools are Read, Grep, Glob, Bash, Edit and Write; <code>docs.json</code> gets eight entries added and two removed.</td><td>Both agents also have <code>WebFetch</code>, for checking host docs. <code>harness/docs.json</code> was re-sorted whole. Both stay as built.</td></tr> <tr><td>Accepted</td><td>Repoint <code>harness/tasks/artifact-harness.json</code> at the moved briefs (logged 9).</td><td>Handoff re-checks any record the branch changes against today's base, where that record's historical claims fail. The record is restored unchanged, and <code>docs/skills/author-artifact.md</code> and <code>review-artifact.md</code> stay as short forwarding notes to the skills.</td></tr> <tr><td>Accepted</td><td>The author block reads "writes only under harness/task-artifacts/ or outside this repository; X is neither. Report the change to the caller instead."</td><td>It reads "the artifact author edits only task pages under harness/task-artifacts/&lt;task&gt;/, and X is not one. Report the change you need instead of making it." It no longer names the outside-the-repository allowance, which still holds. The guard's small-task scope says "completion and handoff check its size".</td></tr>
+</tbody></table></div>
+</div>
+
+<section class="slice">
+<h2>Slice 1: the tier and the size gate</h2>
+<ol class="learn">
+<li><b>Only the gate measures, and only where it has a base.</b>
+<pre><span class="f">xtask/src/completion.rs:21-42, 55-57</span>let artifact_result = match task.tier {
+    Tier::Standard => artifacts::check(root, id, complete, Some(base)),
+    Tier::Small => artifacts::check_written(root, id).and_then(|()| {
+        if complete { artifacts::committed(root, id) } else { Ok(()) }
+    }),
+};
+let size_result = match task.tier {
+    Tier::Small => size::check_small(root, base),
+    Tier::Standard => Ok(()),
+};
+…           // blocked early return: … &amp;&amp; artifact_result.is_ok() <mark>&amp;&amp; size_result.is_ok()</mark>
+if let Err(e) = size_result {
+    errors.push(format!("task tier small: {e}"));
+}</pre>
+<p><code>Tier</code> is a plain enum with <code>#[serde(default)]</code> (task_record.rs:19-34), so schema 6 records without the field stay standard. Coordination, the guard and <code>task-artifact check</code> read it but never measure, so growth on a branch shows up at CI's next handoff.</p></li>
+
+<li><b>The count is Git's, untracked files included, and it matched every probe.</b>
+<pre><span class="f">xtask/src/size.rs:72-80</span>let lines = if head.contains(&amp;0) {     // NUL in the first 8,000 bytes
+    None                                  // binary: always refuses
+} else {
+    // Count lines as Git does: a final line without a newline still counts.
+    let newlines = bytes.iter().filter(|&amp;&amp;b| b == b'\n').count() as u64;
+    Some(newlines + u64::from(bytes.last().is_some_and(|&amp;b| b != b'\n')))
+};</pre>
+<div class="table-scroll"><table>
+<caption>Handoff with a small, partial record, each row against the same base</caption>
+<thead><tr><th>Change</th><th>Result</th><th>What it shows</th></tr></thead>
+<tbody>
+<tr><td>+60 lines in docs, +40 in crates/domain</td><td class="a">ok</td><td>100 is allowed; the record itself is administrative.</td></tr>
+<tr><td>One more line</td><td class="b">refused</td><td><code>101 changed lines exceed the small limit of 100; a small task changes at most 100 lines and none of these paths. Narrow the change, …</code></td></tr>
+<tr><td>500 untracked lines in <code>docs/plans/probe-notes.md</code></td><td class="a">ok</td><td><code>docs/plans/</code> is administrative (artifacts.rs:33-43), so a small task's plan is free.</td></tr>
+<tr><td>Untracked <code>XTASK/probe.rs</code> on this case-insensitive volume</td><td class="b">refused</td><td>Git reports <code>xtask/probe.rs</code>, so size needs no case fold.</td></tr>
+<tr><td><code>docs/Cargo.toml</code> vs <code>crates/Readme.Cargo.toml</code></td><td>refused vs ok</td><td>The any-depth match is on <code>/Cargo.toml</code>.</td></tr>
+</tbody></table></div></li>
+</ol>
+</section>
+
+<section class="slice">
+<h2>Slice 2: skills, subagents and author mode</h2>
+<ol class="learn">
+<li><b>Two copies per skill, compared whole.</b> The harness rejects symlinks, so each skill lives byte-identical in <code>.claude/skills/</code> and <code>.agents/skills/</code>. DOC007 compares every file in both trees. DOC008 is a hand-rolled scan, since ARCH004 keeps a YAML crate out:
+<pre><span class="f">xtask/src/checks.rs:216-219</span>let named = lines.next() == Some("---")
+    &amp;&amp; lines
+        .take_while(|l| *l != "---")
+        .any(|l| l.strip_prefix("name:").map(str::trim) == Some(folder));</pre>
+<p>It checks the name only. Codex also needs <code>description</code>, and nothing checks its length. <code>cargo xtask docs</code> on the branch returns <code>"ok": true</code> with no errors.</p></li>
+
+<li><b>The author's write limit is a hook mode, and it ends where Edit and Write end.</b> <code>.claude/agents/artifact-author.md</code> runs <code>agent-hook.sh author claude</code> on <code>Edit|Write|MultiEdit|NotebookEdit</code>. A path is allowed if it matches <code>harness/task-artifacts/?*/?*</code> after folding, or if it lies outside the checkout (agent-hook.sh:390-403).
+<div class="table-scroll"><table>
+<caption>Events I fed to author mode in the clean copy</caption>
+<thead><tr><th>Event</th><th>Exit</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>A page in <code>harness/task-artifacts/agent-workflow/</code>, absolute, relative or as <code>HARNESS/TASK-ARTIFACTS/…</code></td><td class="a">0</td><td>Folded: the same folder on this volume.</td></tr>
+<tr><td><code>harness/task-artifacts/x.html</code></td><td class="b">2</td><td>No task folder.</td></tr>
+<tr><td><code>xtask/src/size.rs</code>, <code>target/debug/xtask</code>, NotebookEdit <code>crates/a.ipynb</code></td><td class="b">2</td><td><code>… and xtask/src/size.rs is not one.</code> The binary the hooks run is out of reach.</td></tr>
+<tr><td><code>…/agent-workflow/../../../AGENTS.md</code></td><td class="b">2</td><td>Normalized before matching.</td></tr>
+<tr><td>Uppercased checkout root + <code>/xtask/src/main.rs</code></td><td class="b">2</td><td>Same under /bin/bash 3.2 and bash 5.3, and now pinned by a test. Before the fold this counted as "outside" and was allowed (plan A6).</td></tr>
+<tr><td>An event with no path</td><td class="b">2</td><td>Fails closed.</td></tr>
+<tr><td><code>/tmp/notes.txt</code></td><td class="a">0</td><td>Scratch output.</td></tr>
+<tr><td>Bash <code>echo x &gt; xtask/src/main.rs</code>; an outside symlink to <code>xtask/</code></td><td class="a">0</td><td>Limits, both pinned now: Bash isn't this hook's job, and <code>relative()</code> never reads the disk.</td></tr>
+</tbody></table></div>
+<p>Two more limits live in the docs, not the code. Claude Code runs agent frontmatter hooks only in a trusted workspace and never under <code>-p</code>. A Codex role gets no write limit at all, and its TOML says so.</p></li>
+
+<li><b>The case fold had one bash trap.</b>
+<pre><span class="f">scripts/agent-hook.sh:92</span>fold=$(git -C "$root" config --bool core.ignorecase 2>/dev/null <mark>|| true</mark>)</pre>
+<p>When the key is unset, Git exits 1, and bash 3.2 runs the inherited ERR trap inside the substitution. So <code>|| true</code> has to sit inside the <code>$(…)</code>. <code>guard_folds_case_where_git_ignores_case</code> covers the true, false and unset cases. With the uppercased root, the default guard now adds its policy note as well.</p></li>
+</ol>
+</section>
+
+<section class="slice">
+<h2>Slice 3: the docs</h2>
+<ol class="learn">
+<li><b>The map states the tier where an agent decides it.</b>
+<pre><span class="f">AGENTS.md:7-10, 51-52</span>2. Set the task's tier in its record. A small task (at most 100 changed lines,
+   no policy, dependency or ceremony path) needs no pages; a standard task writes
+   the eight [HTML pages](docs/ARTIFACTS.md), discovery pages before code.
+   Inspect the existing implementation and applicable acceptance criteria.
+…
+- Prefer existing tools (cargo, clippy, xtask) over new scripts. Add no manual
+  setup steps or human approval gates unless the task asks for them.</pre>
+<p>ARTIFACTS.md gains a "Task size" section that names both residuals: dense lines count once, and a feature split across small branches passes each gate. This task could never have been small: it touches <code>xtask/</code>, <code>scripts/</code>, <code>.claude/</code> and the ceremony folders. Changing the 100 later is a standard task with a receipt.</p></li>
+</ol>
+</section>
+
+<section>
+<h2>Your reply</h2>
+<p>All eleven deviations are settled. If any fix or accepted departure should go differently, say which one and how, then copy.</p>
+<label>Comments (optional)<textarea id="extra" placeholder="e.g. 5: also pin the separate-clone case"></textarea></label>
+<button id="copyReply">Copy reply</button>
+<output id="reply" aria-live="polite"></output>
+</section>
+
+<footer>agent-workflow · implementation notes · feeds the buy-in doc and the quiz</footer>
+</main>
+<script>
+(function () {
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = label; }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  }
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  document.getElementById('copyPrompt').addEventListener('click', function () {
+    copy(document.getElementById('promptText').textContent, this);
+  });
+
+  var chips = document.querySelectorAll('[data-f]');
+  var devs = document.querySelectorAll('#devs [data-t]');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (o) { o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
+      var f = c.getAttribute('data-f');
+      devs.forEach(function (d) { d.classList.toggle('hidden', f !== 'all' && d.getAttribute('data-t') !== f); });
+    });
+  });
+
+  function render() {
+    var extra = document.getElementById('extra').value.trim();
+    var text = 'agent-workflow implementation notes: ' + (extra || 'no objections to the five fixes or the six logged deviations.');
+    document.getElementById('reply').textContent = text;
+    return text;
+  }
+  document.getElementById('extra').addEventListener('input', render);
+  document.getElementById('copyReply').addEventListener('click', function () { copy(render(), this); });
+  render();
+})();
+</script>
+</body>
+</html>

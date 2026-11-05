@@ -2,8 +2,8 @@
 use crate::{
     artifacts,
     config::{self, Result},
-    history, readiness, repo,
-    task_record::{self, GapState, Status},
+    history, readiness, repo, size,
+    task_record::{self, GapState, Status, Tier},
     tracking, transitions,
 };
 use serde_json::{Value, json};
@@ -17,14 +17,29 @@ pub fn task(
     must_complete: bool,
 ) -> Result<Value> {
     let task = task_record::read(root, id)?;
-    let artifact_result = artifacts::check(root, id, task.status == Status::Complete, Some(base));
+    let complete = task.status == Status::Complete;
+    let artifact_result = match task.tier {
+        Tier::Standard => artifacts::check(root, id, complete, Some(base)),
+        Tier::Small => artifacts::check_written(root, id).and_then(|()| {
+            if complete {
+                artifacts::committed(root, id)
+            } else {
+                Ok(())
+            }
+        }),
+    };
+    let size_result = match task.tier {
+        Tier::Small => size::check_small(root, base),
+        Tier::Standard => Ok(()),
+    };
     let current = match tracking::load(root) {
         Ok(gaps) => gaps,
         Err(e)
             if task.status == Status::Blocked
                 && !must_complete
                 && task_record::review_errors(&task).is_empty()
-                && artifact_result.is_ok() =>
+                && artifact_result.is_ok()
+                && size_result.is_ok() =>
         {
             return Ok(json!({"ok":true,"complete":false,"task":task.id,
                 "reconciliation_pending":true,"gap_register_error":e.to_string(),
@@ -36,6 +51,9 @@ pub fn task(
     let mut errors = task_record::review_errors(&task);
     if let Err(e) = artifact_result {
         errors.push(format!("task HTML artifact: {e}"));
+    }
+    if let Err(e) = size_result {
+        errors.push(format!("task tier small: {e}"));
     }
     if must_complete && task.status != Status::Complete {
         errors.push("task is partial/blocked; use handoff, do not claim completion".into());
@@ -215,7 +233,10 @@ pub fn validate(root: &Path) -> Result<Value> {
             .ok_or("invalid task filename")?;
         let record = task_record::read(root, id)?;
         // Handoff and completion demand pages; validation only checks the ones written.
-        if record.schema_version >= 6 && record.status == Status::Complete {
+        if record.schema_version >= 6
+            && record.status == Status::Complete
+            && record.tier == Tier::Standard
+        {
             artifacts::check(root, id, true, None)?;
         } else if record.schema_version >= 6 {
             artifacts::check_written(root, id)?;

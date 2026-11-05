@@ -59,7 +59,7 @@ const PROTECTED_FILES: [&str; 11] = [
     "AGENTS.md",
 ];
 
-fn protected(path: &str) -> bool {
+pub(crate) fn protected(path: &str) -> bool {
     PROTECTED_PREFIXES.iter().any(|p| path.starts_with(p)) || PROTECTED_FILES.contains(&path)
 }
 fn sensitive(old: &Gap, new: Option<&Gap>) -> bool {

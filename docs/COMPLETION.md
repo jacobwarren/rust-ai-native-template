@@ -41,9 +41,10 @@ findings into existing gaps. No quota requires a new gap per task.
 
 1. Task start: read relevant requirements and the project gaps. Identify which
    gaps the assignment addresses and create harness/tasks/ID.json using
-   examples/task-record.json. A ticket URL, ID or plan reference is optional. Before
-   implementation, write and commit its five discovery pages; commit notes during the
-   work and the buy-in doc and quiz last ([task artifacts](ARTIFACTS.md)).
+   examples/task-record.json and choose its tier. A ticket URL, ID or plan reference is
+   optional. A standard task writes and commits its five discovery pages before
+   implementation, notes during the work and the buy-in doc and quiz last; a small
+   task needs no pages ([task artifacts](ARTIFACTS.md)).
 2. Material discovery: investigate immediately. Fix it within authorized scope,
    update an existing gap, or record a new durable gap/observation. Do not silently
    expand the task into a project-wide audit.
@@ -221,11 +222,13 @@ migration baseline; there is no automatic remote migration or completeness claim
 
 ## Artifact admission
 
-Completion requires the task's eight pages, each carrying the shared stylesheet
+A standard task's completion requires its eight pages, each carrying the shared stylesheet
 inline, and reads the branch's own commits since the base (merge commits skipped): the five
 discovery pages before the first product-code commit, implementation notes before
 the last one, and buy-in and quiz at or after it. Product code and the task's pages
-must be committed; task records, gaps and reports need not be. Commit order shows
+must be committed; task records, gaps and reports need not be. A small task needs
+no pages; completion and handoff instead refuse it when the branch outgrows the
+small tier ([task size](ARTIFACTS.md)). Commit order shows
 sequence, not usefulness, and a rewritten history can fake it. An independent
 reviewer agent and human review against the exemplars judge quality. The default stop hook invokes the same completion checks for a claimed task; the
 opt-in discovery-page guard is separate.

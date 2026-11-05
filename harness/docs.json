@@ -1,5 +1,53 @@
 [
   {
+    "path": ".agents/skills/add-product-command/SKILL.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+  },
+  {
+    "path": ".agents/skills/author-artifact/SKILL.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+  },
+  {
+    "path": ".agents/skills/review-artifact/SKILL.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+  },
+  {
+    "path": ".claude/agents/artifact-author.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; hooks_author tests"
+  },
+  {
+    "path": ".claude/agents/artifact-reviewer.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; hooks_author tests"
+  },
+  {
+    "path": ".claude/skills/add-product-command/SKILL.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+  },
+  {
+    "path": ".claude/skills/author-artifact/SKILL.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+  },
+  {
+    "path": ".claude/skills/review-artifact/SKILL.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+  },
+  {
     "path": ".github/pull_request_template.md",
     "owner": "maintainers",
     "status": "active",
@@ -52,6 +100,18 @@
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/ARTIFACTS.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; human comparison of task artifacts against examples/thariq"
+  },
+  {
+    "path": "docs/COMPLETION.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; completion, gap_transitions and gap_discovery tests"
   },
   {
     "path": "docs/DRIVER.md",
@@ -150,6 +210,18 @@
     "verified_by": "cargo xtask docs; acceptance evidence recorded in plan"
   },
   {
+    "path": "docs/plans/completed/0004-completion-gate.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; completion regression tests"
+  },
+  {
+    "path": "docs/plans/completed/0005-focused-gap-review.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; focused gap discovery and completion regression tests"
+  },
+  {
     "path": "docs/plans/tech-debt.md",
     "owner": "maintainers",
     "status": "active",
@@ -168,10 +240,28 @@
     "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
   },
   {
+    "path": "docs/skills/author-artifact.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; forwarding note to the skill"
+  },
+  {
     "path": "docs/skills/investigate.md",
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/skills/review-artifact.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; forwarding note to the skill"
+  },
+  {
+    "path": "examples/thariq/README.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; pages match upstream commit 1787245"
   },
   {
     "path": "experiments/AGENTS.md",
@@ -196,47 +286,5 @@
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
-  },
-  {
-    "path": "docs/plans/completed/0004-completion-gate.md",
-    "owner": "maintainers",
-    "status": "archived",
-    "verified_by": "cargo xtask docs; completion regression tests"
-  },
-  {
-    "path": "docs/COMPLETION.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; completion, gap_transitions and gap_discovery tests"
-  },
-  {
-    "path": "docs/plans/completed/0005-focused-gap-review.md",
-    "owner": "maintainers",
-    "status": "archived",
-    "verified_by": "cargo xtask docs; focused gap discovery and completion regression tests"
-  },
-  {
-    "path": "docs/ARTIFACTS.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; human comparison of task artifacts against examples/thariq"
-  },
-  {
-    "path": "docs/skills/author-artifact.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; fresh-agent artifact trial"
-  },
-  {
-    "path": "docs/skills/review-artifact.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; independent review of trial pages"
-  },
-  {
-    "path": "examples/thariq/README.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; pages match upstream commit 1787245"
   }
 ]

@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Reference map: agent-workflow</title>
+<style>
+  .prompt { position: relative; padding-right: 7.5rem; }
+  .prompt button { position: absolute; top: var(--space-3); right: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  .paths { font-family: var(--font-code); font-size: .8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); }
+  .paths b { color: var(--ink); font-weight: 600; }
+  code { font-size: .88em; background: var(--accent-soft); border-radius: .25rem; padding: 0 .25em; overflow-wrap: anywhere; }
+  .sec { margin-block: var(--space-12); }
+  .sec > h2 { display: flex; align-items: center; gap: var(--space-3); }
+  .num { flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--ink); color: var(--surface); font-size: .9rem; display: inline-flex; align-items: center; justify-content: center; }
+  ul.facts { list-style: none; padding: 0; margin: 0; }
+  ul.facts li { padding: var(--space-3) 0; border-bottom: 1px dashed var(--line); }
+  ul.facts li:last-child { border-bottom: 0; }
+  .tag { display: inline-block; font-size: .72rem; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; padding: .05rem .5rem; border-radius: 999px; border: 1px solid var(--line); white-space: nowrap; }
+  .tag.ok { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
+  .tag.warn { color: var(--warning); background: var(--warning-soft); border-color: var(--warning); }
+  .tag.bad { color: var(--danger); border-color: var(--danger); background: var(--surface); }
+  .probe-in input { width: 100%; font-family: var(--font-code); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+  .chips button { min-height: 32px; padding: var(--space-1) var(--space-2); font-family: var(--font-code); font-size: .78rem; }
+  .pair { margin-block: var(--space-8); }
+  .pair h3 { margin-bottom: var(--space-3); }
+  .pt { font-size: .75rem; letter-spacing: .08em; color: var(--warning); font-weight: 650; margin-right: var(--space-2); }
+  .grid2 { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-3); }
+  @media (max-width: 52rem) { .grid2 { grid-template-columns: minmax(0,1fr); } }
+  .code { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .code .h { display: flex; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); font-family: var(--font-code); font-size: .75rem; color: var(--muted); background: var(--paper); }
+  .code .h .k { flex: none; font-weight: 650; }
+  .k.ref { color: var(--accent); } .k.sk { color: var(--warning); }
+  .code.sketch { border-style: dashed; border-color: var(--warning); }
+  .code pre { margin: 0; border: 0; border-radius: 0; white-space: pre; overflow-x: auto; overflow-wrap: normal; font-size: .76rem; line-height: 1.55; padding: var(--space-3); flex: 1; }
+  .cm { color: var(--muted); font-style: italic; }
+  mark { background: var(--warning-soft); color: inherit; border-bottom: 2px solid var(--warning); border-radius: 2px; padding: 0 1px; }
+  mark sup { font-size: .65rem; font-weight: 700; color: var(--warning); }
+  mark.on { background: #f3dfc4; }
+  .notes { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+  .note { display: flex; gap: var(--space-3); align-items: baseline; font-size: .92rem; padding: var(--space-1) var(--space-2); border-radius: var(--control-radius); }
+  .note.on { background: var(--warning-soft); }
+  .note .nb { flex: none; min-height: 28px; min-width: 28px; padding: 0 .35rem; border-radius: 999px; font-size: .75rem; font-weight: 700; background: var(--surface); color: var(--warning); border: 1.5px solid var(--warning); }
+  .note.flag .nb { background: var(--danger); border-color: var(--danger); color: var(--surface); }
+  .note.flag { outline: 1px dashed var(--danger); }
+  .note b { font-weight: 650; }
+  .obs { font-size: .7rem; font-weight: 650; letter-spacing: .05em; text-transform: uppercase; color: var(--accent); }
+  table.t { font-size: .9rem; min-width: 36rem; }
+  table.t th { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .confirm { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); align-items: center; }
+  .confirm > div:first-child { max-width: 38rem; }
+  .btns { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  #out { white-space: pre-wrap; font-size: .8rem; }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">agent-workflow · Point at a reference · before code</p>
+<h1>Semantics map: the artifact gate as the reference for tiers, skill copies and the author hook</h1>
+
+<blockquote class="prompt"><button type="button" class="secondary" id="copyPrompt">Copy prompt</button><span id="promptText">The existing artifact gate (artifacts::check, check_written and order, called from completion::task, completion::validate and artifacts::guard), the protected-path table in transitions.rs, the docs catalog checks in checks.rs, and the default guard in scripts/agent-hook.sh already behave the way the tiered gate, the skill copies and the author's write hook should: decide from a path table, read the branch's history, and refuse with a named fix. Read them and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything.</span></blockquote>
+
+<p class="paths"><span><b>read</b> xtask/src/{artifacts,completion,task_record,history,transitions,checks,repo}.rs</span><span>scripts/{agent-hook,agent-complete,agent-artifact-write}.sh</span><span><b>design</b> <a href="interview.html">interview.html</a></span></p>
+
+<p class="lead">The design being mapped is the one the <a href="interview.html">interview</a> settled: an optional <code>tier</code>, a 100-line size check from the merge base with a list of paths that force standard, byte-identical skill copies, and an author hook that lets Edit and Write through only under <code>harness/task-artifacts/</code> or outside the repository.</p>
+
+<section class="sec">
+<h2><span class="num">1</span>What the reference actually does</h2>
+<ul class="facts">
+<li><b>Decides from path tables, prefix or exact.</b> <code>administrative()</code> (<code>artifacts.rs:33-43</code>) marks records, receipts, pages, <code>docs.json</code> and <code>gaps.json</code> as not product. <code>protected()</code> (<code>transitions.rs:62-64</code>) has 7 prefixes and 11 exact files, copied into <code>agent-hook.sh:14-15</code> and kept equal by a test (<code>transitions.rs:221-225</code>).</li>
+<li><b>Reads history by commits or by tree.</b> <code>order()</code> reads commits (<code>history.rs:48-65</code>), which list nothing on a CI merge ref (blindspot 02). <code>transitions::required</code> (<code>:103-123</code>) and the stop hook compare the merge base with the working tree; size does too.</li>
+<li><b>Refuses with a named fix,</b> e.g. <code>missing {page}; see docs/ARTIFACTS.md</code> (<code>artifacts.rs:102</code>) or <code>DOC004 … add ownership and verification to harness/docs.json</code> (<code>checks.rs:160</code>), collected beside review and CI errors (<code>completion.rs:37-39</code>).</li>
+<li><b>The hook is a deny-list that fails closed</b> on any exit but 0 or 2 (<code>agent-hook.sh:8-11</code>), except outside a Git checkout, where it allows before any mode runs (<code>:86-87</code>).</li>
+</ul>
+</section>
+
+<section class="sec">
+<h2><span class="num">2</span>Probe a path against every table</h2>
+<p>One path through today's tables and the two sketches. Paths are repository-relative; <code>..</code> resolves like <code>normalize()</code>, and a path that climbs out or starts with <code>/</code> is outside.</p>
+<div class="probe-in"><input id="probe" type="text" aria-label="Repository-relative path" value="crates/engine/Cargo.toml"></div>
+<div class="chips" id="chips"></div>
+<div class="table-scroll"><table class="t" style="margin-top:var(--space-3)"><thead><tr><th>Decision</th><th>Result</th><th>Rule</th></tr></thead><tbody id="probeOut"></tbody></table></div>
+</section>
+
+<section class="sec">
+<h2><span class="num">3</span>Side by side: reference excerpt and sketch</h2>
+<p>Left is the code as it is; right, dashed, a sketch. Hover a highlight or note to pair them; click a number to flag it for the reply.</p>
+
+<div class="pair">
+<h3><span class="pt">A / 4</span>The tier picks the page list; the switch sits where <code>order()</code> is called</h3>
+<div class="grid2">
+<div class="code"><div class="h"><span>xtask/src/artifacts.rs:93-109, 193-195</span><span class="k ref">reference</span></div><pre>pub fn check(root: &amp;Path, id: &amp;str, final_stage: bool,
+             base: Option&lt;&amp;str&gt;) -&gt; Result&lt;()&gt; {
+    let dir = dir(root, id)?;
+    <mark data-p="a2">let mut pages = DISCOVERY.to_vec();
+    if final_stage {
+        pages.push(NOTES);
+        pages.extend(FINAL);
+    }<sup>2</sup></mark>
+    for page in pages {
+        if !verify(&amp;dir, page)? {
+            return Err(format!("missing {page}; see docs/ARTIFACTS.md").into());
+        }
+    }
+    <mark data-p="a3">if let (true, Some(base)) = (final_stage, base) {
+        order(root, id, base)?;<sup>3</sup></mark>
+    }
+    Ok(())
+}
+
+pub fn guard(root: &amp;Path, id: &amp;str) -&gt; Result&lt;Value&gt; {
+    <mark data-p="a5">check(root, id, false, None)?;<sup>5</sup></mark>
+    let committed = history::paths(root, "HEAD")?;
+    …</pre></div>
+<div class="code sketch"><div class="h"><span>task_record.rs, artifacts.rs (sketch)</span><span class="k sk">sketch</span></div><pre><mark data-p="a1">#[derive(Deserialize, Default, PartialEq, Eq, Clone, Copy)]
+#[serde(rename_all = "snake_case")]
+pub enum Tier { Small, #[default] Standard }
+<span class="cm">// on Task (deny_unknown_fields): #[serde(default)] pub tier: Tier</span><sup>1</sup></mark>
+
+<mark data-p="a2">pub fn required(tier: Tier, complete: bool) -&gt; Vec&lt;&amp;'static str&gt; {
+    match (tier, complete) {
+        (Tier::Small, _) =&gt; vec![],
+        (Tier::Standard, false) =&gt; DISCOVERY.to_vec(),
+        (Tier::Standard, true) =&gt; DISCOVERY.iter().copied()
+            .chain([NOTES]).chain(FINAL).collect(),
+    }
+}<sup>2</sup></mark>
+
+pub fn check(root, id, tier: Tier, final_stage: bool, base) … {
+    for page in required(tier, final_stage) { … }
+    <mark data-p="a3">match (tier, base) {
+        (Tier::Small, Some(base)) =&gt; size::small(root, base)?,
+        (Tier::Standard, Some(base)) if final_stage =&gt;
+            order(root, id, base)?,<sup>3</sup></mark>
+        <mark data-p="a4">_ =&gt; {}<sup>4</sup></mark>
+    }
+    Ok(())
+}
+
+pub fn guard(root: &amp;Path, id: &amp;str) -&gt; Result&lt;Value&gt; {
+    <mark data-p="a5">let task = task_record::read(root, id)?;
+    check(root, id, task.tier, false, None)?;
+    if task.tier == Tier::Small { return Ok(…) }<sup>5</sup></mark>
+    …</pre></div>
+</div>
+<div class="notes">
+<div class="note" data-p="a1"><button type="button" class="nb">1</button><span><b>Field, code and first use in one commit.</b> Today <code>"tier"</code> fails <code>coordination</code> with <code>unknown field `tier`</code> (<code>task_record.rs:17</code>, blindspot 04), and like <code>Status</code> a wrong spelling names the fix: <code>unknown variant `Small`, expected `small` or `standard`</code>. Not <code>Option</code>: absence is the one spelling of standard, and schema stays 6 (<code>task_record.rs:67</code> accepts 1-6).</span></div>
+<div class="note" data-p="a2"><button type="button" class="nb">2</button><span><b>One list, four callers.</b> <code>check_written</code> (<code>:113-119</code>) still checks every page that exists, in both tiers.</span></div>
+<div class="note" data-p="a3"><button type="button" class="nb">3</button><span><b>Deliberately earlier than <code>order()</code>.</b> Order needs a complete record and a base (<code>:105</code>); size needs only a base, so it runs for partial and blocked records alike (<code>check</code> receives <code>status == Complete</code>): CI's partial handoff (<code>completion.rs:158</code>) refuses a small PR that grew.</span></div>
+<div class="note" data-p="a4"><button type="button" class="nb">4</button><span><b>Small skips the dirty-tree refusal</b> (<code>:141-152</code>), which exists because order reads commits; size reads the tree. <code>coordination</code> and <code>task-artifact check</code> have no base and measure nothing.</span></div>
+<div class="note" data-p="a5"><button type="button" class="nb">5</button><span><b>The guard starts reading the record.</b> Under the opt-in <code>artifact-hook</code> a bad record now errors, and <code>agent-artifact-write.sh:10</code> prints the wrong fix ("Write and commit the five discovery pages"). Small passes on its declaration; CI measures it.</span></div>
+</div>
+</div>
+
+<div class="pair">
+<h3><span class="pt">B / 4</span>Size from the tree, with the protected table and a ceremony list</h3>
+<div class="grid2">
+<div class="code"><div class="h"><span>agent-complete.sh:29-32 · transitions.rs:62-64</span><span class="k ref">reference</span></div><pre>ids=$({
+  <mark data-p="b1">git diff --name-only "$base" -- harness/tasks …
+  git ls-files -o --exclude-standard -- harness/tasks …<sup>6</sup></mark>
+} | sed -n … | sort -u)
+
+<mark data-p="b2">fn protected(path: &amp;str) -&gt; bool {
+    PROTECTED_PREFIXES.iter().any(|p| path.starts_with(p))
+        || PROTECTED_FILES.contains(&amp;path)
+}<sup>7</sup></mark>
+<span class="cm">// history.rs:52-61, the commit reader</span>
+"-c", <mark data-p="b3">"core.quotePath=false"</mark>, "log", …
+<mark data-p="b3">"--no-renames"</mark>, "--name-only", <mark data-p="b3">"-z"<sup>8</sup></mark>,</pre></div>
+<div class="code sketch"><div class="h"><span>xtask/src/size.rs (sketch)</span><span class="k sk">sketch</span></div><pre>const SMALL_LINES: u64 = 100;
+<mark data-p="b2">const CEREMONY: [&amp;str; 5] = ["docs/skills/", ".claude/skills/",
+    ".agents/skills/", ".claude/agents/", ".codex/agents/"];
+
+fn forces_standard(p: &amp;str) -&gt; bool {
+    transitions::protected(p)          <span class="cm">// now pub(crate)</span>
+        || p == "Cargo.toml" || p.ends_with("/Cargo.toml")
+        || p == "docs/ARTIFACTS.md"
+        || CEREMONY.iter().any(|c| p.starts_with(c))
+}<sup>7</sup></mark>
+
+pub fn small(root: &amp;Path, base: &amp;str) -&gt; Result&lt;()&gt; {
+    let mut lines = 0;
+    <mark data-p="b1">for (path, count) in changed(root, base)? {<sup>6</sup></mark>
+        if administrative(&amp;path) { continue; }
+        if forces_standard(&amp;path) { return Err(outgrown(&amp;path)); }
+        <mark data-p="b4">match count {
+            None =&gt; return Err(outgrown(&amp;path)),   <span class="cm">// binary</span>
+            Some(n) =&gt; lines += n,
+        }<sup>9</sup></mark>
+    }
+    if lines &gt; SMALL_LINES { return Err(outgrown(…)); }
+    Ok(())
+}
+<span class="cm">// changed(): git -c core.quotePath=false diff --numstat</span>
+<span class="cm">//   <mark data-p="b3">--no-renames -z</mark> BASE, then ls-files -o --exclude-standard -z</span>
+<span class="cm">// outgrown(why): "task is declared small but {why}; restart as
+//   standard on a new branch, or split it (docs/ARTIFACTS.md)"</span></pre></div>
+</div>
+<div class="notes">
+<div class="note" data-p="b1"><button type="button" class="nb">6</button><span><b>The stop hook's reading, with counts.</b> <code>git diff BASE</code> is merge base to working tree; untracked files come from <code>ls-files -o</code>. Not <code>history::uncommitted</code>: it returns bare paths, dropping the status code at <code>history.rs:93</code>, so a <code>??</code> untracked file can't be told from a modified one <code>git diff BASE</code> already counts, and it carries no line counts.</span></div>
+<div class="note" data-p="b2"><button type="button" class="nb">7</button><span><b>Reuse <code>protected()</code>, widen only here.</b> It is private and exact for files: the guard returns <code>{}</code> for <code>crates/engine/Cargo.toml</code>. The suffix rule copies <code>agent-hook.sh:329</code>. Three ceremony paths are already protected; the new reach is <code>docs/ARTIFACTS.md</code>, <code>docs/skills/</code>, <code>.agents/skills/</code>. The hook copy and its test don't change.</span></div>
+<div class="note" data-p="b3"><button type="button" class="nb">8</button><span><b>Flags the commit reader already learned.</b> <span class="obs">observed</span> With renames on, a moved 225-line file prints <code>0 0 xtask/src/{workflows.rs =&gt; flows.rs}</code>, a path no table matches; with <code>--no-renames</code>, 225 added and 225 deleted. <code>-z</code> keeps paths unquoted.</span></div>
+<div class="note" data-p="b4"><button type="button" class="nb">9</button><span><b>Untracked files need their own rules.</b> Tracked binaries print <code>-&#9;-</code>; untracked ones need git's test (a NUL in the first 8,000 bytes) and git's count: <code>one\ntwo\nno-newline</code> is 3 lines, 2 to <code>wc -l</code>.</span></div>
+</div>
+</div>
+
+<div class="pair">
+<h3><span class="pt">C / 4</span>Skill parity is a new rule after the docs loop</h3>
+<div class="grid2">
+<div class="code"><div class="h"><span>xtask/src/checks.rs:153-179</span><span class="k ref">reference</span></div><pre><mark data-p="c1">for path in repo::files(root)?<sup>10</sup></mark>
+    .iter()
+    .filter(|p| p.extension().is_some_and(|e| e == "md"))
+{
+    <mark data-p="c2">if !registered.contains(&amp;path_string) {
+        errors.push(format!("DOC004 {path_string}: add \
+          ownership and verification to harness/docs.json"));
+    }<sup>11</sup></mark>
+    …
+    for link in local_links(&amp;text) {
+        <mark data-p="c3">let candidate = root.join(path).parent()
+            .ok_or("missing parent")?.join(&amp;link);<sup>12</sup></mark>
+        match candidate.canonicalize() {
+            Ok(resolved) if resolved.starts_with(root) =&gt; {},
+            _ =&gt; errors.push(format!("DOC006 …")),
+        }
+    }
+}</pre></div>
+<div class="code sketch"><div class="h"><span>checks.rs docs() (sketch)</span><span class="k sk">sketch</span></div><pre><span class="cm">// after the DOC004-DOC006 loop</span>
+let skills = |host: &amp;str| -&gt; Result&lt;BTreeMap&lt;String, Vec&lt;u8&gt;&gt;&gt; {
+    <span class="cm">// every file under {host}/skills/, keyed by its path below it</span>
+};
+let (claude, codex) = (skills(".claude")?, skills(".agents")?);
+<mark data-p="c4">for rel in claude.keys().chain(codex.keys())
+    .collect::&lt;BTreeSet&lt;_&gt;&gt;()
+{
+    if claude.get(rel) != codex.get(rel) {
+        errors.push(format!("DOC007 skills/{rel}: .claude/skills/ \
+          and .agents/skills/ differ; make both copies identical"));
+    }
+}<sup>13</sup></mark></pre></div>
+</div>
+<div class="notes">
+<div class="note" data-p="c1"><button type="button" class="nb">10</button><span><b>Why copies.</b> <code>repo::files</code> errors on any symlink (<code>repo.rs:39-45</code>), stopping docs, coordination and the fingerprint (blindspot 05).</span></div>
+<div class="note" data-p="c2"><button type="button" class="nb">11</button><span><b>Each copy registers.</b> <span class="obs">observed</span> Both drew DOC004 until two <code>docs.json</code> entries were added; <code>docs.json</code> is administrative, so they cost no size.</span></div>
+<div class="note" data-p="c3"><button type="button" class="nb">12</button><span><b>Links resolve per copy.</b> <span class="obs">observed</span> Both sit three deep, so <code>../../../docs/ARTIFACTS.md</code> passed in both; the brief's current <code>../ARTIFACTS.md</code> (<code>author-artifact.md:29</code>, its only relative link) drew DOC006.</span></div>
+<div class="note" data-p="c4"><button type="button" class="nb">13</button><span><b>Nothing catches drift today.</b> <span class="obs">observed</span> With one copy edited, <code>xtask docs</code> still reports <code>ok: true</code>.</span></div>
+</div>
+</div>
+
+<div class="pair">
+<h3><span class="pt">D / 4</span>The author mode reuses path resolution and inverts the decision</h3>
+<div class="grid2">
+<div class="code"><div class="h"><span>scripts/agent-hook.sh:86-87, 111-123, 259-262</span><span class="k ref">reference</span></div><pre>root=$(git -C "$cwd" rev-parse --show-toplevel 2&gt;/dev/null || true)
+<mark data-p="d1">[ -n "$root" ] || allow<sup>14</sup></mark>
+…
+relative() {
+  local p r
+  case "$1" in
+    /*)
+      <mark data-p="d2">p=$(normalize "$1")<sup>15</sup></mark>
+      for r in "$root" "$root_cwd" "$root_short" "/private$root_cwd"; do
+        case "$p" in "$r"/*) p=${p#"$r"/}; break ;; esac
+      done
+      <mark data-p="d3">case "$p" in /*) p="" ;; esac ;;<sup>16</sup></mark>
+    *) relative "${cwd%/}/$1"; return ;;
+  esac
+  echo "$p"
+}
+…
+    Edit | Write | MultiEdit)
+      paths=$(jget file_path) || paths=""
+      …
+      <mark data-p="d4">decide "$(relatives "$paths")" ;;<sup>17</sup></mark></pre></div>
+<div class="code sketch"><div class="h"><span>agent-hook.sh author mode (sketch)</span><span class="k sk">sketch</span></div><pre>case "$mode/$host" in
+  guard/… | check/… | author/claude) ;;
+…
+<mark data-p="d1">[ -n "$root" ] || { [ "$mode" != author ] || block \
+  "Blocked: the artifact author runs only inside this repository."; allow; }<sup>14</sup></mark>
+…
+author() {
+  local raw p
+  case "$tool" in
+    Edit | Write | MultiEdit) raw=$(jget file_path) || raw="" ;;
+    NotebookEdit) raw=$(jget notebook_path) || raw="" ;;
+    *) allow ;;
+  esac
+  [ -n "$raw" ] || block "Blocked: agent-hook could not read …"
+  <mark data-p="d2">p=$(relative "$raw")<sup>15</sup></mark>
+  <mark data-p="d3">case "$p" in
+    "" | harness/task-artifacts/?*/*) allow ;;
+  esac<sup>16</sup></mark>
+  <mark data-p="d4">block "Blocked: the artifact author writes only under \
+harness/task-artifacts/ or outside this repository; $p is neither. \
+Report the change to the caller instead."<sup>17</sup></mark>
+}
+…
+case "$mode" in guard) guard ;; check) check ;; author) author ;; esac</pre></div>
+</div>
+<div class="notes">
+<div class="note" data-p="d1"><button type="button" class="nb">14</button><span><b>Deliberately fail closed outside Git.</b> The guard has nothing to protect there; without a root the author mode cannot tell this repository from anywhere else, so it blocks.</span></div>
+<div class="note" data-p="d2"><button type="button" class="nb">15</button><span><b><code>..</code> resolves first.</b> <span class="obs">observed</span> <code>harness/task-artifacts/x/../../../xtask/src/main.rs</code> is blocked as <code>xtask/src/main.rs</code>. Resolution is lexical; a symlink in the folder already fails <code>verify</code> and <code>repo::files</code>.</span></div>
+<div class="note" data-p="d3"><button type="button" class="nb">16</button><span><b>Outside is <code>""</code>, and <code>target/</code> stays blocked.</b> <span class="obs">observed</span> <code>/tmp/elsewhere.txt</code> and <code>../outside.txt</code> pass; <code>target/debug/xtask</code>, which <code>agent-artifact-write.sh:7</code> and the post-edit check (<code>agent-hook.sh:347-351</code>) execute, is blocked, so screenshots go through Bash. On this case-insensitive volume <code>XTASK/src/main.rs</code> is <code>xtask/src/main.rs</code>: the guard is silent today, the allow-list blocks it. Case costs a false block, never a bypass.</span></div>
+<div class="note" data-p="d4"><button type="button" class="nb">17</button><span><b>Folder-wide, Edit/Write only, Claude only.</b> The hook can't know the task ID, so another task's pages are writable; Bash is uncovered (blindspot 07). It lives in the agent file's <code>hooks: PreToolUse</code>, and <a href="https://code.claude.com/docs/en/sub-agents.md">Claude runs a project agent's frontmatter hooks only after the folder's trust dialog is accepted</a>; a <code>-p</code> session does not count as trusted, and an untrusted author still runs, unconfined. <a href="https://learn.chatgpt.com/docs/agent-configuration/subagents">Codex agent files set no per-agent sandbox or write-path limit</a>, so on Codex the author has no path confinement.</span></div>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<h2><span class="num">4</span>Edge cases</h2>
+<div class="table-scroll"><table class="t"><thead><tr><th style="width:32%">Case</th><th>With the design</th></tr></thead><tbody>
+<tr><td><b>Leave a new .rs file untracked</b></td><td>Absent from the diff, counted from <code>ls-files -o</code> with git's line rule.</td></tr>
+<tr><td><b>Fix a typo in a skill</b></td><td>Standard (ceremony list), plus a receipt for the <code>.claude/</code> copy; parity drags both copies along.</td></tr>
+<tr><td><b>README typo</b></td><td>Small at 1 line; still needs a changed record (<code>completion.rs:160-161</code>) and its four review answers.</td></tr>
+<tr><td><b>Two task records on one branch</b></td><td>Each <code>task()</code> measures the whole branch diff, so a standard sibling's code makes the small one fail.</td></tr>
+<tr><td><b>The author runs in a Git worktree</b></td><td>The root is the worktree, so the main checkout's <code>xtask/src/main.rs</code> reads as outside and is allowed (observed with the sketch).</td></tr>
+<tr><td><b>Dense or minified lines</b></td><td>Residual: a 40 KB one-line JSON counts as 1.</td></tr>
+<tr><td><b>A feature split across small branches</b></td><td>Residual: undetectable from inside one branch.</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="sec">
+<h2><span class="num">5</span>Sign-off</h2>
+<div class="surface confirm">
+<div><h3 style="margin-top:0">Confirm the map, or flag notes</h3><p>"Semantics confirmed" means the plan builds on these four pairs as sketched. Flagged notes (<span id="flagCount">none yet</span>) go into the correction template.</p></div>
+<div class="btns"><button type="button" id="confirmBtn">Copy "semantics confirmed"</button><button type="button" class="secondary" id="correctBtn">Copy correction template</button></div>
+</div>
+<pre id="out" hidden></pre>
+</section>
+
+<footer>agent-workflow · reference map · feeds the implementation plan</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); }, Q = function (q) { return document.querySelectorAll(q); };
+  function copy(text, btn) {
+    var t = btn.textContent, done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = t; }, 1500); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {}); 
+  }
+  $("copyPrompt").onclick = function () { copy($("promptText").textContent, this); };
+
+  /* 2: path probe, mirroring the tables */
+  var PP = "xtask/ .github/ scripts/ .cargo/ harness/goldens/ .claude/ .codex/".split(" "),
+    PF = "harness/config.json harness/readiness.json harness/tracking.json harness/workflows.json harness/scenarios.json Cargo.toml Cargo.lock docs/PRODUCT.md docs/READINESS.md docs/COMPLETION.md AGENTS.md".split(" "),
+    AP = "harness/task-artifacts/ harness/tasks/ harness/transitions/ docs/plans/".split(" "), AF = ["harness/docs.json", "harness/gaps.json"],
+    CER = "docs/skills/ .claude/skills/ .agents/skills/ .claude/agents/ .codex/agents/".split(" "),
+    KNOWN = PP.concat(PF, AP, AF, CER, ["docs/ARTIFACTS.md", "docs/", "harness/", "crates/"]);
+  function starts(p, l) { return l.some(function (x) { return p.indexOf(x) === 0; }); }
+  function norm(raw) {
+    if (raw[0] === "/") return "";
+    var out = [], parts = raw.split("/");
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i] === "" || parts[i] === ".") continue;
+      if (parts[i] !== "..") out.push(parts[i]); else if (!out.pop()) return "";
+    }
+    return out.join("/");
+  }
+  /* git reports the spelling on disk; fold the longest known prefix that differs only in case */
+  function onDisk(p) {
+    var lo = p.toLowerCase(), best = "";
+    KNOWN.forEach(function (x) {
+      var xl = x.toLowerCase();
+      if (x.length > best.length && (lo === xl || (xl.slice(-1) === "/" && lo.indexOf(xl) === 0))) best = x;
+    });
+    var g = best + p.slice(best.length);
+    return g.replace(/(^|\/)cargo\.toml$/i, "$1Cargo.toml");
+  }
+  function tag(c, t) { return "<span class=\"tag " + c + "\">" + t + "</span>"; }
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function probe() {
+    var p = norm($("probe").value.trim()), out = !p, g = out ? "" : onDisk(p), folded = g !== p;
+    var prot = !out && (starts(g, PP) || PF.indexOf(g) >= 0), adm = !out && (starts(g, AP) || AF.indexOf(g) >= 0);
+    var gp = !out && (starts(p, PP) || PF.indexOf(p) >= 0);
+    var guard = /^harness\/goldens(\/|$)/.test(p) ? tag("warn", "ask") + " golden" : p === "harness/config.json" ? tag("warn", "ask") + " dependency allowlist" : gp ? tag("warn", "note") + " receipt needed" : tag("ok", "{}") + " silent";
+    var cargo = /(^|\/)Cargo\.toml$/.test(g), cer = g === "docs/ARTIFACTS.md" || starts(g, CER);
+    var size = out ? "not in the diff" : /^target\//.test(g) ? "ignored (/target/), not in the diff" : adm ? "skipped" : prot || cargo || cer ? tag("bad", "forces standard") + (prot ? " protected" : cargo ? " Cargo.toml" : " ceremony") : tag("ok", "counts lines");
+    if (folded && !adm) size = "git reports <code>" + esc(g) + "</code>: " + size;
+    var author = out ? tag("ok", "allow") + " outside the repository" : /^harness\/task-artifacts\/[^/]+\/./.test(p) ? tag("ok", "allow") : tag("bad", "block");
+    var rows = [
+      ["Resolved path", out ? tag("bad", "outside") : "<code>" + esc(p) + "</code>", "lexical, like normalize()"],
+      ["administrative()", adm ? tag("ok", "yes") + " never counted" : "no", "artifacts.rs:33, on git's spelling"],
+      ["protected()", prot ? tag("warn", "yes") + " receipt" : "no", "transitions.rs:62, exact files, git's spelling"],
+      ["Default guard today", guard, "agent-hook.sh:126-169, as typed"],
+      ["Small tier (sketch)", size, "forces_standard, on git's spelling"],
+      ["Author hook (sketch)", author, "Edit/Write only, as typed"]];
+    $("probeOut").innerHTML = rows.map(function (r) { return "<tr><td>" + r[0] + "</td><td>" + r[1] + "</td><td class=\"muted\">" + r[2] + "</td></tr>"; }).join("");
+  }
+  $("chips").innerHTML = ["crates/engine/Cargo.toml", "Cargo.toml", "XTASK/src/main.rs", "harness/task-artifacts/x/../../../xtask/src/main.rs", "harness/task-artifacts/agent-workflow/plan.html", "target/debug/xtask", "/tmp/elsewhere.txt"]
+    .map(function (p) { return "<button type=\"button\" class=\"secondary\">" + p + "</button>"; }).join("");
+  $("chips").onclick = function (e) { var b = e.target.closest("button"); if (b) { $("probe").value = b.textContent; probe(); } };
+  $("probe").oninput = probe;
+  probe();
+
+  /* 3: pair highlights and flags */
+  Q("mark[data-p], .note[data-p]").forEach(function (el) {
+    var on = function (v) { return function () { Q("[data-p=\"" + el.dataset.p + "\"]").forEach(function (x) { x.classList.toggle("on", v); }); }; };
+    el.onmouseenter = on(true); el.onmouseleave = on(false);
+  });
+  function flagged() {
+    return [].map.call(Q(".note.flag"), function (n) { return "note " + n.querySelector(".nb").textContent + " (" + n.querySelector("b").textContent.replace(/\.$/, "") + ")"; });
+  }
+  Q(".note .nb").forEach(function (b) {
+    b.setAttribute("aria-pressed", "false"); b.setAttribute("aria-label", "Flag note " + b.textContent);
+    b.onclick = function () {
+      var f = b.parentNode.classList.toggle("flag"), n = flagged().length;
+      b.setAttribute("aria-pressed", f); $("flagCount").textContent = n ? n + " flagged" : "none yet";
+    };
+  });
+  function show(t) { $("out").hidden = false; $("out").textContent = t; return t; }
+  $("confirmBtn").onclick = function () { copy(show("semantics confirmed: plan the tier, skill parity and author hook on the reference map as sketched."), this); };
+  $("correctBtn").onclick = function () {
+    var L = ["Corrections to the agent-workflow reference map:"];
+    (flagged().length ? flagged() : ["note or section: "]).forEach(function (x) { L.push("- " + x + "\n  what's wrong: \n  correct behaviour: "); });
+    copy(show(L.join("\n")), this);
+  };
+})();
+</script>
+</body>
+</html>

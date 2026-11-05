@@ -3,7 +3,7 @@ use crate::{config::Result, repo};
 use sha2::{Digest, Sha256};
 use std::{collections::BTreeMap, path::Path, process::Command};
 
-fn git(root: &Path, args: &[&str]) -> Result<Vec<u8>> {
+pub(crate) fn git(root: &Path, args: &[&str]) -> Result<Vec<u8>> {
     let output = Command::new("git").args(args).current_dir(root).output()?;
     if !output.status.success() {
         return Err(format!(
