@@ -40,6 +40,22 @@
       "sha256": "2cb5777e61ae4abe0e0e0a878a2200dcdc51d4ab53e4fe9424cf408022f447db",
       "reviewer": "artifact-reviewer",
       "notes": "Open: Q1 row table is hand-built from reviews.json, label it; conflict flags 2 and 3 share text; Codex model claims rest on blindspot 05."
+    },
+    {
+      "page": "reference.html",
+      "round": 2,
+      "verdict": "revise",
+      "sha256": "ee5f4b9e9d166c2966b5b1c22727d959d727ce61d5eb698cf808d6699a717de4",
+      "reviewer": "artifact-reviewer",
+      "notes": "Note 2's repeated-row case is false for revise rows (round differs); an identical repeat needs pass rows (pass, edit, pass, revert, pass). Still ~20% over length."
+    },
+    {
+      "page": "reference.html",
+      "round": 3,
+      "verdict": "pass",
+      "sha256": "b693cc0308d3e4e1cde583be8a69fa61599530853edf0f9b3b37e33298ca8a5a",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: edge rows 'best row' and 'Log reformatted' not run by the reviewer; ~20% over exemplar height."
     }
   ]
 }

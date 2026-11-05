@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semantics map: the code router-polish extends</title>
+<style>
+  main { max-width: 64rem; }
+  .prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+  .prompt-card blockquote { font-style: italic; margin: var(--space-3) 0 0; }
+  button.copy { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  button.done { background: var(--ink); border-color: var(--ink); }
+  .paths { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-6); font-family: var(--font-code); font-size: .8rem; color: var(--muted); margin-block: var(--space-4) var(--space-8); }
+  .paths b { color: var(--ink); }
+  .sec-h { display: flex; align-items: baseline; gap: var(--space-3); margin-block: var(--space-8) var(--space-3); }
+  .sec-h h2 { margin: 0; }
+  .sec-h .n { font-family: var(--font-code); font-size: .8rem; color: var(--surface); background: var(--ink); border-radius: 50%; width: 1.6rem; height: 1.6rem; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6); }
+  ul.facts { list-style: none; margin: 0; padding: 0; }
+  ul.facts li { padding: var(--space-3) 0; border-bottom: 1px dashed var(--line); font-size: .95rem; }
+  ul.facts li:last-child { border-bottom: 0; }
+  code { font-size: .86em; }
+  li code, p code, td code, .note code { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 3px; }
+  .pair { margin-block: var(--space-6); }
+  .pair h3 { margin: 0 0 var(--space-3); }
+  .pair h3 .tag { font-family: var(--font-code); font-size: .75rem; color: var(--warning); font-weight: 600; margin-right: var(--space-2); }
+  .grid2 { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-3); }
+  @media (max-width: 52rem) { .grid2 { grid-template-columns: minmax(0,1fr); } }
+  .code { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .code .ch { display: flex; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: var(--accent-soft); border-bottom: 1px solid var(--line); font-family: var(--font-code); font-size: .74rem; color: var(--muted); }
+  .code .ch .k { text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: var(--accent); flex: none; }
+  .code.prop .ch { background: var(--warning-soft); }
+  .code.prop .ch .k { color: var(--warning); }
+  .code pre { margin: 0; border: 0; border-radius: 0; font-size: .76rem; line-height: 1.55; flex: 1; }
+  .cm { color: var(--muted); font-style: italic; }
+  mark { background: #f3ead8; border-bottom: 2px solid var(--warning); color: inherit; border-radius: 3px; padding: 0 1px; }
+  mark sup { font-size: .62rem; color: var(--warning); font-weight: 700; margin-left: 1px; }
+  mark.on { background: #ead7b3; }
+  .notes { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+  .note { display: flex; gap: var(--space-3); align-items: baseline; font-size: .9rem; padding: var(--space-1) var(--space-2); border-radius: var(--control-radius); cursor: default; }
+  .note .m { flex: none; font-family: var(--font-code); font-size: .7rem; font-weight: 700; width: 1.35rem; height: 1.35rem; border: 1.5px solid var(--warning); color: var(--warning); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+  .note.on { background: var(--warning-soft); }
+  .note.on .m { background: var(--warning); color: var(--surface); }
+  pre.ev { font-size: .76rem; line-height: 1.5; background: #f3f6f1; margin-block: var(--space-3); }
+  .flow { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: var(--space-2); margin-block: var(--space-4); }
+  @media (max-width: 52rem) { .flow { grid-template-columns: minmax(0,1fr); } }
+  .step { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-3); font-size: .84rem; line-height: 1.45; position: relative; }
+  .step b { display: block; font-size: .78rem; font-family: var(--font-code); color: var(--accent); margin-bottom: var(--space-1); overflow-wrap: anywhere; }
+  .step .gotcha { display: block; margin-top: var(--space-2); color: var(--warning); font-weight: 600; }
+  table { min-width: 46rem; font-size: .86rem; background: var(--surface); }
+  .table-scroll { border: 1px solid var(--line); border-radius: var(--radius); }
+  th { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--accent-soft); }
+  td:first-child b { display: block; }
+  .pill { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; border-radius: 999px; padding: 1px var(--space-2); white-space: nowrap; border: 1px solid; }
+  .same { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .new { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+  .lean { font-size: .7rem; font-weight: 700; color: var(--warning); text-transform: uppercase; letter-spacing: .06em; }
+  td label { margin: var(--space-2) 0 0; font-size: .8rem; display: flex; gap: var(--space-1); align-items: center; white-space: nowrap; color: var(--danger); }
+  tr.flagged td { background: #fbeeee; }
+  .final { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6) var(--space-6); margin-top: var(--space-8); }
+  #extra { min-height: 4rem; }
+  #reply { font-size: .8rem; background: var(--paper); max-height: 14rem; overflow-y: auto; }
+  .btns { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Point at a reference &middot; before code &middot; router-polish</p>
+<h1>Semantics map: three code paths router-polish extends</h1>
+<p class="lead">Each change copies behaviour that already exists. Here is that code, run against real logs and skill files, beside the code I would write. The gotchas are where a literal copy goes wrong.</p>
+
+<div class="prompt-card">
+  <div class="row"><span class="eyebrow">The prompt</span><button class="copy" data-copy="prompt">Copy prompt</button></div>
+  <blockquote id="prompt">The existing code paths already behave the way router-polish should. Read them and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything.</blockquote>
+</div>
+
+<div class="paths">
+  <span><b>reference</b> xtask/src/router.rs &middot; task_record.rs &middot; tracking.rs &middot; checks.rs</span>
+  <span><b>and</b> experiments/evaluator &middot; experiments/gepa</span>
+  <span><b>target</b> router.rs page_step / Row &middot; new DOC009 in checks.rs</span>
+</div>
+
+<div class="sec-h"><span class="n">1</span><h2>What the reference code does</h2></div>
+<div class="card"><ul class="facts">
+  <li><b>The advisory compares parsed rows, not files.</b> <code>next</code> reads HEAD's log with <code>git show</code> (<code>history.rs:40-45</code>), parses it and warns when the working rows don't <code>starts_with</code> the committed ones (<code>router.rs:267-275</code>). It says nothing when HEAD has no log or the committed log fails to parse. The commit step, by contrast, only asks git whether <code>reviews.json</code> is dirty (<code>router.rs:236</code>).</li>
+  <li><b>No struct in the repo uses <code>skip_serializing_if</code>.</b> A search of <code>xtask/</code>, <code>crates/</code> and <code>experiments/</code> finds none, so <code>Row</code> sets the precedent.</li>
+  <li><b>DOC009 will compare bytes, as DOC007 does</b> (<code>checks.rs:202</code>). DOC008 compares lines, and pair C shows where that difference bites.</li>
+</ul></div>
+
+<div class="sec-h"><span class="n">2</span><h2>Matched excerpts: reference &rarr; router-polish</h2></div>
+<p class="muted">Hover or tap a highlighted region or note to light up its counterpart. Left: code as it is. Right: what I would write.</p>
+
+<div class="pair">
+  <h3><span class="tag">A / 3</span>The commit step reuses the advisory's prefix, page by page</h3>
+  <div class="grid2">
+    <div class="code"><div class="ch"><span>xtask/src/router.rs:267-275, 236</span><span class="k">today</span></div>
+<pre><code>let log = read(root, id)?;
+if let (Some(log), Some(committed)) =
+    (&amp;log, <mark data-p="a1">history::read(root, "HEAD", &amp;log_path(id))?<sup>1</sup></mark>)
+    &amp;&amp; <mark data-p="a3">parse(&amp;committed).is_ok_and<sup>3</sup></mark>(
+        |c| !<mark data-p="a2">log.rows.starts_with(&amp;c.rows)<sup>2</sup></mark>)
+{
+    advisories.push("&hellip; no longer starts with its committed rows &hellip;");
+}
+<span class="cm">// page_step, after the review/rewrite arms:</span>
+if committed &amp;&amp; <mark data-p="a4">!dirty.contains(&amp;log_path(id))<sup>4</sup></mark> {
+    return Ok(None);
+}</code></pre></div>
+    <div class="code prop"><div class="ch"><span>router.rs next() + page_step (proposed)</span><span class="k">proposed</span></div>
+<pre><code><span class="cm">// next(): read HEAD's log once, keep the advisory as is</span>
+let head = <mark data-p="a1">history::read(root, "HEAD", &amp;log_path(id))?<sup>1</sup></mark>
+    <mark data-p="a3">.and_then(|b| parse(&amp;b).ok())<sup>3</sup></mark>;
+let tail: Option&lt;&amp;[Row]&gt; = match (&amp;log, &amp;head) {
+    (Some(l), Some(h)) if <mark data-p="a2">l.rows.starts_with(&amp;h.rows)<sup>2</sup></mark>
+        =&gt; Some(&amp;l.rows[h.rows.len()..]),
+    (Some(l), None) =&gt; <mark data-p="a1">Some(&amp;l.rows[..])</mark>,
+    _ =&gt; None, <span class="cm">// diverged: today's file check</span>
+};
+<span class="cm">// page_step(&hellip;, tail):</span>
+let log_done = match tail {
+    Some(t) =&gt; <mark data-p="a4">!t.iter().any(|r| r.page == page)<sup>4</sup></mark>,
+    None =&gt; !dirty.contains(&amp;log_path(id)),
+};
+if committed &amp;&amp; log_done { return Ok(None); }</code></pre></div>
+  </div>
+  <div class="notes">
+    <div class="note" data-p="a1"><span class="m">1</span><span><b>No committed log.</b> <code>history::read</code> returns <code>None</code> when the path isn't in HEAD (<code>history.rs:40-45</code>), so the advisory is skipped. The proposal counts every row as uncommitted, so the first reviewed page gets the commit step, which commits them all.</span></div>
+    <div class="note" data-p="a2"><span class="m">2</span><span><b>Prefix, not membership.</b> <code>starts_with</code> uses <code>Row</code>'s derived <code>PartialEq</code> over every field (<code>router.rs:28</code>), so file whitespace never matters. A non-best row's round is <code>revisions + 1</code> (<code>router.rs:114-147</code>), so revise rows climb but pass rows stay at round 1. Pass at hash X and commit, edit to Y and pass, revert to X and pass: the last row is a round-1 pass with hash X, equal to the committed first when reviewer, notes, findings and model match. Asking "is this row in HEAD?" calls the page done with two rows uncommitted. The tail after HEAD's length still holds both, so next names the page. This refines the blindspot pass's whole-row lookup (Landmine 01).</span></div>
+    <div class="note" data-p="a3"><span class="m">3</span><span><b>Unparseable committed log.</b> Today that silences the advisory. The proposal treats it like a missing log, so every row needs a commit. That errs toward asking for a commit.</span></div>
+    <div class="note" data-p="a4"><span class="m">4</span><span><b>The bug is this line.</b> Any uncommitted row makes every passed page look uncommitted, so the loop at <code>router.rs:277-306</code> stops at the first one and hides later pages' steps. With <code>interview.html</code> on its third <code>revise</code>, next said "commit blindspots.html" instead of "restore the best version".</span></div>
+  </div>
+<pre class="ev"><span class="cm"># blindspots passed and committed; interventions passed, page committed, log not</span>
+$ xtask task-artifact next --task router-polish
+"action": "commit", "page": "blindspots.html"      <span class="cm"># the ticket's bug, reproduced</span></pre>
+</div>
+
+<div class="pair">
+  <h3><span class="tag">B / 3</span>Optional fields: what the repo does and what Row needs</h3>
+  <div class="grid2">
+    <div class="code"><div class="ch"><span>tracking.rs:10-25 &middot; task_record.rs:33-34</span><span class="k">today</span></div>
+<pre><code>#[derive(Clone, Deserialize, Serialize)]
+#[serde(<mark data-p="b4">deny_unknown_fields<sup>8</sup></mark>)]
+pub struct Gap {
+    &hellip;
+    pub next_action: String,
+    <mark data-p="b1">pub resolution: Option&lt;String&gt;,<sup>5</sup></mark>
+    #[serde(default)]
+    pub requirements: Vec&lt;String&gt;,
+    #[serde(default)]
+    <mark data-p="b2">pub ticket: Option&lt;String&gt;,<sup>6</sup></mark>
+}
+<span class="cm">// task_record.rs:26-34: Task derives only Deserialize</span>
+#[serde(default)]
+pub tier: Tier,   <span class="cm">// missing =&gt; Standard</span></code></pre></div>
+    <div class="code prop"><div class="ch"><span>router.rs Row (proposed)</span><span class="k">proposed</span></div>
+<pre><code>#[derive(Serialize, Deserialize, Clone, PartialEq, Eq, Debug)]
+#[serde(<mark data-p="b4">deny_unknown_fields<sup>8</sup></mark>)]
+pub struct Row {
+    pub page: String,
+    &hellip;
+    <mark data-p="b3">pub notes: String,<sup>7</sup></mark>
+    <mark data-p="b2">#[serde(default, skip_serializing_if = "Option::is_none")]<sup>6</sup></mark>
+    <mark data-p="b1">pub findings: Option&lt;u32&gt;,<sup>5</sup></mark>
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub model: Option&lt;String&gt;,
+}</code></pre></div>
+  </div>
+  <div class="notes">
+    <div class="note" data-p="b1"><span class="m">5</span><span><b>Reading never needs <code>default</code>.</b> A missing <code>Option</code> key parses as <code>None</code> with or without <code>#[serde(default)]</code>. <code>Gap.resolution</code> already depends on that. So "old rows still parse" passes with all three attribute choices, and the ticket's test can't tell them apart.</span></div>
+    <div class="note" data-p="b2"><span class="m">6</span><span><b>Writing is where they differ.</b> A plain <code>Option</code> and one with <code>default</code> both write <code>"findings":null</code>. Only <code>skip_serializing_if</code> leaves an old row's text alone. <code>verdict</code> rewrites the whole log, so <code>Row</code> needs it (blindspot pass, Landmine 02). <code>Gap</code> must not get it: receipts hash each gap as written (<code>transitions.rs:88-89</code>).</span></div>
+    <div class="note" data-p="b3"><span class="m">7</span><span><b>Order and zero.</b> Serde writes fields in declaration order, so new rows keep today's order up to <code>notes</code>. <code>Some(0)</code> writes <code>"findings":0</code>, distinct from an old row with no count. A <code>u32</code> refuses <code>-1</code>, <code>2.0</code> and <code>"2"</code>.</span></div>
+    <div class="note" data-p="b4"><span class="m">8</span><span><b>Compatible in one direction only.</b> <code>deny_unknown_fields</code> stays. The new binary reads old logs; today's binary rejects any log holding a new row (below).</span></div>
+  </div>
+<pre class="ev"><span class="cm"># one old-shape row through each attribute choice, then back out</span>
+plain Option        {"page":"b.html","notes":"n","findings":null,"model":null}
+#[serde(default)]   {"page":"b.html","notes":"n","findings":null,"model":null}
+default + skip      {"page":"b.html","notes":"n"}
+<span class="cm"># today's xtask on a log with one new row</span>
+{"error":"reviews.json: unknown field `findings`, expected one of `page`, `round`, &hellip;","ok":false}  exit 1</pre>
+</div>
+
+<div class="pair">
+  <h3><span class="tag">C / 3</span>DOC009 extends skill_copies: frontmatter, a blank line, then the seed's bytes</h3>
+  <div class="grid2">
+    <div class="code"><div class="ch"><span>xtask/src/checks.rs:202-219</span><span class="k">today</span></div>
+<pre><code><span class="cm">// DOC007</span>
+if <mark data-p="c4">copies[0].get(rest) != copies[1].get(rest)<sup>12</sup></mark> { &hellip; }
+<span class="cm">// DOC008</span>
+let text = String::from_utf8_lossy(bytes);
+let mut lines = <mark data-p="c1">text.lines()<sup>9</sup></mark>;
+let named = <mark data-p="c2">lines.next() == Some("---")<sup>10</sup></mark>
+    &amp;&amp; lines
+        <mark data-p="c3">.take_while(|l| *l != "---")<sup>11</sup></mark>
+        .any(|l| l.strip_prefix("name:")
+            .map(str::trim) == Some(folder));</code></pre></div>
+    <div class="code prop"><div class="ch"><span>checks.rs skill_copies (proposed)</span><span class="k">proposed</span></div>
+<pre><code>const SEED: &amp;str = "docs/skills/investigate.md";
+<span class="cm">/// Body after the frontmatter and one blank line.</span>
+fn seed_body(bytes: &amp;[u8]) -&gt; Option&lt;&amp;[u8]&gt; {
+    let rest = <mark data-p="c2">bytes.strip_prefix(b"---\n")?<sup>10</sup></mark>;
+    let end = <mark data-p="c3">rest.windows(5).position(|w| w == b"\n---\n")?<sup>11</sup></mark>;
+    rest[end + 5..].strip_prefix(b"\n")
+}
+let seed = std::fs::read(root.join(SEED))?;
+for (i, host) in HOSTS.iter().enumerate() {
+    let body = copies[i].get("investigate/SKILL.md")
+        .and_then(|b| seed_body(b));
+    if <mark data-p="c4">body != Some(&amp;seed[..])<sup>12</sup></mark> {
+        errors.push(format!("DOC009 {host}investigate/SKILL.md: &hellip;"));
+    }
+}</code></pre></div>
+  </div>
+  <div class="notes">
+    <div class="note" data-p="c1"><span class="m">9</span><span><b>CRLF.</b> <code>str::lines</code> strips <code>\r\n</code>, so DOC008 accepts a CRLF skill file. DOC007 fails one CRLF copy beside an LF one, and DOC009 fails a CRLF <code>SKILL.md</code> against the LF seed. <code>.gitattributes</code> sets <code>* text=auto eol=lf</code>, so only an uncommitted CRLF edit can trigger it.</span></div>
+    <div class="note" data-p="c2"><span class="m">10</span><span><b>Opening delimiter.</b> DOC008 needs a first line of exactly <code>---</code>, so a UTF-8 BOM fails it. The proposal also needs LF after it.</span></div>
+    <div class="note" data-p="c3"><span class="m">11</span><span><b>Closing delimiter.</b> DOC008 passes unclosed frontmatter: <code>take_while</code> runs to the end and still finds <code>name:</code>. <code>seed_body</code> returns <code>None</code>, so DOC009 fails it. The seed has no <code>---</code> line, so the first <code>\n---\n</code> is always the close.</span></div>
+    <div class="note" data-p="c4"><span class="m">12</span><span><b>The gap DOC009 closes.</b> The same edit in both copies passes DOC007 and DOC008; only a comparison with the seed catches it. A missing copy also fails DOC009 (<code>None != Some</code>).</span></div>
+  </div>
+<pre class="ev"><span class="cm"># cargo xtask docs, demo skill in both hosts</span>
+CRLF in both copies              []
+CRLF in one copy                 DOC007 skills/demo/SKILL.md &hellip;
+no closing ---                   []
+BOM before ---                   DOC008 &times;2
+trailing newline in one copy     DOC007 skills/demo/SKILL.md &hellip;
+same body edit in both copies    []</pre>
+</div>
+
+<div class="sec-h"><span class="n">3</span><h2>How the experiments read the seed</h2></div>
+<p>DOC009 compares bytes on disk; GEPA and the evaluator see the string Python reads.</p>
+<div class="flow">
+  <div class="step"><b>evaluator/__main__.py:16<br>gepa/config.py:47</b><code>read_text()</code> opens in universal-newline mode.<span class="gotcha">CRLF on disk reads as LF.</span></div>
+  <div class="step"><b>trial.py:62-63<br>config.py:48-49</b>The text must be non-empty after <code>strip()</code> and at most 32,768 bytes. The seed is 1,080.</div>
+  <div class="step"><b>trial.py:74<br>optimize.py:77-78</b><code>candidate_sha256</code> and <code>seed_sha256</code> hash that string. <code>finalize.py:20-23</code> rechecks the hash.<span class="gotcha">A trailing newline changes the hash.</span></div>
+  <div class="step"><b>trial.py:102</b>The string goes into the request as <code>candidate_skill</code>, exactly as read.</div>
+  <div class="step"><b>stdin_agent.py:14-17</b>Pasted between <code>&hellip;repository rules:\n</code> and <code>\nTask:\n</code>.<span class="gotcha">Frontmatter would land in the prompt (Landmine 06).</span></div>
+</div>
+<pre class="ev"><span class="cm"># tail of the prompt stdin_agent.py hands the agent</span>
+seed ends "\n"     '&hellip;rules:\nBody.\n\nTask:\nFix it.'    <span class="cm"># blank line before Task:</span>
+seed ends "."      '&hellip;rules:\nBody.\nTask:\nFix it.'</pre>
+<p>The seed ends in exactly one <code>\n</code>, and no check reads it today. DOC009 holds the copies to that ending, so a copy missing the final <code>\n</code> fails. Adopting a GEPA winner (<code>selected-skill.md</code>) later means writing three files, because DOC009 fails when only the seed changes.</p>
+
+<div class="sec-h"><span class="n">4</span><h2>Edge cases: today and after router-polish</h2></div>
+<p class="muted">"Today" comes from running the current code. Tick <b>flag</b> on any row you read differently; the reply below is built from your flags.</p>
+<div class="table-scroll"><table>
+<thead><tr><th style="width:20%">Edge case</th><th style="width:34%">Today</th><th style="width:34%">After router-polish</th><th>Match</th></tr></thead>
+<tbody>
+<tr data-row="Log never committed"><td><b>Log never committed</b>tracked nowhere, rows only in the working copy</td><td>No advisory, even if row 1 was hand-edited. The first reviewed page gets "commit".</td><td>Every row is in the tail. The commit step names the first reviewed page, and committing the log clears all of them.</td><td><span class="pill same">same</span><label><input type="checkbox">flag</label></td></tr>
+<tr data-row="Committed log no longer a prefix"><td><b>Working copy no longer starts with the committed log</b>a committed row's notes edited</td><td>Advisory fires, and the commit step goes to the first passed page.</td><td>Advisory unchanged. No valid tail, so the file-level check decides, as today. <span class="lean">my lean</span></td><td><span class="pill same">same</span><label><input type="checkbox">flag</label></td></tr>
+<tr data-row="best row"><td><b>A best row</b>round 1 committed as revise, rounds 2-3 revised, round 1 restored</td><td>The best row reuses round 1's hash, so a page+hash lookup finds the committed revise row. Page file clean, log dirty.</td><td>The best row sits in the tail, so the step is "commit interview.html". The "best" step is no longer hidden behind blindspots.</td><td><span class="pill new">fixed</span><label><input type="checkbox">flag</label></td></tr>
+<tr data-row="Log reformatted"><td><b>Log reformatted, no new rows</b></td><td>Git calls it dirty, so blindspots gets "commit" and there is no advisory.</td><td>The tail is empty, so no page gets a commit step from the log. The reformat stays uncommitted until something else commits it.</td><td><span class="pill new">changed</span><label><input type="checkbox">flag</label></td></tr>
+<tr data-row="Old rows without findings/model"><td><b>Old rows without the new fields</b>the 11 committed workflow-router rows</td><td>Missing keys already parse. <code>Gap.resolution</code> has no <code>default</code>. Three of the six task records (completion-gate, artifact-harness, default-hooks) have no <code>tier</code> key and parse as Standard through <code>#[serde(default)]</code>.</td><td>Old rows parse as <code>None</code>, are written back unchanged and are never backfilled (blindspot pass, History 03). Rates count only the rows that carry the field.</td><td><span class="pill same">same</span><label><input type="checkbox">flag</label></td></tr>
+<tr data-row="New row read by older xtask"><td><b>A new row read by an older xtask</b></td><td>A row with an extra key fails the whole log: <code>unknown field `findings`</code>, exit 1.</td><td>Still true for any xtask without router-polish. Accepted, because each log belongs to one task.</td><td><span class="pill new">one-way</span><label><input type="checkbox">flag</label></td></tr>
+<tr data-row="Skill file with CRLF"><td><b>Skill file with CRLF</b></td><td>DOC008 passes. DOC007 fails only when the two copies differ. Python reads the text as LF.</td><td>DOC009 fails it against the LF seed. GEPA's view is unchanged.</td><td><span class="pill new">stricter</span><label><input type="checkbox">flag</label></td></tr>
+<tr data-row="Frontmatter delimiters"><td><b>Frontmatter delimiters</b></td><td>No closing <code>---</code>: passes. A BOM before the opening one: DOC008 fails.</td><td>Requires <code>---\n</code> &hellip; <code>\n---\n</code> plus one blank line. An unclosed frontmatter fails.</td><td><span class="pill new">stricter</span><label><input type="checkbox">flag</label></td></tr></tbody></table></div>
+
+<div class="final">
+  <div class="row"><h2 style="margin:0">Your reply</h2><div class="btns"><button id="copyReply" class="copy">Copy reply</button></div></div>
+  <label>Anything else to correct (optional)<textarea id="extra" placeholder="e.g. note 7: put findings before notes"></textarea></label>
+  <pre id="reply"></pre>
+</div>
+<footer>Ticket: docs/plans/router-polish.md. Earlier page: blindspots.html.</footer>
+</main>
+<script>
+(function () {
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = 'Copied'; btn.classList.add('done'); setTimeout(function () { btn.textContent = label; btn.classList.remove('done'); }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+    function fallback() { var t = document.createElement('textarea'); t.value = text; t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(t); }
+  }
+  document.querySelector('[data-copy="prompt"]').addEventListener('click', function () { copy(document.getElementById('prompt').textContent.trim(), this); });
+
+  function set(p, on) { document.querySelectorAll('[data-p="' + p + '"]').forEach(function (el) { el.classList.toggle('on', on); }); }
+  var pinned = null;
+  document.querySelectorAll('mark[data-p], .note[data-p]').forEach(function (el) {
+    var p = el.getAttribute('data-p');
+    el.addEventListener('mouseenter', function () { set(p, true); });
+    el.addEventListener('mouseleave', function () { if (pinned !== p) set(p, false); });
+    el.addEventListener('click', function () { if (pinned) set(pinned, false); pinned = pinned === p ? null : p; if (pinned) set(p, true); });
+  });
+
+  var rows = document.querySelectorAll('tr[data-row]');
+  var reply = document.getElementById('reply'), extra = document.getElementById('extra');
+  function build() {
+    var flagged = [];
+    rows.forEach(function (tr) { var on = tr.querySelector('input').checked; tr.classList.toggle('flagged', on); if (on) flagged.push(tr.getAttribute('data-row')); });
+    var note = extra.value.trim();
+    var text;
+    if (!flagged.length && !note) {
+      text = 'router-polish reference map: semantics confirmed.\n- Commit step: rows after HEAD\'s log are uncommitted; file-level check when the log diverged.\n- Row: findings/model as Option with default + skip_serializing_if, after notes.\n- DOC009: SKILL.md = frontmatter, one blank line, then docs/skills/investigate.md byte for byte.';
+    } else {
+      text = 'router-polish reference map: corrections before building.';
+      if (flagged.length) text += '\nI read these edge cases differently:\n' + flagged.map(function (f) { return '- ' + f + ': '; }).join('\n');
+      if (note) text += '\nAlso: ' + note;
+    }
+    reply.textContent = text;
+  }
+  rows.forEach(function (tr) { tr.querySelector('input').addEventListener('change', build); });
+  extra.addEventListener('input', build);
+  build();
+  document.getElementById('copyReply').addEventListener('click', function () { copy(reply.textContent, this); });
+})();
+</script>
+</body>
+</html>
