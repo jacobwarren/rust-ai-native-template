@@ -240,10 +240,11 @@ pub fn attach(
         _ => return Ok(()),
     };
     let h = handover(root, id, &page, prompt, to)?;
+    // The note goes first: a review step's say ends with the verdict command to copy.
     if !h.unfilled.is_empty() {
         let say = step["say"].as_str().unwrap_or_default();
         step["say"] = format!(
-            "{say} First fill its braces for {}: set them under prompt in harness/tasks/{id}.json and run next again, or replace them in the handover by hand.",
+            "First fill the handover's braces for {}: set them under prompt in harness/tasks/{id}.json and run next again, or replace them by hand. Then: {say}",
             h.unfilled.join(", ")
         )
         .into();

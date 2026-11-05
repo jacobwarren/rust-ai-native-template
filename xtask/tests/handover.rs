@@ -134,7 +134,7 @@ fn missing_values_stay_as_braces() {
         step["say"]
             .as_str()
             .unwrap()
-            .contains("First fill its braces for task, area"),
+            .starts_with("First fill the handover's braces for task, area"),
         "{step}"
     );
     // A stub placeholder is no value; a blank one neither.
@@ -144,6 +144,14 @@ fn missing_values_stay_as_braces() {
     assert!(
         text.contains("I'm about to {task} in the engine."),
         "{text}"
+    );
+    // A review step's say still ends with the command to copy.
+    f.page("blindspots.html");
+    let (step, _) = handover(&f);
+    assert_eq!(step["action"], "review", "{step}");
+    assert!(
+        step["say"].as_str().unwrap().ends_with("--notes -"),
+        "{step}"
     );
 }
 
