@@ -82,6 +82,26 @@
       "notes": "Open: Codex validator and debug prompt-input claims not marked as unrun; checked-against-plan and what-is-left sections are process; 007 and 32x-e cases only partly run.",
       "findings": 3,
       "model": "sonnet"
+    },
+    {
+      "page": "buy-in.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "2751705e56a163f1cb675183f2aa46fd6c2416f5ea3eff76d2adfc40000f5506",
+      "reviewer": "artifact-reviewer",
+      "notes": "Headline +314/-21 in 12 files is wrong (+332/-23 over 14 non-page files); Codex strict-YAML claim and other carried claims not marked as not re-run.",
+      "findings": 2,
+      "model": "sonnet"
+    },
+    {
+      "page": "quiz.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "8db6b1fbda52c857205d12b0f1c16b6aeb922c931bec28461eb2730e17d461e1",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: Q1 and Q2 weakest on understanding (Q2 leans on plan A1); stats strip counts 17 files; Q1 and Q2 not re-run by the reviewer.",
+      "findings": 3,
+      "model": "sonnet"
     }
   ]
 }
