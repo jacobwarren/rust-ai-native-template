@@ -147,7 +147,7 @@ td.a{color:var(--accent);font-weight:700;white-space:nowrap}td.b{color:var(--dan
   <div class="stat"><b>3</b><span>slices: tier, skills and agents, docs</span></div>
   <div class="stat"><b>5</b><span>caught by these notes, now fixed</span></div>
   <div class="stat w"><b>6</b><span>logged while building</span></div>
-  <div class="stat"><b>2</b><span>bugs the build caught in itself</span></div>
+  <div class="stat"><b>4</b><span>bugs the build caught in itself</span></div>
   <div class="stat"><b>19/19</b><span>tests in tiers, hooks_author, hooks_guard</span></div>
 </div>
 
@@ -197,7 +197,7 @@ td.a{color:var(--accent);font-weight:700;white-space:nowrap}td.b{color:var(--dan
   <h3>The AGENTS.md trim had dropped two lines the plan kept, and kept one it replaced</h3>
   <dl class="dg">
     <dt>Plan said</dt><dd>Keep "Inspect the existing implementation and applicable acceptance criteria" in step 2, and "do not force broader gaps closed" in step 7, which "has no twin". Replace step 4's "Small changes need no ceremony." with "Other work needs no plan." (A7)</dd>
-    <dt>Code did</dt><dd>Both kept lines were gone, with only near twins in COMPLETION.md:42 and :49-50. Step 4 still said "Small changes need no ceremony", eight lines below a tier that defines "small" differently.</dd>
+    <dt>Code did</dt><dd>Both kept lines were gone; neither has a twin elsewhere (the nearest to the second are COMPLETION.md:38 and :48). Step 4 still said "Small changes need no ceremony", eight lines below a tier that defines "small" differently.</dd>
     <dt class="c">Fixed</dt><dd class="c">AGENTS.md:10 restores the inspect line. Step 7 ends "and does not force broader gaps closed" (:24-25). Step 4 reads "…plan template; a small task needs none." (:16). The map is 71 lines of the 100 allowed.</dd>
   </dl>
 </article>
@@ -240,7 +240,7 @@ td.a{color:var(--accent);font-weight:700;white-space:nowrap}td.b{color:var(--dan
 <tr><td>9</td><td>Earlier task records stay untouched.</td><td><code>harness/tasks/artifact-harness.json</code> now points at the moved briefs. Bug caught: coordination requires every referenced file to exist.</td></tr>
 <tr><td>10</td><td>AGENTS.md: 73 lines become 68.</td><td>It ends at 71 after fix 4 restored two lines; DOC005 allows 100.</td></tr>
 <tr><td>11</td><td>Leave <code>examples/task-record.json</code> alone.</td><td>It gains <code>"tier": "standard"</code>, so the agents who copy it see that a choice exists.</td></tr>
-<tr><td>Accepted</td><td>The author tools are Read, Grep, Glob, Bash, Edit and Write; <code>docs.json</code> gets eight entries added and two removed.</td><td>Both agents also have <code>WebFetch</code>, for checking host docs. <code>harness/docs.json</code> was re-sorted whole. Both stay as built.</td></tr>
+<tr><td>Accepted</td><td>The author tools are Read, Grep, Glob, Bash, Edit and Write; <code>docs.json</code> gets eight entries added and two removed.</td><td>Both agents also have <code>WebFetch</code>, for checking host docs. <code>harness/docs.json</code> was re-sorted whole. Both stay as built.</td></tr> <tr><td>Accepted</td><td>The author block reads "writes only under harness/task-artifacts/ or outside this repository; X is neither. Report the change to the caller instead."</td><td>It reads "the artifact author edits only task pages under harness/task-artifacts/&lt;task&gt;/, and X is not one. Report the change you need instead of making it." It no longer names the outside-the-repository allowance, which still holds. The guard's small-task scope says "completion and handoff check its size".</td></tr>
 </tbody></table></div>
 </div>
 
