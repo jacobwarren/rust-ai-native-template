@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "reference.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "2cd8c003d571173c8852b25e91268dee7b1c6df50bfcf78b4959e827e1338dd2",
+      "reviewer": "artifact-reviewer",
+      "notes": "Stacked-branch state stale after PR #3 merged (as-now row, notes 9 and 15, 22 commits); sections 1 and 4 restate notes and the interview."
+    },
+    {
+      "page": "blindspots.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "93c9142e62d3cba263385786db16a067441ea6868d1bc39a2a01fa2cd151cfab",
+      "reviewer": "artifact-reviewer",
+      "notes": "Logged after the fact. Open: prompt-builder chips 2-3 under No carve-out; dangling 'constraint 1'; length."
+    },
+    {
+      "page": "interventions.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "52f92d58416a572e715873fcdbdba80ae1c32f4aab32ec46ccdc6cde9d6fd7be",
+      "reviewer": "artifact-reviewer",
+      "notes": "Logged after the fact. Open: coverage builder ignores prerequisites (R3/V3 with no log, V2 self regardless of V1); ~25% over length."
+    },
+    {
+      "page": "interview.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "ab6ea2daa571e917a3c114a9dee3e1c5b00c6b17111e842f36395d37efc23b52",
+      "reviewer": "artifact-reviewer",
+      "notes": "Logged after the fact. Open: conflict check misses R3 with log under target/; best-after-two default unlabelled as the agent's call."
+    }
+  ]
+}
