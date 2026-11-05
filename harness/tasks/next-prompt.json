@@ -35,9 +35,13 @@
     {
       "summary": "docs/ARTIFACTS.md is now compiled into xtask, the first file outside the crate in the shipped binary: renaming it stops every xtask command from building, and editing its table changes what next prints.",
       "record": "xtask/src/handover.rs"
+    },
+    {
+      "summary": "With a prompt value missing, the review step's say ran the fill note on after the --notes - command it asks you to copy; the note now comes first, so a say that ends in a command still ends there.",
+      "record": "xtask/src/handover.rs"
     }
   ],
-  "discovery_review": "Recorded the five material discoveries from the pages and the build; transient review findings stay in reviews.json.",
+  "discovery_review": "Recorded the six material discoveries from the pages and the build; transient review findings stay in reviews.json.",
   "documentation": {
     "updated": [
       "docs/ARTIFACTS.md",
