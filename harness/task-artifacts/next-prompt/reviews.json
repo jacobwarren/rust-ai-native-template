@@ -60,6 +60,26 @@
       "notes": "PASS after one rewrite. Non-blocking: the paths line and ran-out blocks mention a clean copy and scratch prototype (mild process talk); the placeholder sign-off question has both options marked stand.",
       "findings": 2,
       "model": "sonnet"
+    },
+    {
+      "page": "plan.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "e47663afc6db05cd4fa2a02ef4a9d2aba7732d2fb6078c9f9759c9cca7a75661",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE. 1 (blocking, length): 47 KB and 5914 px vs 3678; cut section A's eight carried-decision bullets to a line, trim the Review and Build tabs to their differences, fold section B's steps into the tests table; aim for 4500-5000 px. 2: process talk (last-discovery-page line, receipt and readiness steps, footer of earlier item numbers). 3 (non-blocking): ticket delta omits harness/docs.json and the record-only change to the Problem.",
+      "findings": 3,
+      "model": "sonnet"
+    },
+    {
+      "page": "plan.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "da554cccf22ed69569c4a3275f2871a4754aeda4ec9ad6869d8f7145d04ed056",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. Non-blocking: Pair A, Pair D, B03, B07 and brainstorm #3 are cited without naming their page; the Files touched 16 (2 new) chip is not itemised; the No values and Build tabs repeat the Author tab's structure.",
+      "findings": 3,
+      "model": "sonnet"
     }
   ]
 }
