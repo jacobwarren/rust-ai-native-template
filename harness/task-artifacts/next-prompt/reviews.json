@@ -40,6 +40,26 @@
       "notes": "PASS after one rewrite. Non-blocking: 37.5 KB vs 27 KB (Q6 and Q7 first to trim); Q5's list of verbs past tasks used is not tied to a cited record.",
       "findings": 2,
       "model": "sonnet"
+    },
+    {
+      "page": "reference.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "79164a0c45f7f056632ac2c232779848861fd11c53e18688def91353a2536c5a",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE. 1 (blocking): the copy-back reply says Q1, Q3, Q5 and Q6 stand and never mentions Q2, while section 1 says Q5 and Q2 are refined by Pair C; the reply must match the table and follow the choices. 2 (minor): first edge-case row argues from how this page's own prompt was filled; rephrase around the hand-over text. 3 (minor): Pair A's today excerpt stitches lines 23-26, 84 and 136 with invented comments; quote real lines or mark paraphrase.",
+      "findings": 3,
+      "model": "sonnet"
+    },
+    {
+      "page": "reference.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "1a4c17a0252dbccc025b9a0098f7d37f23912eb11495d3bf24f0dbc51812b146",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. Non-blocking: the paths line and ran-out blocks mention a clean copy and scratch prototype (mild process talk); the placeholder sign-off question has both options marked stand.",
+      "findings": 2,
+      "model": "sonnet"
     }
   ]
 }
