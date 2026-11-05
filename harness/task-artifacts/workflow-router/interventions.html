@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where to intervene: routing, verdicts, stacked branches, tickets</title>
+<style>
+  main { padding-bottom: 12rem; }
+  code { font-size: .86em; background: var(--accent-soft); border-radius: 4px; padding: 0 .3em; overflow-wrap: anywhere; }
+  .prompt { position: relative; }
+  .prompt p { margin: 0; font-style: italic; max-width: 70ch; }
+  .prompt button { margin-top: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  .lane { margin-top: var(--space-12); }
+  .lane > h2 { display: flex; gap: var(--space-3); align-items: baseline; flex-wrap: wrap; margin-bottom: var(--space-2); }
+  .lane > h2 .tag { font: 650 var(--text-small)/1 var(--font-code); color: var(--accent); }
+  .why { max-width: var(--reading-width); margin-top: 0; }
+  pre.ev { font-size: .8rem; line-height: 1.5; margin: var(--space-3) 0 var(--space-4); }
+  pre.ev .c { color: var(--muted); }
+  pre.ev .bad { color: var(--danger); }
+  .ladder { display: grid; gap: var(--space-3); }
+  .rung { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .rung.on { border-left-color: var(--accent); background: #fbfdfb; }
+  .rung-top { display: flex; gap: var(--space-3); align-items: baseline; flex-wrap: wrap; }
+  .rung-top h3 { margin: 0; flex: 1 1 16rem; }
+  .id { font: 700 var(--text-small)/1 var(--font-code); color: var(--accent); }
+  .cost { font: 650 .75rem/1 var(--font-code); padding: .3em .7em; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+  .cost.m { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+  .cost.l { color: var(--surface); background: var(--warning); border-color: var(--warning); }
+  .where { font: .78rem/1.4 var(--font-code); color: var(--muted); margin: var(--space-2) 0 0; overflow-wrap: anywhere; }
+  dl.cmr { display: grid; grid-template-columns: 5.5rem 1fr; gap: var(--space-1) var(--space-3); margin: var(--space-3) 0 0; font-size: .92rem; }
+  dl.cmr dt { font: 650 .72rem/1.9 var(--font-code); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  dl.cmr dd { margin: 0; }
+  dl.cmr dt.miss { color: var(--danger); }
+  label.pick { display: inline-flex; align-items: center; margin: var(--space-3) 0 0; font-weight: 600; font-size: .92rem; cursor: pointer; }
+  .loc { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); margin: var(--space-3) 0 0; font-size: .9rem; }
+  .loc label { margin: 0; display: inline-flex; align-items: center; }
+  .loc-out { margin: var(--space-2) 0 0; font-size: .9rem; padding: var(--space-2) var(--space-3); }
+  .cover { margin-top: var(--space-4); border: 1px dashed var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4); background: var(--paper); }
+  .cover h4 { margin: 0 0 var(--space-2); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  .cover ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); font-size: .9rem; }
+  .cover li { display: flex; gap: var(--space-2); align-items: baseline; }
+  .st { flex: none; font: 650 .7rem/1 var(--font-code); padding: .3em .55em; border-radius: 4px; min-width: 6.4rem; text-align: center; }
+  .st.none { color: var(--danger); border: 1px solid var(--danger); }
+  .st.rep { color: var(--warning); background: var(--warning-soft); border: 1px solid var(--warning); }
+  .st.blk { color: var(--surface); background: var(--accent); border: 1px solid var(--accent); }
+  .legend { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: .85rem; color: var(--muted); align-items: center; }
+  .reply { position: fixed; left: 0; right: 0; bottom: 0; background: var(--ink); color: var(--paper); z-index: 5; box-shadow: 0 -6px 18px rgba(0,0,0,.15); }
+  .reply-in { max-width: var(--page-width); margin: 0 auto; padding: var(--space-3) var(--space-6); display: flex; gap: var(--space-4); align-items: center; }
+  .reply-n { font: .8rem var(--font-code); white-space: nowrap; }
+  .reply-n b { font-size: 1rem; }
+  .reply-t { flex: 1; min-width: 0; font: .78rem/1.45 var(--font-code); max-height: 4.4em; overflow: auto; color: #d6e2dc; overflow-wrap: anywhere; }
+  .reply button { flex: none; background: var(--surface); color: var(--ink); border-color: var(--surface); min-height: 40px; }
+  @media (max-width: 40rem) {
+    dl.cmr { grid-template-columns: 1fr; }
+    dl.cmr dt { line-height: 1.2; margin-top: var(--space-2); }
+    .reply-in { flex-wrap: wrap; gap: var(--space-2); padding: var(--space-2) var(--space-4); }
+    .reply-t { order: 3; flex-basis: 100%; }
+    .st { min-width: 5.6rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Brainstorm the intervention · workflow-router</p>
+  <h1>Thirteen places to intervene, cheapest first, across four problems</h1>
+  <p class="lead">Each problem gets a short ladder. Tick what resonates, and each problem's coverage list shows which failure modes your picks handle in code, which they leave advisory, and which stay open.</p>
+
+  <div class="surface prompt">
+    <p class="eyebrow">The prompt</p>
+    <p id="promptText">“Here's the problem: the orchestrating agent routes the eight-page author-review-rewrite loop from prose and drifts, review verdicts exist only as prose in the task record, the stop gate and handoff misjudge a branch stacked on an unmerged PR, and tickets give agents no harness-shaped way to fix scope, tier and acceptance before work starts. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate.”</p>
+    <button type="button" class="secondary" id="copyPrompt">Copy prompt</button>
+  </div>
+
+  <p class="why">The common thread is that the harness checks the pages' <strong>presence and order</strong> only (<code>artifacts.rs:1-2</code>), and the rest of the loop lives in prose. B01–B07 refer to the blindspot pass's findings.</p>
+  <div class="legend"><span class="st none">open</span> nothing addresses it <span class="st rep">advisory</span> only if someone runs or reads it <span class="st blk">in code</span> handled every time</div>
+
+  <!-- ROUTING -->
+  <section class="lane" id="lane-r">
+    <h2><span class="tag">R</span> The loop is routed from prose</h2>
+    <p class="why">The whole loop is <code>ARTIFACTS.md:13-46</code>. The only machine signal names the first missing page and says nothing about review. In the last two tasks, 5 of 16 pages were edited by hand after their last review (B05).</p>
+    <pre class="ev"><span class="c">$ xtask task-artifact guard --task workflow-router</span>
+{"error":"missing interventions.html; see docs/ARTIFACTS.md","ok":false}</pre>
+    <div class="ladder">
+      <article class="rung" id="R1"><div class="rung-top"><span class="id">R1</span><h3>Rewrite the loop as a numbered checklist</h3><span class="cost">S</span></div>
+        <p class="where">docs/ARTIFACTS.md:13-46</p>
+        <dl class="cmr"><dt>Catches</dt><dd>Nothing mechanically.</dd>
+        <dt class="miss">Misses</dt><dd>Everything below. The agent that drifted already had this prose.</dd>
+        <dt>Cost</dt><dd>One doc edit, on a ceremony path (<code>size.rs:12-19</code>).</dd>
+        <dt>Risk</dt><dd>Low.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="R1">This resonates</label></article>
+      <article class="rung" id="R2"><div class="rung-top"><span class="id">R2</span><h3><code>task-artifact next</code> that only reads state</h3><span class="cost m">M</span></div>
+        <p class="where">xtask/src/main.rs:76-79 · artifacts.rs guard() 201-225</p>
+        <dl class="cmr"><dt>Catches</dt><dd>Pages taken out of order. It reads the tier and the committed tree, as <code>guard()</code> does, and prints the next page with its prompt and exemplar.</dd>
+        <dt class="miss">Misses</dt><dd>Review state, because none exists to read. It also can't know the base or when the code is done (B04).</dd>
+        <dt>Cost</dt><dd>A command and its tests, with a receipt (<code>xtask/</code> is protected). The prompts live in a markdown table (<code>ARTIFACTS.md:55-62</code>), so <code>next</code> needs a copy or a parser.</dd>
+        <dt>Risk</dt><dd>The copied table can drift.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="R2">This resonates</label></article>
+      <article class="rung" id="R3"><div class="rung-top"><span class="id">R3</span><h3><code>next</code> plus a <code>verdict</code> command that writes a log</h3><span class="cost m">M+</span></div>
+        <p class="where">R2 + an append-only writer (log shape in lane V)</p>
+        <dl class="cmr"><dt>Catches</dt><dd>A page committed with no verdict, and the rewrite count. With V3 it also catches hand edits. All of this is advisory: it shows only when <code>next</code> runs.</dd>
+        <dt class="miss">Misses</dt><dd>Nothing makes anyone run it. Every row is typed by the orchestrator, because the reviewer has no Write tool (B06).</dd>
+        <dt>Cost</dt><dd>R2, plus a log format and a writer.</dd>
+        <dt>Risk</dt><dd>Recording a verdict stales CI evidence (B06).</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="R3">This resonates</label></article>
+      <article class="rung" id="R4"><div class="rung-top"><span class="id">R4</span><h3>Completion refuses pages without a matching verdict</h3><span class="cost l">L</span></div>
+        <p class="where">completion.rs task() → artifacts::check; validate() 236-243</p>
+        <dl class="cmr"><dt>Catches</dt><dd>The same modes as R3, now refused at <code>complete</code> and <code>handoff</code>.</dd>
+        <dt class="miss">Misses</dt><dd>A fabricated PASS row still passes.</dd>
+        <dt>Cost</dt><dd><code>coordination</code> runs in <code>check ci</code> (<code>harness/config.json:114</code>) over every complete standard record. agent-workflow and default-hooks have no log, so they need an exemption.</dd>
+        <dt>Risk</dt><dd>It's a new approval gate nobody asked for (<code>AGENTS.md:51-52</code>).</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="R4">This resonates</label></article>
+    </div>
+    <div class="cover" data-lane="r"><h4>Routing coverage with your picks</h4><ul></ul></div>
+  </section>
+
+  <!-- VERDICT LOG -->
+  <section class="lane" id="lane-v">
+    <h2><span class="tag">V</span> Verdicts exist only as prose</h2>
+    <p class="why">The loop ends by recording each final verdict in <code>review.verification</code> (<code>ARTIFACTS.md:45-46</code>). That field is a free-text <code>String</code> (<code>task_record.rs:127</code>), so you can't count rewrite rates from it.</p>
+    <div class="ladder">
+      <article class="rung" id="V1"><div class="rung-top"><span class="id">V1</span><h3>Pick where the log lives</h3><span class="cost">S</span></div>
+        <div class="loc" role="radiogroup" aria-label="Log location">
+          <label><input type="radio" name="loc" value="folder" checked>task folder <code>reviews.json</code></label>
+          <label><input type="radio" name="loc" value="record">array in the record</label>
+          <label><input type="radio" name="loc" value="target">under <code>target/</code></label>
+        </div>
+        <p class="loc-out callout" id="locOut"></p>
+        <dl class="cmr"><dt>Catches</dt><dd id="locCatch"></dd>
+        <dt class="miss">Misses</dt><dd>Who wrote a row, and whether the page changed afterwards.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="V1">This resonates</label></article>
+      <article class="rung" id="V2"><div class="rung-top"><span class="id">V2</span><h3>Only the <code>verdict</code> command may write it</h3><span class="cost">S</span></div>
+        <p class="where">scripts/agent-hook.sh:402 · xtask/tests/hooks_author.rs</p>
+        <dl class="cmr"><dt>Catches</dt><dd>An author grading its own page. Today the author hook admits any file in the task folder. One case line would refuse <code>reviews.json</code>. The command only appends, as receipts do (<code>transitions.rs:105-113</code>).</dd>
+        <dt class="miss">Misses</dt><dd>Shell writes, since the hook covers Edit and Write only (<code>agent-hook.sh:381</code>). It also misses transcription errors.</dd>
+        <dt>Cost</dt><dd>A hook line and a test.</dd>
+        <dt>Risk</dt><dd>Low.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="V2">This resonates</label></article>
+      <article class="rung" id="V3"><div class="rung-top"><span class="id">V3</span><h3>Each row carries the judged page's sha256</h3><span class="cost">S</span></div>
+        <p class="where">history.rs:96 digest() · receipt Change, transitions.rs:14-20</p>
+        <dl class="cmr"><dt>Catches</dt><dd>A PASS row for a page that was edited later. The hash no longer matches the committed page (B05).</dd>
+        <dt class="miss">Misses</dt><dd>Whether the edit mattered.</dd>
+        <dt>Cost</dt><dd>One field. The digest helper and the before/after pattern already exist.</dd>
+        <dt>Risk</dt><dd>Every typo fix after review needs a fresh review or its own row.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="V3">This resonates</label></article>
+    </div>
+    <div class="cover" data-lane="v"><h4>Verdict-log coverage with your picks</h4><ul></ul></div>
+  </section>
+
+  <!-- STACKED -->
+  <section class="lane" id="lane-s">
+    <h2><span class="tag">S</span> A branch stacked on an unmerged PR</h2>
+    <p class="why">The stop hook judges every task changed since <code>merge-base HEAD origin/main</code> (<code>agent-complete.sh:23-32</code>), which takes in PR #3's completed record. I ran it in a clean copy on a turn where this partial task claimed nothing:</p>
+    <pre class="ev"><span class="c">$ scripts/agent-complete.sh</span>
+<span class="bad">Completion claim refused: harness/tasks/agent-workflow.json says complete</span>
+  "complete task requires current full-CI evidence", …     <span class="c">exit 2</span>
+<span class="c">$ HARNESS_BASE=origin/harness/agent-workflow scripts/agent-complete.sh</span>
+                                                            <span class="c">exit 0</span></pre>
+    <p class="why">CI already gets this right, because it hands <code>handoff</code> the PR's own base (<code>ci.yml:35-41</code>). The stop hook and a future <code>next</code> run locally and get it wrong (B04).</p>
+    <div class="ladder">
+      <article class="rung" id="S1"><div class="rung-top"><span class="id">S1</span><h3>Document <code>HARNESS_BASE</code> for stacked branches</h3><span class="cost">S</span></div>
+        <p class="where">docs/COMPLETION.md:171 already names it</p>
+        <dl class="cmr"><dt>Catches</dt><dd>Both modes, while the variable is set.</dd>
+        <dt class="miss">Misses</dt><dd>The next session, which starts from <code>origin/main</code> again, and a squash-merged lower PR.</dd>
+        <dt>Cost</dt><dd>A paragraph, on a protected file.</dd>
+        <dt>Risk</dt><dd>Once the lower branch is deleted, <code>merge-base</code> fails and the hook exits 0, “not gated this turn” (<code>agent-complete.sh:24-27</code>). It fails open.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="S1">This resonates</label></article>
+      <article class="rung" id="S2"><div class="rung-top"><span class="id">S2</span><h3>Stop and <code>next</code> read a declared base</h3><span class="cost m">M</span></div>
+        <p class="where">scripts/agent-complete.sh:23 · a per-branch git config key</p>
+        <dl class="cmr"><dt>Catches</dt><dd>Both modes, across sessions, once someone declares the base. Git can't infer the base: this branch has “no upstream configured”, and an upstream would name the branch's own remote anyway.</dd>
+        <dt class="miss">Misses</dt><dd>Squash merges. A person still has to declare the base.</dd>
+        <dt>Cost</dt><dd>One lookup in each place. A record field would change the <code>deny_unknown_fields</code> <code>Task</code>.</dd>
+        <dt>Risk</dt><dd>Fails open the same way as S1.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="S2">This resonates</label></article>
+      <article class="rung" id="S3"><div class="rung-top"><span class="id">S3</span><h3>Judge only records this branch's own commits touched</h3><span class="cost m">M</span></div>
+        <p class="where">scripts/agent-complete.sh:29-32 · xtask/tests/hooks_stop.rs</p>
+        <dl class="cmr"><dt>Catches</dt><dd>The refused stop, with nothing to set. In the clean copy, <code>git log HEAD --not</code> over every other origin branch leaves this branch's two commits, which touch only <code>workflow-router</code>. The merge-base diff adds <code>agent-workflow</code>.</dd>
+        <dt class="miss">Misses</dt><dd>Page order, which still needs a base (<code>artifacts.rs:157-197</code>), and squash merges.</dd>
+        <dt>Cost</dt><dd>Replacing one diff, plus stop-hook tests.</dd>
+        <dt>Risk</dt><dd>If the same commits are pushed under another name, their claims go unjudged at stop. CI still judges them.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="S3">This resonates</label></article>
+    </div>
+    <div class="cover" data-lane="s"><h4>Stacked-branch coverage with your picks</h4><ul></ul></div>
+  </section>
+
+  <!-- TICKETS -->
+  <section class="lane" id="lane-t">
+    <h2><span class="tag">T</span> Tickets don't fix scope, tier and acceptance up front</h2>
+    <p class="why">A task starts as a hand copy of <code>examples/task-record.json</code> (<code>COMPLETION.md:42-44</code>), and <code>work_item</code> is an opaque string. The tier can't change after code lands. The record has a slot for about one of a ticket's five sections (B07).</p>
+    <div class="ladder">
+      <article class="rung" id="T1"><div class="rung-top"><span class="id">T1</span><h3>A ticket skill only</h3><span class="cost">S</span></div>
+        <p class="where">.claude/skills/write-ticket/ + .agents/skills/ mirror</p>
+        <dl class="cmr"><dt>Catches</dt><dd>A tier decided late, and the wrong kind of “small”, if the skill states the gate's rule (<code>size.rs:9, 22-30</code>).</dd>
+        <dt class="miss">Misses</dt><dd>It writes no record, so invalid fields and acceptance go unchecked.</dd>
+        <dt>Cost</dt><dd>Both copies count toward size, so a 60-line skill tops the small limit (B03). Carve-out terms come from B01–B02.</dd>
+        <dt>Risk</dt><dd>Low. It stays optional.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="T1">This resonates</label></article>
+      <article class="rung" id="T2"><div class="rung-top"><span class="id">T2</span><h3>The skill also writes the record stub</h3><span class="cost">S+</span></div>
+        <p class="where">harness/tasks/ID.json · task_record.rs:26-45, 112</p>
+        <dl class="cmr"><dt>Catches</dt><dd>The tier, on record where the gate reads it, with the ticket link in <code>work_item</code>.</dd>
+        <dt class="miss">Misses</dt><dd>Invalid fields until the next <code>coordination</code> run, and acceptance.</dd>
+        <dt>Cost</dt><dd>Skill text only. <code>harness/tasks/</code> is administrative (<code>artifacts.rs:33-43</code>), so the stub is free.</dd>
+        <dt>Risk</dt><dd>A wrong tier lands on record before anyone reviews it.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="T2">This resonates</label></article>
+      <article class="rung" id="T3"><div class="rung-top"><span class="id">T3</span><h3>An xtask command scaffolds the record</h3><span class="cost m">M</span></div>
+        <p class="where">xtask/src/main.rs · task_record::Task · artifacts::install 81-90</p>
+        <dl class="cmr"><dt>Catches</dt><dd>The tier, which becomes a required argument. The record is written through <code>Task</code>, so its fields can't be invalid.</dd>
+        <dt class="miss">Misses</dt><dd>Whether “small” is true (size is measured only at completion), and acceptance.</dd>
+        <dt>Cost</dt><dd>A command, tests and docs, all on protected paths.</dd>
+        <dt>Risk</dt><dd>It can drift from the example record.</dd></dl>
+        <label class="pick"><input type="checkbox" data-id="T3">This resonates</label></article>
+    </div>
+    <div class="cover" data-lane="t"><h4>Ticket coverage with your picks</h4><ul></ul></div>
+  </section>
+</main>
+
+<div class="reply" role="region" aria-label="Your reply">
+  <div class="reply-in">
+    <span class="reply-n"><b id="nPicked">0</b> picked</span>
+    <span class="reply-t" id="replyText">Tick the options that resonate. Your reply, with what your picks leave uncaught, builds here.</span>
+    <button type="button" id="copyReply" disabled>Copy reply</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var MODES = {
+    r: [["order", "Next page chosen out of table order or skipped"],
+        ["early", "Page committed before its review finished"],
+        ["hand", "Hand edit after the final review (B05)"],
+        ["rounds", "Rewrite count lost, or a third rewrite"]],
+    v: [["prose", "Verdicts not machine-readable, so no rewrite rates"],
+        ["self", "The page's author edits the log with Edit or Write (B06)"],
+        ["shell", "The page's author writes the log through the shell"],
+        ["stale", "Log says PASS for a page changed afterwards (B05)"],
+        ["trans", "A row records what the orchestrator typed, not what the reviewer said"]],
+    s: [["stop", "Stop refused for the lower PR's complete record"],
+        ["order", "Page order measured from origin/main (B04)"],
+        ["squash", "Lower PR squash-merged, so its commits stay in main..HEAD (B04)"]],
+    t: [["tier", "Tier decided late or not at all"],
+        ["small", "Ticket called small that the gate refuses (B07)"],
+        ["fields", "Record fields serde rejects (B07)"],
+        ["accept", "Acceptance tests the gate never sees; readiness.json is protected (B07)"],
+        ["skip", "A task started with neither skill nor command; prompts need no ticket"]]
+  };
+  var LOC = {
+    folder: ["Administrative (artifacts.rs:33-43), so it never counts toward size, but the author hook admits it today (agent-hook.sh:402). See V2.", "task folder"],
+    record: ["Needs a new field on the deny_unknown_fields Task, and every verdict rewrites the file the stop hook greps for claims (agent-complete.sh:35-41).", "record array"],
+    target: ["Never stales CI evidence, but cargo clean or a fresh clone erases it: no audit trail, no rewrite rates.", "target/"]
+  };
+  // Level each pick contributes: 1 reported, 2 blocked.
+  function contributions(p, loc) {
+    var c = { r: {}, v: {}, s: {}, t: {} };
+    function up(l, m, v) { c[l][m] = Math.max(c[l][m] || 0, v); }
+    if (p.R2 || p.R3) up("r", "order", 1);
+    if (p.R3) { up("r", "early", 1); up("r", "rounds", 1); if (p.V3) up("r", "hand", 1); }
+    if (p.R4) { up("r", "early", 2); up("r", "rounds", 2); if (p.V3) up("r", "hand", 2); }
+    if (p.V1 && loc !== "target") up("v", "prose", 1);
+    if (p.V2) up("v", "self", 2);
+    if (p.V3) up("v", "stale", p.R4 ? 2 : 1);
+    if (p.S1) { up("s", "stop", 1); up("s", "order", 1); }
+    if (p.S2) { up("s", "stop", 1); up("s", "order", 1); }
+    if (p.S3) up("s", "stop", 2);
+    if (p.T1 || p.T2) { up("t", "tier", 1); up("t", "small", 1); }
+    if (p.T2) up("t", "fields", 1);
+    if (p.T3) { up("t", "tier", 2); up("t", "fields", 2); }
+    return c;
+  }
+  var LABEL = ["open", "advisory", "in code"], CLS = ["none", "rep", "blk"];
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("input[data-id]"));
+  var reply = "";
+
+  function picked() {
+    var p = {};
+    boxes.forEach(function (b) { p[b.getAttribute("data-id")] = b.checked; });
+    return p;
+  }
+  function render() {
+    var p = picked();
+    var loc = document.querySelector('input[name="loc"]:checked').value;
+    document.getElementById("locOut").textContent = LOC[loc][0];
+    document.getElementById("locCatch").textContent = loc === "target"
+      ? "Nothing durable."
+      : "Prose-only verdicts: rows become countable per page type.";
+    boxes.forEach(function (b) {
+      document.getElementById(b.getAttribute("data-id")).classList.toggle("on", b.checked);
+    });
+    var c = contributions(p, loc), open = [], soft = 0;
+    Object.keys(MODES).forEach(function (lane) {
+      var ul = document.querySelector('.cover[data-lane="' + lane + '"] ul');
+      ul.innerHTML = "";
+      MODES[lane].forEach(function (m) {
+        var lvl = c[lane][m[0]] || 0;
+        var li = document.createElement("li");
+        var s = document.createElement("span");
+        s.className = "st " + CLS[lvl];
+        s.textContent = LABEL[lvl];
+        li.appendChild(s);
+        li.appendChild(document.createTextNode(m[1]));
+        ul.appendChild(li);
+        if (lvl === 0) open.push(lane.toUpperCase() + ": " + m[1]);
+        if (lvl === 1) soft += 1;
+      });
+    });
+    var ids = boxes.filter(function (b) { return b.checked; }).map(function (b) {
+      var id = b.getAttribute("data-id");
+      return id === "V1" ? "V1 (" + LOC[loc][1] + ")" : id;
+    });
+    document.getElementById("nPicked").textContent = ids.length;
+    var btn = document.getElementById("copyReply");
+    if (!ids.length) {
+      reply = "";
+      document.getElementById("replyText").textContent = "Tick the options that resonate. Your reply, with what your picks leave uncaught, builds here.";
+      btn.disabled = true;
+      return;
+    }
+    reply = "These resonate: " + ids.join(", ") + ". Start with " + ids[0] +
+      ". Advisory only (needs someone to run or read it): " + soft + " failure modes. Still open with these picks: " + (open.length ? open.join("; ") : "none listed") + ".";
+    document.getElementById("replyText").textContent = reply;
+    btn.disabled = false;
+  }
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1400); }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  }
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("input[data-id], input[name=loc]")) render();
+  });
+  document.getElementById("copyReply").addEventListener("click", function () { if (reply) copy(reply, this); });
+  document.getElementById("copyPrompt").addEventListener("click", function () {
+    copy(document.getElementById("promptText").textContent.replace(/^“|”$/g, ""), this);
+  });
+  render();
+})();
+</script>
+</body>
+</html>
