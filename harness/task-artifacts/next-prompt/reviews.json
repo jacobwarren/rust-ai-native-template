@@ -80,6 +80,26 @@
       "notes": "PASS after one rewrite. Non-blocking: Pair A, Pair D, B03, B07 and brainstorm #3 are cited without naming their page; the Files touched 16 (2 new) chip is not itemised; the No values and Build tabs repeat the Author tab's structure.",
       "findings": 3,
       "model": "sonnet"
+    },
+    {
+      "page": "implementation.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "7b90cfd9834c4bdd71e03d1b3ae10ded12609b33c64455a9cdef188b38b0b67f",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. Is every claim grounded? (fails) The stat tile \"5 / 7 planned tests passing\" in the .stats row contradicts the page's own \"In progress\" entry. That entry says all five tests in tests/handover.rs pass, verdict_reads_full_notes_from_stdin among them. The plan also has two unit tests: next_prompts_match_the_artifacts_guide (handover.rs:261) and prompt_values_are_optional_and_strict (task_record.rs:241). Together that is 7 of 7. I confirmed it in a clean `git archive HEAD` copy, where the 5 handover tests pass. The footer (\"steps 1-3 built, 4-5 in progress\") and the \"In progress\" badge are also stale against HEAD, where piped_notes() is committed in a766413. A rewrite must make the tile, the footer and the last timeline entry agree with each other and with the code. It should mark the stdin step as landed in a766413 and leave only the docs, readiness and stub edits as open.\n\nWhat held up: line counts and locations match (router.rs 377 lines, tests/router.rs 358, attach called at router.rs:351; handover.rs rows :32, answering_rule :68, given :103, fill :110, attach :215, the \"Answering rule:\" label :192, \"judge the whole page again\" :174, the FINDINGS line :204). piped_notes() reads at most 64 KiB + 1 bytes, checks the length before decoding, and refuses empty and non-UTF-8 input. review-artifact's SKILL.md never mentions FINDINGS, which supports Deviation 4. The page renders cleanly. The filter chips, the six hand-over tabs and the A/B radios each change what the reader sees or decides.\n\nFINDINGS: 1",
+      "findings": 1,
+      "model": "sonnet"
+    },
+    {
+      "page": "implementation.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "e353ab932dcd5a5bc4399a364445a11d6de199fbb026ca12cce0e63a336c63b1",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. A reader learns the five places where the code departed from the plan and what each cost (the 400-line limit moving the call site, unfilled listing record fields instead of braces, the --notes - ordering trap), with captured hand-over text showing each.\n\nNon-blocking:\n1. Length: 35.4 KB against the exemplar's 26.7 KB; the two Discovery entries and the \"First real use\" paragraph lean on reviews.json bookkeeping and could be shortened.\n2. About the feature: Decisions A (where the reviewer's return format lives) and B (a FINDINGS check in verdict) concern review process; a line each tying them to the hand-over would help.\n\nFINDINGS: 2",
+      "findings": 2,
+      "model": "sonnet"
     }
   ]
 }
