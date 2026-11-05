@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "blindspots.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "42631576c6db7290c896457b5d195bbbe5449d5f2894ebea5aca594ff9600c97",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. Non-blocking: page runs past the exemplar (08 and the top banner cheapest to cut); 08 has no excerpt; 02 calls workflow-router's skill mapping a recommendation; 03's prompt_inputs error was not reproduced by the reviewer.",
+      "findings": 4,
+      "model": "sonnet"
+    }
+  ]
+}
