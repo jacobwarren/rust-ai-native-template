@@ -56,6 +56,14 @@
       "sha256": "1489dd5a8d1a5a58560b770046ec62fdcdbf627c5669555f7b062180ede54211",
       "reviewer": "artifact-reviewer",
       "notes": "Open: A4 renamed-push row's Records cell omits commits not yet pushed under that name (partial push); still 1.6x exemplar height, A7 cuttable; commit order traced by hand, not run."
+    },
+    {
+      "page": "implementation.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "666817e555a197fcb7f9702193f7fbc5045ad427020cc67da611f88e2f52eda9",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: gap 2 fix should replace only CRLF pairs (done that way); nine-situation table and 9/9, 13/13 tiles are optional trims; dogfooding tabs skimmable."
     }
   ]
 }
