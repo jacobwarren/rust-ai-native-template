@@ -72,6 +72,22 @@
       "sha256": "067a0a796c214ebdf5b7e0626002634acea130740426ae7e33fddf44f7ce9b8f",
       "reviewer": "artifact-reviewer",
       "notes": "Open: section 4 table repeats the stats row (trim); Q8 is the weakest case; excerpts nearly state Q1, Q6, Q7 though each needs two facts; Q3, Q6, Q8, Q9 not re-run by the reviewer."
+    },
+    {
+      "page": "buy-in.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "7d574f1932524f002f0b812e10361258341dcef9628562bf23bea487cbb681d5",
+      "reviewer": "artifact-reviewer",
+      "notes": "Section 04 says the build forced two calls; only row 6 (best) was. Same Bash/log limit four times, completion-not-reading-log three times, section 02 retells the demo; demo opens on the weakest case (case 1); 'ran its own loop' overstated (three passes logged after the fact)."
+    },
+    {
+      "page": "buy-in.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "af593910be921d893c3da870d71882e2cdd6a842c1ecbf5061444a995bc911ed",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: case 2 'once that commit lands' is exact only once the log is committed; 'always answers ok: true' slightly loose."
     }
   ]
 }
