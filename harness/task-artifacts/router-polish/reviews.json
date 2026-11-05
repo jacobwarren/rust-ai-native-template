@@ -24,6 +24,22 @@
       "sha256": "0af0e60cdca8884360c57fb27cada03f97d3223161f55163991c03c7b24e3f13",
       "reviewer": "artifact-reviewer",
       "notes": "Open: scenario row 3 should say its pass row is uncommitted; patch sizes and 'six tests pass' not reproduced by the reviewer; 12 cards acceptable."
+    },
+    {
+      "page": "reference.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "4be501f726f3905a38c192bfc433cd1d7909773583f419e0f518dce913460525",
+      "reviewer": "artifact-reviewer",
+      "notes": "False: no task record carries tier (three of six do); 'never written back' uncited; section 1 bullets 2-3 and two edge rows repeat the notes; 6,194 px vs 4,680."
+    },
+    {
+      "page": "interview.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "2cb5777e61ae4abe0e0e0a878a2200dcdc51d4ab53e4fe9424cf408022f447db",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: Q1 row table is hand-built from reviews.json, label it; conflict flags 2 and 3 share text; Codex model claims rest on blindspot 05."
     }
   ]
 }
