@@ -1,47 +1,86 @@
 {
   "schema_version": 6,
   "id": "agent-workflow",
-  "status": "partial",
+  "status": "complete",
   "requirements": [
-    "task-artifacts"
+    "task-artifacts",
+    "completion"
   ],
   "related_gaps": [
     {
       "id": "product-acceptance",
       "disposition": "unaffected",
-      "rationale": "Agent workflow changes do not define acceptance for an adopted product."
+      "rationale": "Task tiers, skills and subagents shape how work on the template is done; they do not define acceptance for an adopted product."
     },
     {
       "id": "platform-qualification",
       "disposition": "unaffected",
-      "rationale": "No platform matrix change."
+      "rationale": "The hook and gate tests run on local macOS (bash 3.2 and 5.3) and in the existing Ubuntu and macOS CI jobs; the platform matrix is unchanged."
     },
     {
       "id": "hosting-enforcement",
       "disposition": "unaffected",
-      "rationale": "Local skills, subagents and tiers do not configure hosting rules."
+      "rationale": "Skills, subagents and the size gate run locally and in CI; none configures hosting rules or reviewer authority."
     },
     {
       "id": "artifact-gate-holes",
       "disposition": "unaffected",
-      "rationale": "Under review in the discovery pages; the size tier changes the same gate."
+      "rationale": "The small tier skips pages only for changes it measures as small; standard tasks keep the gate and its recorded holes unchanged."
     }
   ],
-  "gap_review": "Reviewed the four open gaps at task start; none is changed yet.",
-  "discoveries": [],
-  "discovery_review": "Discovery pages are being written.",
-  "documentation": {
-    "updated": [],
-    "rationale": "No documented behavior has changed yet."
-  },
-  "summary": "Scale task-page ceremony to task size, make the agent briefs real skills, define the page author and reviewer as subagents, and trim AGENTS.md.",
-  "remaining": [
-    "Write and review the five discovery pages before product code."
+  "gap_review": "Reviewed the four open gaps; none is resolved or worsened. A small task skips pages only within a measured size and away from policy, dependency and ceremony paths.",
+  "discoveries": [
+    {
+      "summary": "A one-character README fix failed handoff until it had a task record and five discovery pages; the default-hooks merge carried 3,619 page lines against 1,543 other lines.",
+      "record": "harness/task-artifacts/agent-workflow/interventions.html"
+    },
+    {
+      "summary": "git diff --numstat with rename detection counts a moved file as one line and lists no untracked files; the size gate uses --no-renames and counts untracked files itself.",
+      "record": "xtask/src/size.rs"
+    },
+    {
+      "summary": "protected() matches only the root Cargo.toml, so crate manifests are unprotected; the small tier forces standard for any Cargo.toml separately.",
+      "record": "xtask/src/size.rs"
+    },
+    {
+      "summary": "On a case-insensitive volume the default guard's tables were bypassed by an uppercase spelling (XTASK/, HARNESS/goldens/); the guard now folds case where Git ignores it.",
+      "record": "scripts/agent-hook.sh"
+    },
+    {
+      "summary": "Subagent write confinement is enforceable only for Edit/Write on Claude Code in a trusted workspace; Bash, -p sessions, symlinks pointing in from outside, and Codex roles stay unconfined.",
+      "record": "harness/task-artifacts/agent-workflow/buy-in.html"
+    },
+    {
+      "summary": "The size limit counts lines, so dense or minified lines count once and one feature split across several small branches passes each gate; reviewers and CI remain the check.",
+      "record": "docs/ARTIFACTS.md"
+    },
+    {
+      "summary": "Known limits of the new checks: the small tier treats a crate-level .cargo/config.toml as an ordinary file (only the root .cargo/ is protected), and the author hook lets an author in the main checkout write into a linked worktree's files (only the reverse is blocked). Both changes still appear in the PR diff and CI.",
+      "record": "harness/task-artifacts/agent-workflow/quiz.html"
+    }
   ],
+  "discovery_review": "Eight pages, each from a dedicated author and judged by an independent reviewer, shaped the design before code. The implementation notes' own review caught five deviations, fixed before the last product commit, and the page reviews caught the author-scope and case-fold gaps. Remaining limits are documented in docs/ARTIFACTS.md and the buy-in page.",
+  "documentation": {
+    "updated": [
+      "AGENTS.md",
+      "ARCHITECTURE.md",
+      "README.md",
+      "docs/ARTIFACTS.md",
+      "docs/COMPLETION.md",
+      "examples/task-record.json",
+      ".claude/skills/author-artifact/SKILL.md",
+      ".claude/skills/review-artifact/SKILL.md",
+      ".claude/skills/add-product-command/SKILL.md"
+    ],
+    "rationale": "ARTIFACTS.md gains a Task size section and scopes the eight pages to standard tasks; AGENTS.md sets the tier in step 2, trims step 7 and adds a rule against new tools, manual steps or approval gates; COMPLETION.md, README and ARCHITECTURE describe the tiers, skills and agent files; the page briefs move into skills for both hosts with a new add-product-command skill."
+  },
+  "summary": "Scale task-page ceremony to task size with a small tier the gate measures, turn the page briefs into skills for Claude Code and Codex with a new add-product-command skill, define the page author and reviewer as subagents for both hosts with an Edit/Write hook on Claude's author, fold case in the default guard, and trim AGENTS.md.",
+  "remaining": [],
   "review": {
-    "acceptance": "",
-    "verification": "",
-    "assumptions": "",
-    "coverage": ""
-  }
+    "acceptance": "Met. All four remaining recommendations ship: the small tier (no pages, at most 100 changed lines, no policy, dependency or ceremony path, measured at handoff and completion); skills for both hosts kept identical by DOC007 and DOC008; artifact-author and artifact-reviewer subagents for both hosts; and the AGENTS.md trim with the anti-red-tape rule. The owner delegated the design decisions; the interview page records them as the agent's leans.",
+    "verification": "cargo xtask check ci passes on the final tree; 10 new tests (6 in tiers.rs, 3 in hooks_author.rs, 1 in hooks_guard.rs) plus extended assertions, and the hook tests also pass under macOS /bin/bash 3.2. Page review verdicts: blindspots PASS after one rewrite; interventions committed as best after two rewrites (minor reply-builder findings open); interview committed after two rewrites (final finding checked and found mistaken; minor notes open); reference PASS after one rewrite; plan PASS after one rewrite; implementation notes reviewed REVISE on wording only, fixed by hand and not re-reviewed; buy-in REVISE on two ungrounded claims, reworded by hand and not re-reviewed; quiz PASS after one rewrite (open note: a failed reader can retry from memory).",
+    "assumptions": "Host behaviour for skills and subagents (loading paths, frontmatter hooks needing workspace trust and never running under -p, Codex roles inheriting the sandbox) comes from current docs and the openai/codex source at ecc78e4cf5, not from live host sessions. The hook scripts and gate were exercised directly.",
+    "coverage": "Covered: tier parsing and default, size counting (moves, untracked, binaries, administrative paths), force-standard paths, every page check reading the tier, the blocked early return, guard errors for bad tiers, skill parity and naming, author-mode allow and block cases including worktrees and uppercased roots, and the guard's case fold. Not covered: live Claude Code or Codex sessions loading the skills and agents, and the documented limits in discoveries."
+  },
+  "tier": "standard"
 }
