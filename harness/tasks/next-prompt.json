@@ -2,7 +2,7 @@
   "schema_version": 6,
   "id": "next-prompt",
   "work_item": null,
-  "status": "partial",
+  "status": "complete",
   "tier": "standard",
   "requirements": [
     "task-artifacts"
@@ -61,8 +61,11 @@
     "reference": "The shared stylesheet that xtask/src/artifacts.rs compiles in with include_str!"
   },
   "summary": "Make task-artifact next hand over the filled-in page prompt, exemplar and output path for each author, review and rewrite step, so the orchestrator no longer assembles it from docs/ARTIFACTS.md by hand.",
-  "remaining": [
-    "Write the buy-in and quiz pages from next's hand-overs, review them, and commit them after the last product commit.",
-    "Run cargo xtask check ci > target/verification/ci.json and cargo xtask complete --task next-prompt --base origin/main."
-  ]
+  "remaining": [],
+  "review": {
+    "acceptance": "Met: next_prompts_match_the_artifacts_guide, prompt_values_are_optional_and_strict, next_hands_over_the_filled_in_prompt, build_step_hands_over_the_notes_prompt, missing_values_stay_as_braces, verdict_reads_full_notes_from_stdin and review_and_rewrite_steps_carry_their_prompt pass. The ticket's three tests were revised by the plan (values from the record alone; a rewrite gets the last review's notes, not the kept path) and four were added; docs/plans/next-prompt.md lists the final seven.",
+    "verification": "cargo xtask check ci passes all nine checks on the final tree; 93 xtask tests. Page verdicts from reviews.json: blindspots PASS; interventions PASS; interview PASS after one rewrite; reference PASS after one rewrite; plan PASS after one rewrite; implementation PASS after one rewrite; buy-in PASS after one rewrite (its first reviewer stopped on a server error and was not logged); quiz PASS after one rewrite (the reviewer wrote FINDINGS: 0 beside two minor notes; logged as 2). From the first product slice on, every page was started from next's hand-over verbatim, and every review from implementation.html onward was recorded with --notes -. No page was edited after its final review.",
+    "assumptions": "Hosts pass the hand-over unchanged; nothing checks that piped notes are the reviewer's whole reply. Codex was not observed following a hand-over. Open and left as built (buy-in Decisions A and B): the FINDINGS: N line is asked for only in the review hand-over, and verdict does not refuse notes without it.",
+    "coverage": "Known limits: an xtask from before this change refuses a record carrying prompt; renaming docs/ARTIFACTS.md stops xtask from compiling and editing its table changes what next prints (the match test guards shape, not wording); a real value wrapped in <...> counts as missing."
+  }
 }
