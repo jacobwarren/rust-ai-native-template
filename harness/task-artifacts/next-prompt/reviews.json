@@ -120,6 +120,26 @@
       "notes": "PASS after one rewrite. A reader learns that next goes from one sentence (\"start an author\") to a ready-to-pass handover text, that the rewrite step now carries the reviewer's full reply, and what would still let a summarised reply slip through (open Decisions A and B).\n\nNot verified by the reviewer: the demo's \"every line is real output\" claim (strings are in the page's script), the 9-check CI run and the 7/7 tile.\n\nNon-blocking:\n1. Q2 cites \"handover.rs:103 given(), :247 · test missing_values_stay_as_braces\", implying the test is in handover.rs; it is in xtask/tests/handover.rs:128.\n2. 35.7 KB against the exemplar's 30 KB; section 03's Q5 and section 05's third risk repeat the point about summarised replies.\n\nFINDINGS: 2",
       "findings": 2,
       "model": "sonnet"
+    },
+    {
+      "page": "quiz.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "c06712653ce6871bdb14ae0fb736ec474dcca74ca9449e6af6e564e1f10a5efb",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. Quiz, \"a pass the reader must earn\" (script finish(), retry and start(), lines ~437-498). Every wrong answer immediately shows the correct letter and the reason. \"Reset quiz\" then rebuilds the same seven questions in the same order with the same option order. A reader can fail once, read the feedback, reset, and get 7/7 without understanding anything. A rewrite must make a retry meaningfully different: shuffle option order, draw from a larger pool, or withhold the correct letter on a miss and point only to the section.\n\n2. Quiz, \"answerable only by understanding, not by scanning for a matching phrase\". Q1's correct option C restates the \"Why\" text of Behaviour 03 almost word for word. Q4's option A restates Behaviour 04's \"Why\". Q6's answer is stated in Behaviour 02's \"Cost\" (\"A reworded prompt passes the test, which checks order, braces, exemplar files and the blindspot opening\"). Q5's answer is the exact error text quoted in the Behaviour 02 <pre>. The correct option is also usually the longest and most specific one (Q1 C, Q3 D, Q4 A, Q5 B), so elimination works without reading the page. A rewrite must pose situations the page does not spell out, with distractors of comparable length (for example, what `unfilled` lists when `area` is `<...>` on the Review step, or what `--notes -x` logs), and stop writing the answer into the section the question links back to.\n\n3. Length and redundancy. 41 KB and 6723px tall on desktop; the exemplar is 32 KB and 4613px. Section 1's diagram, the section 2 explorer, and Behaviours 01 and 04 overlap. The missing-values prefix is explained in the explorer, in Behaviour 04, and again in Q3 and Q4. The explorer's Rewrite and Commit tabs add little. Cut the explorer to the tabs that change a decision (Review with the toggle, Rewrite) and fold the diagram's \"intuition\" paragraph into one place.\n\n4. Explorer, \"show rather than tell\" and \"grounded\" (script X, lines ~348-382). The explorer is labelled \"Real output from next\", but every string is hand-typed in JS, including the \"main\" outputs and the unfilled prefix. The <pre> demos in Behaviours 02 and 03 are likewise pasted text. The page does not say which outputs were captured and which were assembled by hand. Embed captured stdout verbatim or say plainly that it was reconstructed.\n\n5. Minor: Behaviour 02's swap-error demo is presented as a clean-copy run, but `next --task next-prompt` at HEAD returns a non-handover step before and after swapping the buy-in and quiz rows, so the error did not reproduce; name the step used for the swap demo.\n\nVerified: stats (xtask +684/-22, other +89/-26, 7 new tests, 93 xtask tests pass in a clean copy), router.rs 377 lines with attach at :351, deny_unknown_fields on Task (task_record.rs:27), include_str! at handover.rs:14, and the guide test's checks. Renders cleanly.\n\nFINDINGS: 5",
+      "findings": 5,
+      "model": "sonnet"
+    },
+    {
+      "page": "quiz.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "9f0290a1f5f054bd7095cc77d248c4cdfbf618cd93b3660edde9d0a9e7af8ca1",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. The page shows what next now hands each subagent and what verdict --notes - does with piped text, then checks understanding with scenario questions the page does not answer in so many words; a pass needs 6/6 and a retry redraws different situations.\n\nMinor, not blocking (the reviewer's last line said FINDINGS: 0; recorded as 2 because N counts every finding listed):\n- The \"400 lines\" limit in the pass message is not in size.rs. (Its source is harness/config.json max_rust_lines, enforced as SIZE001 in checks.rs.)\n- Question 3 says \"revised three times\"; the router's limit is three REVISE verdicts, meaning two rewrites.\n\nFINDINGS: 2",
+      "findings": 2,
+      "model": "sonnet"
     }
   ]
 }
