@@ -16,6 +16,14 @@
       "sha256": "98312cbf2b8dea5a8d178d1c07770482adde135bcd3709322aa9c2f067beac39",
       "reviewer": "artifact-reviewer",
       "notes": "Open: Codex reviewer inheriting the parent's model is hedged, not verified; three decisions carry the author's recommended labels."
+    },
+    {
+      "page": "interventions.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "0af0e60cdca8884360c57fb27cada03f97d3223161f55163991c03c7b24e3f13",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: scenario row 3 should say its pass row is uncommitted; patch sizes and 'six tests pass' not reproduced by the reviewer; 12 cards acceptable."
     }
   ]
 }
