@@ -1,0 +1,48 @@
+{
+  "schema_version": 6,
+  "id": "workflow-router",
+  "status": "partial",
+  "tier": "standard",
+  "requirements": [
+    "task-artifacts"
+  ],
+  "related_gaps": [
+    {
+      "id": "product-acceptance",
+      "disposition": "unaffected",
+      "rationale": "Workflow tooling does not define acceptance for an adopted product."
+    },
+    {
+      "id": "platform-qualification",
+      "disposition": "unaffected",
+      "rationale": "No platform matrix change."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "Local tooling does not configure hosting rules."
+    },
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "unaffected",
+      "rationale": "Under review in the discovery pages; the verdict log touches the same gate."
+    }
+  ],
+  "gap_review": "Reviewed the four open gaps at task start; none is changed yet.",
+  "discoveries": [],
+  "discovery_review": "Discovery pages are being written.",
+  "documentation": {
+    "updated": [],
+    "rationale": "No documented behavior has changed yet."
+  },
+  "summary": "Add a ticket-writing skill, narrow the ceremony list so ordinary skills can be small tasks, and route the page workflow through a task-artifact next command with a structured verdict log.",
+  "remaining": [
+    "Write and review the five discovery pages before product code."
+  ],
+  "review": {
+    "acceptance": "",
+    "verification": "",
+    "assumptions": "",
+    "coverage": ""
+  }
+}
