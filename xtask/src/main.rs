@@ -46,6 +46,27 @@ fn main() -> ExitCode {
     }
 }
 
+/// Most bytes `verdict --notes -` reads: a long review, far short of a runaway pipe.
+const NOTES_CAP: usize = 64 * 1024;
+
+/// Notes piped to `verdict --notes -`. The length is checked on bytes before
+/// decoding, so an over-long reply cut inside a character still reads as too long.
+fn piped_notes() -> Result<String> {
+    use std::io::Read;
+    let mut bytes = Vec::new();
+    std::io::stdin()
+        .take(NOTES_CAP as u64 + 1)
+        .read_to_end(&mut bytes)?;
+    if bytes.len() > NOTES_CAP {
+        return Err("--notes - read more than 64 KiB from stdin; pipe the review itself".into());
+    }
+    let notes = String::from_utf8(bytes).map_err(|_| "--notes - needs UTF-8 on stdin")?;
+    if notes.trim().is_empty() {
+        return Err("--notes - read nothing from stdin; pipe the reviewer's reply".into());
+    }
+    Ok(notes)
+}
+
 fn dispatch() -> Result<Value> {
     let root = repo::root()?.canonicalize()?;
     let args: Vec<String> = std::env::args().skip(1).collect();
@@ -72,7 +93,7 @@ fn dispatch() -> Result<Value> {
             "task-artifact screenshot --task ID":"Render the task's pages to PNG tiles under target/artifact-screenshots with local Chrome; reports console errors, phone overflow and network requests",
             "task-artifact guard --task ID":"Fail until the five discovery pages are committed; for host hooks before product edits",
             "task-artifact next --task ID":"Say which page to write, review, rewrite or commit next; exit 3 adds advice, such as a page edited after review",
-            "task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT":"Append one page review, with the page's SHA-256, finding count and reviewer model, to the task's reviews.json",
+            "task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-":"Append one page review, with the page's SHA-256, finding count and reviewer model, to the task's reviews.json; --notes - reads the notes from stdin",
             "coordination":"Validate task record structure without demanding completion",
             "agent-stop --task ID --base REV --report PATH":"Hook gate: completion or explicit partial/blocked handoff",
             "complete --task ID --base REV --report PATH":"Gate a completion claim with reconciliation and current evidence",
@@ -103,20 +124,28 @@ fn dispatch() -> Result<Value> {
             findings,
             "--notes",
             notes,
-        ] => router::verdict(
-            &root,
-            id,
-            &router::Review {
-                page,
-                verdict,
-                reviewer,
-                notes,
-                findings,
-                model,
-            },
-        ),
+        ] => {
+            // "-" reads the reviewer's whole reply from stdin, where shell quoting cannot cut it.
+            let piped = if *notes == "-" {
+                Some(piped_notes()?)
+            } else {
+                None
+            };
+            router::verdict(
+                &root,
+                id,
+                &router::Review {
+                    page,
+                    verdict,
+                    reviewer,
+                    notes: piped.as_deref().unwrap_or(notes),
+                    findings,
+                    model,
+                },
+            )
+        }
         ["task-artifact", "verdict", ..] => Err(
-            "task-artifact verdict takes --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT, in that order; --model and --findings are required"
+            "task-artifact verdict takes --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-, in that order; --model and --findings are required"
                 .into(),
         ),
         ["task-artifact", "screenshot", "--task", id] => artifacts::screenshots(&root, id),
