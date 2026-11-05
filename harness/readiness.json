@@ -111,7 +111,8 @@
         "scripts/artifact-screenshots.cjs",
         "xtask/src/size.rs",
         "xtask/src/checks.rs",
-        ".claude/agents/artifact-author.md"
+        ".claude/agents/artifact-author.md",
+        "xtask/src/router.rs"
       ],
       "tests": [
         "completion_requires_eight_pages_carrying_the_stylesheet_inline",
@@ -131,7 +132,13 @@
         "tier_is_small_or_standard_and_defaults_to_standard",
         "skill_copies_must_match_and_name_their_folder",
         "author_mode_allows_only_the_artifact_folder_and_outside_paths",
-        "agent_definitions_preload_their_skills_and_limit_writes"
+        "agent_definitions_preload_their_skills_and_limit_writes",
+        "next_walks_author_review_rewrite_and_commit",
+        "two_rewrites_end_in_the_best_version",
+        "next_reaches_completion_and_reads_tasks_from_before_the_log",
+        "the_artifact_author_cannot_write_the_verdict_log",
+        "a_crlf_page_that_git_calls_clean_reads_as_committed",
+        "an_edit_after_review_shows_on_any_page"
       ],
       "workflows": []
     }

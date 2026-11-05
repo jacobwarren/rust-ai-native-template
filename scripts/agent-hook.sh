@@ -399,7 +399,10 @@ author() {
     esac
     allow
   fi
-  case "$(lower "$rel")" in harness/task-artifacts/?*/?*) allow ;; esac
+  case "$(lower "$rel")" in
+    harness/task-artifacts/?*/reviews.json) block "Blocked: the verdict log records reviews and only cargo xtask task-artifact verdict writes it; the author does not grade its own page." ;;
+    harness/task-artifacts/?*/?*) allow ;;
+  esac
   block "Blocked: the artifact author edits only task pages under harness/task-artifacts/<task>/, and $rel is not one. Report the change you need instead of making it."
 }
 
