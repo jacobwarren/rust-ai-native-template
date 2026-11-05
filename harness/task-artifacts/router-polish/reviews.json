@@ -72,6 +72,16 @@
       "sha256": "2fd98024cb819cebbbd1fabe1ff8ddb7c72020839bfb41c7edbe671edf0c259e",
       "reviewer": "artifact-reviewer",
       "notes": "Open: ~10% over exemplar height (33% on phone), carried by the A2 refusal table and limit callouts; A3 Today column not re-run by this reviewer."
+    },
+    {
+      "page": "implementation.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "e6a82ed26a21226577d9d6d15acb7c8dd868964e0759ad87bd3d1a8dfa8c133a",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: Codex validator and debug prompt-input claims not marked as unrun; checked-against-plan and what-is-left sections are process; 007 and 32x-e cases only partly run.",
+      "findings": 3,
+      "model": "sonnet"
     }
   ]
 }
