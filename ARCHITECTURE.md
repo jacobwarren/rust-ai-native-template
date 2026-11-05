@@ -23,7 +23,8 @@ or Python dependency. Product intent lives in docs/PRODUCT.md.
 | Workflow acceptance and goldens | xtask/src/workflows.rs, golden.rs | Independent process expectations and read-only baseline comparison |
 | Readiness and work selection | xtask/src/readiness.rs: assess | Current evidence, named scope requirements and ranked blockers |
 | Gap authority and history | xtask/src/tracking.rs, transitions.rs, history.rs | Project register with opaque links; merge-base transition receipts |
-| Task HTML artifacts and hook adapter | xtask/src/artifacts.rs, artifact_hook.rs, artifact_foundation.css, scripts/artifact-screenshots.cjs | Required self-contained pages, inline shared stylesheet, commit-order gate, opt-in edit guard and Chrome screenshots |
+| Task HTML artifacts and hook adapter | xtask/src/artifacts.rs, size.rs, artifact_hook.rs, artifact_foundation.css, scripts/artifact-screenshots.cjs | Self-contained pages for standard tasks, the small tier's size gate, inline shared stylesheet, commit-order gate, opt-in edit guard and Chrome screenshots |
+| Agent skills and roles | .claude/skills, .agents/skills, .claude/agents, .codex/agents | Page author and reviewer briefs as skills for both hosts (copies checked equal), and the author and reviewer subagents |
 | Task reconciliation | xtask/src/task_record.rs, completion.rs | Task review, acceptance evidence and honest handoffs |
 | Default agent hooks | scripts/agent-hook.sh, agent-complete.sh, .claude/settings.json, .codex/ | Edit guard, post-edit check and claims-only stop gate for Claude Code and Codex |
 | Source identity | xtask/src/repo.rs: metadata, fingerprint, worktree_id | Workspace discovery and inspected-source identity |
