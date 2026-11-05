@@ -98,7 +98,8 @@
         "host_local_files_do_not_change_the_tree",
         "committed_local_settings_are_still_reported",
         "hook_configs_wire_existing_scripts_and_no_subagent_stop",
-        "guard_folds_case_where_git_ignores_case"
+        "guard_folds_case_where_git_ignores_case",
+        "stop_judges_only_this_branchs_records_when_stacked"
       ],
       "workflows": []
     },
