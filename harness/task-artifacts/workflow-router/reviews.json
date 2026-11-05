@@ -32,6 +32,22 @@
       "sha256": "ab6ea2daa571e917a3c114a9dee3e1c5b00c6b17111e842f36395d37efc23b52",
       "reviewer": "artifact-reviewer",
       "notes": "Logged after the fact. Open: conflict check misses R3 with log under target/; best-after-two default unlabelled as the agent's call."
+    },
+    {
+      "page": "plan.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "8652f91cf20576942c682d4cde6fa143d26e315c12f643496adfac212086fe4f",
+      "reviewer": "artifact-reviewer",
+      "notes": "A4 stacked-on-top row says base is the other branch's newest commit; it is HEAD. 2.2x exemplar length: A7 docs table, section B test restatement, choice cards 4-5, intro restating earlier pages. Verification-process wording; sample next output needs an illustration label."
+    },
+    {
+      "page": "reference.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "36a78a4f5868eba17dea4850769637491d968575e8709f9806e9230e807bf7d5",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: CI row's sketch needs the head ref passed in (detached merge); 'own-commit log' CI cell is the plain --remotes result; note 15 and order() sub-claims in notes 3, 5, 6 not re-run."
     }
   ]
 }

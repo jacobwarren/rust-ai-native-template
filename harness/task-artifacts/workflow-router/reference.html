@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Reference map: workflow-router</title>
+<style>
+  .prompt { position: relative; padding-right: 7.5rem; }
+  .prompt button { position: absolute; top: var(--space-3); right: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  .paths { font-family: var(--font-code); font-size: .8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); }
+    code { font-size: .88em; background: var(--accent-soft); border-radius: .25rem; padding: 0 .25em; overflow-wrap: anywhere; }
+  .sec { margin-block: var(--space-12); }
+  .sec > h2 { display: flex; align-items: center; gap: var(--space-3); }
+  .num { flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--ink); color: var(--surface); font-size: .9rem; display: inline-flex; align-items: center; justify-content: center; }
+  .now { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-3); }
+  @media (max-width: 52rem) { .now { grid-template-columns: minmax(0,1fr); } }
+  .now .surface { margin: 0; padding: var(--space-4); font-size: .95rem; } .now p { margin: 0; }
+  .tag { display: inline-block; font-size: .72rem; font-weight: 650; letter-spacing: .04em; padding: .05rem .5rem; border-radius: 999px; border: 1px solid var(--line); white-space: nowrap; font-family: var(--font-code); }
+  .tag.claim { color: var(--danger); border-color: var(--danger); background: var(--surface); }
+  .tag.part { color: var(--muted); background: var(--paper); }
+  .pair { margin-block: var(--space-8); }
+  .pair h3 { margin-bottom: var(--space-2); }
+  .kc { font-size: .88rem; color: var(--muted); margin: 0 0 var(--space-3); max-width: var(--reading-width); }
+  .kc b { color: var(--ink); font-weight: 650; }
+  .pt { font-size: .75rem; letter-spacing: .08em; color: var(--warning); font-weight: 650; margin-right: var(--space-2); }
+  .grid2 { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--space-3); }
+  @media (max-width: 52rem) { .grid2 { grid-template-columns: minmax(0,1fr); } }
+  .code { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .code .h { display: flex; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); font-family: var(--font-code); font-size: .75rem; color: var(--muted); background: var(--paper); }
+  .code .h .k { flex: none; font-weight: 650; }
+  .k.ref { color: var(--accent); } .k.sk { color: var(--warning); }
+  .code.sketch { border-style: dashed; border-color: var(--warning); }
+  .code pre { margin: 0; border: 0; border-radius: 0; white-space: pre; overflow-x: auto; overflow-wrap: normal; font-size: .76rem; line-height: 1.55; padding: var(--space-3); flex: 1; }
+  .cm { color: var(--muted); font-style: italic; }
+  mark { background: var(--warning-soft); color: inherit; border-bottom: 2px solid var(--warning); border-radius: 2px; padding: 0 1px; }
+  mark sup { font-size: .65rem; font-weight: 700; color: var(--warning); }
+  mark.on { background: #f3dfc4; }
+  .notes { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+  .note { display: flex; gap: var(--space-3); align-items: baseline; font-size: .92rem; padding: var(--space-1) var(--space-2); border-radius: var(--control-radius); }
+  .note.on { background: var(--warning-soft); }
+  .note .nb { flex: none; min-height: 28px; min-width: 28px; padding: 0 .35rem; border-radius: 999px; font-size: .75rem; font-weight: 700; background: var(--surface); color: var(--warning); border: 1.5px solid var(--warning); }
+  .note.flag .nb { background: var(--danger); border-color: var(--danger); color: var(--surface); }
+  .note.flag { outline: 1px dashed var(--danger); }
+  .note b { font-weight: 650; }
+  .obs { font-size: .7rem; font-weight: 650; letter-spacing: .05em; text-transform: uppercase; color: var(--accent); }
+  .scen { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block: var(--space-4); }
+  .scen button { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: .85rem; }
+  .scen button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .scen .sim { font-size: .65rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--warning); margin-left: var(--space-1); }
+  .scen button[aria-pressed="true"] .sim { color: #f3dfc4; }
+  table.t { font-size: .9rem; }
+  table.t td:first-child { color: var(--muted); }
+  #simCmd { font-size: .78rem; white-space: pre-wrap; margin-top: var(--space-3); }
+  .confirm { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); align-items: center; }
+  .confirm > div:first-child { max-width: 38rem; }
+  .btns { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  #out { white-space: pre-wrap; font-size: .8rem; }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">workflow-router · Point at a reference · before code</p>
+<h1>Semantics map: the four code paths that the router, the verdict log, the stop filter and the ticket skill extend</h1>
+
+<blockquote class="prompt"><button type="button" class="secondary" id="copyPrompt">Copy prompt</button><span id="promptText">The existing code paths already behave the way workflow-router should. Read them and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything.</span></blockquote>
+
+<p class="paths"><span><b>read</b> xtask/src/{artifacts,completion,history,transitions,task_record,main}.rs</span><span>scripts/agent-complete.sh · .github/workflows/ci.yml</span><span>.claude/skills/*/SKILL.md · examples/task-record.json</span><span><b>design</b> <a href="interview.html">interview.html</a></span></p>
+
+<p class="lead">Four references: the task-artifact guard and check for <code>next</code>, policy receipts and the digest for the verdict log, the stop gate's record selection for stacked branches, and the skills and <code>Task</code> for the ticket skill. Sketches follow the <a href="interview.html">interview</a>; B01–B07 are <a href="blindspots.html">blindspot</a> findings.</p>
+
+<section class="sec">
+<h2><span class="num">1</span>Two facts the excerpts don't show</h2>
+<div class="now">
+<div class="surface"><p><b>Today the stop gate is right here.</b> PR #3 merged as <code>98bb450</code>, so this branch's merge base is <code>596eaf4</code>, PR #3's tip, and both selections see only this partial task. The misjudged stop returns with the next branch cut from an unmerged PR; section 3 simulates one.</p></div>
+<div class="surface"><p><b>CI's handoff needs no change.</b> It diffs trees from the PR's <code>base.sha</code> (<code>completion.rs:139-163</code>, <code>ci.yml:35-41</code>), which on a stacked PR is the lower branch. Shared with handoff, the filter would judge nothing in CI (section 3, last situation).</p></div>
+</div>
+</section>
+
+<section class="sec">
+<h2><span class="num">2</span>Side by side: reference excerpt and sketch</h2>
+<p>Left, the code; right, dashed, a sketch. Hover to pair highlights with notes; click a number to flag it. <span class="obs">observed</span> means run in a clean copy or a fixture.</p>
+
+<div class="pair">
+<h3><span class="pt">A / 4</span><code>next</code> reuses the guard's reading and runs the order rules early</h3>
+<p class="kc"><b>Keeps</b> the tier reading, "committed" and the order rules (shared, not copied). <b>Changes:</b> the rules run before the claim, on a dirty tree, and advise.</p>
+<div class="grid2">
+<div class="code"><div class="h"><span>xtask/src/artifacts.rs:201-222, 105-106, 157-195</span><span class="k ref">reference</span></div><pre>pub fn guard(root: &amp;Path, id: &amp;str) -&gt; Result&lt;Value&gt; {
+    <mark data-p="a1">let tier = match crate::task_record::read(root, id) {
+        Ok(task) =&gt; task.tier,
+        Err(e) if root.join(format!("harness/tasks/{id}.json"))
+            .is_file() =&gt; return Err(e),
+        Err(_) =&gt; crate::task_record::Tier::Standard,
+    };<sup>1</sup></mark>
+    if tier == Tier::Small { check_written(root, id)?; return … }
+    <mark data-p="a2">check(root, id, false, None)?;
+    let committed = history::paths(root, "HEAD")?;
+    for page in DISCOVERY {
+        if !committed.contains(&amp;format!("{}/{page}", …)) {<sup>2</sup></mark>
+            return Err(… "{page} is not committed" …);
+…
+<span class="cm">// check(): order runs only for a complete record with a base</span>
+<mark data-p="a3">if let (true, Some(base)) = (final_stage, base) {
+    order(root, id, base)?;<sup>3</sup></mark>
+…
+fn order(root: &amp;Path, id: &amp;str, base: &amp;str) -&gt; Result&lt;()&gt; {
+    <mark data-p="a4">committed(root, id)?;<sup>4</sup></mark>
+    let commits = history::commits(root, base)?;
+    …
+    <mark data-p="a5">let (Some(&amp;first), Some(&amp;last)) = (code.first(), code.last())
+        else { return Ok(()); };
+    …
+    let at_base = history::read(root, base, …)?.is_some();<sup>5</sup></mark>
+    …
+    <mark data-p="a6">if !notes.is_some_and(|i| i &lt; last
+        || (code.len() == 1 &amp;&amp; i == last)) { … }
+    …
+    if !touched(page).last().is_some_and(|&amp;i| i &gt;= last) { … }<sup>6</sup></mark></pre></div>
+<div class="code sketch"><div class="h"><span>artifacts.rs next() (sketch)</span><span class="k sk">sketch</span></div><pre>pub fn next(root, id, base: Option&lt;&amp;str&gt;, code_done: bool)
+    -&gt; Result&lt;Value&gt;
+{
+    <mark data-p="a1">let tier = tier_like_guard(root, id)?;   <span class="cm">// same match</span>
+    if tier == Tier::Small { return step("small: no pages") }<sup>1</sup></mark>
+    <mark data-p="a2">if let Err(e) = guard(root, id) {
+        return step_for_missing_page(e);   <span class="cm">// author or commit</span>
+    }
+    let log = reviews::committed(root, id)?;
+    for page in DISCOVERY {
+        let blob = history::read(root, "HEAD", &amp;path(page))?;
+        match log.last_for(page) { … }   <span class="cm">// review, rewrite, best</span>
+    }<sup>2</sup></mark>
+    <mark data-p="a3">if let Some(base) = base {
+        let commits = history::commits(root, base)?;<sup>3</sup></mark>
+        <mark data-p="a4">order_rules(&amp;commits, …)   <span class="cm">// order() minus committed()</span><sup>4</sup></mark>
+            <mark data-p="a5">.map_err(permanent)?;   <span class="cm">// no code yet: nothing to say</span><sup>5</sup></mark>
+    }
+    <mark data-p="a6">if !code_done { return step("notes after each slice") }
+    step("buy-in and quiz; a later code commit reopens them")<sup>6</sup></mark>
+}</pre></div>
+</div>
+<div class="notes">
+<div class="note" data-p="a1"><button type="button" class="nb">1</button><span><b>Read the tier as the guard does, not as <code>check</code> does.</b> The guard treats a missing record as standard; <code>check</code> reads it unconditionally (<code>main.rs:80</code>). <span class="obs">observed</span> With no record: <code>missing blindspots.html</code> versus <code>No such file or directory (os error 2)</code>.</span></div>
+<div class="note" data-p="a2"><button type="button" class="nb">2</button><span><b>"Committed" means the path is in HEAD's tree.</b> <span class="obs">observed</span> A page edited after its commit still passes; one deleted from disk fails as <code>missing plan.html</code>. The hash check is what <code>next</code> adds.</span></div>
+<div class="note" data-p="a3"><button type="button" class="nb">3</button><span><b>Nothing checks order before the claim.</b> <span class="obs">observed</span> With code committed before <code>reference.html</code>, the guard passed and a partial handoff was silent. Only the complete record got <code>reference.html must be committed before the first product-code commit</code>, when the fix is a history rewrite. <code>next --base</code> (B04) sees it while the task is partial.</span></div>
+<div class="note" data-p="a4"><button type="button" class="nb">4</button><span><b><code>order()</code> can't be called as it is.</b> It first refuses a dirty tree (<code>committed()</code>, <code>:141-155</code>): <code>commit product changes … completion reads commits</code>. Mid-task the tree is usually dirty.</span></div>
+<div class="note" data-p="a5"><button type="button" class="nb">5</button><span><b>Two quiet passes.</b> No product commit passes order (<span class="obs">observed</span>), and a page already at the base counts as early.</span></div>
+<div class="note" data-p="a6"><button type="button" class="nb">6</button><span><b>Verdicts flip as code lands.</b> <span class="obs">observed</span> Notes committed after the only code commit fail; one more code commit makes them pass. Buy-in and quiz followed by more code fail. Hence the "code is done" flag: without it <code>next</code> can't call notes late or final pages finished.</span></div>
+</div>
+</div>
+
+<div class="pair">
+<h3><span class="pt">B / 4</span>The verdict log takes the receipts' hashing and strictness, not their freeze</h3>
+<p class="kc"><b>Changes:</b> hashes git's blob; append-only is checked against HEAD. <b>Drops</b> <code>base_commit</code>. Fields follow the hand-kept <code>reviews.json</code> in this task's folder.</p>
+<div class="grid2">
+<div class="code"><div class="h"><span>transitions.rs:14-20, 105-113, 143 · history.rs:96-98</span><span class="k ref">reference</span></div><pre>#[derive(Clone, Deserialize, Serialize, PartialEq, Eq)]
+<mark data-p="b4">#[serde(deny_unknown_fields)]<sup>10</sup></mark>
+pub struct Change {
+    pub subject: String,
+    pub before_sha256: Option&lt;String&gt;,
+    pub after_sha256: Option&lt;String&gt;,
+}
+…
+let before = history::before(root, base)?;   <span class="cm">// blobs at merge base</span>
+let after = history::current(root)?;         <span class="cm">// files on disk</span>
+<span class="cm">// Existing receipts are append-only. A later correction
+// must be a new record.</span>
+<mark data-p="b1">for (path, hash) in before.iter()
+    .filter(|(p, _)| p.starts_with("harness/transitions/"))
+{
+    if after.get(path) != Some(hash) {
+        return Err(format!(
+          "transition history changed or deleted: {path}").into());
+    }
+}<sup>7</sup></mark>
+…
+<mark data-p="b3">if receipt.base_commit == base {
+    explanations.extend(receipt.changes);
+}<sup>9</sup></mark>
+…
+<mark data-p="b2">pub fn digest(bytes: &amp;[u8]) -&gt; String {
+    format!("{:x}", Sha256::digest(bytes))
+}<sup>8</sup></mark></pre></div>
+<div class="code sketch"><div class="h"><span>xtask/src/reviews.rs (sketch)</span><span class="k sk">sketch</span></div><pre><span class="cm">// reviews.json: { "schema_version": 1, "rows": [Row] }</span>
+#[derive(Deserialize, Serialize, PartialEq, Eq)]
+<mark data-p="b4">#[serde(deny_unknown_fields)]<sup>10</sup></mark>
+pub struct Row {
+    pub page: String,          <span class="cm">// one of the eight</span>
+    pub round: u32,            <span class="cm">// 1, then one per rewrite</span>
+    <mark data-p="b4">pub verdict: Verdict,       <span class="cm">// pass | revise | best</span></mark>
+    <mark data-p="b3">pub sha256: String,<sup>9</sup></mark>
+    pub reviewer: String,
+    pub notes: String,
+}
+
+pub fn append(root, id, mut row: Row) -&gt; Result&lt;Value&gt; {
+    <mark data-p="b1">let committed = rows_at(root, id, "HEAD")?;
+    let mut rows = rows_on_disk(root, id)?;
+    if !rows.starts_with(&amp;committed) {
+        return Err("reviews.json rows are append-only; \
+                    record a correction as a new row".into());
+    }<sup>7</sup></mark>
+    <mark data-p="b2">let staged = history::git(root,
+        &amp;["show", &amp;format!(":{}", path(&amp;row.page))])?;
+    row.sha256 = history::digest(&amp;staged);<sup>8</sup></mark>
+    rows.push(row);
+    write(root, id, &amp;rows)        <span class="cm">// commit with the page</span>
+}
+<span class="cm">// after merge: the loop at transitions.rs:106 also
+// covers harness/task-artifacts/*/reviews.json</span></pre></div>
+</div>
+<div class="notes">
+<div class="note" data-p="b1"><button type="button" class="nb">7</button><span><b>"Append-only" means frozen per file once at the merge base.</b> <span class="obs">observed</span> A trailing space in <code>default-hooks.json</code> gives <code>transition history changed or deleted</code>; a receipt added on the branch was rewritten twice without complaint. A log is new on its branch, so the command checks HEAD's rows are a prefix. After merge, the receipt rule carries over.</span></div>
+<div class="note" data-p="b2"><button type="button" class="nb">8</button><span><b>Hash the bytes git stores.</b> <code>.gitattributes</code> sets <code>* text=auto eol=lf</code>. <span class="obs">observed</span> A CRLF page, committed: file <code>d3b5d6b4…</code>, blob <code>cadef035…</code>, <code>git status</code> clean. Hashing with <code>fs::read</code> would flag that untouched page as edited. The hand-kept rows match the committed blobs.</span></div>
+<div class="note" data-p="b3"><button type="button" class="nb">9</button><span><b>Bind rows to the page, not the base.</b> A receipt counts only when its <code>base_commit</code> equals the merge base, which moves without a rebase. <span class="obs">observed</span> When PR #3 merged, this untouched branch's merge base went from <code>6da4cde</code> to <code>596eaf4</code>. A row keyed by page hash survives that.</span></div>
+<div class="note" data-p="b4"><button type="button" class="nb">10</button><span><b>Strict rows name the fix.</b> <span class="obs">observed</span> <code>"tier": "Small"</code> gets <code>unknown variant `Small`, expected `small` or `standard`</code>; a <code>Verdict</code> enum does the same for pass, revise and best.</span></div>
+</div>
+</div>
+
+<div class="pair">
+<h3><span class="pt">C / 4</span>The stop hook keeps its fail-open and its uncommitted half; only the committed half changes</h3>
+<p class="kc">The committed half becomes the net diff intersected with this branch's own commits; <code>complete --base</code> stays.</p>
+<div class="grid2">
+<div class="code"><div class="h"><span>scripts/agent-complete.sh:23-32, 47</span><span class="k ref">reference</span></div><pre>base_ref=${HARNESS_BASE:-origin/main}
+<mark data-p="c1">if ! base=$(git merge-base HEAD "$base_ref" 2&gt;/dev/null); then
+  echo "agent-complete: no merge base with $base_ref, so \
+completion claims are not gated this turn." &gt;&amp;2
+  exit 0
+fi<sup>11</sup></mark>
+
+ids=$({
+  <mark data-p="c2">git diff --name-only "$base" -- harness/tasks harness/task-artifacts<sup>12</sup></mark>
+  git ls-files -o --exclude-standard -- harness/tasks harness/task-artifacts
+} | sed -n -e 's|^harness/tasks/\([^/]*\)\.json$|\1|p' \
+           -e 's|^harness/task-artifacts/\([^/]*\)/.*|\1|p' | sort -u)
+…
+<mark data-p="c5">out=$($xtask complete --task "$id" --base "$base" …)<sup>15</sup></mark></pre></div>
+<div class="code sketch"><div class="h"><span>scripts/agent-complete.sh (sketch)</span><span class="k sk">sketch</span></div><pre><mark data-p="c1">… unchanged: no merge base, exit 0<sup>11</sup></mark>
+T="harness/tasks harness/task-artifacts"
+<mark data-p="c4">self=$(git symbolic-ref -q --short HEAD || true)<sup>14</sup></mark>
+<mark data-p="c2">net=$(git diff --name-only "$base" -- $T)<sup>12</sup></mark>
+<mark data-p="c3">own=$(git log --format= --name-only HEAD --not "$base" \
+  ${self:+--exclude="origin/$self"} --exclude=origin/HEAD \
+  --remotes=origin -- $T)<sup>13</sup></mark>
+ids=$({
+  <mark data-p="c2">comm -12 &lt;(sort -u &lt;&lt;&lt;"$net") &lt;(sort -u &lt;&lt;&lt;"$own")<sup>12</sup></mark>
+  git diff --name-only HEAD -- $T            <span class="cm"># uncommitted</span>
+  git ls-files -o --exclude-standard -- $T   <span class="cm"># untracked</span>
+} | sed … | sort -u)
+…
+<mark data-p="c5">out=$($xtask complete --task "$id" --base "$base" …)
+<span class="cm"># page order still needs HARNESS_BASE on a stacked branch</span><sup>15</sup></mark></pre></div>
+</div>
+<div class="notes">
+<div class="note" data-p="c1"><button type="button" class="nb">11</button><span><b>The fail-open runs first, and the filter inherits it.</b> <span class="obs">observed</span> With no <code>origin</code>, the hook says <code>no merge base with origin/main</code> and exits 0. Without that guard, <code>--remotes=origin</code> would match nothing and every commit would count as own.</span></div>
+<div class="note" data-p="c2"><button type="button" class="nb">12</button><span><b>Keep the diff and intersect with it.</b> The log counts every touch; the diff, net change. <span class="obs">observed</span> In a fixture, a record edited then restored is in the log and not the diff. PR #3 did this to <code>artifact-harness.json</code> (<code>6137e16</code>, <code>7ad7f04</code>).</span></div>
+<div class="note" data-p="c3"><button type="button" class="nb">13</button><span><b>Two exclusions, in this order.</b> <code>--exclude</code> applies only to the next <code>--remotes</code>. <span class="obs">observed</span> Placed after it, it is ignored and nothing is judged. <code>origin/HEAD</code> goes too: in the clean copy it points at this branch.</span></div>
+<div class="note" data-p="c4"><button type="button" class="nb">14</button><span><b>The branch's own name is a guess.</b> <span class="obs">observed</span> On a detached HEAD <code>symbolic-ref</code> prints nothing; a push under a second name leaves an uncovered ref. Either way every commit is hidden and no claim is judged at stop.</span></div>
+<div class="note" data-p="c5"><button type="button" class="nb">15</button><span><b>Selection changes; the order base does not.</b> <span class="obs">observed</span> In the stacked simulation, a complete claim for this task fails with <code>blindspots.html must be committed before the first product-code commit</code>, because PR #3's code comes first; from <code>596eaf4</code> it has no order error. Hence S1 (<code>HARNESS_BASE</code>) beside S3.</span></div>
+</div>
+</div>
+
+<div class="pair">
+<h3><span class="pt">D / 4</span>A ticket fills the record's existing slots and must pass <code>read()</code></h3>
+<div class="grid2">
+<div class="code"><div class="h"><span>xtask/src/task_record.rs:26-45, 79-115</span><span class="k ref">reference</span></div><pre><mark data-p="d1">#[serde(deny_unknown_fields)]
+pub struct Task {
+    pub schema_version: u32,
+    pub id: String,
+    pub work_item: Option&lt;String&gt;,
+    pub status: Status,          <span class="cm">// complete | partial | blocked</span>
+    #[serde(default)] pub tier: Tier,
+    pub requirements: Vec&lt;String&gt;,
+    pub related_gaps: Vec&lt;Disposition&gt;,
+    pub gap_review: String,
+    pub discoveries: Vec&lt;Discovery&gt;,
+    pub discovery_review: String,
+    #[serde(default)] pub review: Option&lt;Review&gt;,
+    pub documentation: Documentation,
+    pub summary: String,
+    pub remaining: Vec&lt;String&gt;,
+}<sup>16</sup></mark>
+…
+<mark data-p="d3">if !(1..=6).contains(&amp;task.schema_version)
+    || task.work_item.as_ref().is_some_and(|s| !nonempty(s))
+    || !nonempty(&amp;task.gap_review) || …
+    || (task.status != Status::Complete
+        &amp;&amp; task.remaining.is_empty())
+{
+    return Err(format!("task {id}: invalid identity, missing \
+      reconciliation/acceptance, invalid references, or \
+      missing next steps").into());
+}<sup>18</sup></mark>
+<span class="cm">// requirements: only completion.rs:69-74 checks the ids</span></pre></div>
+<div class="code sketch"><div class="h"><span>harness/tasks/T-142.json, written by write-ticket</span><span class="k sk">sketch</span></div><pre>{
+  "schema_version": 6,
+  "id": "T-142",
+  <mark data-p="d1">"work_item": "https://tracker.example/T-142",
+  "status": "partial",
+  "tier": "small",<sup>16</sup></mark>
+  <mark data-p="d2">"requirements": ["completion"],<sup>17</sup></mark>
+  "related_gaps": [],
+  <mark data-p="d3">"gap_review": "Read cargo xtask gaps; none related.",
+  "discoveries": [],
+  "discovery_review": "None yet.",
+  "documentation": { "updated": [],
+    "rationale": "No documented behavior has changed yet." },<sup>18</sup></mark>
+  "summary": "Problem, then the outcome that ends it.",
+  <mark data-p="d1">"remaining": [
+    "add test stop_ignores_lower_branch_records"
+  ],</mark>
+  <mark data-p="d4">"review": { "acceptance": "", "verification": "",
+              "assumptions": "", "coverage": "" }<sup>19</sup></mark>
+}</pre></div>
+</div>
+<div class="notes">
+<div class="note" data-p="d1"><button type="button" class="nb">16</button><span><b><code>partial</code> needs <code>remaining</code>.</b> <code>read()</code> refuses a non-complete record without it, so the ticket's named tests go there. <span class="obs">observed</span> The stub above passes the guard as a small task.</span></div>
+<div class="note" data-p="d2"><button type="button" class="nb">17</button><span><b>Nothing early checks requirement ids.</b> <span class="obs">observed</span> <code>"requirements": ["tickets"]</code> passes <code>coordination</code>; only handoff says <code>unknown acceptance requirement tickets</code>. The skill picks from <code>readiness.json</code>'s six: driver, state, persistence, evidence, completion, task-artifacts.</span></div>
+<div class="note" data-p="d3"><button type="button" class="nb">18</button><span><b>Many mistakes, one message.</b> <span class="obs">observed</span> An empty <code>work_item</code> or <code>remaining</code>, a blank <code>gap_review</code> and <code>schema_version</code> 7 all get the same text, so the skill states the rules.</span></div>
+<div class="note" data-p="d4"><button type="button" class="nb">19</button><span><b>Handoff asks a partial record the review questions.</b> <code>task()</code> adds <code>review_errors</code> at any status (<code>completion.rs:51</code>). <span class="obs">observed</span> The stub gets four <code>review.*</code> errors, so the skill warns that handoff fails until they are answered.</span></div>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<h2><span class="num">3</span>Which records the stop gate judges, situation by situation</h2>
+<p>Situations marked <span class="obs">sim</span> put this branch back on an unmerged PR: <code>origin/main</code> rewound to <code>6da4cde</code>, PR #3 open at <code>596eaf4</code>, as when the branch was cut. The hook runs <code>complete</code> for each <span class="tag claim">complete</span> record and refuses the stop on stale CI evidence (shown in the <a href="interventions.html">brainstorm</a>); <span class="tag part">partial</span> ones pass.</p>
+<div class="scen" id="scen" role="group" aria-label="Situation"></div>
+<div class="table-scroll"><table class="t"><tbody id="sim"></tbody></table></div>
+<pre id="simCmd"></pre>
+</section>
+
+<section class="sec">
+<h2><span class="num">4</span>Sign-off</h2>
+<div class="surface confirm">
+<div><h3 style="margin-top:0">Confirm the map, or flag notes</h3><p>"Semantics confirmed" means the plan builds the four pieces on these excerpts as sketched. Flagged notes (<span id="flagCount">none yet</span>) and the situation open in section 3 go into the correction template.</p></div>
+<div class="btns"><button type="button" id="confirmBtn">Copy "semantics confirmed"</button><button type="button" class="secondary" id="correctBtn">Copy correction template</button></div>
+</div>
+<pre id="out" hidden></pre>
+</section>
+
+<footer>workflow-router · reference map · feeds the implementation plan</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); }, Q = function (q) { return document.querySelectorAll(q); };
+  function copy(text, btn) {
+    var t = btn.textContent, done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = t; }, 1500); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+  }
+  $("copyPrompt").onclick = function () { copy($("promptText").textContent, this); };
+
+  /* 3: selection by situation; every value observed */
+  var COMPLETE = { "agent-workflow": 1, "completion-gate": 1, "default-hooks": 1 };
+  var AW = "agent-workflow", AH = "artifact-harness", WR = "workflow-router";
+  var S = [
+    { k: "Now: PR #3 merged", today: [WR], own: [WR], sel: [WR],
+      why: "The merge base is 596eaf4, PR #3's tip; every commit since is this branch's.",
+      cmd: "git merge-base HEAD origin/main   # 596eaf4" },
+    { k: "Stacked, pushed or not", sim: 1, today: [AW, WR], own: [WR], sel: [WR],
+      why: "The diff from 6da4cde spans PR #3's 18 commits and takes in its complete record. The log keeps this branch's commits only, pushed or not, once its own ref and origin/HEAD are excluded ahead of --remotes (note 13).",
+      cmd: "git update-ref refs/remotes/origin/main 6da4cde\ngit log HEAD --not $base --exclude=origin/harness/workflow-router --exclude=origin/HEAD --remotes=origin" },
+    { k: "Detached, or pushed under a second name", sim: 1, today: [AW, WR], own: [], sel: [],
+      why: "A ref the filter doesn't exclude hides every commit of this branch, so a claim goes unjudged at stop (note 14). The PR's CI still judges it.",
+      cmd: "git update-ref refs/remotes/origin/backup HEAD   # own commits: 0\ngit checkout --detach   # own commits: 0" },
+    { k: "Lower PR squash-merged, branch pruned", sim: 1, today: [AW, WR], own: [AW, AH, WR], sel: [AW, WR],
+      why: "PR #3's 18 commits are on no remote branch, so they count as own. The intersection drops artifact-harness (note 12) but keeps agent-workflow: S3 does not fix a squash merge.",
+      cmd: "git update-ref refs/remotes/origin/main $(git commit-tree -p 6da4cde -m squash 596eaf4^{tree})\ngit update-ref -d refs/remotes/origin/harness/agent-workflow" },
+    { k: "Uncommitted edit to agent-workflow.json", sim: 1, today: [AW, WR], own: [WR], sel: [AW, WR],
+      why: "The uncommitted half judges it in both designs, as it should.",
+      cmd: "git diff --name-only HEAD -- $T" },
+    { k: "CI on this PR", ci: 1, today: [WR], own: [], sel: [WR],
+      why: "ci.yml:24 (fetch-depth: 0) fetches every branch to origin/*; the job checks out the PR's merge commit, detached. origin/harness/workflow-router hides this branch's commits, leaving only the merge commit, which lists no files. Plain --remotes also matches pull/N/merge, which is HEAD.",
+      cmd: "M=$(git commit-tree -p origin/main -p HEAD -m merge HEAD^{tree})\ngit update-ref refs/remotes/pull/N/merge $M; git checkout --detach $M" }
+  ];
+  var cur = 0;
+  function tags(list) {
+    if (!list.length) return "<span class=\"muted\">none</span>";
+    return list.map(function (r) { return "<span class=\"tag " + (COMPLETE[r] ? "claim" : "part") + "\">" + r + "</span>"; }).join(" ");
+  }
+  function gate(list) { return (list.filter(function (r) { return COMPLETE[r]; }).join(", ") || "nothing"); }
+  function render() {
+    var s = S[cur];
+    $("scen").querySelectorAll("button").forEach(function (b, i) { b.setAttribute("aria-pressed", i === cur); });
+    var rows = s.ci ? [
+      ["Handoff today (diff from base.sha)", tags(s.today)],
+      ["Own-commit log", tags(s.own)],
+      ["Log with --exclude=origin/$GITHUB_HEAD_REF", tags(s.sel)]
+    ] : [
+      ["Merge-base diff (today)", tags(s.today)],
+      ["Own-commit log", tags(s.own)],
+      ["Sketch: log ∩ diff, plus uncommitted", tags(s.sel)],
+      ["Stop runs complete for", "today: " + gate(s.today) + " · sketch: " + gate(s.sel)]
+    ];
+    $("sim").innerHTML = rows.map(function (r) { return "<tr><td style=\"width:34%\">" + r[0] + "</td><td>" + r[1] + "</td></tr>"; }).join("") +
+      "<tr><td>Why</td><td>" + s.why + "</td></tr>";
+    $("simCmd").textContent = "$ " + s.cmd.replace(/\n/g, "\n$ ");
+  }
+  $("scen").innerHTML = S.map(function (s) { return "<button type=\"button\" class=\"secondary\">" + s.k + (s.sim ? "<span class=\"sim\">sim</span>" : "") + "</button>"; }).join("");
+  $("scen").onclick = function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    cur = [].indexOf.call($("scen").children, b); render();
+  };
+  render();
+
+  /* 2: pair highlights and flags */
+  Q("mark[data-p], .note[data-p]").forEach(function (el) {
+    var on = function (v) { return function () { Q("[data-p=\"" + el.dataset.p + "\"]").forEach(function (x) { x.classList.toggle("on", v); }); }; };
+    el.onmouseenter = on(true); el.onmouseleave = on(false);
+  });
+  function flagged() {
+    return [].map.call(Q(".note.flag"), function (n) { return "note " + n.querySelector(".nb").textContent + " (" + n.querySelector("b").textContent.replace(/\.$/, "") + ")"; });
+  }
+  Q(".note .nb").forEach(function (b) {
+    b.setAttribute("aria-pressed", "false"); b.setAttribute("aria-label", "Flag note " + b.textContent);
+    b.onclick = function () {
+      var f = b.parentNode.classList.toggle("flag"), n = flagged().length;
+      b.setAttribute("aria-pressed", f); $("flagCount").textContent = n ? n + " flagged" : "none yet";
+    };
+  });
+  function show(t) { $("out").hidden = false; $("out").textContent = t; return t; }
+  $("confirmBtn").onclick = function () { copy(show("semantics confirmed: plan next, the verdict log, the stop filter and write-ticket on the reference map as sketched."), this); };
+  $("correctBtn").onclick = function () {
+    var L = ["Corrections to the workflow-router reference map:"];
+    (flagged().length ? flagged() : ["note or section: "]).forEach(function (x) { L.push("- " + x + "\n  what's wrong: \n  correct behaviour: "); });
+    L.push("- stop-gate situation in view: " + S[cur].k + (S[cur].sim ? " (simulated)" : "") + "\n  expected records: ");
+    copy(show(L.join("\n")), this);
+  };
+})();
+</script>
+</body>
+</html>
