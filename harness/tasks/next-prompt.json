@@ -15,11 +15,39 @@
     }
   ],
   "gap_review": "Read the open gaps; only artifact-gate-holes is near this work and it is unaffected.",
-  "discoveries": [],
-  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "discoveries": [
+    {
+      "summary": "{task} is a verb phrase in the blindspot prompt and a noun phrase in the other five, and a gerund value breaks three of those rows; the record holds two values, task and task_noun, and the File column keys the table so a swapped row cannot swap prompts.",
+      "record": "xtask/src/handover.rs"
+    },
+    {
+      "summary": "--notes passed on the command line loses backticks and $ to the shell while verdict still answers ok, so a rewrite could never receive full findings; verdict --notes - reads the reviewer's whole reply from stdin, capped at 64 KiB on bytes before decoding.",
+      "record": "xtask/src/main.rs"
+    },
+    {
+      "summary": "The review step told reviewers to pipe into --notes - one commit before verdict read stdin, which would have logged a literal '-' and handed a rewrite '-' as its findings; no review went through the gap.",
+      "record": "harness/task-artifacts/next-prompt/implementation.html"
+    },
+    {
+      "summary": "The 400-line SIZE001 limit put attach() in handover.rs and the hand-over tests in a new tests/handover.rs; unfilled lists record fields under prompt (task_noun, not {task}) because one brace maps to two fields.",
+      "record": "harness/task-artifacts/next-prompt/implementation.html"
+    },
+    {
+      "summary": "docs/ARTIFACTS.md is now compiled into xtask, the first file outside the crate in the shipped binary: renaming it stops every xtask command from building, and editing its table changes what next prints.",
+      "record": "xtask/src/handover.rs"
+    }
+  ],
+  "discovery_review": "Recorded the five material discoveries from the pages and the build; transient review findings stay in reviews.json.",
   "documentation": {
-    "updated": [],
-    "rationale": "docs/ARTIFACTS.md and README will say next hands over the filled-in prompt."
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "README.md",
+      "docs/COMPLETION.md",
+      "examples/task-record.json",
+      ".claude/skills/write-ticket/SKILL.md",
+      ".agents/skills/write-ticket/SKILL.md"
+    ],
+    "rationale": "ARTIFACTS.md says next's steps carry a handover to pass unchanged, keys its prompt table by a File column, quotes the answering rule once and says to pipe reviews to --notes -; README, COMPLETION.md, the example record and the write-ticket stub describe the optional prompt object."
   },
   "prompt": {
     "task": "make `cargo xtask task-artifact next` hand over the filled-in page prompt, the exemplar and the output path for each author, review and rewrite step",
@@ -30,9 +58,7 @@
   },
   "summary": "Make task-artifact next hand over the filled-in page prompt, exemplar and output path for each author, review and rewrite step, so the orchestrator no longer assembles it from docs/ARTIFACTS.md by hand.",
   "remaining": [
-    "next_hands_over_the_filled_in_prompt: given the prompt inputs, the author step carries the page's prompt with every brace filled, the exemplar and the output path.",
-    "review_and_rewrite_steps_carry_their_prompt: review steps carry the page's prompt; rewrite steps carry the last review's notes and the kept version's path.",
-    "next_prompts_match_the_artifacts_guide: the prompt text next hands over is docs/ARTIFACTS.md's.",
+    "Write the buy-in and quiz pages from next's hand-overs, review them, and commit them after the last product commit.",
     "Run cargo xtask check ci > target/verification/ci.json and cargo xtask complete --task next-prompt --base origin/main."
   ]
 }

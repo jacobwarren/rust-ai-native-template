@@ -15,22 +15,34 @@ cheaper model would get wrong.
 
 ## Scope
 `xtask/src/router.rs` (the step JSON gains the prompt to hand over),
-`xtask/tests/router.rs`, possibly `xtask/src/task_record.rs` or the ticket
-skill if the brace values need a home, `docs/ARTIFACTS.md` (one source for the
-prompt text), README, `harness/readiness.json`, `harness/docs.json`.
+`xtask/src/handover.rs` (new), `xtask/src/main.rs` (`--notes -`),
+`xtask/src/task_record.rs` (the optional `prompt` object), the write-ticket
+skill in both hosts, `xtask/tests/handover.rs` (new), `docs/ARTIFACTS.md` (one
+source for the prompt text), README, `docs/COMPLETION.md`,
+`examples/task-record.json`, `harness/readiness.json`, `harness/docs.json`.
 Tier: standard. It touches protected xtask paths and docs/ARTIFACTS.md, a
 ceremony path.
 
 ## Acceptance as named tests
-- `next_hands_over_the_filled_in_prompt`: given a task whose record and ticket
-  supply the prompt inputs, when `next` says author for a page, then its step
-  carries that page's prompt with every brace filled, the exemplar path and the
-  output path, and no brace is left unfilled.
-- `review_and_rewrite_steps_carry_their_prompt`: given a page under review or
-  after a revise, then the step carries the page's prompt for the reviewer, and a
-  rewrite step carries the last review's notes and the kept version's path.
-- `next_prompts_match_the_artifacts_guide`: the prompt text `next` hands over is
-  the text in docs/ARTIFACTS.md's table, so the two cannot drift.
+Revised by the plan page: the values come from the record alone, and a rewrite
+gets the last review's full notes instead of the kept version's path.
+- `next_prompts_match_the_artifacts_guide`: the guide's File column lists the
+  eight pages in order, every brace is one `next` fills, and only the blindspot
+  prompt opens "I'm about to {task}".
+- `prompt_values_are_optional_and_strict`: a missing, null or blank `prompt`
+  value parses; an unknown key inside `prompt` is refused.
+- `next_hands_over_the_filled_in_prompt`: with every value set, the author step
+  carries the filled prompt, exemplar, output path, task context and pages so
+  far, with nothing unfilled.
+- `build_step_hands_over_the_notes_prompt`: after the discovery pages, the build
+  step carries the implementation-notes hand-over.
+- `missing_values_stay_as_braces`: with no value, or a `<…>` placeholder, the
+  brace stays in the text and is listed in `unfilled`; the exit code is 0.
+- `verdict_reads_full_notes_from_stdin`: `--notes -` takes up to 64 KiB from
+  stdin; more, empty or non-UTF-8 input is refused.
+- `review_and_rewrite_steps_carry_their_prompt`: the review step carries the
+  prompt and ends its say with `--notes -`; after a revise piped through stdin,
+  the rewrite carries those notes as written.
 
 ## Validation
 `cargo xtask check ci > target/verification/ci.json`;
