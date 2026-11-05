@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Plan: router-polish</title>
+<style>
+.chips{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-block:var(--space-4)}
+.chip{border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+.chip b{color:var(--accent)}
+.banner{display:grid;grid-template-columns:auto 1fr;gap:var(--space-4);align-items:center;border:1px dashed var(--accent);border-radius:var(--radius);padding:var(--space-3) var(--space-4);background:var(--surface);font-size:var(--text-small)}
+.banner .g{font:700 .8rem/1.3 var(--font-code);color:var(--accent);white-space:pre}
+.prompt{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4);align-items:center}.prompt p{flex:1 1 30rem;margin:0}.prompt button{min-height:36px;padding:var(--space-1) var(--space-3)}
+.sec{margin-block:var(--space-8) var(--space-6)}
+.sh{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-3);border-bottom:2px solid var(--ink);padding-bottom:var(--space-2)}
+.sh h2{margin:0}.L{font:700 1.4rem var(--font-code);color:var(--accent)}
+.lk{margin-inline-start:auto;font-size:var(--text-small);font-weight:650;padding:2px var(--space-2);border-radius:var(--control-radius)}
+.hi{background:var(--warning-soft);color:var(--warning)}.lo{background:var(--accent-soft);color:var(--accent)}
+h3{margin-block:var(--space-6) var(--space-2)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--space-4);align-items:start}
+@media (max-width:52rem){.grid2{grid-template-columns:minmax(0,1fr)}}
+pre{font-size:.78rem;line-height:1.45;margin:0;padding:var(--space-3)}
+.fl{background:var(--warning-soft);border-radius:3px}
+.m{color:var(--warning);font-weight:700}
+.notes{list-style:none;padding:0;margin:0;font-size:var(--text-small);display:grid;gap:var(--space-2)}
+.notes li{border-inline-start:3px solid var(--line);padding:0 var(--space-3);line-height:1.5}
+.notes b.n{color:var(--warning);margin-inline-end:var(--space-1)}
+.cap{font-size:var(--text-small);color:var(--muted);margin:var(--space-3) 0 var(--space-1);line-height:1.5}
+.ch{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--space-1) var(--space-3);align-items:center;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-2) var(--space-3);margin-block:var(--space-3);font-size:var(--text-small)}
+.ch .tag{grid-row:span 2;font:700 .75rem var(--font-code);color:var(--warning)}
+.ch p{margin:0;padding:1px var(--space-2);border-radius:var(--control-radius);line-height:1.45}
+.ch button{grid-row:1/span 2;grid-column:3;min-height:36px;padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+.ch .pk{background:var(--accent-soft)}.ch .al{color:var(--muted)}
+.ch.on .pk{background:none;color:var(--muted);text-decoration:line-through}.ch.on .al{background:var(--warning-soft);color:var(--warning)}
+@media (max-width:36rem){.ch{grid-template-columns:minmax(0,1fr)}.ch .tag,.ch button{grid-row:auto;grid-column:auto;justify-self:start}}
+code{overflow-wrap:anywhere}
+th,td{font-size:var(--text-small);padding:var(--space-1) var(--space-3)}table{margin-top:var(--space-3)}td code,li code,p code{font-size:.85em}
+caption{font-size:var(--text-small);margin-bottom:var(--space-1)}
+.limit{margin-block:var(--space-3);font-size:var(--text-small)}
+.limit b{color:var(--warning)}
+.limit pre{margin-block:var(--space-2)}
+.seq{list-style:none;padding:0;margin:0;counter-reset:s}
+.seq li{display:grid;grid-template-columns:2rem minmax(0,1fr) auto;gap:var(--space-3);padding:var(--space-2) 0;border-bottom:1px solid var(--line);font-size:var(--text-small)}
+.seq li::before{counter-increment:s;content:counter(s);font:700 1rem var(--font-code);color:var(--accent)}
+.k{font-size:.75rem;font-weight:700;border-radius:var(--control-radius);padding:1px var(--space-2);align-self:start;white-space:nowrap}
+.k.p{background:var(--warning-soft);color:var(--warning)}.k.a{background:var(--accent-soft);color:var(--accent)}
+@media (max-width:30rem){.seq li{grid-template-columns:2rem minmax(0,1fr)}.seq .k{grid-column:2}}
+.mech li{margin-bottom:var(--space-3);font-size:var(--text-small)}
+.reply{border:2px solid var(--accent);border-radius:var(--radius);padding:var(--space-4) var(--space-6);background:var(--surface);margin-top:var(--space-8)}
+.reply h2{margin-top:0}
+.tw label{display:flex;gap:var(--space-2);align-items:flex-start;font-size:var(--text-small);margin-block:var(--space-2)}
+.reply textarea{min-height:3rem}.reply label{margin-block:var(--space-2)}footer{margin-top:var(--space-6)}main{padding-bottom:var(--space-6)}h1{margin-block:var(--space-6) var(--space-4)}
+#out{white-space:pre-wrap;font:var(--text-small)/1.5 var(--font-code)}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">router-polish · The tweakable plan · before code</p>
+<h1>Implementation plan: a commit step per page, counted reviews and an investigate skill</h1>
+
+<blockquote class="prompt">
+<p id="prompt">Write an implementation plan for router-polish as HTML, but lead with the decisions I'm most likely to tweak: data model changes, new type interfaces and anything user-facing. Bury the mechanical work at the bottom; I trust you on that part.</p>
+<button type="button" class="secondary" id="copyPrompt">Copy prompt</button>
+</blockquote>
+
+<div class="chips">
+<span class="chip">Product commits <b>2</b></span>
+<span class="chip">New files <b>2 skill copies, receipt</b></span>
+<span class="chip">New tests <b>3</b></span>
+<span class="chip">Changed lines <b>~325 + receipt</b></span>
+<span class="chip">Protected files <b>7, one policy change</b></span>
+</div>
+
+<div class="banner"><span class="g">↑ tweak
+↓ trust</span><span>Sorted by how likely you are to change it. <strong>A</strong> holds the row shape, the command, what <code>next</code> says and the skill, with the two limits I'm keeping. <strong>B</strong> is the commit order. <strong>C</strong> is plumbing and doc wording, folded. You delegated these calls, so the picks are mine; each names the alternative it beat, and toggling one puts it in your reply. Excerpts are from the drafted change; outputs were run in a clean copy of this branch.</span></div>
+
+<section class="sec">
+<div class="sh"><span class="L">A</span><h2>Decisions you'll probably want to change</h2><span class="lk hi">High tweak likelihood</span></div>
+
+<h3>A1 · Data model: two optional fields on the review row</h3>
+<div class="grid2">
+<div>
+<pre>// xtask/src/router.rs:28-45, unchanged fields condensed
+#[serde(deny_unknown_fields)]
+pub struct Row {
+    // page, round, verdict, sha256, reviewer, notes
+<span class="fl">    #[serde(default, skip_serializing_if = "Option::is_none")]</span> <span class="m">①</span>
+<span class="fl">    pub findings: Option&lt;u32&gt;,</span>     <span class="m">②</span>
+<span class="fl">    #[serde(default, skip_serializing_if = "Option::is_none")]</span>
+<span class="fl">    pub model: Option&lt;String&gt;,</span>     <span class="m">③</span>
+}   // Log { schema_version: 1, rows } unchanged</pre>
+</div>
+<div>
+<ul class="notes">
+<li><b class="n">①</b>An absent field stays absent on write, so a verdict appends its row and leaves every earlier row byte-identical. On HEAD's seven-row log plus the row below, <code>git diff --numstat</code> reads <code>10 0</code>. Plain <code>#[serde(default)]</code> would write <code>null</code> into each old row (blindspot 02).</li>
+<li><b class="n">②</b>Every finding the reviewer listed, blocking or not, so a PASS with open notes still has a count. A missing field means "not recorded", never 0 (interview Q3).</li>
+<li><b class="n">③</b>The reviewer's model as the host names it, such as <code>gpt-5.1</code>. The author's model is not recorded (interview Q4).</li>
+</ul>
+<p class="cap">This page's own first review, replayed with the new command in a clean copy. The model name is assumed; the review itself recorded none.</p>
+<pre>{ "page": "plan.html", "round": 1,
+  "verdict": "revise", "sha256": "d96dfbda…",
+  "reviewer": "artifact-reviewer",
+  "notes": "A1 error line/column from an older log …",
+<span class="fl">  "findings": 3, "model": "claude-opus-5-5"</span> }</pre>
+</div>
+</div>
+
+<div class="ch" id="c1"><span class="tag">Choice ①</span>
+<p class="pk"><b>Pick:</b> additive optional fields, schema_version 1, old rows untouched.</p>
+<p class="al"><b>Alternative:</b> schema_version 2 with old rows backfilled from their notes. Weighed in blindspot 03 and interview Q2.</p>
+<button type="button" class="secondary" data-c="1">Prefer alternative</button></div>
+
+<div class="callout warning limit"><b>Limit I'm keeping: compatibility runs one way.</b> Rows stay <code>deny_unknown_fields</code>, so an xtask built before this change refuses a log holding that row:
+<pre>$ cargo xtask task-artifact next --task router-polish
+{"error":"reviews.json: unknown field `findings`, expected one of `page`, `round`, `verdict`, `sha256`, `reviewer`, `notes` at line 67 column 16","ok":false}</pre>
+Exit 1, and <code>verdict</code> fails the same way, so a branch cut earlier rebases before recording a review on such a log. <code>complete</code> and <code>handoff</code> don't read it.</div>
+
+<h3>A2 · The verdict command and the <code>Review</code> struct</h3>
+<pre>cargo xtask task-artifact verdict --task ID --page PAGE --verdict pass|revise|best \
+    --reviewer NAME <span class="fl">--model MODEL --findings N</span> --notes TEXT</pre>
+<div class="grid2" style="margin-top:var(--space-3)">
+<pre>// xtask/src/router.rs:95-106, fields condensed
+/// One review as given on the command line, before it is checked.
+pub struct Review&lt;'a&gt; { page, verdict, reviewer, notes,
+    <span class="fl">findings, model</span>: &amp;'a str }   // each pub &amp;'a str
+pub fn verdict(root: &amp;Path, id: &amp;str, review: &amp;Review)
+    -&gt; Result&lt;Value&gt;</pre>
+<ul class="notes">
+<li>All flags are required, in this order, and <code>best</code> takes them too. A sixteen-element arm in <code>main.rs</code> replaces the twelve-element one; a catch-all arm after it refuses every other <code>verdict</code> shape. The help line and <code>next</code>'s review step print the same command.</li>
+<li>The struct carries raw strings and <code>verdict()</code> checks them; eight positional parameters would trip clippy's <code>too_many_arguments</code>. <code>--model</code> gets its own rule because <code>valid_id</code> refuses the dot in <code>gpt-5.1</code> (blindspot 04).</li>
+</ul>
+</div>
+<div class="table-scroll"><table>
+<caption>What verdict answers, run in the clean copy</caption>
+<tbody>
+<tr><td><code>--findings two</code>, <code>--findings -1</code></td><td><code>--findings two must count the findings the reviewer listed</code>, echoing the bad value</td></tr>
+<tr><td><code>--model 'gpt 5'</code>, <code>--model ''</code></td><td><code>--model names the reviewer's model as the host does, without spaces</code></td></tr>
+<tr><td><code>--model</code> of 65 characters</td><td><code>--model must be at most 64 characters</code> (64 is accepted)</td></tr>
+<tr><td>The old six-flag form, or <code>--findings</code> before <code>--model</code></td><td>The full usage line, ending <code>in that order; --model and --findings are required</code></td></tr>
+<tr><td><code>--model gpt-5.1 --findings 0</code></td><td>Recorded, with <code>"findings": 0, "model": "gpt-5.1"</code></td></tr>
+</tbody></table></div>
+
+<div class="ch" id="c2"><span class="tag">Choice ②</span>
+<p class="pk"><b>Pick:</b> both flags required on every verdict, in one fixed order.</p>
+<p class="al"><b>Alternative:</b> optional flags, one match arm per combination. Weighed in blindspot 04 and interview Q5.</p>
+<button type="button" class="secondary" data-c="2">Prefer alternative</button></div>
+
+<h3>A3 · What <code>next</code> says: the commit step belongs to the page reviewed</h3>
+<div class="grid2">
+<pre>// next(), router.rs:314-320: rows HEAD holds
+let committed_rows = match (&amp;log, history::read(root, "HEAD", &amp;log_path(id))?) {
+    (Some(log), Some(bytes)) =&gt; parse(&amp;bytes).ok()
+        .filter(|c| log.rows.starts_with(&amp;c.rows))
+        .map_or(0, |c| c.rows.len()),
+    _ =&gt; 0,
+};
+// page_step(), router.rs:273-276
+<span class="fl">let pending = log.is_some_and(|l| l.rows.iter()
+    .skip(committed_rows).any(|r| r.page == page));</span>
+if committed &amp;&amp; !pending { return Ok(None); } // done</pre>
+<ul class="notes">
+<li>The log only grows, so rows past HEAD's row count are the uncommitted ones. A page waits only for its own.</li>
+<li>The page-file check stays: a page edited after its committed pass still gets a commit step.</li>
+<li>If the working log doesn't start with HEAD's rows, <code>committed_rows</code> is 0, every page with rows waits, and the existing advisory says why.</li>
+</ul>
+</div>
+<div class="table-scroll"><table>
+<caption>next on HEAD's log in a clean copy, plan.html committed first as a stand-in, then one verdict</caption>
+<thead><tr><th>Situation</th><th>Today</th><th>Draft</th></tr></thead>
+<tbody>
+<tr><td>plan.html passes; log uncommitted (the ticket's case)</td><td><code>commit blindspots.html</code></td><td><code>commit plan.html</code></td></tr>
+<tr><td>plan.html revised; log uncommitted</td><td><code>commit blindspots.html</code></td><td><code>rewrite plan.html</code>, "(rewrite 1 of 2)"</td></tr>
+<tr><td>A committed row edited by hand</td><td colspan="2">Both: <code>commit blindspots.html</code>, advisory "reviews.json no longer starts with its committed rows", exit 3</td></tr>
+</tbody></table></div>
+
+<div class="ch" id="c3"><span class="tag">Choice ③</span>
+<p class="pk"><b>Pick:</b> prefix rule; rows past HEAD's row count are pending.</p>
+<p class="al"><b>Alternative:</b> match the page's last row against HEAD's rows. Weighed in blindspot 01 and interview Q1.</p>
+<button type="button" class="secondary" data-c="3">Prefer alternative</button></div>
+
+<h3>A4 · The investigate skill: the seed's bytes under frontmatter</h3>
+<div class="grid2">
+<pre># .claude/skills/investigate/SKILL.md, 23 lines;
+# the .agents copy is identical
+---
+name: investigate
+description: Investigate this repository before changing it: find the requested behavior's entry point, follow the data across boundaries, test one hypothesis at a time, make the smallest coherent change and report evidence. Use when a task asks you to find, diagnose or fix behavior in the code.
+---
+
+<span class="fl"># Repository investigation skill …</span>
+# ↑ docs/skills/investigate.md, byte for byte</pre>
+<div><pre>// xtask/src/checks.rs:227-247, condensed
+const SEEDS = [("investigate", "docs/skills/investigate.md")];
+for (folder, seed) in SEEDS {   // body: after "---\n…\n---\n"
+    if body != fs::read(root.join(seed)) {
+        errors.push("DOC009 skills/{folder}/SKILL.md: its body
+          after the frontmatter must equal {seed}");
+    }
+}</pre>
+<p class="cap" style="color:var(--ink)">The seed doesn't change: GEPA and the evaluator keep pasting <code>docs/skills/investigate.md</code> whole into the agent's prompt (<code>stdin_agent.py:14-17</code>). DOC009 reads the <code>.claude</code> copy and DOC007 keeps the <code>.agents</code> copy equal to it. The description is the line hosts use to decide when to load the skill; its wording is yours to change.</p></div>
+</div>
+
+
+<div class="ch" id="c4"><span class="tag">Choice ④</span>
+<p class="pk"><b>Pick:</b> the seed stays canonical; both skill copies carry it, held equal by DOC009.</p>
+<p class="al"><b>Alternative:</b> move the text into SKILL.md and leave a forwarding note at the seed path. Weighed in blindspot 06 and interview Q6.</p>
+<button type="button" class="secondary" data-c="4">Prefer alternative</button></div>
+
+<div class="callout warning limit"><b>Limit I'm keeping, conditional: the evaluator may show the seed to every candidate.</b> <code>snapshot()</code> copies a task repo's whole tree (<code>experiments/evaluator/workspace.py:16-32</code>), so a task repo made from this template carries the seed as a skill beside the pasted candidate. The bundled demo's repo doesn't (<code>demo.py:22</code>); real suites are unchecked. A fix would belong in the evaluator.</div>
+</section>
+
+<section class="sec">
+<div class="sh"><span class="L">B</span><h2>Commit order the gate accepts</h2><span class="lk lo">Execution order</span></div>
+<ol class="seq">
+<li><span><strong>plan.html</strong> and its rows, recorded with today's six-flag command, so they carry no count or model.</span><span class="k p">pages</span></li>
+<li><span><strong>The router change</strong> (A1-A3, its tests, the ARTIFACTS.md line). First product commit; verdicts take the new flags from here.</span><span class="k a">product</span></li>
+<li><span><strong>implementation.html</strong>, first slice; its verdict is the log's first new-shape row.</span><span class="k p">pages</span></li>
+<li><span><strong>The investigate skill</strong> (A4, DOC009 and its test, catalog, both READMEs). Last product commit.</span><span class="k a">product</span></li>
+<li><span><strong>Receipt, task record, buy-in, quiz</strong>, then <code>check ci</code>; the receipt hashes the final protected tree.</span><span class="k p">after</span></li>
+</ol>
+</section>
+
+<section class="sec">
+<div class="sh"><span class="L">C</span><h2>Mechanical work (trust me)</h2><span class="lk lo">Low tweak likelihood</span></div>
+<details>
+<summary>Tests, readiness, catalog, strings, doc passages, receipt · 8 items</summary>
+<ul class="mech">
+<li><strong>Tests (3 new, passing in the clean copy).</strong> <code>commit_step_names_the_page_whose_row_is_uncommitted</code>: blindspots passed and committed, interventions committed then passed, so next says commit interventions.html; once the log is committed, author interview.html. <code>verdict_records_findings_and_model</code>: an old-shape log parses, the written log has no <code>null</code> and one <code>"findings"</code> key, <code>two</code>, <code>gpt 5</code> and 65 characters are refused, <code>gpt-5.1</code> is accepted, and the six-flag form gets "--model and --findings are required". <code>investigate_skill_matches_its_seed</code> (<code>hooks_author.rs</code>): a fixture seed with two skills passes docs; an edited seed raises DOC009.</li>
+<li><strong>Test helper.</strong> <code>verdict()</code> in <code>tests/router.rs</code> passes <code>--model claude-sonnet-5-5 --findings 2</code>, so existing calls follow the new arm unchanged.</li>
+<li><strong>Readiness.</strong> The <code>task-artifacts</code> requirement gains the three test names and <code>.claude/skills/investigate/SKILL.md</code>.</li>
+<li><strong>Catalog.</strong> Two <code>harness/docs.json</code> entries for the skill copies; without them DOC004 fires.</li>
+<li><strong>Strings.</strong> The help line and the review step's say text gain the two flags; the <code>page_step</code> doc comment names <code>committed_rows</code>.</li>
+<li><strong>Size.</strong> <code>router.rs</code> goes from 331 to 376 lines, under SIZE001's 400.</li>
+<li><strong>Doc passages.</strong> <code>docs/ARTIFACTS.md</code> step 5 spells the new command and says N counts every finding listed, blocking or not, and MODEL is the reviewer's model as the host names it. <code>README.md</code>'s GEPA paragraph says Claude Code and Codex load the same text as the <code>investigate</code> skill, kept equal by DOC009. <code>experiments/gepa/README.md</code> says to copy an improved seed into both skill files or DOC009 fails.</li>
+<li><strong>Receipt.</strong> <code>harness/transitions/router-polish.json</code>, one policy change over the 7 protected files <code>gaps</code> lists: the <code>.claude</code> skill copy, <code>readiness.json</code>, <code>checks.rs</code>, <code>main.rs</code>, <code>router.rs</code> and the two test files. The <code>.agents</code> copy is not a protected path.</li>
+</ul>
+</details>
+</section>
+
+<section class="reply" aria-labelledby="rh">
+<h2 id="rh">Your reply</h2>
+<p class="muted">Toggle any choice above, tick a tweak, add a line, copy.</p>
+<div class="tw">
+<label><input type="checkbox" id="t1">Let <code>best</code> omit --findings and --model (one more arm; best rows would then carry neither field).</label>
+<label><input type="checkbox" id="t2">Record the author's model too, as an <code>--author-model</code> flag (interview Q4 left it out).</label>
+</div>
+<label for="extra">Anything else, such as the skill description's wording</label>
+<textarea id="extra"></textarea>
+<output id="out" aria-live="polite"></output>
+<p><button type="button" id="copyReply">Copy reply</button></p>
+</section>
+
+<footer>router-polish · implementation plan · feeds the implementation notes</footer>
+</main>
+<script>
+(function(){
+"use strict";
+var $=function(i){return document.getElementById(i);};
+function copy(t,b){var o=b.textContent,d=function(){b.textContent="Copied";setTimeout(function(){b.textContent=o;},1500);};
+ function fb(){var a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();try{document.execCommand("copy");}catch(e){}a.remove();d();}
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(d,fb);else fb();}
+var C={
+1:["Row fields stay additive: Option, skipped when absent, schema_version 1, old rows untouched.","Bump schema_version to 2 and backfill the old rows from their notes."],
+2:["--model and --findings stay required, in one fixed order.","Make --model and --findings optional, one match arm per combination."],
+3:["Commit step uses the prefix rule (rows past HEAD's row count are pending).","Commit step matches the page's last row against HEAD's rows."],
+4:["The seed stays canonical; both SKILL.md copies carry it under frontmatter, DOC009 keeps them equal.","Move the text into SKILL.md and leave a forwarding note at docs/skills/investigate.md."]};
+var T={t1:"Let best omit --findings and --model (extra arm).",
+t2:"Record the author's model too, with an --author-model flag."};
+var st={1:0,2:0,3:0,4:0};
+function render(){var l=["Plan reply for router-polish:"],any=false;
+ Object.keys(C).forEach(function(k){if(st[k])any=true;l.push((st[k]?"CHANGE ":"OK ")+"choice "+k+": "+C[k][st[k]]);});
+ Object.keys(T).forEach(function(k){if($(k).checked){any=true;l.push("TWEAK: "+T[k]);}});
+ var x=$("extra").value.trim();if(x){any=true;l.push("Also: "+x);}
+ if(!any)l.push("Build as planned.");
+ $("out").textContent=l.join("\n");}
+document.querySelectorAll("[data-c]").forEach(function(b){b.addEventListener("click",function(){var k=b.getAttribute("data-c");st[k]=st[k]?0:1;$("c"+k).classList.toggle("on",!!st[k]);b.textContent=st[k]?"Back to my pick":"Prefer alternative";b.setAttribute("aria-pressed",st[k]?"true":"false");render();});b.setAttribute("aria-pressed","false");});
+Object.keys(T).forEach(function(k){$(k).addEventListener("change",render);});
+$("extra").addEventListener("input",render);
+$("copyReply").addEventListener("click",function(){copy($("out").textContent,this);});
+$("copyPrompt").addEventListener("click",function(){copy($("prompt").textContent,this);});
+render();
+})();
+</script>
+</body>
+</html>

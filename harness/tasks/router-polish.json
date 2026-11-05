@@ -1,0 +1,57 @@
+{
+  "schema_version": 6,
+  "id": "router-polish",
+  "work_item": null,
+  "status": "complete",
+  "tier": "standard",
+  "requirements": [
+    "task-artifacts"
+  ],
+  "related_gaps": [
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "unaffected",
+      "rationale": "Advisory routing and log fields do not change what the gate checks."
+    }
+  ],
+  "gap_review": "Read the four open gaps; only artifact-gate-holes is near this work and it is unaffected.",
+  "discoveries": [
+    {
+      "summary": "A best row reuses an earlier revise row's hash, and pass rows keep round 1, so a re-reviewed page can repeat a committed row exactly; next decides pending rows by position past the committed log, not by page and hash or row membership.",
+      "record": "xtask/src/router.rs"
+    },
+    {
+      "summary": "Plain #[serde(default)] on new Option fields rewrites every committed row with nulls on the next verdict; skip_serializing_if leaves them byte-identical. An older xtask refuses a log with a new row.",
+      "record": "harness/task-artifacts/router-polish/reference.html"
+    },
+    {
+      "summary": "docs/skills/investigate.md is pasted whole into the GEPA evaluator's prompt and no check read it; the host skill copies it after frontmatter and DOC009 keeps them equal.",
+      "record": "xtask/src/checks.rs"
+    },
+    {
+      "summary": "An unquoted ': ' in a skill description is invalid strict YAML (Codex's validator uses yaml.safe_load); add-product-command already had it. DOC010 now refuses it.",
+      "record": "xtask/src/checks.rs"
+    },
+    {
+      "summary": "The GEPA evaluator copies a task repository's whole tree into each trial workspace; if suites are built from this template, the host investigate skill sits beside every candidate. Not verified that any suite does.",
+      "record": "experiments/gepa/README.md"
+    }
+  ],
+  "discovery_review": "Recorded the five material discoveries from the pages and the build; transient review findings stay in reviews.json.",
+  "documentation": {
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "README.md",
+      "experiments/gepa/README.md"
+    ],
+    "rationale": "ARTIFACTS.md documents the verdict flags and what N and MODEL mean; README and the GEPA guide say the investigate skill carries the seed and DOC009 keeps them equal."
+  },
+  "summary": "Make next name the page whose verdict is uncommitted, add finding counts and the reviewer model to review log rows, and turn the investigate brief into a host skill that stays the GEPA seed.",
+  "remaining": [],
+  "review": {
+    "acceptance": "Met: next names the page whose own rows are uncommitted (commit_step_names_the_page_whose_row_is_uncommitted); verdict records findings and model, old rows still parse and are not rewritten (verdict_records_findings_and_model); the investigate skill exists for both hosts and its body equals the GEPA seed (investigate_skill_matches_its_seed, DOC009). Added beyond the ticket: DOC010 and quoted descriptions for investigate and add-product-command.",
+    "verification": "cargo xtask check ci passes on the final tree; 3 new tests plus extended assertions. Page verdicts from reviews.json: blindspots PASS after one rewrite; interventions PASS; interview PASS; reference PASS after two rewrites (third review); plan PASS after one rewrite; implementation PASS (first row with findings 3, model sonnet); quiz PASS; buy-in PASS after one rewrite. No page was edited after its final review. Open notes are in each row's notes field.",
+    "assumptions": "Codex loads .agents/skills/investigate and its strict validator uses yaml.safe_load (read in its bundled source, not run). No real GEPA run was made; the seed text is unchanged.",
+    "coverage": "Known limits: an older xtask refuses a log holding a new row; --model's 64 limit counts bytes; DOC010 misses a description ending in a bare colon; if a GEPA suite's task repositories are made from this template, the host investigate skill sits beside every candidate in trial workspaces."
+  }
+}

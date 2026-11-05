@@ -71,7 +71,7 @@ fn dispatch() -> Result<Value> {
             "task-artifact screenshot --task ID":"Render the task's pages to PNG tiles under target/artifact-screenshots with local Chrome; reports console errors, phone overflow and network requests",
             "task-artifact guard --task ID":"Fail until the five discovery pages are committed; for host hooks before product edits",
             "task-artifact next --task ID":"Say which page to write, review, rewrite or commit next; exit 3 adds advice, such as a page edited after review",
-            "task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --notes TEXT":"Append one page review, with the page's SHA-256, to the task's reviews.json",
+            "task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT":"Append one page review, with the page's SHA-256, finding count and reviewer model, to the task's reviews.json",
             "coordination":"Validate task record structure without demanding completion",
             "agent-stop --task ID --base REV --report PATH":"Hook gate: completion or explicit partial/blocked handoff",
             "complete --task ID --base REV --report PATH":"Gate a completion claim with reconciliation and current evidence",
@@ -96,9 +96,28 @@ fn dispatch() -> Result<Value> {
             verdict,
             "--reviewer",
             reviewer,
+            "--model",
+            model,
+            "--findings",
+            findings,
             "--notes",
             notes,
-        ] => router::verdict(&root, id, page, verdict, reviewer, notes),
+        ] => router::verdict(
+            &root,
+            id,
+            &router::Review {
+                page,
+                verdict,
+                reviewer,
+                notes,
+                findings,
+                model,
+            },
+        ),
+        ["task-artifact", "verdict", ..] => Err(
+            "task-artifact verdict takes --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT, in that order; --model and --findings are required"
+                .into(),
+        ),
         ["task-artifact", "screenshot", "--task", id] => artifacts::screenshots(&root, id),
         ["task-artifact", "check", "--task", id] => {
             let task = task_record::read(&root, id)?;

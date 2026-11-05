@@ -12,6 +12,12 @@
     "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
   },
   {
+    "path": ".agents/skills/investigate/SKILL.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal; DOC009 keeps the body equal to the GEPA seed docs/skills/investigate.md)"
+  },
+  {
     "path": ".agents/skills/review-artifact/SKILL.md",
     "owner": "maintainers",
     "status": "active",
@@ -46,6 +52,12 @@
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+  },
+  {
+    "path": ".claude/skills/investigate/SKILL.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal; DOC009 keeps the body equal to the GEPA seed docs/skills/investigate.md)"
   },
   {
     "path": ".claude/skills/review-artifact/SKILL.md",
@@ -232,6 +244,12 @@
     "owner": "maintainers",
     "status": "archived",
     "verified_by": "cargo xtask docs; focused gap discovery and completion regression tests"
+  },
+  {
+    "path": "docs/plans/router-polish.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; harness/tasks/router-polish.json"
   },
   {
     "path": "docs/plans/tech-debt.md",

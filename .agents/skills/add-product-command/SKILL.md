@@ -1,6 +1,6 @@
 ---
 name: add-product-command
-description: Add or change a command of the example task-board engine end to end: the Command variant, its execution, the discover descriptor, saved-journal compatibility, a process workflow and the driver docs. Use when a task adds a board command.
+description: "Add or change a command of the example task-board engine end to end: the Command variant, its execution, the discover descriptor, saved-journal compatibility, a process workflow and the driver docs. Use when a task adds a board command."
 ---
 
 # Add a product command

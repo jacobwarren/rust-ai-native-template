@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "base_commit": "b52b3a4fdf1cf618788a546bff34d648a879d9f0",
+  "changes": [
+    {
+      "change": {
+        "after_sha256": "19c662fbad02ebc6b476ae27e6f09e74d90820b037e3deb81cbd06b574bcf7e0",
+        "before_sha256": "d0249afcc02ee93132a6997f0f0e513752880702847e79673abfab14882bc058",
+        "subject": "policy"
+      },
+      "rationale": "Polish the review-log tooling and package the investigate brief for the hosts, without adding a gate. task-artifact verdict now requires --model and --findings (order --reviewer --model --findings --notes) and stores them as optional row fields that are skipped when absent, so committed logs keep parsing and are not rewritten; schema_version stays 1, and an older xtask refuses a log holding a new row (one-way compatibility). Any other verdict shape gets the full usage. task-artifact next treats only a page's own rows past the committed log as pending, so the page just reviewed gets the commit step. The investigate skill for Claude Code and Codex carries docs/skills/investigate.md verbatim after its frontmatter; DOC009 keeps the body equal to that GEPA seed, and DOC010 refuses an unquoted ': ' in a skill description, which strict YAML rejects (investigate and add-product-command now quote theirs). Limits: --model's 64 limit counts bytes; if a GEPA suite's task repositories are made from this template, the host skill sits beside every candidate in trial workspaces.",
+      "evidence": [
+        "docs/ARTIFACTS.md",
+        "xtask/tests/router.rs",
+        "xtask/tests/hooks_author.rs",
+        "harness/task-artifacts/router-polish/plan.html",
+        "harness/task-artifacts/router-polish/implementation.html"
+      ],
+      "manual_justification": null
+    }
+  ]
+}

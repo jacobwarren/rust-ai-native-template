@@ -2,7 +2,10 @@
 
 The candidate is one repository-investigation skill. The evaluator, regression
 commands, permitted edit paths, agent identity, and graders remain fixed.
-The initial seed lives in docs/skills/investigate.md. No changes are automatically
+The initial seed lives in docs/skills/investigate.md. The hosts' `investigate`
+skill (.claude/skills and .agents/skills) carries the same text after its
+frontmatter; when an improvement replaces the seed, copy it into both skill files
+or `cargo xtask docs` fails DOC009. No changes are automatically
 applied to that file by search or final evaluation.
 
 ## Install the tested API in an isolated environment

@@ -140,4 +140,44 @@ fn skill_copies_must_match_and_name_their_folder() {
         "{v}"
     );
     assert!(!v.to_string().contains("DOC007"), "{v}");
+    // An unquoted ": " in the description breaks strict YAML parsers.
+    let colon = skill.replace("A demo skill.", "Demo: a skill.");
+    f.text(".claude/skills/demo/SKILL.md", &colon);
+    f.text(".agents/skills/demo/SKILL.md", &colon);
+    assert!(
+        docs(&f)
+            .to_string()
+            .contains("DOC010 .claude/skills/demo/SKILL.md")
+    );
+    let quoted = skill.replace("A demo skill.", "\"Demo: a skill.\"");
+    f.text(".claude/skills/demo/SKILL.md", &quoted);
+    f.text(".agents/skills/demo/SKILL.md", &quoted);
+    assert_eq!(docs(&f)["ok"], true, "{}", docs(&f));
+}
+
+#[test]
+fn investigate_skill_matches_its_seed() {
+    let f = Fixture::new();
+    let seed = "# Repository investigation skill\n\nStart with AGENTS.md.\n";
+    let skill = format!("---\nname: investigate\ndescription: Investigate.\n---\n\n{seed}");
+    let mut catalog = vec![
+        json!({"path":"docs/skills/investigate.md","owner":"o","status":"active","verified_by":"test"}),
+    ];
+    f.text("docs/skills/investigate.md", seed);
+    for host in [".claude/skills", ".agents/skills"] {
+        f.text(&format!("{host}/investigate/SKILL.md"), &skill);
+        catalog.push(json!({"path":format!("{host}/investigate/SKILL.md"),"owner":"o","status":"active","verified_by":"test"}));
+    }
+    f.write("harness/docs.json", json!(catalog));
+    assert_eq!(docs(&f)["ok"], true, "{}", docs(&f));
+    // GEPA edits the seed; the skill must follow, or the hosts read other words.
+    f.text(
+        "docs/skills/investigate.md",
+        &seed.replace("AGENTS.md", "the README"),
+    );
+    let v = docs(&f);
+    assert!(
+        v.to_string().contains("DOC009 skills/investigate/SKILL.md"),
+        "{v}"
+    );
 }

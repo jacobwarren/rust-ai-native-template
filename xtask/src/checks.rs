@@ -222,10 +222,42 @@ fn skill_copies(root: &Path) -> Result<Vec<String>> {
                     "DOC008 {host}{rest}: frontmatter must open with --- and set name: {folder}"
                 ));
             }
+            // Strict YAML (Codex's skill validator) reads "a: b" inside a plain value as a
+            // nested mapping and refuses the file; quote such a description.
+            let plain_colon = text
+                .lines()
+                .skip(1)
+                .take_while(|l| *l != "---")
+                .filter_map(|l| l.strip_prefix("description:").map(str::trim))
+                .any(|v| !v.starts_with(['"', '\'', '>', '|']) && v.contains(": "));
+            if plain_colon {
+                errors.push(format!(
+                    "DOC010 {host}{rest}: quote the description; an unquoted \": \" is not valid YAML"
+                ));
+            }
+        }
+    }
+    // A skill that is also an experiment's seed carries the seed's text as its body,
+    // so the hosts and GEPA read the same words (experiments/gepa/README.md).
+    for (folder, seed) in SEEDS {
+        let skill = copies[0].get(&format!("{folder}/SKILL.md"));
+        let body = skill.and_then(|b| {
+            let text = String::from_utf8_lossy(b);
+            let rest = text.strip_prefix("---\n")?;
+            let end = rest.find("\n---\n")?;
+            Some(rest[end + 5..].trim_start_matches('\n').to_owned())
+        });
+        if body.as_deref().map(str::as_bytes) != std::fs::read(root.join(seed)).ok().as_deref() {
+            errors.push(format!(
+                "DOC009 skills/{folder}/SKILL.md: its body after the frontmatter must equal {seed}"
+            ));
         }
     }
     Ok(errors)
 }
+
+/// Skills whose body is an experiment's seed file, kept byte-identical.
+const SEEDS: [(&str, &str); 1] = [("investigate", "docs/skills/investigate.md")];
 
 #[cfg(test)]
 mod tests {

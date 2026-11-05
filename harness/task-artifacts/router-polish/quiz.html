@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Quiz before merge: router-polish</title>
+<style>
+  main{max-width:62rem;line-height:1.55;padding-top:var(--space-6)}
+  h1{margin-block:var(--space-4) var(--space-4)}
+  h2{margin-block:var(--space-8) var(--space-3)}
+  .lead{font-size:1.12rem}
+  p{margin-block:var(--space-3)}
+  table{font-size:.94rem}
+  th,td{padding:var(--space-2) var(--space-3)}
+  code{font-size:.88em;background:var(--accent-soft);padding:.05em .3em;border-radius:.25rem;overflow-wrap:anywhere}
+  pre code{background:none;padding:0}
+  .promptcard{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-4) var(--space-6);margin-block:var(--space-6)}
+  .promptcard .label{font-size:var(--text-small);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:650}
+  .promptcard blockquote{background:none;border:none;padding:0;margin:var(--space-2) 0 0;font-style:italic;padding-right:7.5rem}
+  .promptcard button{position:absolute;top:var(--space-3);right:var(--space-3);min-height:36px;padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+  @media (max-width:40rem){.promptcard blockquote{padding-right:0;padding-top:var(--space-8)}}
+  .stats{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-block:var(--space-6)}
+  .stat{flex:1;min-width:8.5rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-3) var(--space-4)}
+  .stat b{display:block;font-size:1.4rem;line-height:1.15}
+  .stat span{font-size:var(--text-small);color:var(--muted)}
+  .add{color:var(--accent)} .del{color:var(--danger)}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-top:var(--space-4)}
+  @media (max-width:44rem){.pair{grid-template-columns:1fr}}
+  .flow{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-4)}
+  .flow.after{border-color:var(--accent)}
+  .flow h3{margin:0 0 var(--space-3);font-size:var(--text-small);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .flow.after h3{color:var(--accent)}
+  .flow p{font-size:.94rem;margin:var(--space-3) 0 0}
+  .log{display:flex;flex-wrap:wrap;gap:3px;align-items:stretch}
+  .cell{font:.72rem/1.25 var(--font-code);border:1px solid var(--line);border-radius:.3rem;padding:.25rem .35rem;background:var(--paper);text-align:center;min-width:3.6rem}
+  .cell i{display:block;font-style:normal;color:var(--muted)}
+  .cell.mine{border-color:var(--accent);background:var(--accent-soft)}
+  .cell.pend{border-style:dashed}
+  .cut{align-self:stretch;border-left:3px solid var(--warning);margin-inline:.2rem;position:relative}
+  .verdictline{margin-top:var(--space-3);font:var(--text-small)/1.45 var(--font-code);padding:var(--space-2) var(--space-3);border-radius:var(--control-radius);background:var(--paper);border:1px solid var(--line)}
+  .verdictline.bad{border-color:var(--danger);color:var(--danger)}
+  .verdictline.good{border-color:var(--accent);color:var(--accent)}
+  .excerpt{border-top:1px solid var(--line);margin:0;overflow:hidden}
+  .excerpt .where{font:var(--text-small) var(--font-code);color:var(--muted);padding:var(--space-2) var(--space-4);border-bottom:1px solid var(--line);background:var(--paper)}
+  .excerpt pre{border:none;margin:0;border-radius:0;font-size:.8rem;line-height:1.45;padding:var(--space-3) var(--space-4)}
+  .excerpt .hl{background:var(--warning-soft);display:inline-block;width:100%}
+  .beh{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-block:var(--space-3);overflow:hidden}
+  .beh h3{margin:0;padding:var(--space-3) var(--space-4);background:var(--paper);border-bottom:1px solid var(--line);font-size:1.02rem}
+  .beh h3 span{font-family:var(--font-code);color:var(--accent);margin-right:var(--space-2)}
+  .beh dl{display:grid;grid-template-columns:6.5rem 1fr;gap:var(--space-1) var(--space-3);font-size:.96rem;margin:0;padding:var(--space-3) var(--space-4)}
+  .beh dt{font-size:var(--text-small);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:.15em}
+  .beh dd{margin:0}
+  @media (max-width:40rem){.beh dl{grid-template-columns:1fr}.beh dt{padding-top:0}}
+  .done th{white-space:nowrap;font-size:var(--text-small);width:8rem}
+  @media (max-width:40rem){.done th{white-space:normal;width:auto}}
+  .rule{display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-8);color:var(--muted);font-size:var(--text-small);text-transform:uppercase;letter-spacing:.1em}
+  .rule::before,.rule::after{content:"";flex:1;height:1px;background:var(--line)}
+  .qhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-3)}
+  .score{font:var(--text-small) var(--font-code);background:var(--surface);border:1px solid var(--line);border-radius:var(--control-radius);padding:var(--space-2) var(--space-3)}
+  .q{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-3) var(--space-4);margin-block:var(--space-3)}
+  .q.right{border-color:var(--accent)} .q.wrong{border-color:var(--danger)}
+  .q .n{font:650 var(--text-small) var(--font-code);color:var(--accent);margin-right:var(--space-1)}
+  .q .text{margin:0 0 var(--space-3)}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
+  @media (max-width:48rem){.opts{grid-template-columns:1fr}}
+  .opt{display:flex;gap:var(--space-3);width:100%;text-align:left;margin:0;font-size:.94rem;line-height:1.45;background:var(--paper) !important;color:var(--ink) !important;border:1px solid var(--line) !important;min-height:auto;padding:var(--space-2) var(--space-3)}
+  .opt:hover:not(:disabled){border-color:var(--muted) !important}
+  .opt .k{font-family:var(--font-code);color:var(--muted);flex:none}
+  .opt:disabled{opacity:1;cursor:default}
+  .opt.sel-right{border-color:var(--accent) !important;background:var(--accent-soft) !important}
+  .opt.sel-wrong{border-color:var(--danger) !important;background:#fbeeee !important}
+  .opt.reveal{border-color:var(--accent) !important}
+  .opt.dim{opacity:.55}
+  .fb{display:none;margin-top:var(--space-3);border-radius:var(--control-radius);padding:var(--space-3);font-size:var(--text-small)}
+  .fb.show{display:block}
+  .fb.good{background:var(--accent-soft);border:1px solid var(--accent)}
+  .fb.bad{background:var(--warning-soft);border:1px solid var(--warning)}
+  .fb .tag{font-weight:650;margin-bottom:var(--space-1)}
+  .fb .ran{display:block;margin-top:var(--space-2);font-family:var(--font-code);font-size:.78rem;color:var(--muted);overflow-wrap:anywhere}
+  .result{display:none;margin-top:var(--space-6)}
+  .result.show{display:block}
+  .pass{border:1px solid var(--accent);background:var(--accent-soft);border-radius:var(--radius);padding:var(--space-4) var(--space-6)}
+  .fail{border:1px solid var(--warning);background:var(--warning-soft);border-radius:var(--radius);padding:var(--space-4) var(--space-6)}
+  .pass h3,.fail h3{margin-top:0}
+  .checks{list-style:none;padding:0;margin:0}
+  .checks li{padding:var(--space-1) 0;border-bottom:1px dashed var(--line);font-size:var(--text-small)}
+  .checks li:last-child{border:none}
+  .reply{margin-top:var(--space-6)} .reply h2{margin-top:0} .reply label{margin-block:var(--space-2)}
+  .reply output{white-space:pre-wrap;font:var(--text-small)/1.5 var(--font-code)}
+  .row{display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center}
+  main > footer{margin-top:var(--space-6);padding-top:var(--space-3)}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">router-polish · Before merge</div>
+  <h1>Counted reviews, the right page to commit, and an investigate skill</h1>
+  <p class="lead">This branch makes <code>task-artifact next</code> name the page whose review is uncommitted, adds a finding count and the reviewer's model to every new row of <code>reviews.json</code>, and gives Claude Code and Codex the GEPA seed as an <code>investigate</code> skill that a docs check keeps equal to it. Read the four sections, then pass the quiz. Each case combines two of their facts in a situation they do not show.</p>
+
+  <div class="promptcard">
+    <div class="label">The prompt</div>
+    <button type="button" id="copyPrompt">Copy prompt</button>
+    <blockquote id="promptText">I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass.</blockquote>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>17</b><span>files outside the task pages</span></div>
+    <div class="stat"><b class="add">+438</b><span>lines added</span></div>
+    <div class="stat"><b class="del">&minus;23</b><span>lines removed</span></div>
+    <div class="stat"><b>3</b><span>new tests in tests/router.rs and tests/hooks_author.rs</span></div>
+  </div>
+
+  <section id="context">
+    <h2>1 · Context</h2>
+    <p>After workflow-router merged, the owner asked for three fixes. While <code>reviews.json</code> had an uncommitted row, <code>next</code> told the agent to commit the first passed page in table order rather than the page just reviewed; the brainstorm found the same wrong answer in the middle of a rewrite. Rows had no finding count and no reviewer model, so rewrite rates per model could not be computed. And <code>docs/skills/investigate.md</code>, the seed GEPA optimises, was not a skill either host could load, and no check read it.</p>
+    <p>The owner delegated the calls. The interview settled the flag order and the rule for pending rows, the plan tabulates what <code>verdict</code> refuses and what <code>next</code> says, and the implementation notes record the YAML gap the build found. None of that is repeated here.</p>
+  </section>
+
+  <section id="model">
+    <h2>2 · The mental model</h2>
+    <p>The log only grows. Whatever the last commit holds is a prefix of it, so the rows after that prefix are the uncommitted ones, and each belongs to one page. The case below is the one the brainstorm ran: blindspots passed and was committed with its rows, then interventions passed and its row is not committed yet.</p>
+    <div class="pair">
+      <div class="flow">
+        <h3>Before · the whole log's git status</h3>
+        <div class="log">
+          <div class="cell">blindspots<i>revise</i></div>
+          <div class="cell">blindspots<i>pass</i></div>
+          <div class="cell pend">interventions<i>pass</i></div>
+        </div>
+        <p>A passed page is done when its file <em>and</em> <code>reviews.json</code> are clean. The log is dirty, so the first passed page in table order is held back.</p>
+        <div class="verdictline bad">next → commit blindspots.html</div>
+      </div>
+      <div class="flow after">
+        <h3>After · rows past HEAD's row count</h3>
+        <div class="log">
+          <div class="cell">blindspots<i>revise</i></div>
+          <div class="cell">blindspots<i>pass</i></div>
+          <div class="cut" title="HEAD's log ends here" aria-label="HEAD's log ends here"></div>
+          <div class="cell mine pend">interventions<i>pass</i></div>
+        </div>
+        <p>The bar marks the end of HEAD's log, two rows. A page is done when its file is clean and none of <em>its</em> rows lies past row 2.</p>
+        <div class="verdictline good">next → commit interventions.html</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="behaviours">
+    <h2>3 · Intuition: five behaviours a diff skim misses</h2>
+
+    <div class="beh" id="b1">
+      <h3><span>01</span>A page waits only for its own rows after HEAD's last row</h3>
+      <div class="excerpt">
+        <div class="where">xtask/src/router.rs: next 314-320, page_step 273-276, condensed</div>
+<pre><code>committed_rows = HEAD's log is a prefix of the working log ? its row count : 0
+<span class="hl">pending        = any row after committed_rows has page == this page</span>
+done           = page file clean in git status &amp;&amp; !pending      // else: commit</code></pre>
+      </div>
+      <dl>
+        <dt>Position</dt><dd>Which rows are pending depends on where they sit, not on what they say. The interview showed why a content match fails: a row can repeat an earlier one exactly.</dd>
+        <dt>Rewritten</dt><dd>If a committed row was changed by hand, the prefix test fails, <code>committed_rows</code> is 0 and every page with rows waits, beside the existing advisory "no longer starts with its committed rows".</dd>
+        <dt>Unchanged</dt><dd><code>verdict</code> refuses pass or revise only when the page's <em>last</em> row has the page's current hash (router.rs:159). A pass row's round is the page's revise count plus one.</dd>
+      </dl>
+    </div>
+
+    <div class="beh" id="b2">
+      <h3><span>02</span>Two optional fields, written only when present, read by a strict parser</h3>
+      <dl>
+        <dt>Shape</dt><dd><code>findings: Option&lt;u32&gt;</code> and <code>model: Option&lt;String&gt;</code>, each <code>#[serde(default, skip_serializing_if = "Option::is_none")]</code> (router.rs:39-44). A row without them reads as absent, and writing the log back leaves it without them; a new verdict adds ten lines and changes none. Nothing backfills; <code>schema_version</code> stays 1.</dd>
+        <dt>Strict</dt><dd><code>Row</code> and <code>Log</code> keep <code>deny_unknown_fields</code> (router.rs:29, 48). Each task has its own <code>reviews.json</code>, and <code>next</code> and <code>verdict</code> parse the whole of it. The plan (A1) shows what an xtask built before the fields prints on such a log.</dd>
+        <dt>Meaning</dt><dd><code>findings</code> counts every finding the reviewer listed, blocking or not, so a pass with open notes has a count. <code>model</code> is the reviewer's model as the host names it, dots allowed. The author's model is not recorded.</dd>
+      </dl>
+    </div>
+
+    <div class="beh" id="b3">
+      <h3><span>03</span><code>verdict</code> has one argument shape, checked before anything is read</h3>
+      <div class="excerpt">
+        <div class="where">xtask/src/main.rs:88-120, then router.rs: verdict 106-169, condensed</div>
+<pre><code>[.. "--task",id,"--page",p,"--verdict",v,"--reviewer",r,
+    "--model",m,"--findings",n,"--notes",t]  → router::verdict(..)
+<span class="hl">["task-artifact","verdict", ..]              → usage error, nothing read or written</span>
+
+verdict: page is a task page → verdict word → reviewer id
+       → n.parse::&lt;u32&gt;()          // digits, one optional leading +; stored as a number
+       → model: non-empty, no whitespace, ≤ 64 bytes
+       → page file exists
+       → pass|revise: refuse this exact version again; refuse after 3 revises
+         best: round = the reviewed row whose hash equals the page</code></pre>
+      </div>
+      <dl>
+        <dt>best</dt><dd>Is matched by the same arm as pass and revise, so it takes all seven flags; the guide's verdict line and <code>next</code>'s review step print the same command.</dd>
+      </dl>
+    </div>
+
+    <div class="beh" id="b4">
+      <h3><span>04</span>DOC009 reads one skill copy; DOC007 holds the other to it</h3>
+      <dl>
+        <dt>Seed</dt><dd><code>docs/skills/investigate.md</code> is unchanged and stays the seed GEPA pastes whole into the agent's prompt. Both <code>SKILL.md</code> copies are frontmatter followed by its bytes.</dd>
+        <dt>DOC009</dt><dd>Takes the <code>.claude/skills</code> copy only, strips <code>---\n…\n---\n</code> and leading newlines, and compares the rest with the seed's bytes (checks.rs:240-255, <code>SEEDS</code> at 260).</dd>
+        <dt>DOC007</dt><dd>Already required every file under the two host skill folders to be identical (checks.rs:201-208).</dd>
+        <dt>Rule</dt><dd><code>experiments/gepa/README.md</code> now says to copy an approved improvement into both skill files; the README names DOC009.</dd>
+      </dl>
+    </div>
+
+    <div class="beh" id="b5">
+      <h3><span>05</span>DOC010 refuses an unquoted <code>": "</code> in a skill's description</h3>
+      <dl>
+        <dt>Rule</dt><dd>For every <code>SKILL.md</code> in each host folder, a frontmatter line <code>description:</code> whose trimmed value does not start with <code>"</code>, <code>'</code>, <code>&gt;</code> or <code>|</code> and contains a colon followed by a space is reported, once per file (checks.rs:225-236).</dd>
+        <dt>Why</dt><dd>Strict YAML reads <code>a: b</code> inside a plain value as a nested mapping. Codex's skill validator parses with <code>yaml.safe_load</code> (implementation notes, gap 1).</dd>
+        <dt>Fix</dt><dd>The <code>investigate</code> and <code>add-product-command</code> descriptions are double-quoted on both hosts.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="done">
+    <h2>4 · What was done</h2>
+    <table class="done">
+      <tbody>
+        <tr><th scope="row">Router</th><td><code>router.rs</code>: the two row fields, a <code>Review</code> struct for <code>verdict</code>'s seven inputs, the count and model checks, and <code>committed_rows</code> passed to <code>page_step</code>. <code>main.rs</code>: the sixteen-element arm, the catch-all and the help line. Tests <code>commit_step_names_the_page_whose_row_is_uncommitted</code> and <code>verdict_records_findings_and_model</code>.</td></tr>
+        <tr><th scope="row">Skills</th><td><code>investigate</code> in <code>.claude/skills</code> and <code>.agents/skills</code>; <code>add-product-command</code>'s description quoted. <code>checks.rs</code>: DOC009 with <code>SEEDS</code>, and DOC010. Test <code>investigate_skill_matches_its_seed</code>.</td></tr>
+        <tr><th scope="row">Docs</th><td>The verdict line in <code>docs/ARTIFACTS.md</code>, with what N and MODEL mean; the README's GEPA paragraph; the promotion rule in <code>experiments/gepa/README.md</code>; catalog and readiness entries.</td></tr>
+      </tbody>
+    </table>
+    <blockquote id="leans"><strong>Existing behaviour this leans on.</strong> <code>complete</code> and <code>handoff</code> never read the log, so nothing here can block a merge. <code>verdict</code> only appends, and <code>next</code> already warned when the working log stopped starting with HEAD's rows; the prefix rule depends on both.</blockquote>
+  </section>
+
+  <div class="rule">Prove it</div>
+  <div class="qhead">
+    <div><h2 style="margin-bottom:var(--space-1)">Seven cases before you merge</h2><div class="muted">Work each one out from the sections above. The feedback shows what the committed code printed.</div></div>
+    <div class="score">Score <b id="scoreNow">0</b>/<b id="scoreMax">7</b> · <span id="answered">0</span> answered</div>
+  </div>
+  <div id="quiz"></div>
+
+  <div class="result" id="resPass">
+    <div class="pass">
+      <h3>Cleared to merge</h3>
+      <p>7/7. You can predict what <code>next</code>, <code>verdict</code> and the docs checks will say. What remains is judgement:</p>
+      <ul class="checks">
+        <li>&#9675; DOC010 looks only for a colon followed by a space. A description ending in a bare colon, such as <code>Use it when:</code>, passes <code>cargo xtask docs</code>, yet <code>yaml.safe_load</code> refuses it with "mapping values are not allowed here"</li>
+        <li>&#9675; Compatibility runs one way: a branch cut before this merge rebases before it runs <code>next</code> or <code>verdict</code> on a task whose log holds a counted row</li>
+        <li>&#9675; router-polish's first nine rows carry no count or model, so per-model rates start at its implementation notes</li>
+        <li>&#9675; A <code>best</code> row records whatever count is passed; the guide does not say whether it should repeat the restored round's</li>
+        <li>&#9675; If a GEPA suite's task repositories are made from this template, the evaluator's whole-tree copy puts the seed, as a host skill, beside every candidate (plan, A4; no real suite checked)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="result" id="resFail">
+    <div class="fail">
+      <h3 id="failTitle">Not yet</h3>
+      <p>Re-read these, then reset:</p>
+      <ul id="failLinks"></ul>
+      <button type="button" class="secondary" id="retry">Reset quiz</button>
+    </div>
+  </div>
+
+  <section class="reply" id="reply">
+    <h2>Your reply</h2>
+    <label>Anything that should change before merge (optional)
+      <textarea id="comment" style="min-height:3rem" rows="2" placeholder="e.g. make DOC010 also refuse a value that ends in a colon; or: best should copy the restored round's count"></textarea>
+    </label>
+    <div class="row"><button type="button" id="copyReply">Copy reply</button><span class="muted" id="copied"></span></div>
+    <output id="replyText"></output>
+  </section>
+
+  <footer>router-polish · quiz before merge</footer>
+</main>
+<script>
+(function(){
+  function copy(text, done){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select();
+      try{document.execCommand('copy');}catch(e){} document.body.removeChild(t); done();
+    }
+  }
+  var cp=document.getElementById('copyPrompt');
+  cp.addEventListener('click',function(){copy(document.getElementById('promptText').textContent,function(){cp.textContent='Copied';setTimeout(function(){cp.textContent='Copy prompt';},1500);});});
+
+  // Each question: opts[0] is correct; display order is shuffled.
+  var QS=[
+    {q:'<code>implementation.html</code> passed and is committed with its row. Someone adds a line to it, a fresh reviewer passes the edited page, and you record that. The edit is then reverted, so the file matches the commit again, and the first reviewer passes it; you record it with the same reviewer, model, count and notes as the first pass. Nothing else is uncommitted. What does <code>next</code> say?',
+     opts:['Commit implementation.html: two of its rows lie after HEAD’s, though the file is clean',
+           'It moves past implementation.html: the file is clean and its last row matches a committed row',
+           'Review implementation.html again, with an “edited after its pass” advisory; exit 3',
+           'Nothing new to do: verdict refused the reverted page as a version already reviewed'],
+     good:'<code>verdict</code> compares the page only with its last row, the edited version, so the revert is accepted. A pass keeps round 1, so the new row is identical to the committed one. <code>next</code> counts by position, and both rows sit after HEAD’s. Committing the log alone clears it.',
+     ran:'verdict (edited) → round 1; verdict (reverted) → round 1, a row equal to the committed one; next → "action": "commit", "page": "implementation.html", "advisories": [], exit 0',
+     anchor:'b1', label:'01 · Which rows hold a page back'},
+    {q:'After merge, <code>workflow-router</code>’s log holds only rows written before this change, and <code>router-polish</code>’s holds counted rows. A teammate whose xtask predates the change runs <code>next</code> on both tasks, then records a six-flag verdict on workflow-router. Later you record one verdict on workflow-router with the new xtask. Which is right?',
+     opts:['Theirs works on workflow-router, fails on router-polish, and fails on workflow-router after your verdict',
+           'Theirs fails on both tasks, because the merge changed the log format of every task',
+           'Theirs works on both tasks, because an older reader skips any field it does not know',
+           'Theirs keeps working, but your verdict rewrites their row with null findings and model'],
+     good:'Logs are per task, and your xtask reads their old-shape row as having no count or model. A log with no counted row is still in the old shape, so the old strict parser reads it, and the new parser reads a row without the fields as absent. The first counted row in a log ends the old xtask’s access to that task, for <code>verdict</code> as well as <code>next</code>.',
+     ran:'old next workflow-router → "complete"; old next router-polish → "unknown field `findings`", exit 1; old six-flag verdict → recorded; new next → "commit", "quiz.html"; after a new verdict, old next and old verdict on workflow-router → "unknown field `findings`", exit 1',
+     anchor:'b2', label:'02 · Optional fields, strict parser'},
+    {q:'<code>quiz.html</code> does not exist yet. An agent runs <code>verdict --task router-polish --page quiz.html --verdict pass --reviewer r --findings 2 --model gpt-5.1 --notes x</code>. What comes back?',
+     opts:['The usage line, ending “--model and --findings are required”; nothing written',
+           '“quiz.html does not exist”, because the page check runs before the flags are read',
+           'A row with the count and the model read from the swapped flags',
+           'A recorded row, because every required flag is present once'],
+     good:'The flags are matched by position in <code>main.rs</code>. With <code>--findings</code> before <code>--model</code> only the catch-all matches, and it returns before <code>router::verdict</code> reads the page, the record or the log. In the right order the same call reaches the page check.',
+     ran:'swapped → usage error, exit 1, git status clean, no target/artifact-reviews; same flags in order → "quiz.html does not exist", exit 1',
+     anchor:'b3', label:'03 · One argument shape'},
+    {q:'A GEPA run finds a better investigate brief and it is approved. An agent writes it into <code>docs/skills/investigate.md</code> and <code>.claude/skills/investigate/SKILL.md</code>, then stops. What does <code>cargo xtask docs</code> report?',
+     opts:['DOC007 only: the copies differ; the .claude body matches the seed',
+           'DOC009 only: the .agents body no longer matches the new seed',
+           'DOC007 and DOC009: both checks see the stale .agents copy',
+           'Nothing: the seed and the skill the checks read agree'],
+     good:'DOC009 reads the .claude copy alone, and that body equals the new seed. DOC007 compares the two copies and finds them different. Updating the seed and the .agents copy instead would report both.',
+     ran:'seed + .claude → [DOC007]; seed + .agents → [DOC007, DOC009]; seed only → [DOC009]; seed + both copies → ok',
+     anchor:'b4', label:'04 · DOC009 and DOC007'},
+    {q:'Three rewordings of the investigate description, each tried on its own and made in both copies: (1) <code>description: \'Find it: then fix\'</code> (2) <code>description: Find it: then fix</code> (3) <code>description: Find it, then fix. See docs:skills</code>. What does <code>cargo xtask docs</code> report?',
+     opts:['Only (2), reported twice: one DOC010 per host copy',
+           '(2) and (3), each reported as DOC010 in both copies',
+           'Only (2), reported once; DOC007 covers the other copy',
+           '(1) and (2): only double quotes protect a colon'],
+     good:'Single quotes start a quoted scalar, so (1) is skipped and parses. (3) has a colon but no space after it, which is not a mapping. DOC010 runs over every host copy, so an edit made in both copies is reported twice; the copies stay identical, so DOC007 is silent.',
+     ran:'(1) → ok, yaml.safe_load "Find it: then fix"; (2) → [DOC010 .claude/…, DOC010 .agents/…], yaml "mapping values are not allowed here"; (3) → ok, yaml parses',
+     anchor:'b5', label:'05 · DOC010'},
+    {q:'<code>quiz.html</code> has three revise rows. You copy the kept round-2 version back over the page and run <code>verdict --task router-polish --page quiz.html --verdict best --reviewer r --notes "kept round 2"</code>, as the guide read before this change. What happens?',
+     opts:['Refused; with --model and --findings added, it records round 2 with your count',
+           'Recorded: best restores an old version, so it needs no count or model',
+           'Refused; with the flags added, it records round 4 as a new version',
+           'Recorded, with the count and model copied from the round-2 row'],
+     good:'best goes through the same sixteen-element arm, so the old form falls to the catch-all. Once accepted, its round comes from the reviewed row whose hash equals the restored page, and the count and model are whatever you passed.',
+     ran:'old form → usage error, exit 1; --model omitted or --findings omitted → usage error; full form with --findings 5 → "round": 2, "verdict": "best", "findings": 5',
+     anchor:'b3', label:'03 · best takes every flag'},
+    {q:'A reviewer lists three findings and passes a page. The orchestrator records the pass with <code>--findings +3</code>, notices the plus sign, and reruns the same command with <code>--findings 3</code> to fix the row. What is in the log?',
+     opts:['One row, "findings": 3; the rerun is refused as an already-reviewed version',
+           'One row, "findings": "+3" stored as text; the rerun is refused the same way',
+           'Two rows, each with "findings": 3, since the rerun is a second review',
+           'One row from the rerun; the first call was refused, as +3 is not a count'],
+     good:'Rust’s u32 parse takes one leading plus, and the row stores the number, so there is nothing to fix. The rerun then meets the existing rule that a page’s last row cannot be reviewed again in the same version.',
+     ran:'--findings +3 → recorded, "findings": 3; rerun with 3 → "plan.html was already reviewed in this exact version", exit 1; -0, 3.0, " 3", ++3 → "must count the findings the reviewer listed"',
+     anchor:'b3', label:'03 · How the count is read'}
+  ];
+  var KEYS=['A','B','C','D'];
+  var answers, order;
+  var quiz=document.getElementById('quiz');
+  function shuffle(n){var a=[];for(var i=0;i<n;i++)a.push(i);for(var j=n-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[k];a[k]=t;}return a;}
+  function build(){
+    answers=QS.map(function(){return null;}); order=[]; quiz.innerHTML='';
+    QS.forEach(function(it,qi){
+      var ord=shuffle(it.opts.length); order.push(ord);
+      var d=document.createElement('div'); d.className='q'; d.id='q'+qi;
+      var h='<div class="text"><span class="n">'+(qi+1)+'/'+QS.length+'</span> '+it.q+'</div><div class="opts">';
+      ord.forEach(function(oi,pos){h+='<button type="button" class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="k">'+KEYS[pos]+'</span><span>'+it.opts[oi]+'</span></button>';});
+      h+='</div><div class="fb" id="fb'+qi+'"></div>'; d.innerHTML=h; quiz.appendChild(d);
+    });
+    document.getElementById('scoreMax').textContent=QS.length;
+    update(); document.getElementById('resPass').classList.remove('show'); document.getElementById('resFail').classList.remove('show');
+  }
+  quiz.addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    var qi=+b.dataset.q, oi=+b.dataset.o, it=QS[qi]; if(answers[qi]!==null) return;
+    var right=oi===0; answers[qi]=right;
+    var d=document.getElementById('q'+qi); d.classList.add(right?'right':'wrong');
+    d.querySelectorAll('.opt').forEach(function(x){
+      x.disabled=true; var xo=+x.dataset.o;
+      if(xo===oi) x.classList.add(right?'sel-right':'sel-wrong');
+      else if(xo===0) x.classList.add('reveal'); else x.classList.add('dim');
+    });
+    var pos=order[qi].indexOf(0), fb=document.getElementById('fb'+qi);
+    fb.className='fb show '+(right?'good':'bad');
+    fb.innerHTML='<div class="tag">'+(right?'Correct':'Not quite: the answer is '+KEYS[pos])+'</div>'+it.good+'<span class="ran">Ran: '+it.ran+'</span>'
+      +(right?'':'<div style="margin-top:.4rem">Re-read <a href="#'+it.anchor+'">'+it.label+'</a>.</div>');
+    update(); if(answers.every(function(a){return a!==null;})) finish();
+  });
+  function score(){return answers.filter(function(a){return a===true;}).length;}
+  function update(){
+    document.getElementById('scoreNow').textContent=score();
+    document.getElementById('answered').textContent=answers.filter(function(a){return a!==null;}).length;
+    reply();
+  }
+  function finish(){
+    if(score()===QS.length){var p=document.getElementById('resPass');p.classList.add('show');p.scrollIntoView({behavior:'smooth',block:'nearest'});return;}
+    document.getElementById('failTitle').textContent='Not yet: '+score()+'/'+QS.length;
+    var ul=document.getElementById('failLinks'), seen={}; ul.innerHTML='';
+    answers.forEach(function(a,i){ if(a===true) return; var it=QS[i]; if(seen[it.anchor]) return; seen[it.anchor]=1;
+      var li=document.createElement('li'); li.innerHTML='<a href="#'+it.anchor+'">'+it.label+'</a>'; ul.appendChild(li); });
+    var f=document.getElementById('resFail'); f.classList.add('show'); f.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  function reply(){
+    var done=answers.filter(function(a){return a!==null;}).length;
+    var missed=[]; answers.forEach(function(a,i){if(a===false) missed.push(i+1);});
+    var lines=['router-polish quiz: '+score()+'/'+QS.length+(done<QS.length?' ('+done+' answered)':'')+(score()===QS.length?' — understood, ready to merge':'')];
+    if(missed.length) lines.push('Missed: question '+missed.join(', ')+'. Explain these before I merge.');
+    var c=document.getElementById('comment').value.trim(); if(c) lines.push('Before merge: '+c);
+    document.getElementById('replyText').textContent=lines.join('\n');
+  }
+  document.getElementById('comment').addEventListener('input',reply);
+  document.getElementById('copyReply').addEventListener('click',function(){copy(document.getElementById('replyText').textContent,function(){var s=document.getElementById('copied');s.textContent='Copied';setTimeout(function(){s.textContent='';},1500);});});
+  document.getElementById('retry').addEventListener('click',function(){build();quiz.scrollIntoView({behavior:'smooth',block:'start'});});
+  build();
+})();
+</script>
+</body>
+</html>

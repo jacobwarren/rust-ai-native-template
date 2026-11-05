@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where to intervene: next's commit step, review-log rows, the investigate seed</title>
+<style>
+main { padding-bottom: 9rem; }
+code { font-size: .9em; }
+.prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+.prompt-card blockquote { font-style: italic; margin: var(--space-2) 0 0; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+.tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+button.small { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--space-3); margin-block: var(--space-6) 0; }
+.facts div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4); font-size: var(--text-small); }
+.facts b { display: block; font-size: 1rem; margin-bottom: var(--space-1); }
+.lane { margin-top: var(--space-8); }
+.lane > h2 { margin-bottom: var(--space-2); } .lane > h2 .num { font-size: 1.25rem; margin-right: var(--space-2); }
+.track { display: flex; align-items: center; gap: 0; margin: var(--space-4) 0 var(--space-6); max-width: 34rem; }
+.track .ends { font-size: .75rem; color: var(--muted); white-space: nowrap; }
+.track .line { flex: 1; display: flex; justify-content: space-around; align-items: center; height: 2rem; margin: 0 var(--space-2);
+  background: linear-gradient(var(--line), var(--line)) center / 100% 2px no-repeat; }
+.track a { width: 2rem; height: 2rem; border-radius: 50%; border: 2px solid var(--muted); background: var(--surface); color: var(--ink);
+  display: grid; place-items: center; font: 650 .75rem var(--font-code); text-decoration: none; }
+.track a.on { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.card { margin: 0 !important; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-6); margin-block: var(--space-3); scroll-margin-top: 1rem; }
+.card.on { border-color: var(--accent); box-shadow: inset 4px 0 0 var(--accent); }
+.card h3 { margin: 0; flex: 1 1 16rem; }
+.card p { margin-block: var(--space-2); }
+.num { font: 650 .85rem var(--font-code); color: var(--accent); }
+.eff { font: 650 .7rem var(--font-code); border-radius: 999px; padding: .1rem .55rem; border: 1px solid var(--line); background: var(--accent-soft); }
+.eff.m { background: #eef0e4; } .eff.l { background: var(--warning-soft); color: var(--warning); } .eff.xl { background: var(--danger); color: var(--surface); border-color: var(--danger); }
+.lean { font-size: .7rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; color: var(--warning); border: 1px solid var(--warning); border-radius: 999px; padding: .05rem .5rem; }
+.where { font: .78rem var(--font-code); color: var(--muted); overflow-wrap: anywhere; }
+.cost { font-size: var(--text-small); color: var(--muted); }
+.cost b { color: var(--warning); }
+.card label.res { margin: 0; font-size: var(--text-small); font-weight: 600; white-space: nowrap; }
+.dead { font-size: var(--text-small); color: var(--muted); border-left: 3px solid var(--line); padding-left: var(--space-3); }
+table.scen { font-size: var(--text-small); min-width: 34rem; }
+table.scen th:first-child { width: 34%; }
+table.scen td.bad { color: var(--danger); }
+table.scen .hl { background: var(--accent-soft); }
+pre.ev { font-size: .8rem; margin-block: var(--space-2); }
+.replybar { position: fixed; left: 0; right: 0; bottom: 0; background: var(--ink); color: var(--paper); z-index: 5; }
+.replybar .in { max-width: var(--page-width); margin: 0 auto; padding: var(--space-3) var(--space-6); display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; }
+#reply { flex: 1 1 20rem; font: .8rem/1.4 var(--font-code); min-width: 0; }
+.replybar button.secondary { background: transparent; color: var(--paper); border-color: var(--muted); }
+.lane { display: grid; gap: var(--space-3); }
+.lane > * { margin-block: 0; }
+@media (min-width: 60rem) { .lane { grid-template-columns: 1fr 1fr; } .lane > :not(.card) { grid-column: 1 / -1; } }
+@media (max-width: 40rem) { .replybar .in { padding: var(--space-2) var(--space-4); } .card { padding: var(--space-3) var(--space-4); } }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Brainstorm the intervention · before code · router-polish</p>
+  <h1>Twelve places to intervene, cheapest to most ambitious</h1>
+  <p class="lead">One lane per problem. Each option says where it lands in the code and what it costs. Tick what resonates; the reply at the bottom builds itself.</p>
+
+  <div class="prompt-card">
+    <div class="row"><span class="tag">The prompt</span><button class="small secondary" data-copy="prompt">Copy prompt</button></div>
+    <blockquote id="prompt">Here's the problem: next names the wrong page to commit while the review log is dirty, review-log rows can't tell finding counts or reviewer models apart, and the investigate brief is invisible to the hosts while being the GEPA seed nothing guards. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate.</blockquote>
+  </div>
+
+  <div class="facts">
+    <div><b>The wrong page shows up mid-rewrite too</b>On this task, after a <em>revise</em> on interventions, <code>next</code> says "commit blindspots.html", not "rewrite". Not only after a pass, as the ticket says.</div>
+    <div><b>Rates per page type already work</b><code>page</code> and <code>verdict</code> give them today: workflow-router's 11 rows show reference, plan and buy-in each took one rewrite. Every row's reviewer is <code>artifact-reviewer</code>, a role, so the model is what's missing.</div>
+    <div><b>The seed is linked from one place</b><code>README.md:111</code> links <code>docs/skills/investigate.md</code>; <code>AGENTS.md</code>, the agent map, does not. No check reads it (blindspots, finding 06).</div>
+  </div>
+
+  <!-- ───────── lane 1 ───────── -->
+  <section class="lane" data-lane="1">
+    <h2><span class="num">1</span> <code>next</code> names the wrong page to commit</h2>
+    <p class="muted">The cause: a page counts as done only when its file <em>and the whole log</em> are clean (<code>router.rs:236</code>), and pages are walked in table order (<code>277-306</code>). Blindspots finding 01 has the mechanics.</p>
+    <div class="track"><span class="ends">docs</span><span class="line"><a href="#c1a" data-dot="1a">1a</a><a href="#c1b" data-dot="1b">1b</a><a href="#c1c" data-dot="1c">1c</a><a href="#c1d" data-dot="1d">1d</a></span><span class="ends">new format</span></div>
+
+    <div class="table-scroll">
+    <table class="scen">
+      <caption>What <code>next</code> says, run on this task in a clean copy. Today's binary and the two cheapest fixes, prototyped as patches</caption>
+      <thead><tr><th>Situation</th><th data-col="1a">Today (1a)</th><th data-col="1b">1b · last row</th><th data-col="1c">1c · past HEAD</th></tr></thead>
+      <tbody>
+        <tr><th>interventions passed, log uncommitted (the ticket's case)</th><td class="bad" data-col="1a">commit blindspots.html</td><td data-col="1b">commit interventions.html</td><td data-col="1c">commit interventions.html</td></tr>
+        <tr><th>interventions asked for revision, log uncommitted</th><td class="bad" data-col="1a">commit blindspots.html</td><td data-col="1b">rewrite interventions.html</td><td data-col="1c">rewrite interventions.html</td></tr>
+        <tr><th>interventions committed without its pass row, then interview asked for revision</th><td class="bad" data-col="1a">commit blindspots.html</td><td data-col="1b">rewrite interview.html <small>(the pass row goes in with a later commit)</small></td><td data-col="1c">commit interventions.html <small>(its row)</small></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="cost">Both patches keep the six tests in <code>xtask/tests/router.rs</code> passing, including the hand-edited-page case, which all three still route to a commit.</p>
+
+    <div class="card" id="c1a">
+      <div class="row"><span class="num">1a</span><h3>Tell agents to follow <code>verdict</code>'s own next line</h3><span class="eff">S</span><label class="res"><input type="checkbox" data-pick="1a"> Resonates</label></div>
+      <p class="where">docs/ARTIFACTS.md:44-57 · router.rs:165</p>
+      <p><code>verdict</code> already prints the right page: <code>"commit interventions.html with …/reviews.json when the page is final"</code>. A docs line could say "commit the page you just recorded" and leave <code>next</code> alone.</p>
+      <p class="cost"><b>Costs</b> no code, and <code>next</code> keeps contradicting it in all three rows above. The same line ends "cargo xtask task-artifact next", so the wrong answer still reaches them.</p>
+    </div>
+
+    <div class="card" id="c1b">
+      <div class="row"><span class="num">1b</span><h3>The log's dirt belongs to the page reviewed last</h3><span class="eff">S</span><label class="res"><input type="checkbox" data-pick="1b"> Resonates</label></div>
+      <p class="where">router.rs:236 (page_step) · +3 −1 lines</p>
+      <pre class="ev">let last_reviewed = log.and_then(|l| l.rows.last()).is_some_and(|r| r.page == page);
+if committed &amp;&amp; (!dirty.contains(&amp;log_path(id)) || !last_reviewed) {</pre>
+      <p>No read of HEAD and no hash lookup, so blindspots finding 01's shared-hash trap can't arise.</p>
+      <p class="cost"><b>Costs</b> row 3: a page whose file is committed but whose row isn't counts as done. Its row goes in with the next commit. Completion doesn't read the log, so nothing breaks, but <code>next</code> never names that page.</p>
+    </div>
+
+    <div class="card" id="c1c">
+      <div class="row"><span class="num">1c</span><h3>Rows past HEAD's row count are this page's uncommitted rows</h3><span class="eff m">M</span><span class="lean">agent's lean</span><label class="res"><input type="checkbox" data-pick="1c"> Resonates</label></div>
+      <p class="where">router.rs:174, 236, 267-270 (next, page_step) · +10 −6 lines</p>
+      <p><code>next()</code> already reads HEAD's log for its advisory (<code>269-275</code>). Pass its row count to <code>page_step</code>; a page is done when its file is clean and none of its rows lies past that count. That holds because the log is append-only, and the same advisory fires when it isn't.</p>
+      <p class="cost"><b>Costs</b> a new parameter on <code>page_step</code>; HEAD's log is already read once per run. Row 3 asks to commit the log for interventions, the accurate answer.</p>
+    </div>
+
+    <div class="card" id="c1d">
+      <div class="row"><span class="num">1d</span><h3>One log file per page</h3><span class="eff l">L</span><label class="res"><input type="checkbox" data-pick="1d"> Resonates</label></div>
+      <p class="where">router.rs:15, 48-50 · history.rs:79-95 · scripts/agent-hook.sh:403</p>
+      <p><code>history::uncommitted</code> reports whole paths from <code>git status</code>. With <code>reviews/interventions.json</code> beside each page, the existing file check answers per page and the bug can't happen.</p>
+      <p class="cost"><b>Costs</b> a new log shape. workflow-router's committed log would need migrating, or <code>next</code> errors on it (blindspots finding 02: a schema_version other than 1 fails). It also needs a new hook pattern for the author guard and rewritten docs.</p>
+    </div>
+  </section>
+
+  <!-- ───────── lane 2 ───────── -->
+  <section class="lane" data-lane="2">
+    <h2><span class="num">2</span> Rows can't tell finding counts or reviewer models apart</h2>
+    <div class="track"><span class="ends">convention</span><span class="line"><a href="#c2a" data-dot="2a">2a</a><a href="#c2b" data-dot="2b">2b</a><a href="#c2c" data-dot="2c">2c</a><a href="#c2d" data-dot="2d">2d</a></span><span class="ends">new protocol</span></div>
+
+    <div class="card" id="c2a">
+      <div class="row"><span class="num">2a</span><h3>Carry both in the fields that exist</h3><span class="eff">S</span><label class="res"><input type="checkbox" data-pick="2a"> Resonates</label></div>
+      <p class="where">router.rs:104-105 (valid_id on --reviewer) · notes</p>
+      <p>Put the model in <code>--reviewer</code> and start <code>--notes</code> with <code>findings: N;</code>. There's no schema change. Today's prose already holds counts loosely: <q>Open: prompt-builder chips 2-3 under No carve-out; dangling 'constraint 1'; length.</q></p>
+      <p class="cost"><b>Costs</b> the role name is lost, and <code>valid_id</code> refuses dots, so <code>gpt-5.1</code> can't be written (blindspots finding 04). Rates come from a regex over prose.</p>
+    </div>
+
+    <div class="card" id="c2b">
+      <div class="row"><span class="num">2b</span><h3><code>findings</code> and <code>model</code> on the row, both flags required</h3><span class="eff m">M</span><span class="lean">agent's lean</span><label class="res"><input type="checkbox" data-pick="2b"> Resonates</label></div>
+      <p class="where">router.rs:28-39, 90-97, 199 · main.rs:74, 88-101 · ARTIFACTS.md:51-52 · tests/router.rs:32-49</p>
+      <p>Two <code>Option</code> fields with <code>skip_serializing_if</code>, so the 11 committed rows aren't rewritten with nulls (blindspots finding 02). The match arm grows from 12 to 16 elements; the command's three spellings must agree; one test helper covers all 12 test calls.</p>
+      <p class="cost"><b>Costs</b> a model rule of its own (dots allowed, no whitespace) and a definition of what a count includes. The blindspots decision recommends every finding listed, including a PASS's open items.</p>
+    </div>
+
+    <div class="card" id="c2c">
+      <div class="row"><span class="num">2c</span><h3>A command that computes the rates</h3><span class="eff l">L</span><label class="res"><input type="checkbox" data-pick="2c"> Resonates</label></div>
+      <p class="where">new module · main.rs dispatch · config.json:3 (max_rust_lines 400)</p>
+      <p>The ticket wants rates, and after 2b still nothing computes them. A read-only <code>task-artifact stats</code> could read every task's <code>reviews.json</code> and print rewrite rates per page and per model, counting only rows that carry the field (blindspots finding 03).</p>
+      <p class="cost"><b>Costs</b> a new module: <code>router.rs</code> is 331 lines and SIZE001 fails over 400. Per-model rates measure the reviewer, not the author whose page failed (blindspots finding 05).</p>
+    </div>
+
+    <div class="card" id="c2d">
+      <div class="row"><span class="num">2d</span><h3>The reviewer returns a verdict a machine can read</h3><span class="eff l">L</span><label class="res"><input type="checkbox" data-pick="2d"> Resonates</label></div>
+      <p class="where">.claude/skills/review-artifact/SKILL.md:62-67 (+ the .agents copy) · main.rs</p>
+      <p>The reviewer returns prose: PASS with a sentence, or REVISE with numbered findings. The orchestrator then re-types the verdict and, under 2b, a count. End the reply with a JSON line instead, and let <code>verdict --from FILE</code> read it.</p>
+      <p class="cost"><b>Costs</b> both skill copies (DOC007) and a new argument form. The model still comes from whoever started the reviewer (blindspots finding 05).</p>
+    </div>
+  </section>
+
+  <!-- ───────── lane 3 ───────── -->
+  <section class="lane" data-lane="3">
+    <h2><span class="num">3</span> The investigate brief: invisible to hosts, unguarded as the seed</h2>
+    <div class="track"><span class="ends">a link</span><span class="line"><a href="#c3a" data-dot="3a">3a</a><a href="#c3b" data-dot="3b">3b</a><a href="#c3c" data-dot="3c">3c</a><a href="#c3d" data-dot="3d">3d</a></span><span class="ends">out of scope</span></div>
+
+    <div class="card" id="c3a">
+      <div class="row"><span class="num">3a</span><h3>Link it from AGENTS.md</h3><span class="eff">S</span><label class="res"><input type="checkbox" data-pick="3a"> Resonates</label></div>
+      <p class="where">AGENTS.md:30-47 (Navigation) · 72 of DOC005's 100 lines</p>
+      <p>One navigation line puts it on the map agents read first. It changes no ceremony path and no seed bytes.</p>
+      <p class="cost"><b>Costs</b> nothing, but hosts still can't load it on demand, and nothing guards the seed.</p>
+    </div>
+
+    <div class="card" id="c3b">
+      <div class="row"><span class="num">3b</span><h3>Pin the seed's digest</h3><span class="eff">S</span><label class="res"><input type="checkbox" data-pick="3b"> Resonates</label></div>
+      <p class="where">checks.rs (docs) · gepa/optimize.py:78 · README.md:110-111</p>
+      <p>A docs check holds the seed's SHA-256, the digest GEPA records as <code>seed_sha256</code>. Any edit fails CI until the pin moves in the same reviewed diff, the promotion rule README.md states. It catches blindspots finding 06's silent failure, a "moved" note becoming the candidate. A shape check wouldn't: <code>docs/skills/author-artifact.md</code> opens with <code># </code> just as the seed does.</p>
+      <p class="cost"><b>Costs</b> one more line in every seed promotion, and the hosts are no better off.</p>
+    </div>
+
+    <div class="card" id="c3c">
+      <div class="row"><span class="num">3c</span><h3>Host copies are frontmatter plus the seed's exact bytes</h3><span class="eff m">M</span><span class="lean">agent's lean</span><label class="res"><input type="checkbox" data-pick="3c"> Resonates</label></div>
+      <p class="where">.claude/skills/investigate/ · .agents/skills/investigate/ · checks.rs:189-228 · harness/docs.json</p>
+      <p>Two <code>SKILL.md</code> files, identical under DOC007 and named under DOC008, and a new check that their body equals the seed. GEPA keeps reading the unchanged seed. Each copy needs a docs.json entry (DOC004).</p>
+      <p class="cost"><b>Costs, found here</b> the evaluator copies a task repo's committed tree whole (<code>evaluator/workspace.py:16-32</code>, <code>trial.py:99</code>), skill folders included. If a suite's task repos come from this template, every trial's workspace holds the seed as a host skill. It sits beside the pasted candidate (<code>stdin_agent.py:14-17</code>), so a seed-versus-selected comparison shows the seed to both arms. The bundled demo builds a bare repo (<code>demo.py:22-30</code>), so it doesn't show this.</p>
+    </div>
+
+    <div class="card" id="c3d">
+      <div class="row"><span class="num">3d</span><h3>Make SKILL.md the one source; the evaluator strips frontmatter</h3><span class="eff xl">XL</span><label class="res"><input type="checkbox" data-pick="3d"> Resonates</label></div>
+      <p class="where">gepa/config.py:47 · evaluator/trial.py:59-63 · experiments/README.md:37</p>
+      <p>One file instead of three, with no parity check.</p>
+      <p class="cost"><b>Costs</b> a change to GEPA's evaluator, which the ticket rules out.</p>
+    </div>
+
+    <p class="dead"><b>Ruled out:</b> symlinking the skill to the seed. <code>repo.rs:39-41</code> refuses source symlinks, <code>evaluator/workspace.py:32</code> refuses them in snapshots, and the seed has no frontmatter for DOC008.</p>
+  </section>
+</main>
+
+<div class="replybar" role="region" aria-label="Your reply">
+  <div class="in">
+    <span id="reply">Tick the options that resonate. A lane left empty reads as "your call".</span>
+    <button class="small secondary" id="leans" type="button">Take the leans</button>
+    <button class="small" id="copyReply" type="button" disabled>Copy reply</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var LANES = { "1": "next's commit step", "2": "review-log rows", "3": "investigate skill" };
+  var LEANS = { "1": "1c", "2": "2b", "3": "3c" };
+  var boxes = [].slice.call(document.querySelectorAll('[data-pick]'));
+  var reply = document.getElementById('reply');
+  var copyBtn = document.getElementById('copyReply');
+  var text = '';
+
+  function copy(s, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = label; }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(s).then(done, fallback);
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = s; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta); done();
+    }
+  }
+
+  function update() {
+    var picked = {};
+    boxes.forEach(function (b) {
+      var id = b.getAttribute('data-pick');
+      document.getElementById('c' + id).classList.toggle('on', b.checked);
+      var dot = document.querySelector('[data-dot="' + id + '"]');
+      if (dot) dot.classList.toggle('on', b.checked);
+      [].forEach.call(document.querySelectorAll('[data-col="' + id + '"]'), function (c) { c.classList.toggle('hl', b.checked); });
+      if (b.checked) (picked[id[0]] = picked[id[0]] || []).push(id);
+    });
+    var any = Object.keys(picked).length > 0;
+    text = Object.keys(LANES).map(function (k) {
+      return LANES[k] + ': ' + (picked[k] ? picked[k].join(' + ') : 'your call (lean ' + LEANS[k] + ')');
+    }).join('; ') + '.';
+    if (any) {
+      reply.textContent = '"' + text + '"';
+      copyBtn.disabled = false;
+    } else {
+      reply.textContent = 'Tick the options that resonate. A lane left empty reads as "your call".';
+      copyBtn.disabled = true;
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', update); });
+  document.getElementById('leans').addEventListener('click', function () {
+    boxes.forEach(function (b) { b.checked = Object.keys(LEANS).some(function (k) { return LEANS[k] === b.getAttribute('data-pick'); }); });
+    update();
+  });
+  copyBtn.addEventListener('click', function () { if (text) copy(text, copyBtn); });
+  [].forEach.call(document.querySelectorAll('[data-copy]'), function (btn) {
+    btn.addEventListener('click', function () { copy(document.getElementById(btn.getAttribute('data-copy')).textContent.trim(), btn); });
+  });
+  update();
+})();
+</script>
+</body>
+</html>

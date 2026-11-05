@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<style>
+.ask { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); max-width: var(--reading-width); }
+.ask blockquote { margin: var(--space-2) 0 0; font-style: italic; background: none; border: 0; padding: 0; }
+.tag { font-size: var(--text-small); letter-spacing: .08em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+code { overflow-wrap: anywhere; font-size: .875em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+pre { font-size: .8125rem; line-height: 1.55; margin: 0 0 var(--space-4); background: var(--paper); }
+pre .c { color: var(--muted); }
+.iv { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; margin-top: var(--space-8); }
+.iv-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); padding: var(--space-3) var(--space-6); background: var(--paper); border-bottom: 1px solid var(--line); }
+.iv-head b { font-size: 1.05rem; }
+.iv-head span { font: .8125rem var(--font-code); color: var(--muted); margin-right: auto; }
+.iv-body { display: grid; grid-template-columns: 15rem minmax(0, 1fr); min-height: 34rem; }
+.rail { display: block; border-right: 1px solid var(--line); border-bottom: 0; padding: var(--space-4); background: var(--paper); }
+.rail-label { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 650; margin-bottom: var(--space-2); }
+.iv button.ri { display: flex; align-items: center; gap: var(--space-2); width: 100%; min-height: 36px; padding: var(--space-1) var(--space-2); margin: 2px 0; background: none; border: 0; border-radius: var(--control-radius); color: var(--muted); text-align: left; font-size: .875rem; }
+.iv button.ri:hover { background: var(--surface); }
+.iv button.ri.cur { background: var(--surface); color: var(--ink); font-weight: 650; box-shadow: inset 3px 0 0 var(--accent); }
+.iv button.ri.done { color: var(--ink); }
+.dot { width: 11px; height: 11px; border-radius: 50%; flex: none; border: 2px solid var(--dc); }
+.ri.done .dot { background: var(--dc); }
+.ri .rq { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.ri .mk { font-size: .7rem; color: var(--muted); flex: none; }
+.ri .rn { display: none; font: 650 .8125rem var(--font-body); }
+.stage { padding: var(--space-6) var(--space-8) var(--space-8); min-width: 0; }
+.qcard { animation: qin .22s ease both; }
+@keyframes qin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.badge { display: inline-block; font: 650 .7rem var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--surface); padding: 2px 8px; border-radius: 4px; }
+.qnum { font: .8125rem var(--font-code); color: var(--muted); margin-left: var(--space-2); }
+.qtext { font-size: clamp(1.25rem, 2.6vw, 1.55rem); margin: var(--space-3) 0 var(--space-2); max-width: 36em; }
+.why { color: var(--muted); max-width: var(--reading-width); margin: 0 0 var(--space-4); font-size: .9375rem; }
+.why b { color: var(--accent); }
+.evt { font-size: .8125rem; margin-bottom: var(--space-2); }
+.evt th { font-size: .7rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.evt td, .evt th { padding: var(--space-2) var(--space-3) var(--space-2) 0; }
+.evt td:first-child { color: var(--muted); }
+.evt td.adv { color: var(--warning); font-weight: 650; }
+.opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); margin-top: var(--space-4); }
+.iv button.opt { display: flex; flex-direction: column; justify-content: flex-start; text-align: left; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4); font-size: .875rem; line-height: 1.5; position: relative; min-width: 0; }
+.iv button.opt:hover { border-color: var(--accent); background: var(--surface); }
+.iv button.opt.picked { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent); }
+.opt .lean { align-self: flex-start; font: 650 .65rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 0 6px; background: var(--surface); margin-bottom: var(--space-2); }
+.opt .ot { display: block; font-weight: 650; font-size: .9375rem; margin-bottom: var(--space-1); }
+.opt .od { display: block; color: var(--muted); }
+.other { display: flex; gap: var(--space-2); margin-top: var(--space-3); }
+.other input { flex: 1; min-width: 0; }
+.nav { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: var(--space-4); flex-wrap: wrap; }
+.iv button.link { background: none; border: 0; color: var(--accent); padding: var(--space-2) 0; min-height: 0; text-decoration: underline; text-underline-offset: .18em; }
+.iv button.link[disabled] { visibility: hidden; }
+.hint { font-size: .8125rem; color: var(--muted); margin: 0 0 var(--space-2); }
+.conflict { border-inline-start: 3px solid var(--danger); background: var(--warning-soft); padding: var(--space-2) var(--space-3); margin: var(--space-2) 0; font-size: .875rem; }
+.clean { border-inline-start: 3px solid var(--accent); background: var(--accent-soft); padding: var(--space-2) var(--space-3); margin: var(--space-2) 0; font-size: .875rem; }
+.dtable td, .dtable th { font-size: .875rem; }
+.dtable th { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.dtable .src { font-size: .75rem; color: var(--muted); white-space: nowrap; }
+.row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: var(--space-6); }
+.row h3 { margin: 0; }
+#reply { max-height: 26rem; overflow: auto; font-size: .8125rem; }
+.settled { font-size: .9375rem; }
+.settled li { margin-block: var(--space-2); max-width: var(--reading-width); }
+.mine { font: 650 .65rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--warning); border: 1px solid var(--warning); border-radius: 999px; padding: 0 6px; margin-right: 4px; }
+@media (max-width: 64rem) { .opts { grid-template-columns: 1fr; } }
+@media (max-width: 48rem) {
+  .iv-body { grid-template-columns: 1fr; min-height: 0; }
+  .rail { border-right: 0; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); padding: var(--space-2) var(--space-4); }
+  .rail-label, .ri .rq, .ri .mk { display: none; }
+  .ri .rn { display: inline; }
+  .iv button.ri { width: auto; min-width: 36px; justify-content: center; margin: 0; }
+  .stage { padding: var(--space-4); }
+  .iv-head { padding: var(--space-3) var(--space-4); }
+}
+pre.ev { white-space: pre; overflow-x: auto; overflow-wrap: normal; }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>router-polish: the interview</title>
+</head>
+<body>
+<main>
+<p class="eyebrow">router-polish · the interview · before code</p>
+<h1>Six decisions before router-polish is built</h1>
+
+<div class="ask">
+  <span class="tag">The prompt</span>
+  <blockquote>Interview me one question at a time about anything still ambiguous in router-polish. Prioritize questions where my answer would change the architecture.</blockquote>
+</div>
+
+<p class="lead">The blindspot pass found six things the ticket missed; this page cites them as blindspot 01 to 06 instead of deriving them again. Six choices are left where your answer changes what gets built: how <code>next</code> knows a verdict is committed, how a row stores the two new fields, what those fields mean, how the verdict command takes them, and which file owns the investigate text. You delegated the decisions, so each card marks the agent's lean. Take them all or change any; the reply flags picks that contradict each other.</p>
+
+<section class="iv" aria-label="Interview">
+  <div class="iv-head">
+    <b>router-polish: spec interview</b>
+    <span id="progress">0 of 6 answered</span>
+    <button type="button" id="takeLeans" class="secondary">Take all the agent's leans</button>
+  </div>
+  <div class="iv-body">
+    <nav class="rail" id="rail" aria-label="Interview progress"></nav>
+    <div class="stage" id="stage" aria-live="polite"></div>
+  </div>
+</section>
+
+<h2 id="settled">Not asked</h2>
+<p class="muted">These go into the reply as defaults. "My call" marks the agent's decisions rather than yours; strike any you disagree with.</p>
+<ul class="settled" id="settledList"></ul>
+
+<footer>router-polish · interview · answers feed the reference map and the plan</footer>
+</main>
+<script>
+(function () {
+"use strict";
+var RADII = {
+  arch: { label: "Architecture", color: "var(--accent)" },
+  data: { label: "Data model", color: "var(--ink)" },
+  sem: { label: "Meaning", color: "var(--warning)" },
+  cli: { label: "Interface", color: "var(--muted)" }
+};
+
+var Q = [
+{ id: "commit", radius: "arch", short: "Commit step", topic: "How next decides a page's verdicts are committed", lean: 0,
+  q: "How should next decide that a page's verdicts are committed?",
+  why: "Today a page is done only when its file and the whole of reviews.json are clean in git status (`router.rs:236-238`), and next walks pages in table order (`router.rs:276-282`). Any uncommitted row therefore sends you to commit the first passed page. In a clean copy, with the ticket's scenario and then a row that repeats:",
+  evidence: "# blindspots.html passed and committed; interventions.html committed, then passed\n$ git status --porcelain\n M harness/task-artifacts/router-polish/reviews.json\n$ cargo xtask task-artifact next --task router-polish\ncommit blindspots.html              # the row waiting is interventions.html's\n\n# then: log committed; hand edit, pass; revert the edit, pass again\n row  page                round verdict sha256    reviewer notes\n 2    interventions.html  1     pass    b303506c  r        n      in HEAD\n 3    interventions.html  1     pass    7e37f20e  r        n      new\n 4    interventions.html  1     pass    b303506c  r        n      new, equal to row 2",
+  leanWhy: "the log only grows, and next already checks that the working log starts with HEAD's rows (`router.rs:269-270`). A row is committed exactly when its index is below HEAD's row count: no search, and no row identity to get wrong. Rows carry no timestamp (`router.rs:30-39`), so equal rows happen, as row 4 shows. The page-file dirty check stays, so a page hand-edited after its committed pass still gets a commit step.",
+  opts: [
+    { t: "Whole-row prefix: rows past HEAD's row count are uncommitted", d: "next() reads HEAD's reviews.json once and passes its length to page_step. A page is done when its file is clean and none of its rows sits at or past that index. Rows 3 and 4 above are caught." },
+    { t: "The page's last row equals some row in HEAD's log", d: "Blindspot 01's first wording. Whole-row equality survives a best row sharing a revise row's hash, but row 4 equals committed row 2, so interventions.html reads as done with two rows uncommitted." },
+    { t: "Page plus hash: the page's latest sha256 appears in HEAD's log", d: "The obvious lookup. A best row takes the hash of the version it restores (`router.rs:125-130`), finds the committed revise row and is never committed (blindspot 01). Row 4 fools it too." }
+  ] },
+{ id: "encoding", radius: "data", short: "Field encoding", topic: "How Row stores the new fields", lean: 0,
+  q: "How do the new fields enter Row, and what happens to the 11 rows already committed?",
+  why: "Row and Log are `deny_unknown_fields`, parse() accepts only schema_version 1, and every verdict rewrites the whole file (`router.rs:28-58`, `158-162`). Blindspot 02 showed that plain `#[serde(default)]` writes `null` into every old row and that schema_version 2 makes next refuse workflow-router's log. The lean, built in a clean copy and run once against workflow-router's committed log:",
+  evidence: "#[serde(default, skip_serializing_if = \"Option::is_none\")]\npub findings: Option<u32>,\n#[serde(default, skip_serializing_if = \"Option::is_none\")]\npub model: Option<String>,\n\n$ cargo xtask task-artifact verdict --task workflow-router --page buy-in.html …\nrecorded {\"findings\":2,\"model\":\"gpt-5.1\",\"round\":2,\"verdict\":\"pass\",…}\n$ git diff --numstat -- harness/task-artifacts/workflow-router/reviews.json\n10  0                               # the new row only; the 11 old rows are untouched\n$ cargo xtask task-artifact next --task workflow-router\n\"ok\": true                          # old and new rows parse together",
+  leanWhy: "the change is additive, so schema_version 1 still describes every log, and each verdict's diff stays one appended row, which is what question 1's prefix rule relies on. Backfilling the old rows from their notes would edit committed history, and next would warn that the log no longer starts with its committed rows (`router.rs:269-275`, blindspot 03).",
+  opts: [
+    { t: "Option, skipped when absent; schema_version 1; old rows left alone", d: "As above. A missing field means \"not recorded\", never 0, and any rate counts only rows that carry it." },
+    { t: "Option with plain #[serde(default)]", d: "Old rows parse and the ticket's test passes, but the next verdict rewrites all 11 old rows with \"findings\": null. The advisory stays silent because null parses back to None (blindspot 02)." },
+    { t: "schema_version 2, old rows backfilled from their notes", d: "Every row carries both fields. parse() refuses anything but 1 (`router.rs:54`), so next errors on workflow-router until it is migrated, and the counts are read out of prose such as \"Open: a; b\"." }
+  ] },
+{ id: "count", radius: "sem", short: "What --findings counts", topic: "What --findings counts", lean: 0,
+  q: "Does --findings count every finding the reviewer listed, or only the ones that block?",
+  why: "The reviewer brief asks a PASS for one sentence and a REVISE for numbered findings (`review-artifact/SKILL.md:64-67`). In practice every PASS so far lists open items: all 8 in workflow-router's log and the one in this task's.",
+  evidence: "workflow-router  interview.html   round 1  pass  \"Open: conflict check misses R3 with log under target/; …\"\nworkflow-router  buy-in.html      round 2  pass  \"Open: case 2 'once that commit lands' is exact only …\"\nrouter-polish    blindspots.html  round 2  pass  \"Open: Codex reviewer inheriting the parent's model …\"\n\nPASS rows: 9    PASS rows whose notes list open items: 9",
+  leanWhy: "the field exists to compute rewrite rates per page type and model. Counting only blocking findings records 0 on all nine of those passes, so the count says nothing the verdict doesn't already say. A REVISE counts its numbered findings; a PASS counts its open items.",
+  opts: [
+    { t: "Every finding the reviewer listed, blocking or not", d: "A PASS with three open items records 3, a clean PASS 0, a REVISE its numbered findings." },
+    { t: "Blocking findings only: a PASS records 0", d: "Matches the brief's letter. Then findings is verdict == revise restated as a number, and nine of nine passes record 0 despite their open items." },
+    { t: "Two counts: blocking and open", d: "The most precise. A third field and a third flag, and with required flags (question 5) one more argument every verdict carries." }
+  ] },
+{ id: "model", radius: "data", short: "Whose model", topic: "Which model a row records, and what --model accepts", lean: 0,
+  q: "Whose model does a row record, and what does --model accept?",
+  why: "No file records the reviewer's model reliably: `artifact-reviewer.md:4` says `model: sonnet`, an alias a per-invocation model overrides, and the Codex reviewer names none (blindspot 05). The authors are similar: `artifact-author.md:4` pins `model: opus` and the Codex author names none. The validator --reviewer uses, `valid_id` (`config.rs:123-129`), allows only letters, digits, - and _:",
+  evidence: "$ cargo xtask task-artifact verdict … --reviewer gpt-5.1 …\n{\"error\":\"--reviewer names who reviewed, in letters, digits, - and _\",\"ok\":false}",
+  leanWhy: "the ticket asks for the reviewer's model (Problem 2), and that is the one the orchestrator knows when it records the review. Recording the author's model too is out of scope: the orchestrator would have to name the model behind each round, including the one a best row restores, and every Claude Code author is pinned to opus today, so a rate per authoring model has one value. It can come later as one more optional field, with no schema change, like these two. --model is a free token, non-empty and without whitespace, so gpt-5.1 passes. It records the model the orchestrator requested, or its own when it requested none (blindspot 05).",
+  opts: [
+    { t: "The reviewer's only, as a free token with dots allowed", d: "--model M must be non-empty with no whitespace. gpt-5.1 and sonnet both pass. The author's model is out of scope." },
+    { t: "Reviewer and author: --model and --author-model", d: "Blindspot 05's recommendation. Rewrite rates per authoring model become computable; a third flag and field, and the orchestrator must track which model wrote every round." },
+    { t: "The reviewer's only, checked with valid_id like --reviewer", d: "No new validator, but gpt-5.1 is refused, so dotted model names get respelled and stop matching what the host reports." }
+  ] },
+{ id: "flags", radius: "cli", short: "Required flags", topic: "Whether the new flags are required", lean: 0,
+  q: "Are --findings and --model required on every new verdict?",
+  why: "dispatch() matches the whole argument list as one exact slice, and verdict is a single twelve-element pattern (`main.rs:51-56`, `88-101`); commands with an optional flag get one arm per spelling (blindspot 04). Agents copy the command from the help (`main.rs:74`) and from next's say text:",
+  evidence: "# router.rs:199, what next prints today\ncargo xtask task-artifact verdict --task {id} --page {page} --verdict pass|revise --reviewer NAME --notes TEXT\n\n# under the lean\ncargo xtask task-artifact verdict --task {id} --page {page} --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes TEXT",
+  leanWhy: "one longer arm replaces today's, so main.rs stays a plain slice match and every new row carries both fields. Old rows still parse because the struct keeps the fields optional (question 2); only the old command line is refused. With optional flags, a say text that forgot them would record rows with neither field, and the rates would never fill.",
+  opts: [
+    { t: "Required: one longer arm replaces today's", d: "Old spelling refused with an error that names --model and --findings. The help, the say text and ARTIFACTS.md change together." },
+    { t: "Optional: one arm per combination", d: "Old command lines keep working. Two flags make four order-strict arms, and a row recorded from an old say text has neither field." },
+    { t: "A small any-order flag parser for verdict", d: "No arm growth, but it is the first non-slice argument handling in main.rs and needs its own tests for duplicate and unknown flags." }
+  ] },
+{ id: "skill", radius: "arch", short: "Investigate skill", topic: "Which file owns the investigate text", lean: 0,
+  q: "Which file is canonical for the investigate text: the GEPA seed or the new SKILL.md?",
+  why: "docs/skills/investigate.md is the evaluator's `--candidate` (`experiments/README.md:37`) and GEPA's seed (`experiments/gepa/README.md:5`), and the evaluator pastes the whole candidate into the agent's prompt. No check reads it today: DOC007 compares the two host copies only with each other and DOC008 reads only `name:` (`checks.rs:189-228`, blindspot 06).",
+  evidence: "# experiments/evaluator/stdin_agent.py:14-17\nprompt = (… + \"\\nUse this investigation skill, subject to repository rules:\\n\" + request[\"candidate_skill\"] + …)\n\n# proposed .claude/skills/investigate/SKILL.md, and the same bytes under .agents/skills\n---\nname: investigate\ndescription: Investigate this repository before changing behavior.\n---\n                                    # one blank line, then docs/skills/investigate.md byte for byte\n# Repository investigation skill\nStart with AGENTS.md, the product contract, and the architecture map. …\n\n# DOC009: strip the frontmatter and that blank line; the rest must equal the seed",
+  leanWhy: "the evaluator and GEPA keep reading the same seed file, unchanged, and the ticket rules out changing either (Out of scope). The hosts get the same text with frontmatter on top, and DOC009 fails `cargo xtask docs` as soon as a copy drifts; investigate_skill_matches_its_seed is its fixture test.",
+  opts: [
+    { t: "Seed stays canonical; SKILL.md = frontmatter + seed; DOC009 keeps them equal", d: "docs/skills/investigate.md is not edited. Both SKILL.md copies are written once from it; DOC007 keeps them equal to each other, DOC009 to the seed." },
+    { t: "Move the text into SKILL.md; leave a forwarding note at the seed path", d: "PR #3's precedent: docs/skills/author-artifact.md now says \"moved\". Here the note becomes the GEPA candidate, the evaluated agent is told to investigate with a link, and every check passes (blindspot 06)." },
+    { t: "Point the evaluator and GEPA at SKILL.md", d: "One file, but the frontmatter is pasted into every evaluated prompt and becomes text GEPA optimizes. It also changes the evaluator, which the ticket rules out." }
+  ] }
+];
+
+var CONFLICTS = [
+  { when: { encoding: 2, commit: 0 }, text: "Q2 rewrites committed rows, but Q1's prefix rule assumes the log only grows. Until the migration is committed, HEAD's rows are not a prefix and every page falls back to the whole-file check. Commit the migration alone, before any new verdict." },
+  { when: { model: 1, flags: 1 }, text: "Q4 adds --author-model and Q5 makes the flags optional: three or more optional flags are at least eight order-strict arms in main.rs. Make them required or take the any-order parser." },
+  { when: { count: 2, flags: 1, model: [0, 2, -1] }, text: "Q3 adds a second count and Q5 makes the flags optional: three or more optional flags are at least eight order-strict arms in main.rs. Make them required or take the any-order parser." }
+];
+
+var SETTLED = [
+  "MINE If HEAD's log is not a prefix of the working log (someone edited it by hand), next falls back to today's whole-file check for every page, and the existing advisory says why (`router.rs:269-275`).",
+  "MINE A best row takes the flags like any verdict: the finding count of the round it restores and that round's reviewer model.",
+  "MINE The command is spelled once, `--task --page --verdict --reviewer --model --findings --notes`, identically in the match arm, the help (`main.rs:74`), the say text (`router.rs:199`) and ARTIFACTS.md (blindspot 04).",
+  "MINE The reviewer brief is unchanged: the orchestrator counts what the reply lists, and ARTIFACTS.md defines the count beside the command.",
+  "`--findings` is a non-negative integer; `--model` records what the orchestrator asked for, never the alias read back from `.claude/agents` (blindspot 05).",
+  "The 11 workflow-router rows stay as committed; a missing field means \"not recorded\", never 0 (blindspot 03).",
+  "Both SKILL.md copies get their own harness/docs.json entry, or DOC004 fires (blindspot 06)."
+];
+
+var answers = Q.map(function () { return null; });
+var cur = 0, pending = null;
+var rail = document.getElementById("rail"), stage = document.getElementById("stage");
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function fmt(s) { return esc(s).replace(/`([^`]+)`/g, "<code>$1</code>"); }
+function plain(s) { return s.replace(/^MINE /, "(agent's call) ").replace(/`/g, ""); }
+function idx(id) { for (var i = 0; i < Q.length; i++) if (Q[i].id === id) return i; return -1; }
+function own(i) { return answers[i] && answers[i].text != null; }
+function answerText(i) { var a = answers[i]; return !a ? null : own(i) ? a.text : Q[i].opts[a.oi].t; }
+function source(i) { var a = answers[i]; return !a ? "unanswered" : own(i) ? "your wording" : a.oi === Q[i].lean ? "agent's lean" : "your pick"; }
+function count() { return answers.filter(Boolean).length; }
+
+function renderRail() {
+  var mk = { "agent's lean": "lean", "your pick": "✓", "your wording": "own", unanswered: "" };
+  var h = '<div class="rail-label">Ordered by build impact</div>';
+  Q.forEach(function (q, i) {
+    h += '<button type="button" class="ri' + (i === cur ? " cur" : "") + (answers[i] ? " done" : "") + '" data-i="' + i +
+      '" style="--dc:' + RADII[q.radius].color + '" title="' + esc((i + 1) + ". " + q.short + (answers[i] ? " (" + source(i) + ")" : "")) +
+      '" aria-label="Question ' + (i + 1) + ': ' + esc(q.short) + '"><span class="dot"></span><span class="rn">' + (i + 1) + '</span><span class="rq">' +
+      (i + 1) + '. ' + esc(q.short) + '</span><span class="mk">' + mk[source(i)] + '</span></button>';
+  });
+  h += '<button type="button" class="ri' + (cur === Q.length ? " cur" : "") + '" data-i="' + Q.length +
+    '" style="--dc:var(--line)" title="Your reply" aria-label="Your reply"><span class="dot"></span><span class="rn">Reply</span><span class="rq">Reply</span></button>';
+  rail.innerHTML = h;
+  $("progress").textContent = count() + " of " + Q.length + " answered";
+}
+
+// Trailing "# note" comments are dimmed; Rust attributes (#[...]) are not comments.
+function evidence(q) {
+  return '<pre class="ev">' + esc(q.evidence).replace(/(^|\s)(# [^\n]*)/g, '$1<span class="c">$2</span>') + '</pre>';
+}
+
+function renderQuestion() {
+  var q = Q[cur], r = RADII[q.radius], a = answers[cur], at = cur;
+  var h = '<div class="qcard"><span class="badge" style="background:' + r.color + '">' + r.label + '</span>' +
+    '<span class="qnum">Question ' + (cur + 1) + ' of ' + Q.length + '</span><h2 class="qtext">' + esc(q.q) + '</h2>' +
+    '<p class="why">' + fmt(q.why) + '</p>' + evidence(q) +
+    '<p class="why"><b>Agent\'s lean, option ' + (q.lean + 1) + ':</b> ' + fmt(q.leanWhy) + '</p><div class="opts">';
+  q.opts.forEach(function (o, oi) {
+    var p = !!(a && !own(cur) && a.oi === oi);
+    h += '<button type="button" class="opt' + (p ? " picked" : "") + '" data-oi="' + oi + '" aria-pressed="' + p + '">' +
+      (oi === q.lean ? '<span class="lean">agent\'s lean</span>' : '') +
+      '<span class="ot">' + (oi + 1) + '. ' + esc(o.t) + '</span><span class="od">' + fmt(o.d) + '</span></button>';
+  });
+  h += '</div><div class="other"><input type="text" id="otherIn" aria-label="Your own answer" placeholder="Or answer in your own words…" value="' +
+    (own(cur) ? esc(a.text) : "") + '"><button type="button" id="otherGo" class="secondary">Answer</button></div>' +
+    '<div class="nav"><button type="button" class="link" id="back"' + (cur === 0 ? " disabled" : "") + '>← Previous</button>' +
+    '<button type="button" class="link" id="skip">Skip →</button></div></div>';
+  stage.innerHTML = h;
+  stage.querySelectorAll(".opt").forEach(function (el) {
+    el.addEventListener("click", function () {
+      if (pending !== null || cur !== at) return;
+      answers[at] = { oi: +el.getAttribute("data-oi") };
+      stage.querySelectorAll(".opt").forEach(function (b) { b.classList.toggle("picked", b === el); b.setAttribute("aria-pressed", b === el); });
+      renderRail();
+      pending = setTimeout(function () { pending = null; if (cur === at) go(at + 1); }, 220);
+    });
+  });
+  var inp = $("otherIn");
+  function submit() {
+    if (pending !== null || cur !== at) return;
+    var v = inp.value.trim(); if (!v) { inp.focus(); return; }
+    answers[at] = { text: v }; go(at + 1);
+  }
+  $("otherGo").addEventListener("click", submit);
+  inp.addEventListener("keydown", function (e) { if (e.key === "Enter") submit(); });
+  $("back").addEventListener("click", function () { go(at - 1); });
+  $("skip").addEventListener("click", function () { go(at + 1); });
+}
+
+// The option that will be built: the pick, or the lean when unanswered. Own wording has none.
+function effective(i) { return !answers[i] ? Q[i].lean : own(i) ? -1 : answers[i].oi; }
+function conflicts() {
+  return CONFLICTS.filter(function (c) {
+    return Object.keys(c.when).every(function (id) { return [].concat(c.when[id]).indexOf(effective(idx(id))) >= 0; });
+  });
+}
+function unchecked() { return Q.map(function (q, i) { return own(i) ? "Q" + (i + 1) : null; }).filter(Boolean); }
+
+function reply() {
+  var L = ["Answers to the router-polish interview, in order of build impact.", ""],
+    tags = { "agent's lean": " [agent's lean]", "your pick": " [not the agent's lean]", "your wording": " [my wording; ask if unclear]", unanswered: "" };
+  Q.forEach(function (q, i) {
+    L.push((i + 1) + ". " + q.topic + ": " + (answerText(i) || "(unanswered; use the agent's lean: " + q.opts[q.lean].t + ")") + tags[source(i)]);
+  });
+  var cs = conflicts(), sk = unchecked();
+  if (cs.length) { L.push("", "Conflicts to resolve before writing code:"); cs.forEach(function (c) { L.push("- " + c.text); }); }
+  else L.push("", "No conflicts between these answers.");
+  if (sk.length) L.push("Conflict check skipped for " + sk.join(", ") + ": answered in my own words.");
+  if (Q.every(function (q, i) { return effective(i) === q.lean; })) L.push("Every answer is the agent's lean, taken as delegated.");
+  L.push("", "Defaults I accept unless struck:");
+  SETTLED.forEach(function (s) { L.push("- " + plain(s)); });
+  return L.join("\n");
+}
+
+function renderSummary() {
+  var cs = conflicts(), sk = unchecked();
+  var ch = cs.length ? cs.map(function (c) { return '<p class="conflict">' + esc(c.text) + '</p>'; }).join("") : '<p class="clean">No conflicts between these answers.</p>';
+  if (sk.length) ch += '<p class="hint">Conflict check skipped for ' + sk.join(", ") + ': answered in your own words.</p>';
+  stage.innerHTML = '<div class="qcard"><span class="badge" style="background:var(--accent)">Your reply</span>' +
+    '<h2 class="qtext">' + count() + ' of ' + Q.length + ' decided</h2>' +
+    '<p class="why">Unanswered questions go back as "use the agent\'s lean", so the plan never guesses silently.</p>' + ch +
+    '<div class="table-scroll"><table class="dtable"><thead><tr><th>#</th><th>Question</th><th>Decision</th><th>Source</th><th></th></tr></thead><tbody>' +
+    Q.map(function (q, i) {
+      var t = answerText(i);
+      return '<tr><td>' + (i + 1) + '</td><td>' + esc(q.topic) + '</td><td>' + (t ? esc(t) : '<span class="muted">—</span>') +
+        '</td><td class="src">' + source(i) + '</td><td><button type="button" class="link" data-i="' + i + '">edit</button></td></tr>';
+    }).join("") + '</tbody></table></div>' +
+    '<div class="row"><h3>Copy this back</h3><button type="button" id="copyReply">Copy reply</button></div><pre id="reply"></pre>' +
+    '<button type="button" class="link" id="restart">↺ Clear answers and start over</button></div>';
+  $("reply").textContent = reply();
+  stage.querySelectorAll(".dtable .link").forEach(function (b) { b.addEventListener("click", function () { go(+b.getAttribute("data-i")); }); });
+  $("restart").addEventListener("click", function () { answers = Q.map(function () { return null; }); go(0); });
+  $("copyReply").addEventListener("click", function (e) { copy(reply(), e.currentTarget); });
+}
+
+function go(i) {
+  if (pending !== null) { clearTimeout(pending); pending = null; }
+  cur = Math.max(0, Math.min(i, Q.length));
+  renderRail();
+  if (cur === Q.length) renderSummary(); else renderQuestion();
+}
+
+function copy(text, btn) {
+  function done() { var t = btn.textContent; btn.textContent = "Copied"; setTimeout(function () { btn.textContent = t; }, 1400); }
+  function fallback() {
+    var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done();
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+
+rail.addEventListener("click", function (e) { var b = e.target.closest("button.ri"); if (b) go(+b.getAttribute("data-i")); });
+$("takeLeans").addEventListener("click", function () {
+  Q.forEach(function (q, i) { if (!answers[i]) answers[i] = { oi: q.lean }; });
+  go(Q.length);
+});
+$("settledList").innerHTML = SETTLED.map(function (s) {
+  return "<li>" + (s.indexOf("MINE ") === 0 ? '<span class="mine">my call</span>' + fmt(s.slice(5)) : fmt(s)) + "</li>";
+}).join("");
+go(0);
+})();
+</script>
+</body>
+</html>

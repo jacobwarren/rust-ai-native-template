@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "blindspots.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "8c189c5491a8e3249289e75852363e4225e043a84a7d0fde146903aa8ee39532",
+      "reviewer": "artifact-reviewer",
+      "notes": "Card 07 states DOC004 as live though e6daad7 fixed it; Landmine 02 line counts depend on field position; ~70% over exemplar height, cards 03 and 07 thinnest."
+    },
+    {
+      "page": "blindspots.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "98312cbf2b8dea5a8d178d1c07770482adde135bcd3709322aa9c2f067beac39",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: Codex reviewer inheriting the parent's model is hedged, not verified; three decisions carry the author's recommended labels."
+    },
+    {
+      "page": "interventions.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "0af0e60cdca8884360c57fb27cada03f97d3223161f55163991c03c7b24e3f13",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: scenario row 3 should say its pass row is uncommitted; patch sizes and 'six tests pass' not reproduced by the reviewer; 12 cards acceptable."
+    },
+    {
+      "page": "reference.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "4be501f726f3905a38c192bfc433cd1d7909773583f419e0f518dce913460525",
+      "reviewer": "artifact-reviewer",
+      "notes": "False: no task record carries tier (three of six do); 'never written back' uncited; section 1 bullets 2-3 and two edge rows repeat the notes; 6,194 px vs 4,680."
+    },
+    {
+      "page": "interview.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "2cb5777e61ae4abe0e0e0a878a2200dcdc51d4ab53e4fe9424cf408022f447db",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: Q1 row table is hand-built from reviews.json, label it; conflict flags 2 and 3 share text; Codex model claims rest on blindspot 05."
+    },
+    {
+      "page": "reference.html",
+      "round": 2,
+      "verdict": "revise",
+      "sha256": "ee5f4b9e9d166c2966b5b1c22727d959d727ce61d5eb698cf808d6699a717de4",
+      "reviewer": "artifact-reviewer",
+      "notes": "Note 2's repeated-row case is false for revise rows (round differs); an identical repeat needs pass rows (pass, edit, pass, revert, pass). Still ~20% over length."
+    },
+    {
+      "page": "reference.html",
+      "round": 3,
+      "verdict": "pass",
+      "sha256": "b693cc0308d3e4e1cde583be8a69fa61599530853edf0f9b3b37e33298ca8a5a",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: edge rows 'best row' and 'Log reformatted' not run by the reviewer; ~20% over exemplar height."
+    },
+    {
+      "page": "plan.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "d96dfbda250f579c294864c2b16d18d7d6b814f1ce31d8af9c9e77b3e1fc4332",
+      "reviewer": "artifact-reviewer",
+      "notes": "A1 error line/column from an older log (67 now, not 51); A1 example row invented without a label; 65% over exemplar height, A5 belongs in C, alternatives re-derive blindspots."
+    },
+    {
+      "page": "plan.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "2fd98024cb819cebbbd1fabe1ff8ddb7c72020839bfb41c7edbe671edf0c259e",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: ~10% over exemplar height (33% on phone), carried by the A2 refusal table and limit callouts; A3 Today column not re-run by this reviewer."
+    },
+    {
+      "page": "implementation.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "e6a82ed26a21226577d9d6d15acb7c8dd868964e0759ad87bd3d1a8dfa8c133a",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: Codex validator and debug prompt-input claims not marked as unrun; checked-against-plan and what-is-left sections are process; 007 and 32x-e cases only partly run.",
+      "findings": 3,
+      "model": "sonnet"
+    },
+    {
+      "page": "buy-in.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "2751705e56a163f1cb675183f2aa46fd6c2416f5ea3eff76d2adfc40000f5506",
+      "reviewer": "artifact-reviewer",
+      "notes": "Headline +314/-21 in 12 files is wrong (+332/-23 over 14 non-page files); Codex strict-YAML claim and other carried claims not marked as not re-run.",
+      "findings": 2,
+      "model": "sonnet"
+    },
+    {
+      "page": "quiz.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "8db6b1fbda52c857205d12b0f1c16b6aeb922c931bec28461eb2730e17d461e1",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: Q1 and Q2 weakest on understanding (Q2 leans on plan A1); stats strip counts 17 files; Q1 and Q2 not re-run by the reviewer.",
+      "findings": 3,
+      "model": "sonnet"
+    },
+    {
+      "page": "buy-in.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "aac6f6113ca63d9992429d92bdc6568f92df863d0d390de4fdcdd033dafbd422",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: router.rs:236 cites the branch, not the selection (say around 236); demo cases 1 and 2 not re-run by this reviewer.",
+      "findings": 2,
+      "model": "sonnet"
+    }
+  ]
+}

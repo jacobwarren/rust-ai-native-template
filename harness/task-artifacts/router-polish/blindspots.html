@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blindspot pass: next's commit step, review-log counts and models, the investigate skill</title>
+<style>
+  main { max-width: 62rem; }
+  .prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+  .prompt-card blockquote { font-style: italic; margin: var(--space-3) 0 0; }
+  button.copy { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  button.copy.done { background: var(--ink); border-color: var(--ink); }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-block: var(--space-6); }
+  @media (max-width: 44rem) { .vs { grid-template-columns: 1fr; } }
+  .vs > div { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4); background: var(--surface); }
+  .vs > div.actual { border-color: var(--warning); background: var(--warning-soft); }
+  .vs p { margin: var(--space-2) 0 0; font-size: .95rem; }
+  .tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+  .actual .tag { color: var(--warning); }
+  .stats { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); font-family: var(--font-code); font-size: .82rem; padding: var(--space-3) var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--accent-soft); }
+  .stats b { color: var(--danger); }
+  .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6) var(--space-4); margin-block: var(--space-4); }
+  .card.off { opacity: .6; }
+  .card-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+  .card-head h3 { flex: 1 1 100%; margin: var(--space-2) 0 0; font-size: 1.2rem; }
+  .badge { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border: 1px solid; border-radius: var(--control-radius); padding: 1px var(--space-2); }
+  .landmine { color: var(--danger); border-color: var(--danger); background: #fbeeee; }
+  .history { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+  .convention { color: var(--muted); border-color: var(--line); background: var(--paper); }
+  .concept { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .num { font-family: var(--font-code); font-size: .8rem; color: var(--muted); }
+  .card p, .card li { font-size: .95rem; }
+  .card p { margin-block: var(--space-3); }
+  .card ul { padding-inline-start: var(--space-6); margin-block: var(--space-2); }
+  .card code, .vs code, .lead code, fieldset code { font-size: .84em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 3px; overflow-wrap: anywhere; }
+  pre.ev { font-size: .8rem; line-height: 1.5; margin: var(--space-3) 0; background: #f3f6f1; }
+  pre.ev .c { color: var(--muted); }
+  pre.ev .bad { color: var(--danger); }
+  pre.ev .ok { color: var(--accent); }
+  .bite { display: flex; gap: var(--space-3); font-size: .92rem; border-inline-start: 3px solid var(--danger); background: var(--paper); padding: var(--space-3) var(--space-4); border-radius: 0 var(--control-radius) var(--control-radius) 0; margin-block: var(--space-3); }
+  .bite .lbl { flex: none; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--danger); padding-top: 3px; }
+  @media (max-width: 30rem) { .bite { flex-direction: column; gap: var(--space-1); } }
+  .chip { display: flex; gap: var(--space-3); align-items: flex-start; border: 1px dashed var(--accent); border-radius: var(--control-radius); padding: var(--space-3); background: var(--accent-soft); margin: var(--space-3) 0 0; }
+  .chip label { margin: 0; display: flex; gap: var(--space-2); align-items: flex-start; font-size: .9rem; flex: 1; min-width: 0; }
+  .chip label input { margin-top: 5px; flex: none; }
+  .chip .txt { font-family: var(--font-code); font-size: .8rem; overflow-wrap: anywhere; }
+  fieldset { background: var(--surface); padding: var(--space-4) var(--space-6); }
+  fieldset label { display: flex; gap: var(--space-2); align-items: flex-start; margin-block: var(--space-2); }
+  fieldset label input { margin-top: 6px; flex: none; }
+  .rec { font-size: .72rem; font-weight: 700; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; margin-left: var(--space-1); }
+  .conseq { margin: var(--space-3) 0 0; padding: var(--space-3) var(--space-4); font-size: .9rem; }
+  .decisions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); align-items: start; }
+  @media (max-width: 56rem) { .decisions { grid-template-columns: 1fr; } }
+  .decisions fieldset { margin: 0; padding: var(--space-3) var(--space-4) var(--space-4); }
+  .decisions label { font-size: .9rem; line-height: 1.45; }
+  .decisions .conseq { font-size: .84rem; line-height: 1.45; }
+  .final { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6) var(--space-6); margin-top: var(--space-8); }
+  .final .row { margin-bottom: var(--space-3); }
+  #final-prompt { font-size: .76rem; line-height: 1.5; background: var(--paper); margin-bottom: 0; max-height: 15rem; overflow-y: auto; }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Blindspot pass · before code · router-polish</p>
+  <h1>Unknown unknowns in router-polish</h1>
+  <p class="lead">Six things the ticket doesn't mention, each with the code or a run in a clean copy that shows it. Untick a finding to drop it from the prompt at the bottom, and settle the three decisions.</p>
+
+  <div class="prompt-card">
+    <div class="row"><span class="tag">The prompt</span><button class="copy" data-copy="user-prompt">Copy prompt</button></div>
+    <blockquote id="user-prompt">I'm about to fix next's commit-step page naming, add finding counts and the reviewer model to review-log rows, and turn the investigate brief into a host skill in xtask/src/router.rs, the review log and docs/skills/investigate.md. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation.</blockquote>
+  </div>
+
+  <div class="vs">
+    <div>
+      <div class="tag">What you asked for</div>
+      <p>Three loose ends: change one condition in <code>page_step</code>, add two optional fields and two flags, and copy a Markdown file into two skill folders. A few dozen lines each.</p>
+    </div>
+    <div class="actual">
+      <div class="tag">What you're actually walking into</div>
+      <p>A commit check that <strong>sees only whole files</strong>, a hash <strong>two rows share</strong>, a log writer that <strong>rewrites every committed row</strong>, a matcher with <strong>no optional flags</strong>, a reviewer model <strong>no file records</strong>, and a seed <strong>no check reads</strong>.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <span><b>3</b> landmines</span>
+    <span>1 convention</span>
+    <span>1 missing concept</span>
+    <span>1 history: 11 committed rows whose counts exist only as prose</span>
+  </div>
+
+  <h2>The blindspots</h2>
+
+  <!-- 01 -->
+  <section class="card" id="f1">
+    <div class="card-head"><span class="badge landmine">Landmine</span><span class="num">01</span>
+      <h3><code>next</code> sees only whole files, and the obvious per-row fix keys on a hash two rows share</h3></div>
+    <p><code>page_step</code> calls a page done only when the page file <em>and the entire log</em> are clean in <code>git status</code> (<code>router.rs:189-192</code>, <code>236-238</code>). <code>next</code> walks pages in table order (<code>277-306</code>), so while any row is uncommitted, the first passed page gets the commit step. That is the ticket's bug.</p>
+    <p>The fix asks whether <em>this page's last row</em> is in HEAD's log, which <code>next()</code> already reads for the advisory (<code>269-270</code>). The key is the trap. A <code>best</code> row takes the hash of the version it restores (<code>125-130</code>), so it shares <code>sha256</code> with an earlier <code>revise</code> row. Round 1 committed as revise, two rewrites reviewed, round 1 restored as best:</p>
+    <pre class="ev">HEAD     {"page":"blindspots.html","round":1,"verdict":"revise","sha256":"13e45918…"}
+working  {"page":"blindspots.html","round":1,"verdict":<span class="bad">"best"</span>,  "sha256":<span class="bad">"13e45918…"</span>}
+$ git status --porcelain
+ M harness/task-artifacts/TASK-1/reviews.json   <span class="c"># the page itself is clean: it is round 1 again</span></pre>
+    <p><code>Row</code> derives <code>PartialEq</code> (<code>28-39</code>), so whole-row equality is free. Keep the page check too: <code>tests/router.rs:84-101</code> pins a page hand-edited after its committed pass as a commit step.</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>A lookup by page and hash finds the committed revise row and moves on, leaving both revise rows and the best row uncommitted. The ticket's test never reaches this path.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="1"><span class="txt" id="chip-1">Read HEAD's reviews.json once in next() and pass it to page_step. A page is done when its file is clean and its last working row equals a row in HEAD's log by whole-row equality, never page+sha256. Besides the ticket's test, add one where a restored best row shares its hash with a committed revise row, and keep the hand-edit case in next_walks_author_review_rewrite_and_commit passing.</span></label></div>
+  </section>
+
+  <!-- 02 -->
+  <section class="card" id="f2">
+    <div class="card-head"><span class="badge landmine">Landmine</span><span class="num">02</span>
+      <h3>An <code>Option</code> field keeps old logs parsing, but the next verdict rewrites every committed row</h3></div>
+    <p><code>Row</code> and <code>Log</code> are <code>deny_unknown_fields</code>, and <code>parse()</code> accepts only <code>schema_version</code> 1 (<code>router.rs:28-58</code>). <code>verdict()</code> reads the whole log, pushes one row and writes the whole log back (<code>108-111</code>, <code>158-162</code>). In a scratch copy I added <code>findings: Option&lt;u32&gt;</code> to <code>Row</code>, before or after <code>notes</code>, and recorded one verdict on workflow-router's 11 committed rows:</p>
+    <pre class="ev"><span class="c"># #[serde(default)]</span>
+<span class="bad">"findings": null  × 12</span>     <span class="c"># each of the 11 old rows gains the key, plus the new row</span>
+<span class="c"># #[serde(default, skip_serializing_if = "Option::is_none")]</span>
+<span class="ok">"findings": null  × 0</span>      <span class="c"># old rows unchanged; the diff is the new row only</span>
+<span class="c"># schema_version required to be 2</span>
+$ xtask task-artifact next --task workflow-router
+<span class="bad">{"error":"reviews.json: schema_version must be …","ok":false}</span>   exit 1</pre>
+    <div class="bite"><span class="lbl">Why it bites</span><span>The ticket's "old rows still parse" test passes with plain <code>#[serde(default)]</code>, and the "no longer starts with its committed rows" advisory (<code>269-275</code>) stays silent because <code>null</code> parses back to <code>None</code>. The only trace is a diff that edits every row of an append-only log.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="2"><span class="txt" id="chip-2">Add the new fields as Option with #[serde(default, skip_serializing_if = "Option::is_none")]; keep schema_version 1 and deny_unknown_fields. In verdict_records_findings_and_model, record a verdict on a log of old-shape rows and assert the old rows gain no new keys.</span></label></div>
+  </section>
+
+  <!-- 03 -->
+  <section class="card" id="f3">
+    <div class="card-head"><span class="badge history">History</span><span class="num">03</span>
+      <h3>The 11 committed rows keep their counts as prose, and filling them in edits history</h3></div>
+    <p>workflow-router's <code>reviews.json</code> is the only log. Its rows name the subagent <code>artifact-reviewer</code>, not a model, and keep open items in the notes ("Open: …"). Setting <code>findings: 2</code> on one by hand makes <code>next</code> warn that the log "no longer starts with its committed rows" (<code>router.rs:269-275</code>).</p>
+    <div class="chip"><label><input type="checkbox" checked data-chip="3"><span class="txt" id="chip-3">Leave the 11 workflow-router rows untouched. A missing field means "not recorded", never 0, and any rate counts only rows that carry the field.</span></label></div>
+  </section>
+
+  <!-- 04 -->
+  <section class="card" id="f4">
+    <div class="card-head"><span class="badge convention">Convention</span><span class="num">04</span>
+      <h3><code>main.rs</code> matches argv as one exact, ordered slice; an optional flag means another arm</h3></div>
+    <p><code>dispatch()</code> matches the whole argument list as a slice (<code>main.rs:51-56</code>). <code>verdict</code> is one twelve-element pattern (<code>88-101</code>), and optional arguments elsewhere are extra arms: <code>handoff</code>, <code>gaps</code> and <code>readiness</code> each appear with and without <code>--report</code> (<code>121-124</code>, <code>175-182</code>). In the clean copy:</p>
+    <pre class="ev">$ xtask task-artifact verdict --task … --page … --verdict … --reviewer r --notes n <span class="bad">--findings 2</span>
+{"error":"unknown command or extra arguments; run cargo xtask help","ok":false}
+$ xtask task-artifact verdict --task … <span class="bad">--reviewer r --page …</span> --verdict … --notes n
+{"error":"unknown command or extra arguments; run cargo xtask help","ok":false}
+$ xtask task-artifact verdict … --reviewer <span class="bad">gpt-5.1</span> …
+{"error":"--reviewer names who reviewed, in letters, digits, - and _","ok":false}</pre>
+    <p>Two optional flags make four order-strict arms, and the refusal names no flag. Agents copy the command from the help (<code>main.rs:74</code>), the <code>say</code> text <code>next</code> prints (<code>router.rs:199</code>) and <code>ARTIFACTS.md:51-52</code>. <code>valid_id</code> (<code>config.rs:123-129</code>) refuses dots, so reusing it for <code>--model</code> rejects <code>gpt-5.1</code>.</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>If the flags are optional and line 199 doesn't carry them, no row ever gets a count or a model.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="4"><span class="txt" id="chip-4">Spell the verdict command identically, in the match arm's order, in the say text at router.rs:199, the help at main.rs:74 and ARTIFACTS.md. Validate --model with its own rule that allows dots (valid_id refuses gpt-5.1) and --findings as a non-negative integer.</span></label></div>
+  </section>
+
+  <!-- 05 -->
+  <section class="card" id="f5">
+    <div class="card-head"><span class="badge concept">Missing concept</span><span class="num">05</span>
+      <h3>No file records the reviewer's model, and it can't explain an author's rewrites</h3></div>
+    <p><code>.claude/agents/artifact-reviewer.md:4</code> says <code>model: sonnet</code>, an alias that a per-invocation <code>model</code> parameter overrides (Claude Code subagent docs). <code>.codex/agents/artifact-reviewer.toml</code> names no model, so the Codex reviewer inherits the parent's unless the spawn or an <code>[agents]</code> default sets one. The reviewer has no Write or Edit tool (<code>artifact-reviewer.md:5</code>), so <code>--model</code> is the orchestrator's account of what it started.</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>The ticket wants "rewrite rates per page type and per model", but a rewrite means the <em>author's</em> page failed, and no row carries the author's model. Copying "sonnet" from the frontmatter is wrong whenever the orchestrator passed a model.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="5"><span class="txt" id="chip-5">--model records the model the orchestrator requested when it started the reviewer, or its own session model when it requested none; never the alias read back from .claude/agents. Say so in ARTIFACTS.md.</span></label></div>
+  </section>
+
+  <!-- 06 -->
+  <section class="card" id="f6">
+    <div class="card-head"><span class="badge landmine">Landmine</span><span class="num">06</span>
+      <h3>The seed is pasted whole into the agent's prompt, and no check or CI job reads it</h3></div>
+    <p>The agent-workflow buy-in kept <code>investigate.md</code> a plain doc because it is the experiments' seed. <code>experiments/README.md:37</code> passes it as <code>--candidate</code>, <code>trial.py:62-63</code> checks only its size, <code>stdin_agent.py:14-17</code> pastes it into the agent's prompt, and GEPA optimizes <code>seed_skill</code> as one text (<code>gepa/config.py:47-49</code>, <code>optimize.py:70-76</code>). With a SKILL.md as the candidate:</p>
+    <pre class="ev">$ python3 experiments/evaluator/stdin_agent.py -- cat &lt; request.json   <span class="c"># candidate = frontmatter + seed</span>
+Use this investigation skill, subject to repository rules:
+<span class="bad">---
+name: investigate
+description: Investigate this repository before changing behavior.
+---</span>
+# Repository investigation skill …</pre>
+    <p>No check reads the seed. The experiment-contracts job (<code>ci.yml:54-87</code>) uses its own (<code>test_gepa.py:45</code>, <code>demo.py:58</code>), DOC007 compares the host folders only with each other, and DOC008 reads only <code>name:</code> (<code>checks.rs:189-228</code>). With both copies one sentence off the seed, <code>cargo xtask docs</code> reported no skill error. A "moved" note like <code>docs/skills/author-artifact.md</code>, PR #3's precedent, would become the candidate and pass every check. Each new <code>SKILL.md</code> also needs its own <code>harness/docs.json</code> entry, or DOC004 fires (<code>checks.rs:153-162</code>).</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>The skill and the seed drift apart silently. The first sign would be a paid GEPA run that optimized the wrong text.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="6"><span class="txt" id="chip-6">docs/skills/investigate.md stays the full, unchanged seed and remains the --candidate and seed_skill path. Each host SKILL.md is frontmatter (name: investigate, a description for ordinary work), one blank line, then the seed's exact bytes. Add a docs check that strips the frontmatter and that blank line and compares to the seed byte for byte; investigate_skill_matches_its_seed is its fixture test, like skill_copies_must_match_and_name_their_folder (hooks_author.rs:117). Register both copies in harness/docs.json. Never point the evaluator or GEPA at a SKILL.md.</span></label></div>
+  </section>
+
+  <h2>Three decisions the prompt has to settle</h2>
+
+  <div class="decisions">
+  <fieldset>
+    <legend><code>--findings</code> on a PASS counts</legend>
+    <label><input type="radio" name="count" value="revise"><span>Numbered findings only; a PASS records 0, as the reviewer brief reads</span></label>
+    <label><input type="radio" name="count" value="all" checked><span>Every finding the review returned, including a PASS's open items<span class="rec">recommended</span></span></label>
+    <output class="conseq" id="count-out"></output>
+  </fieldset>
+
+  <fieldset>
+    <legend>The row records the model of</legend>
+    <label><input type="radio" name="model" value="reviewer"><span>The reviewer's only, as the ticket says</span></label>
+    <label><input type="radio" name="model" value="both" checked><span>The reviewer's in <code>--model</code>, the author's in <code>--author-model</code><span class="rec">recommended</span></span></label>
+    <output class="conseq" id="model-out"></output>
+  </fieldset>
+
+  <fieldset>
+    <legend>The new flags are</legend>
+    <label><input type="radio" name="flags" value="required" checked><span>Required: one arm replaces today's<span class="rec">recommended</span></span></label>
+    <label><input type="radio" name="flags" value="optional"><span>Optional: one arm per combination</span></label>
+    <label><input type="radio" name="flags" value="parser"><span>A small flag parser for <code>verdict</code>, any order</span></label>
+    <output class="conseq" id="flags-out"></output>
+  </fieldset>
+  </div>
+
+  <section class="final">
+    <div class="row"><span class="eyebrow">Your improved prompt: everything above, folded in</span><button class="copy" data-copy="final-prompt">Copy prompt</button></div>
+    <pre id="final-prompt" tabindex="0" aria-label="Improved prompt"></pre>
+  </section>
+</main>
+
+<script>
+(function () {
+  var D = {
+    count: {
+      revise: ["--findings counts the numbered findings of a REVISE; a PASS records 0.",
+               "Matches the reviewer brief, but all eight workflow-router passes listed open items, and this count would hide them."],
+      all: ["--findings counts every finding the review returned, including the open items a PASS leaves; ARTIFACTS.md states this beside the verdict command. Add one line to review-artifact asking a PASS to number its open items.",
+            "Matches how reviewers already report. The reviewer brief changes in both host copies (DOC007 keeps them equal)."]
+    },
+    model: {
+      reviewer: ["Rows record the reviewer's model only (--model).",
+                 "Shows how strict each reviewer model is; rewrite rates per authoring model stay uncomputable (finding 05)."],
+      both: ["Rows record the reviewer's model (--model) and the author's (--author-model), both optional in the struct.",
+             "One more field and flag makes per-author-model rewrite rates computable."]
+    },
+    flags: {
+      required: ["The new flags are required on new verdicts: a single match arm replaces today's, and the refusal of the old spelling names the missing flags.",
+                 "Every new row carries the fields; old rows still parse. The help, the say text and ARTIFACTS.md change together."],
+      optional: ["The new flags are optional, with one match arm per combination in a fixed order.",
+                 "Old command lines keep working, but two flags make four order-strict arms, and an old say text records nothing."],
+      parser: ["verdict parses its flags in any order with a small parser that refuses duplicates and unknown flags; other commands keep slice matching.",
+               "No arm growth, but it is the first non-slice argument handling in main.rs and needs its own tests."]
+    }
+  };
+  function pick(n) { var el = document.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : null; }
+  function build() {
+    ["count", "model", "flags"].forEach(function (d) {
+      document.getElementById(d + "-out").textContent = D[d][pick(d)][1];
+    });
+    var L = [];
+    L.push("Implement router-polish (docs/plans/router-polish.md) on harness/router-polish: name the page whose verdict is uncommitted in next's commit step, add finding counts and models to review-log rows, and make docs/skills/investigate.md a host skill that stays the GEPA seed.");
+    L.push("");
+    L.push("Decisions:");
+    ["count", "model", "flags"].forEach(function (d) { L.push("- " + D[d][pick(d)][0]); });
+    L.push("");
+    L.push("Constraints from the blindspot pass:");
+    var n = 0;
+    document.querySelectorAll("input[data-chip]").forEach(function (box) {
+      var id = box.getAttribute("data-chip");
+      document.getElementById("f" + id).classList.toggle("off", !box.checked);
+      if (!box.checked) return;
+      n += 1;
+      L.push(n + ". " + document.getElementById("chip-" + id).textContent.trim());
+    });
+    if (n === 0) L.push("(none kept)");
+    L.push("");
+    L.push("Order: the log fields and verdict flags with their tests; then the commit-step fix; then the investigate skill and its check. xtask/ and .claude/ changes need a transition receipt (cargo xtask gaps --base origin/main). Show me next's output for the ticket's fixture and for the best-row fixture before moving on to the skill.");
+    document.getElementById("final-prompt").textContent = L.join("\n");
+  }
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("input[data-chip], fieldset input")) build();
+  });
+  function copy(text, btn) {
+    function done() {
+      var prev = btn.textContent;
+      btn.textContent = "Copied";
+      btn.classList.add("done");
+      setTimeout(function () { btn.textContent = prev; btn.classList.remove("done"); }, 1500);
+    }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (err) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(); done(); });
+    } else { fallback(); done(); }
+  }
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-copy]");
+    if (!btn) return;
+    copy(document.getElementById(btn.getAttribute("data-copy")).textContent.trim(), btn);
+  });
+  build();
+})();
+</script>
+</body>
+</html>
