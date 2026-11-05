@@ -20,6 +20,13 @@
     "updated": [],
     "rationale": "No documented behavior has changed yet."
   },
+  "prompt": {
+    "task": "add evidence links to completion reports",
+    "task_noun": "evidence links in completion reports",
+    "area": "xtask's completion gate (xtask/src/completion.rs)",
+    "problem": "completion reports name the CI report but not which checks proved each requirement",
+    "reference": "The readiness report's per-requirement test list"
+  },
   "summary": "Assigned work is in progress; answer the task review before handoff.",
   "remaining": [
     "Implement the requested outcome and verify its named requirements."

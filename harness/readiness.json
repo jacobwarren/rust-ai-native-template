@@ -115,7 +115,8 @@
         ".claude/agents/artifact-author.md",
         "xtask/src/router.rs",
         ".claude/skills/write-ticket/SKILL.md",
-        ".claude/skills/investigate/SKILL.md"
+        ".claude/skills/investigate/SKILL.md",
+        "xtask/src/handover.rs"
       ],
       "tests": [
         "completion_requires_eight_pages_carrying_the_stylesheet_inline",
@@ -144,7 +145,14 @@
         "an_edit_after_review_shows_on_any_page",
         "commit_step_names_the_page_whose_row_is_uncommitted",
         "verdict_records_findings_and_model",
-        "investigate_skill_matches_its_seed"
+        "investigate_skill_matches_its_seed",
+        "next_prompts_match_the_artifacts_guide",
+        "prompt_values_are_optional_and_strict",
+        "next_hands_over_the_filled_in_prompt",
+        "build_step_hands_over_the_notes_prompt",
+        "missing_values_stay_as_braces",
+        "verdict_reads_full_notes_from_stdin",
+        "review_and_rewrite_steps_carry_their_prompt"
       ],
       "workflows": []
     }

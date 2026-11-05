@@ -96,6 +96,10 @@ The other fields are demonstrated in [the example](../examples/task-record.json)
   rationale explains updates or why none are necessary.
 - summary and remaining form the handoff. Partial/blocked status needs next steps.
   Complete may retain follow-up work outside its accepted scope.
+- prompt, optional, holds the values `task-artifact next` fills into a standard
+  task's page prompts: task (a verb phrase after "I'm about to"), task_noun (a
+  noun phrase naming what is built), area, problem and reference (one code path,
+  singular). A missing value stays visible as its brace (docs/ARTIFACTS.md).
 
 References are not proof that a remote document exists or its contents are true.
 Unknown fields are rejected. Archived v1–v5 task records remain readable; upgrade any

@@ -12,14 +12,19 @@ a dedicated author and an independent reviewer do.
 
 `cargo xtask task-artifact next --task ID` reads the task record, the pages and
 the task's verdict log and prints the one next step: author, review, rewrite,
-commit, build or complete. It advises and never blocks. It exits 3 when it also
+commit, build or complete. Author, review, rewrite and build steps carry a
+`handover`: the page's prompt from the table below with its braces filled from
+the record's `prompt` values, the exemplar, the output path, the task context
+and the pages so far, plus the last review's findings for a rewrite. Pass it to
+the subagent unchanged; `unfilled` names any `prompt` value the record lacks,
+whose brace stays in the text. It advises and never blocks. It exits 3 when it also
 has a warning, such as a page edited after its last review. Completion does not
 read the log.
 
 1. **Use a dedicated author.** Start a fresh subagent for each page and give it
-   the [author-artifact brief](../.claude/skills/author-artifact/SKILL.md), the prompt below with
-   the task filled in, the exemplar path, the task context and the task's pages
-   written so far. If your host has no subagents, give the page its own turn and
+   the [author-artifact brief](../.claude/skills/author-artifact/SKILL.md) and
+   the step's `handover`: the prompt below with the task filled in, the exemplar
+   path, the task context and the task's pages written so far. If your host has no subagents, give the page its own turn and
    do nothing else in it. Write the pages in the order of the table below.
    Authors working in parallel each derive the same headline finding again; one
    after another, each builds on the last.
@@ -42,16 +47,20 @@ read the log.
    and fix what the report flags before committing. Without Node or Chrome, say
    so rather than implying visual review.
 5. **Get an independent review.** Start another fresh subagent, never the
-   author, with the [reviewer brief](../.claude/skills/review-artifact/SKILL.md), the page, its
-   prompt, the exemplar and the task context. A different model is better when
+   author, with the [reviewer brief](../.claude/skills/review-artifact/SKILL.md) and
+   the review step's `handover`: the page, its prompt, the exemplar and the task
+   context. A different model is better when
    your host offers one. On REVISE, give the findings to a fresh author to
    rewrite the page, then have a fresh reviewer judge the whole page again:
    each review samples different claims, and rewrites can break what was
    right. After two rewrites, commit the best
    version. Record every review with `cargo xtask task-artifact verdict --task ID
    --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL
-   --findings N --notes TEXT`, where N counts every finding the reviewer listed,
-   blocking or not, and MODEL is the reviewer's model as the host names it. It
+   --findings N --notes -`, piping the reviewer's whole reply to stdin, where
+   shell quoting cannot cut it (at most 64 KiB; `--notes TEXT` takes it inline).
+   N counts every finding the reviewer listed, blocking or not, and MODEL is the
+   reviewer's model as the host names it. The rewrite step hands those notes to
+   the next author. It
    appends a row with the page's SHA-256 to `reviews.json` in the task's folder
    and keeps a copy of the reviewed version under `target/artifact-reviews/`;
    `best` marks the reviewed version restored after two rewrites. Commit the log
@@ -61,7 +70,10 @@ read the log.
 
 ## The prompts
 
-Fill in the braces from the task. The adapted prompt is the author's
+Fill in the braces from the task: `next` fills them from the record's `prompt`
+values (`task` in the blindspot pass, `task_noun` in the other `{task}`s,
+`area`, `problem`, `reference`) and reads this table by its File column. The
+adapted prompt is the author's
 instruction. The exemplar is the bar.
 
 | When | Page | File | Prompt | Exemplar |

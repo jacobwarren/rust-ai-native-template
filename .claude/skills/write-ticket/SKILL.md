@@ -61,10 +61,21 @@ remaining actions:
   "discoveries": [],
   "discovery_review": "Not started; discoveries are recorded as the work finds them.",
   "documentation": {"updated": [], "rationale": "<docs the work will change, or why none>"},
+  "prompt": {
+    "task": "<verb phrase that reads after I'm about to>",
+    "task_noun": "<noun phrase naming what is built; reads after build and shipping>",
+    "area": "<the code area, for the blindspot pass>",
+    "problem": "<the Problem, with no final period>",
+    "reference": "<one code path that already behaves this way, singular>"
+  },
   "summary": "<Problem, one sentence>",
   "remaining": ["<one per named test: test_name: given …, then …>", "<Validation commands>"]
 }
 ```
+
+A standard task fills `prompt`: `task-artifact next` puts these values into
+each page's prompt (docs/ARTIFACTS.md), and a value left as its `<…>`
+placeholder or blank stays a visible brace. A small task can drop `prompt`.
 
 `id` matches the file name (letters, digits, `-`, `_`). Leave `review` out until
 the work is done; before a PR, handoff asks the record its four review
