@@ -57,6 +57,10 @@
     {
       "summary": "Known limits of the new checks: the small tier treats a crate-level .cargo/config.toml as an ordinary file (only the root .cargo/ is protected), and the author hook lets an author in the main checkout write into a linked worktree's files (only the reverse is blocked). Both changes still appear in the PR diff and CI.",
       "record": "harness/task-artifacts/agent-workflow/quiz.html"
+    },
+    {
+      "summary": "Handoff re-checks every task record a branch changes against that branch's base, so editing an old record (here to repoint moved docs) makes its historical claims fail; moved docs keep forwarding notes instead.",
+      "record": "docs/skills/author-artifact.md"
     }
   ],
   "discovery_review": "Eight pages, each from a dedicated author and judged by an independent reviewer, shaped the design before code. The implementation notes' own review caught five deviations, fixed before the last product commit, and the page reviews caught the author-scope and case-fold gaps. Remaining limits are documented in docs/ARTIFACTS.md and the buy-in page.",
@@ -70,7 +74,9 @@
       "examples/task-record.json",
       ".claude/skills/author-artifact/SKILL.md",
       ".claude/skills/review-artifact/SKILL.md",
-      ".claude/skills/add-product-command/SKILL.md"
+      ".claude/skills/add-product-command/SKILL.md",
+      "docs/skills/author-artifact.md",
+      "docs/skills/review-artifact.md"
     ],
     "rationale": "ARTIFACTS.md gains a Task size section and scopes the eight pages to standard tasks; AGENTS.md sets the tier in step 2, trims step 7 and adds a rule against new tools, manual steps or approval gates; COMPLETION.md, README and ARCHITECTURE describe the tiers, skills and agent files; the page briefs move into skills for both hosts with a new add-product-command skill."
   },
