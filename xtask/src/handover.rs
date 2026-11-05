@@ -189,7 +189,7 @@ pub fn handover(
         _ => format!("Pages so far: {before}"),
     });
     if page == "interview.html" || page == "buy-in.html" {
-        lines.push(format!("When no one answers: {}", answering_rule()?));
+        lines.push(format!("Answering rule: {}", answering_rule()?));
     }
     match to {
         For::Rewrite { round, notes, .. } => {

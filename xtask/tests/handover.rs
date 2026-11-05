@@ -98,7 +98,7 @@ fn next_hands_over_the_filled_in_prompt() {
         "{text}"
     );
     assert!(
-        text.contains("When no one answers: When no one answers the discovery pages"),
+        text.contains("Answering rule: When no one answers the discovery pages"),
         "{text}"
     );
 }
