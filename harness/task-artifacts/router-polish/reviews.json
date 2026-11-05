@@ -102,6 +102,16 @@
       "notes": "Open: Q1 and Q2 weakest on understanding (Q2 leans on plan A1); stats strip counts 17 files; Q1 and Q2 not re-run by the reviewer.",
       "findings": 3,
       "model": "sonnet"
+    },
+    {
+      "page": "buy-in.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "aac6f6113ca63d9992429d92bdc6568f92df863d0d390de4fdcdd033dafbd422",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: router.rs:236 cites the branch, not the selection (say around 236); demo cases 1 and 2 not re-run by this reviewer.",
+      "findings": 2,
+      "model": "sonnet"
     }
   ]
 }

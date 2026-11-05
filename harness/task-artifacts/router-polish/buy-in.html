@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Router polish: buy-in</title>
+<style>
+.prompt { position: relative; margin-block: var(--space-4); }
+.prompt blockquote { font-style: italic; margin: 0; padding-right: 9rem; }
+.prompt .copy { position: absolute; top: var(--space-2); right: 0; }
+h1 { margin-top: var(--space-4); }
+button.small { min-height: 34px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block: var(--space-3) var(--space-6); }
+.chip { font-size: var(--text-small); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: var(--space-1) var(--space-3); }
+h2 { margin-block: var(--space-8) var(--space-3); }
+h2 .n { font-family: var(--font-code); font-size: .8rem; color: var(--accent); margin-right: var(--space-2); font-weight: 400; }
+code { font-size: .88em; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; overflow-wrap: anywhere; }
+.term code { border: 0; padding: 0; background: none; }
+.intro { font-size: var(--text-small); margin-block: 0 var(--space-3); }
+.demo { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: var(--space-4); align-items: start; }
+.cases { display: flex; flex-direction: column; gap: 2px; }
+.cases button { min-height: 0; background: transparent; color: var(--ink); text-align: start; display: grid; grid-template-columns: 1.3rem 1fr; gap: var(--space-2); padding: 7px var(--space-3); border: 1px solid transparent; font-size: var(--text-small); line-height: 1.3; }
+.cases button:hover { background: var(--surface); }
+.cases button[aria-selected="true"] { background: var(--surface); border-color: var(--accent); }
+.cases .k { font-family: var(--font-code); color: var(--accent); font-size: .75rem; padding-top: 1px; }
+.pane { min-width: 0; }
+.pane h3 { margin: 0 0 var(--space-1); }
+.pane .why { margin: 0 0 var(--space-3); font-size: var(--text-small); color: var(--muted); }
+.toggle { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0 0 var(--space-3); font-size: var(--text-small); }
+.toggle button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.sides { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.sides.one { grid-template-columns: 1fr; }
+.side { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+.side .hd { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); font-size: var(--text-small); font-weight: 650; }
+.term { margin: 0; border: 0; border-radius: 0; background: #17302b; color: #e9efe9; font-size: .74rem; line-height: 1.5; padding: var(--space-3); }
+.term .c { color: #9fd8c4; }
+.term .bad { color: #f2b8bd; }
+.term .good { color: #bfe8c9; }
+.term .m { color: #93a8a0; }
+.v { font-family: var(--font-code); font-size: .7rem; border-radius: 999px; padding: 1px 7px; white-space: nowrap; border: 1px solid currentColor; font-weight: 400; }
+.v.no { color: var(--danger); background: #fbecee; }
+.v.yes { color: var(--accent); background: var(--accent-soft); }
+.then { font-size: var(--text-small); margin: var(--space-3) 0 0; }
+.demo-nav { display: flex; gap: var(--space-2); margin-top: var(--space-3); align-items: center; font-size: var(--text-small); color: var(--muted); }
+.pitch p { margin-block: var(--space-2); max-width: none; }
+.qa { margin: 0; display: grid; grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); gap: var(--space-2) var(--space-6); font-size: var(--text-small); }
+.qa dt { font-weight: 650; }
+.qa dd { margin: 0; }
+table { font-size: var(--text-small); }
+th, td { padding: var(--space-2) var(--space-3); }
+td:first-child { font-weight: 600; }
+.note { font-size: var(--text-small); margin-block: 0 var(--space-3); }
+.limits { margin: 0; padding-left: 1.1rem; font-size: var(--text-small); }
+.limits li { margin-bottom: var(--space-2); }
+.limits li::marker { color: var(--warning); }
+.need { border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius); background: var(--surface); padding: var(--space-3) var(--space-4); font-size: var(--text-small); margin-top: var(--space-3); }
+.need h3 { font-size: 1rem; margin: 0 0 var(--space-1); }
+.need ol { margin: 0; padding-left: 1.2rem; display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-8); }
+.need li { margin-bottom: var(--space-1); }
+.reply fieldset { border: 0; padding: 0; margin: 0 0 var(--space-3); }
+.reply legend { font-weight: 650; font-size: var(--text-small); padding: 0; margin-bottom: var(--space-1); }
+.reply label { margin-block: var(--space-1); font-size: var(--text-small); }
+.reply .opts { display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: var(--space-6); }
+.reply textarea { min-height: 0; height: 2.6rem; }
+.reply output { white-space: pre-wrap; font-family: var(--font-code); font-size: .8rem; margin-block: var(--space-3); }
+@media (max-width: 52rem) { .demo, .qa, .sides, .need ol, .reply .opts { grid-template-columns: 1fr; } .prompt blockquote { padding-right: 0; } .prompt .copy { position: static; margin-top: var(--space-2); } }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">router-polish · buy-in doc · before merge</p>
+<h1>The commit step follows the page just reviewed, every new review is counted, and the investigate brief loads as a skill</h1>
+<div class="prompt">
+  <p class="eyebrow">The prompt</p>
+  <blockquote id="thePrompt">Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping router-polish. Lead with the demo.</blockquote>
+  <button class="small secondary copy" type="button" data-copy="thePrompt">Copy prompt</button>
+</div>
+<p class="lead">These are the three follow-ups to the page loop that you asked for after PR #4. <code>next</code> now names the page whose review is waiting to be committed. <code>verdict</code> records how many findings the reviewer listed and which model reviewed. Claude Code and Codex load <code>docs/skills/investigate.md</code> as the <code>investigate</code> skill, and a docs check keeps the skill identical to the text GEPA tunes.</p>
+<div class="chips">
+  <span class="chip"><b>+332 / −23</b> lines in 14 files from plan to build (code, tests, skills, docs, harness config; task pages excluded), 144 of the added lines tests</span>
+  <span class="chip"><b>86</b> xtask tests pass</span>
+  <span class="chip"><b>4</b> demo cases, run on the committed code in clean clones</span>
+</div>
+
+<h2><span class="n">01</span>Watch it work</h2>
+<p class="intro muted">Cases 1 and 2 replay a real moment on this branch: a clean clone at the plan commit, with the implementation notes page committed and its review not yet recorded. Each build records the same review. Cases 3 and 4 run <code>cargo xtask docs</code> in a clean clone of the branch tip, which passes before each edit. JSON is trimmed; messages are verbatim.</p>
+<div class="demo">
+  <div class="cases" id="cases" role="tablist" aria-label="Demo cases"></div>
+  <div class="pane" id="pane" role="tabpanel" aria-live="polite"></div>
+</div>
+
+<h2><span class="n">02</span>Why ship it</h2>
+<div class="pitch">
+<p>When PR #4 shipped the page loop, its review of the buy-in doc found a misdirection. While <code>reviews.json</code> had any uncommitted row, <code>next</code> told the agent to commit the first passed page in table order (<code>router.rs:236</code> at the plan commit), which case 1 reproduces. The rows also could not say how often a page type or a reviewer model forces a rewrite, because they held neither a count nor a model. The investigate brief that GEPA optimises was a file that neither host loaded, and no check read it.</p>
+<p>After this change the agent gets the right step. New rows can be counted by page type and model: this branch's review of its implementation notes is the first, with <code>"findings": 3, "model": "sonnet"</code>. The brief is usable as a skill and cannot drift from the GEPA seed. Nothing gates: <code>next</code> still only advises, and <code>complete</code> and <code>handoff</code> still never read the log. No CI workflow changed; the <code>docs</code> step that <code>check ci</code> runs gains DOC009 and DOC010.</p>
+</div>
+
+<h2><span class="n">03</span>What approvers will ask</h2>
+<dl class="qa">
+<dt>Do the committed logs need migrating?</dt><dd>No. workflow-router's 11 rows and this task's first 9 carry neither new field, and this branch's <code>next</code> reads both logs with <code>"ok": true</code>. The build added 10 lines to this task's log and removed none, and left workflow-router's log alone (case 2). A missing field means "not recorded", never 0.</dd>
+<dt>Does GEPA see anything different?</dt><dd>No. The seed and <code>experiments/evaluator/</code> have no diff against main. <code>stdin_agent.py:14-17</code> pastes the candidate skill whole into the agent's prompt, so GEPA still sees the seed as before (from the implementation notes; the lines were re-read, GEPA was not run). One exception is conditional: see the last limit in section 05.</dd>
+<dt>What exactly is <code>--findings</code>?</dt><dd>Every finding the reviewer listed, blocking or not, so a pass with open notes still has a count (<code>docs/ARTIFACTS.md</code>, step 5). <code>--model</code> is the reviewer's model as the host names it. Dots are allowed, so <code>gpt-5.1</code> is accepted; spaces are not.</dd>
+</dl>
+
+<h2><span class="n">04</span>Decisions, each beside what it set aside</h2>
+<p class="note muted">You delegated these. The agent made them in <a href="interview.html">the interview</a> and <a href="plan.html">the plan</a>, and the build kept every one. Row 5 is the gap the build found (<a href="implementation.html">implementation notes</a>, gap 1).</p>
+<div class="table-scroll"><table>
+<thead><tr><th>#</th><th>Chosen</th><th>Set aside</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Two optional row fields, omitted from a row when absent; <code>schema_version</code> stays 1 (<code>router.rs:39-44</code>).</td><td><code>schema_version</code> 2, with old rows backfilled from their notes.</td><td>With a version bump, <code>next</code> would refuse workflow-router's committed log. A backfill rewrites committed rows, which <code>next</code>'s advisory already flags as a rewritten log.</td></tr>
+<tr><td>2</td><td>Both flags required on every verdict, <code>best</code> included, in one order. Any other form gets the full usage (<code>main.rs:117</code>).</td><td>Optional flags, with one match arm per combination.</td><td>With an optional flag, rows go uncounted without anyone noticing, and rates need every new row counted. The required form needs one exact arm and a catch-all.</td></tr>
+<tr><td>3</td><td>The prefix rule: a page waits only for its own rows past HEAD's row count (<code>router.rs:273</code>, <code>314-320</code>).</td><td>Match the page's last row against HEAD's rows.</td><td>A <code>best</code> row reuses a revise row's hash, and pass rows can repeat exactly, so a new row can equal a committed one (<a href="reference.html">reference</a>).</td></tr>
+<tr><td>4</td><td>The seed stays canonical. Both skill copies are frontmatter followed by its bytes, held equal by DOC009 (<code>checks.rs:242-254</code>).</td><td>Move the text into <code>SKILL.md</code> and leave a forwarding note at the seed path.</td><td>GEPA pastes the seed whole into the prompt. If it read <code>SKILL.md</code>, every candidate would carry the frontmatter.</td></tr>
+<tr><td>5</td><td>Quote skill descriptions, and DOC010 refuses an unquoted <code>": "</code> (<code>checks.rs:227-237</code>).</td><td>Leave them as written, since both hosts' parsers tolerate them.</td><td>Strict YAML refuses them: PyYAML's <code>safe_load</code> raises <code>mapping values are not allowed here</code> on the unquoted investigate description, and on <code>add-product-command</code>'s as it stood at the plan commit, which this change quotes. That Codex's skill validator calls <code>safe_load</code> is from the implementation notes; the validator was not run.</td></tr>
+</tbody></table></div>
+
+<h2 id="limits"><span class="n">05</span>Known limits, and what you decide</h2>
+<ul class="limits">
+  <li><b>Compatibility runs one way.</b> Rows keep <code>deny_unknown_fields</code> (<code>router.rs:29</code>), so an xtask built before this change refuses a log holding a counted row. Run in the case 1 clone: <code>unknown field `findings`, expected one of `page`, `round`, `verdict`, `sha256`, `reviewer`, `notes` at line 83 column 16</code>, exit 1, for both <code>next</code> and <code>verdict</code>. A branch cut before this change must rebase before it records a review on such a log.</li>
+  <li><b><code>--model</code>'s limit of 64 counts bytes.</b> The check is <code>model.len() &gt; 64</code> (<code>router.rs:130</code>). 32 × <code>é</code> (64 bytes) is accepted, and 33 is refused with "must be at most 64 characters". Hosts name their models in ASCII, where bytes and characters agree.</li>
+  <li><b>DOC010 looks only for <code>": "</code>.</b> The check is <code>v.contains(": ")</code> (<code>checks.rs:232</code>), so a description ending in a bare colon slips past it. With both investigate copies set to <code>description: Investigate this repository before changing it. Use it when:</code>, <code>cargo xtask docs</code> in a clean clone of the branch tip reports no errors and exits 0, while <code>yaml.safe_load</code> on the same frontmatter raises <code>mapping values are not allowed here</code>. Quoting the description, as both shipped skills now do, avoids it.</li>
+  <li><b>The evaluator may show the seed to every candidate.</b> <code>snapshot()</code> writes every file of the task commit's <code>git archive</code> into each trial (<code>experiments/evaluator/workspace.py:14-32</code>; from the plan, lines re-read, the evaluator not run). If a suite's task repositories are made from this template, the <code>investigate</code> skill, which carries the seed's text, sits beside every candidate. The bundled demo's repository has no skills (<code>demo.py:22-30</code>). Real suites are unchecked. A fix would belong in the evaluator.</li>
+</ul>
+<p class="note muted">Not observed: a Codex session loading the skill. The notes listed it with <code>codex debug prompt-input</code> only. No GEPA run has had the skill in its tree.</p>
+<div class="need"><h3>What you still decide</h3>
+<ol>
+  <li><b>Accept the policy change</b> to <code>xtask/</code>, its tests, <code>readiness.json</code> and the Claude Code skill copy; the branch's policy receipt states it.</li>
+  <li><b>Keep or overturn the five calls</b> in section 04.</li>
+  <li><b>The skill's description wording</b>, which hosts read to decide when to load it.</li>
+  <li><b>Merge.</b> The default hooks ask before an agent's <code>gh pr merge</code>.</li>
+</ol></div>
+
+<div class="reply" id="reply">
+<h2><span class="n">06</span>Your reply</h2>
+<fieldset>
+<legend>Verdict</legend>
+<div class="opts">
+<label><input type="radio" name="verdict" value="Ship as built.">Ship as built</label>
+<label><input type="radio" name="verdict" value="Ship with the conditions below.">Ship with conditions</label>
+<label><input type="radio" name="verdict" value="Hold; reasons below.">Hold (say why below)</label>
+</div>
+</fieldset>
+<fieldset>
+<legend>Conditions</legend>
+<div class="opts">
+<label><input type="checkbox" data-r="Bump schema_version to 2 for rows with findings and model (decision 1's alternative).">Bump the schema version</label>
+<label><input type="checkbox" data-r="Make --model and --findings optional on verdict (decision 2's alternative).">Optional flags</label>
+<label><input type="checkbox" data-r="Count --model's 64 limit in characters, not bytes.">Count characters</label>
+<label><input type="checkbox" data-r="Before merge, check whether a real GEPA suite's task repositories carry .claude or .agents skills.">Check a real GEPA suite first</label>
+<label><input type="checkbox" data-r="As a follow-up, have the evaluator drop host skill folders from trial workspaces.">Evaluator drops skill folders</label>
+<label><input type="checkbox" data-r="Before merge, load the investigate skill in a live Codex session.">Live Codex check first</label>
+</div>
+</fieldset>
+<label>Anything else, such as the description's wording<textarea id="other" rows="2"></textarea></label>
+<output id="replyText"></output>
+<button type="button" id="copyReply">Copy reply</button>
+</div>
+</main>
+<script>
+(function () {
+  var VERDICT = "$ xtask task-artifact verdict --task router-polish --page implementation.html \\\n    --verdict ";
+  var NEXT = "$ xtask task-artifact next --task router-polish";
+  function oldSide(v) {
+    return { name: "before (the plan commit, 10226e2)", v: ["no", "wrong page"], out: [
+      ["c", VERDICT + v + " --reviewer artifact-reviewer --notes \"…\""],
+      ["good", "\"recorded\": { \"page\": \"implementation.html\", \"round\": 1,\n  \"verdict\": \"" + v + "\", \"sha256\": \"e6a82ed2…\" }"],
+      ["c", NEXT],
+      ["bad", "\"next\": { \"action\": \"commit\", \"page\": \"blindspots.html\",\n  \"round\": 2, \"say\": \"Commit blindspots.html and\n  harness/task-artifacts/router-polish/reviews.json\n  together.\" }"] ] };
+  }
+  var CASES = [
+    { k: "1", t: "next after a review", h: "The same review recorded with each build, then next",
+      why: "The log holds 9 committed rows, all pages before this one passed and committed. Toggle what the reviewer said.",
+      variants: [
+        { label: "pass", sides: [ oldSide("pass"),
+          { name: "after (this branch)", v: ["yes", "this page"], out: [
+            ["c", VERDICT + "pass --reviewer artifact-reviewer \\\n    --model sonnet --findings 3 --notes \"…\""],
+            ["good", "\"recorded\": { \"page\": \"implementation.html\", \"round\": 1,\n  \"verdict\": \"pass\", \"sha256\": \"e6a82ed2…\",\n  \"findings\": 3, \"model\": \"sonnet\" }"],
+            ["c", NEXT],
+            ["good", "\"next\": { \"action\": \"commit\", \"page\": \"implementation.html\",\n  \"round\": 1, \"say\": \"Commit implementation.html and\n  harness/task-artifacts/router-polish/reviews.json\n  together.\" }"] ] } ],
+          then: "Before, any uncommitted row held back the first passed page, so the agent was told to commit blindspots.html, which had nothing to commit. After, only rows past HEAD's 9 are pending, and implementation.html owns the one row there. The page hash matches the real review's committed row." },
+        { label: "revise", sides: [ oldSide("revise"),
+          { name: "after (this branch)", v: ["yes", "this page"], out: [
+            ["c", VERDICT + "revise --reviewer artifact-reviewer \\\n    --model sonnet --findings 2 --notes \"…\""],
+            ["good", "\"recorded\": { \"page\": \"implementation.html\", \"round\": 1,\n  \"verdict\": \"revise\", … \"findings\": 2, \"model\": \"sonnet\" }"],
+            ["c", NEXT],
+            ["good", "\"next\": { \"action\": \"rewrite\", \"page\": \"implementation.html\",\n  \"round\": 2, \"say\": \"Start a fresh artifact-author to\n  rewrite implementation.html from the round 1 findings\n  (rewrite 1 of 2).\" }"] ] } ],
+          then: "Before, a revise was worse: the agent was sent to commit an unrelated page, and the rewrite the review demanded never appeared. After, the rewrite comes first." } ] },
+    { k: "2", t: "A counted review, and the old form", h: "Ten lines added, no old row touched; any other verdict form refused",
+      why: "Same clone, this branch's build, pass variant from case 1.",
+      sides: [ { name: "after (this branch)", v: ["yes", "10 0"], out: [
+        ["c", "$ git diff --numstat"],
+        ["good", "10\t0\tharness/task-artifacts/router-polish/reviews.json"],
+        ["c", "$ git diff"],
+        ["m", "       \"notes\": \"Open: ~10% over exemplar height …\"\n+    },\n+    {\n+      \"page\": \"implementation.html\",\n+      \"round\": 1,\n+      \"verdict\": \"pass\",\n+      \"sha256\": \"e6a82ed2…\",\n+      \"reviewer\": \"artifact-reviewer\",\n+      \"notes\": \"Open: three notes\",\n+      \"findings\": 3,\n+      \"model\": \"sonnet\"\n     }"],
+        ["c", VERDICT + "pass --reviewer artifact-reviewer --notes x\n# the old six-flag form; --findings 3 --model sonnet (swapped) answers the same"],
+        ["bad", "{\"error\":\"task-artifact verdict takes --task ID --page PAGE\n--verdict pass|revise|best --reviewer NAME --model MODEL\n--findings N --notes TEXT, in that order; --model and\n--findings are required\",\"ok\":false}   exit 1"] ] } ],
+      then: "The row ends with the new fields, and the 9 rows above it have none and are left untouched. The only change git sees is the new row. The catch-all arm turns every other shape into the full usage, so an agent with an old habit learns the new form at once." },
+    { k: "3", t: "DOC009: the seed changes alone", h: "An improved seed that was not copied into the skill",
+      why: "Clean clone of the branch tip. One line appended to the GEPA seed, as a promoted candidate would change it; the skill copies untouched.",
+      sides: [ { name: "after (this branch)", v: ["no", "exit 1"], out: [
+        ["c", "$ echo 'Prefer reading the failing test first.' >> docs/skills/investigate.md\n$ xtask docs"],
+        ["bad", "\"errors\": [\n  \"DOC009 skills/investigate/SKILL.md: its body after the\n   frontmatter must equal docs/skills/investigate.md\"\n], \"ok\": false   exit 1"] ] } ],
+      then: "The check compares bytes, so a trimmed final newline trips it too, while the frontmatter around the body may change freely. Changing only the .agents copy is DOC007 (implementation notes). experiments/gepa/README.md now says to copy an improvement into both skill files." },
+    { k: "4", t: "DOC010: an unquoted colon", h: "The investigate description with its quotes removed",
+      why: "Clean clone of the branch tip. The quotes dropped in both copies, as the description was first drafted; the body is unchanged, so DOC009 stays quiet.",
+      sides: [ { name: "after (this branch)", v: ["no", "exit 1"], out: [
+        ["m", "description: Investigate this repository before changing it: find …"],
+        ["c", "$ xtask docs"],
+        ["bad", "\"DOC010 .claude/skills/investigate/SKILL.md: quote the\n  description; an unquoted \\\": \\\" is not valid YAML\",\n\"DOC010 .agents/skills/investigate/SKILL.md: …\"   exit 1"],
+        ["c", "$ python3 -c 'yaml.safe_load(frontmatter)'"],
+        ["bad", "yaml.scanner.ScannerError: mapping values are not allowed here"] ] } ],
+      then: "The colon after \"changing it\" opens a nested mapping inside a plain YAML value. DOC008 reads only the name line, so nothing caught this before. The check exempts quoted and block values." }
+  ];
+  var casesEl = document.getElementById("cases"), pane = document.getElementById("pane"), cur = 0, variant = 0;
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function render(i, vi) {
+    if (i !== cur) { vi = 0; }
+    cur = i; variant = vi || 0;
+    var c = CASES[i], body = c.variants ? c.variants[variant] : c;
+    var h = "<h3>" + esc(c.h) + "</h3><p class=\"why\">" + esc(c.why) + "</p>";
+    if (c.variants) {
+      h += "<div class=\"toggle\" role=\"group\" aria-label=\"What the reviewer said\"><span>The review said:</span>";
+      c.variants.forEach(function (v, j) {
+        h += "<button type=\"button\" class=\"small secondary\" data-v=\"" + j + "\" aria-pressed=\"" + (j === variant) + "\">" + esc(v.label) + "</button>";
+      });
+      h += "</div>";
+    }
+    h += "<div class=\"sides" + (body.sides.length === 1 ? " one" : "") + "\">";
+    body.sides.forEach(function (s) {
+      h += "<div class=\"side\"><div class=\"hd\"><span>" + esc(s.name) + "</span><span class=\"v " + s.v[0] + "\">" + esc(s.v[1]) + "</span></div><pre class=\"term\"><code>";
+      h += s.out.map(function (o) { return o[0] ? "<span class=\"" + o[0] + "\">" + esc(o[1]) + "</span>" : esc(o[1]); }).join("\n");
+      h += "</code></pre></div>";
+    });
+    h += "</div><p class=\"then\">" + esc(body.then) + "</p>";
+    h += "<div class=\"demo-nav\"><button type=\"button\" class=\"small secondary\" id=\"prev\"" + (i === 0 ? " disabled" : "") + ">Previous</button><button type=\"button\" class=\"small secondary\" id=\"next\"" + (i === CASES.length - 1 ? " disabled" : "") + ">Next case</button><span>" + (i + 1) + " of " + CASES.length + "</span></div>";
+    pane.innerHTML = h;
+    document.getElementById("prev").onclick = function () { render(cur - 1); };
+    document.getElementById("next").onclick = function () { render(cur + 1); };
+    pane.querySelectorAll("[data-v]").forEach(function (b) { b.onclick = function () { render(cur, +b.getAttribute("data-v")); }; });
+    Array.prototype.forEach.call(casesEl.children, function (b, j) { b.setAttribute("aria-selected", j === i ? "true" : "false"); });
+  }
+  CASES.forEach(function (c, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.setAttribute("role", "tab");
+    b.innerHTML = "<span class=\"k\">" + c.k + "</span><span>" + esc(c.t) + "</span>";
+    b.onclick = function () { render(i); };
+    casesEl.appendChild(b);
+  });
+  render(0, 0);
+
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1400); }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+  }
+  document.querySelectorAll("[data-copy]").forEach(function (b) {
+    b.addEventListener("click", function () { copy(document.getElementById(b.getAttribute("data-copy")).textContent, b); });
+  });
+
+  var reply = document.getElementById("reply"), out = document.getElementById("replyText");
+  function compose() {
+    var v = reply.querySelector("input[name=verdict]:checked");
+    var conds = Array.prototype.map.call(reply.querySelectorAll("input[type=checkbox]:checked"), function (c) { return "- " + c.getAttribute("data-r"); });
+    var other = document.getElementById("other").value.trim();
+    if (!v && !conds.length && !other) { out.textContent = "Pick a verdict to build your reply. Nothing is selected for you."; return ""; }
+    var lines = ["router-polish (next's commit step, counted reviews, the investigate skill): " + (v ? v.value : "no verdict yet.")];
+    if (conds.length) { lines.push("Conditions:"); lines = lines.concat(conds); }
+    if (other) { lines.push("Note: " + other); }
+    var text = lines.join("\n");
+    out.textContent = text;
+    return text;
+  }
+  reply.addEventListener("change", compose);
+  document.getElementById("other").addEventListener("input", compose);
+  document.getElementById("copyReply").addEventListener("click", function () { var t = compose(); if (t) copy(t, this); });
+  compose();
+})();
+</script>
+</body>
+</html>
