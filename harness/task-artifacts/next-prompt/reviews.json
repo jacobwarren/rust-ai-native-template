@@ -100,6 +100,26 @@
       "notes": "PASS after one rewrite. A reader learns the five places where the code departed from the plan and what each cost (the 400-line limit moving the call site, unfilled listing record fields instead of braces, the --notes - ordering trap), with captured hand-over text showing each.\n\nNon-blocking:\n1. Length: 35.4 KB against the exemplar's 26.7 KB; the two Discovery entries and the \"First real use\" paragraph lean on reviews.json bookkeeping and could be shortened.\n2. About the feature: Decisions A (where the reviewer's return format lives) and B (a FINDINGS check in verdict) concern review process; a line each tying them to the hand-over would help.\n\nFINDINGS: 2",
       "findings": 2,
       "model": "sonnet"
+    },
+    {
+      "page": "buy-in.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "b6960ba748bf9d399b7819ecc03171156cb3178caa34cdcdcd9ee5bb9e291890",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. Is every claim grounded? (fails) The tile \"9 / 9 CI checks pass at the branch head\" in section 02 and the ask line \"Everything else is built, tested and passing CI\" have no evidence behind them: harness/next-prompt has no remote ref, gh pr checks finds no PR, and the page cites no run or log. A rewrite must cite a run (with the nine check names) or replace the tile and ask line with what was actually run. Other tiles hold: 93/93 tests in a clean copy, 7/7 named tests, 1 of 7 records has prompt, router.rs 377 lines with attach called at router.rs:351.\n\n2. Is every claim grounded? (fails) Scene 3 (\"Record, then rewrite\"), origin/main side, shows a terminal block as if captured: `bash: …/xtask: Argument list too long`, a ~2.6 MB argument from a backticked `git archive HEAD`, and `\"recorded\": { \"notes\": \"-\" … }` followed by a bare rewrite step. The page never says these ran against an origin/main build; the dollar-prompt lines are assembled in the script. Mark which lines are captured and which reconstructed, or capture them from a real origin/main build.\n\n3. Is it about the feature? / As short as its content allows? (fails) Scene 3 spends the lead demo on the shell-quoting failure and the full 1,531-byte review text, then repeats it inside the rewrite hand-over. The pitch cites \"24 review notes in two earlier logs\", \"blindspot pass, items 01 and 07\" and \"This task used it on itself\". Trim scene 3 to a before/after of the rewrite step with a truncated findings excerpt (first finding plus FINDINGS: 1), and drop the self-hosting and log-statistics sentences from the pitch.\n\n4. Does the page do its job? (minor) The ask says \"two open calls (A and B)\" without confirming these are the only questions the interview left open. Say explicitly that A and B are the only open items, or add any others.\n\nPassed: renders cleanly; scene and build toggles, A/B/ship radios, the assembled reply and copy buttons change what the reader sees or decides.\n\nFINDINGS: 4",
+      "findings": 4,
+      "model": "sonnet"
+    },
+    {
+      "page": "buy-in.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "bde6d49e8e608e1f04eca5630671730ba3a64c314dc327f2a620474b65736c37",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. A reader learns that next goes from one sentence (\"start an author\") to a ready-to-pass handover text, that the rewrite step now carries the reviewer's full reply, and what would still let a summarised reply slip through (open Decisions A and B).\n\nNot verified by the reviewer: the demo's \"every line is real output\" claim (strings are in the page's script), the 9-check CI run and the 7/7 tile.\n\nNon-blocking:\n1. Q2 cites \"handover.rs:103 given(), :247 · test missing_values_stay_as_braces\", implying the test is in handover.rs; it is in xtask/tests/handover.rs:128.\n2. 35.7 KB against the exemplar's 30 KB; section 03's Q5 and section 05's third risk repeat the point about summarised replies.\n\nFINDINGS: 2",
+      "findings": 2,
+      "model": "sonnet"
     }
   ]
 }
