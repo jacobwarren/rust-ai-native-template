@@ -4,7 +4,8 @@
   "status": "partial",
   "tier": "standard",
   "requirements": [
-    "task-artifacts"
+    "task-artifacts",
+    "completion"
   ],
   "related_gaps": [
     {
@@ -25,19 +26,46 @@
     {
       "id": "artifact-gate-holes",
       "disposition": "unaffected",
-      "rationale": "Under review in the discovery pages; the verdict log touches the same gate."
+      "rationale": "Unchanged: next advises and never gates, so order is still checked only for complete tasks; the reference page re-observed this (note on order) and next cannot flag it earlier without a base."
     }
   ],
-  "gap_review": "Reviewed the four open gaps at task start; none is changed yet.",
-  "discoveries": [],
-  "discovery_review": "Discovery pages are being written.",
+  "gap_review": "Reviewed the four open gaps at task start and again before completion; this change adds advisory routing and a stop-hook base, and closes or reopens none of them.",
+  "discoveries": [
+    {
+      "summary": "Skill frontmatter can register hooks, grant tools and run shell commands at load, so skills act as policy; the requested carve-out of .claude/skills from the ceremony list was dropped and skills stay standard-tier paths.",
+      "record": "harness/task-artifacts/workflow-router/blindspots.html"
+    },
+    {
+      "summary": "With * text=auto eol=lf, a CRLF page hashes differently from its stored blob while git status calls it clean, and a fresh clone checks it out as LF; next asks git status for commit state and hashes pages as LF.",
+      "record": "xtask/src/router.rs"
+    },
+    {
+      "summary": "The stop gate re-judged a lower unmerged PR's complete record on a stacked branch and failed its page order; the hook now takes its base from where this branch's own commits start. A git-log filter would also list a record edited and then restored, so the hook filters by diff.",
+      "record": "scripts/agent-complete.sh"
+    },
+    {
+      "summary": "The task record has no planned status and rejects unknown fields; requirement ids are checked only at handoff, which also asks a partial record its four review questions. The write-ticket stub is partial with named tests in remaining.",
+      "record": ".claude/skills/write-ticket/SKILL.md"
+    },
+    {
+      "summary": "Order breaches (code committed before discovery pages) surface only when a record says complete; next has no base and cannot flag them earlier.",
+      "record": "gap:artifact-gate-holes"
+    }
+  ],
+  "discovery_review": "Recorded the five material discoveries from the pages and the build; transient review findings stay in reviews.json.",
   "documentation": {
-    "updated": [],
-    "rationale": "No documented behavior has changed yet."
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "docs/COMPLETION.md",
+      "README.md",
+      "AGENTS.md"
+    ],
+    "rationale": "ARTIFACTS.md opens the page loop with next and records reviews with verdict; COMPLETION.md names the write-ticket skill and the stacked stop base; README and AGENTS.md step 2 name next."
   },
-  "summary": "Add a ticket-writing skill, narrow the ceremony list so ordinary skills can be small tasks, and route the page workflow through a task-artifact next command with a structured verdict log.",
+  "summary": "Add cargo xtask task-artifact next and verdict, which route the task-page loop and log each review with the page's hash in reviews.json; judge a stacked branch's stop from its own commits; add a write-ticket skill for both hosts. The ceremony list stays as it is.",
   "remaining": [
-    "Write and review the five discovery pages before product code."
+    "Write and review buy-in.html and quiz.html after the last product commit.",
+    "Run cargo xtask check ci, then complete and handoff against origin/main."
   ],
   "review": {
     "acceptance": "",
