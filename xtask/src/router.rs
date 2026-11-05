@@ -75,7 +75,15 @@ fn page_sha(root: &Path, id: &str, page: &str) -> Result<Option<String>> {
         return Ok(None);
     }
     let bytes = fs::read(root.join(artifacts::directory(id)).join(page))?;
-    Ok(Some(history::digest(&bytes)))
+    // Hash what Git stores: eol=lf turns a CRLF page into LF in every other clone.
+    let text = String::from_utf8_lossy(&bytes).replace("\r\n", "\n");
+    Ok(Some(history::digest(text.as_bytes())))
+}
+
+/// Where verdict keeps each reviewed version, so the best one can be restored.
+fn kept(id: &str, page: &str, round: usize) -> String {
+    let stem = page.trim_end_matches(".html");
+    format!("target/artifact-reviews/{id}/{stem}.round{round}.html")
 }
 
 /// Append one review of a page to the task's verdict log.
@@ -105,6 +113,9 @@ pub fn verdict(
     let revisions = rows.iter().filter(|r| r.verdict == Verdict::Revise).count();
     let round = match verdict {
         Verdict::Best => {
+            if rows.last().is_some_and(|r| r.verdict == Verdict::Best) {
+                return Err(format!("best is already recorded for {page}").into());
+            }
             if revisions < REVIEWS || rows.last().is_some_and(|r| r.verdict != Verdict::Revise) {
                 return Err(format!(
                     "best is for a page whose {REVIEWS} reviews all asked for revision; {page} has {revisions}"
@@ -139,13 +150,20 @@ pub fn verdict(
         reviewer: reviewer.into(),
         notes: notes.trim().into(),
     };
+    if verdict != Verdict::Best {
+        let copy = root.join(kept(id, page, round));
+        fs::create_dir_all(copy.parent().ok_or("no parent")?)?;
+        fs::copy(root.join(artifacts::directory(id)).join(page), copy)?;
+    }
     log.rows.push(row.clone());
     fs::write(
         root.join(log_path(id)),
         format!("{}\n", serde_json::to_string_pretty(&log)?),
     )?;
-    Ok(json!({"ok":true,"task":id,"recorded":row,
-        "next":format!("commit {page} with {} when the page is final; cargo xtask task-artifact next --task {id}", log_path(id))}))
+    Ok(
+        json!({"ok":true,"task":id,"recorded":row,"kept":kept(id, page, round),
+        "next":format!("commit {page} with {} when the page is final; cargo xtask task-artifact next --task {id}", log_path(id))}),
+    )
 }
 
 fn step(action: &str, page: &str, round: usize, say: String) -> Option<Value> {
@@ -186,9 +204,6 @@ fn page_step(root: &Path, id: &str, page: &str, log: Option<&Log>) -> Result<Opt
         // Tasks from before the log: a committed page counts as reviewed elsewhere.
         None if log.is_none() && committed => return Ok(None),
         None => return Ok(review(1)),
-        Some(last) if last.verdict == Verdict::Revise && last.sha256 != sha => {
-            return Ok(review(revisions + 1));
-        }
         Some(_)
             if revisions >= REVIEWS
                 && rows.last().is_some_and(|r| r.verdict == Verdict::Revise) =>
@@ -198,9 +213,12 @@ fn page_step(root: &Path, id: &str, page: &str, log: Option<&Log>) -> Result<Opt
                 page,
                 revisions,
                 format!(
-                    "Two rewrites are spent. Restore the best reviewed version of {page}, record it with --verdict best, and commit it with its open findings noted."
+                    "Two rewrites are spent. Restore the best reviewed version of {page} from target/artifact-reviews/{id}/, record it with --verdict best, and commit it with its open findings noted."
                 ),
             ));
+        }
+        Some(last) if last.verdict == Verdict::Revise && last.sha256 != sha => {
+            return Ok(review(revisions + 1));
         }
         Some(last) if last.verdict == Verdict::Revise => {
             return Ok(step(

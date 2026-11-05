@@ -10,6 +10,12 @@ a dedicated author and an independent reviewer do.
 
 ## How to produce a page
 
+`cargo xtask task-artifact next --task ID` reads the task record, the pages and
+the task's verdict log and prints the one next step: author, review, rewrite,
+commit, build or complete. It advises and never blocks. It exits 3 when it also
+has a warning, such as a page edited after its last review. Completion does not
+read the log.
+
 1. **Use a dedicated author.** Start a fresh subagent for each page and give it
    the [author-artifact brief](../.claude/skills/author-artifact/SKILL.md), the prompt below with
    the task filled in, the exemplar path, the task context and the task's pages
@@ -42,8 +48,14 @@ a dedicated author and an independent reviewer do.
    rewrite the page, then have a fresh reviewer judge the whole page again:
    each review samples different claims, and rewrites can break what was
    right. After two rewrites, commit the best
-   version. Record each page's final verdict and any findings left open in the
-   task record's `review.verification`.
+   version. Record every review with `cargo xtask task-artifact verdict --task ID
+   --page PAGE --verdict pass|revise|best --reviewer NAME --notes TEXT`. It
+   appends a row with the page's SHA-256 to `reviews.json` in the task's folder
+   and keeps a copy of the reviewed version under `target/artifact-reviews/`;
+   `best` marks the reviewed version restored after two rewrites. Commit the log
+   with the page; the artifact author's hook refuses edits to it. Copy each
+   page's final verdict and any findings left open into the task record's
+   `review.verification`.
 
 ## The prompts
 
@@ -123,7 +135,7 @@ human's call.
    color, type and spacing. Layout stays page-specific.
 2. Write the pages in that folder as `blindspots.html`, `interventions.html`,
    `interview.html`, `reference.html`, `plan.html`, `implementation.html`,
-   `buy-in.html` and `quiz.html`. Each page is one self-contained file that loads
+   `buy-in.html` and `quiz.html`, with the verdict log `reviews.json`. Each page is one self-contained file that loads
    nothing else, not even from its own folder, so it renders the same in a file
    preview, on a code host or as an attachment, and a later style change never
    alters it.

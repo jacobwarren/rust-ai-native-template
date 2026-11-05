@@ -18,6 +18,12 @@
     "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
   },
   {
+    "path": ".agents/skills/write-ticket/SKILL.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); cargo xtask coordination on the stub"
+  },
+  {
     "path": ".claude/agents/artifact-author.md",
     "owner": "maintainers",
     "status": "active",
@@ -46,6 +52,12 @@
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+  },
+  {
+    "path": ".claude/skills/write-ticket/SKILL.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); cargo xtask coordination on the stub"
   },
   {
     "path": ".github/pull_request_template.md",

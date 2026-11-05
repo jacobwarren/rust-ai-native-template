@@ -5,7 +5,7 @@
 # a refusal keeps the agent working. Setting the record back to partial, with
 # its remaining actions, always clears the block. Partial handoffs, stray files
 # and policy receipts are checked by PR CI (cargo xtask handoff), not here.
-#   HARNESS_BASE    base ref; unset, origin/main, or where this branch's own
+#   HARNESS_BASE    base ref. Unset: origin/main, or where this branch's own
 #                   commits start when it is stacked on another remote branch
 #   HARNESS_REPORT  CI evidence (default target/verification/ci.json)
 #   HARNESS_XTASK   tests only: replaces `cargo xtask`

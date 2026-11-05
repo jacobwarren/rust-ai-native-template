@@ -135,10 +135,23 @@ fn two_rewrites_end_in_the_best_version() {
         unreviewed["error"].as_str().unwrap().contains("restore"),
         "{unreviewed}"
     );
-    std::fs::write(f.0.join(PAGE), first).unwrap();
+    // verdict kept every reviewed version under target/.
+    let kept =
+        f.0.join("target/artifact-reviews/TASK-1/blindspots.round1.html");
+    assert_eq!(std::fs::read(&kept).unwrap(), first);
+    std::fs::copy(&kept, f.0.join(PAGE)).unwrap();
+    assert_eq!(step(&f).0, "best");
     assert_eq!(
         verdict(&f, "blindspots.html", "best")["recorded"]["round"],
         1
+    );
+    let twice = verdict(&f, "blindspots.html", "best");
+    assert!(
+        twice["error"]
+            .as_str()
+            .unwrap()
+            .contains("already recorded"),
+        "{twice}"
     );
     assert_eq!(step(&f), ("commit".into(), "blindspots.html".into(), 1));
     let bad = verdict(&f, "notes.html", "pass");
@@ -209,6 +222,13 @@ fn a_crlf_page_that_git_calls_clean_reads_as_committed() {
     f.commit("blindspots");
     assert!(f.git(&["status", "--porcelain"]).is_empty());
     assert_eq!(step(&f), ("author".into(), "interventions.html".into(), 1));
+    // Another clone checks the page out with LF; it is the version that passed.
+    let lf = std::fs::read_to_string(f.0.join(PAGE))
+        .unwrap()
+        .replace("\r\n", "\n");
+    f.text(PAGE, &lf);
+    let (code, v) = next(&f);
+    assert_eq!(code, 0, "{v}");
 }
 
 #[test]

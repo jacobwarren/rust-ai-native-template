@@ -113,7 +113,8 @@
         "xtask/src/size.rs",
         "xtask/src/checks.rs",
         ".claude/agents/artifact-author.md",
-        "xtask/src/router.rs"
+        "xtask/src/router.rs",
+        ".claude/skills/write-ticket/SKILL.md"
       ],
       "tests": [
         "completion_requires_eight_pages_carrying_the_stylesheet_inline",
