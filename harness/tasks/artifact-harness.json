@@ -61,8 +61,8 @@
       "docs/ARTIFACTS.md",
       "docs/COMPLETION.md",
       "docs/plans/TEMPLATE.md",
-      ".claude/skills/author-artifact/SKILL.md",
-      ".claude/skills/review-artifact/SKILL.md",
+      "docs/skills/author-artifact.md",
+      "docs/skills/review-artifact.md",
       "examples/thariq/README.md"
     ],
     "rationale": "Added the artifact guide, author and reviewer briefs and vendored exemplars; updated the agent map, completion contract, PR and plan templates, architecture table and README to require the eight pages and their order."

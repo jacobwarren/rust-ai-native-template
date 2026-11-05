@@ -240,10 +240,22 @@
     "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
   },
   {
+    "path": "docs/skills/author-artifact.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; forwarding note to the skill"
+  },
+  {
     "path": "docs/skills/investigate.md",
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
+  },
+  {
+    "path": "docs/skills/review-artifact.md",
+    "owner": "maintainers",
+    "status": "archived",
+    "verified_by": "cargo xtask docs; forwarding note to the skill"
   },
   {
     "path": "examples/thariq/README.md",
