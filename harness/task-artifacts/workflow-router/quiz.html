@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Quiz before merge: workflow-router</title>
+<style>
+  main{max-width:62rem;line-height:1.55;padding-top:var(--space-6)}
+  h1{margin-block:var(--space-4) var(--space-4)}
+  h2{margin-block:var(--space-8) var(--space-3)}
+  .lead{font-size:1.12rem}
+  p{margin-block:var(--space-3)}
+  table{font-size:.94rem}
+  th,td{padding:var(--space-2) var(--space-3)}
+  code{font-size:.88em;background:var(--accent-soft);padding:.05em .3em;border-radius:.25rem}
+  pre code{background:none;padding:0}
+  .promptcard{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-4) var(--space-6);margin-block:var(--space-6)}
+  .promptcard .label{font-size:var(--text-small);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:650}
+  .promptcard blockquote{background:none;border:none;padding:0;margin:var(--space-2) 0 0;font-style:italic;padding-right:7.5rem}
+  .promptcard button{position:absolute;top:var(--space-3);right:var(--space-3);min-height:36px;padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+  @media (max-width:40rem){.promptcard blockquote{padding-right:0;padding-top:var(--space-8)}}
+  .stats{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-block:var(--space-6)}
+  .stat{flex:1;min-width:8.5rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-3) var(--space-4)}
+  .stat b{display:block;font-size:1.4rem;line-height:1.15}
+  .stat span{font-size:var(--text-small);color:var(--muted)}
+  .add{color:var(--accent)} .del{color:var(--danger)}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-top:var(--space-4)}
+  @media (max-width:44rem){.pair{grid-template-columns:1fr}}
+  .flow{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-4)}
+  .flow.after{border-color:var(--accent)}
+  .flow h3{margin:0 0 var(--space-3);font-size:var(--text-small);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .flow.after h3{color:var(--accent)}
+  .node{border:1px solid var(--line);border-radius:var(--control-radius);padding:var(--space-2) var(--space-3);font:var(--text-small)/1.45 var(--font-code);text-align:center;background:var(--paper)}
+  .node.new{border-color:var(--accent);background:var(--accent-soft)}
+  .node.warn{border-color:var(--warning);background:var(--warning-soft)}
+  .arrow{text-align:center;color:var(--muted);font-size:var(--text-small);line-height:1.6}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
+  .excerpt{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin:var(--space-4);overflow:hidden}
+  .excerpt .where{font:var(--text-small) var(--font-code);color:var(--muted);padding:var(--space-2) var(--space-4);border-bottom:1px solid var(--line);background:var(--paper)}
+  .excerpt pre{border:none;margin:0;border-radius:0;font-size:.8rem;line-height:1.45;padding:var(--space-3) var(--space-4)}
+  .excerpt .hl{background:var(--warning-soft);display:inline-block;width:100%}
+  .excerpt .note{font-size:var(--text-small);padding:var(--space-2) var(--space-4);border-top:1px solid var(--line);color:var(--ink)}
+  .beh{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-block:var(--space-3);overflow:hidden}
+  .beh h3{margin:0;padding:var(--space-3) var(--space-4);background:var(--paper);border-bottom:1px solid var(--line);font-size:1.02rem}
+  .beh h3 span{font-family:var(--font-code);color:var(--accent);margin-right:var(--space-2)}
+  .beh dl{display:grid;grid-template-columns:4.5rem 1fr;gap:var(--space-1) var(--space-3);font-size:.96rem;margin:0;padding:var(--space-3) var(--space-4)}
+  .beh dt{font-size:var(--text-small);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:.15em}
+  .beh dd{margin:0}
+  @media (max-width:40rem){.beh dl{grid-template-columns:1fr}.beh dt{padding-top:0}}
+  .done th{white-space:nowrap;font-size:var(--text-small);width:8rem}
+  @media (max-width:40rem){.done th{white-space:normal;width:auto}}
+  .done td code{overflow-wrap:anywhere;word-break:break-word}
+  .rule{display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-8);color:var(--muted);font-size:var(--text-small);text-transform:uppercase;letter-spacing:.1em}
+  .rule::before,.rule::after{content:"";flex:1;height:1px;background:var(--line)}
+  .qhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-3)}
+  .score{font:var(--text-small) var(--font-code);background:var(--surface);border:1px solid var(--line);border-radius:var(--control-radius);padding:var(--space-2) var(--space-3)}
+  .q{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-3) var(--space-4);margin-block:var(--space-3)}
+  .q.right{border-color:var(--accent)} .q.wrong{border-color:var(--danger)}
+  .q .n{font:650 var(--text-small) var(--font-code);color:var(--accent);margin-right:var(--space-1)}
+  .q .text{margin:0 0 var(--space-3)}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
+  @media (max-width:48rem){.opts{grid-template-columns:1fr}}
+  .opt{display:flex;gap:var(--space-3);width:100%;text-align:left;margin:0;font-size:.94rem;line-height:1.45;background:var(--paper) !important;color:var(--ink) !important;border:1px solid var(--line) !important;min-height:auto;padding:var(--space-2) var(--space-3)}
+  .opt:hover:not(:disabled){border-color:var(--muted) !important}
+  .opt .k{font-family:var(--font-code);color:var(--muted);flex:none}
+  .opt:disabled{opacity:1;cursor:default}
+  .opt.sel-right{border-color:var(--accent) !important;background:var(--accent-soft) !important}
+  .opt.sel-wrong{border-color:var(--danger) !important;background:#fbeeee !important}
+  .opt.reveal{border-color:var(--accent) !important}
+  .opt.dim{opacity:.55}
+  .fb{display:none;margin-top:var(--space-3);border-radius:var(--control-radius);padding:var(--space-3);font-size:var(--text-small)}
+  .fb.show{display:block}
+  .fb.good{background:var(--accent-soft);border:1px solid var(--accent)}
+  .fb.bad{background:var(--warning-soft);border:1px solid var(--warning)}
+  .fb .tag{font-weight:650;margin-bottom:var(--space-1)}
+  .fb .ran{display:block;margin-top:var(--space-2);font-family:var(--font-code);font-size:.78rem;color:var(--muted);overflow-wrap:anywhere}
+  .result{display:none;margin-top:var(--space-6)}
+  .result.show{display:block}
+  .pass{border:1px solid var(--accent);background:var(--accent-soft);border-radius:var(--radius);padding:var(--space-4) var(--space-6)}
+  .fail{border:1px solid var(--warning);background:var(--warning-soft);border-radius:var(--radius);padding:var(--space-4) var(--space-6)}
+  .pass h3,.fail h3{margin-top:0}
+  .checks{list-style:none;padding:0;margin:0}
+  .checks li{padding:var(--space-1) 0;border-bottom:1px dashed var(--line);font-size:var(--text-small)}
+  .checks li:last-child{border:none}
+  .reply{margin-top:var(--space-6)} .reply h2{margin-top:0} .reply label{margin-block:var(--space-2)}
+  .reply output{white-space:pre-wrap;font:var(--text-small)/1.5 var(--font-code)}
+  .row{display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center}
+  main > footer{margin-top:var(--space-6);padding-top:var(--space-3)}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">workflow-router · Before merge</div>
+  <h1>The page loop as a command: what changed and why</h1>
+  <p class="lead">This branch adds <code>task-artifact next</code>, which names the next page step, and <code>task-artifact verdict</code>, which logs each review in a per-task <code>reviews.json</code>. It makes the stop hook judge a stacked branch from where its own commits start, and adds a write-ticket skill. Read the four sections, then pass the quiz; each case combines two of their facts in a situation they do not describe.</p>
+
+  <div class="promptcard">
+    <div class="label">The prompt</div>
+    <button type="button" id="copyPrompt">Copy prompt</button>
+    <blockquote id="promptText">I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass.</blockquote>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>17</b><span>files outside the task pages</span></div>
+    <div class="stat"><b class="add">+1,013</b><span>lines added</span></div>
+    <div class="stat"><b class="del">&minus;15</b><span>lines removed</span></div>
+    <div class="stat"><b>7</b><span>new tests in router.rs and hooks_stop.rs</span></div>
+  </div>
+
+  <section id="context">
+    <h2>1 · Context</h2>
+    <p>On the last two tasks the orchestrating agent ran the page loop from the prose in <code>docs/ARTIFACTS.md</code> and drifted: pages were hand-edited after their final review and committed before their review finished, and verdicts lived only as prose in <code>review.verification</code>. The owner asked for a ticket skill and, from a talk on moving routing out of the model, for a small command that says what to do next. While this branch sat on an unmerged PR, the stop hook kept judging that PR's complete record and refused every stop once CI evidence went stale.</p>
+    <p>The interview settled the scope: the commands advise and never gate, completion does not read the log, and skills stay ceremony paths. The plan tabulates every action and stacked-branch situation, and the implementation notes list the four gaps the build found and fixed; neither is repeated here.</p>
+  </section>
+
+  <section id="model">
+    <h2>2 · The mental model</h2>
+    <p>Routing moves from the agent's reading of a guide into a command that reads files. The gate that decides whether a task may be called complete is untouched.</p>
+    <div class="pair">
+      <div class="flow">
+        <h3>Before · the agent routes from prose</h3>
+        <div class="node">docs/ARTIFACTS.md review loop</div>
+        <div class="arrow">&darr; the agent decides each step</div>
+        <div class="node">author · reviewer · rewrite · commit</div>
+        <div class="arrow">&darr; verdicts as prose</div>
+        <div class="node">review.verification in the record</div>
+        <div class="arrow">&darr;</div>
+        <div class="node">complete: record, pages, order, evidence</div>
+      </div>
+      <div class="flow after">
+        <h3>After · a command routes from files</h3>
+        <div class="node new">task-artifact next: record + pages + reviews.json</div>
+        <div class="split">
+          <div><div class="arrow">&darr; one step</div><div class="node">JSON <code>next</code>, exit 0</div></div>
+          <div><div class="arrow">&darr; plus a warning</div><div class="node warn"><code>advisories</code>, exit 3</div></div>
+        </div>
+        <div class="arrow">&darr; after each review</div>
+        <div class="node new">task-artifact verdict: one row, the page's SHA-256, a kept copy</div>
+        <div class="arrow">&darr; never read by</div>
+        <div class="node">complete: record, pages, order, evidence</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="behaviours">
+    <h2>3 · Intuition: five behaviours a diff skim misses</h2>
+
+    <div class="beh" id="b1">
+      <h3><span>01</span><code>next</code> asks each page the same questions in a fixed order, and the first yes wins</h3>
+      <div class="excerpt">
+        <div class="where">xtask/src/router.rs: page_step, condensed</div>
+<pre><code>no file                                          → author
+no rows for this page:
+    task has no reviews.json at all, page committed → done (reviewed before the log)
+    otherwise                                    → review, round 1
+<span class="hl">≥ 3 revise rows and the last row is revise       → best</span>
+last row revise, page hash differs from it       → review, round revises + 1
+last row revise, page hash equal                 → rewrite (n of 2)
+last row pass or best:
+    page and reviews.json both clean in git status → done
+    otherwise                                    → commit</code></pre>
+        <div class="note"><code>next</code> walks the five discovery pages, then <code>implementation.html</code> (missing: build), then <code>buy-in.html</code> and <code>quiz.html</code> (missing: author), and stops at the first step; with none it says complete. A missing record gives <code>record</code>, and a small tier gives <code>build</code>.</div>
+      </div>
+    </div>
+
+    <div class="beh" id="b2">
+      <h3><span>02</span><code>verdict</code> numbers versions, not reviews, and refuses what the loop forbids</h3>
+      <div class="excerpt">
+        <div class="where">xtask/src/router.rs: verdict, condensed</div>
+<pre><code>round = revise rows for this page + 1          // 1 first draft, 2 and 3 the rewrites
+pass | revise:
+    refuse if the page's last row has this exact hash
+    refuse if 3 revise rows exist                 // "has used its two rewrites"
+    copy the page to target/artifact-reviews/&lt;task&gt;/&lt;stem&gt;.round&lt;N&gt;.html
+best:
+    refuse if the last row is already best
+    refuse unless 3 revise rows exist and the last is revise
+<span class="hl">    round = the round of the row whose hash equals the page; no such row → refuse</span></code></pre>
+        <div class="note">Every flag is required, in this order: <code>--task --page --verdict --reviewer --notes</code>. The log is strict: <code>schema_version</code> 1, unknown fields refused.</div>
+      </div>
+    </div>
+
+    <div class="beh" id="b3">
+      <h3><span>03</span>"The same version" means the same text after Git's line-ending rule</h3>
+      <dl>
+        <dt>Hash</dt><dd><code>page_sha</code> reads the file, turns every CRLF into LF, then takes SHA-256. The repository's <code>.gitattributes</code> is <code>* text=auto eol=lf</code>.</dd>
+        <dt>Commit</dt><dd>Whether a page or the log is committed comes from <code>git status</code>, not from comparing hashes with the stored blob.</dd>
+        <dt>Warn</dt><dd>After choosing the step, <code>next</code> checks every page in the log: if that page's latest row is pass or best and the page now hashes differently, it adds "edited after its … verdict". It also warns when the working log no longer starts with the rows committed at HEAD. <code>main.rs</code> exits 3 when the result is ok and <code>advisories</code> is not empty.</dd>
+      </dl>
+    </div>
+
+    <div class="beh" id="b4">
+      <h3><span>04</span>The stop hook finds where this branch's own commits start</h3>
+      <div class="excerpt">
+        <div class="where">scripts/agent-complete.sh, condensed</div>
+<pre><code>base = merge-base(HEAD, ${HARNESS_BASE:-origin/main})
+if HARNESS_BASE is unset:
+    others = every refs/remotes branch except */HEAD, this branch's upstream,
+             and any remote branch with this branch's own name
+    first  = oldest commit on HEAD's first-parent line not reachable from others
+    fork   = first^   (no such commit: HEAD)
+<span class="hl">    if base is an ancestor of fork and differs from it: base = fork</span>
+ids = task records and page folders changed since base, plus untracked ones
+for each id whose record says "complete": cargo xtask complete --base base</code></pre>
+        <div class="note">The same base selects the records and is passed to <code>complete</code>, so page order is judged from it too. PR CI is unchanged: <code>handoff</code> there uses the pull request's base and judges every record.</div>
+      </div>
+    </div>
+
+    <div class="beh" id="b5">
+      <h3><span>05</span>The log has one writer by convention, and the ticket skill writes a record the gate accepts</h3>
+      <dl>
+        <dt>Hook</dt><dd>In author mode, <code>agent-hook.sh</code> refuses Edit and Write on any <code>harness/task-artifacts/&lt;task&gt;/reviews.json</code>, case-folded. The artifact-author agent runs that hook on <code>Edit|Write|MultiEdit|NotebookEdit</code>; it keeps Bash, which the hook does not cover.</dd>
+        <dt>Stub</dt><dd>write-ticket, identical for both hosts, writes a five-section ticket and then <code>harness/tasks/&lt;id&gt;.json</code> as <code>partial</code>, with the named tests as remaining actions, and runs <code>coordination</code> and <code>next</code>. The record is strict; <code>Status</code> is <code>complete | partial | blocked</code>.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="done">
+    <h2>4 · What was done</h2>
+    <table class="done">
+      <tbody>
+        <tr><th scope="row">Router</th><td>New <code>router.rs</code>: <code>next</code>, <code>verdict</code> and the log types; exit 3 in <code>main.rs</code>. Six tests in <code>tests/router.rs</code>.</td></tr>
+        <tr><th scope="row">Stop hook</th><td>The fork-point block in <code>agent-complete.sh</code>; one test in <code>hooks_stop.rs</code> with fake remote refs.</td></tr>
+        <tr><th scope="row">Author hook</th><td>One <code>case</code> arm in <code>agent-hook.sh</code> for <code>reviews.json</code>.</td></tr>
+        <tr><th scope="row">Skill and docs</th><td>write-ticket in both host folders; <code>ARTIFACTS.md</code>, <code>COMPLETION.md</code>, README and AGENTS.md step 2 describe the commands and the stacked base. One policy receipt covers the protected files.</td></tr>
+      </tbody>
+    </table>
+    <blockquote id="leans"><strong>Existing behaviour this leans on.</strong> <code>complete</code> and <code>handoff</code> check the record, the pages' presence and commit order, and the CI evidence, exactly as before. Nothing here blocks a merge: the log is a trace an agent or reviewer reads, and an agent that ignores exit 3 is not stopped.</blockquote>
+  </section>
+
+  <div class="rule">Prove it</div>
+  <div class="qhead">
+    <div><h2 style="margin-bottom:var(--space-1)">Nine cases before you merge</h2><div class="muted">Work each one out from the sections above. The feedback shows what the committed code printed.</div></div>
+    <div class="score">Score <b id="scoreNow">0</b>/<b id="scoreMax">9</b> · <span id="answered">0</span> answered</div>
+  </div>
+  <div id="quiz"></div>
+
+  <div class="result" id="resPass">
+    <div class="pass">
+      <h3>Cleared to merge</h3>
+      <p>9/9. You can predict what the router and the stop hook will say. What remains is judgement:</p>
+      <ul class="checks">
+        <li>&#9675; A squash-merged lower PR whose branch is deleted is judged again at stop until this branch is rebased or <code>HARNESS_BASE</code> names lower’s old tip</li>
+        <li>&#9675; Bash can append rows to the log; reviewers and Git history are the check, not the hook</li>
+        <li>&#9675; Code committed before the discovery pages is still reported only when the record says complete; <code>next</code> has no base</li>
+        <li>&#9675; <code>best</code> as a third verdict, and round as the version reviewed, are the agent's picks</li>
+      </ul>
+    </div>
+  </div>
+  <div class="result" id="resFail">
+    <div class="fail">
+      <h3 id="failTitle">Not yet</h3>
+      <p>Re-read these, then reset:</p>
+      <ul id="failLinks"></ul>
+      <button type="button" class="secondary" id="retry">Reset quiz</button>
+    </div>
+  </div>
+
+  <section class="reply" id="reply">
+    <h2>Your reply</h2>
+    <label>Anything that should change before merge (optional)
+      <textarea id="comment" style="min-height:3rem" rows="2" placeholder="e.g. also treat the default branch's merged PRs as other; or: verdict should refuse an appended row"></textarea>
+    </label>
+    <div class="row"><button type="button" id="copyReply">Copy reply</button><span class="muted" id="copied"></span></div>
+    <output id="replyText"></output>
+  </section>
+
+  <footer>workflow-router · quiz before merge</footer>
+</main>
+
+<script>
+(function(){
+  function copy(text, done){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select();
+      try{document.execCommand('copy');}catch(e){} document.body.removeChild(t); done();
+    }
+  }
+  var cp=document.getElementById('copyPrompt');
+  cp.addEventListener('click',function(){copy(document.getElementById('promptText').textContent,function(){cp.textContent='Copied';setTimeout(function(){cp.textContent='Copy prompt';},1500);});});
+
+  // Each question: opts[0] is correct; display order is shuffled.
+  var QS=[
+    {q:'<code>blindspots.html</code> has three revise rows, rounds 1 to 3. The orchestrator copies <code>target/artifact-reviews/T/blindspots.round2.html</code> back over the page and runs <code>next</code>, then records the page with <code>--verdict best</code>. What does <code>next</code> say, and which round does the best row carry?',
+     opts:['best; the row records round 2',
+           'review, round 4, since the page changed; best then records round 4',
+           'best; the row records round 3, the last review',
+           'rewrite; best is refused until a fourth review'],
+     good:'The three-revise arm is checked before "the page changed", so restoring an earlier version cannot ask for a fourth review. <code>best</code> then finds the row whose hash equals the restored page and takes its round.',
+     ran:'next → "action": "best"; verdict best → "round": 2, "verdict": "best"; next → "action": "commit", "round": 2',
+     anchor:'b1', label:'01 · The order of next’s questions'},
+    {q:'Same page, three revise rows. Instead of restoring a kept copy, an author writes a fourth draft and a fresh reviewer passes it. What can the orchestrator record?',
+     opts:['Nothing yet: pass is refused because the rewrites are spent, and best is refused because no review saw this draft',
+           'A pass in round 4; a pass ends the loop at any round',
+           'best, marking the fourth draft as the version kept',
+           'A pass, after which next warns that the cap was exceeded'],
+     good:'Three revise rows refuse any further pass or revise. <code>best</code> needs a row with the same hash as the page, and the fourth draft has none. Only restoring a kept copy moves the loop on.',
+     ran:'verdict pass → "blindspots.html has used its two rewrites; commit the best version and record --verdict best"; verdict best → "blindspots.html differs from every reviewed version; restore the best one first"',
+     anchor:'b2', label:'02 · What verdict refuses'},
+    {q:'On Windows, <code>blindspots.html</code> is saved with CRLF line endings, passes review, and is committed with its log row. A teammate clones the repository on Linux and runs <code>next</code>. What does it say about <code>blindspots.html</code>?',
+     opts:['Nothing: the page reads as reviewed and committed, and next moves on; exit 0',
+           '"edited after its Pass verdict", exit 3: the bytes on disk differ from those reviewed',
+           'Commit it: the working file differs from what was reviewed',
+           'Review it again, round 1'],
+     good:'Under <code>eol=lf</code> Git stores the page with LF and the clone checks it out with LF. The hash was taken after the same CRLF-to-LF step, so the clone’s file matches the row, and <code>git status</code> calls it clean.',
+     ran:'original checkout: status clean, file hash ≠ blob hash; git clone: next → author interventions.html, "advisories": [], exit 0',
+     anchor:'b3', label:'03 · What counts as the same version'},
+    {q:'<code>blindspots.html</code> is written but not yet reviewed. <code>interventions.html</code> passed earlier and has since been hand-edited. What does <code>next</code> print, and with what exit code?',
+     opts:['Review blindspots.html, with an advisory that interventions.html was edited after its pass; exit 3',
+           'Review blindspots.html; exit 0, since interventions.html comes after the step',
+           'Review interventions.html first; exit 3',
+           'An error that a page changed after review; exit 1'],
+     good:'The step is the first page with a step, so blindspots is still next. The edit check runs over every page in the log, not only those before the step, and any advisory on an ok result makes the exit 3.',
+     ran:'next → "action": "review", "page": "blindspots.html"; "advisories": ["interventions.html was edited after its Pass verdict; …"]; exit 3',
+     anchor:'b3', label:'03 · Advisories and exit 3'},
+    {q:'Your branch stacks on <code>lower</code>, whose task record says complete; its CI evidence is stale in your checkout. The lower PR merges and its branch is deleted. Case A: a merge commit. Case B: a squash merge. With <code>HARNESS_BASE</code> unset, which of your stops are refused?',
+     opts:['Only B: lower’s record is judged again',
+           'Neither: the hook judges only this branch’s own commits',
+           'Both: a deleted branch is no longer another remote branch',
+           'Only A: the merge commit counts as this branch’s own'],
+     good:'A merge commit puts lower’s commits into origin/main, so the merge base moves past them. A squash merge adds one new commit; lower’s original commits stay in your history, no remote branch holds them any more, so the fork falls back to the old merge base and lower’s record counts as changed here. Keeping lower’s branch, rebasing onto the new main, or <code>HARNESS_BASE</code> at lower’s old tip clears it.',
+     ran:'merge commit, branch deleted → exit 0; squash, branch kept → exit 0; squash, branch deleted → exit 2 "Completion claim refused: harness/tasks/LOWER.json says complete, but the completion gate failed"; then HARNESS_BASE=&lt;lower’s old tip&gt; → exit 0; rebased onto origin/main → exit 0',
+     anchor:'b4', label:'04 · How the stop hook finds the fork'},
+    {q:'On a branch with no upstream, you commit your own record as complete, push the branch as <code>origin/backup</code>, and let the CI evidence go stale. The agent stops: (1) with <code>HARNESS_BASE</code> unset; (2) with <code>HARNESS_BASE=origin/main</code>. Which is refused?',
+     opts:['Only (2)',
+           'Both: your own record is always judged',
+           'Neither: once pushed, the claim is CI’s to judge',
+           'Only (1)'],
+     good:'<code>origin/backup</code> is not the upstream and has another name, so it counts as another branch. Every commit it holds is hidden, the fork becomes HEAD, and nothing committed is judged. An explicit base skips detection. A later commit or uncommitted edit to the record is judged either way.',
+     ran:'unset → exit 0; HARNESS_BASE=origin/main → exit 2 "harness/tasks/OWN.json says complete"',
+     anchor:'b4', label:'04 · Which branches count as other'},
+    {q:'The committed log says <code>blindspots.html</code>: revise, round 1. The artifact author first tries Write on <code>reviews.json</code>, then uses Bash to append a pass row carrying the page’s current hash. What do the hook and <code>next</code> do?',
+     opts:['Write is blocked; the Bash append goes through, and next says commit with no advisory; exit 0',
+           'Both are blocked by the author hook',
+           'Write is blocked; next flags the appended row with exit 3',
+           'Both go through; next warns that the log no longer starts with its committed rows'],
+     good:'The author hook runs only on the edit tools. The log check compares the committed rows with the start of the working log, so an appended row passes it. Rewriting the committed revise row to pass would have been flagged.',
+     ran:'author hook: Write → exit 2 "Blocked: the verdict log records reviews…", Bash → exit 0; next after the append → "commit", "advisories": [], exit 0; after flipping the committed row → "reviews.json no longer starts with its committed rows", exit 3',
+     anchor:'b5', label:'05 · Who can write the log'},
+    {q:'Following write-ticket, an agent writes <code>harness/tasks/T.json</code> for work that has not started, sets <code>"status": "planned"</code> with every other field valid, and runs <code>coordination</code> and then <code>next</code>. What does <code>next</code> print?',
+     opts:['The same error as coordination, naming planned; exit 1',
+           'record: write the task record first',
+           'author blindspots.html: the stub is enough to start',
+           'build: a status it does not know is treated as small'],
+     good:'<code>next</code> says record only when the file is missing. Once it exists, <code>next</code> parses it like every other command, and the status has three values. The skill’s stub is partial, with the named tests as remaining actions.',
+     ran:'coordination and next → "unknown variant `planned`, expected one of `complete`, `partial`, `blocked`", exit 1',
+     anchor:'b5', label:'05 · The record stub'},
+    {q:'A standard task has all eight pages committed in order, a complete record, fresh CI evidence and no <code>reviews.json</code>; <code>complete</code> passes. Someone then records one review, revise on <code>quiz.html</code>, commits the log and refreshes the evidence. What do <code>next</code> and <code>complete</code> say?',
+     opts:['next: review blindspots.html, round 1; complete still passes',
+           'next: rewrite quiz.html; complete now fails on the open revise',
+           'next: complete; complete passes',
+           'next: rewrite quiz.html; complete still passes'],
+     good:'"Reviewed before the log" holds only while the task has no log at all. The first row ends it for every page, and blindspots.html has no row. <code>complete</code> never reads the log.',
+     ran:'before: next → "complete", complete ok; after: next → "review", "blindspots.html", round 1; complete → "ok": true',
+     anchor:'b1', label:'01 · Pages from before the log'}
+  ];
+  var KEYS=['A','B','C','D'];
+  var answers, order;
+  var quiz=document.getElementById('quiz');
+  function shuffle(n){var a=[];for(var i=0;i<n;i++)a.push(i);for(var j=n-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[k];a[k]=t;}return a;}
+  function build(){
+    answers=QS.map(function(){return null;}); order=[]; quiz.innerHTML='';
+    QS.forEach(function(it,qi){
+      var ord=shuffle(it.opts.length); order.push(ord);
+      var d=document.createElement('div'); d.className='q'; d.id='q'+qi;
+      var h='<div class="text"><span class="n">'+(qi+1)+'/'+QS.length+'</span> '+it.q+'</div><div class="opts">';
+      ord.forEach(function(oi,pos){h+='<button type="button" class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="k">'+KEYS[pos]+'</span><span>'+it.opts[oi]+'</span></button>';});
+      h+='</div><div class="fb" id="fb'+qi+'"></div>'; d.innerHTML=h; quiz.appendChild(d);
+    });
+    document.getElementById('scoreMax').textContent=QS.length;
+    update(); document.getElementById('resPass').classList.remove('show'); document.getElementById('resFail').classList.remove('show');
+  }
+  quiz.addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    var qi=+b.dataset.q, oi=+b.dataset.o, it=QS[qi]; if(answers[qi]!==null) return;
+    var right=oi===0; answers[qi]=right;
+    var d=document.getElementById('q'+qi); d.classList.add(right?'right':'wrong');
+    d.querySelectorAll('.opt').forEach(function(x){
+      x.disabled=true; var xo=+x.dataset.o;
+      if(xo===oi) x.classList.add(right?'sel-right':'sel-wrong');
+      else if(xo===0) x.classList.add('reveal'); else x.classList.add('dim');
+    });
+    var pos=order[qi].indexOf(0), fb=document.getElementById('fb'+qi);
+    fb.className='fb show '+(right?'good':'bad');
+    fb.innerHTML='<div class="tag">'+(right?'Correct':'Not quite: the answer is '+KEYS[pos])+'</div>'+it.good+'<span class="ran">Ran: '+it.ran+'</span>'
+      +(right?'':'<div style="margin-top:.4rem">Re-read <a href="#'+it.anchor+'">'+it.label+'</a>.</div>');
+    update(); if(answers.every(function(a){return a!==null;})) finish();
+  });
+  function score(){return answers.filter(function(a){return a===true;}).length;}
+  function update(){
+    document.getElementById('scoreNow').textContent=score();
+    document.getElementById('answered').textContent=answers.filter(function(a){return a!==null;}).length;
+    reply();
+  }
+  function finish(){
+    if(score()===QS.length){var p=document.getElementById('resPass');p.classList.add('show');p.scrollIntoView({behavior:'smooth',block:'nearest'});return;}
+    document.getElementById('failTitle').textContent='Not yet: '+score()+'/'+QS.length;
+    var ul=document.getElementById('failLinks'), seen={}; ul.innerHTML='';
+    answers.forEach(function(a,i){ if(a===true) return; var it=QS[i]; if(seen[it.anchor]) return; seen[it.anchor]=1;
+      var li=document.createElement('li'); li.innerHTML='<a href="#'+it.anchor+'">'+it.label+'</a>'; ul.appendChild(li); });
+    var f=document.getElementById('resFail'); f.classList.add('show'); f.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  function reply(){
+    var done=answers.filter(function(a){return a!==null;}).length;
+    var missed=[]; answers.forEach(function(a,i){if(a===false) missed.push(i+1);});
+    var lines=['workflow-router quiz: '+score()+'/'+QS.length+(done<QS.length?' ('+done+' answered)':'')+(score()===QS.length?' — understood, ready to merge':'')];
+    if(missed.length) lines.push('Missed: question '+missed.join(', ')+'. Explain these before I merge.');
+    var c=document.getElementById('comment').value.trim(); if(c) lines.push('Before merge: '+c);
+    document.getElementById('replyText').textContent=lines.join('\n');
+  }
+  document.getElementById('comment').addEventListener('input',reply);
+  document.getElementById('copyReply').addEventListener('click',function(){copy(document.getElementById('replyText').textContent,function(){var s=document.getElementById('copied');s.textContent='Copied';setTimeout(function(){s.textContent='';},1500);});});
+  document.getElementById('retry').addEventListener('click',function(){build();quiz.scrollIntoView({behavior:'smooth',block:'start'});});
+  build();
+})();
+</script>
+</body>
+</html>

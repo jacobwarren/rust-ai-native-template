@@ -64,6 +64,14 @@
       "sha256": "666817e555a197fcb7f9702193f7fbc5045ad427020cc67da611f88e2f52eda9",
       "reviewer": "artifact-reviewer",
       "notes": "Open: gap 2 fix should replace only CRLF pairs (done that way); nine-situation table and 9/9, 13/13 tiles are optional trims; dogfooding tabs skimmable."
+    },
+    {
+      "page": "quiz.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "067a0a796c214ebdf5b7e0626002634acea130740426ae7e33fddf44f7ce9b8f",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: section 4 table repeats the stats row (trim); Q8 is the weakest case; excerpts nearly state Q1, Q6, Q7 though each needs two facts; Q3, Q6, Q8, Q9 not re-run by the reviewer."
     }
   ]
 }
