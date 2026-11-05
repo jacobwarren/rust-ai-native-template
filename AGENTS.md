@@ -6,7 +6,8 @@ Start here. This is a map; follow the linked source for the current task.
    and the nearest package's AGENTS.md before editing.
 2. Set the task's tier in its record. A small task (at most 100 changed lines,
    no policy, dependency or ceremony path) needs no pages; a standard task writes
-   the eight [HTML pages](docs/ARTIFACTS.md), discovery pages before code.
+   the eight [HTML pages](docs/ARTIFACTS.md), discovery pages before code;
+   `cargo xtask task-artifact next --task ID` names the next page step.
    Inspect the existing implementation and applicable acceptance criteria.
    Use `cargo xtask gaps` for ranked work and the driver to observe product behavior.
    Use `cargo xtask map` and `rg` to locate owners and dependencies.

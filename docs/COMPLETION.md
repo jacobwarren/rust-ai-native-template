@@ -42,7 +42,8 @@ findings into existing gaps. No quota requires a new gap per task.
 1. Task start: read relevant requirements and the project gaps. Identify which
    gaps the assignment addresses and create harness/tasks/ID.json using
    examples/task-record.json and choose its tier. A ticket URL, ID or plan reference is
-   optional. A standard task writes and commits its five discovery pages before
+   optional; the [write-ticket skill](../.claude/skills/write-ticket/SKILL.md)
+   turns a request into a ticket and a partial record stub. A standard task writes and commits its five discovery pages before
    implementation, notes during the work and the buy-in doc and quiz last; a small
    task needs no pages ([task artifacts](ARTIFACTS.md)).
 2. Material discovery: investigate immediately. Fix it within authorized scope,
@@ -168,10 +169,15 @@ CI would otherwise make at the PR to the moment an agent acts:
   completion claims only. A turn that claims nothing stops. When a task record
   changed on this branch says `"status": "complete"`, `cargo xtask complete`
   judges it and a refusal keeps the agent working; setting the record back to
-  partial with its remaining actions always clears the block. `HARNESS_BASE`
-  (default `origin/main`) and `HARNESS_REPORT` (default
-  `target/verification/ci.json`) still apply; `HARNESS_TASK_ID` no longer picks
-  the task. Partial handoffs, stray files and policy receipts surface at PR CI.
+  partial with its remaining actions always clears the block. On a branch
+  stacked on another remote branch (an unmerged PR), it judges from where this
+  branch's own commits start, so the lower branch's records are left to its own
+  PR. A copy of this branch pushed under another name, a branch someone pushed
+  on top of it, or a detached HEAD hides the commits it holds the same way, so
+  only later commits and uncommitted records are judged; PR CI still judges
+  them all. `HARNESS_BASE` overrides the base; `HARNESS_REPORT` (default
+  `target/verification/ci.json`) names the evidence; `HARNESS_TASK_ID` no longer
+  picks the task. Partial handoffs, stray files and policy receipts surface at PR CI.
 
 Command rules ask before `cargo add`, `cargo remove` and `gh pr merge`, and deny
 the literal force-push spellings (Codex forbids merges and force-pushes). They are speed bumps: the guard catches other

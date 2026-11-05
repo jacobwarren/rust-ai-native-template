@@ -1,0 +1,73 @@
+{
+  "schema_version": 6,
+  "id": "workflow-router",
+  "status": "complete",
+  "tier": "standard",
+  "requirements": [
+    "task-artifacts",
+    "completion"
+  ],
+  "related_gaps": [
+    {
+      "id": "product-acceptance",
+      "disposition": "unaffected",
+      "rationale": "Workflow tooling does not define acceptance for an adopted product."
+    },
+    {
+      "id": "platform-qualification",
+      "disposition": "unaffected",
+      "rationale": "No platform matrix change."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "Local tooling does not configure hosting rules."
+    },
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "unaffected",
+      "rationale": "Unchanged: next advises and never gates, so order is still checked only for complete tasks; the reference page re-observed this (note on order) and next cannot flag it earlier without a base."
+    }
+  ],
+  "gap_review": "Reviewed the four open gaps at task start and again before completion; this change adds advisory routing and a stop-hook base, and closes or reopens none of them.",
+  "discoveries": [
+    {
+      "summary": "Skill frontmatter can register hooks, grant tools and run shell commands at load, so skills act as policy; the requested carve-out of .claude/skills from the ceremony list was dropped and skills stay standard-tier paths.",
+      "record": "harness/task-artifacts/workflow-router/blindspots.html"
+    },
+    {
+      "summary": "With * text=auto eol=lf, a CRLF page hashes differently from its stored blob while git status calls it clean, and a fresh clone checks it out as LF; next asks git status for commit state and hashes pages as LF.",
+      "record": "xtask/src/router.rs"
+    },
+    {
+      "summary": "The stop gate re-judged a lower unmerged PR's complete record on a stacked branch and failed its page order; the hook now takes its base from where this branch's own commits start. A git-log filter would also list a record edited and then restored, so the hook filters by diff.",
+      "record": "scripts/agent-complete.sh"
+    },
+    {
+      "summary": "The task record has no planned status and rejects unknown fields; requirement ids are checked only at handoff, which also asks a partial record its four review questions. The write-ticket stub is partial with named tests in remaining.",
+      "record": ".claude/skills/write-ticket/SKILL.md"
+    },
+    {
+      "summary": "Order breaches (code committed before discovery pages) surface only when a record says complete; next has no base and cannot flag them earlier.",
+      "record": "gap:artifact-gate-holes"
+    }
+  ],
+  "discovery_review": "Recorded the five material discoveries from the pages and the build; transient review findings stay in reviews.json.",
+  "documentation": {
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "docs/COMPLETION.md",
+      "README.md",
+      "AGENTS.md"
+    ],
+    "rationale": "ARTIFACTS.md opens the page loop with next and records reviews with verdict; COMPLETION.md names the write-ticket skill and the stacked stop base; README and AGENTS.md step 2 name next."
+  },
+  "summary": "Add cargo xtask task-artifact next and verdict, which route the task-page loop and log each review with the page's hash in reviews.json; judge a stacked branch's stop from its own commits; add a write-ticket skill for both hosts. The ceremony list stays as it is.",
+  "remaining": [],
+  "review": {
+    "acceptance": "Met: task-artifact next routes the page loop and exits 3 on advice; task-artifact verdict logs each review with the page's LF SHA-256 in reviews.json and keeps reviewed versions under target/; the stop hook judges a stacked branch from its own commits; write-ticket exists for both hosts with a partial stub that passes coordination. Dropped by the agent's delegated call: narrowing the ceremony list, because skills act as policy.",
+    "verification": "cargo xtask check ci passes on the final tree; 7 new tests (6 in router.rs, 1 in hooks_stop.rs) and the stop tests also pass under macOS /bin/bash 3.2. Page verdicts from reviews.json: blindspots, interventions and interview PASS on first review (logged after the fact); reference PASS after one rewrite; plan PASS after one rewrite; implementation PASS; quiz PASS; buy-in PASS after one rewrite. No page was edited after its final review. Open notes are in each row's notes field, chiefly page length and, on buy-in, the commit-step quirk below.",
+    "assumptions": "Codex loads .agents/skills and the write-ticket skill as documented; not observed. A real stacked PR in CI was not run; the stop-hook change is local only and PR CI is unchanged.",
+    "coverage": "Known limits recorded: next and the log advise only; Bash writes to reviews.json are unconfined (a rewritten committed row is flagged); order breaches surface only at completion (artifact-gate-holes); a branch copy pushed under another name, a branch pushed on top, or a detached HEAD hide their commits from the stop hook; a squash-merged lower PR with its branch deleted is judged again as before; while the log is uncommitted the commit step names the first passed page rather than the one just reviewed."
+  }
+}

@@ -7,6 +7,7 @@ mod golden;
 mod history;
 mod readiness;
 mod repo;
+mod router;
 mod runner;
 mod scenarios;
 mod size;
@@ -25,7 +26,13 @@ fn main() -> ExitCode {
         Ok(value) => {
             let ok = value["ok"].as_bool().unwrap_or(true);
             println!("{value:#}");
-            if ok {
+            // Advice that deserves a look but blocks nothing, from task-artifact next.
+            let advised = value["advisories"]
+                .as_array()
+                .is_some_and(|a| !a.is_empty());
+            if ok && advised {
+                ExitCode::from(3)
+            } else if ok {
                 ExitCode::SUCCESS
             } else {
                 ExitCode::FAILURE
@@ -63,6 +70,8 @@ fn dispatch() -> Result<Value> {
             "task-artifact check --task ID":"Check the task's required pages exist and carry the stylesheet inline",
             "task-artifact screenshot --task ID":"Render the task's pages to PNG tiles under target/artifact-screenshots with local Chrome; reports console errors, phone overflow and network requests",
             "task-artifact guard --task ID":"Fail until the five discovery pages are committed; for host hooks before product edits",
+            "task-artifact next --task ID":"Say which page to write, review, rewrite or commit next; exit 3 adds advice, such as a page edited after review",
+            "task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --notes TEXT":"Append one page review, with the page's SHA-256, to the task's reviews.json",
             "coordination":"Validate task record structure without demanding completion",
             "agent-stop --task ID --base REV --report PATH":"Hook gate: completion or explicit partial/blocked handoff",
             "complete --task ID --base REV --report PATH":"Gate a completion claim with reconciliation and current evidence",
@@ -75,6 +84,21 @@ fn dispatch() -> Result<Value> {
         }
         ["task-artifact", "style", "--task", id] => artifacts::install(&root, id),
         ["task-artifact", "guard", "--task", id] => artifacts::guard(&root, id),
+        ["task-artifact", "next", "--task", id] => router::next(&root, id),
+        [
+            "task-artifact",
+            "verdict",
+            "--task",
+            id,
+            "--page",
+            page,
+            "--verdict",
+            verdict,
+            "--reviewer",
+            reviewer,
+            "--notes",
+            notes,
+        ] => router::verdict(&root, id, page, verdict, reviewer, notes),
         ["task-artifact", "screenshot", "--task", id] => artifacts::screenshots(&root, id),
         ["task-artifact", "check", "--task", id] => {
             let task = task_record::read(&root, id)?;

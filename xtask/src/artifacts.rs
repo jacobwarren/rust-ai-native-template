@@ -118,6 +118,11 @@ pub fn check_written(root: &Path, id: &str) -> Result<()> {
     Ok(())
 }
 
+/// Whether a task page exists and carries the inline stylesheet.
+pub fn exists(root: &Path, id: &str, page: &str) -> Result<bool> {
+    verify(&dir(root, id)?, page)
+}
+
 /// Whether the page exists, after rejecting a symlink or a page without the inline stylesheet.
 fn verify(dir: &Path, page: &str) -> Result<bool> {
     let path = dir.join(page);

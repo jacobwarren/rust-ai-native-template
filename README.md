@@ -167,4 +167,7 @@ notes during the work, buy-in and quiz last. A small task (at most 100 changed
 lines, no policy, dependency or ceremony path) needs no pages; the gate measures
 its branch. Claude Code and Codex load the author and reviewer briefs as skills,
 and `.claude/agents/` and `.codex/agents/` define the two roles.
+`cargo xtask task-artifact next --task ID` names the next page step, and
+`task-artifact verdict` logs each review in the task's `reviews.json`. The
+write-ticket skill drafts a ticket and its task record stub before work starts.
 The harness preserves bytes and provenance without prescribing presentation.

@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blindspot pass: ticket skill, skill carve-out, task-artifact next and a verdict log</title>
+<style>
+  main { max-width: 62rem; }
+  .prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .prompt-card .row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+  .prompt-card blockquote { font-style: italic; margin: var(--space-3) 0 0; }
+  button.copy { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  button.copy.done { background: var(--ink); border-color: var(--ink); }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-block: var(--space-6); }
+  @media (max-width: 44rem) { .vs { grid-template-columns: 1fr; } }
+  .vs > div { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4); background: var(--surface); }
+  .vs > div.actual { border-color: var(--warning); background: var(--warning-soft); }
+  .vs p { margin: var(--space-2) 0 0; font-size: .95rem; }
+  .tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+  .actual .tag { color: var(--warning); }
+  .stats { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); font-family: var(--font-code); font-size: .82rem; padding: var(--space-3) var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--accent-soft); }
+  .stats b { color: var(--danger); }
+  .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6) var(--space-6); margin-block: var(--space-6); }
+  .card.off { opacity: .6; }
+  .card-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+  .card-head h3 { flex: 1 1 100%; margin: var(--space-2) 0 0; font-size: 1.2rem; }
+  .badge { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border: 1px solid; border-radius: var(--control-radius); padding: 1px var(--space-2); }
+  .landmine { color: var(--danger); border-color: var(--danger); background: #fbeeee; }
+  .history { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+  .convention { color: var(--muted); border-color: var(--line); background: var(--paper); }
+  .concept { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .num { font-family: var(--font-code); font-size: .8rem; color: var(--muted); }
+  .card p { font-size: .95rem; margin-block: var(--space-3); }
+  .card code, .vs code, .lead code, li code, fieldset code { font-size: .84em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 3px; overflow-wrap: anywhere; }
+  pre.ev { font-size: .8rem; line-height: 1.5; margin: var(--space-3) 0; background: #f3f6f1; }
+  pre.ev .c { color: var(--muted); }
+  pre.ev .bad { color: var(--danger); }
+  pre.ev .ok { color: var(--accent); }
+  .bite { display: flex; gap: var(--space-3); font-size: .92rem; border-inline-start: 3px solid var(--danger); background: var(--paper); padding: var(--space-3) var(--space-4); border-radius: 0 var(--control-radius) var(--control-radius) 0; margin-block: var(--space-3); }
+  .bite .lbl { flex: none; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--danger); padding-top: 3px; }
+  @media (max-width: 30rem) { .bite { flex-direction: column; gap: var(--space-1); } }
+  .chip { display: flex; gap: var(--space-3); align-items: flex-start; border: 1px dashed var(--accent); border-radius: var(--control-radius); padding: var(--space-3); background: var(--accent-soft); margin: var(--space-3) 0 0; }
+  .chip label { margin: 0; display: flex; gap: var(--space-2); align-items: flex-start; font-size: .9rem; flex: 1; min-width: 0; }
+  .chip label input { margin-top: 5px; flex: none; }
+  .chip .txt { font-family: var(--font-code); font-size: .8rem; overflow-wrap: anywhere; }
+  fieldset { background: var(--surface); padding: var(--space-4) var(--space-6); }
+  fieldset label { display: flex; gap: var(--space-2); align-items: flex-start; margin-block: var(--space-2); }
+  fieldset label input { margin-top: 6px; flex: none; }
+  .rec { font-size: .72rem; font-weight: 700; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; margin-left: var(--space-1); }
+  .conseq { margin: var(--space-3) 0 0; padding: var(--space-3) var(--space-4); font-size: .9rem; }
+  .final { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6) var(--space-6); margin-top: var(--space-8); }
+  .final .row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-3); }
+  .final h2 { margin: var(--space-2) 0; }
+  #final-prompt { font-size: .8rem; line-height: 1.6; background: var(--paper); }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Blindspot pass · before code · workflow-router</p>
+  <h1>Unknown unknowns: tickets, the skill carve-out, <code>next</code> and the verdict log</h1>
+  <p class="lead">Seven things in <code>xtask/src/</code>, <code>scripts/agent-hook.sh</code> and the agent folders that the plan doesn't mention yet. Each one comes with the code or command output that shows it. Untick a finding to leave it out of the prompt at the bottom, and pick an answer to the three open decisions.</p>
+
+  <div class="prompt-card">
+    <div class="row"><span class="tag">The prompt</span><button class="copy" data-copy="user-prompt">Copy prompt</button></div>
+    <blockquote id="user-prompt">I'm about to add a ticket-writing skill, carve .claude/skills/ out of the protected paths so ordinary skills can be small tasks, and add a task-artifact next command with a structured review-verdict log to this Rust harness template's xtask gate, guard and skills. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation.</blockquote>
+  </div>
+
+  <div class="vs">
+    <div>
+      <div class="tag">What you asked for</div>
+      <p>Four tidy additions: a thin skill, a one-line change to a path table, a router command that reads files, and a JSON log. Each looks like a few dozen lines.</p>
+    </div>
+    <div class="actual">
+      <div class="tag">What you're actually walking into</div>
+      <p>A skill folder that can <strong>register hooks and pre-approve tools</strong>, a parity test that <strong>can't see an exception list</strong>, a size limit that <strong>counts every skill twice</strong>, a branch whose <strong>default base gives the wrong answer</strong>, and two shipped tasks whose prose verdicts already show <strong>pages edited by hand after their last review</strong>.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <span><b>3</b> landmines</span>
+    <span>2 conventions</span>
+    <span>1 missing concept</span>
+    <span>1 history: 5 of 16 pages edited after their last review</span>
+  </div>
+
+  <h2>The blindspots</h2>
+
+  <!-- 01 -->
+  <section class="card" id="f1">
+    <div class="card-head"><span class="badge landmine">Landmine</span><span class="num">01</span>
+      <h3>A Claude Code skill isn't only prose: the carve-out lets a change with no receipt register hooks and pre-approve tools</h3></div>
+    <p>Today every file under <code>.claude/</code> is a policy path because of one prefix in <code>PROTECTED_PREFIXES</code> (<code>transitions.rs:39-47</code>, matched in <code>protected()</code> at 62-64). The agent-workflow blindspot pass recommended the carve-out on the grounds that "skills are documentation". Claude Code's skill frontmatter says otherwise. A <code>SKILL.md</code> may declare:</p>
+    <pre class="ev"><span class="c"># Claude Code docs, Skills, frontmatter reference</span>
+hooks:          "Hooks that Claude Code registers when the skill is invoked and
+                 keeps running for the rest of the session."
+allowed-tools:  "Tools Claude can use without asking permission during the turn
+                 that invokes this skill."
+!`command`      "runs shell commands before the skill content is sent to Claude"
+                 (injected commands never prompt while the skill renders)
+context: fork + agent:   runs the skill as a subagent of a named type</pre>
+    <p>The repository's own hooks live in <code>.claude/settings.json</code>, and changing them needs a receipt. After the carve-out, the same hook declared in a new skill's frontmatter needs no receipt, and a small task could add it. One thing doesn't change: Claude Code itself still lists <code>.claude</code> as a protected directory and prompts before writes there in <code>default</code> and <code>acceptEdits</code> mode. Allow rules can't pre-approve that prompt. The carve-out removes the harness receipt but leaves the host's prompt in place.</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>"Ordinary skills can be small" becomes "any skill can be small". A session-long hook or a <code>Bash</code> pre-approval would then reach main with no policy rationale, on a path the guard no longer flags.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="1"><span class="txt" id="chip-1">Carve .claude/skills/ out of protection only for skills whose frontmatter declares no hooks, allowed-tools, context or agent and whose body has no !`…` or ```! shell injection; a skill that uses any of these stays a policy path (standard tier, receipt). Test both cases.</span></label></div>
+  </section>
+
+  <!-- 02 -->
+  <section class="card" id="f2">
+    <div class="card-head"><span class="badge landmine">Landmine</span><span class="num">02</span>
+      <h3>The parity test compares two named variables, and an exception list kept in one place still passes it</h3></div>
+    <p>Both tables are prefix lists. The Rust side uses <code>path.starts_with(p)</code>, and the shell's <code>tier()</code> uses <code>case "$p" in "$x"*</code> (<code>agent-hook.sh:137-144</code>). "<code>.claude/</code> except <code>skills/</code>" can't be written as a list entry. It needs a third list or a code path in each place. <code>guard_tiers_match_protected_paths</code> (<code>transitions.rs:221-225</code>) finds the lines that start <code>PROTECTED_PREFIXES="</code> and <code>PROTECTED_FILES="</code> in the script and compares only those. I applied the carve-out to <code>protected()</code> alone and ran:</p>
+    <pre class="ev">$ cargo test -p xtask guard_tiers_match_protected_paths
+<span class="ok">test result: ok. 1 passed; 0 failed</span>
+$ echo '{"tool_name":"Edit",…".claude/skills/write-ticket/SKILL.md"}' | scripts/agent-hook.sh guard claude
+<span class="bad">".claude/skills/write-ticket/SKILL.md is a protected policy file. This branch
+ will need a transition receipt: run cargo xtask gaps --base origin/main before completion."</span></pre>
+    <p>The existing tier test (<code>tests/tiers.rs:137-158</code>) checks that ceremony paths force standard, and the narrowed list still passes it. No test checks that an ordinary skill <em>doesn't</em> force standard, or that <code>.claude/settings.json</code> and <code>.claude/agents/</code> still do.</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>If the two tables drift one way, the guard tells agents to write receipts the gate never asks for. If they drift the other way, the guard stays silent and the gate demands a receipt at completion. Either way the test stays green.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="2"><span class="txt" id="chip-2">Write the carve-out as a named list in both transitions.rs and agent-hook.sh, check it before the prefixes in tier(), and extend guard_tiers_match_protected_paths to compare it. Add guard and tier tests: an ordinary .claude/skills/x/SKILL.md gets no policy note and stays small; .claude/settings.json, .claude/agents/ and the two page skills do not.</span></label></div>
+  </section>
+
+  <!-- 03 -->
+  <section class="card" id="f3">
+    <div class="card-head"><span class="badge convention">Convention</span><span class="num">03</span>
+      <h3>Every skill is written twice, so even after the carve-out a skill-only small task tops out near 50 lines</h3></div>
+    <p>The agent-workflow pass established why skills are byte-identical copies in <code>.claude/skills/</code> and <code>.agents/skills/</code> instead of a symlink: <code>repo::files</code> errors on any symlink (<code>repo.rs:39-45</code>), and DOC007 holds the copies equal (<code>checks.rs:186-206</code>). The new consequence is that <code>size.rs</code> counts both copies against the 100-line limit (<code>SMALL_LINES</code>, line 9; <code>check_small</code>, 87-114). With the carve-out applied and a new skill on a small-tier record:</p>
+    <pre class="ev">60-line SKILL.md in both hosts:
+<span class="bad">task tier small: 120 changed lines exceed the small limit of 100</span>
+50-line SKILL.md in both hosts:
+<span class="ok">(no tier error)</span>   <span class="c"># docs.json entries (DOC004) are administrative and don't count</span></pre>
+    <p>For scale, the skills here are 40, 54 and 71 lines (add-product-command, author-artifact, review-artifact), and your <code>doppel-ticket</code> is 92 lines, symlinked between <code>~/.claude/skills</code> and <code>~/.agents/skills</code>, which this repository refuses. Edits to an existing skill will usually fit. Adding a skill of normal length won't.</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>The ticket skill ships inside this standard task, so it isn't affected. The goal of letting ordinary skills be small tasks is affected: it delivers less than it sounds like, and the first person to add a 60-line skill will be refused with an error about line counts, not about mirroring.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="3"><span class="txt" id="chip-3">Decide explicitly whether size.rs counts the .agents/skills mirror (DOC007 already forces it identical). Show me the count for a 60-line skill under both rules, and state the rule in ARTIFACTS.md "Task size". Keep the ticket skill short enough that a later edit to it can be a small task.</span></label></div>
+  </section>
+
+  <!-- 04 -->
+  <section class="card" id="f4">
+    <div class="card-head"><span class="badge concept">Missing concept</span><span class="num">04</span>
+      <h3><code>next</code> can see what's committed, but not where the branch starts or when the code is finished</h3></div>
+    <p><code>guard()</code> only asks whether the discovery pages are in HEAD's tree (<code>artifacts.rs:199-225</code>). The rules <code>next</code> has to steer by live in <code>order()</code> (157-197), and they depend on two things a history read doesn't give it. The first is a <strong>base</strong>, which sets which commits belong to this branch (<code>history::commits</code>, <code>base..HEAD</code>, first-parent). This branch is stacked on PR #3, and the Stop hook defaults to <code>HARNESS_BASE=origin/main</code> (<code>agent-complete.sh:23</code>). With five discovery pages, one code commit and the final pages committed on top of this branch:</p>
+    <pre class="ev">$ xtask handoff --base origin/main
+<span class="bad">task HTML artifact: blindspots.html must be committed before the first product-code commit</span>
+  <span class="c"># PR #3's 18 commits count as this branch's code</span>
+$ xtask handoff --base origin/harness/agent-workflow
+<span class="ok">(no artifact error)</span></pre>
+    <p>The second is the <strong>last product-code commit</strong>, which is only known in hindsight. Notes must land before it (line 183), and buy-in and quiz must be touched at or after it (189-195). If a quiz review leads to one more code fix, both final pages have to be touched again. Notes committed after what turns out to be the last code commit fail. With a single code commit, the notes may share that commit but can't come after it. If PR #3 is squash-merged, its original commits stay in this branch's <code>main..HEAD</code>, so the branch needs a rebase before the default base is right.</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>A router that guesses the base or infers "done" from history will confidently send the agent to the wrong page. That's the same drift the command is meant to remove, now with the authority of a tool behind it.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="4"><span class="txt" id="chip-4">next takes --base like complete and agent-stop, defaults to the stop hook's base, and prints the base it used. Until PR #3 merges, run it with --base origin/harness/agent-workflow. "Code is done" is an explicit input (a flag), never inferred from history; with it set, next warns that any later code commit reopens buy-in and quiz.</span></label></div>
+  </section>
+
+  <!-- 05 -->
+  <section class="card" id="f5">
+    <div class="card-head"><span class="badge history">History</span><span class="num">05</span>
+      <h3>The verdicts you want to log already exist as prose, and they describe exactly the drift a PASS/REVISE row can't capture</h3></div>
+    <p>Verdicts are recorded today as free text in <code>review.verification</code>. The two completed standard tasks say:</p>
+    <pre class="ev"><span class="c"># harness/tasks/agent-workflow.json</span>
+"implementation notes reviewed REVISE on wording only, <span class="bad">fixed by hand and not re-reviewed</span>;
+ buy-in REVISE on two ungrounded claims, <span class="bad">reworded by hand and not re-reviewed</span>"
+"interventions committed as best after two rewrites" · "final finding checked and found mistaken"
+<span class="c"># harness/tasks/default-hooks.json</span>
+"interventions, interview, reference and plan committed as best after two rewrites"
+"updated the notes, buy-in and quiz pages by hand; <span class="bad">those edits were not re-reviewed</span>"</pre>
+    <p>Across those 16 pages, 6 were committed as the best version after two rewrites, and 5 carry hand edits made after their last review. A row of <code>{page, round, verdict, findings, model}</code> can't show that the committed page differs from the page that was judged. The repository already has a pattern for that: a receipt's <code>Change</code> binds <code>before_sha256</code> and <code>after_sha256</code> (<code>transitions.rs:14-20</code>), and receipts are append-only (105-113).</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>Without a page hash, the log reports "quiz: PASS" for a quiz that was rewritten afterwards. That's the auditable trace the owner asked for, recording the opposite of what happened.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="5"><span class="txt" id="chip-5">Each log row records the sha256 of the page it judged. next calls a page reviewed only when its committed hash matches its last verdict. Outcomes are pass, revise and best-after-two-rewrites; a hand edit appears as a hash mismatch, not as a new outcome. review.verification stays prose and may cite the log.</span></label></div>
+  </section>
+
+  <!-- 06 -->
+  <section class="card" id="f6">
+    <div class="card-head"><span class="badge landmine">Landmine</span><span class="num">06</span>
+      <h3>Where the log lives decides who can write it and when it makes your CI evidence stale</h3></div>
+    <p><code>harness/task-artifacts/ID/reviews.json</code> is the natural spot. It's administrative (<code>artifacts.rs:33-43</code>), so it never counts toward a small task's size. The page checks ignore it, because <code>check_written</code> names its eight pages and <code>screenshots</code> takes only <code>.html</code> (231-235). Three other effects come with that folder:</p>
+    <pre class="ev">$ echo '{"tool_name":"Write",…"harness/task-artifacts/workflow-router/reviews.json"}' \
+    | scripts/agent-hook.sh author claude
+<span class="bad">{}</span>   <span class="c"># allowed: the author hook admits any file under harness/task-artifacts/&lt;task&gt;/ (line 402)</span>
+$ xtask env | grep source        <span class="c"># before and after writing reviews.json</span>
+  "source_sha256": "e723e390…"
+  "source_sha256": <span class="bad">"88f06c6a…"</span></pre>
+    <p>So the <strong>page author can write its own verdict</strong>, while the reviewer has no Write or Edit tool at all (<code>.claude/agents/artifact-reviewer.md</code>). Whatever lands in the log is the orchestrator's transcription. The fingerprint covers every file outside <code>.git</code>, <code>target</code> and a few host-local paths (<code>repo.rs:20-71</code>). A verdict recorded after <code>check ci</code> therefore fails completion with "complete task requires current full-CI evidence" (<code>completion.rs:62-68</code>), which is also true of <code>review.verification</code> today. An uncommitted log blocks completion (<code>committed()</code>, 141-155). A shared file such as <code>harness/reviews.json</code> wouldn't be administrative, so every verdict would count as product lines.</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>The log exists to stop agents from grading their own work, and the folder it would sit in is the one folder the author agent is allowed to write.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="6"><span class="txt" id="chip-6">Only an xtask command appends to the log and it refuses to rewrite earlier rows; the author hook refuses reviews.json. Record the last verdict and commit it before the final check ci, and have next say so when it reports the task ready.</span></label></div>
+  </section>
+
+  <!-- 07 -->
+  <section class="card" id="f7">
+    <div class="card-head"><span class="badge convention">Convention</span><span class="num">07</span>
+      <h3>A doppel-style ticket has five sections, and the task record has a slot for about one of them</h3></div>
+    <p><code>Task</code> is <code>deny_unknown_fields</code> (<code>task_record.rs:26-45</code>). It has <code>summary</code>, <code>requirements</code>, <code>remaining</code>, <code>related_gaps</code>, <code>tier</code> and an opaque <code>work_item</code> (COMPLETION.md, lines 5-6), but no field for acceptance, validation or out of scope. <code>requirements</code> are ids from <code>harness/readiness.json</code>, of which there are six coarse ones (driver, state, persistence, evidence, completion, task-artifacts). A complete record must name at least one (line 113), and each must be verified by current CI (<code>completion.rs:69-80</code>).</p>
+    <p>doppel-ticket's core rule is "acceptance criteria are tests, named". Here a named test counts toward the gate only if it's listed under a requirement in <code>readiness.json</code>, and that file is protected (<code>transitions.rs:50</code>). A ticket whose acceptance adds a gate-visible test is therefore a <strong>standard task by construction</strong>. The word "small" collides too. doppel's small is one to three production files plus a test file, while the harness's small is 100 changed lines in total, tests included, with no Cargo.toml, protected or ceremony path. The tier also can't be changed once code lands, as the agent-workflow pass showed.</p>
+    <div class="bite"><span class="lbl">Why it bites</span><span>A ticket skill that copies doppel's headings will mark tickets "small" that the gate refuses. It will also invent record fields that serde rejects, or acceptance tests the gate never sees.</span></div>
+    <div class="chip"><label><input type="checkbox" checked data-chip="7"><span class="txt" id="chip-7">The ticket skill maps sections onto existing slots: Problem → summary; Acceptance → named tests in the ticket, echoed in review.acceptance, and in readiness.json only for standard tasks; Validation and Out of scope stay in the ticket. It calls a ticket small only when the change is ≤100 lines including tests and touches no Cargo.toml, protected or ceremony path and no readiness.json, and says why. No new record fields.</span></label></div>
+  </section>
+
+  <h2>Three decisions the prompt has to settle</h2>
+  <p class="muted">Each choice changes the prompt below. My recommendation is marked.</p>
+
+  <fieldset data-decision="carve">
+    <legend>How far does the carve-out go?</legend>
+    <label><input type="radio" name="carve" value="all"><span>All of <code>.claude/skills/</code>, as originally planned</span></label>
+    <label><input type="radio" name="carve" value="plain" checked><span>Skills without hooks, allowed-tools, context/agent or shell injection<span class="rec">recommended</span></span></label>
+    <label><input type="radio" name="carve" value="none"><span>No carve-out; only narrow <code>CEREMONY</code></span></label>
+    <output class="conseq" id="carve-out"></output>
+  </fieldset>
+
+  <fieldset data-decision="where">
+    <legend>Where does the verdict log live?</legend>
+    <label><input type="radio" name="where" value="folder" checked><span><code>harness/task-artifacts/ID/reviews.json</code><span class="rec">recommended</span></span></label>
+    <label><input type="radio" name="where" value="record"><span>A <code>reviews</code> array in <code>harness/tasks/ID.json</code></span></label>
+    <label><input type="radio" name="where" value="target"><span>Under <code>target/</code>, never committed</span></label>
+    <output class="conseq" id="where-out"></output>
+  </fieldset>
+
+  <fieldset data-decision="gate">
+    <legend>Does completion read the log?</legend>
+    <label><input type="radio" name="gate" value="no" checked><span>No; only <code>next</code> reads it<span class="rec">recommended</span></span></label>
+    <label><input type="radio" name="gate" value="present"><span>Only when it exists: a logged pass must match the committed page hash</span></label>
+    <label><input type="radio" name="gate" value="required"><span>Required for every standard task</span></label>
+    <output class="conseq" id="gate-out"></output>
+  </fieldset>
+
+  <section class="final">
+    <div class="row"><span class="eyebrow">Your improved prompt</span><button class="copy" data-copy="final-prompt">Copy prompt</button></div>
+    <h2>Everything above, folded into the prompt to give me</h2>
+    <pre id="final-prompt"></pre>
+    <p class="muted">Rebuilt from the findings you kept ticked and the three choices above.</p>
+  </section>
+
+  <footer>Blindspot pass for the workflow-router task: a ticket-writing skill, the skill carve-out, task-artifact next and the verdict log.</footer>
+</main>
+
+<script>
+(function () {
+  var DECISIONS = {
+    carve: {
+      all: ["Carve all of .claude/skills/ out of protection.",
+            "Any skill becomes a small, receipt-free change, including one that registers session hooks or pre-approves Bash (finding 01)."],
+      plain: ["Carve .claude/skills/ out for plain skills only; the rule and its tests are constraint 1.",
+              "Ordinary prose skills become small. A skill that changes what the host runs keeps a receipt. Costs a frontmatter read in size.rs and the guard."],
+      none: ["Do not carve .claude/skills/ out of protection; only narrow CEREMONY.",
+             "Narrowing CEREMONY alone changes nothing for Claude skills: protected() still forces standard (size.rs:23). Only the .agents/skills copy loosens, and DOC007 forbids editing one copy."]
+    },
+    where: {
+      folder: ["The verdict log is harness/task-artifacts/ID/reviews.json.",
+               "Administrative, so it doesn't count toward size; it's committed and fingerprinted, so record the last verdict before the final check ci; the author hook must refuse it (finding 06)."],
+      record: ["The verdict log is a reviews array in harness/tasks/ID.json.",
+               "Needs a serde field on a deny_unknown_fields struct, so every existing record must still parse. Every verdict rewrites the record that the stop hook greps for a completion claim."],
+      target: ["The verdict log lives under target/ and is never committed.",
+               "Never makes CI evidence stale, but it disappears with cargo clean or a fresh clone: no audit trail and no rewrite-rate data, which defeats half the request."]
+    },
+    gate: {
+      no: ["Completion does not read the log; only next does.",
+           "No new gate (AGENTS.md: add no approval gates the task did not ask for). Small tasks, which have no pages, are unaffected."],
+      present: ["Completion reads the log only when it exists: each logged pass must match the committed page's sha256.",
+                "Catches a hand edit after review without making the log mandatory. A task can still skip the log entirely, so treat it as a consistency check rather than enforcement."],
+      required: ["Completion requires a log with a final verdict for every page of a standard task.",
+                 "A new gate the owner didn't ask for. It needs migration for the four existing records and makes every page review a completion blocker."]
+    }
+  };
+
+  function choice(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : null;
+  }
+
+  function build() {
+    ["carve", "where", "gate"].forEach(function (d) {
+      document.getElementById(d + "-out").textContent = DECISIONS[d][choice(d)][1];
+    });
+    var lines = [];
+    lines.push("Implement workflow-router on harness/workflow-router (stacked on PR #3; use --base origin/harness/agent-workflow for every gate run until it merges): a ticket-writing skill, a narrower ceremony list, cargo xtask task-artifact next and a structured verdict log.");
+    lines.push("");
+    lines.push("Decisions:");
+    lines.push("- " + DECISIONS.carve[choice("carve")][0]);
+    lines.push("- " + DECISIONS.where[choice("where")][0]);
+    lines.push("- " + DECISIONS.gate[choice("gate")][0]);
+    lines.push("");
+    lines.push("Constraints from the blindspot pass:");
+    var n = 0;
+    document.querySelectorAll("input[data-chip]").forEach(function (box) {
+      var card = document.getElementById("f" + box.getAttribute("data-chip"));
+      card.classList.toggle("off", !box.checked);
+      if (!box.checked) return;
+      if (box.getAttribute("data-chip") === "1" && choice("carve") !== "plain") return;
+      n += 1;
+      lines.push(n + ". " + document.getElementById("chip-" + box.getAttribute("data-chip")).textContent.trim());
+    });
+    if (n === 0) lines.push("(none kept)");
+    lines.push("");
+    lines.push("Order: carve-out and its parity test first, with a receipt; then the log format and its append command; then next; then the ticket skill last, sized against the final rule. Show me next's output on this task before writing the skill.");
+    document.getElementById("final-prompt").textContent = lines.join("\n");
+  }
+
+  document.addEventListener("change", function (e) {
+    if (e.target.matches("input[data-chip], fieldset input")) build();
+  });
+
+  function copy(text, btn) {
+    function done() {
+      var prev = btn.textContent;
+      btn.textContent = "Copied";
+      btn.classList.add("done");
+      setTimeout(function () { btn.textContent = prev; btn.classList.remove("done"); }, 1500);
+    }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); } catch (err) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(); done(); });
+    } else { fallback(); done(); }
+  }
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-copy]");
+    if (!btn) return;
+    copy(document.getElementById(btn.getAttribute("data-copy")).textContent.trim(), btn);
+  });
+
+  build();
+})();
+</script>
+</body>
+</html>

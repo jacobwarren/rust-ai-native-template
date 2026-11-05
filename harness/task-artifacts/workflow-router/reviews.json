@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "reference.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "2cd8c003d571173c8852b25e91268dee7b1c6df50bfcf78b4959e827e1338dd2",
+      "reviewer": "artifact-reviewer",
+      "notes": "Stacked-branch state stale after PR #3 merged (as-now row, notes 9 and 15, 22 commits); sections 1 and 4 restate notes and the interview."
+    },
+    {
+      "page": "blindspots.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "93c9142e62d3cba263385786db16a067441ea6868d1bc39a2a01fa2cd151cfab",
+      "reviewer": "artifact-reviewer",
+      "notes": "Logged after the fact. Open: prompt-builder chips 2-3 under No carve-out; dangling 'constraint 1'; length."
+    },
+    {
+      "page": "interventions.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "52f92d58416a572e715873fcdbdba80ae1c32f4aab32ec46ccdc6cde9d6fd7be",
+      "reviewer": "artifact-reviewer",
+      "notes": "Logged after the fact. Open: coverage builder ignores prerequisites (R3/V3 with no log, V2 self regardless of V1); ~25% over length."
+    },
+    {
+      "page": "interview.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "ab6ea2daa571e917a3c114a9dee3e1c5b00c6b17111e842f36395d37efc23b52",
+      "reviewer": "artifact-reviewer",
+      "notes": "Logged after the fact. Open: conflict check misses R3 with log under target/; best-after-two default unlabelled as the agent's call."
+    },
+    {
+      "page": "plan.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "8652f91cf20576942c682d4cde6fa143d26e315c12f643496adfac212086fe4f",
+      "reviewer": "artifact-reviewer",
+      "notes": "A4 stacked-on-top row says base is the other branch's newest commit; it is HEAD. 2.2x exemplar length: A7 docs table, section B test restatement, choice cards 4-5, intro restating earlier pages. Verification-process wording; sample next output needs an illustration label."
+    },
+    {
+      "page": "reference.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "36a78a4f5868eba17dea4850769637491d968575e8709f9806e9230e807bf7d5",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: CI row's sketch needs the head ref passed in (detached merge); 'own-commit log' CI cell is the plain --remotes result; note 15 and order() sub-claims in notes 3, 5, 6 not re-run."
+    },
+    {
+      "page": "plan.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "1489dd5a8d1a5a58560b770046ec62fdcdbf627c5669555f7b062180ede54211",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: A4 renamed-push row's Records cell omits commits not yet pushed under that name (partial push); still 1.6x exemplar height, A7 cuttable; commit order traced by hand, not run."
+    },
+    {
+      "page": "implementation.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "666817e555a197fcb7f9702193f7fbc5045ad427020cc67da611f88e2f52eda9",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: gap 2 fix should replace only CRLF pairs (done that way); nine-situation table and 9/9, 13/13 tiles are optional trims; dogfooding tabs skimmable."
+    },
+    {
+      "page": "quiz.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "067a0a796c214ebdf5b7e0626002634acea130740426ae7e33fddf44f7ce9b8f",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: section 4 table repeats the stats row (trim); Q8 is the weakest case; excerpts nearly state Q1, Q6, Q7 though each needs two facts; Q3, Q6, Q8, Q9 not re-run by the reviewer."
+    },
+    {
+      "page": "buy-in.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "7d574f1932524f002f0b812e10361258341dcef9628562bf23bea487cbb681d5",
+      "reviewer": "artifact-reviewer",
+      "notes": "Section 04 says the build forced two calls; only row 6 (best) was. Same Bash/log limit four times, completion-not-reading-log three times, section 02 retells the demo; demo opens on the weakest case (case 1); 'ran its own loop' overstated (three passes logged after the fact)."
+    },
+    {
+      "page": "buy-in.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "af593910be921d893c3da870d71882e2cdd6a842c1ecbf5061444a995bc911ed",
+      "reviewer": "artifact-reviewer",
+      "notes": "Open: case 2 'once that commit lands' is exact only once the log is committed; 'always answers ok: true' slightly loose."
+    }
+  ]
+}

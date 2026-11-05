@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implementation notes: workflow-router</title>
+<style>
+.prompt{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-4) var(--space-6)}
+.prompt q{display:block;font-style:italic;max-width:62ch;padding-inline-end:6.5rem}
+.prompt .copy{position:absolute;top:var(--space-3);right:var(--space-3)}
+button.small{min-height:36px;padding:var(--space-1) var(--space-3);font-size:var(--text-small)}
+button.ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
+button.ghost[aria-pressed=true]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.stats{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-block:var(--space-6)}
+.stat{flex:1 1 8.5rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:var(--space-3) var(--space-4)}
+.stat b{display:block;font-size:1.8rem;line-height:1.1}
+.stat span{font-size:var(--text-small);color:var(--muted)}
+.stat.w b{color:var(--warning)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-block:var(--space-4)}
+.dev{border:1px solid var(--line);border-inline-start:4px solid var(--warning);border-radius:var(--radius);background:var(--surface);padding:var(--space-4);margin-block:var(--space-4)}
+.dev.ok{border-inline-start-color:var(--accent)}
+.dev h3{margin:0 0 var(--space-2)}
+.badge{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1px var(--space-2);border-radius:var(--control-radius);background:var(--warning-soft);color:var(--warning);margin-bottom:var(--space-2)}
+.ok .badge{background:var(--accent-soft);color:var(--accent)}
+.dg{display:grid;grid-template-columns:9.5rem minmax(0,1fr);gap:var(--space-1) var(--space-4);font-size:var(--text-small);margin:0}
+.dg dt{font-weight:700;color:var(--muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.06em;padding-top:.2rem}
+.dg dd{margin:0 0 var(--space-2)}
+.dg dt.c{color:var(--accent)}.dg dd.c{font-weight:600}
+@media (max-width:40rem){.dg{grid-template-columns:minmax(0,1fr)}.dg dd{margin-bottom:var(--space-3)}}
+pre{font-size:.78rem;line-height:1.5;margin-block:var(--space-2)}
+pre .f{display:block;color:var(--muted);font-size:.72rem;margin-bottom:var(--space-1)}
+mark{background:var(--warning-soft);color:inherit;border-radius:2px}
+code{font-size:.88em}
+td{font-size:var(--text-small)}th{white-space:nowrap;font-size:var(--text-small)}
+td.a{color:var(--accent);font-weight:700}td.b{color:var(--warning);font-weight:700}
+.learn{list-style:none;padding:0;margin:0}
+.learn > li{border-inline-start:3px solid var(--line);padding:0 0 0 var(--space-4);margin-block:var(--space-6)}
+.learn > li > b:first-child{display:block}
+.hidden{display:none}
+.states{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-block:var(--space-3)}
+.state{border:1px solid var(--line);border-radius:var(--control-radius);background:var(--surface);padding:var(--space-3) var(--space-4);font-size:var(--text-small)}
+.state .rows{font-family:var(--font-code);font-size:.78rem;color:var(--muted);margin:0 0 var(--space-2);white-space:pre-wrap}
+.state .says{margin:0}
+.state .says b{color:var(--accent)}
+.state.bad .says b{color:var(--warning)}
+.run{list-style:none;padding:0;margin:0}
+.run li{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:var(--space-4);padding-block:var(--space-3);border-bottom:1px solid var(--line);font-size:var(--text-small)}
+.run li > span:first-child{color:var(--muted)}
+@media (max-width:40rem){.run li{grid-template-columns:minmax(0,1fr);gap:var(--space-1)}}
+.choice{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-1) var(--space-4);border-bottom:1px solid var(--line);padding-block:var(--space-2);font-size:var(--text-small)}
+.choice p{margin:0;font-weight:650;flex:1 1 16rem}
+.choice label{display:inline-flex;align-items:center;margin:0 var(--space-4) 0 0;font-size:var(--text-small)}
+#reply{white-space:pre-wrap;font:.8rem/1.5 var(--font-code)}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">workflow-router · During implementation</p>
+<h1>Implementation notes: the page router, the verdict log and the stacked stop</h1>
+<p class="lead">Two of three product slices are in. The first adds <code>task-artifact next</code> and <code>verdict</code>, a per-task <code>reviews.json</code>, and a block on the author editing it. The second makes the stop gate judge a stacked branch from where its own commits start. The ticket skill and the docs are drafted for the last slice. Checking the plan against the code in a clean copy found four gaps that need a code change, one of them a message only. Each comes with a conservative fix, and they come first. Two smaller departures are settled.</p>
+
+<div class="prompt">
+  <p class="eyebrow" style="margin-top:0">The prompt</p>
+  <button class="small ghost copy" id="copyPrompt">Copy prompt</button>
+  <q id="promptText">Keep implementation notes as you build workflow-router. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going.</q>
+</div>
+<p class="muted" style="font-size:var(--text-small)">Builds on the plan's choices ①–⑥, all built as picked, and on the reference's notes 8 (CRLF pages) and 12 (diff, not log). Every run below is from a clean clone of the branch with its own build. The docs slice was copied in from the draft.</p>
+
+<div class="stats">
+  <div class="stat"><b>2 of 3</b><span>product slices committed</span></div>
+  <div class="stat w"><b>4</b><span>found here, need a code change</span></div>
+  <div class="stat"><b>2</b><span>departures logged, settled</span></div>
+  <div class="stat"><b>13/13</b><span>tests in router.rs and hooks_stop.rs</span></div>
+  <div class="stat"><b>9/9</b><span>stacked-branch situations probed</span></div>
+</div>
+
+<h2 id="deviations">Deviations from the plan</h2>
+<div class="chips" role="group" aria-label="Filter deviations">
+  <button class="small ghost" data-f="all" aria-pressed="true">All 6</button>
+  <button class="small ghost" data-f="fix" aria-pressed="false">Needs a code change 4</button>
+  <button class="small ghost" data-f="ok" aria-pressed="false">Settled 2</button>
+</div>
+
+<div id="devs">
+<article class="dev" data-t="fix">
+  <span class="badge">Needs a code change · 1</span>
+  <h3>After two rewrites, restoring the best version makes <code>next</code> ask for a fourth review</h3>
+  <dl class="dg">
+    <dt>Plan said</dt><dd>A2, action <code>best</code>: "Three revise rows → Restore the best reviewed version, record <code>--verdict best</code>, commit."</dd>
+    <dt>Code does</dt><dd><code>page_step</code> checks "last row is revise and the page changed" (router.rs:189-191) before "three revise rows" (:192-204). Restoring an earlier version changes the page, so the review arm wins.</dd>
+    <dt>Caught by</dt><dd>Three revise rows, page untouched: <code>best, round 3</code>. First draft restored: <code>review, round 4</code>. A fourth reviewer's pass is then refused with <code>has used its two rewrites; commit the best version and record --verdict best</code>. <code>verdict best</code> then records round 1, and <code>next</code> says <code>commit</code>.</dd>
+    <dt class="c">Conservative fix</dt><dd class="c">Swap the two arms so three revise rows always end in <code>best</code>. In <code>two_rewrites_end_in_the_best_version</code>, assert <code>best</code> after the restore; the test skips <code>next</code> there today. Until then the refusal points the agent to the right command, so the worst case is one wasted review, never a wrong row.</dd>
+  </dl>
+</article>
+
+<article class="dev" data-t="fix">
+  <span class="badge">Needs a code change · 2</span>
+  <h3>A page reviewed with CRLF line endings reads as hand-edited in a fresh clone</h3>
+  <dl class="dg">
+    <dt>Plan said</dt><dd>A1: "The hash is of the working file when verdict runs. Whether a page is committed is asked of git status."</dd>
+    <dt>Code does</dt><dd><code>page_sha</code> hashes the bytes on disk (router.rs:73-79), both in <code>verdict</code> and in the edited-after-review check (:289-304). Under <code>* text=auto eol=lf</code> Git stores and checks out LF, but the row keeps the hash of the CRLF bytes.</dd>
+    <dt>Caught by</dt><dd>A CRLF <code>interview.html</code>, passed and committed. In that checkout <code>next</code> gave no advisory. In a <code>git clone</code> of it: <code>interview.html was edited after its Pass verdict; …</code>, exit 3.</dd>
+    <dt class="c">Conservative fix</dt><dd class="c">Hash the bytes Git stores, as reference note 8 proposed: in <code>page_sha</code>, change CRLF to LF before the digest, which is what the repository's eol rule does to a text page. Extend <code>a_crlf_page_that_git_calls_clean_reads_as_committed</code> to check the page out again and expect no advisory. The git-status half of the CRLF work is right and stays.</dd>
+  </dl>
+</article>
+
+<article class="dev" data-t="fix">
+  <span class="badge">Needs a code change · 3</span>
+  <h3><code>best</code> needs the exact bytes of a version that nothing tells the agent to keep</h3>
+  <dl class="dg">
+    <dt>Plan said</dt><dd>Choice ①: <code>best</code> applies "only on a version some row reviewed"; the step says "Restore the best reviewed version".</dd>
+    <dt>Code does</dt><dd><code>verdict best</code> looks for a row whose hash matches the file (router.rs:114-119). A draft that gets <code>revise</code> lives only in the working tree: the rewrite overwrites it, and it is never committed.</dd>
+    <dt>Caught by</dt><dd>Replaying <code>next</code> on this task's history. The live session saw <code>rewrite reference.html … (rewrite 1 of 2)</code>, while a clean checkout of the same point says <code>author reference.html</code>, round 2. The rejected draft is in no commit. The plan page went the same way.</dd>
+    <dt class="c">Conservative fix</dt><dd class="c">Wording only. The <code>rewrite</code> step (router.rs:211) and ARTIFACTS.md step 5 add: "Keep a copy of the reviewed version under <code>target/</code>; after two rewrites the best one is restored byte for byte."</dd>
+  </dl>
+</article>
+
+<div class="table-scroll" data-t="mixed"><table>
+<caption>4–6: smaller items</caption>
+<thead><tr><th>#</th><th>Plan said</th><th>Code does, and what was chosen</th></tr></thead>
+<tbody>
+<tr data-t="fix"><td class="b">4 · code</td><td>Choice ①'s refusal: <code>best is for a page whose 3 reviews all asked for revision; interview.html has 0</code>.</td><td>A second <code>best</code> on the same page is refused correctly but reads <code>… blindspots.html has 3</code>, which contradicts itself. Give "already has its best version recorded" its own message (router.rs:108-112).</td></tr>
+<tr data-t="ok"><td class="a">5 · settled</td><td>A4, pushed under another name with no upstream: only uncommitted and untracked records are judged. A7 quoted "leaving only uncommitted records to judge".</td><td>Commits made after that push count as this branch's own, and the probe judged the record they changed. The draft COMPLETION.md now says "only later commits and uncommitted records are judged". The docs follow the code, which is the stricter reading.</td></tr>
+<tr data-t="ok"><td class="a">6 · settled</td><td>B: notes after the router slice, before the stacked-base slice.</td><td>These notes follow both slices. The gate requires notes before the last product commit, and that still holds if they are committed before the docs slice.</td></tr>
+</tbody></table></div>
+</div>
+
+<h2>What the code taught</h2>
+<ol class="learn">
+<li><b>"Committed" has to come from Git, because a CRLF page hashes differently from what Git stores.</b>
+<pre><span class="f">xtask/src/router.rs:171-174</span>// Git's view, not a hash of the blob: eol=lf normalises a CRLF page that status calls clean.
+let dirty = history::uncommitted(root)?;     // git status --porcelain -z --untracked-files=all
+let path = format!("{}/{page}", artifacts::directory(id));
+let committed = !dirty.contains(&amp;path);</pre>
+<p>The first draft compared blob hashes, and <code>a_crlf_page_that_git_calls_clean_reads_as_committed</code> fails on it. With this version a passed CRLF page moves <code>next</code> on to the following page. Gap 2 is the other half: the review hash has to match what Git stores too.</p></li>
+
+<li><b>The stop gate picks records by the net diff from the fork, not by the commit log.</b>
+<pre><span class="f">scripts/agent-complete.sh:46-61, condensed</span>first=$(git rev-list --first-parent --reverse HEAD --not $others | head -n 1)
+fork=${first:+$first^}                       # none of our own: HEAD
+[ base is an ancestor of fork ] &amp;&amp; base=$fork
+ids=$(git diff --name-only "$base" -- harness/tasks harness/task-artifacts; …untracked)</pre>
+<p>Reference note 12 predicted this, and a fixture confirms it. This branch touches the lower branch's record and then restores it. The diff judges only this branch's two records, while a log filter would also list <code>LOWER.json</code>.</p>
+<details><summary>Plan A4's nine situations, probed with a stub in place of <code>xtask complete</code>: eight match, one matches the corrected docs (5)</summary>
+<div class="table-scroll"><table>
+<thead><tr><th>Situation</th><th>Records judged</th><th>Against the plan</th></tr></thead>
+<tbody>
+<tr><td>Stacked on an unmerged lower branch</td><td>This branch's, from the lower tip</td><td class="a">matches</td></tr>
+<tr><td>Same, <code>HARNESS_BASE=origin/main</code></td><td>Both branches', from the merge base</td><td class="a">matches</td></tr>
+<tr><td>Lower branch merged</td><td>This branch's</td><td class="a">matches</td></tr>
+<tr><td>Pushed under another name, no upstream</td><td>None committed</td><td class="a">matches</td></tr>
+<tr><td>Same, then one more commit</td><td>The record that commit changed</td><td class="b">the docs, not the plan's cell (5)</td></tr>
+<tr><td>Upstream set to that name</td><td>This branch's, from the fork point</td><td class="a">matches</td></tr>
+<tr><td>Someone pushed a branch on top</td><td>None committed</td><td class="a">matches</td></tr>
+<tr><td>Detached HEAD at a pushed commit</td><td>None committed</td><td class="a">matches</td></tr>
+<tr><td>No remotes</td><td>None: "no merge base with origin/main", exit 0</td><td class="a">matches</td></tr>
+</tbody></table></div></details>
+<p>On this repository the lower PR is merged now. The merge base is the agent-workflow tip, and only workflow-router is judged.</p></li>
+
+<li><b>The before-the-log rule switches off for the whole task at its first verdict, so the earlier passes had to be backfilled.</b>
+<pre><span class="f">xtask/src/router.rs:185-188</span>match rows.last() {
+    // Tasks from before the log: a committed page counts as reviewed elsewhere.
+    None if <mark>log.is_none()</mark> &amp;&amp; committed =&gt; return Ok(None),
+    None =&gt; return Ok(review(1)),</pre>
+<p>That is choice ④ as built. Below, <code>next</code> replayed on this task at the moment its log was first committed, with three versions of the log:</p>
+<div class="states" role="group" aria-label="Log contents">
+  <button class="small ghost" data-s="0" aria-pressed="false">No log</button>
+  <button class="small ghost" data-s="1" aria-pressed="false">Reference verdict only</button>
+  <button class="small ghost" data-s="2" aria-pressed="true">With the backfilled passes</button>
+</div>
+<div class="state" id="state" aria-live="polite"><p class="rows" id="stRows"></p><p class="says" id="stSays"></p></div>
+<p>Each backfilled row says "Logged after the fact" and carries the hash of a version left untouched since its review.</p></li>
+
+<li><b>The edited-after-review check scans every logged page, not only those before the next step.</b>
+<pre><span class="f">xtask/src/router.rs:289-304, condensed</span>// Every page, not only those before the next step: a hand edit anywhere shows.
+for row in rows where row is that page's latest, verdict is pass or best,
+        and the page's hash differs { advisories.push("… was edited after its … verdict") }</pre>
+<p>In <code>an_edit_after_review_shows_on_any_page</code>, <code>next</code> still points at <code>blindspots.html</code> and exits 3 for an edit to <code>interventions.html</code>. A passed page that is then hand-edited and left uncommitted gets <code>commit</code> plus the advisory, as the plan's table has it. Reviewing it again records round 1 a second time (choice ②).</p></li>
+</ol>
+
+<h2>Dogfooding: <code>next</code> on this task</h2>
+<p>This task's verdicts were recorded with the drafted <code>verdict</code> command. At each point, <code>next</code> named the step that was actually under way:</p>
+<ul class="run">
+<li><span>Three discovery pages passed, the reference sent back, and the log not yet committed</span><span><code>Commit blindspots.html and …/reviews.json together.</code></span></li>
+<li><span>After that commit</span><span><code>rewrite reference.html</code>, round 2, "rewrite 1 of 2"</span></li>
+<li><span>Plan sent back</span><span><code>rewrite plan.html</code>, round 2</span></li>
+<li><span>Both rewrites passed, and again after each product slice</span><span><code>build implementation.html</code>: "Discovery is done. Build and commit the first product slice, then write implementation.html and commit it before the last product commit." Exit 0, no advisories.</span></li>
+<li><span>agent-workflow, finished before the log existed</span><span><code>complete</code>, copying verdicts "from each page's review"</span></li>
+</ul>
+<p>The first three lines come from the live session's log. The last two were re-run in the clean clone, and the strict parse, round and exit-code claims of A1–A2 were probed there too. A hand-typed <code>"Pass"</code> gives <code>unknown variant `Pass`, expected one of `pass`, `revise`, `best`</code> with exit 1. A rewritten committed row gives the second advisory. <code>cargo xtask</code> passes exit 3 through.</p>
+
+<h2>The last slice, drafted</h2>
+<p><code>.claude/skills/write-ticket/SKILL.md</code> runs 81 lines, and its <code>.agents</code> copy is byte-identical. A stub built from its template, with tier small, passes <code>coordination</code>, and <code>next</code> answers <code>build</code>. Set to standard, <code>next</code> answers <code>author blindspots.html</code>. <code>agent-stop</code> refuses the stub with the four <code>review.*</code> questions, as choice ⑥ intends. With the draft docs applied, <code>cargo xtask docs</code> is ok, AGENTS.md runs 72 lines, clippy is clean, and the branch touches the 11 protected files the plan counted.</p>
+
+<h2>What is left</h2>
+<ol>
+<li>Your call on items 1–4 below. Accepted fixes join the last product slice: <code>router.rs</code>, two test assertions and one ARTIFACTS.md clause.</li>
+<li>The last product commit: the skill in both hosts, <code>docs.json</code>, ARTIFACTS.md, COMPLETION.md, README, AGENTS.md step 2, the skill's readiness path and the stop script's header comment. These notes are committed before it.</li>
+<li>The policy receipt over the 11 protected files. The task record also needs <code>completion</code> added to its requirements, its remaining actions brought up to date, and its review answers.</li>
+<li>The buy-in doc and the quiz, each reviewed and logged with <code>verdict</code>, committed at or after the last product commit. Then <code>check ci</code> and <code>complete</code>.</li>
+</ol>
+
+<section>
+<h2>Your reply</h2>
+<p>Each item defaults to the proposed fix. Flip any you would rather leave as a documented limit, then copy.</p>
+<div id="choices"></div>
+<label>Comments (optional)<textarea id="extra" placeholder="e.g. 2: normalise only .html pages"></textarea></label>
+<button id="copyReply">Copy reply</button>
+<output id="reply" aria-live="polite"></output>
+</section>
+
+<footer>workflow-router · implementation notes · feeds the buy-in doc and the quiz</footer>
+</main>
+<script>
+(function () {
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = label; }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  }
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  document.getElementById('copyPrompt').addEventListener('click', function () {
+    copy(document.getElementById('promptText').textContent, this);
+  });
+
+  var chips = document.querySelectorAll('[data-f]');
+  var items = document.querySelectorAll('#devs article, #devs tr[data-t]');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (o) { o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
+      var f = c.getAttribute('data-f');
+      items.forEach(function (d) { d.classList.toggle('hidden', f !== 'all' && d.getAttribute('data-t') !== f); });
+    });
+  });
+
+  var states = [
+    { rows: 'reviews.json: none', says: '<b>author reference.html</b>, round 1. Every committed page counts as reviewed elsewhere; reference.html was not yet committed.', bad: false },
+    { rows: 'reference.html  r1  revise', says: '<b>review blindspots.html</b>, round 1. Once a log exists, a page with no row needs review, so the passes given before the log are lost.', bad: true },
+    { rows: 'reference.html     r1  revise\nblindspots.html    r1  pass   Logged after the fact\ninterventions.html r1  pass   Logged after the fact\ninterview.html     r1  pass   Logged after the fact', says: '<b>author reference.html</b>, round 2: the rewrite that was under way. Round 2 because the rejected draft was never committed (gap 3).', bad: false }
+  ];
+  var sButtons = document.querySelectorAll('[data-s]');
+  function show(i) {
+    sButtons.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-s') === String(i) ? 'true' : 'false'); });
+    document.getElementById('stRows').textContent = states[i].rows;
+    document.getElementById('stSays').innerHTML = states[i].says;
+    document.getElementById('state').className = 'state' + (states[i].bad ? ' bad' : '');
+  }
+  sButtons.forEach(function (b) { b.addEventListener('click', function () { show(+b.getAttribute('data-s')); }); });
+  show(2);
+
+  var gaps = [
+    ['1', 'Restored best version gets "review, round 4"', 'swap the arms so three revise rows end in best; assert it in the test'],
+    ['2', 'CRLF page reads as edited in a fresh clone', 'hash CRLF as LF in page_sha; re-checkout in the CRLF test'],
+    ['3', 'best needs bytes nobody keeps', 'rewrite step and ARTIFACTS.md say to keep the reviewed version under target/'],
+    ['4', 'Second best refusal contradicts itself', 'its own "already recorded" message']
+  ];
+  var box = document.getElementById('choices');
+  gaps.forEach(function (g) {
+    var d = document.createElement('div');
+    d.className = 'choice';
+    d.innerHTML = '<p>' + g[0] + '. ' + g[1] + '</p>' +
+      '<label><input type="radio" name="g' + g[0] + '" value="fix" checked>Fix: ' + g[2] + '</label>' +
+      '<label><input type="radio" name="g' + g[0] + '" value="leave">Leave it, document the limit</label>';
+    box.appendChild(d);
+  });
+  function render() {
+    var lines = ['workflow-router implementation notes:'];
+    gaps.forEach(function (g) {
+      var v = document.querySelector('input[name="g' + g[0] + '"]:checked').value;
+      lines.push('- ' + g[0] + ' (' + g[1] + '): ' + (v === 'fix' ? 'fix: ' + g[2] : 'leave as is and document the limit'));
+    });
+    lines.push('- 5, 6: settled as logged.');
+    var extra = document.getElementById('extra').value.trim();
+    if (extra) lines.push('Also: ' + extra);
+    var text = lines.join('\n');
+    document.getElementById('reply').textContent = text;
+    return text;
+  }
+  box.addEventListener('change', render);
+  document.getElementById('extra').addEventListener('input', render);
+  document.getElementById('copyReply').addEventListener('click', function () { copy(render(), this); });
+  render();
+})();
+</script>
+</body>
+</html>

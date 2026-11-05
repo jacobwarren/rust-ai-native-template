@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "base_commit": "98bb4504ff785edce5bfdee2ba9e02a51699bf11",
+  "changes": [
+    {
+      "change": {
+        "after_sha256": "d0249afcc02ee93132a6997f0f0e513752880702847e79673abfab14882bc058",
+        "before_sha256": "bb6dc3b5153c222600c29ef9fb9282556128ecd1d3aa43645a2e5e2567d0c640",
+        "subject": "policy"
+      },
+      "rationale": "Route the task-page loop through commands and add a ticket skill, without adding a gate. cargo xtask task-artifact next reads the task record, the pages and a per-task reviews.json and prints the one next step (record, author, review, rewrite, best, commit, build, complete); it exits 3 when it also has advice, such as a page edited after its last verdict, and never blocks. task-artifact verdict appends a review row (page, round, pass|revise|best, the page's LF SHA-256, reviewer, notes), keeps the reviewed version under target/, and refuses re-reviews of the same version, a fourth review and a misplaced best; the artifact author's hook refuses edits to reviews.json. Completion does not read the log. The stop hook, on a branch stacked on another remote branch, takes its base from where this branch's own commits start, so a lower unmerged PR's records and page order are left to that PR; HARNESS_BASE still overrides it and PR CI is unchanged. A write-ticket skill for Claude Code and Codex turns a request into a ticket and a partial task record stub. Skills stay ceremony paths: the requested carve-out was dropped because skill frontmatter can register hooks and grant tools. Limits: next cannot see an order breach before completion, Bash writes to the log are unconfined, and a copy of the branch pushed under another name hides its commits from the stop hook.",
+      "evidence": [
+        "docs/ARTIFACTS.md",
+        "docs/COMPLETION.md",
+        "xtask/tests/router.rs",
+        "xtask/tests/hooks_stop.rs",
+        "harness/task-artifacts/workflow-router/plan.html",
+        "harness/task-artifacts/workflow-router/implementation.html"
+      ],
+      "manual_justification": null
+    }
+  ]
+}

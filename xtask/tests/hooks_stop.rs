@@ -208,3 +208,51 @@ fn post_edit_check_uses_the_built_xtask_when_the_lock_is_stale() {
         o.stderr
     );
 }
+
+#[test]
+fn stop_judges_only_this_branchs_records_when_stacked() {
+    let f = Fixture::new();
+    f.git(&["update-ref", "refs/remotes/origin/main", "HEAD"]);
+    // The lower branch (an unmerged PR) claims completion without evidence here.
+    f.write("harness/tasks/TASK-1.json", f.task("complete"));
+    f.commit("lower task");
+    f.git(&["update-ref", "refs/remotes/origin/lower", "HEAD"]);
+    f.text("notes.txt", "this branch's own work\n");
+    f.commit("own work");
+    let gate = |base: Option<&str>| {
+        let mut cmd = std::process::Command::new("bash");
+        cmd.arg(STOP)
+            .current_dir(&f.0)
+            .env("HARNESS_REPORT", "target/report.json")
+            .env("HARNESS_XTASK", env!("CARGO_BIN_EXE_xtask"))
+            .stdin(std::process::Stdio::null());
+        match base {
+            Some(b) => cmd.env("HARNESS_BASE", b),
+            None => cmd.env_remove("HARNESS_BASE"),
+        };
+        let o = cmd.output().unwrap();
+        (
+            o.status.code().unwrap(),
+            String::from_utf8(o.stderr).unwrap(),
+        )
+    };
+    assert_eq!(gate(None).0, 0, "{}", gate(None).1);
+    // An explicit base still judges everything since it.
+    assert_eq!(gate(Some("origin/main")).0, 2);
+    // This branch's own remote copy is not another branch.
+    let branch = f.git(&["symbolic-ref", "--short", "HEAD"]);
+    f.git(&[
+        "update-ref",
+        &format!("refs/remotes/origin/{branch}"),
+        "HEAD",
+    ]);
+    assert_eq!(gate(None).0, 0);
+    // A record this branch's own commits change is judged.
+    let mut own = f.record("complete");
+    own["summary"] = "Reopened and finished here".into();
+    f.write("harness/tasks/TASK-1.json", own);
+    f.commit("own claim");
+    let (code, stderr) = gate(None);
+    assert_eq!(code, 2, "{stderr}");
+    assert!(stderr.contains("TASK-1"), "{stderr}");
+}

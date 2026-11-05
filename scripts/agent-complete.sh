@@ -5,7 +5,8 @@
 # a refusal keeps the agent working. Setting the record back to partial, with
 # its remaining actions, always clears the block. Partial handoffs, stray files
 # and policy receipts are checked by PR CI (cargo xtask handoff), not here.
-#   HARNESS_BASE    base ref (default origin/main)
+#   HARNESS_BASE    base ref. Unset: origin/main, or where this branch's own
+#                   commits start when it is stacked on another remote branch
 #   HARNESS_REPORT  CI evidence (default target/verification/ci.json)
 #   HARNESS_XTASK   tests only: replaces `cargo xtask`
 # No -E: there are no functions, and bash 3.2 would run the ERR trap inside the
@@ -24,6 +25,34 @@ base_ref=${HARNESS_BASE:-origin/main}
 if ! base=$(git merge-base HEAD "$base_ref" 2>/dev/null); then
   echo "agent-complete: no merge base with $base_ref, so completion claims are not gated this turn." >&2
   exit 0
+fi
+
+# Stacked on another branch (an unmerged PR): judge from where this branch's own
+# commits start. The lower branch's records, and its commits' page order, are its
+# own PR's to judge. Own commits are those on no other remote branch; this branch's
+# own remote copy and upstream are not "other". HARNESS_BASE overrides this.
+if [ -z "${HARNESS_BASE:-}" ]; then
+  branch=$(git symbolic-ref -q --short HEAD 2>/dev/null || true)
+  upstream=$(git rev-parse -q --verify --symbolic-full-name '@{upstream}' 2>/dev/null || true)
+  others=""
+  for ref in $(git for-each-ref --format='%(refname)' refs/remotes 2>/dev/null || true); do
+    case "$ref" in
+      */HEAD | "$upstream") continue ;;
+    esac
+    [ -n "$branch" ] && [ "${ref#refs/remotes/*/}" = "$branch" ] && continue
+    others="$others $ref"
+  done
+  if [ -n "$others" ]; then
+    first=$(git rev-list --first-parent --reverse HEAD --not $others 2>/dev/null | head -n 1 || true)
+    if [ -z "$first" ]; then
+      fork=$(git rev-parse HEAD)
+    else
+      fork=$(git rev-parse -q --verify "$first^" 2>/dev/null || true)
+    fi
+    if [ -n "$fork" ] && [ "$fork" != "$base" ] && git merge-base --is-ancestor "$base" "$fork" 2>/dev/null; then
+      base=$fork
+    fi
+  fi
 fi
 
 ids=$({
