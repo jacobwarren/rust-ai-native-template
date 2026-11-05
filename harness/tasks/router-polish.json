@@ -1,0 +1,22 @@
+{
+  "schema_version": 6,
+  "id": "router-polish",
+  "work_item": null,
+  "status": "partial",
+  "tier": "standard",
+  "requirements": ["task-artifacts"],
+  "related_gaps": [
+    {"id": "artifact-gate-holes", "disposition": "unaffected", "rationale": "Advisory routing and log fields do not change what the gate checks."}
+  ],
+  "gap_review": "Read the four open gaps; only artifact-gate-holes is near this work and it is unaffected.",
+  "discoveries": [],
+  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "documentation": {"updated": [], "rationale": "ARTIFACTS.md (verdict arguments), README and experiments docs (investigate skill) will change."},
+  "summary": "Make next name the page whose verdict is uncommitted, add finding counts and the reviewer model to review log rows, and turn the investigate brief into a host skill that stays the GEPA seed.",
+  "remaining": [
+    "commit_step_names_the_page_whose_row_is_uncommitted: given a later page passed with the log uncommitted, next names that page",
+    "verdict_records_findings_and_model: --findings and --model are stored; old rows still parse",
+    "investigate_skill_matches_its_seed: the skill body equals docs/skills/investigate.md",
+    "cargo xtask check ci > target/verification/ci.json, then complete --task router-polish --base origin/main"
+  ]
+}
