@@ -129,7 +129,7 @@
     "path": "docs/ARTIFACTS.md",
     "owner": "maintainers",
     "status": "active",
-    "verified_by": "cargo xtask docs; human comparison of task artifacts against examples/thariq"
+    "verified_by": "cargo xtask docs; next_prompts_match_the_artifacts_guide; human comparison of task artifacts against examples/thariq"
   },
   {
     "path": "docs/COMPLETION.md",
@@ -244,6 +244,12 @@
     "owner": "maintainers",
     "status": "archived",
     "verified_by": "cargo xtask docs; focused gap discovery and completion regression tests"
+  },
+  {
+    "path": "docs/plans/next-prompt.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; harness/tasks/next-prompt.json"
   },
   {
     "path": "docs/plans/router-polish.md",

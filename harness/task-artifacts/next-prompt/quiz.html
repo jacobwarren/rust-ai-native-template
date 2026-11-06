@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz before merge: next hands over the page prompt</title>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<style>
+  main{max-width:62rem}
+  code{font-size:.9em;background:var(--accent-soft);border-radius:.25rem;padding:0 .25rem}
+  pre code{background:none;padding:0}
+  .chip{display:inline-block;font-family:var(--font-code);font-size:.78rem;border:1px solid var(--line);background:var(--paper);border-radius:.35rem;padding:0 .4rem;margin:.1rem .15rem .1rem 0;white-space:nowrap}
+  .promptcard{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-6);padding-right:8.5rem}
+  .promptcard .lab,.k,.leans .lab{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-weight:650;color:var(--muted)}
+  .promptcard .lab{color:var(--accent)}
+  .promptcard p{font-style:italic;font-size:1.08rem;margin:var(--space-2) 0 0}
+  .promptcard button{position:absolute;top:var(--space-4);right:var(--space-4)}
+  @media (max-width:40rem){.promptcard{padding-right:var(--space-6)}.promptcard button{position:static;margin-top:var(--space-3)}}
+  button.secondary{background:var(--surface);color:var(--ink);border-color:var(--line)}
+  button.secondary:hover{border-color:var(--accent)}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:var(--space-3);margin:var(--space-6) 0}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-3) var(--space-4)}
+  .stat b{display:block;font-size:1.5rem;line-height:1.2}
+  .stat > span{font-size:.8rem;color:var(--muted)}
+  .add{color:var(--accent)} .del{color:var(--danger)}
+  section{margin-top:var(--space-8)}
+  section > p{max-width:var(--reading-width)}
+  .secnote{color:var(--muted);font-size:var(--text-small);margin-top:calc(-1 * var(--space-3))}
+  .tabs{display:flex;flex-wrap:wrap;gap:var(--space-2);align-items:center;margin-bottom:var(--space-2)}
+  .tabs button{min-height:36px;padding:.3rem .8rem;font-size:.9rem}
+  .tabs button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+  .tabs label{margin:0 0 0 var(--space-3);font-size:.92rem}
+  .k{margin:var(--space-3) 0 var(--space-1)}
+  .k code{text-transform:none;letter-spacing:0;font-size:.85rem;color:var(--ink);margin-left:.4rem}
+  .say,.ex pre{font-family:var(--font-code);font-size:.8rem;background:var(--paper);border:1px solid var(--line);border-radius:.4rem;padding:var(--space-2) var(--space-3);margin:0;overflow-wrap:anywhere}
+  .say.old{border-style:dashed;color:var(--muted)}
+  mark{background:var(--accent-soft);color:var(--accent);border-radius:.2rem}
+  .brace,.pfx{color:var(--warning);background:var(--warning-soft);font-weight:650}
+  .exnote{font-size:var(--text-small);color:var(--muted);margin:var(--space-3) 0 0}
+  .beh{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:var(--space-4);overflow:hidden}
+  .beh h3{margin:0;padding:var(--space-3) var(--space-4);background:var(--accent-soft);font-size:1.02rem}
+  .beh h3 small{font-family:var(--font-code);color:var(--accent);margin-right:.5rem}
+  .beh dl{margin:0;padding:var(--space-3) var(--space-4);display:grid;grid-template-columns:4.5rem minmax(0,1fr);gap:var(--space-2) var(--space-3)}
+  .beh dt{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:650;padding-top:.2rem}
+  .beh dd{margin:0;font-size:.95rem;min-width:0}
+  @media (max-width:40rem){.beh dl{grid-template-columns:minmax(0,1fr)}}
+  .beh pre{font-size:.78rem;margin:var(--space-2) 0 0;padding:var(--space-2) var(--space-3)}
+  .map{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:var(--space-2)}
+  .map span{font-size:.8rem;border:1px solid var(--line);border-radius:.35rem;padding:.05rem .45rem;background:var(--paper)}
+  .map b{font-weight:600}
+  .leans{background:var(--warning-soft);border:1px solid var(--line);border-left:4px solid var(--warning);border-radius:var(--radius);padding:var(--space-4) var(--space-6)}
+  .leans .lab{color:var(--warning)}
+  .leans p{margin:var(--space-2) 0}
+  .quizhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-3);margin-bottom:var(--space-4)}
+  .score{font-family:var(--font-code);font-size:.85rem;background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:.4rem .8rem}
+  .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-3) var(--space-4);margin-bottom:var(--space-3)}
+  .q.right{border:2px solid var(--accent)} .q.wrong{border:2px solid var(--danger)}
+  .qn{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+  .qt{font-weight:600;margin:var(--space-1) 0 var(--space-2)}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
+  @media (max-width:46rem){.opts{grid-template-columns:1fr}}
+  .opt{display:flex;gap:var(--space-3);width:100%;text-align:left;font-size:.9rem;line-height:1.4;padding:.45rem .7rem}
+  .opt .key{font-family:var(--font-code);color:var(--muted);flex:none}
+  .opt:disabled{cursor:default;opacity:1}
+  .opt.picked-right{border-color:var(--accent);background:var(--accent-soft)}
+  .opt.picked-wrong{border-color:var(--danger);background:#fbeceb}
+  .fb{border-radius:.5rem;padding:var(--space-3);font-size:.9rem;margin-top:var(--space-2);background:var(--accent-soft)}
+  .fb.bad{background:#fbeceb}
+  .result{border-radius:var(--radius);padding:var(--space-4) var(--space-6);margin-top:var(--space-6);border:2px solid var(--accent);background:var(--accent-soft)}
+  .result.fail{border-color:var(--danger);background:#fbeceb}
+  .result h3{margin:0 0 var(--space-2)}
+  .result ul{margin:var(--space-2) 0;padding-left:1.2rem}
+  .reply output{font-family:var(--font-code);font-size:.82rem;white-space:pre-wrap;overflow-wrap:anywhere}
+  .row{display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-3)}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">next-prompt · before merge</div>
+  <h1>Quiz before merge: <code>next</code> hands over the page prompt</h1>
+  <p class="lead">What changed in <code>cargo xtask task-artifact next</code> and <code>verdict</code>, why it is shaped this way, and six questions to pass before merging. A retry draws different questions.</p>
+
+  <div class="promptcard">
+    <div class="lab">The prompt</div>
+    <p id="promptText">I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass.</p>
+    <button class="secondary" id="copyPrompt" type="button">Copy prompt</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b><span class="add">+684</span> <span class="del">−22</span></b><span>lines in xtask, 305 of them the new tests/handover.rs</span></div>
+    <div class="stat"><b><span class="add">+89</span> <span class="del">−26</span></b><span>lines in the guide, skills, README and config</span></div>
+    <div class="stat"><b>7 new tests</b><span>93 xtask tests pass on a clean copy</span></div>
+    <div class="stat"><b>2 open</b><span>decisions, A and B, from the buy-in doc</span></div>
+  </div>
+
+  <section id="sec-context">
+    <h2>1 · Context and intuition</h2>
+    <p>Every task page is written by a fresh subagent that knows only what the orchestrator hands it. On main, <code>next</code> named the page and which subagent to start, but not what to say. The orchestrator looked the prompt up in <code>docs/ARTIFACTS.md</code>, filled its braces, found the exemplar, and retyped the reviewer's findings into <code>verdict --notes TEXT</code>. The blindspot pass found past tasks filling <code>{task}</code> three different ways.</p>
+    <p><strong>The intuition:</strong> the router picks the same steps as before; only their says were reworded. One call at <span class="chip">router.rs:351</span>, <code>handover::attach()</code>, then adds <code>handover</code> and <code>unfilled</code> to the four steps that start a subagent: author, build, review and rewrite. Commit, best and complete steps return before the guide is read. The text is built from the guide's prompt table, compiled into the binary, and an optional <code>prompt</code> object in the task record. On the way back, <code>verdict --notes -</code> takes the reviewer's reply from stdin.</p>
+  </section>
+
+  <section id="sec-explorer">
+    <h2>2 · What <code>next</code> prints now</h2>
+    <p class="secnote">Captured stdout from a clean copy of this branch, pasted unedited; only the highlights are added. Reached by deleting buy-in's review rows, then piping a test REVISE reply into <code>--notes -</code>. The dashed line is an xtask built from main on the same state, <code>prompt</code> object removed.</p>
+    <div class="surface">
+      <div class="tabs" role="group" aria-label="Step">
+        <button class="secondary" type="button" data-tab="review" aria-pressed="true">Review · buy-in</button>
+        <button class="secondary" type="button" data-tab="rewrite" aria-pressed="false">Rewrite · buy-in</button>
+        <label id="valsLab"><input type="checkbox" id="vals" checked> record has its <code>prompt</code> values</label>
+      </div>
+      <div class="ex">
+        <div class="k">say on main</div><div class="say old" id="xOld"></div>
+        <div class="k">say</div><div class="say" id="xSay"></div>
+        <div class="k">handover</div><pre id="xHand"></pre>
+        <div class="k">unfilled <code id="xUnf"></code></div>
+        <p class="exnote" id="xNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-behaviors">
+    <h2>3 · Three behaviours a diff skim won't show you</h2>
+
+    <div class="beh" id="beh-1">
+      <h3><small>01</small>Braces are filled per prompt, from record fields, and a gap never blocks</h3>
+      <dl>
+        <dt>What</dt><dd><code>fill()</code> looks only at the braces the page's own prompt contains, and names a gap by the <em>record field</em> it needs, not by the brace. <code>{task}</code> is read from <code>task</code> in the blindspot prompt and from <code>task_noun</code> everywhere else. A value counts as given only if it is non-empty after trimming and not wrapped in <code>&lt;…&gt;</code>, the shape of the ticket stub's placeholders. A gap leaves the brace in the text, is listed in <code>unfilled</code>, and puts the fill note in front of the say; the step and its exit code are otherwise unchanged. The fields each prompt reads:
+          <div class="map"><span><b>blindspots</b> task, area</span><span><b>interventions</b> problem</span><span><b>interview</b> task_noun</span><span><b>reference</b> reference, task_noun</span><span><b>plan</b> task_noun</span><span><b>implementation</b> task_noun</span><span><b>buy-in</b> task_noun</span><span><b>quiz</b> none</span></div></dd>
+        <dt>Why</dt><dd>“I'm about to {task}” needs a verb phrase, “shipping {task}” a noun phrase, and the ticket ruled out rewording the prompts. <code>next</code> only advises, and six of the seven task records have no <code>prompt</code> object. The note leads because a review say ends with the command to copy.</dd>
+        <dt>Where</dt><dd><span class="chip">handover.rs:103 given()</span> <span class="chip">:110 fill()</span> <span class="chip">:243–251</span> <span class="chip">task_record.rs:52–61 Prompt</span> <span class="chip">tests missing_values_stay_as_braces</span></dd>
+      </dl>
+    </div>
+
+    <div class="beh" id="beh-2">
+      <h3><small>02</small>The guide is part of the binary</h3>
+      <dl>
+        <dt>What</dt><dd><code>include_str!("../../docs/ARTIFACTS.md")</code> compiles the guide in, and <code>rows()</code> reads its table by the new File column, refusing it unless the eight pages appear in page order. <code>cargo xtask</code> is an alias for <code>cargo run -p xtask</code>, so every call rebuilds against the guide on disk. On a clean copy whose step was the quiz author, swapping the buy-in and quiz rows gave:
+<pre>$ cargo xtask task-artifact next --task next-prompt
+{"error":"docs/ARTIFACTS.md's prompt table must list blindspots.html, interventions.html, interview.html, reference.html, plan.html, implementation.html, buy-in.html, quiz.html in its File column, in that order","ok":false}
+exit 1</pre></dd>
+        <dt>Why</dt><dd>One copy of the prompts cannot drift from the guide people read, and a swapped row is an error rather than one page quietly receiving another's prompt.</dd>
+        <dt>Where</dt><dd><span class="chip">handover.rs:14</span> <span class="chip">:32–65 rows()</span> <span class="chip">:262 next_prompts_match_the_artifacts_guide</span> <span class="chip">.cargo/config.toml</span></dd>
+      </dl>
+    </div>
+
+    <div class="beh" id="beh-3">
+      <h3><small>03</small>Findings reach the rewrite through stdin</h3>
+      <dl>
+        <dt>What</dt><dd><code>main.rs</code> compares the <code>--notes</code> value with <code>"-"</code>; on a match <code>piped_notes()</code> reads stdin, otherwise the value is stored as given. The rewrite hand-over carries the page's last log row's notes after “Round N findings; address every one:”. The same reviewer reply passed inline through bash on a clean copy:
+<pre>$ … --findings 1 --notes "REVISE 1. `page_step` drops $PAGE. FINDINGS: 1"
+bash: line 1: page_step: command not found
+  "ok": true,
+    "notes": "REVISE 1.  drops . FINDINGS: 1",</pre></dd>
+        <dt>Why</dt><dd>The shell ran the backticks and expanded <code>$PAGE</code> before xtask started, so <code>verdict</code> could not tell. Piped bytes are never parsed by the shell; the Rewrite tab shows the same reply arriving intact.</dd>
+        <dt>Limits</dt><dd><code>piped_notes()</code> refuses more than 64 KiB (counted on bytes before decoding), input that is not UTF-8, and input that is only whitespace, each with exit 1 and before anything is written to the log.</dd>
+        <dt>Where</dt><dd><span class="chip">main.rs:50–68</span> <span class="chip">main.rs:129</span> <span class="chip">handover.rs:195–199</span> <span class="chip">tests verdict_reads_full_notes_from_stdin</span></dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="sec-leans">
+    <div class="leans">
+      <div class="lab">What this leans on, and what it leaves open</div>
+      <p><strong>Records stay strict.</strong> <code>Task</code> and the new <code>Prompt</code> are both <code>deny_unknown_fields</code> (task_record.rs:27, :52), and <code>schema_version</code> stays 6. Main's <code>Task</code> has no <code>prompt</code> field. Only <code>harness/tasks/next-prompt.json</code> carries the object.</p>
+      <p><strong>Two open decisions.</strong> The reviewer's reply format now lives in one hand-over line, “PASS or REVISE on the first line, numbered findings, and a last line FINDINGS: N” (handover.rs:204), while review-artifact's SKILL.md:64 still says a PASS is one sentence: where it should live is Decision A. Nothing compares the piped text with that format or with <code>--findings</code>: whether <code>verdict</code> should check it is Decision B.</p>
+    </div>
+  </section>
+
+  <section id="quiz-sec">
+    <div class="quizhead">
+      <div>
+        <h2>4 · Six questions before you merge</h2>
+        <p class="secnote">Each is a situation the sections above do not spell out. A miss shows only where to re-read; a retry asks different questions with the options reshuffled.</p>
+      </div>
+      <div class="score">Attempt <b id="att">1</b> · <b id="sNow">0</b> / 6 · <span id="aNow">0</span> answered</div>
+    </div>
+    <div id="quiz"></div>
+    <div id="result" class="result" hidden></div>
+    <div class="reply" id="reply" hidden>
+      <label>Anything to raise before merge (optional)
+        <textarea id="note" placeholder="e.g. Decision A: move the format into the skill now"></textarea>
+      </label>
+      <output id="replyOut"></output>
+      <div class="row"><button type="button" id="copyReply">Copy reply</button><button type="button" class="secondary" id="retry">New attempt</button></div>
+    </div>
+  </section>
+
+  <footer>next-prompt · quiz before merge · the filled-in page prompt hand-over in <code>cargo xtask task-artifact next</code></footer>
+</main>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function copy(text,btn,label){
+    function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent=label;},1500);}
+    function fb(){var t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);done();}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,fb);}else{fb();}
+  }
+  document.getElementById('copyPrompt').addEventListener('click',function(){copy(document.getElementById('promptText').textContent,this,'Copy prompt');});
+
+  // ---- explorer: the "next" objects below are captured stdout, pasted unedited ----
+  var CAP={"review": {"action": "review", "handover": "Review harness/task-artifacts/next-prompt/buy-in.html.\nThe prompt it answers: Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping the filled-in page prompt hand-over in `cargo xtask task-artifact next`. Lead with the demo.\nExemplar: examples/thariq/10-pitch-doc.html\nTask context: harness/tasks/next-prompt.json, docs/plans/next-prompt.md\nPages before it: blindspots.html, interventions.html, interview.html, reference.html, plan.html, implementation.html\nAnswering rule: When no one answers the discovery pages, answer each interview question with your recommendation, label it as the agent's call, and carry the questions still open into the buy-in doc.\nFollow the review-artifact skill: PASS or REVISE on the first line, numbered findings, and a last line FINDINGS: N counting every finding you listed.", "page": "buy-in.html", "round": 1, "say": "Start a fresh artifact-reviewer, never the author, on buy-in.html and give it the handover verbatim; then pipe its whole reply into: cargo xtask task-artifact verdict --task next-prompt --page buy-in.html --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes -", "unfilled": []}, "review_none": {"action": "review", "handover": "Review harness/task-artifacts/next-prompt/buy-in.html.\nThe prompt it answers: Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping {task}. Lead with the demo.\nExemplar: examples/thariq/10-pitch-doc.html\nTask context: harness/tasks/next-prompt.json, docs/plans/next-prompt.md\nPages before it: blindspots.html, interventions.html, interview.html, reference.html, plan.html, implementation.html\nAnswering rule: When no one answers the discovery pages, answer each interview question with your recommendation, label it as the agent's call, and carry the questions still open into the buy-in doc.\nFollow the review-artifact skill: PASS or REVISE on the first line, numbered findings, and a last line FINDINGS: N counting every finding you listed.", "page": "buy-in.html", "round": 1, "say": "First fill the handover's braces for task_noun: set them under prompt in harness/tasks/next-prompt.json and run next again, or replace them by hand. Then: Start a fresh artifact-reviewer, never the author, on buy-in.html and give it the handover verbatim; then pipe its whole reply into: cargo xtask task-artifact verdict --task next-prompt --page buy-in.html --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes -", "unfilled": ["task_noun"]}, "rewrite": {"action": "rewrite", "handover": "Rewrite harness/task-artifacts/next-prompt/buy-in.html in place (rewrite 1 of 2).\nPrompt: Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping the filled-in page prompt hand-over in `cargo xtask task-artifact next`. Lead with the demo.\nExemplar: examples/thariq/10-pitch-doc.html\nTask context: harness/tasks/next-prompt.json, docs/plans/next-prompt.md\nPages so far: blindspots.html, interventions.html, interview.html, reference.html, plan.html, implementation.html\nAnswering rule: When no one answers the discovery pages, answer each interview question with your recommendation, label it as the agent's call, and carry the questions still open into the buy-in doc.\nRound 1 findings; address every one:\nREVISE\n1. `page_step` drops $PAGE and \"quotes\".\nFINDINGS: 1\nFollow the author-artifact skill and return what it asks for.", "page": "buy-in.html", "round": 2, "say": "Start a fresh artifact-author to rewrite buy-in.html from the round 1 findings and give it the handover verbatim (rewrite 1 of 2).", "unfilled": []}, "main_review_say": "Start a fresh artifact-reviewer, never the author, on buy-in.html; then record it: cargo xtask task-artifact verdict --task next-prompt --page buy-in.html --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes TEXT", "main_rewrite_say": "Start a fresh artifact-author to rewrite buy-in.html from the round 1 findings (rewrite 1 of 2)."};
+  var NOUN='the filled-in page prompt hand-over in `cargo xtask task-artifact next`';
+  function hi(s){
+    s=esc(s);
+    s=s.replace(/^(First fill[\s\S]*?Then: )/,'<span class="pfx">$1</span>');
+    s=s.split(esc(NOUN)).join('<mark>'+esc(NOUN)+'</mark>');
+    s=s.replace(/(Round 1 findings; address every one:\n[\s\S]*?FINDINGS: 1)/,'<mark>$1</mark>');
+    return s.replace(/\{(task|area|problem|reference)\}/g,'<span class="brace">{$1}</span>');
+  }
+  var NOTES={
+    review1:'Green: the task_noun value. Only the interview and buy-in hand-overs carry the answering rule, quoted from the guide.',
+    review0:'Prompt object removed: the brace stays, unfilled names the field, the note leads the say. Exit 0.',
+    rewrite1:'Green: the piped reply, byte for byte. The step\'s round 2 is the review about to start; the findings keep round 1, where they came from.'};
+  var cur='review', vals=document.getElementById('vals');
+  function show(){
+    var v=cur==='review'&&!vals.checked?CAP.review_none:CAP[cur];
+    document.getElementById('valsLab').hidden=cur!=='review';
+    document.getElementById('xOld').textContent=cur==='review'?CAP.main_review_say:CAP.main_rewrite_say;
+    document.getElementById('xSay').innerHTML=hi(v.say);
+    document.getElementById('xHand').innerHTML=hi(v.handover);
+    document.getElementById('xUnf').textContent=JSON.stringify(v.unfilled);
+    document.getElementById('xNote').textContent=NOTES[cur+(cur==='review'&&!vals.checked?'0':'1')];
+  }
+  document.querySelectorAll('[data-tab]').forEach(function(b){b.addEventListener('click',function(){
+    cur=b.dataset.tab;
+    document.querySelectorAll('[data-tab]').forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false');});
+    show();});});
+  vals.addEventListener('change',show);
+  show();
+
+  // ---- quiz: six concepts, two situations each; an attempt draws one of each ----
+  var S={b1:['beh-1','Behaviour 01: braces filled per prompt'],b2:['beh-2','Behaviour 02: the guide is part of the binary'],b3:['beh-3','Behaviour 03: findings through stdin'],ctx:['sec-context','Section 1: which steps get a hand-over'],le:['sec-leans','What this leans on']};
+  var C=[
+    {name:'which braces count',s:'b1',v:[
+      {q:'A record sets <code>task_noun</code> but leaves <code>area</code> as the stub\'s <code>"&lt;area&gt;"</code>. <code>next</code> returns the review step for <code>buy-in.html</code>. What is <code>unfilled</code>?',
+       o:['<code>[]</code>, and the say has no fill note','<code>["area"]</code>, and the say starts with the fill note','<code>["{area}"]</code>, and the say starts with the fill note','<code>["task_noun", "area"]</code>, and the say starts with the fill note'],
+       why:'The buy-in prompt has only {task}; area is never read for it.'},
+      {q:'The <code>prompt</code> object is deleted from a record. <code>next</code> returns the review step for <code>reference.html</code>. What is <code>unfilled</code>?',
+       o:['<code>["task_noun", "reference"]</code>','<code>["task", "reference"]</code>','<code>["reference"]</code>','<code>["task", "task_noun", "area", "problem", "reference"]</code>'],
+       why:'The reference prompt holds {reference} and {task}, and outside the blindspot prompt {task} is read from task_noun.'}]},
+    {name:'what counts as missing',s:'b1',v:[
+      {q:'A record sets <code>"task_noun": "   "</code> (three spaces). What does <code>next</code> do on the buy-in review step?',
+       o:['Exits 0; <code>{task}</code> stays, <code>unfilled</code> lists task_noun, and the say opens with the fill note','Exits 0 and hands over “…buy-in on shipping    . Lead with the demo.”, with nothing unfilled','Exits 1, because <code>task_record::read</code> refuses a blank value in <code>prompt</code>','Exits 3 with an advisory naming task_noun, and prints no hand-over'],
+       why:'given() trims first, so blank is no value, and next advises rather than blocks.'},
+      {q:'Someone sets <code>"task_noun": "&lt;the hand-over&gt;"</code>, meaning the angle brackets literally. What does the buy-in review step hand over?',
+       o:['The prompt with <code>{task}</code> left in, task_noun in <code>unfilled</code>, and the fill note before the say','The prompt reading “…shipping &lt;the hand-over&gt;. Lead with the demo.”, with nothing unfilled','The prompt reading “…shipping the hand-over. Lead with the demo.”, brackets stripped','No hand-over: <code>next</code> exits 1 and names the placeholder value it refused'],
+       why:'Any value wrapped in &lt;…&gt; is read as the stub\'s placeholder, intended or not.'}]},
+    {name:'strict records',s:'le',v:[
+      {q:'A record\'s <code>prompt</code> object has <code>"task_nuon": "the board command"</code> (a typo). What does <code>next</code> print?',
+       o:['An error naming the unknown field <code>task_nuon</code>, exit 1','The step, with task_noun in <code>unfilled</code> and the fill note, exit 0','The step with the value filled in, matched to <code>task_noun</code>, exit 0','The step and an advisory about the unknown key, exit 3'],
+       why:'Prompt is deny_unknown_fields like Task, so a typo stops the read instead of looking like a gap.'},
+      {q:'After merge, a colleague whose xtask was built from main runs <code>next --task next-prompt</code>. What do they get?',
+       o:['An error naming the unknown field <code>prompt</code>, exit 1','The usual step; main ignores the <code>prompt</code> object','An error saying schema version 6 is too new for main','The step and an advisory to rebuild xtask, exit 3'],
+       why:'Main\'s Task has no prompt field and refuses unknown ones; schema_version did not change, so nothing else flags it.'}]},
+    {name:'how notes are read',s:'b3',v:[
+      {q:'An orchestrator records a review with <code>--notes -x</code>. What lands in the log row\'s notes?',
+       o:['<code>-x</code>, as written','Whatever was piped on stdin; <code>x</code> is ignored','Nothing: verdict refuses <code>-x</code> as an unknown flag','Whatever was piped on stdin, followed by <code>x</code>'],
+       why:'Only a value equal to "-" reads stdin; anything else is the notes.'},
+      {q:'The orchestrator copies the review say\'s command but forgets the pipe, so the command runs with empty stdin. What happens?',
+       o:['verdict exits 1 and the log is unchanged','verdict logs a row whose notes are <code>-</code>','verdict logs a row with empty notes','verdict logs the row and the rewrite is told there are no findings'],
+       why:'Empty or whitespace-only stdin is refused before router::verdict appends anything.'}]},
+    {name:'when the guide is read',s:'b2',v:[
+      {q:'Someone swaps the buy-in and quiz rows in the guide\'s table. The task\'s next step is a <em>commit</em> step. What does <code>next</code> print?',
+       o:['The commit step as usual, exit 0; the table error waits for a hand-over step','The table-order error, exit 1, because xtask rebuilt with the new guide','The commit step plus an advisory that the table is out of order, exit 3','The commit step, and later the buy-in author is handed the quiz prompt'],
+       why:'attach() returns before reading the table for steps that start no subagent.'},
+      {q:'Someone renames <code>docs/ARTIFACTS.md</code> to <code>docs/PAGES.md</code> and runs <code>cargo xtask check ci</code>. What happens?',
+       o:['xtask fails to compile, so this and every other xtask command fails','check ci passes; only <code>next</code> fails, on steps that hand over','check ci passes; <code>next</code> keeps using the copy compiled earlier','check ci fails in the guide test, and the other xtask commands still run'],
+       why:'include_str! needs the file at build time, and cargo xtask rebuilds on every call. A clean copy failed with exit 101.'}]},
+    {name:'what the rewrite receives',s:'ctx',v:[
+      {q:'A page has been revised three times, and the third REVISE is just recorded. What does <code>next</code> return for it?',
+       o:['A best step with no hand-over: restore the best kept version','A rewrite step whose hand-over says “rewrite 3 of 2”','A rewrite step whose hand-over carries all three rounds\' findings','A review step whose hand-over says to judge the whole page again'],
+       why:'The two-rewrite limit is the router\'s, unchanged, and a best step starts no subagent, so attach() adds nothing.'},
+      {q:'A reviewer lists four findings; the orchestrator pipes only “REVISE: tighten the quiz.” with <code>--findings 4</code>. What does the next rewrite get?',
+       o:['That one line as its findings; verdict accepted it','The reviewer\'s full reply, read back from the kept copy','Nothing: verdict refused the reply for lacking FINDINGS: 4','Nothing: verdict refused the reply because it lists one finding'],
+       why:'verdict stores what is piped and checks neither format nor count; that is open Decision B.'}]}
+  ];
+  var KEYS=['A','B','C','D'], quiz=document.getElementById('quiz'), attempt=0, draw, ans;
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  var first=C.map(function(){return Math.random()<.5?0:1;});
+  function start(){
+    attempt++;
+    document.getElementById('att').textContent=attempt;
+    draw=shuffle(C.map(function(c,ci){
+      var vi=(first[ci]+attempt-1)%2, it=c.v[vi];
+      return {c:c,it:it,order:shuffle([0,1,2,3])};
+    }));
+    ans=draw.map(function(){return null;});
+    quiz.innerHTML=draw.map(function(d,i){
+      return '<div class="q" id="q'+i+'"><div class="qn">Question '+(i+1)+' of 6</div><div class="qt">'+d.it.q+'</div><div class="opts">'+
+        d.order.map(function(o,k){return '<button type="button" class="opt secondary" data-q="'+i+'" data-o="'+o+'"><span class="key">'+KEYS[k]+'</span><span>'+d.it.o[o]+'</span></button>';}).join('')+
+        '</div><div id="fb'+i+'" hidden></div></div>';
+    }).join('');
+    document.getElementById('result').hidden=true;
+    document.getElementById('reply').hidden=true;
+    score();
+  }
+  function score(){
+    document.getElementById('sNow').textContent=ans.filter(function(a){return a===true;}).length;
+    document.getElementById('aNow').textContent=ans.filter(function(a){return a!==null;}).length;
+  }
+  quiz.addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b) return;
+    var i=+b.dataset.q, d=draw[i]; if(ans[i]!==null) return;
+    var ok=+b.dataset.o===0; ans[i]=ok;
+    document.getElementById('q'+i).classList.add(ok?'right':'wrong');
+    document.querySelectorAll('#q'+i+' .opt').forEach(function(o){o.disabled=true;});
+    b.classList.add(ok?'picked-right':'picked-wrong');
+    var fb=document.getElementById('fb'+i), s=S[d.c.s];
+    fb.hidden=false; fb.className='fb'+(ok?'':' bad');
+    fb.innerHTML=ok?'<b>Correct.</b> '+d.it.why:'<b>Not this one.</b> Re-read <a href="#'+s[0]+'">'+s[1]+'</a>; the next attempt asks about the same idea in a different situation.';
+    score();
+    if(ans.every(function(a){return a!==null;})) finish();
+  });
+  function finish(){
+    var n=ans.filter(function(a){return a===true;}).length, r=document.getElementById('result');
+    if(n===6){
+      r.className='result';
+      r.innerHTML='<h3>6 / 6 on attempt '+attempt+': ready to merge</h3><ul>'+
+        '<li>Answer Decisions A and B from the buy-in doc, or accept its leans.</li>'+
+        '<li>Say in the merge note that an xtask built from main refuses this task\'s record.</li>'+
+        '<li>router.rs is at 377 of its 400 lines; the next change to it moves code out first.</li></ul>';
+    } else {
+      var seen={}, links=[];
+      draw.forEach(function(d,i){var s=S[d.c.s]; if(ans[i]!==true&&!seen[s[0]]){seen[s[0]]=1;links.push('<li><a href="#'+s[0]+'">'+s[1]+'</a></li>');}});
+      r.className='result fail';
+      r.innerHTML='<h3>'+n+' / 6: not yet</h3><p>Re-read these, then start a new attempt. It asks different questions on the same ideas.</p><ul>'+links.join('')+'</ul>';
+    }
+    r.hidden=false; document.getElementById('reply').hidden=false; reply();
+    r.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  function reply(){
+    var n=ans.filter(function(a){return a===true;}).length, missed=[];
+    draw.forEach(function(d,i){if(ans[i]===false) missed.push(d.c.name);});
+    var t='Merge quiz for next-prompt: '+n+'/6 on attempt '+attempt+'.'+(n===6?' Ready to merge.':' Not ready yet.');
+    if(missed.length) t+='\nMissed: '+missed.join('; ')+'.';
+    var note=document.getElementById('note').value.trim();
+    if(note) t+='\nBefore merge: '+note;
+    document.getElementById('replyOut').textContent=t;
+  }
+  document.getElementById('note').addEventListener('input',reply);
+  document.getElementById('copyReply').addEventListener('click',function(){copy(document.getElementById('replyOut').textContent,this,'Copy reply');});
+  document.getElementById('retry').addEventListener('click',function(){start();quiz.scrollIntoView({behavior:'smooth',block:'start'});});
+  start();
+})();
+</script>
+</body>
+</html>

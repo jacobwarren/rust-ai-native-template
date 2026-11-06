@@ -12,14 +12,19 @@ a dedicated author and an independent reviewer do.
 
 `cargo xtask task-artifact next --task ID` reads the task record, the pages and
 the task's verdict log and prints the one next step: author, review, rewrite,
-commit, build or complete. It advises and never blocks. It exits 3 when it also
+commit, build or complete. Author, review, rewrite and build steps carry a
+`handover`: the page's prompt from the table below with its braces filled from
+the record's `prompt` values, the exemplar, the output path, the task context
+and the pages so far, plus the last review's findings for a rewrite. Pass it to
+the subagent unchanged; `unfilled` names any `prompt` value the record lacks,
+whose brace stays in the text. It advises and never blocks. It exits 3 when it also
 has a warning, such as a page edited after its last review. Completion does not
 read the log.
 
 1. **Use a dedicated author.** Start a fresh subagent for each page and give it
-   the [author-artifact brief](../.claude/skills/author-artifact/SKILL.md), the prompt below with
-   the task filled in, the exemplar path, the task context and the task's pages
-   written so far. If your host has no subagents, give the page its own turn and
+   the [author-artifact brief](../.claude/skills/author-artifact/SKILL.md) and
+   the step's `handover`: the prompt below with the task filled in, the exemplar
+   path, the task context and the task's pages written so far. If your host has no subagents, give the page its own turn and
    do nothing else in it. Write the pages in the order of the table below.
    Authors working in parallel each derive the same headline finding again; one
    after another, each builds on the last.
@@ -42,16 +47,20 @@ read the log.
    and fix what the report flags before committing. Without Node or Chrome, say
    so rather than implying visual review.
 5. **Get an independent review.** Start another fresh subagent, never the
-   author, with the [reviewer brief](../.claude/skills/review-artifact/SKILL.md), the page, its
-   prompt, the exemplar and the task context. A different model is better when
+   author, with the [reviewer brief](../.claude/skills/review-artifact/SKILL.md) and
+   the review step's `handover`: the page, its prompt, the exemplar and the task
+   context. A different model is better when
    your host offers one. On REVISE, give the findings to a fresh author to
    rewrite the page, then have a fresh reviewer judge the whole page again:
    each review samples different claims, and rewrites can break what was
    right. After two rewrites, commit the best
    version. Record every review with `cargo xtask task-artifact verdict --task ID
    --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL
-   --findings N --notes TEXT`, where N counts every finding the reviewer listed,
-   blocking or not, and MODEL is the reviewer's model as the host names it. It
+   --findings N --notes -`, piping the reviewer's whole reply to stdin, where
+   shell quoting cannot cut it (at most 64 KiB; `--notes TEXT` takes it inline).
+   N counts every finding the reviewer listed, blocking or not, and MODEL is the
+   reviewer's model as the host names it. The rewrite step hands those notes to
+   the next author. It
    appends a row with the page's SHA-256 to `reviews.json` in the task's folder
    and keeps a copy of the reviewed version under `target/artifact-reviews/`;
    `best` marks the reviewed version restored after two rewrites. Commit the log
@@ -61,19 +70,22 @@ read the log.
 
 ## The prompts
 
-Fill in the braces from the task. The adapted prompt is the author's
+Fill in the braces from the task: `next` fills them from the record's `prompt`
+values (`task` in the blindspot pass, `task_noun` in the other `{task}`s,
+`area`, `problem`, `reference`) and reads this table by its File column. The
+adapted prompt is the author's
 instruction. The exemplar is the bar.
 
-| When | Page | Prompt | Exemplar |
-| --- | --- | --- | --- |
-| Before code | Blindspot pass | "I'm about to {task} in {area}. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation." | [01](../examples/thariq/01-blindspot-pass.html) |
-| Before code | Brainstorm the intervention | "Here's the problem: {problem}. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate." | [05](../examples/thariq/05-churn-brainstorm.html) |
-| Before code | The interview | "Interview me one question at a time about anything still ambiguous in {task}. Prioritize questions where my answer would change the architecture." | [06](../examples/thariq/06-interview.html) |
-| Before code | Point at a reference | "{reference} already behaves the way {task} should. Read it and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything." | [07](../examples/thariq/07-reference-port.html) |
-| Before code | The tweakable plan | "Write an implementation plan for {task} as HTML, but lead with the decisions I'm most likely to tweak: data model changes, new type interfaces and anything user-facing. Bury the mechanical work at the bottom; I trust you on that part." | [08](../examples/thariq/08-implementation-plan.html) |
-| During | Implementation notes | "Keep implementation notes as you build {task}. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going." | [09](../examples/thariq/09-implementation-notes.html) |
-| Before merge | Buy-in doc | "Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping {task}. Lead with the demo." | [10](../examples/thariq/10-pitch-doc.html) |
-| Before merge | Quiz me before I merge | "I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass." | [11](../examples/thariq/11-change-quiz.html) |
+| When | Page | File | Prompt | Exemplar |
+| --- | --- | --- | --- | --- |
+| Before code | Blindspot pass | blindspots.html | "I'm about to {task} in {area}. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation." | [01](../examples/thariq/01-blindspot-pass.html) |
+| Before code | Brainstorm the intervention | interventions.html | "Here's the problem: {problem}. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate." | [05](../examples/thariq/05-churn-brainstorm.html) |
+| Before code | The interview | interview.html | "Interview me one question at a time about anything still ambiguous in {task}. Prioritize questions where my answer would change the architecture." | [06](../examples/thariq/06-interview.html) |
+| Before code | Point at a reference | reference.html | "{reference} already behaves the way {task} should. Read it and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything." | [07](../examples/thariq/07-reference-port.html) |
+| Before code | The tweakable plan | plan.html | "Write an implementation plan for {task} as HTML, but lead with the decisions I'm most likely to tweak: data model changes, new type interfaces and anything user-facing. Bury the mechanical work at the bottom; I trust you on that part." | [08](../examples/thariq/08-implementation-plan.html) |
+| During | Implementation notes | implementation.html | "Keep implementation notes as you build {task}. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going." | [09](../examples/thariq/09-implementation-notes.html) |
+| Before merge | Buy-in doc | buy-in.html | "Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping {task}. Lead with the demo." | [10](../examples/thariq/10-pitch-doc.html) |
+| Before merge | Quiz me before I merge | quiz.html | "I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass." | [11](../examples/thariq/11-change-quiz.html) |
 
 A standard task needs all eight; a small task needs none (see Task size). When no external reference exists, the reference is
 the existing code path that the change extends or most resembles. Add these
@@ -114,8 +126,11 @@ changing them is a standard task.
 Thariq's pages end with a reply the reader assembles and copies back. When a
 human is available, present the discovery pages and wait for their reply before
 writing product code; their answers are task input. When running unattended,
-answer the interview with your recommendation, label it as yours, and carry the
-open questions into the buy-in doc.
+follow this rule, which `next` also hands the interview and buy-in authors:
+
+> When no one answers the discovery pages, answer each interview question with
+> your recommendation, label it as the agent's call, and carry the questions
+> still open into the buy-in doc.
 
 ## Keep pages about the feature
 

@@ -42,6 +42,22 @@ pub struct Task {
     pub documentation: Documentation,
     pub summary: String,
     pub remaining: Vec<String>,
+    /// Values for the page prompts' braces; `next` fills them in (handover.rs).
+    #[serde(default)]
+    pub prompt: Option<Prompt>,
+}
+/// Brace values for docs/ARTIFACTS.md's prompts. Every one is optional and checked
+/// by `next`, which leaves a missing one visible, never by `read`.
+#[derive(Deserialize, Default)]
+#[serde(default, deny_unknown_fields)]
+pub struct Prompt {
+    /// Verb phrase after "I'm about to", for the blindspot prompt.
+    pub task: Option<String>,
+    /// Noun phrase naming what is built, for the other prompts' {task}.
+    pub task_noun: Option<String>,
+    pub area: Option<String>,
+    pub problem: Option<String>,
+    pub reference: Option<String>,
 }
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -219,5 +235,30 @@ mod tests {
             }
         }
         assert!(checked >= 9);
+    }
+
+    #[test]
+    fn prompt_values_are_optional_and_strict() {
+        let base = serde_json::json!({"schema_version":6,"id":"t","work_item":null,"status":"partial",
+            "requirements":[],"related_gaps":[],"gap_review":"g","discoveries":[],"discovery_review":"d",
+            "documentation":{"updated":[],"rationale":"r"},"summary":"s","remaining":["x"]});
+        let parse = |prompt: Option<serde_json::Value>| {
+            let mut record = base.clone();
+            if let Some(p) = prompt {
+                record["prompt"] = p;
+            }
+            serde_json::from_value::<Task>(record)
+        };
+        assert!(parse(None).unwrap().prompt.is_none());
+        let p = parse(Some(
+            serde_json::json!({"task":"add x","area":"","reference":null}),
+        ))
+        .unwrap()
+        .prompt
+        .unwrap();
+        assert_eq!(p.task.as_deref(), Some("add x"));
+        assert_eq!(p.area.as_deref(), Some(""));
+        assert!(p.reference.is_none() && p.task_noun.is_none());
+        assert!(parse(Some(serde_json::json!({"task_nuon":"x"}))).is_err());
     }
 }

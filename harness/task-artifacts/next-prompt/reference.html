@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Point at a reference: handing over the page prompt</title>
+<style>
+  .promptbox { position: relative; padding: var(--space-6); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .promptbox .lbl { font-size: var(--text-small); font-weight: 650; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--space-3); }
+  .promptbox blockquote { font-size: 1.05rem; padding-inline-end: 7.5rem; }
+  .promptbox .copy { position: absolute; top: var(--space-4); right: var(--space-4); min-height: 36px; padding: var(--space-2) var(--space-3); font-size: var(--text-small); }
+  @media (max-width: 40rem) { .promptbox blockquote { padding-inline-end: var(--space-4); } .promptbox .copy { position: static; margin-top: var(--space-3); } }
+  .paths { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-6); font: var(--text-small)/1.5 var(--font-code); color: var(--muted); margin: var(--space-4) 0 0; }
+  .paths b { color: var(--ink); }
+  code { font-size: .88em; background: var(--accent-soft); border-radius: .25rem; padding: 0 .25em; }
+  pre code, td code.plain { background: none; padding: 0; }
+  .sec-h { display: flex; align-items: baseline; gap: var(--space-3); }
+  .sec-h .n { flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--ink); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; font: 650 .85rem var(--font-code); transform: translateY(-.15rem); }
+  .pill { display: inline-block; font: 650 .72rem/1.4 var(--font-code); letter-spacing: .04em; text-transform: uppercase; padding: .1rem .55rem; border-radius: 999px; white-space: nowrap; border: 1px solid; }
+  .pill.holds { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
+  .pill.refine { color: var(--warning); background: var(--warning-soft); border-color: var(--warning); }
+  .pill.correct { color: var(--danger); background: #fbecee; border-color: var(--danger); }
+  .pill.ran { color: var(--ink); background: var(--surface); border-color: var(--line); }
+  table.map td:first-child { min-width: 12rem; }
+  table.map, table.edges { min-width: 46rem; font-size: .93rem; }
+  .pair { margin: var(--space-6) 0 var(--space-8); }
+  .pair h3 { margin: 0 0 var(--space-3); }
+  .pair h3 .tag { font: 650 .75rem var(--font-code); color: var(--warning); letter-spacing: .06em; margin-inline-end: var(--space-2); }
+  .grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-4); }
+  @media (max-width: 52rem) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+  .code { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .code .head { display: flex; justify-content: space-between; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); background: var(--accent-soft); font: .78rem var(--font-code); color: var(--muted); }
+  .code .head .fp { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .code .head .k { flex: none; font-weight: 650; text-transform: uppercase; letter-spacing: .08em; }
+  .code .head.prop { background: var(--warning-soft); }
+  .code .head.prop .k { color: var(--warning); }
+  .code pre { margin: 0; border: 0; border-radius: 0; white-space: pre; overflow-x: auto; overflow-wrap: normal; font-size: .8rem; line-height: 1.6; flex: 1; }
+  .cm { color: var(--muted); font-style: italic; }
+  .ln { display: inline-block; width: 2.4em; margin-inline-end: .9em; text-align: right; color: var(--muted); opacity: .75; user-select: none; }
+  .sep { display: inline-block; margin: .35rem 0 .1rem; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); user-select: none; }
+  .kw { color: var(--accent); }
+  mark.hl { background: var(--warning-soft); color: inherit; border-bottom: 2px solid var(--warning); border-radius: .2rem; padding: 0 .1rem; transition: background 120ms; }
+  mark.hl sup { font: 650 .62rem var(--font-code); color: var(--warning); margin-left: .1rem; }
+  mark.hl.on { background: #f3dcc3; }
+  .notes { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+  .note { display: flex; gap: var(--space-3); align-items: baseline; font-size: .93rem; padding: var(--space-2) var(--space-3); border-radius: var(--control-radius); transition: background 120ms; }
+  .note.on { background: var(--warning-soft); }
+  .note .m { flex: none; width: 1.4rem; height: 1.4rem; border-radius: 50%; border: 1.5px solid var(--warning); color: var(--warning); display: inline-flex; align-items: center; justify-content: center; font: 650 .7rem var(--font-code); }
+  .note.on .m { background: var(--warning); color: var(--surface); }
+  .ran-out { margin: var(--space-2) 0 0; font-size: .78rem; background: var(--paper); }
+  .choice { border: 0; border-radius: 0; padding: var(--space-2) 0; margin: 0; }
+  .choice .q { font-weight: 650; padding: 0; margin-bottom: var(--space-1); }
+  .choice label { display: flex; gap: var(--space-2); align-items: baseline; margin: var(--space-1) 0; font-size: .95rem; }
+  .choice .who { font: .72rem var(--font-code); color: var(--warning); text-transform: uppercase; letter-spacing: .06em; }
+  #reply { white-space: pre-wrap; font-size: .85rem; }
+  .btns { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-4); }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Point at a reference · before code · next-prompt</p>
+  <h1>Semantics map: four code paths the hand-over borrows from</h1>
+  <p class="lead">There is no outside library to port. The reference is four places in xtask that already do one piece of what <code>task-artifact next</code> will do. Each one shapes a call the interview made. This page shows what each really does, with the excerpt beside the code it would become, and where copying it as written goes wrong.</p>
+
+  <div class="promptbox">
+    <p class="lbl">The prompt</p>
+    <button type="button" class="copy" id="copyPrompt">Copy prompt</button>
+    <blockquote id="promptText">The repository's existing code paths already behave the way making <code>cargo xtask task-artifact next</code> hand over the filled-in page prompt should: <code>include_str!</code> of the shared stylesheet in xtask/src/artifacts.rs (a file compiled into xtask and handed out verbatim), the DOC009 seed check in xtask/src/checks.rs (<code>SEEDS</code>, <code>skill_copies</code>: one source of text kept equal to its copy), the optional <code>tier</code> field in xtask/src/task_record.rs (<code>serde(default)</code> on a strict record), and the size-capped stdin read in xtask/src/artifact_hook.rs. Read them and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything.</blockquote>
+  </div>
+  <div class="paths">
+    <span><b>read</b> artifacts.rs · checks.rs · task_record.rs · artifact_hook.rs · main.rs verdict arm · router.rs verdict · write-ticket stub · agent-hook.sh post-edit check</span>
+    <span><b>ran</b> each reference's edge in a clean copy, plus a scratch prototype of the record field and the table parse</span>
+  </div>
+
+  <!-- 2 -->
+  <section>
+    <h2 class="sec-h"><span class="n">1</span>Which interview call each reference shapes</h2>
+    <p class="muted">The seven calls are the interview's answers, all on the agent's call. Reading the references leaves three standing (Q1, Q3, Q6), refines three (Q2 and Q5 together, Q7) and corrects one (Q4). The sign-off below starts from these calls.</p>
+    <div class="table-scroll">
+      <table class="map">
+        <thead><tr><th>Interview call</th><th>Reference that shapes it</th><th>What reading it changes</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><b>One hand-over text plus an <code>unfilled</code> list</b> (Q1)</td><td><code>install</code>: compiled text handed out verbatim</td><td>Nothing. The text a subagent receives is the guide row with braces replaced, as the CSS block is the CSS with a tag around it. <a href="#pA">Pair A</a></td><td><span class="pill holds">holds</span></td></tr>
+          <tr><td><b>Optional <code>prompt</code> object in the record, filled by the stub</b> (Q2, Q5)</td><td><code>tier</code> for the field, <code>Review</code> for the object</td><td>The fields should be <code>Option&lt;String&gt;</code>: the <code>Review</code> pattern of <code>String</code> fields refuses <code>null</code>, and that refusal takes down every command for the task. Validate in <code>next</code>, never in <code>read()</code>. <a href="#pC">Pair C</a></td><td><span class="pill refine">refine</span></td></tr>
+          <tr><td><b><code>include_str!</code> the guide, rows keyed by a File column</b> (Q3)</td><td>The CSS <code>include_str!</code>; DOC007's two-sided compare</td><td>Holds, with two costs nobody named: it is the first file outside the crate compiled into the shipped binary, and a guide edit changes xtask's output with no post-edit build. <a href="#pA">Pair A</a>, <a href="#pB">Pair B</a></td><td><span class="pill holds">holds</span></td></tr>
+          <tr><td><b>Full findings via <code>verdict --notes -</code> from stdin, capped as the hook is</b> (Q4)</td><td>artifact_hook.rs:9–14</td><td>Copy the cap, not the code. As written it calls an over-cap note "not valid UTF-8" when the cut splits a character, 1 MiB is sized for hook events, and an empty pipe would record blank notes as a review. <a href="#pD">Pair D</a></td><td><span class="pill correct">correct</span></td></tr>
+          <tr><td><b>Missing values stay visible and listed; exit code unchanged</b> (Q6)</td><td><code>review_errors</code>: list blanks, don't refuse</td><td>Holds. One gap: a stub placeholder such as <code>"&lt;Problem, one sentence&gt;"</code> is not blank, so it would be handed over as a value. <a href="#edges">Edge cases</a></td><td><span class="pill holds">holds</span></td></tr>
+          <tr><td><b>Interview and buy-in hand-overs carry the answering rule</b> (Q7)</td><td>DOC009: one source of text, kept equal to its copy</td><td>The guide's sentence speaks to the orchestrator, so it cannot be lifted as it stands. Typed into Rust it becomes a second copy that nothing compares. Give it one source in the guide and let <code>next</code> read it from the compiled text. <a href="#pB">Pair B</a></td><td><span class="pill refine">refine</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <h2 class="sec-h"><span class="n">2</span>Side by side: the reference, then the proposed code</h2>
+    <p class="muted">Each number marks the same idea in both columns. Hover or focus a mark or a note to light up its partner. The left-hand code is quoted from the file: grey numbers are its line numbers and ⋯ marks lines left out, so each excerpt can be checked line by line. The right-hand code is a sketch for the plan to argue with; none of it exists yet.</p>
+
+    <div class="pair" id="pA">
+      <h3><span class="tag">PAIR A / 4</span>Compile the text in and hand it out verbatim</h3>
+      <div class="grid2">
+        <div class="code"><div class="head"><span class="fp">xtask/src/artifacts.rs:23–26, 81–84, 127–136</span><span class="k">today</span></div>
+<pre><code><span class="ln">23</span><span class="cm">/// Opening tag of the shared stylesheet, carried inline so a page renders on its own.</span>
+<span class="ln">24</span><span class="kw">pub const</span> MARKER: &amp;str = "&lt;style data-artifact-foundation=\"1\"&gt;";
+<span class="ln">25</span><span class="kw">const</span> CSS: &amp;str = <mark class="hl" data-p="1">include_str!<sup>1</sup></mark>(<mark class="hl" data-p="3">"artifact_foundation.css"<sup>3</sup></mark>);
+<span class="ln">26</span><span class="kw">const</span> BLOCK: &amp;str = "target/artifact-style.html";
+<span class="ln">⋯</span>
+<span class="ln">81</span><span class="kw">pub fn</span> install(root: &amp;Path, id: &amp;str) -&gt; Result&lt;Value&gt; {
+<span class="ln">⋯</span>
+<span class="ln">84</span>    <mark class="hl" data-p="2">fs::write(root.join(BLOCK), format!("{MARKER}\n{CSS}&lt;/style&gt;\n"))?<sup>2</sup></mark>;
+<span class="ln">⋯</span>
+<span class="ln">127</span><span class="kw">fn</span> verify(dir: &amp;Path, page: &amp;str) -&gt; Result&lt;bool&gt; {
+<span class="ln">⋯</span>
+<span class="ln">136</span>    <mark class="hl" data-p="2"><span class="kw">if</span> !text.contains(MARKER) {<sup>2</sup></mark></code></pre>
+        </div>
+        <div class="code"><div class="head prop"><span class="fp">xtask/src/artifacts.rs</span><span class="k">proposed</span></div>
+<pre><code><span class="cm">/// The page prompts. Compiled in: router fixtures have no docs/.</span>
+<span class="kw">const</span> GUIDE: &amp;str = <mark class="hl" data-p="1">include_str!<sup>1</sup></mark>(<mark class="hl" data-p="3">"../../docs/ARTIFACTS.md"<sup>3</sup></mark>);
+<span class="cm">// edit the guide: cargo rebuilds; the post-edit hook does not</span>
+
+<span class="cm">/// The prompt table: one Row (file, prompt, exemplar) per page.</span>
+<span class="kw">pub fn</span> rows() -&gt; Result&lt;Vec&lt;Row&gt;&gt; {
+    GUIDE.lines()
+        .skip_while(|l| !l.starts_with("| When |")).skip(2)
+        .take_while(|l| l.starts_with('|'))
+        .map(row)   <span class="cm">// quotes stripped; "../examples/…" → "examples/…"</span>
+        .collect()
+}
+<span class="cm">// handover: the row's prompt with braces replaced, nothing reworded</span>
+    <mark class="hl" data-p="2">fill(row.prompt, &amp;values)<sup>2</sup></mark></code></pre>
+        </div>
+      </div>
+      <div class="notes">
+        <div class="note" data-p="1" tabindex="0"><span class="m">1</span><span><b>The first out-of-crate include in the shipped binary.</b> The two includes that climb <code>../../</code> today sit under <code>#[cfg(test)]</code> (task_record.rs:180, transitions.rs:210). After the change, renaming or deleting docs/ARTIFACTS.md stops <em>every</em> xtask command from compiling, <code>check ci</code> included. The guide also becomes behaviour: it is a ceremony path (size.rs:13), not a protected one, so a table edit changes what xtask prints with no transition receipt.</span></div>
+        <div class="note" data-p="2" tabindex="0"><span class="m">2</span><span><b>Verbatim, then never re-checked.</b> <code>verify</code> only looks for <code>MARKER</code>, so a page keeps the CSS it was written with. Prompts would work the same way: a page written before a guide edit keeps the prompt it answered, while its <em>review</em> step hands over the newer row. Rare, since the ticket rules out rewording prompts; the plan should state it rather than log prompt hashes.</span></div>
+        <div class="note" data-p="3" tabindex="0"><span class="m">3</span><span><b>Rebuilds follow the file, the hook does not.</b> Renaming the interview row's title in the clean copy and rerunning the scratch parse test printed <code>Compiling xtask</code> and the new title, and a CSS edit reached <code>cargo xtask task-artifact style</code>'s output the same way. The post-edit hook only builds after <code>.rs</code> or Cargo edits (agent-hook.sh:341–350), so a guide edit that breaks the parse shows up in <code>cargo test</code>, not at edit time.</span></div>
+      </div>
+      <pre class="ran-out"><code>$ cargo test -p xtask --bin xtask probe_guide -- --nocapture     # scratch parse of today's table
+rows: 8      # 4 cells each, in DISCOVERY, NOTES, FINAL order; no "|" or backtick in any prompt</code></pre>
+    </div>
+
+    <div class="pair" id="pB">
+      <h3><span class="tag">PAIR B / 4</span>One source, and a test that the copy still matches</h3>
+      <div class="grid2">
+        <div class="code"><div class="head"><span class="fp">xtask/src/checks.rs:201–205, 240–252</span><span class="k">today</span></div>
+<pre><code><span class="ln">201</span>    <span class="kw">let</span> names: BTreeSet&lt;&amp;String&gt; = <mark class="hl" data-p="4">copies[0].keys().chain(copies[1].keys()).collect()<sup>4</sup></mark>;
+<span class="ln">202</span>    <span class="kw">for</span> rest <span class="kw">in</span> names {
+<span class="ln">203</span>        <span class="kw">if</span> copies[0].get(rest) != copies[1].get(rest) {
+<span class="ln">204</span>            errors.push(format!(
+<span class="ln">205</span>                "DOC007 skills/{rest}: the .claude/skills and .agents/skills copies must be identical"
+<span class="ln">⋯</span>
+<span class="ln">240</span>    <span class="cm">// A skill that is also an experiment's seed carries the seed's text as its body,</span>
+<span class="ln">241</span>    <span class="cm">// so the hosts and GEPA read the same words (experiments/gepa/README.md).</span>
+<span class="ln">242</span>    <span class="kw">for</span> (folder, seed) <span class="kw">in</span> SEEDS {
+<span class="ln">243</span>        <span class="kw">let</span> skill = copies[0].get(&amp;format!("{folder}/SKILL.md"));
+<span class="ln">244</span>        <span class="kw">let</span> body = skill.and_then(|b| {
+<span class="ln">⋯</span>    <span class="cm">        (245–248 strip the frontmatter)</span>
+<span class="ln">249</span>        });
+<span class="ln">250</span>        <span class="kw">if</span> <mark class="hl" data-p="5">body.as_deref().map(str::as_bytes) != std::fs::read(root.join(seed)).ok().as_deref()<sup>5</sup></mark> {
+<span class="ln">251</span>            errors.push(format!(
+<span class="ln">252</span>                "DOC009 skills/{folder}/SKILL.md: its body after the frontmatter must equal {seed}"</code></pre>
+        </div>
+        <div class="code"><div class="head prop"><span class="fp">xtask/src/artifacts.rs, tests</span><span class="k">proposed</span></div>
+<pre><code>#[test]
+<span class="kw">fn</span> next_prompts_match_the_artifacts_guide() {
+    <span class="kw">let</span> rows = rows().unwrap();
+    <span class="kw">let</span> files: Vec&lt;&amp;str&gt; = rows.iter().map(|r| r.file).collect();
+    <span class="cm">// ordered list, not a set: a duplicated row fails too</span>
+    <mark class="hl" data-p="4">assert_eq!(files, pages().collect::&lt;Vec&lt;_&gt;&gt;())<sup>4</sup></mark>;
+    <span class="kw">for</span> r <span class="kw">in</span> &amp;rows {
+        <span class="cm">// braces only from {task} {area} {problem} {reference}</span>
+        assert!(braces(r.prompt).all(|b| KNOWN.contains(&amp;b)));
+    }
+    <span class="cm">// the answering rule comes from the same compiled text</span>
+    <mark class="hl" data-p="6">assert!(answering_rule().is_some_and(|s| !s.is_empty()))<sup>6</sup></mark>;
+}</code></pre>
+        </div>
+      </div>
+      <div class="notes">
+        <div class="note" data-p="4" tabindex="0"><span class="m">4</span><span><b>Compare both ways, then also count.</b> DOC007 walks the union of both sides' names, so a file missing from either side is caught. Collected into a map, two rows that both say <code>plan.html</code> would collapse into one and pass. Comparing the ordered list with <code>pages()</code> also catches duplicates and reorders.</span></div>
+        <div class="note" data-p="5" tabindex="0"><span class="m">5</span><span><b>DOC009 is the wrong shape for the prompt table.</b> It reads both files at run time, so its test writes a seed into the fixture (hooks_author.rs:159–181). Router fixtures have no docs/ (B04). With <code>include_str!</code> there is one copy, and the test checks the parse instead.</span></div>
+        <div class="note" data-p="6" tabindex="0"><span class="m">6</span><span><b>Where DOC009 does apply: the answering rule.</b> ARTIFACTS.md:116–118 ("answer the interview with your recommendation, label it as yours") speaks to whoever runs the loop, and no brief repeats it (interview Q7). Rephrased for the author inside router.rs, it is a second copy nothing compares. Write the author-facing sentence once in the guide and read it from <code>GUIDE</code>. Unlike DOC009, which passes when skill and seed are <em>both</em> missing (<code>None == None</code>, checks.rs:250), a missing sentence must fail the test.</span></div>
+      </div>
+    </div>
+
+    <div class="pair" id="pC">
+      <h3><span class="tag">PAIR C / 4</span>An optional field on a record that refuses anything unknown</h3>
+      <div class="grid2">
+        <div class="code"><div class="head"><span class="fp">xtask/src/task_record.rs:26–34, 74, 85, 121–125</span><span class="k">today</span></div>
+<pre><code><span class="ln">26</span>#[derive(Deserialize)]
+<span class="ln">27</span><mark class="hl" data-p="7">#[serde(deny_unknown_fields)]<sup>7</sup></mark>
+<span class="ln">28</span><span class="kw">pub struct</span> Task {
+<span class="ln">⋯</span>
+<span class="ln">33</span>    <mark class="hl" data-p="7">#[serde(default)]<sup>7</sup></mark>
+<span class="ln">34</span>    <span class="kw">pub</span> tier: Tier,
+<span class="ln">⋯</span>
+<span class="ln">74</span><span class="kw">pub fn</span> read(root: &amp;Path, id: &amp;str) -&gt; Result&lt;Task&gt; {
+<span class="ln">⋯</span>
+<span class="ln">85</span>        || <mark class="hl" data-p="9">!tracking::nonempty(&amp;task.summary)<sup>9</sup></mark>
+<span class="ln">⋯</span>
+<span class="ln">121</span>#[derive(Deserialize, Default)]
+<span class="ln">122</span>#[serde(deny_unknown_fields)]
+<span class="ln">123</span><span class="kw">pub struct</span> Review {
+<span class="ln">124</span>    #[serde(default)]
+<span class="ln">125</span>    <mark class="hl" data-p="8"><span class="kw">pub</span> acceptance: String,<sup>8</sup></mark></code></pre>
+        </div>
+        <div class="code"><div class="head prop"><span class="fp">xtask/src/task_record.rs</span><span class="k">proposed</span></div>
+<pre><code>    <mark class="hl" data-p="7">#[serde(default)]
+    <span class="kw">pub</span> prompt: Option&lt;Prompt&gt;,<sup>7</sup></mark>
+
+<span class="cm">/// Brace values for the page prompts, written by the write-ticket stub.</span>
+#[derive(Deserialize, Default)]
+#[serde(default, deny_unknown_fields)]
+<span class="kw">pub struct</span> Prompt {
+    <mark class="hl" data-p="8"><span class="kw">pub</span> task: Option&lt;String&gt;,<sup>8</sup></mark>      <span class="cm">// "I'm about to {task}"</span>
+    <span class="kw">pub</span> task_noun: Option&lt;String&gt;, <span class="cm">// the other five {task}s</span>
+    <span class="kw">pub</span> area: Option&lt;String&gt;,
+    <span class="kw">pub</span> problem: Option&lt;String&gt;,
+    <span class="kw">pub</span> reference: Option&lt;String&gt;,
+}
+<span class="cm">// router.rs, not read(): blank and null are both unfilled</span>
+<mark class="hl" data-p="9"><span class="kw">fn</span> filled(v: &amp;Option&lt;String&gt;) -&gt; Option&lt;&amp;str&gt; {
+    v.as_deref().filter(|s| tracking::nonempty(s))
+}<sup>9</sup></mark></code></pre>
+        </div>
+      </div>
+      <div class="notes">
+        <div class="note" data-p="7" tabindex="0"><span class="m">7</span><span><b>Same move as <code>tier</code>, same one-way cost.</b> Records without the field parse, with no schema bump (<code>read</code> accepts versions 1–6, line 79); a binary from before the change refuses a record with it (B03). <code>deny_unknown_fields</code> on <code>Prompt</code> keeps typos loud: the probe's <code>task_nuon</code> failed with "unknown field `task_nuon`, expected one of `task`, `task_noun`, …", which <code>coordination</code> reports right after the stub is written (SKILL.md:76).</span></div>
+        <div class="note" data-p="8" tabindex="0"><span class="m">8</span><span><b>Copy <code>Review</code>'s shape, not its field type.</b> <code>Review</code> (120–132) is the precedent for an object of optional strings, but its <code>String</code> fields refuse <code>null</code>, and the stub's own word for "no value" is null (<code>"work_item": "&lt;tracker URL, or null&gt;"</code>, SKILL.md:55). A <code>"reference": null</code> would then stop <code>next</code> and <code>coordination</code> for the task, the hard stop Q6 ruled out. <code>Option&lt;String&gt;</code> accepts absent, null and blank.</span></div>
+        <div class="note" data-p="9" tabindex="0"><span class="m">9</span><span><b>Check in <code>next</code>, never in <code>read()</code>.</b> <code>read()</code> rejects the whole record on a blank required string, so a check there fails coordination for every task without values, such as artifact-harness. Like <code>review_errors</code> (134–168), <code>next</code> lists the blanks under <code>unfilled</code> and leaves the exit code alone (B05).</span></div>
+      </div>
+      <pre class="ran-out"><code># clean copy, Task given the String-field Prompt, record given "reference": null
+$ cargo xtask task-artifact next --task next-prompt
+{"error":"invalid type: null, expected a string at line 33 column 21","ok":false}     # exit 1; coordination prints the same
+# same probe with Option&lt;String&gt; fields and #[serde(default, deny_unknown_fields)]
+{"reference":"","task":null} -&gt; Ok(P2 { task: None, task_noun: None, reference: Some("") })</code></pre>
+    </div>
+
+    <div class="pair" id="pD">
+      <h3><span class="tag">PAIR D / 4</span>Reading a bounded amount of stdin</h3>
+      <div class="grid2">
+        <div class="code"><div class="head"><span class="fp">xtask/src/artifact_hook.rs:8–14 · router.rs:171–177</span><span class="k">today</span></div>
+<pre><code><span class="ln">8</span><span class="kw">pub fn</span> run(root: &amp;Path, id: &amp;str) -&gt; Result&lt;Value&gt; {
+<span class="ln">9</span>    <span class="kw">let mut</span> input = String::new();
+<span class="ln">10</span>    io::stdin().take(<mark class="hl" data-p="10">1_048_577<sup>10</sup></mark>)<mark class="hl" data-p="11">.read_to_string(&amp;mut input)?<sup>11</sup></mark>;
+<span class="ln">11</span>    <span class="kw">if</span> <mark class="hl" data-p="10">input.len() &gt; 1_048_576<sup>10</sup></mark> {
+<span class="ln">12</span>        <span class="kw">return</span> Err("hook event exceeds 1 MiB".into());
+<span class="ln">13</span>    }
+<span class="ln">14</span>    <span class="kw">let</span> event: Value = <mark class="hl" data-p="12">serde_json::from_str(&amp;input)?<sup>12</sup></mark>;
+<span class="sep">xtask/src/router.rs, in verdict</span>
+<span class="ln">171</span>    <span class="kw">let</span> row = Row {
+<span class="ln">⋯</span>
+<span class="ln">177</span>        notes: <mark class="hl" data-p="12">notes.trim().into()<sup>12</sup></mark>,</code></pre>
+        </div>
+        <div class="code"><div class="head prop"><span class="fp">xtask/src/router.rs · main.rs verdict arm</span><span class="k">proposed</span></div>
+<pre><code><span class="cm">/// A reviewer's findings, not a hook event (agent's call).</span>
+<span class="kw">const</span> NOTES_CAP: usize = <mark class="hl" data-p="10">64 * 1024<sup>10</sup></mark>;
+
+<span class="cm">/// --notes -: the reviewer's numbered findings, piped in verbatim.</span>
+<span class="kw">pub fn</span> piped_notes() -&gt; Result&lt;String&gt; {
+    <span class="kw">let mut</span> bytes = Vec::new();
+    io::stdin().take(NOTES_CAP <span class="kw">as</span> u64 + 1)<mark class="hl" data-p="11">.read_to_end(&amp;mut bytes)?<sup>11</sup></mark>;
+    <span class="kw">if</span> <mark class="hl" data-p="10">bytes.len() &gt; NOTES_CAP<sup>10</sup></mark> { <span class="kw">return</span> Err("over 64 KiB".into()); }
+    <span class="kw">let</span> text = <mark class="hl" data-p="11">String::from_utf8(bytes)<sup>11</sup></mark>
+        .map_err(|_| "--notes - must be UTF-8")?;
+    <span class="kw">if</span> <mark class="hl" data-p="12">!tracking::nonempty(&amp;text)<sup>12</sup></mark> { <span class="kw">return</span> Err("--notes - read nothing".into()); }
+    Ok(text)
+}
+<span class="cm">// main.rs verdict arm: called only when --notes is exactly "-"</span></code></pre>
+        </div>
+      </div>
+      <div class="notes">
+        <div class="note" data-p="10" tabindex="0"><span class="m">10</span><span><b>Keep the one-past-the-cap trick, size the cap for findings.</b> Reading <code>cap + 1</code> tells "at the cap" from "over it": a 1,048,576-byte event passed, 1,048,577 was refused. But 1 MiB was sized for hook events, and notes land in the committed reviews.json, where <code>--model</code> is held to 64 characters (router.rs:130). No test covers the hook's cap; the new one should be tested on both sides.</span></div>
+        <div class="note" data-p="11" tabindex="0"><span class="m">11</span><span><b>Decode after measuring.</b> <code>read_to_string</code> decodes as it reads, so when the cut at <code>cap + 1</code> splits a multi-byte character the error is about encoding, not size (run below). Findings are full of em dashes and curly quotes. Bytes first, length check, then <code>from_utf8</code>.</span></div>
+        <div class="note" data-p="12" tabindex="0"><span class="m">12</span><span><b>Empty input is a JSON error for the hook and a valid review for verdict.</b> Verdict only trims notes: <code>--notes "   "</code> was logged as <code>"notes": ""</code> beside <code>"findings": 3</code>. In this host's agent shell stdin is empty (<code>cat</code> returns at once), so a forgotten pipe must be refused. Today <code>-</code> is literal: piping findings into the current binary logged <code>"notes": "-"</code>.</span></div>
+      </div>
+      <pre class="ran-out"><code>$ python3 -c "import sys; sys.stdout.buffer.write(b'a'*1048576 + 'é'.encode())" \
+    | xtask artifact-hook --task next-prompt                       # 1,048,578 bytes
+{"error":"stream did not contain valid UTF-8","ok":false}       # over the cap, reported as an encoding error
+$ xtask artifact-hook --task next-prompt &lt;/dev/null
+{"error":"EOF while parsing a value at line 1 column 0","ok":false}</code></pre>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="edges">
+    <h2 class="sec-h"><span class="n">3</span>Edge cases at the joins</h2>
+    <div class="table-scroll">
+      <table class="edges">
+        <thead><tr><th>Case</th><th>What happens today</th><th>What the hand-over must do</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><b>{reference} opens a sentence and takes "behaves"</b><br><small>ARTIFACTS.md:72</small></td><td>The row reads <code>"{reference} already behaves the way {task} should."</code> The value is the sentence's subject, so it needs a capital letter and must agree with a singular verb. Nothing tells the person writing the value that.</td><td>The hand-over substitutes the value verbatim (<a href="#pA">Pair A</a>), so it cannot repair the grammar. The stub must ask for a singular phrase written to open a sentence, such as "The size-capped stdin read in xtask/src/artifact_hook.rs". A plural value hands over "The four code paths already behaves the way…".</td><td><span class="pill refine">stub wording</span></td></tr>
+          <tr><td><b>A stub placeholder left in place</b></td><td><code>"summary": "&lt;Problem, one sentence&gt;"</code> passes <code>nonempty</code> (SKILL.md:64). A placeholder brace value would too.</td><td>Count a value wrapped in <code>&lt;…&gt;</code> as unfilled, or the subagent gets "I'm about to &lt;verb phrase&gt;" with an empty <code>unfilled</code> list.</td><td><span class="pill refine">your call</span></td></tr>
+          <tr><td><b>Which {task} is the verb</b></td><td>The guide spells all six slots <code>{task}</code>. Only the blindspot row needs a verb phrase (B01).</td><td>The choice between <code>task</code> and <code>task_noun</code> lives in Rust, keyed on <code>blindspots.html</code>. The match test should assert that only that row begins <code>"I'm about to {task}"</code>.</td><td><span class="pill holds">plan it</span></td></tr>
+          <tr><td><b>Guide renamed or deleted in an adopting repo</b></td><td>Nothing in xtask's binary depends on it.</td><td>Every xtask command fails to compile. Acceptable for a template whose loop is the guide, but the plan should say so where docs/ARTIFACTS.md is described.</td><td><span class="pill holds">note it</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <h2 class="sec-h"><span class="n">4</span>Sign-off</h2>
+    <div class="surface">
+      <p style="margin-top:0">Each correction starts on the agent's call. Change any of them and the reply follows. Nothing gets built until the map is confirmed.</p>
+      <div id="choices"></div>
+      <label for="extra">Anything else (optional)</label>
+      <textarea id="extra" style="min-height:3.5rem" placeholder="Quote a note number or an edge-case row to correct it."></textarea>
+      <pre id="reply" aria-live="polite"></pre>
+      <div class="btns">
+        <button type="button" id="copyReply">Copy reply</button>
+        <button type="button" class="secondary" id="reset">Reset to the agent's calls</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>next-prompt · reference map, before code. Follows the blindspot pass (B01–B08), the brainstorm and the interview (Q1–Q7).</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  function $(id) { return document.getElementById(id); }
+  function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  // marks and notes light up together
+  function setOn(p, on) {
+    document.querySelectorAll('[data-p="' + p + '"]').forEach(function (el) { el.classList.toggle("on", on); });
+  }
+  document.querySelectorAll("mark.hl, .note").forEach(function (el) {
+    var p = el.getAttribute("data-p");
+    ["mouseenter", "focus"].forEach(function (ev) { el.addEventListener(ev, function () { setOn(p, true); }); });
+    ["mouseleave", "blur"].forEach(function (ev) { el.addEventListener(ev, function () { setOn(p, false); }); });
+  });
+
+  // Each option says what it does to the interview calls it touches:
+  // "refined"/"corrected" when it changes the answer, "stand" when it keeps it as answered.
+  var C = [
+    { id: "fields", q: "Pair C: what the prompt object's fields are", calls: "Q2 and Q5", src: "Pair C", opts: [
+      { t: "Option<String> fields; null, blank and absent are unfilled; checked in next, not read()", s: "refined" },
+      { t: "String fields like Review; a null value breaks the record", s: "stand" }
+    ] },
+    { id: "stdin", q: "Pair D: how verdict reads --notes -", calls: "Q4", src: "Pair D", opts: [
+      { t: "Bytes up to 64 KiB + 1, then UTF-8; refuse over-cap and empty input; test both sides", s: "corrected" },
+      { t: "artifact_hook.rs as it is: read_to_string, 1 MiB, empty accepted", s: "stand" }
+    ] },
+    { id: "rule", q: "Pair B: where the answering rule's text lives", calls: "Q7", src: "Pair B", opts: [
+      { t: "One author-facing sentence in docs/ARTIFACTS.md, read from the compiled guide, tested present", s: "refined" },
+      { t: "A string in router.rs; an unchecked second copy", s: "stand" }
+    ] },
+    { id: "placeholder", q: "Edge case: a stub placeholder such as <verb phrase>", calls: "Q6", src: "edge case", opts: [
+      { t: "Count a value wrapped in <…> as unfilled, and list it under unfilled", s: "stand" },
+      { t: "Any non-blank value is filled, as summary's placeholder is today", s: "stand" }
+    ] }
+  ];
+  var ALWAYS = ["Q1", "Q3"]; // no choice on this page touches them
+  var pick = C.map(function () { return 0; });
+
+  function render() {
+    var h = "";
+    C.forEach(function (c, i) {
+      h += '<fieldset class="choice"><legend class="q">' + esc(c.q) + '</legend>';
+      c.opts.forEach(function (o, j) {
+        h += '<label><input type="radio" name="' + c.id + '" value="' + j + '"' + (pick[i] === j ? " checked" : "") + '><span>' +
+          esc(o.t) + (j === 0 ? ' <span class="who">agent\'s call</span>' : "") + "</span></label>";
+      });
+      h += "</fieldset>";
+    });
+    $("choices").innerHTML = h;
+    $("choices").querySelectorAll("input").forEach(function (inp) {
+      inp.addEventListener("change", function () {
+        pick[C.map(function (c) { return c.id; }).indexOf(inp.name)] = +inp.value;
+        update();
+      });
+    });
+    update();
+  }
+
+  function qs(calls) { return calls.match(/Q\d/g); }
+  function list(a) {
+    a = a.slice().sort();
+    return a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+  }
+  function reply() {
+    var stand = ALWAYS.slice(), changed = [], kept = [];
+    C.forEach(function (c, i) {
+      var o = c.opts[pick[i]], who = pick[i] === 0 ? " (agent's call)" : " (my pick)";
+      if (o.s === "stand") {
+        stand = stand.concat(qs(c.calls));
+        kept.push("- " + c.calls + ", " + c.src + ": " + o.t + who);
+      } else {
+        changed.push("- " + c.calls + " " + o.s + " by " + c.src + ": " + o.t + who);
+      }
+    });
+    var L = ["Semantics map for next-prompt confirmed."];
+    L.push("", "Interview calls " + list(stand) + " stand as answered.");
+    if (changed.length) { L.push("", "Changed by the reference map:"); L = L.concat(changed); }
+    if (kept.length) { L.push("", "Settled within the standing calls:"); L = L.concat(kept); }
+    var x = $("extra").value.trim();
+    if (x) { L.push("", "Also: " + x); }
+    L.push("", "Carry these into the plan.");
+    return L.join("\n");
+  }
+  function update() { $("reply").textContent = reply(); }
+  $("extra").addEventListener("input", update);
+  $("reset").addEventListener("click", function () { pick = C.map(function () { return 0; }); $("extra").value = ""; render(); });
+
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1400); }
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = text; t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select(); try { document.execCommand("copy"); } catch (e) {} t.remove(); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  }
+  $("copyReply").addEventListener("click", function () { copy(reply(), $("copyReply")); });
+  $("copyPrompt").addEventListener("click", function () { copy($("promptText").textContent.trim(), $("copyPrompt")); });
+  render();
+})();
+</script>
+</body>
+</html>

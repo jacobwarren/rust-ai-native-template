@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implementation notes: next hands over the page prompt</title>
+<style>
+  main { max-width: 62rem; }
+  .promptcard { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .promptcard blockquote { margin: var(--space-2) 0 0; max-width: 64ch; }
+  .tag { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+  .copy { position: absolute; top: var(--space-3); right: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  .doc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-top: var(--space-8); overflow: hidden; }
+  .dochead { padding: var(--space-3) var(--space-6); border-bottom: 1px solid var(--line); background: var(--paper); font: var(--text-small) var(--font-code); color: var(--muted); overflow-wrap: anywhere; }
+  .stats { display: flex; flex-wrap: wrap; gap: var(--space-3); padding: var(--space-4) var(--space-6) 0; }
+  .stat { flex: 1 1 8rem; border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-2) var(--space-3); }
+  .stat b { display: block; font-size: 1.7rem; line-height: 1.15; }
+  .stat.dev b { color: var(--warning); } .stat.you { background: var(--warning-soft); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-4) var(--space-6) 0; }
+  .chips button { min-height: 36px; padding: var(--space-1) var(--space-4); border-radius: 999px; font-size: var(--text-small); background: var(--surface); color: var(--ink); border-color: var(--line); }
+  .chips button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .timeline { padding: var(--space-4) var(--space-6) var(--space-2); }
+  .entry { display: grid; grid-template-columns: 3.2rem 1fr; gap: var(--space-4); padding-bottom: var(--space-4); border-left: 0; }
+  .entry .st { font: var(--text-small) var(--font-code); color: var(--muted); text-align: right; padding-top: 2px; }
+  .entry .bd { min-width: 0; border-left: 2px solid var(--line); padding-left: var(--space-4); }
+  .badge { display: inline-block; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 650; padding: 1px 8px; border-radius: 5px; border: 1px solid var(--line); color: var(--muted); }
+  .t-plan .badge { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
+  .t-dev .badge { color: var(--surface); background: var(--warning); border-color: var(--warning); }
+  .t-human .badge { color: var(--surface); background: var(--ink); border-color: var(--ink); }
+  .t-wip .badge { border-style: dashed; }
+  .t-dev .bd { border-left-color: var(--warning); } .t-human .bd { border-left-color: var(--ink); } .t-plan .bd { border-left-color: var(--accent); }
+  .entry h3 { margin: var(--space-1) 0; font-size: 1rem; }
+  .entry p { margin: 0; max-width: 70ch; font-size: .94rem; }
+  code { font-size: .86em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; overflow-wrap: anywhere; }
+  .grid { margin-top: var(--space-2); border: 1px solid var(--line); border-left: 3px solid var(--warning); border-radius: var(--control-radius); background: var(--warning-soft); font-size: .87rem; line-height: 1.5; }
+  .grid div { display: grid; grid-template-columns: 9.5rem 1fr; gap: var(--space-3); padding: 5px var(--space-3); }
+  .grid div + div { border-top: 1px solid var(--line); }
+  .grid i { font-style: normal; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 650; color: var(--warning); padding-top: 3px; }
+  .grid .ch i { color: var(--accent); } .grid .ch span { font-weight: 600; }
+  .hidden { display: none; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .bd fieldset { border: 0; padding: 0; margin: var(--space-2) 0 0; }
+  .bd fieldset label { margin: var(--space-1) 0; }
+  .tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-4) 0 var(--space-3); }
+  .tabs button { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); background: var(--surface); color: var(--ink); border-color: var(--line); }
+  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .say { font-size: .9rem; color: var(--muted); margin: 0 0 var(--space-2); }
+  pre.ho { margin: 0; font-size: .82rem; line-height: 1.55; }
+  pre.ho span { display: block; }
+  pre.ho .m { background: var(--warning-soft); box-shadow: inset 3px 0 var(--warning); padding-left: var(--space-2); }
+  pre.ho .bad { background: #f9e3e5; box-shadow: inset 3px 0 var(--danger); padding-left: var(--space-2); }
+  pre.ho a { float: right; font: 650 .7rem var(--font-body); margin-left: var(--space-2); }
+  .planhad { font-size: .88rem; margin-top: var(--space-2); }
+  fieldset { padding: var(--space-4); margin-block: var(--space-4); }
+  fieldset p { margin: 0 0 var(--space-2); font-size: .92rem; }
+  fieldset label { margin: var(--space-2) 0; font-size: .92rem; }
+  ol.fold li { margin-bottom: var(--space-2); max-width: 72ch; }
+  .replybox { position: relative; }
+  @media (max-width: 40rem) {
+    .entry { grid-template-columns: 1fr; gap: 0; }
+    .entry .st { text-align: left; }
+    .grid div { grid-template-columns: 1fr; gap: 0; }
+    .copy { position: static; margin-bottom: var(--space-2); }
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">next-prompt · during implementation</p>
+  <h1>Implementation notes: next hands over the page prompt</h1>
+  <p class="lead">What happened between the plan and the code: what landed as planned, the five places the code pushed back, and two calls that are yours.</p>
+
+  <div class="promptcard">
+    <div class="tag">The prompt</div>
+    <button class="copy secondary" id="copyPrompt" type="button">Copy prompt</button>
+    <blockquote id="promptText">Keep implementation notes as you build the filled-in page prompt hand-over in <code>cargo xtask task-artifact next</code>. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going.</blockquote>
+    <p class="muted" style="margin:var(--space-2) 0 0;font-size:var(--text-small)">This prompt is the first one <code>next</code> filled in itself: it is the build step's <code>handover</code> for this task, word for word (first tab below).</p>
+  </div>
+
+  <div class="doc">
+    <div class="dochead">implementation notes · branch harness/next-prompt · steps 1–4 committed, step 5 open</div>
+    <div class="stats">
+      <div class="stat"><b>12</b><span class="tag">entries</span></div>
+      <div class="stat dev"><b>5</b><span class="tag">deviations</span></div>
+      <div class="stat you"><b>2</b><span class="tag">need your call</span></div>
+      <div class="stat"><b>7 / 7</b><span class="tag">planned tests passing</span></div>
+    </div>
+    <div class="chips" aria-label="Filter entries">
+      <button type="button" data-f="all" aria-pressed="true">All 12</button>
+      <button type="button" data-f="dev" aria-pressed="false">Deviations 5</button>
+      <button type="button" data-f="human" aria-pressed="false">For you 2</button>
+    </div>
+
+    <div class="timeline">
+      <div class="entry t-plan" data-t="plan"><div class="st">1–3</div><div class="bd">
+        <span class="badge">As planned</span>
+        <h3>Guide parser, record field and the plan's three picks</h3>
+        <p><b>Guide.</b> The prompt table gains a File column, and <code>rows()</code> (handover.rs:32) refuses the guide unless it lists the eight pages in order. The answering rule is quoted once and read by <code>answering_rule()</code> (:68). <code>next_prompts_match_the_artifacts_guide</code> checks the braces, the exemplar files, and that only blindspots.html opens "I'm about to {task}".<br>
+        <b>Record.</b> <code>Task.prompt: Option&lt;Prompt&gt;</code> with <code>serde(default, deny_unknown_fields)</code> (task_record.rs:47–60), no schema bump. <code>prompt_values_are_optional_and_strict</code> accepts blank and null values and refuses <code>task_nuon</code>.<br>
+        <b>Picks.</b> ① <code>{task}</code> takes <code>task_noun</code> outside the blindspot prompt (<code>fill()</code>, :110). ② A <code>&lt;…&gt;</code> placeholder counts as unfilled (<code>given()</code>, :103). ③ A rewrite gets the last review's notes and no kept path (<code>attach()</code>, :215). The 8 existing router tests pass unchanged.</p>
+      </div></div>
+
+      <div class="entry t-dev" data-t="dev" id="d1"><div class="st">1–3</div><div class="bd">
+        <span class="badge">Deviation 1 of 5</span>
+        <h3>Steps 1–3 landed as one change, not three</h3>
+        <div class="grid">
+          <div><i>Plan said</i><span>Each build step is one commit that passes CI on its own.</span></div>
+          <div><i>Code showed</i><span>Step 1's parser has no caller outside its test until step 3, and nothing reads step 2's <code>Prompt</code> fields until <code>fill()</code>. CI runs clippy with <code>-D warnings</code> (harness/config.json:122–132), so either step on its own fails as dead code unless it carries an <code>allow</code>.</span></div>
+          <div class="ch"><i>Conservative choice</i><span>One change with all five tests, then a one-line follow-up for the label in Discovery A.</span></div>
+        </div>
+      </div></div>
+
+      <div class="entry t-dev" data-t="dev" id="d2"><div class="st">step 3</div><div class="bd">
+        <span class="badge">Deviation 2 of 5</span>
+        <h3>The 400-line limit moved the call site and the tests</h3>
+        <div class="grid">
+          <div><i>Plan said</i><span><code>router.rs</code> calls the hand-over from <code>page_step</code> and the build arm; the tests go in <code>tests/router.rs</code>; <code>handover()</code> takes the whole <code>&amp;Task</code>.</span></div>
+          <div><i>Code showed</i><span><code>router.rs</code> is 377 lines and <code>attach()</code> is 42 (handover.rs:215–256), past SIZE001's 400. <code>tests/router.rs</code> is 358 lines before the three tests and their 148-line file.</span></div>
+          <div class="ch"><i>Conservative choice</i><span><code>attach()</code> lives in handover.rs and is called once, at the end of <code>next()</code> (router.rs:351), so every author, review, rewrite and build step goes through one place. <code>handover()</code> takes <code>Option&lt;&amp;Prompt&gt;</code>; <code>For::Review</code> carries its round. Tests in a new <code>tests/handover.rs</code>.</span></div>
+          <div><i>Revisit</i><span>router.rs has 23 lines left. The next feature that touches it will hit the same limit.</span></div>
+        </div>
+      </div></div>
+
+      <div class="entry t-dev" data-t="dev" id="d3"><div class="st">step 3</div><div class="bd">
+        <span class="badge">Deviation 3 of 5</span>
+        <h3><code>unfilled</code> names record fields, not braces</h3>
+        <div class="grid">
+          <div><i>Plan said</i><span>"No values" tab: <code>"unfilled": ["task"]</code> and "First replace {task} in it".</span></div>
+          <div><i>Code showed</i><span><code>{task}</code> is filled from two fields (<code>task</code> or <code>task_noun</code>). The brace name does not say which field to set.</span></div>
+          <div class="ch"><i>Conservative choice</i><span>List the field (<code>["task_noun"]</code> for the notes prompt), and have the say name where to set it (:246; last tab below).</span></div>
+        </div>
+      </div></div>
+
+      <div class="entry t-dev" data-t="dev" id="d4"><div class="st">step 3</div><div class="bd">
+        <span class="badge">Deviation 4 of 5</span>
+        <h3>The hand-over gained three lines the plan did not have</h3>
+        <div class="grid">
+          <div><i>Plan said</i><span>Prompt, exemplar, output path, task context, earlier pages; review hand-overs the same with "The prompt it answers".</span></div>
+          <div><i>Code showed</i><span><code>verdict</code> needs <code>--findings N</code>, but the review-artifact skill (SKILL.md:62–67) never asks for a count, and a PASS there is one sentence. A second review must judge the whole page (ARTIFACTS.md step 5), and nothing told it so.</span></div>
+          <div class="ch"><i>Conservative choice</i><span>Every hand-over ends by naming its skill. The reviewer's also asks for numbered findings and a last line <code>FINDINGS: N</code> (:204). A round-2 review opens "Review PATH, rewritten; judge the whole page again." (:174). The skill files are unchanged.</span></div>
+          <div><i>Revisit</i><span>The reviewer's output format is now described in two places → For you, decision A.</span></div>
+        </div>
+      </div></div>
+
+      <div class="entry t-disc" data-t="disc"><div class="st">step 3</div><div class="bd">
+        <span class="badge">Discovery A</span>
+        <h3>The answering rule's label repeated its first words</h3>
+        <p>The first build labelled the rule "When no one answers:" and the quoted rule opens "When no one answers the discovery pages…", so the interview hand-over read the phrase twice. It is now "Answering rule:" (handover.rs:192), and the test asserts the full line.</p>
+      </div></div>
+
+      <div class="entry t-disc" data-t="disc"><div class="st">step 2</div><div class="bd">
+        <span class="badge">Discovery B</span>
+        <h3>The reference value must be one thing, because the verb is fixed</h3>
+        <p>The prompt reads "{reference} already behaves the way…". reference.html was started with four code paths, and the verb was changed by hand to "behave". <code>fill()</code> cannot do that, so the record names one: "The shared stylesheet that xtask/src/artifacts.rs compiles in with include_str!". The stub's placeholder already says "singular"; this record is the first one that had to follow it.</p>
+      </div></div>
+
+      <div class="entry t-dev" data-t="dev" id="d5"><div class="st">3 → 4</div><div class="bd">
+        <span class="badge">Deviation 5 of 5</span>
+        <h3>The review step says "pipe into <code>--notes -</code>" one step before <code>verdict</code> can read it</h3>
+        <div class="grid">
+          <div><i>Plan said</i><span>Step 4 adds the stdin read first, then the review and rewrite hand-overs.</span></div>
+          <div><i>Code showed</i><span>Because <code>attach()</code> serves every action (Deviation 2), step 3 already produced the review and rewrite hand-overs, and the review say already ends <code>--notes -</code>. Without step 4, <code>verdict</code> records the literal <code>"-"</code>, and the next rewrite is told "Round 1 findings; address every one: -". Reproduced: see the "Rewrite, before step 4" tab.</span></div>
+          <div class="ch"><i>Conservative choice</i><span>Keep the hand-overs and land step 4 next, before any review is recorded.</span></div>
+          <div><i>Resolved</i><span>Step 4 was committed (a766413) before the next review was recorded, so no row in reviews.json holds a bare <code>"-"</code>.</span></div>
+        </div>
+      </div></div>
+
+      <div class="entry t-plan" data-t="plan"><div class="st">step 4</div><div class="bd">
+        <span class="badge">As planned · a766413</span>
+        <h3><code>verdict --notes -</code> reads the reviewer's whole reply</h3>
+        <p><code>piped_notes()</code> (main.rs:54–67) reads at most 64 KiB + 1 bytes and checks the length before decoding, avoiding the trap the reference page found in artifact_hook.rs:10. It refuses empty and non-UTF-8 input. Rerun at this commit, an empty pipe and a 70,000-byte pipe both exit 1 with their own message. Seven of the plan's seven tests pass: the five in tests/handover.rs and the two unit tests (handover.rs:261, task_record.rs:241). The 8 router tests pass unchanged.<br>
+        <b>First real use.</b> The first reply recorded through it was 1,531 bytes, with six line breaks, two backticks and a last line of <code>FINDINGS: 1</code>. It reached the next rewrite hand-over unchanged. All eight earlier rows in this task's log were passed inline, and each is a single line.</p>
+      </div></div>
+
+      <div class="entry t-plan t-wip" data-t="plan"><div class="st">step 5</div><div class="bd">
+        <span class="badge">Open · not committed</span>
+        <h3>Docs and bookkeeping are written, not landed</h3>
+        <p>These edits are in the working tree: ARTIFACTS.md (the <code>handover</code> paragraph, steps 1 and 5, and the prompts intro), the <code>prompt</code> object in both write-ticket stubs (still identical, as DOC007 requires), README:172, the field list in COMPLETION.md, examples/task-record.json, the seven tests and handover.rs in readiness.json, and docs.json's <code>verified_by</code>. Two items from the plan's step 5 have not been started: the transition receipt for the protected paths, and the record's <code>remaining</code> list.</p>
+      </div></div>
+
+      <div class="entry t-human" data-t="human" id="h1"><div class="st">you</div><div class="bd">
+        <span class="badge">Decision A</span>
+        <h3>Where should the reviewer's return format live?</h3>
+        <p>The hand-over asks for "numbered findings, and a last line FINDINGS: N", but review-artifact's SKILL.md still says a PASS is one sentence. A reviewer that follows the skill leaves the orchestrator counting findings by hand.</p>
+        <fieldset><legend class="sr">Decision A</legend>
+          <label><input type="radio" name="a" value="0" checked>Hand-over only, as built. The skill is outside this ticket.</label>
+          <label><input type="radio" name="a" value="1">Also add it to review-artifact in both skill copies, in this task.</label>
+          <label><input type="radio" name="a" value="2">Move it into the skill in a follow-up ticket; keep the hand-over line until then.</label>
+        </fieldset>
+        <p class="muted" style="font-size:.88rem">Lean: as built. Every review step goes through <code>attach()</code> (Deviation 2), so every reviewer started from <code>next</code> already gets the line, and the skill file is outside this ticket.</p>
+      </div></div>
+
+      <div class="entry t-human" data-t="human" id="h2"><div class="st">you</div><div class="bd">
+        <span class="badge">Decision B</span>
+        <h3>Should <code>verdict</code> use the FINDINGS line to catch a summarised reply?</h3>
+        <p>The plan's weakest part was that nothing notices a summary piped in place of the reply. Deviation 4 makes a cheap check possible: with <code>--notes -</code>, refuse input whose last line is not <code>FINDINGS: N</code> matching <code>--findings</code>. It catches a hand-written digest but not one that copies the last line, and it is new scope.</p>
+        <fieldset><legend class="sr">Decision B</legend>
+          <label><input type="radio" name="b" value="0" checked>Not now: record it as a gap for the next ticket.</label>
+          <label><input type="radio" name="b" value="1">Add it to step 4 here.</label>
+          <label><input type="radio" name="b" value="2">Never: a reviewer that forgets the line would block the verdict.</label>
+        </fieldset>
+        <p class="muted" style="font-size:.88rem">Lean: not now. The first real reply ended with the line, but one reply is too little to justify refusing replies that lack it.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <h2>The hand-over as built</h2>
+  <p>Captured by running <code>next</code> and <code>verdict</code> on this task's record in a copy of the branch, cut back so that only blindspots.html is written. The "before step 4" tab was rerun at the commit before a766413. Highlighted lines differ from the plan, and each links to the deviation that explains it.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <p class="say" id="say"></p>
+  <pre class="ho" id="ho"></pre>
+  <p class="planhad muted" id="planhad"></p>
+
+  <h2>Your reply</h2>
+  <p style="margin-bottom:0">Decisions A and B from the timeline, then three lessons to fold into the next plan:</p>
+  <ol class="fold" id="fold">
+    <li>Before placing code, check the size budget: SIZE001 stops a .rs file at 400 lines, and router.rs has 23 left.</li>
+    <li>When one placeholder is filled from more than one field, show the field's name in errors and examples, not the brace's.</li>
+    <li>Land an input a command accepts before any step text tells people to use it. Here, the stdin read should have come before the say that ends <code>--notes -</code>.</li>
+  </ol>
+  <label for="extra">Anything else (optional)</label>
+  <textarea id="extra" style="min-height:4rem" placeholder="Corrections to an entry, another deviation you expected…"></textarea>
+  <div class="replybox">
+    <button type="button" id="copyReply" style="margin-top:var(--space-3)">Copy reply</button>
+    <details style="padding:var(--space-3) var(--space-4)"><summary>Preview the reply</summary><output id="reply" style="margin-top:var(--space-3);white-space:pre-wrap"></output></details>
+  </div>
+
+  <footer>next-prompt · implementation notes · steps 1–4 committed, step 5 open.</footer>
+</main>
+<script>
+(function () {
+  function $(id) { return document.getElementById(id); }
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); }); }
+    else { fallback(text); done(); }
+  }
+  function fallback(text) {
+    var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta);
+  }
+  $("copyPrompt").addEventListener("click", function () { copy($("promptText").textContent.replace(/\s+/g, " ").trim(), $("copyPrompt")); });
+
+  // filter chips
+  var chips = document.querySelectorAll(".chips button"), entries = document.querySelectorAll(".entry");
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      chips.forEach(function (x) { x.setAttribute("aria-pressed", x === c ? "true" : "false"); });
+      var f = c.getAttribute("data-f");
+      entries.forEach(function (e) { e.classList.toggle("hidden", !(f === "all" || e.getAttribute("data-t") === f)); });
+    });
+  });
+
+  // hand-over tabs: text from next/verdict runs; [line, deviation-or-null, bad?]
+  var T = "harness/task-artifacts/next-prompt/";
+  var BP = "I'm about to make `cargo xtask task-artifact next` hand over the filled-in page prompt, the exemplar and the output path for each author, review and rewrite step in xtask's page router (xtask/src/router.rs) and the prompt table in docs/ARTIFACTS.md. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation.";
+  var CTX = "Task context: harness/tasks/next-prompt.json, docs/plans/next-prompt.md";
+  var AUTH = ["Follow the author-artifact skill and return what it asks for.", "d4"];
+  var REV = ["Follow the review-artifact skill: PASS or REVISE on the first line, numbered findings, and a last line FINDINGS: N counting every finding you listed.", "d4"];
+  var PIPE = "Start a fresh artifact-reviewer, never the author, on blindspots.html and give it the handover verbatim; then pipe its whole reply into: cargo xtask task-artifact verdict --task next-prompt --page blindspots.html --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes -";
+  var REW = "Start a fresh artifact-author to rewrite blindspots.html from the round 1 findings and give it the handover verbatim (rewrite 1 of 2).";
+  var TABS = [
+    { label: "Build (this page)", say: "Discovery is done. Build and commit the first product slice, then start a fresh artifact-author on implementation.html with the handover, and commit the notes before the last product commit.",
+      lines: [["Write " + T + "implementation.html."], ["Prompt: Keep implementation notes as you build the filled-in page prompt hand-over in `cargo xtask task-artifact next`. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going."], ["Exemplar: examples/thariq/09-implementation-notes.html"], [CTX], ["Pages so far: blindspots.html, interventions.html, interview.html, reference.html, plan.html"], AUTH],
+      unfilled: "[]", had: "The plan had the same first five lines and no closing line." },
+    { label: "Review, round 1", say: PIPE, sayDev: "d5",
+      lines: [["Review " + T + "blindspots.html."], ["The prompt it answers: " + BP], ["Exemplar: examples/thariq/01-blindspot-pass.html"], [CTX], ["Pages before it: none"], REV],
+      unfilled: "[]", had: "As planned, apart from the last line. The say ends --notes -, which verdict has read from stdin since step 4." },
+    { label: "Rewrite, before step 4", say: REW,
+      lines: [["Rewrite " + T + "blindspots.html in place (rewrite 1 of 2)."], ["Prompt: " + BP], ["Exemplar: examples/thariq/01-blindspot-pass.html"], [CTX], ["Pages so far: none"], ["Round 1 findings; address every one:"], ["-", "d5", true], AUTH],
+      unfilled: "[]", had: "The reviewer's reply was piped into --notes -, as the review say asks. Before step 4, verdict stored \"-\" as the notes." },
+    { label: "Rewrite, as built", say: REW,
+      lines: [["Rewrite " + T + "blindspots.html in place (rewrite 1 of 2)."], ["Prompt: " + BP], ["Exemplar: examples/thariq/01-blindspot-pass.html"], [CTX], ["Pages so far: none"], ["Round 1 findings; address every one:"], ["REVISE"], [" "], ["1. Section 3 cites `page_step` but the $PAGE example is invented."], [" "], ["FINDINGS: 1", "d4"], AUTH],
+      unfilled: "[]", had: "The same piped reply, kept as sent, with its blank lines, backticks and $ intact." },
+    { label: "Review, round 2", say: PIPE, sayDev: "d5",
+      lines: [["Review " + T + "blindspots.html, rewritten; judge the whole page again.", "d4"], ["The prompt it answers: " + BP], ["Exemplar: examples/thariq/01-blindspot-pass.html"], [CTX], ["Pages before it: none"], REV],
+      unfilled: "[]", had: "The plan had no separate opening for a second review." },
+    { label: "No values", say: "Discovery is done. Build and commit the first product slice, then start a fresh artifact-author on implementation.html with the handover, and commit the notes before the last product commit. First fill its braces for task_noun: set them under prompt in harness/tasks/artifact-harness.json and run next again, or replace them in the handover by hand.", sayDev: "d3",
+      lines: [["Write harness/task-artifacts/artifact-harness/implementation.html."], ["Prompt: Keep implementation notes as you build {task}. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going."], ["Exemplar: examples/thariq/09-implementation-notes.html"], ["Task context: harness/tasks/artifact-harness.json"], ["Pages so far: blindspots.html, interventions.html, interview.html, reference.html, plan.html"], AUTH],
+      unfilled: "[\"task_noun\"]", had: "The plan had unfilled [\"task\"] and the say \"First replace {task} in it: the record's prompt has no value for it.\" next still exits 0." }
+  ];
+  var cur = 0;
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function render() {
+    var h = "";
+    TABS.forEach(function (t, i) { h += '<button type="button" role="tab" aria-selected="' + (i === cur) + '" data-i="' + i + '">' + t.label + "</button>"; });
+    $("tabs").innerHTML = h;
+    var t = TABS[cur];
+    $("say").innerHTML = "<strong>say:</strong> " + esc(t.say) + (t.sayDev ? ' <a href="#' + t.sayDev + '">' + t.sayDev.toUpperCase() + "</a>" : "");
+    $("ho").innerHTML = t.lines.map(function (l) {
+      var cls = l[2] ? "bad" : (l[1] ? "m" : "");
+      return '<span class="' + cls + '">' + (l[1] ? '<a href="#' + l[1] + '">' + l[1].toUpperCase() + "</a>" : "") + esc(l[0]) + "</span>";
+    }).join("");
+    $("planhad").innerHTML = "<strong>unfilled:</strong> <code>" + esc(t.unfilled) + "</code> · " + esc(t.had);
+  }
+  $("tabs").addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) { cur = +b.getAttribute("data-i"); render(); } });
+  render();
+
+  // reply
+  var A = ["A: leave the FINDINGS line in the hand-over only, as built.",
+           "A: also add the FINDINGS line, and non-blocking findings on PASS, to review-artifact in both skill copies, in this task.",
+           "A: move the reviewer's format into the skill in a follow-up ticket; keep the hand-over line until then."];
+  var B = ["B: do not check the piped reply now; record a gap for a check that its last line is FINDINGS: N matching --findings.",
+           "B: in step 4 here, refuse --notes - input whose last line is not FINDINGS: N equal to --findings.",
+           "B: never check it; a reviewer that forgets the line would block the verdict."];
+  function reply() {
+    var a = document.querySelector('input[name="a"]:checked').value, b = document.querySelector('input[name="b"]:checked').value;
+    var out = ["Implementation notes for next-prompt: reviewed.", A[a], B[b], "Fold into the next plan:"];
+    document.querySelectorAll("#fold li").forEach(function (li, i) { out.push((i + 1) + ". " + li.textContent.replace(/\s+/g, " ").trim()); });
+    var x = $("extra").value.trim(); if (x) out.push("Also: " + x);
+    $("reply").textContent = out.join("\n");
+  }
+  document.querySelectorAll('input[type="radio"]').forEach(function (r) { r.addEventListener("change", reply); });
+  $("extra").addEventListener("input", reply);
+  $("copyReply").addEventListener("click", function () { reply(); copy($("reply").textContent, $("copyReply")); });
+  reply();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blindspot pass: handing over the page prompt</title>
+<style>
+  main { max-width: 62rem; }
+  h1 { margin-top: var(--space-4); }
+  .prompt { font-style: italic; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-block: var(--space-6); }
+  @media (max-width: 44rem) { .vs { grid-template-columns: 1fr; } }
+  .vs > div { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); background: var(--surface); }
+  .vs > div.actual { border-color: var(--warning); background: var(--warning-soft); }
+  .vs p { margin: 0; font-size: .95rem; }
+  .tag { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--muted); margin-bottom: var(--space-2); }
+  .actual .tag { color: var(--warning); }
+  .stats { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); padding: var(--space-3) var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); font-family: var(--font-code); font-size: .8rem; }
+  .stats .hot b { color: var(--danger); }
+  .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6) var(--space-4); margin-block: var(--space-4); }
+  .card h3 { margin: var(--space-2) 0 var(--space-3); font-size: 1.15rem; }
+  .card p { font-size: .93rem; margin-block: var(--space-2); }
+  .head { display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; }
+  .badge { font-family: var(--font-code); font-size: .7rem; letter-spacing: .08em; font-weight: 650; text-transform: uppercase; padding: 2px 8px; border-radius: var(--control-radius); border: 1px solid; }
+  .landmine { color: var(--danger); border-color: var(--danger); background: #fbecee; }
+  .history { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+  .convention { color: var(--muted); border-color: var(--line); background: var(--paper); }
+  .concept { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .num { font-family: var(--font-code); font-size: .75rem; color: var(--muted); }
+  code { font-size: .85em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; overflow-wrap: anywhere; }
+  pre { font-size: .78rem; line-height: 1.5; margin-block: var(--space-3); background: var(--paper); }
+  pre code { border: 0; padding: 0; background: none; }
+  .src { display: block; font-family: var(--font-code); font-size: .7rem; color: var(--muted); margin-bottom: var(--space-1); }
+  mark { background: #f7dfc3; color: inherit; padding: 0 2px; border-radius: 3px; }
+  .bite { border-inline-start: 3px solid var(--danger); background: #fbf4f4; padding: var(--space-3) var(--space-4); font-size: .9rem; border-radius: 0 var(--control-radius) var(--control-radius) 0; margin-block: var(--space-3); }
+  .bite b { font-family: var(--font-code); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--danger); margin-right: var(--space-2); }
+  .chip { display: flex; gap: var(--space-2); align-items: flex-start; margin-top: var(--space-3); }
+  .chip div { flex: 1; font-family: var(--font-code); font-size: .78rem; background: var(--accent-soft); border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-2) var(--space-3); }
+  .chip div::before { content: "› "; color: var(--accent); font-weight: 700; }
+  button.copy { min-height: 32px; padding: 2px 12px; font-size: .75rem; font-family: var(--font-code); }
+  @media (max-width: 30rem) { .chip { flex-direction: column; } .chip button { align-self: flex-end; } }
+  table.t { font-size: .82rem; }
+  table.t th { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  table.t td.bad { background: #fbecee; }
+  table.t td.ok { background: var(--accent-soft); }
+  .ba { display: grid; grid-template-columns: 1fr; gap: var(--space-2); }
+  .decide fieldset { padding: var(--space-2) var(--space-4); margin-block: var(--space-3); background: var(--surface); }
+  .decide label { margin: var(--space-1) 0; font-size: .9rem; line-height: 1.5; display: flex; gap: var(--space-2); align-items: flex-start; }
+  .decide label input { margin-top: .35rem; flex: none; }
+  .rec { font-family: var(--font-code); font-size: .68rem; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 0 5px; margin-left: 4px; white-space: nowrap; }
+  .final { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6) var(--space-6); margin-top: var(--space-8); }
+  .final .head { justify-content: space-between; }
+  #final-prompt { font-size: .8rem; background: var(--paper); }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Blindspot pass · before code · next-prompt</div>
+  <h1>Unknown unknowns: making <code>next</code> hand over the page prompt</h1>
+  <blockquote class="prompt">I'm about to make <code>cargo xtask task-artifact next</code> hand over the filled-in page prompt, the exemplar and the output path for each author, review and rewrite step, in xtask's page router (xtask/src/router.rs) and the prompt table in docs/ARTIFACTS.md. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation.</blockquote>
+
+  <div class="vs">
+    <div>
+      <div class="tag">What you asked for</div>
+      <p>Look up the page's row in the ARTIFACTS.md table, substitute four braces, append the exemplar and output path to the JSON step <code>next</code> already prints. A string-formatting change in one function.</p>
+    </div>
+    <div class="actual">
+      <div class="tag">What you're walking into</div>
+      <p>Braces with <strong>no reliable place in the record or repo to read them from</strong>, one of which <strong>past tasks filled three different ways</strong>, a record schema that <strong>refuses a new field until the struct has it</strong>, a page that <strong>never gets an author step</strong>, and rewrite "findings" that are <strong>a one-line summary of them</strong>.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <span class="hot"><b>4</b> landmines</span>
+    <span><b>1</b> history</span>
+    <span><b>2</b> conventions</span>
+    <span><b>1</b> missing concept</span>
+    <span><b>8</b> prompts, <b>4</b> braces, <b>0</b> record fields that hold them</span>
+  </div>
+
+  <h2>The blindspots</h2>
+
+  <!-- 01 -->
+  <section class="card">
+    <div class="head"><span class="badge history">History</span><span class="num">01</span></div>
+    <h3><code>{task}</code> is a verb in one row and a noun in five, and past tasks filled it three ways</h3>
+    <p>The blindspot row reads "I'm about to <code>{task}</code>", which needs a bare verb phrase. Interview ("ambiguous in {task}"), reference ("the way {task} should"), plan ("plan for {task}"), notes ("as you build {task}") and buy-in ("shipping {task}") need a noun phrase (docs/ARTIFACTS.md:69–75). The orchestrators that filled these by hand never agreed on one value:</p>
+    <div class="table-scroll"><table class="t">
+      <thead><tr><th>Task</th><th>Blindspot: "I'm about to …"</th><th>Interview: "ambiguous in …"</th><th>Buy-in: "shipping …"</th></tr></thead>
+      <tbody>
+        <tr><td>workflow-router</td><td>add a ticket-writing skill, carve …</td><td>adding a ticket-writing skill, …</td><td class="bad">workflow-router</td></tr>
+        <tr><td>router-polish</td><td>fix next's commit-step page naming, …</td><td class="bad">router-polish</td><td class="bad">router-polish</td></tr>
+        <tr><td>agent-workflow</td><td>scale the task-page ceremony to task size …</td><td>scaling ceremony to task size, …</td><td>task tiers, agent skills and subagents in this template</td></tr>
+        <tr><td>default-hooks</td><td>ship project hooks for Claude Code and Codex …</td><td>shipping default project hooks …</td><td>default project hooks for Claude Code and Codex in this template</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted" style="font-size:.85rem">As quoted on each task's committed pages. Red: the bare task ID.</p>
+    <div class="bite"><b>Why it bites</b>One stored value cannot fill both slots: an infinitive breaks five rows ("ambiguous in make next hand over …") and a noun phrase breaks the first ("I'm about to making …"). The ticket rules out rewording the prompts (docs/plans/next-prompt.md, Out of scope), so the data carries two shapes, or the noun slots take the bare task ID as router-polish's did.</div>
+    <div class="chip"><div id="c1">Store two values for {task}: a verb phrase for "I'm about to {task}" and a noun phrase for the other five rows. Show me every one of the eight prompts filled in for next-prompt before wiring anything.</div><button class="copy" data-copy="c1">Copy</button></div>
+  </section>
+
+  <!-- 02 -->
+  <section class="card">
+    <div class="head"><span class="badge missing concept">Missing concept</span><span class="num">02</span></div>
+    <h3>The braces have no home, and <code>summary</code>, the one near miss, is the wrong sentence</h3>
+    <p>The record has no field for <code>{task}</code>, <code>{area}</code>, <code>{problem}</code> or <code>{reference}</code> (<code>Task</code>, task_record.rs:26–45). The workflow-router blindspot pass recommended mapping the ticket's Problem to <code>summary</code> and adding no record fields; the stub still says <code>"summary": "&lt;Problem, one sentence&gt;"</code> (write-ticket SKILL.md:64). But this task's summary is a capitalised task statement with a rationale clause. Substituted as is:</p>
+    <pre><span class="src">docs/ARTIFACTS.md:69 with {task} = summary from harness/tasks/next-prompt.json</span><code>I'm about to <mark>Make</mark> task-artifact next hand over the filled-in page prompt, exemplar and output path for each author, review and rewrite step, <mark>so the orchestrator no longer assembles it from docs/ARTIFACTS.md by hand.</mark> in <mark>{area}</mark>. Do a blindspot pass: …</code></pre>
+    <p>The ticket is no better a source: write-ticket puts it in the tracker, else the PR description, else <code>docs/plans/&lt;id&gt;.md</code> (SKILL.md:79–80), and only 2 of the 7 records in harness/tasks/ have a plan file. <code>{reference}</code> is a judgement by design: "the existing code path that the change extends or most resembles" (ARTIFACTS.md:78–79).</p>
+    <div class="bite"><b>Why it bites</b><code>summary</code> also changes as the task runs: "summary and remaining form the handoff" (docs/COMPLETION.md:97), and completion-gate's reads "Added transition and completion checks…". Render prompts from it and the reviewer of a page can get a different prompt than its author answered, and buy-in asks for "shipping Added …".</div>
+    <div class="chip"><div id="c2">Give the brace values their own record field, written once at task start by the write-ticket stub, and never derive them from summary or from a ticket file that may not be in the repo.</div><button class="copy" data-copy="c2">Copy</button></div>
+  </section>
+
+  <!-- 03 -->
+  <section class="card">
+    <div class="head"><span class="badge landmine">Landmine</span><span class="num">03</span></div>
+    <h3>A new record field breaks every command, and a unit test, until the struct knows it</h3>
+    <p><code>Task</code> is <code>#[serde(deny_unknown_fields)]</code> (task_record.rs:27). Adding the field to this task's record first, in a clean copy:</p>
+    <pre><span class="src">$ cargo xtask task-artifact next --task next-prompt   (exit 1; coordination prints the same)</span><code>{"error":"unknown field `prompt_inputs`, expected one of `schema_version`, `id`, …, `summary`, `remaining` at line 31 column 17","ok":false}</code></pre>
+    <p><code>stop_claim_pattern_matches_parsed_status</code> also parses every file in harness/tasks/ as <code>Task</code> (task_record.rs:200, 215), so a record ahead of the struct fails <code>cargo test</code> too. <code>tier</code> is the precedent: optional, <code>#[serde(default)]</code>, no schema bump. The schema is written down again in docs/COMPLETION.md (protected), examples/task-record.json and both write-ticket copies, which DOC007 keeps identical (checks.rs:189–207).</p>
+    <div class="bite"><b>Why it bites</b>An xtask built from main, say in another worktree, refuses this record once it carries the field: the one-way trade router-polish accepted for its review-log fields.</div>
+    <div class="chip"><div id="c3">Add the record field as Option with serde(default) in the same commit as the first record that uses it, then update docs/COMPLETION.md, examples/task-record.json and both write-ticket copies. Run cargo xtask docs and the task_record tests before moving on.</div><button class="copy" data-copy="c3">Copy</button></div>
+  </section>
+
+  <!-- 04 -->
+  <section class="card">
+    <div class="head"><span class="badge landmine">Landmine</span><span class="num">04</span></div>
+    <h3>Reading docs/ARTIFACTS.md at run time fails in the router tests, and its rows don't name the files</h3>
+    <p>Router tests run the binary in a temp fixture repo holding four files and three harness JSON files (tests/support/mod.rs:44–51). There is no <code>docs/</code>, so a <code>fs::read</code> of the guide errors in every router test that reaches an author or review step (five of the eight). The repo already compiles files in (<code>include_str!("artifact_foundation.css")</code>, artifacts.rs:25; scripts in tests at transitions.rs:210 and task_record.rs:180), and <code>cargo xtask</code> is <code>run -p xtask</code> (.cargo/config.toml), so an edit to an included file rebuilds on the next run.</p>
+    <p>The table has two traps. Its Page column says "Brainstorm the intervention" or "Quiz me before I merge", not <code>interventions.html</code> or <code>quiz.html</code>; only row order matches <code>DISCOVERY</code>, <code>NOTES</code>, <code>FINAL</code> (artifacts.rs:14–22). And each exemplar is a link relative to <code>docs/</code>:</p>
+    <pre><span class="src">docs/ARTIFACTS.md:70, last cell</span><code>[05](<mark>../</mark>examples/thariq/05-churn-brainstorm.html)</code></pre>
+    <div class="bite"><b>Why it bites</b>Handed over as written, the link points outside the repo root. Matched by display name, a reworded row silently drops a page's prompt.</div>
+    <div class="chip"><div id="c4">Compile docs/ARTIFACTS.md in with include_str! and parse the prompt table into eight rows in artifacts.rs order; assert exactly eight rows, strip the quotes, and resolve exemplar links against docs/ to repo-relative paths.</div><button class="copy" data-copy="c4">Copy</button></div>
+  </section>
+
+  <!-- 05 -->
+  <section class="card">
+    <div class="head"><span class="badge landmine">Landmine</span><span class="num">05</span></div>
+    <h3>Reporting a missing value as an advisory turns page steps into exit 3</h3>
+    <p>Any non-empty <code>advisories</code> makes the process exit 3 (main.rs:30–34), and the fixture record has no brace values (support/mod.rs:99–105). The tests' helper:</p>
+    <pre><span class="src">xtask/tests/router.rs:22–24</span><code>fn step(f: &amp;Fixture) -&gt; (String, String, u64) {
+    let (code, v) = next(f);
+    <mark>assert_eq!(code, 0, "{v}");</mark></code></pre>
+    <div class="bite"><b>Why it bites</b>"Warn when a brace can't be filled" is the natural design. It fails the four tests that call <code>step()</code> on a page step, and for any task without values it turns exit 3 from "a page was edited after review" into "always". A hard error is worse: <code>next</code> advises and never blocks (router.rs:1–3).</div>
+    <div class="chip"><div id="c5">When a brace has no value, leave it in the prompt and list it in the step (e.g. "unfilled": ["area"]); keep advisories and the exit code as they are, and keep the existing router tests unchanged.</div><button class="copy" data-copy="c5">Copy</button></div>
+  </section>
+
+  <!-- 06 -->
+  <section class="card">
+    <div class="head"><span class="badge convention">Convention</span><span class="num">06</span></div>
+    <h3><code>implementation.html</code> never gets an author step</h3>
+    <p>When the notes page is missing, <code>next</code> says <code>build</code> (router.rs:328–333). Once it exists, <code>page_step</code> sees a file with no rows and says <code>review</code>. Both ran in a clean copy after five passed discovery pages:</p>
+    <div class="table-scroll"><table class="t">
+      <thead><tr><th>Page</th><th>Missing</th><th>Exists, not reviewed</th><th>After revise</th></tr></thead>
+      <tbody>
+        <tr><td>blindspots … plan</td><td class="ok">author</td><td>review</td><td class="ok">rewrite</td></tr>
+        <tr><td>implementation.html</td><td class="bad">build: "Build and commit the first product slice, then write implementation.html…"</td><td>review</td><td class="ok">rewrite</td></tr>
+        <tr><td>buy-in, quiz</td><td class="ok">author</td><td>review</td><td class="ok">rewrite</td></tr>
+      </tbody>
+    </table></div>
+    <div class="bite"><b>Why it bites</b>The acceptance test says "when next says author for a page". Implement exactly that and the notes prompt is never handed over, though the ticket's own Validation says this task's pages after the first product slice "are started from the prompt next prints".</div>
+    <div class="chip"><div id="c6">The build step carries the implementation-notes prompt, exemplar 09 and harness/task-artifacts/&lt;id&gt;/implementation.html as its output path; add a test that walks to the build step and checks them.</div><button class="copy" data-copy="c6">Copy</button></div>
+  </section>
+
+  <!-- 07 -->
+  <section class="card">
+    <div class="head"><span class="badge landmine">Landmine</span><span class="num">07</span></div>
+    <h3>A rewrite's "findings" are a one-line note, and its kept version is the page itself</h3>
+    <p><code>Row</code> stores the findings as a count and <code>notes</code> as free text (router.rs:37–41). The 24 rows in workflow-router's and router-polish's logs carry notes of 100 to 276 characters, a digest of the reviewer's numbered findings, for example:</p>
+    <pre><span class="src">harness/task-artifacts/router-polish/reviews.json, plan.html round 1, revise</span><code>A1 error line/column from an older log (67 now, not 51); A1 example row invented without a label; 65% over exemplar height, A5 belongs in C, …</code></pre>
+    <p>The rewrite step fires only while the page's hash equals the last revise row's (router.rs:255–258), so the kept copy is the page on disk byte for byte (<code>cmp</code> agreed in a clean copy), and it sits under git-ignored <code>target/</code>.</p>
+    <div class="bite"><b>Why it bites</b>"Carry the last review's notes and the kept version's path" gives a fresh author a summary written for the log plus a second copy of the file it is already rewriting. The full findings live only in the orchestrator's context; the kept path is useful only to the <code>best</code> step.</div>
+    <div class="chip"><div id="c7">The rewrite step must hand the fresh author the reviewer's full numbered findings, not just the log's notes. Decide where they are stored before writing the step, and use the kept path only in the best step.</div><button class="copy" data-copy="c7">Copy</button></div>
+  </section>
+
+  <!-- 08 -->
+  <section class="card">
+    <div class="head"><span class="badge convention">Convention</span><span class="num">08</span></div>
+    <h3>The guide hands an author five things; the ticket's step carries three</h3>
+    <p>ARTIFACTS.md gives the author the brief, the filled prompt, the exemplar, "the task context and the task's pages written so far" (lines 19–23), and the reviewer the page, prompt, exemplar and task context (44–47). The ticket names prompt, exemplar and output path. <code>next</code> already knows which pages exist (<code>artifacts::exists</code>, router.rs:329, 339); no file in the repo is "the task context". A cheaper model given only three fields skips the earlier pages, the drift the guide warns of: authors who "each derive the same headline finding again".</p>
+    <div class="chip"><div id="c8">Each author and review step also lists the task's existing pages in table order and names harness/tasks/&lt;id&gt;.json, plus docs/plans/&lt;id&gt;.md when it exists, as the task context.</div><button class="copy" data-copy="c8">Copy</button></div>
+  </section>
+
+  <section class="decide">
+    <h2>Three decisions that change the prompt</h2>
+    <p class="muted">You delegated design, so each choice marked <span class="rec">agent's call</span> is my recommendation. Change any of them; the prompt below follows.</p>
+
+    <fieldset data-key="home"><legend>Where do the brace values live? (02, 03)</legend>
+      <label><input type="radio" name="home" value="field" checked><span>An optional <code>prompt</code> object in the record (<code>task</code>, <code>task_noun</code>, <code>area</code>, <code>problem</code>, <code>reference</code>), filled by the write-ticket stub. Same pattern as <code>tier</code>. <span class="rec">agent's call</span></span></label>
+      <label><input type="radio" name="home" value="ticket"><span>Parse <code>docs/plans/&lt;id&gt;.md</code> sections. No record change, but it only works for the 2 of 7 tasks that have a plan file, and it has no {area} or {reference}.</span></label>
+      <label><input type="radio" name="home" value="none"><span>Leave the values out: hand over the prompt with braces intact and the list of what to fill. Smallest change; the orchestrator still fills by hand.</span></label>
+    </fieldset>
+
+
+    <fieldset data-key="source"><legend>Where does the prompt text come from? (04)</legend>
+      <label><input type="radio" name="source" value="include" checked><span><code>include_str!</code> the guide and parse the table, so there is one copy and the match test checks the parse. <span class="rec">agent's call</span></span></label>
+      <label><input type="radio" name="source" value="const"><span>A Rust table of eight prompts plus a test that compares it with the guide, like the protected-path lists (transitions.rs:210).</span></label>
+    </fieldset>
+
+    <fieldset data-key="findings"><legend>What does a rewrite author get? (07)</legend>
+      <label><input type="radio" name="findings" value="notes" checked><span>The guide tells the orchestrator to put the reviewer's numbered findings in <code>--notes</code> (no length limit today); the rewrite step hands that text over verbatim. <span class="rec">agent's call</span></span></label>
+      <label><input type="radio" name="findings" value="file"><span><code>verdict</code> also keeps the reviewer's full reply beside the kept page under <code>target/artifact-reviews/</code>, and the rewrite step points at it. Lost in a fresh clone.</span></label>
+      <label><input type="radio" name="findings" value="asis"><span>As the ticket says: last notes and the kept path, with a line telling the orchestrator to add the full findings.</span></label>
+    </fieldset>
+  </section>
+
+  <div class="final">
+    <div class="head"><div class="eyebrow">Your improved prompt</div><button class="copy" data-copy="final-prompt">Copy prompt</button></div>
+    <h3>Everything above, folded into the prompt for the implementation</h3>
+    <pre id="final-prompt"></pre>
+  </div>
+
+  <footer>Blindspot pass for next-prompt, before the first product commit.</footer>
+</main>
+
+<script>
+(function () {
+  var parts = {
+    home: {
+      field: "1. Brace values: add an optional `prompt` object to the task record (task, task_noun, area, problem, reference) with serde(default), like tier. Add it to Task in the same commit as the first record that uses it (deny_unknown_fields; the stop_claim test parses every record). The write-ticket stub fills it at task start; never derive it from summary, which changes as the task runs. Update docs/COMPLETION.md, examples/task-record.json and both write-ticket copies.",
+      ticket: "1. Brace values: read them from docs/plans/<id>.md sections when that file exists. No record change. Treat {area} and {reference} as always unfilled, and say so in the step.",
+      none: "1. Brace values: do not store them. Hand over each prompt with its braces intact and list which braces the orchestrator must fill."
+    },
+    source: {
+      include: "3. Prompt text: include_str! docs/ARTIFACTS.md and parse the table into exactly eight rows in DISCOVERY, NOTES, FINAL order (the Page column is a display name, not a file). Strip the quotes; resolve exemplar links against docs/ to repo-relative paths. next_prompts_match_the_artifacts_guide checks the parse. No runtime read: the router fixtures have no docs/.",
+      const: "3. Prompt text: a Rust table of the eight prompts, exemplars and file names; next_prompts_match_the_artifacts_guide include_str!s docs/ARTIFACTS.md and asserts the table equals it, like the protected-path list test. Exemplar paths are repo-relative, not ../examples/."
+    },
+    findings: {
+      notes: "6. Rewrite: change the guide so --notes carries the reviewer's numbered findings in full; the rewrite step hands over that text verbatim with the page path. The kept copy equals the page at that point, so name kept paths only in the best step.",
+      file: "6. Rewrite: verdict also keeps the reviewer's full reply as target/artifact-reviews/<id>/<stem>.roundN.md; the rewrite step points at it and falls back to the log's notes when it is missing (a fresh clone). Name kept page paths only in the best step.",
+      asis: "6. Rewrite: hand over the last row's notes and kept path, and say in the step that the orchestrator must add the reviewer's full findings, since notes are a digest."
+    }
+  };
+  var fixed = [
+    "4. Missing values: leave the brace in the prompt and list it in the step (\"unfilled\": [...]). No advisory and no error: advisories make next exit 3, and every router test's step() asserts 0.",
+    "5. Notes page: next never says author for implementation.html. The build step carries its prompt, exemplar 09 and output path; review steps carry the page's prompt for every page, notes included.",
+    "7. Context: author and review steps also list the pages that exist so far, in table order, and name harness/tasks/<id>.json (and docs/plans/<id>.md when present) as the task context."
+  ];
+  function pick(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : null;
+  }
+  function render() {
+    var lines = [
+      "Make `cargo xtask task-artifact next` hand over the filled-in page prompt, the exemplar and the output path for each author, build, review and rewrite step (xtask/src/router.rs, docs/ARTIFACTS.md). Constraints from the blindspot pass:",
+      "",
+      parts.home[pick("home")],
+      pick("home") === "none"
+        ? "2. {task}: say in the step that the blindspot row takes a verb phrase and the other five a noun phrase, so whoever fills it gets both right."
+        : "2. {task}: the blindspot row takes a verb phrase (\"make next hand over ...\"); interview, reference, plan, notes and buy-in take a noun phrase. Keep both and show me all eight prompts filled for next-prompt before wiring.",
+      parts.source[pick("source")],
+      fixed[0],
+      fixed[1],
+      parts.findings[pick("findings")],
+      fixed[2],
+      "",
+      "Order: record field and Task struct together, then the table parse and its test, then the step fields (author, build, review, rewrite), then the docs and skill copies and the transition receipt for the xtask change. Keep the existing router tests unchanged. Stop and show me the step JSON for blindspots.html in this task before wiring the rest."
+    ];
+    document.getElementById("final-prompt").textContent = lines.join("\n");
+  }
+  document.addEventListener("change", function (e) { if (e.target.matches('input[type="radio"]')) render(); });
+  function copy(text, btn) {
+    function done() {
+      var prev = btn.textContent;
+      btn.textContent = "Copied";
+      setTimeout(function () { btn.textContent = prev; }, 1400);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  }
+  function fallback(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-copy]");
+    if (!btn) return;
+    var el = document.getElementById(btn.getAttribute("data-copy"));
+    if (el) copy(el.textContent.trim(), btn);
+  });
+  render();
+})();
+</script>
+</body>
+</html>

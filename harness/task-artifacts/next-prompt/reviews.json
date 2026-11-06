@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "blindspots.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "42631576c6db7290c896457b5d195bbbe5449d5f2894ebea5aca594ff9600c97",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. Non-blocking: page runs past the exemplar (08 and the top banner cheapest to cut); 08 has no excerpt; 02 calls workflow-router's skill mapping a recommendation; 03's prompt_inputs error was not reproduced by the reviewer.",
+      "findings": 4,
+      "model": "sonnet"
+    },
+    {
+      "page": "interventions.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "10028df3ff54050bf63e15f7a02fe579379752eaa5ea34c069e95026f1096ece",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. Non-blocking: B01-B08 cited without a gloss and costs phrased in ceremony terms; effort labels S..XL have no legend; the rewrite sample in the 'run in a clean copy' panel is built from the step template, not a run.",
+      "findings": 3,
+      "model": "sonnet"
+    },
+    {
+      "page": "interview.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "398f2d6de45a0d7eedf77b986b207a758f857d4c275b559a58138b8a9695ae04",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE. 1 (blocking): Q4 option 1 and its leanWhy describe verdict reading --notes from stdin and the guide saying to pipe the reviewer's reply as existing behavior; neither exists (main.rs verdict arm takes --notes as a plain argument; ARTIFACTS.md and review-artifact say nothing about piping). Reword as new work with its cost, and drop or cost the guide sentence. 2 (non-blocking): 39.5 KB vs 27 KB; trim why-paragraphs that repeat their evidence block and the B-number restatements in Q2 and Q5.",
+      "findings": 2,
+      "model": "sonnet"
+    },
+    {
+      "page": "interview.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "6b83448c3dcd4b6b15e6106ed6667fcff1656827bfac38a2c256786f4038a0f2",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. Non-blocking: 37.5 KB vs 27 KB (Q6 and Q7 first to trim); Q5's list of verbs past tasks used is not tied to a cited record.",
+      "findings": 2,
+      "model": "sonnet"
+    },
+    {
+      "page": "reference.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "79164a0c45f7f056632ac2c232779848861fd11c53e18688def91353a2536c5a",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE. 1 (blocking): the copy-back reply says Q1, Q3, Q5 and Q6 stand and never mentions Q2, while section 1 says Q5 and Q2 are refined by Pair C; the reply must match the table and follow the choices. 2 (minor): first edge-case row argues from how this page's own prompt was filled; rephrase around the hand-over text. 3 (minor): Pair A's today excerpt stitches lines 23-26, 84 and 136 with invented comments; quote real lines or mark paraphrase.",
+      "findings": 3,
+      "model": "sonnet"
+    },
+    {
+      "page": "reference.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "1a4c17a0252dbccc025b9a0098f7d37f23912eb11495d3bf24f0dbc51812b146",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. Non-blocking: the paths line and ran-out blocks mention a clean copy and scratch prototype (mild process talk); the placeholder sign-off question has both options marked stand.",
+      "findings": 2,
+      "model": "sonnet"
+    },
+    {
+      "page": "plan.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "e47663afc6db05cd4fa2a02ef4a9d2aba7732d2fb6078c9f9759c9cca7a75661",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE. 1 (blocking, length): 47 KB and 5914 px vs 3678; cut section A's eight carried-decision bullets to a line, trim the Review and Build tabs to their differences, fold section B's steps into the tests table; aim for 4500-5000 px. 2: process talk (last-discovery-page line, receipt and readiness steps, footer of earlier item numbers). 3 (non-blocking): ticket delta omits harness/docs.json and the record-only change to the Problem.",
+      "findings": 3,
+      "model": "sonnet"
+    },
+    {
+      "page": "plan.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "da554cccf22ed69569c4a3275f2871a4754aeda4ec9ad6869d8f7145d04ed056",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. Non-blocking: Pair A, Pair D, B03, B07 and brainstorm #3 are cited without naming their page; the Files touched 16 (2 new) chip is not itemised; the No values and Build tabs repeat the Author tab's structure.",
+      "findings": 3,
+      "model": "sonnet"
+    },
+    {
+      "page": "implementation.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "7b90cfd9834c4bdd71e03d1b3ae10ded12609b33c64455a9cdef188b38b0b67f",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. Is every claim grounded? (fails) The stat tile \"5 / 7 planned tests passing\" in the .stats row contradicts the page's own \"In progress\" entry. That entry says all five tests in tests/handover.rs pass, verdict_reads_full_notes_from_stdin among them. The plan also has two unit tests: next_prompts_match_the_artifacts_guide (handover.rs:261) and prompt_values_are_optional_and_strict (task_record.rs:241). Together that is 7 of 7. I confirmed it in a clean `git archive HEAD` copy, where the 5 handover tests pass. The footer (\"steps 1-3 built, 4-5 in progress\") and the \"In progress\" badge are also stale against HEAD, where piped_notes() is committed in a766413. A rewrite must make the tile, the footer and the last timeline entry agree with each other and with the code. It should mark the stdin step as landed in a766413 and leave only the docs, readiness and stub edits as open.\n\nWhat held up: line counts and locations match (router.rs 377 lines, tests/router.rs 358, attach called at router.rs:351; handover.rs rows :32, answering_rule :68, given :103, fill :110, attach :215, the \"Answering rule:\" label :192, \"judge the whole page again\" :174, the FINDINGS line :204). piped_notes() reads at most 64 KiB + 1 bytes, checks the length before decoding, and refuses empty and non-UTF-8 input. review-artifact's SKILL.md never mentions FINDINGS, which supports Deviation 4. The page renders cleanly. The filter chips, the six hand-over tabs and the A/B radios each change what the reader sees or decides.\n\nFINDINGS: 1",
+      "findings": 1,
+      "model": "sonnet"
+    },
+    {
+      "page": "implementation.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "e353ab932dcd5a5bc4399a364445a11d6de199fbb026ca12cce0e63a336c63b1",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. A reader learns the five places where the code departed from the plan and what each cost (the 400-line limit moving the call site, unfilled listing record fields instead of braces, the --notes - ordering trap), with captured hand-over text showing each.\n\nNon-blocking:\n1. Length: 35.4 KB against the exemplar's 26.7 KB; the two Discovery entries and the \"First real use\" paragraph lean on reviews.json bookkeeping and could be shortened.\n2. About the feature: Decisions A (where the reviewer's return format lives) and B (a FINDINGS check in verdict) concern review process; a line each tying them to the hand-over would help.\n\nFINDINGS: 2",
+      "findings": 2,
+      "model": "sonnet"
+    },
+    {
+      "page": "buy-in.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "b6960ba748bf9d399b7819ecc03171156cb3178caa34cdcdcd9ee5bb9e291890",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. Is every claim grounded? (fails) The tile \"9 / 9 CI checks pass at the branch head\" in section 02 and the ask line \"Everything else is built, tested and passing CI\" have no evidence behind them: harness/next-prompt has no remote ref, gh pr checks finds no PR, and the page cites no run or log. A rewrite must cite a run (with the nine check names) or replace the tile and ask line with what was actually run. Other tiles hold: 93/93 tests in a clean copy, 7/7 named tests, 1 of 7 records has prompt, router.rs 377 lines with attach called at router.rs:351.\n\n2. Is every claim grounded? (fails) Scene 3 (\"Record, then rewrite\"), origin/main side, shows a terminal block as if captured: `bash: …/xtask: Argument list too long`, a ~2.6 MB argument from a backticked `git archive HEAD`, and `\"recorded\": { \"notes\": \"-\" … }` followed by a bare rewrite step. The page never says these ran against an origin/main build; the dollar-prompt lines are assembled in the script. Mark which lines are captured and which reconstructed, or capture them from a real origin/main build.\n\n3. Is it about the feature? / As short as its content allows? (fails) Scene 3 spends the lead demo on the shell-quoting failure and the full 1,531-byte review text, then repeats it inside the rewrite hand-over. The pitch cites \"24 review notes in two earlier logs\", \"blindspot pass, items 01 and 07\" and \"This task used it on itself\". Trim scene 3 to a before/after of the rewrite step with a truncated findings excerpt (first finding plus FINDINGS: 1), and drop the self-hosting and log-statistics sentences from the pitch.\n\n4. Does the page do its job? (minor) The ask says \"two open calls (A and B)\" without confirming these are the only questions the interview left open. Say explicitly that A and B are the only open items, or add any others.\n\nPassed: renders cleanly; scene and build toggles, A/B/ship radios, the assembled reply and copy buttons change what the reader sees or decides.\n\nFINDINGS: 4",
+      "findings": 4,
+      "model": "sonnet"
+    },
+    {
+      "page": "buy-in.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "bde6d49e8e608e1f04eca5630671730ba3a64c314dc327f2a620474b65736c37",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. A reader learns that next goes from one sentence (\"start an author\") to a ready-to-pass handover text, that the rewrite step now carries the reviewer's full reply, and what would still let a summarised reply slip through (open Decisions A and B).\n\nNot verified by the reviewer: the demo's \"every line is real output\" claim (strings are in the page's script), the 9-check CI run and the 7/7 tile.\n\nNon-blocking:\n1. Q2 cites \"handover.rs:103 given(), :247 · test missing_values_stay_as_braces\", implying the test is in handover.rs; it is in xtask/tests/handover.rs:128.\n2. 35.7 KB against the exemplar's 30 KB; section 03's Q5 and section 05's third risk repeat the point about summarised replies.\n\nFINDINGS: 2",
+      "findings": 2,
+      "model": "sonnet"
+    },
+    {
+      "page": "quiz.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "c06712653ce6871bdb14ae0fb736ec474dcca74ca9449e6af6e564e1f10a5efb",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. Quiz, \"a pass the reader must earn\" (script finish(), retry and start(), lines ~437-498). Every wrong answer immediately shows the correct letter and the reason. \"Reset quiz\" then rebuilds the same seven questions in the same order with the same option order. A reader can fail once, read the feedback, reset, and get 7/7 without understanding anything. A rewrite must make a retry meaningfully different: shuffle option order, draw from a larger pool, or withhold the correct letter on a miss and point only to the section.\n\n2. Quiz, \"answerable only by understanding, not by scanning for a matching phrase\". Q1's correct option C restates the \"Why\" text of Behaviour 03 almost word for word. Q4's option A restates Behaviour 04's \"Why\". Q6's answer is stated in Behaviour 02's \"Cost\" (\"A reworded prompt passes the test, which checks order, braces, exemplar files and the blindspot opening\"). Q5's answer is the exact error text quoted in the Behaviour 02 <pre>. The correct option is also usually the longest and most specific one (Q1 C, Q3 D, Q4 A, Q5 B), so elimination works without reading the page. A rewrite must pose situations the page does not spell out, with distractors of comparable length (for example, what `unfilled` lists when `area` is `<...>` on the Review step, or what `--notes -x` logs), and stop writing the answer into the section the question links back to.\n\n3. Length and redundancy. 41 KB and 6723px tall on desktop; the exemplar is 32 KB and 4613px. Section 1's diagram, the section 2 explorer, and Behaviours 01 and 04 overlap. The missing-values prefix is explained in the explorer, in Behaviour 04, and again in Q3 and Q4. The explorer's Rewrite and Commit tabs add little. Cut the explorer to the tabs that change a decision (Review with the toggle, Rewrite) and fold the diagram's \"intuition\" paragraph into one place.\n\n4. Explorer, \"show rather than tell\" and \"grounded\" (script X, lines ~348-382). The explorer is labelled \"Real output from next\", but every string is hand-typed in JS, including the \"main\" outputs and the unfilled prefix. The <pre> demos in Behaviours 02 and 03 are likewise pasted text. The page does not say which outputs were captured and which were assembled by hand. Embed captured stdout verbatim or say plainly that it was reconstructed.\n\n5. Minor: Behaviour 02's swap-error demo is presented as a clean-copy run, but `next --task next-prompt` at HEAD returns a non-handover step before and after swapping the buy-in and quiz rows, so the error did not reproduce; name the step used for the swap demo.\n\nVerified: stats (xtask +684/-22, other +89/-26, 7 new tests, 93 xtask tests pass in a clean copy), router.rs 377 lines with attach at :351, deny_unknown_fields on Task (task_record.rs:27), include_str! at handover.rs:14, and the guide test's checks. Renders cleanly.\n\nFINDINGS: 5",
+      "findings": 5,
+      "model": "sonnet"
+    },
+    {
+      "page": "quiz.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "9f0290a1f5f054bd7095cc77d248c4cdfbf618cd93b3660edde9d0a9e7af8ca1",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS after one rewrite. The page shows what next now hands each subagent and what verdict --notes - does with piped text, then checks understanding with scenario questions the page does not answer in so many words; a pass needs 6/6 and a retry redraws different situations.\n\nMinor, not blocking (the reviewer's last line said FINDINGS: 0; recorded as 2 because N counts every finding listed):\n- The \"400 lines\" limit in the pass message is not in size.rs. (Its source is harness/config.json max_rust_lines, enforced as SIZE001 in checks.rs.)\n- Question 3 says \"revised three times\"; the router's limit is three REVISE verdicts, meaning two rewrites.\n\nFINDINGS: 2",
+      "findings": 2,
+      "model": "sonnet"
+    }
+  ]
+}

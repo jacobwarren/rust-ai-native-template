@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interview: handing over the page prompt</title>
+<style>
+  main { max-width: 64rem; }
+  h1 { margin-top: var(--space-4); }
+  code { font-size: .85em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+  pre code { border: 0; padding: 0; background: none; font-size: inherit; }
+  button.small { min-height: 34px; padding: 2px 12px; font-size: .78rem; font-family: var(--font-code); }
+  .prompt { font-style: italic; position: relative; padding-right: 8rem; }
+  .prompt button { position: absolute; top: var(--space-3); right: var(--space-3); font-style: normal; }
+  .art { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; margin-top: var(--space-8); }
+  .art-head { display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; padding: var(--space-3) var(--space-6); border-bottom: 1px solid var(--line); background: var(--accent-soft); }
+  .art-head .t { font-weight: 650; }
+  .art-head .s { font-family: var(--font-code); font-size: .75rem; color: var(--muted); flex: 1; }
+  .art-body { display: grid; grid-template-columns: 13.5rem 1fr; min-height: 34rem; }
+  .rail { border-right: 1px solid var(--line); padding: var(--space-4) var(--space-3); background: var(--paper); }
+  .rail-label, .rail-meta, .h4 { font-family: var(--font-code); font-size: .68rem; color: var(--muted); }
+  .rail-label, .h4 { letter-spacing: .1em; text-transform: uppercase; margin: 0 0 var(--space-2) var(--space-2); }
+  .ri { display: flex; align-items: center; gap: var(--space-2); width: 100%; min-height: 34px; padding: 4px var(--space-2); text-align: left; font-size: .8rem; border: 0 !important; background: none !important; color: var(--ink) !important; }
+  .ri:hover, .ri.cur { background: var(--surface) !important; }
+  .ri.cur { font-weight: 650; box-shadow: inset 3px 0 0 var(--accent); }
+  .ri .dot { width: 18px; height: 18px; border-radius: 50%; flex: none; display: inline-grid; place-items: center; font: 650 .62rem var(--font-code); color: var(--surface); background: var(--dc); }
+  .ri .lbl { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ri .mk { font-family: var(--font-code); font-size: .6rem; color: var(--muted); }
+  .ri .mk.you, td.who.you { color: var(--warning); font-weight: 650; }
+  .rail-meta { margin: var(--space-4) var(--space-2) 0; padding-top: var(--space-3); border-top: 1px solid var(--line); line-height: 1.9; }
+  .rail-meta i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; }
+  .stage { padding: var(--space-6); min-width: 0; }
+  .badge { display: inline-block; font-family: var(--font-code); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 650; color: var(--surface); padding: 2px 8px; border-radius: 4px; }
+  .qnum { font-family: var(--font-code); font-size: .75rem; color: var(--muted); margin-left: var(--space-2); }
+  .qtext, .sum-h { font-size: 1.35rem; margin: var(--space-3) 0 var(--space-2); }
+  .why { font-size: .92rem; margin: 0 0 var(--space-3); }
+  .ev { font-size: .74rem; line-height: 1.5; margin: 0 0 var(--space-3); background: var(--paper); }
+  .ev .c { color: var(--muted); }
+  .lean, .conf { font-size: .88rem; border-inline-start: 3px solid var(--accent); background: var(--accent-soft); padding: var(--space-2) var(--space-3); border-radius: 0 var(--control-radius) var(--control-radius) 0; margin: 0 0 var(--space-4); }
+  .lean b { font-family: var(--font-code); font-size: .72rem; color: var(--accent); }
+  .conf { border-color: var(--danger); background: #fbecee; margin: var(--space-2) 0; }
+  .opts { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+  .opt { position: relative; text-align: left; min-height: 0; padding: var(--space-3) var(--space-4); background: var(--paper) !important; color: var(--ink) !important; border: 1px solid var(--line) !important; border-radius: var(--radius); font-size: .85rem; line-height: 1.45; }
+  .opt:hover, .opt.picked { border-color: var(--accent) !important; background: var(--surface) !important; }
+  .opt.picked { border-width: 2px !important; }
+  .opt .ot { display: block; font-weight: 650; margin-bottom: 3px; padding-right: 5.5rem; }
+  .opt .od { display: block; color: var(--muted); font-size: .8rem; }
+  .opt .tag { position: absolute; top: var(--space-2); right: var(--space-2); font-family: var(--font-code); font-size: .6rem; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 0 5px; background: var(--surface); }
+  .other, .nav { display: flex; gap: var(--space-2); margin-top: var(--space-3); }
+  .other input { flex: 1; min-width: 0; padding: var(--space-2) var(--space-3) !important; font-size: .88rem; }
+  .nav { justify-content: space-between; align-items: center; }
+  .nav .src { font-family: var(--font-code); font-size: .72rem; color: var(--muted); text-align: center; flex: 1; }
+  table.d { font-size: .84rem; }
+  table.d th { font-size: .66rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  td.who { font-family: var(--font-code); font-size: .7rem; white-space: nowrap; color: var(--muted); }
+  table.d button { min-height: 28px; padding: 0 8px; font-size: .7rem; font-family: var(--font-code); }
+  .settled { font-size: .86rem; padding-left: 1.2rem; }
+  .h4 { margin: var(--space-6) 0 var(--space-2); }
+  .gen { position: relative; margin-top: var(--space-4); }
+  .gen pre { font-size: .76rem; line-height: 1.6; background: var(--ink); color: var(--paper); border-color: var(--ink); padding-top: var(--space-12); }
+  .gen button { position: absolute; top: var(--space-2); right: var(--space-2); }
+  @media (max-width: 46rem) {
+    .art-body { grid-template-columns: 1fr; min-height: 0; }
+    .rail { border-right: 0; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 4px; padding: var(--space-2) var(--space-3); }
+    .rail-label, .rail-meta, .ri .lbl, .ri .mk { display: none; }
+    .ri { width: auto; padding: 4px; }
+  }
+  @media (max-width: 40rem) {
+    .prompt { padding-right: var(--space-4); }
+    .prompt button { position: static; display: block; margin-top: var(--space-3); }
+    .art-head { padding: var(--space-3) var(--space-4); }
+    .art-head .s { flex-basis: 100%; order: 3; }
+    .stage { padding: var(--space-4); }
+    .opts { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">The interview · before code · next-prompt</p>
+  <h1>Seven decisions before <code>next</code> hands over the page prompt</h1>
+  <blockquote class="prompt" id="prompt">Interview me one question at a time about anything still ambiguous in making <code>cargo xtask task-artifact next</code> hand over the filled-in page prompt, exemplar and output path for each author, review and rewrite step. Prioritize questions where my answer would change the architecture.<button class="small secondary" type="button" id="copyPrompt">Copy prompt</button></blockquote>
+  <p class="lead">The blindspot pass (B01–B08) and the brainstorm (#1–#9) found the facts. This page asks what is left to choose, ordered by how much of the build each answer moves. You delegated, so every question starts on the agent's call; change any answer and the reply at the end follows.</p>
+
+  <section class="art" aria-label="Interview">
+    <div class="art-head">
+      <span class="t">next-prompt: spec interview</span>
+      <span class="s" id="progress"></span>
+      <button class="small secondary" type="button" id="toReply">Go to the reply</button>
+    </div>
+    <div class="art-body">
+      <div class="rail" id="rail" role="navigation" aria-label="Questions"></div>
+      <div class="stage" id="stage" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <footer>Interview for next-prompt, before code. Answers feed the reference map and the plan.</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var RADII = {
+    arch: { label: "Architecture", color: "var(--accent)" },
+    data: { label: "Data model", color: "var(--ink)" },
+    cli:  { label: "Interface", color: "var(--warning)" },
+    pol:  { label: "Instructions", color: "var(--muted)" }
+  };
+
+  var Q = [
+  { id: "form", radius: "arch", short: "Hand-over form", topic: "What a page step hands over", lean: 1,
+    q: "What does a page step hand over: separate fields, one message to paste, or a pointer to a brief command?",
+    why: "`step()` builds four fields (`router.rs:197–199`) and points at the guide, which lists five things an author needs (`ARTIFACTS.md:19–23`). Brainstorm #4, #6 and #7 are the three shapes.",
+    evidence: "$ cargo xtask task-artifact next --task next-prompt          # today, clean copy\n\"say\": \"Start a fresh artifact-author on interview.html with its prompt and\n        exemplar (docs/ARTIFACTS.md) and the task context.\"\n\n# option 2 for the same step, sketched: the handover text the subagent receives\nWrite harness/task-artifacts/next-prompt/interview.html.\nPrompt: Interview me one question at a time about anything still ambiguous in\n  making task-artifact next hand over the filled-in page prompt, … Prioritize\n  questions where my answer would change the architecture.\nExemplar: examples/thariq/06-interview.html\nTask context: harness/tasks/next-prompt.json, docs/plans/next-prompt.md\nPages so far: blindspots.html, interventions.html",
+    leanWhy: "a loop a cheaper model can run should have the orchestrator copy, not compose. A subagent call takes one string, so a step that is one string loses nothing on the way, and tests can still assert the filled prompt, exemplar and output path each appear in it. A brief command can follow if a re-review after a pass ever happens; it would print the same text.",
+    opts: [
+      { t: "Separate fields on the step", d: "prompt, exemplar, output, context, pages, findings, each tested alone. The orchestrator still composes the message and can leave a field out." },
+      { t: "One handover text, plus an unfilled list", d: "step() assembles one string; say becomes “give it the handover verbatim”. In pretty-printed JSON a person sees it as one long escaped line." },
+      { t: "A task-artifact brief command that say names", d: "Also reaches a passed page edited later, which gets an advisory while the step says commit (`router.rs:353–366`); none of the 26 logged reviews followed a pass. One more arm in main.rs, and two commands derive the same state." }
+    ] },
+
+  { id: "home", radius: "data", short: "Where values live", topic: "Where the brace values live", lean: 0,
+    q: "Where do the values for {task}, {area}, {problem} and {reference} live?",
+    why: "No record field holds them (B02); the brainstorm added a file beside the pages (#5). What separates the places is who can write them. The author subagent's edit hook:",
+    evidence: "# scripts/agent-hook.sh:403–406, author mode\nharness/task-artifacts/?*/reviews.json)  block \"…only cargo xtask task-artifact verdict writes it…\"\nharness/task-artifacts/?*/?*)            allow      # prompt.json would be here\n…                                        block      # harness/tasks/ is here",
+    leanWhy: "the hook already keeps page authors out of harness/tasks/, so no author can rewrite the inputs to a later page's prompt. next reads the record first (`router.rs:297`), and `tier` is the precedent for an optional field with serde(default) and no schema bump (`task_record.rs:33–34`). The price is the one-commit schema change B03 lists.",
+    opts: [
+      { t: "An optional prompt object in the task record", d: "Task gains prompt: Option<…> with serde(default); the write-ticket stub fills it at task start." },
+      { t: "prompt.json in the task's page folder", d: "No record or protected-doc change. The hook admits it (line 404), so the author of one page can edit the inputs to every later page's prompt." },
+      { t: "Sections of docs/plans/<id>.md", d: "No new format, but most tasks have no plan file (B02), and a ticket has no {area} or {reference}." },
+      { t: "Nowhere: hand the prompt over with braces visible", d: "Smallest change. The orchestrator still fills up to two braces per prompt by hand, the step the ticket set out to remove." }
+    ] },
+
+  { id: "source", radius: "arch", short: "Prompt source", topic: "Where next gets the prompt text and how a row maps to a page", lean: 1,
+    q: "Where does next get each page's prompt, and how does it know which row is which file?",
+    why: "The router fixtures have no docs/, so the text is compiled in or copied (B04). File names appear only in prose further down (`ARTIFACTS.md:138–140`).",
+    evidence: "# docs/ARTIFACTS.md:67–70 today: rows named by title\n| When | Page | Prompt | Exemplar |\n| Before code | Blindspot pass | \"I'm about to {task} in {area}. …\" | [01](../examples/thariq/01-blindspot-pass.html) |\n\n# option 2: one more column, the key artifacts.rs already uses\n| When | Page | File | Prompt | Exemplar |\n| Before code | Blindspot pass | blindspots.html | \"I'm about to {task} in {area}. …\" | [01](…) |",
+    leanWhy: "mapped by order, two swapped rows still parse as eight and each page silently gets the other's prompt. Keyed by file, the parse asserts the eight names equal DISCOVERY, NOTES and FINAL (`artifacts.rs:14–22`), so a reorder, rename or missing row fails a test. A column is not rewording a prompt, which the ticket rules out.",
+    opts: [
+      { t: "include_str! the guide; rows mapped by order", d: "The blindspot pass's lean. One copy, no new column. A reordered table swaps prompts and nothing fails." },
+      { t: "include_str! the guide, with a File column as the key", d: "One copy, keyed by file name; the parse fails on any missing, extra or renamed page. One more column in a table people read." },
+      { t: "A Rust table, compared with the guide by a test", d: "Like guard_tiers_match_protected_paths (`transitions.rs:210–222`). Two copies; a guide edit fails CI until someone retypes it in Rust." }
+    ] },
+
+  { id: "rewrite", radius: "data", short: "Rewrite findings", topic: "What a rewrite author gets and how the findings get there", lean: 0,
+    q: "What does a rewrite author get, and how do the reviewer's full findings reach it?",
+    why: "The rewrite step's only stored text is the last revise row's notes, a digest; the ticket's kept path is the page on disk (B07). Findings name code (`review-artifact/SKILL.md:64–67`), yet none of the 26 logged notes (100–276 characters) contains a backtick, `$` or double quote. `--notes` is a plain argument and nothing in verdict reads stdin (`main.rs:88–116`). Passed as the review step's say text shows (`router.rs:234`), in a clean copy:",
+    evidence: "$ cargo xtask task-artifact verdict --task next-prompt --page interview.html \\\n    --verdict revise --reviewer artifact-reviewer --model sonnet --findings 2 \\\n    --notes \"1. Q3 cites `page_step` at router.rs:203; the $PAGE path in Q1 is wrong.\"\nbash: line 1: page_step: command not found\n  \"ok\": true,\n    \"notes\": \"1. Q3 cites  at router.rs:203; the  path in Q1 is wrong.\",\n\n# option 1, proposed: verdict would read stdin when the value is -\n$ cargo xtask task-artifact verdict … --findings 2 --notes - <<'EOF'\n1. Q3 cites `page_step` at router.rs:203; the $PAGE path in Q1 is wrong.\nEOF",
+    leanWhy: "the findings stay in the committed log, so a rewrite in another worktree or a fresh clone has them. It is new work: verdict's arm in `main.rs` reads stdin when the value is `-`, capped as `artifact_hook.rs:10` does, and ARTIFACTS.md step 5 gains a sentence telling the orchestrator to pass the reviewer's numbered findings that way. A quoted heredoc then passes backticks and $ untouched. The step also carries the prompt, exemplar, output path and pages so far; the ticket's review_and_rewrite_steps_carry_their_prompt drops “the kept version's path”.",
+    opts: [
+      { t: "Full findings in --notes, with a new stdin read when the value is -", d: "Not in verdict today. Costs a capped stdin read in main.rs's verdict arm and one sentence in ARTIFACTS.md step 5. reviews.json rows grow from a line to several paragraphs." },
+      { t: "Full findings as today's quoted --notes argument", d: "No change to verdict. The shell eats backticks and $ as above, and verdict records the damage as ok." },
+      { t: "verdict keeps the full reply under target/artifact-reviews/", d: "The log stays a digest, but the reply still needs the same new way in. target/ is git-ignored, so another worktree or a fresh clone has no findings." },
+      { t: "As the ticket says: the last notes and the kept path", d: "No change to verdict. The author gets a log summary and a second copy of the file it is rewriting (B07)." }
+    ] },
+
+  { id: "shape", radius: "data", short: "{task} shape", topic: "What the record stores for {task}", lean: 0,
+    q: "{task} is a verb phrase in one prompt and a noun phrase in five. What does the record store?",
+    why: "This task's own hand-filled prompts needed both shapes (B01 has the past tasks), and deriving one from the other is an English rule, not a lookup:",
+    evidence: "blindspot  ARTIFACTS.md:69  I'm about to {task} in {area}.\n           → I'm about to make task-artifact next hand over the filled-in page prompt, …\ninterview  ARTIFACTS.md:71  … anything still ambiguous in {task}.\n           → … anything still ambiguous in making task-artifact next hand over …\n\n# the first verbs past tasks used, and their -ing forms\nadd → adding   fix → fixing   make → making   scale → scaling   ship → shipping\n                                ^ drop e                        ^ double p",
+    leanWhy: "two short strings written once at task start are exact. A gerund rule needs three cases for these five verbs, and English has more. Rewording the blindspot prompt to take a noun is out of scope (ticket, Out of scope).",
+    opts: [
+      { t: "Two values: task (verb phrase) and task_noun (noun phrase)", d: "The blindspot row takes task; interview, reference, plan, notes and buy-in take task_noun. The stub asks for both." },
+      { t: "One verb phrase; next derives the -ing form", d: "One value to write. A morphology rule in xtask that will be wrong on some verb, silently." },
+      { t: "One noun phrase; reword the blindspot prompt", d: "Changes a prompt's wording, which the ticket rules out." },
+      { t: "The task ID in the noun slots", d: "“ambiguous in router-polish” tells the author nothing the ID didn't." }
+    ] },
+
+  { id: "missing", radius: "cli", short: "Missing values", topic: "What next does when a value is missing", lean: 0,
+    q: "When a task has no value for a brace, what does next do?",
+    why: "Any advisory makes next exit 3 (`main.rs:30–35`; B05). artifact-harness is partial, standard by default and has no values; `cargo xtask coordination` parses every record (`completion.rs:229–234`).",
+    evidence: "# under the lean, a blindspot step for a task without values\n\"handover\": \"Write harness/task-artifacts/artifact-harness/blindspots.html.\\nPrompt: I'm about to {task} in {area}. Do a blindspot pass: …\",\n\"unfilled\": [\"task\", \"area\"],\n\"say\": \"… Fill the unfilled braces from the ticket before handing it over.\"",
+    leanWhy: "next advises and never blocks (`router.rs:1–3`). A visible brace and a list are something a cheaper model can check, and exit 3 keeps meaning “a page changed after review”. The write-ticket stub gives new tasks their values, so for them the list starts empty.",
+    opts: [
+      { t: "Leave the brace, list it in unfilled, exit as today", d: "As above. Existing router tests stay unchanged; the say line tells the orchestrator what to fill." },
+      { t: "An advisory, so exit 3", d: "Louder. Breaks the router tests' exit-0 assertion on page steps and makes exit 3 mean “values missing” for any task without them." },
+      { t: "coordination refuses a standard partial record without values", d: "Enforced at the source. artifact-harness fails coordination until someone writes its values or closes it." }
+    ] },
+
+  { id: "rule", radius: "pol", short: "Answering rule", topic: "Whether the hand-over carries the guide's answering rule", lean: 0,
+    q: "Should the interview and buy-in hand-overs carry the guide's rule for answering, which no brief repeats?",
+    why: "The rule below speaks to the orchestrator; neither brief nor any of the four agent definitions mentions it (grep for “unattended” or “recommend” finds nothing). This task's hand-overs carried it only because the orchestrator added it by hand.",
+    evidence: "# docs/ARTIFACTS.md:116–118, addressed to whoever runs the loop\n… When running unattended,\nanswer the interview with your recommendation, label it as yours, and carry the\nopen questions into the buy-in doc.",
+    leanWhy: "a recommendation labelled as the agent's call costs nothing when a person is present, since they change it, so the interview hand-over can always carry it without next knowing who is watching. The buy-in hand-over carries the open-questions half. Anything else the orchestrator knows goes below the handover text under its own heading.",
+    opts: [
+      { t: "Always carry it on interview and buy-in; the orchestrator may append below", d: "Deterministic and stateless. Every interview page answers its own questions as labelled leans, as router-polish's did." },
+      { t: "A record field for orchestrator notes, carried into every hand-over", d: "Persistent and visible. A second free-text input to every prompt, and a habit like delegating belongs to the owner, not to one task." },
+      { t: "Nothing extra: the hand-over is the table row", d: "Exactly the guide. An unattended interview asks and never answers, and the run stalls or the orchestrator improvises." }
+    ] }
+  ];
+
+  var CONFLICTS = [
+    { when: { home: 3, missing: 2 }, text: "Q2 stores the values nowhere, but Q6 has coordination require them. Nothing could satisfy it." },
+    { when: { home: 3, shape: [0, 1, 2] }, text: "Q2 stores the values nowhere, so Q5's shape can only be advice in the step on how to fill {task} by hand." },
+    { when: { form: 0, rule: 0 }, text: "Q1 has no handover text, so Q7's rule has nothing to sit in and nothing to append below; give it its own field." },
+    { when: { rewrite: 2, form: [0, 1, 2] }, text: "Q4 keeps findings only under target/: a rewrite started from another worktree gets the log's digest, so the step must say when it fell back." }
+  ];
+
+  var SETTLED = [
+    "The build step carries the implementation-notes hand-over, since next never says author for that page (B06).",
+    "A review step carries the page, the same filled prompt, the exemplar, the task context and the pages before it (B08).",
+    "Kept copies under target/artifact-reviews/ are named only in the best step (B07).",
+    "Exemplar links are resolved against docs/ to repo-relative paths (B04).",
+    "Task context is harness/tasks/<id>.json, plus docs/plans/<id>.md when it exists (B08).",
+    "The hand-over names no brief: artifact-author.md preloads its skill and the Codex agent invokes $author-artifact itself."
+  ];
+
+  var answers = Q.map(function (q) { return { oi: q.lean, text: null, mine: false }; });
+  var cur = 0;
+  var rail = document.getElementById("rail"), stage = document.getElementById("stage");
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function fmt(s) { return esc(s).replace(/`([^`]+)`/g, "<code>$1</code>"); }
+  function who(i) { var a = answers[i]; return a.text ? "your wording" : a.mine ? "your pick" : "agent's call"; }
+  function answerText(i) { var a = answers[i]; return a.text || Q[i].opts[a.oi].t; }
+  function changed() { return answers.filter(function (a) { return a.mine || a.text; }).length; }
+
+  function renderRail() {
+    var h = '<div class="rail-label">By build impact</div>';
+    Q.forEach(function (q, i) {
+      var w = who(i);
+      h += '<button type="button" class="ri' + (i === cur ? " cur" : "") + '" data-i="' + i + '" style="--dc:' + RADII[q.radius].color +
+        '" aria-label="Question ' + (i + 1) + ': ' + esc(q.short) + ', ' + w + '"><span class="dot">' + (i + 1) + '</span><span class="lbl">' +
+        esc(q.short) + '</span><span class="mk' + (w === "agent's call" ? "" : " you") + '">' + (w === "agent's call" ? "agent" : "you") + '</span></button>';
+    });
+    h += '<button type="button" class="ri' + (cur === Q.length ? " cur" : "") + '" data-i="' + Q.length + '" style="--dc:var(--warning)" aria-label="Reply"><span class="dot">↵</span><span class="lbl">Your reply</span></button>';
+    h += '<div class="rail-meta">';
+    Object.keys(RADII).forEach(function (k) { h += '<i style="background:' + RADII[k].color + '"></i>' + RADII[k].label.toLowerCase() + '<br>'; });
+    h += '</div>';
+    rail.innerHTML = h;
+    rail.querySelectorAll(".ri").forEach(function (b) { b.addEventListener("click", function () { go(+b.getAttribute("data-i")); }); });
+    $("progress").textContent = Q.length + " questions · " + (Q.length - changed()) + " on the agent's call · " + changed() + " yours";
+  }
+
+  function evidence(s) {
+    return '<pre class="ev"><code>' + esc(s).replace(/(^|\s)(#\s[^\n]*)/g, '$1<span class="c">$2</span>') + '</code></pre>';
+  }
+
+  function renderQuestion() {
+    var q = Q[cur], r = RADII[q.radius], a = answers[cur];
+    var h = '<span class="badge" style="background:' + r.color + '">' + r.label + '</span><span class="qnum">Question ' + (cur + 1) + ' of ' + Q.length + '</span>' +
+      '<h2 class="qtext">' + esc(q.q) + '</h2><p class="why">' + fmt(q.why) + '</p>' + evidence(q.evidence) +
+      '<p class="lean"><b>AGENT\'S CALL, OPTION ' + (q.lean + 1) + ':</b> ' + fmt(q.leanWhy) + '</p><div class="opts">';
+    q.opts.forEach(function (o, oi) {
+      var p = !a.text && a.oi === oi;
+      h += '<button type="button" class="opt' + (p ? " picked" : "") + '" aria-pressed="' + p + '" data-oi="' + oi + '">' +
+        (oi === q.lean ? '<span class="tag">agent\'s call</span>' : '') +
+        '<span class="ot">' + (oi + 1) + '. ' + esc(o.t) + '</span><span class="od">' + fmt(o.d) + '</span></button>';
+    });
+    h += '</div><div class="other"><input type="text" id="otherIn" aria-label="Your own answer" placeholder="Or answer in your own words…" value="' + (a.text ? esc(a.text) : "") + '">' +
+      '<button type="button" class="small" id="otherGo">Answer</button></div>' +
+      '<div class="nav"><button type="button" class="small secondary" id="prev"' + (cur === 0 ? " disabled" : "") + '>← Previous</button>' +
+      '<span class="src">Answer: ' + who(cur) + '</span><button type="button" class="small secondary" id="nextQ">' + (cur === Q.length - 1 ? "Reply →" : "Next →") + '</button></div>';
+    stage.innerHTML = h;
+    stage.querySelectorAll(".opt").forEach(function (el) {
+      el.addEventListener("click", function () {
+        var oi = +el.getAttribute("data-oi");
+        answers[cur] = { oi: oi, text: null, mine: oi !== q.lean };
+        go(cur + 1);
+      });
+    });
+    function own() {
+      var v = $("otherIn").value.trim();
+      if (!v) { $("otherIn").focus(); return; }
+      answers[cur] = { oi: q.lean, text: v, mine: true };
+      go(cur + 1);
+    }
+    $("otherGo").addEventListener("click", own);
+    $("otherIn").addEventListener("keydown", function (e) { if (e.key === "Enter") own(); });
+    $("prev").addEventListener("click", function () { go(cur - 1); });
+    $("nextQ").addEventListener("click", function () { go(cur + 1); });
+  }
+
+  function matches(when) {
+    return Object.keys(when).every(function (id) {
+      var i = Q.map(function (q) { return q.id; }).indexOf(id), want = when[id], a = answers[i];
+      if (a.text) return false;
+      return Array.isArray(want) ? want.indexOf(a.oi) >= 0 : a.oi === want;
+    });
+  }
+  function conflicts() { return CONFLICTS.filter(function (c) { return matches(c.when); }).map(function (c) { return c.text; }); }
+
+  function reply() {
+    var L = ["My answers to the next-prompt interview. Treat 1–3 as fixed; if anything in 4–7 conflicts with them, flag it before writing code.", ""];
+    Q.forEach(function (q, i) {
+      var w = who(i);
+      L.push((i + 1) + ". " + q.topic + ": " + answerText(i) + (w === "agent's call" ? " (agent's call)" : w === "your wording" ? " (my wording; ask if unclear)" : ""));
+    });
+    L.push("", "Also settled (agent's calls):");
+    SETTLED.forEach(function (s) { L.push("- " + s); });
+    var c = conflicts();
+    if (c.length) { L.push("", "Conflicts to resolve first:"); c.forEach(function (t) { L.push("- " + t); }); }
+    L.push("", "Carry these into the reference map and the plan. Open questions go to the buy-in doc.");
+    return L.join("\n");
+  }
+
+  function renderSummary() {
+    var rows = "";
+    Q.forEach(function (q, i) {
+      var w = who(i);
+      rows += '<tr><td><span class="badge" style="background:' + RADII[q.radius].color + '">' + (i + 1) + '</span></td><td>' + esc(q.topic) +
+        '</td><td><b>' + esc(answerText(i)) + '</b></td><td class="who' + (w === "agent's call" ? "" : " you") + '">' + w +
+        '</td><td><button type="button" class="secondary edit" data-i="' + i + '">change</button></td></tr>';
+    });
+    var c = conflicts();
+    stage.innerHTML = '<span class="badge" style="background:var(--warning)">Your reply</span>' +
+      '<h2 class="sum-h">Seven answers, ' + (Q.length - changed()) + ' of them the agent\'s call</h2>' +
+      '<p class="why muted">Each would otherwise be settled silently during the build. Change any and the reply below follows.</p>' +
+      '<div class="table-scroll"><table class="d"><thead><tr><th></th><th>Question</th><th>Answer</th><th>Whose</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+      (c.length ? '<div class="h4">Conflicts between your answers</div>' + c.map(function (t) { return '<div class="conf">' + esc(t) + '</div>'; }).join("") : '') +
+      '<div class="h4">Settled without asking (agent\'s calls, from the blindspot pass)</div><ul class="settled">' +
+      SETTLED.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + '</ul>' +
+      '<div class="gen"><button type="button" class="small" id="copyReply">Copy reply</button><pre id="replyPre"></pre></div>' +
+      '<div class="nav"><button type="button" class="small secondary" id="prev">← Question 7</button><button type="button" class="small secondary" id="reset">Reset to the agent\'s calls</button></div>';
+    $("replyPre").textContent = reply();
+    stage.querySelectorAll(".edit").forEach(function (b) { b.addEventListener("click", function () { go(+b.getAttribute("data-i")); }); });
+    $("copyReply").addEventListener("click", function () { copy(reply(), $("copyReply"), "Copy reply"); });
+    $("prev").addEventListener("click", function () { go(Q.length - 1); });
+    $("reset").addEventListener("click", function () { answers = Q.map(function (q) { return { oi: q.lean, text: null, mine: false }; }); go(Q.length); });
+  }
+
+  function go(i) {
+    cur = Math.max(0, Math.min(Q.length, i));
+    renderRail();
+    if (cur === Q.length) renderSummary(); else renderQuestion();
+  }
+
+  function copy(text, btn, label) {
+    var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1400); };
+    var fallback = function () {
+      var t = document.createElement("textarea"); t.value = text; t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select(); try { document.execCommand("copy"); } catch (e) {} t.remove(); done();
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  }
+  $("copyPrompt").addEventListener("click", function () { copy($("prompt").textContent.replace("Copy prompt", "").trim(), $("copyPrompt"), "Copy prompt"); });
+  $("toReply").addEventListener("click", function () { go(Q.length); });
+  go(0);
+})();
+</script>
+</body>
+</html>
