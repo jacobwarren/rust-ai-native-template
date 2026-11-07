@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "blindspots.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "8051c987c1e0bb69c31a701cdc305c43c2ed88878df0cbab164f7bf81a7b251d",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that the brief already fails uncited claims yet two of three reviewers still accepted the \"9/9\" tile, because step 2 sends them to confirm the claim. Separately, the stated validation (more subtle findings, committed pages still pass) conflicts on the committed plan page, which was raised against the kept-path requirement. Neither is visible from the diff, the code or the docs.\nChecked: render clean (no console errors, requests, local files, overflow); interactions read from script (fold checkboxes and radios rebuild chips and final prompt; copy fallback); claims true: review-artifact SKILL.md 17-22, 32, 36, 59-60; ARTIFACTS.md 61-62, 139-140; author skill 37-38; handover.rs:204; checks.rs:169-177; .claude protected, .agents not; administrative() excludes skill folders; reviewer tools have no click; reviews.json:80 and plan.html:191; draft quotes exact; /target/ gitignored; xtask diff since 3c1aa8e 684 lines; next-prompt.md:27; skill copies identical. Length 33 KB vs 27 KB, no filler; cards 05 and 07 lean to harness mechanics but bear on the rerun.\nFINDINGS: 0",
+      "findings": 0,
+      "model": "claude-sonnet-5-5"
+    }
+  ]
+}
