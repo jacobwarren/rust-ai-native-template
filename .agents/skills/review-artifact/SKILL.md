@@ -14,10 +14,11 @@ the page a reader would get, not the effort behind it.
 1. Read the exemplar in full, then the page in full. Render both with
    `node scripts/artifact-screenshots.cjs OUT_DIR PAGE.html EXEMPLAR.html`
    (a scratch OUT_DIR under `target/`) and view the tiles side by side.
-2. Run the fixed checks. Judge each from the page, its script and the task's
-   ticket alone, before you run anything: a claim you can confirm yourself is
-   still uncited if the page gives the reader no way to confirm it. These are
-   the defects a sampled review misses about half the time (docs/EVALUATION.md).
+2. Run the fixed checks, after rendering and before sampling claims. Judge
+   each from what the page, its script and the task's ticket give a reader: a
+   claim you confirm yourself by running something is still uncited if the
+   page names no source or command for it. These are the defects a sampled
+   review misses about half the time (docs/EVALUATION.md).
 
    | Check | Fails when | Not applicable |
    | --- | --- | --- |
