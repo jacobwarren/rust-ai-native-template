@@ -30,6 +30,16 @@
       "notes": "PASS. The page shows how each of 8 open design choices would change the calibrated briefs, each tied to a committed buy-in tile, a stored review row or a line in handover.rs, and the answers assemble into a copyable reply.\nChecked: draft SHA-256 and sizes (40074, 47053, 37052) match reviews.json round-1 rows; committed buy-in.html has \"cargo test\" 0 times, \"check ci\" once, \"93\" only at :189 and :210, tiles at :209-214, the draft has \"check ci\" 0 times; handover.rs :203-205 and :154-158; SKILL.md step 2 at :17, grounded row :32, discovery rule :59; EVALUATION.md criteria before running; host copies identical; 8 passing log rows with 2-4 findings; .gitignore ignores /target/; administrative() excludes the proposed calibration folder; ticket record supports the wrong-prompt claim. Render clean on desktop and phone. Controls read from script: Q3 drives Q4 sketch names, Q5 drives Q6's buy-in row, the reply follows every pick and lists open items for the buy-in doc.\nNon-blocking:\n1. Long next to the exemplar (8 questions vs 7, each with evidence and a \"why the agent picked\" paragraph); the \"Not asked\" box mostly restates earlier pages and could be cut.\n2. Q2 option 3 (\"both\") is a weak option.\n3. Q8 (when to rerun) has no evidence block.\nFINDINGS: 3",
       "findings": 3,
       "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "reference.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "12b66406245be17a12e6ad2417f4966eeee3d3b149a829f4d9d653880ff5c054",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that the reviewer table's length row works because both briefs use one yardstick, that the four missed defects fall into gaps with no shared rule (reply contradicting its page, reconstructed output, uncited tile, dropped ticket item), and that the proposed fixed checks differ from the table in order, an n/a column and a PASS report line.\nChecked: review-artifact SKILL.md:25-26, 28-37, 59-60, 64-66 and author-artifact SKILL.md:18-24, 31-47 match; host copies identical; ARTIFACTS.md:136-141 allows one short label; handover.rs:154-158 passes the ticket as a path, :204 has FINDINGS; note 7 holds (\"cited\" once inside \"uncited\" in the reviewer brief, 0 in author; \"reply\" twice in each); reference.round1.html:459, buy-in.round1.html:213 (no \"check ci\"), implementation.round1.html:172 and :255, plan.html:283, buy-in.html:209-214 as quoted. Calibration counts taken from the ticket. Render: problems false; 5659 px vs 4680, 35 KB vs 36.7 KB; tiles 03 and 07 clean. Interactions read from script: flags rebuild the reply, hover links counterparts.\nMinor, not blocking:\n1. About 1,000 px taller than the exemplar; section 3 (preserved, changed, left out) partly repeats Pair C's notes and could be trimmed.\n2. Pair C is a sketch of the target and is labelled as one.\nFINDINGS: 0 (two minor notes listed)",
+      "findings": 2,
+      "model": "claude-sonnet-5-5"
     }
   ]
 }
