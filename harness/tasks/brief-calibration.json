@@ -4,7 +4,9 @@
   "work_item": null,
   "status": "partial",
   "tier": "standard",
-  "requirements": ["task-artifacts"],
+  "requirements": [
+    "task-artifacts"
+  ],
   "related_gaps": [
     {
       "id": "artifact-gate-holes",
@@ -16,8 +18,14 @@
   "discoveries": [],
   "discovery_review": "Not started; discoveries are recorded as the work finds them.",
   "documentation": {
-    "updated": [],
-    "rationale": "The two skills in both hosts and docs/EVALUATION.md will change; the list is filled in as they land."
+    "updated": [
+      ".claude/skills/review-artifact/SKILL.md",
+      ".agents/skills/review-artifact/SKILL.md",
+      ".claude/skills/author-artifact/SKILL.md",
+      ".agents/skills/author-artifact/SKILL.md",
+      "docs/EVALUATION.md"
+    ],
+    "rationale": "The reviewer brief gains the fixed-check step and report line, the author brief a rule under each check and the output-label sentence, and EVALUATION.md the calibration method, set, expected verdicts, baseline and rerun results."
   },
   "prompt": {
     "task": "add the checks the reviewer calibration showed it misses to the author and reviewer briefs",
@@ -28,9 +36,8 @@
   },
   "summary": "Add the fixed checks the reviewer calibration found it misses to the reviewer brief, the matching rules to the author brief, and the calibration method to docs/EVALUATION.md.",
   "remaining": [
-    "reviewer_brief_runs_the_fixed_checks: the review-artifact skill lists the fixed checks every review runs, in both host copies.",
-    "author_brief_answers_each_fixed_check: each fixed check has a matching author instruction.",
-    "Rerun the calibration on the saved next-prompt drafts and committed pages with the new reviewer brief.",
+    "Record the final-wording draft runs and known gaps in docs/EVALUATION.md.",
+    "Write and review the buy-in and quiz pages.",
     "Run cargo xtask check ci > target/verification/ci.json and cargo xtask complete --task brief-calibration --base origin/main."
   ]
 }

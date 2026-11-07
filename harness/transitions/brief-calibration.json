@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "base_commit": "6d1c44760814c975ce0e084f8c3aa0729238e088",
+  "changes": [
+    {
+      "change": {
+        "after_sha256": "5d0ac5e31e50855bf16f143ce469a37a9492afd031b3bc983fc973ef98ce8bbd",
+        "before_sha256": "f686383b05cee59d2f5bea3579368751b11ee96d88ac52f4efd53b4366894a95",
+        "subject": "policy"
+      },
+      "rationale": "Give the page reviewer four fixed checks it runs on every page, after rendering and before sampling claims, and give the author a rule under each check's name, without changing any gate. The checks are consistent (two places on the page disagree, including the reply as its script builds it), provenance (something shown as more real than it is), cited (a tile, headline number or deciding claim with no source or reproducing command on the page; a claim the reviewer confirms itself is still uncited) and ticket (a plan or buy-in page that leaves a ticket item neither met nor changed with its reason). The reviewer reports them on one unnumbered Fixed checks line, so FINDINGS: N still counts numbered findings; the grounded question narrows to wrong or vague. The author brief allows one short label on each output block. xtask/tests/briefs.rs keeps the reviewer's check table and the author's rules in step in both hosts, and readiness lists it and both skills. Measured by a calibration (docs/EVALUATION.md): every targeted defect raised 3 of 3 against 1 to 2 of 3 before, at the cost of failing two committed pages previously passed, mostly for real defects; the known gaps are recorded there. Limits: the checks are judgement, not code; the ticket reaches the reviewer only as a path; no hand-over or gate changes.",
+      "evidence": [
+        "docs/EVALUATION.md",
+        "docs/plans/brief-calibration.md",
+        "xtask/tests/briefs.rs",
+        "harness/task-artifacts/brief-calibration/implementation.html"
+      ],
+      "manual_justification": null
+    }
+  ]
+}
