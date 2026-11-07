@@ -50,6 +50,26 @@
       "notes": "PASS. A reader learns that the four fixed checks, as the plan words them, pass or fail each calibration page as intended, and which wording choices flip a verdict: the committed buy-in page's pass, the plan page's REVISE, and the three extra failures in next-prompt's log.\nRender clean (no console errors, requests, local files, overflow); first desktop tile viewed; interactions read from script, not clicked.\nChecked: \"cited\" once in review-artifact SKILL.md, inside \"uncited\" at :32; \"| cited |\" 0 times; \"reply\" twice in each brief; handover.rs:204 and :154-158; EVALUATION.md:38-40; brief-calibration.md:19; author step 5 at SKILL.md:37-38; readiness.json:107; checks.rs:155; buy-in.html:209-212 tiles and :214 check ci sentence; buy-in.round1.html:213; plan.html:283; .gitignore:1; implementation draft 5/7, In progress, --notes - finding; drafts total 124179 bytes; no outside citation of step numbers.\nMinor:\n1. Short as content allows: the A3 flow strip and most A4 \"met\" rows are skimmable; 44.8 KB vs 37 KB; fold unchanged steps and all-met rows into one line each.\n2. About the feature: A1 is labelled \"Data model\" though the artifacts are Markdown briefs and a test; Choice 4 is repository logistics.\n3. Interactions: Choice 2 changes only its text, the expected-verdict row and the reply line; all four feed the reply, none decorative.\nFINDINGS: 3",
       "findings": 3,
       "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "implementation.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "6e4be004e2f3245ae2888fd7d912da305453819eec996c5cccf2c99df9f075e5",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n1. consistent fails, in the \"Every defect the checks target was raised every time\" table, against the \"The rerun split across two brief wordings\" entry. That entry's conservative choice is to \"Report each round in its own column, so no count claims runs it didn't have.\" The table's \"New brief\" column does the opposite for the three draft rows: \"4 of 4\" is 3 runs on the first wording plus 1 on the final wording (docs/plans/brief-calibration.md round table); the plan page's \"3 of 3\" is final wording only. A rewrite must either split the column into \"Round 1 wording\" and \"Final wording\" with per-round counts, or label the draft rows as pooled and say how.\n2. cited fails on the first deviation's source line, `xtask/tests/briefs.rs:…, :37`. In a clean git archive HEAD copy with the ticket row deleted, the panic is reported at briefs.rs:38:9; the assert_eq! is at line 38, not 37. The captured failure output itself matched. Correct it to :38; :49 for the author-side assert is fine.\n3. Is it as short as its content allows fails: 5622px desktop against the exemplar's 3926px. Entry 1, the \"Plan-confirmed\" Steps 1-4 entry, is a dense paragraph plus about 12 citations restating what the ticket and commits show; the prompt asks for deviations, not confirming planned steps. Cut it to a line or drop it.\nEverything else held: test-failure output reproduced; git grep probe_guide cdaeb0f -- xtask finds nothing; buy-in.html:291 and :306 contain the quoted text; commit times and the record's remaining list match; figures and \"stricter than written\" findings match the plan doc's rerun section. Not run: check ci and complete. Rendering clean; one desktop tile viewed; filters and radios read from script, no mismatch.\nFixed checks: consistent failed (1); provenance held; cited failed (2); ticket n/a\nFINDINGS: 3",
+      "findings": 3,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "implementation.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "9f11cbbd4530fe1fa9a4691c581e0c1f8738f70b2a7572e71a9ab2c109a57a98",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that the calibration rerun caught every defect the new checks target, that it also failed two pages expected to pass, and which three calls (the buy-in page's expected verdict, what counts as a tile's source, how many draft runs to count) are theirs before completion.\nFixed checks: consistent held; provenance held; cited held; ticket n/a\nChecked: renders clean, 33 KB vs 27 KB with content; first deviation reproduced in a clean copy (ticket row deleted fails at briefs.rs:38 with the shown lists); briefs.rs anchors match; check ci in a clean copy ok, agreeing with 9 of 9; complete failure text matches completion.rs and transitions.rs; buy-in.html:306 fixed text exists; reviews.json at 17425b6 holds two implementation entries against :291; docs.json diff against 6d1c447 matches; plan.html :268, :345 wording; commit times match; rerun table matches the plan doc; interactions driven by the entries.\nMinor, not a finding: the shared-target-dir discovery and the step 6 entry lean toward verification process; each is short, sourced and drives a decision.\nFINDINGS: 0",
+      "findings": 0,
+      "model": "claude-sonnet-5-5"
     }
   ]
 }
