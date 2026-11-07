@@ -20,6 +20,16 @@
       "notes": "PASS. The page shows that three of the four missed findings were visible on the page itself, and maps ten interventions to the files and line ranges where each would land, with the findings each targets (R, C, U, T). The code, docs and calibration record don't say this quickly.\nRendering clean (no console errors, requests, local files, overflow); one desktop tile viewed; controls not clicked, so reply bar, coverage counters and scope list unchecked.\nClaims checked: miss rates match docs/plans/brief-calibration.md:55-70; four wrong-prompt reviews per :65-69 support #5; reference.round1.html:459 reply line; buy-in.html:209-211 tiles with no command; ticket at 210807e names the kept path, plan.html:283 \"No kept path\", 9be3ba9 rewrote the ticket; handover.rs:191-193 answering rule; transitions.rs:40 protects xtask/.\nJob and form: ten interventions from a brief sentence to a seeded-defect corpus, each with size, path, found-in-code and cost; #3 and #4 marked as the ticket's plan; coverage bar and scope list; copyable reply. Length 36 KB vs 30 KB, acceptable for ten items.\n1. Minor, not blocking: #10's data-files value, \"a committed fixture folder\", is a description rather than a path, so the reply's \"Add to the ticket's scope\" line would show a description where a path belongs.\nFINDINGS: 0 (one minor note listed)",
       "findings": 1,
       "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "interview.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "eaf72863b6eb67c446211db24fc0c2c168617bde896302a9d428b4c7da5f8873",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. The page shows how each of 8 open design choices would change the calibrated briefs, each tied to a committed buy-in tile, a stored review row or a line in handover.rs, and the answers assemble into a copyable reply.\nChecked: draft SHA-256 and sizes (40074, 47053, 37052) match reviews.json round-1 rows; committed buy-in.html has \"cargo test\" 0 times, \"check ci\" once, \"93\" only at :189 and :210, tiles at :209-214, the draft has \"check ci\" 0 times; handover.rs :203-205 and :154-158; SKILL.md step 2 at :17, grounded row :32, discovery rule :59; EVALUATION.md criteria before running; host copies identical; 8 passing log rows with 2-4 findings; .gitignore ignores /target/; administrative() excludes the proposed calibration folder; ticket record supports the wrong-prompt claim. Render clean on desktop and phone. Controls read from script: Q3 drives Q4 sketch names, Q5 drives Q6's buy-in row, the reply follows every pick and lists open items for the buy-in doc.\nNon-blocking:\n1. Long next to the exemplar (8 questions vs 7, each with evidence and a \"why the agent picked\" paragraph); the \"Not asked\" box mostly restates earlier pages and could be cut.\n2. Q2 option 3 (\"both\") is a weak option.\n3. Q8 (when to rerun) has no evidence block.\nFINDINGS: 3",
+      "findings": 3,
+      "model": "claude-sonnet-5-5"
     }
   ]
 }
