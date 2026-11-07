@@ -27,14 +27,20 @@ buy-in needed a rewrite every time, mostly for length.
 The author and reviewer briefs in both hosts (.claude/skills and .agents/skills:
 author-artifact, review-artifact), docs/EVALUATION.md (the calibration method
 and when to rerun it), xtask/tests/briefs.rs (new), harness/readiness.json,
-harness/docs.json. Tier: standard. Skills are ceremony paths.
+harness/docs.json, and (added by the plan page) the three round-1 drafts copied
+to harness/calibration/next-prompt/ so a clone can rerun the calibration.
+Tier: standard. Skills are ceremony paths.
 
 ## Acceptance as named tests
+Revised by the plan page: the reply and captured-output checks are widened to
+`consistent` and `provenance` (two places on a page disagree; something is
+shown as more real than it is), which also cover three logged failures the
+calibration never sampled.
 - `reviewer_brief_runs_the_fixed_checks`: given the review-artifact skill, then
-  it lists the fixed checks every review runs (reply matches the page, output
-  shown as captured was captured, every ticket requirement met or its change
-  explained, an uncited claim fails even when the reviewer can confirm it), in
-  both host copies.
+  it lists the fixed checks every review runs (`consistent`, `provenance`,
+  `cited`: a number or claim with no source or command on the page fails even
+  when the reviewer can confirm it, and `ticket`: every ticket item met or its
+  change explained), in both host copies.
 - `author_brief_answers_each_fixed_check`: given the author-artifact skill,
   then each fixed check the reviewer runs has a matching instruction, so an
   author can meet it before review.
@@ -42,10 +48,10 @@ harness/docs.json. Tier: standard. Skills are ceremony paths.
 ## Validation
 `cargo xtask check ci > target/verification/ci.json`;
 `cargo xtask complete --task brief-calibration --base origin/main --report target/verification/ci.json`;
-rerun the calibration with the new reviewer brief on the saved next-prompt
-drafts and committed pages (target/artifact-reviews/next-prompt/) and compare
-with the table above: the subtle findings should be raised more often, and the
-committed pages should still pass.
+rerun the calibration with the new reviewer brief, three runs per page, against
+the expected verdicts in docs/EVALUATION.md (revised by the plan page: the
+committed plan page is now expected to fail the `ticket` check, so "committed
+pages should still pass" holds for reference and buy-in only).
 
 ## Calibration record (2026-11-06)
 Each run was a fresh artifact-reviewer on Sonnet, with the unchanged
