@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz before merge: the calibrated author and reviewer briefs</title>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<style>
+main { max-width: 62rem; font-size: .9375rem; }
+code { font-size: .88em; background: var(--accent-soft); padding: 0 .3em; border-radius: .25rem; }
+pre code, .node code { background: none; padding: 0; }
+.src { display: block; overflow-wrap: anywhere; font: var(--text-small)/1.5 var(--font-code); color: var(--muted); margin-top: var(--space-2); }
+.lab { font: 650 .72rem/1.4 var(--font-code); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 var(--space-1); }
+.box, .stat, .col, .beh, .q, .score { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4); }
+.prompt { position: relative; }
+.prompt blockquote { background: none; border: 0; padding: 0; font-style: italic; }
+.prompt .copy { position: absolute; top: var(--space-3); right: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); }
+.stats, .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: var(--space-3); margin-block: var(--space-6); }
+.flow { grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); margin-block: var(--space-4); }
+.stat b { display: block; font-size: 1.7rem; line-height: 1.15; }
+.stat span { display: block; font-size: var(--text-small); }
+@media (min-width: 40rem) { .cost td:first-child { white-space: nowrap; } }
+@media (max-width: 40rem) { .cost thead { display: none; } .cost tr, .cost td { display: block; } .cost td { border: 0; padding: var(--space-1) 0; } .cost tr { border-bottom: 1px solid var(--line); padding-block: var(--space-2); } .cost td:first-child { font-weight: 650; } .cost td[data-l]::before { content: attr(data-l); font-weight: 650; color: var(--muted); } }
+.hit { color: var(--accent); font-weight: 650; }
+.miss { color: var(--danger); font-weight: 650; }
+.was { text-decoration: line-through; color: var(--muted); }
+.col.after, .node.new, .q.right, button.opt.sel-right, button.opt.show-right { border-color: var(--accent); }
+.node { border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-1) var(--space-3); font-size: var(--text-small); background: var(--paper); }
+.node.new, button.opt.sel-right, button.opt.show-right { background: var(--accent-soft); }
+.node.gone { border-style: dashed; color: var(--muted); }
+.col > .node:last-child { margin-top: var(--space-3); }
+.arr { text-align: center; color: var(--muted); font-size: .8rem; }
+.beh { margin-bottom: var(--space-4); padding: 0; overflow: hidden; }
+.beh > h3 { margin: 0; padding: var(--space-3) var(--space-4); background: var(--accent-soft); font-size: 1.02rem; }
+.beh > h3 small { font: 650 var(--text-small) var(--font-code); color: var(--accent); margin-right: var(--space-2); }
+.beh dl { margin: 0; padding: var(--space-2) var(--space-4) var(--space-3); display: grid; grid-template-columns: 4.2rem 1fr; gap: var(--space-2) var(--space-3); }
+.beh dt { font: 650 .72rem/1.9 var(--font-code); text-transform: uppercase; color: var(--muted); }
+.beh dd { margin: 0; }
+@media (max-width: 34rem) { .beh dl { grid-template-columns: 1fr; } }
+.term { font-size: .8rem; line-height: 1.5; }
+.term .c { color: var(--muted); }
+.leans { border-inline-start: 4px solid var(--warning); background: var(--warning-soft); }
+.qhead { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--space-4); flex-wrap: wrap; border-top: 1px solid var(--line); margin-top: var(--space-12); }
+.score { font: var(--text-small) var(--font-code); }
+.q { margin-block: var(--space-3); }
+.q.wrong, button.opt.sel-wrong { border-color: var(--danger); }
+.q .qt { font-weight: 600; margin: var(--space-1) 0 var(--space-2); }
+button.opt { min-height: 40px; display: flex; gap: var(--space-3); width: 100%; text-align: left; margin-bottom: var(--space-1); background: var(--paper); color: var(--ink); border-color: var(--line); padding: var(--space-2) var(--space-3); line-height: 1.45; }
+button.opt .k { font: 650 var(--text-small) var(--font-code); color: var(--muted); flex: none; }
+button.opt:disabled { cursor: default; opacity: 1; }
+button.opt.dim { opacity: .55; }
+button.opt.sel-wrong, .fb.bad, .result.fail { background: var(--warning-soft); }
+.fb { border-radius: var(--control-radius); padding: var(--space-3); margin-top: var(--space-2); background: var(--accent-soft); }
+.fb b { display: block; font: 650 .75rem var(--font-code); text-transform: uppercase; }
+.fb .ex { margin-top: var(--space-2); border-inline-start: 3px solid var(--line); padding-inline-start: var(--space-3); }
+.result { border-radius: var(--radius); padding: var(--space-4) var(--space-6); margin-top: var(--space-6); border: 1px solid var(--accent); background: var(--accent-soft); }
+.result.fail { border-color: var(--danger); }
+.result h3 { margin: 0 0 var(--space-2); }
+.left { list-style: none; padding: 0; }
+.left li { display: grid; grid-template-columns: 1.4rem 1fr; padding: var(--space-2) 0; border-bottom: 1px dashed var(--line); }
+.left .src { margin-top: 0; }
+.row { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+#reply { font-size: .85rem; max-height: 22rem; overflow: auto; }
+</style>
+</head>
+<body>
+<main>
+
+<p class="eyebrow">Quiz me before I merge · brief-calibration</p>
+<h1>The calibrated page briefs: what changed, why, and whether you can tell</h1>
+<p class="lead">Every page review now runs four fixed checks, and the author gets a rule under each. No xtask command or gate changes: the substance is prose in four skill files, one test file and a calibration method. The quiz cases are not on the page; work each out from how the briefs, the test and the hand-over behave.</p>
+
+<div class="box prompt" style="padding-inline:var(--space-6)">
+  <p class="lab">The prompt</p>
+  <button type="button" class="copy" id="copyPrompt">Copy</button>
+  <blockquote id="promptText">I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass.</blockquote>
+</div>
+
+<div class="stats">
+  <div class="stat"><b>+82 / −18</b><span>in the four brief files, two byte-identical pairs; 14 files changed outside the task's pages</span><span class="src">git diff --numstat origin/main...HEAD</span></div>
+  <div class="stat"><b>2</b><span>new tests, the only code added</span><span class="src">xtask/tests/briefs.rs:34, :45</span></div>
+  <div class="stat"><b>0</b><span>lines changed under xtask/src</span><span class="src">git diff --stat origin/main...HEAD -- xtask/src (empty)</span></div>
+  <div class="stat"><b>9 / 9</b><span>CI checks pass at the branch head</span><span class="src" id="ciSrc"></span></div>
+</div>
+
+<section id="sec-context">
+<h2>Context</h2>
+<p>The page reviewer was calibrated for the first time: fresh reviews of six pages whose verdicts were known. Verdicts held 19 times in 21, but a reply contradicting its page, typed output shown as captured, an uncited tile and a dropped ticket item were each raised only 1 to 2 times in 3, and the author brief guarded against none of them. With the fixed checks each was raised every time. The six pages and their expected verdicts stay fixed between runs; the reviewer is what is measured. What it cost on the two pages expected to pass, and the calls that leaves open, are on the buy-in page (§01, §05).</p>
+<span class="src">docs/plans/brief-calibration.md:7–24, :83–92 · method: docs/EVALUATION.md:52–66 · results: :77–86</span>
+</section>
+
+<section id="sec-model">
+<h2>What was done: the mental model</h2>
+<p>Before, every check was a sample: the reviewer picked three claims, <strong>verified them by running things</strong>, and "uncited" was one way to fail the grounded question. Two of three baseline runs ran <code>check ci</code> on a draft, saw nine passes, and accepted a "9 / 9" tile that named no command. Now four checks come first and are judged from <strong>what the page gives a reader</strong>; the grounded question no longer mentions citation. They sit after rendering because the first wording, "before you run anything", made six of nine reviewers skip it.</p>
+<span class="src">baseline: docs/plans/brief-calibration.md:18 · review-artifact SKILL.md:17–21, :45 · rendering: brief-calibration.md:116–119</span>
+<div class="flow">
+  <div class="col">
+    <p class="lab">Before · review-artifact on main</p>
+    <div class="node">1 · Render page and exemplar</div>
+    <div class="arr">↓</div>
+    <div class="node">2 · Sample ≥ 3 claims, verify each, run builds and tests</div>
+    <div class="arr">↓ a claim you confirmed is "checked"</div>
+    <div class="node">Questions · grounded fails "wrong, vague or <b>uncited</b>"</div>
+    <div class="arr">↓</div>
+    <div class="node">PASS / REVISE · numbered findings</div>
+    <div class="node gone">Author brief: no rule about the reply, output labels, tile sources or the ticket</div>
+  </div>
+  <div class="col after">
+    <p class="lab">After · review-artifact now</p>
+    <div class="node">1 · Render page and exemplar</div>
+    <div class="arr">↓ step 2 starts only after this</div>
+    <div class="node new">2 · Fixed checks, from page, script and ticket: <b>consistent · provenance · cited · ticket</b></div>
+    <div class="arr">↓</div>
+    <div class="node">3 · Sample ≥ 3 claims, verify each</div>
+    <div class="arr">↓</div>
+    <div class="node">Questions · grounded fails "wrong or vague"</div>
+    <div class="arr">↓</div>
+    <div class="node new">Verdict + one unnumbered <code>Fixed checks:</code> line</div>
+  </div>
+</div>
+<span class="src">main: git show origin/main:.claude/skills/review-artifact/SKILL.md, lines 14–22, :32 · now: review-artifact SKILL.md:14–28, :45, :82–85</span>
+
+<p>Each check now has two sides, and they are not worded alike:</p>
+<div class="table-scroll">
+<table class="cost">
+  <caption class="lab">Shortened from review-artifact SKILL.md:23–28 and author-artifact SKILL.md:42–52</caption>
+  <thead><tr><th>Check</th><th>Reviewer fails the page when</th><th>Author rule</th></tr></thead>
+  <tbody>
+    <tr><td><code>consistent</code></td><td data-l="Reviewer fails it: ">two places disagree: the reply and what it summarizes, a tile and the body, a badge and its section; the reply is read as the script builds it</td><td data-l="Author rule: ">build the reply from the same data the page shows</td></tr>
+    <tr><td><code>provenance</code></td><td data-l="Reviewer fails it: ">something is shown as more real than it is: typed output as captured, invented lines in an excerpt, unbuilt behaviour as existing</td><td data-l="Author rule: ">show output as captured only if you ran and pasted it; label the rest</td></tr>
+    <tr><td><code>cited</code></td><td data-l="Reviewer fails it: ">a tile, headline number or claim a decision rests on has no source on the page: no file, test, output or command that reproduces it</td><td data-l="Author rule: ">put a source beside every tile, headline number and claim a decision rests on</td></tr>
+    <tr><td><code>ticket</code></td><td data-l="Reviewer fails it: ">a ticket item is neither met nor changed with its reason; applies to plan and buy-in pages</td><td data-l="Author rule: ">on a plan or buy-in page, account for each item</td></tr>
+  </tbody>
+</table>
+</div>
+</section>
+
+<section id="sec-behaviours">
+<h2>Two behaviours a skim of the diff won't give you</h2>
+
+<div class="beh" id="beh-1">
+  <h3><small>01</small>The test pins the whole check column; host drift is a different check's job</h3>
+  <dl>
+    <dt>What</dt><dd><code>check_rows</code> finds the line starting <code>| Check |</code>, skips the separator and takes the first cell of each row until the table ends. The reviewer test asserts that column equals <code>CHECKS</code>, in order, in both hosts. The author test reads its names <em>from that table</em> and requires <code>- **name**:</code> for each. Neither compares the hosts' wording; DOC007 in <code>cargo xtask docs</code> requires the copies to be byte-identical.</dd>
+    <dt>Why</dt><dd>A word search cannot stand in: with the <code>cited</code> row gone, "cited" is still in the brief, inside "uncited".</dd>
+    <dt>Run</dt><dd><p class="lab">Captured in a clean copy; briefs restored between runs; trimmed to the failure lines; # lines added</p>
+<pre class="term"><span class="c"># a fifth row, | tone |, added to the .agents reviewer table</span>
+$ cargo test -q -p xtask --test briefs
+thread 'reviewer_brief_runs_the_fixed_checks' (94722021) panicked at xtask/tests/briefs.rs:38:9:
+  left: ["consistent", "provenance", "cited", "tone", "ticket"]
+ right: ["consistent", "provenance", "cited", "ticket"]
+thread 'author_brief_answers_each_fixed_check' (94722020) panicked at xtask/tests/briefs.rs:49:13:
+.agents/skills: the author brief has no rule for tone
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+<span class="c"># instead, one sentence of the .claude author brief reworded, .agents untouched</span>
+$ cargo test -q -p xtask --test briefs
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+$ cargo xtask docs   <span class="c"># exit 1; JSON report cut to its error</span>
+"DOC007 skills/author-artifact/SKILL.md: the .claude/skills and .agents/skills copies must be identical"</pre><span class="src">xtask/tests/briefs.rs:20–31, :37–38, :48–51 · xtask/src/checks.rs:205</span></dd>
+  </dl>
+</div>
+
+<div class="beh" id="beh-2">
+  <h3><small>02</small>The <code>Fixed checks:</code> line reports, it does not count</h3>
+  <dl>
+    <dt>What</dt><dd>Every verdict carries one unnumbered line such as <code>Fixed checks: consistent held; provenance failed (1); cited held; ticket n/a</code>. A failed check points at its numbered finding. <code>FINDINGS: N</code> still counts only numbered findings, and that N goes into the verdict log.</dd>
+    <dt>Why</dt><dd>Held checks are not findings, and the hand-over's review line still asks for <code>FINDINGS: N</code> last. The verdict command parses the verdict and the count; the notes are free text. Nothing in xtask reads the new line; only the test checks that the brief asks for it.<span class="src">review-artifact SKILL.md:82–85 · xtask/src/handover.rs:204 · router.rs:119–126 · git grep -n "Fixed checks" HEAD -- xtask (one hit, briefs.rs:39)</span></dd>
+  </dl>
+</div>
+
+</section>
+
+<section id="sec-leans" class="box leans">
+  <p class="lab">What this leans on</p>
+  <p><strong>The review hand-over.</strong> The <code>ticket</code> check reads the ticket, but the hand-over carries none of its text: it lists <code>docs/plans/&lt;id&gt;.md</code> among the task-context paths when that file exists, and leaves it out silently when it does not. Passing the acceptance text is held for a follow-up (buy-in call 4).</p>
+  <span class="src">xtask/src/handover.rs:154–158 · buy-in §05, call 4</span>
+</section>
+
+<div class="qhead">
+  <div>
+    <p class="eyebrow">Part 2 · Prove it</p>
+    <h2>Seven questions before you merge</h2>
+    <p class="muted" style="margin:0">None of these cases is on the page above.</p>
+  </div>
+  <div class="score" aria-live="polite">Score <b id="scoreNow">0</b> / <b id="scoreMax">7</b> · <span id="answered">0</span> answered</div>
+</div>
+
+<div id="quiz"></div>
+
+<div class="result" id="resPass" hidden>
+  <h3>Understanding verified</h3>
+  <p style="margin:0">You can explain this change to whoever edits the briefs next. What still stands before merge is below, and goes into your reply.</p>
+</div>
+<div class="result fail" id="resFail" hidden>
+  <h3 id="failTitle">Not yet</h3>
+  <p style="margin:0">Re-read the sections behind the questions you missed, then reset.</p>
+  <ul class="left" id="failLinks"></ul>
+  <button type="button" class="secondary" id="retry">Reset the quiz</button>
+</div>
+
+<section id="sec-reply">
+  <h2>Before merge, and your reply</h2>
+  <ul class="left" id="leftPass"></ul>
+  <p class="muted">The reply lists your score, each question's outcome and the list above. It updates as you answer.</p>
+  <label for="extra">Anything else for the reply</label>
+  <textarea id="extra" placeholder="e.g. hold the merge until call 3 is decided"></textarea>
+  <div class="row">
+    <button type="button" id="copyReply">Copy reply</button>
+    <button type="button" class="secondary" id="toggleReply" aria-expanded="false">Show the reply text</button>
+  </div>
+  <pre id="reply" hidden></pre>
+</section>
+
+<footer>brief-calibration · quiz before merge · from the diff against main, the ticket, docs/EVALUATION.md and the task's earlier pages.</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Text with `code` spans, built as nodes so nothing is parsed as markup.
+  function rich(tag, cls, text) {
+    var e = el(tag, cls);
+    text.split("`").forEach(function (p, i) { e.appendChild(i % 2 ? el("code", "", p) : document.createTextNode(p)); });
+    return e;
+  }
+
+  // ex/exl: the rule or captured run that decides the question, shown on a miss.
+  var QS = [
+    { q: "An author puts a “9 / 9 CI checks pass” tile at the top of a buy-in page and names `cargo xtask check ci` in the sentence under the tile row, not on the tile. Under the briefs as written, where does that leave `cited`?",
+      o: ["It fails: the reviewer's row wants the source on the tile itself, so a command one sentence down does not count",
+          "It holds for the reviewer, since the command is on the page; the author rule asks for it on the tile, the placement that meets either reading",
+          "`provenance` fails instead: a number set apart from its command reads as output presented as captured",
+          "It holds under both briefs, so moving the command onto the tile changes nothing for the next review"],
+      a: 1, anchor: "sec-model", sec: "What was done (the two sides of each check)",
+      why: "The reviewer row asks whether the page names a source at all; the author rule asks for it beside the tile. In the rerun two of three reviewers failed exactly this layout anyway. That is recorded as a known gap, not tuned away (buy-in call 3).",
+      exl: "docs/EVALUATION.md:96–98",
+      ex: "cited is read more strictly than written: two of three buy-in runs failed tiles whose command sits in the sentence beneath them. The author brief asks for a source beside every tile, which meets either reading." },
+    { q: "A plan page's copied reply reads “keep all three defaults”, and with the defaults every tile agrees. Flip one toggle: its tile changes, the reply does not. What does the new brief make of this?",
+      o: ["A pass on `consistent`: it compares the reply with the page as first rendered, and those agree",
+          "A `provenance` failure: a reply that ignores the choice shows a decision as more settled than it is",
+          "A `consistent` failure: the reply comes from the script, and after one change it and the tile part",
+          "No fixed check: a reply that never updates is a broken control, left to the interaction question"],
+      a: 2, anchor: "sec-model", sec: "What was done (the two sides of each check)",
+      why: "The reviewer reads the reply as the script builds it, which means after a changed choice too. A fixed line the choices never update is what the buy-in page failed on in the rerun. The interaction question may fail it as well.",
+      exl: "review-artifact SKILL.md:25",
+      ex: "Read the reply as the script builds it, for the default choices and one changed choice." },
+    { q: "You swap the `provenance` and `cited` rows in both reviewer tables. Nothing else changes. What does `cargo test -p xtask --test briefs` report?",
+      o: ["The reviewer test fails, as it compares the column in order; the author test passes, each rule still there",
+          "Both pass: each test checks only that the four names are present, and the swap keeps all four in the table",
+          "Both fail: the author test walks the table in order, so it now looks for `cited` ahead of `provenance`",
+          "The author test fails alone, since its rules now sit in a different order from the reviewer's table"],
+      a: 0, anchor: "beh-1", sec: "Behaviour 01",
+      why: "`assert_eq!` compares the whole column with `CHECKS`, order included. The author test asks only whether the brief contains `- **name**:` for each name.",
+      exl: "Captured in a clean copy, rows swapped in both hosts",
+      ex: "panicked at xtask/tests/briefs.rs:38:9: left: [\"consistent\", \"cited\", \"provenance\", \"ticket\"] … test result: FAILED. 1 passed; 1 failed" },
+    { q: "Someone renames the `.agents` reviewer table's header from `| Check |` to `| Fixed check |`, rows untouched. The author test takes its names from that table. Does it still pass?",
+      o: ["Yes: with no header found the list of names is empty, so the author test has nothing to fail on",
+          "Yes, and so does the reviewer test, since `starts_with` also matches the longer header text",
+          "Yes: the author test only reads the `.claude` reviewer table, so an `.agents` rename cannot reach it",
+          "No: `check_rows` panics when it finds no `| Check |` header, so both tests fail before comparing"],
+      a: 3, anchor: "beh-1", sec: "Behaviour 01",
+      why: "The `expect(\"a table headed | Check |\")` in `check_rows` is what stops the author test passing on an empty list, the trap in A. DOC007 would fail too, since the hosts now differ.",
+      exl: "Captured in a clean copy, .agents header renamed",
+      ex: "both tests: panicked at xtask/tests/briefs.rs:25:18: a table headed | Check | … test result: FAILED. 0 passed; 2 failed" },
+    { q: "Which change does the calibration method not ask you to follow with a rerun of the six pages?",
+      o: ["Moving the page reviewer from Sonnet to Opus at low effort, its brief and hand-over unchanged",
+          "Rewording the author brief's `cited` rule in both hosts, the reviewer brief left byte-for-byte",
+          "Changing the review line in `handover.rs` that asks the reviewer to end on `FINDINGS: N`",
+          "Rewording the `ticket` row's “Not applicable” cell in both review-artifact copies, nothing else"],
+      a: 1, anchor: "sec-context", sec: "Context",
+      why: "The calibration measures the reviewer on six fixed pages, which an author-brief change cannot reach. The other three change the reviewer's model, brief or hand-over.",
+      exl: "docs/EVALUATION.md:102–103",
+      ex: "Rerun this whenever the review brief, the reviewer's model or tools, or the review line of the hand-over (xtask/src/handover.rs) change." },
+    { q: "Reviewing an implementation-notes page, a reviewer replies REVISE: 1. a tile with no source, 2. a ticket validation item the notes never mention, 3. too long; then `Fixed checks: consistent held; provenance held; cited failed (1); ticket failed (2)` and `FINDINGS: 3`. What is wrong?",
+      o: ["The `ticket` entry: on this page the check does not apply, so it should read n/a, not failed",
+          "`FINDINGS` should be 5: each check marked failed on the `Fixed checks:` line counts on its own",
+          "Finding 3 must go: length is not a fixed check, and a REVISE may list fixed-check failures only",
+          "The held checks lack numbers: every check on that line needs a numbered finding, held or not"],
+      a: 0, anchor: "sec-model", sec: "What was done (the ticket row) and Behaviour 02",
+      why: "Implementation notes are neither a plan nor a buy-in page, so `ticket` is n/a; finding 2 can stand only on another question, such as the page's job. The line is not a finding, so 3 is right, and the question table (length included) still fails pages.",
+      exl: "review-artifact SKILL.md:28, :48, :84–85",
+      ex: "| ticket | An acceptance, scope or validation item of the ticket is neither met nor changed with its reason. | not a plan or buy-in page |" },
+    { q: "A plan page silently drops a scope item. Its ticket `docs/plans/<id>.md` exists. The reviewer renders, samples claims and replies PASS with `ticket held`, never having opened the ticket. What in this change stops the page being committed?",
+      o: ["The hand-over: it pastes the ticket's scope and acceptance into the review prompt, so the item was in front of the reviewer",
+          "`briefs.rs`: it fails when a plan-page verdict marks `ticket` held without naming the ticket file",
+          "`task-artifact verdict`: it rejects a PASS whose `Fixed checks:` line gives no evidence for `ticket`",
+          "Nothing in code: the ticket arrives as a path and no command reads the line, so it passes unless the reviewer opens the file"],
+      a: 3, anchor: "sec-leans", sec: "What this leans on, and Behaviour 02",
+      why: "The hand-over adds only the path. The verdict command parses the verdict and the count, and the tests read the briefs, never a verdict. The check is exactly as good as the reviewer's reading of the ticket; in the rerun reviewers raised the dropped kept path 3 of 3.",
+      exl: "xtask/src/handover.rs:155–157 · router.rs:119–126",
+      ex: "let ticket = format!(\"docs/plans/{id}.md\"); if root.join(&ticket).is_file() { context.push(ticket); }" }
+  ];
+
+  // One list: the CI tile's source, the checklist on the page and the reply.
+  var CI = "cargo xtask check ci > target/verification/ci.json in a clean copy of the branch head: exit 0, all nine checks passed";
+  var LEFT = [
+    { done: true, t: "`cargo xtask check ci` passes 9 of 9 at the branch head", src: CI },
+    { done: true, t: "`briefs.rs` passes, and fails when a check row is added, reordered or its header renamed", src: "Behaviour 01 and questions 3–4, captured in a clean copy" },
+    { done: false, t: "Settle or confirm the six calls on the buy-in page", src: "buy-in §05, still on the agent's calls" }
+  ];
+  var KEYS = ["A", "B", "C", "D"], answers = [], quiz = $("quiz");
+  $("scoreMax").textContent = QS.length;
+
+  function build() {
+    answers = QS.map(function () { return null; });
+    quiz.innerHTML = "";
+    QS.forEach(function (it, qi) {
+      var d = el("div", "q"); d.id = "q" + qi;
+      d.appendChild(el("p", "lab", "Question " + (qi + 1) + " of " + QS.length));
+      d.appendChild(rich("p", "qt", it.q));
+      it.o.forEach(function (o, oi) {
+        var b = el("button", "opt secondary"); b.type = "button"; b.dataset.q = qi; b.dataset.o = oi;
+        b.appendChild(el("span", "k", KEYS[oi])); b.appendChild(rich("span", "", o)); d.appendChild(b);
+      });
+      var fb = el("div", "fb"); fb.id = "fb" + qi; fb.hidden = true; d.appendChild(fb);
+      quiz.appendChild(d);
+    });
+    $("resPass").hidden = true; $("resFail").hidden = true;
+    update();
+  }
+
+  quiz.addEventListener("click", function (e) {
+    var b = e.target.closest("button.opt"); if (!b || b.disabled) return;
+    var qi = +b.dataset.q, oi = +b.dataset.o, it = QS[qi];
+    if (answers[qi] !== null) return;
+    var right = oi === it.a; answers[qi] = { pick: oi, right: right };
+    $("q" + qi).classList.add(right ? "right" : "wrong");
+    $("q" + qi).querySelectorAll("button.opt").forEach(function (x) {
+      x.disabled = true; var xo = +x.dataset.o;
+      x.classList.add(xo === oi ? (right ? "sel-right" : "sel-wrong") : xo === it.a ? "show-right" : "dim");
+    });
+    var fb = $("fb" + qi); fb.hidden = false; fb.className = "fb" + (right ? "" : " bad"); fb.innerHTML = "";
+    fb.appendChild(el("b", "", right ? "Correct" : "Not quite: the answer is " + KEYS[it.a]));
+    fb.appendChild(rich("span", "", it.why));
+    if (!right) {
+      var ex = el("div", "ex");
+      ex.appendChild(el("p", "lab", it.exl)); ex.appendChild(el("code", "", it.ex)); ex.appendChild(document.createTextNode(" "));
+      var a = el("a", "", "→ " + it.sec); a.href = "#" + it.anchor; ex.appendChild(a);
+      fb.appendChild(ex);
+    }
+    update();
+    if (answers.every(function (x) { return x !== null; })) finish();
+  });
+
+  function score() { return answers.filter(function (x) { return x && x.right; }).length; }
+
+  function finish() {
+    var s = score(), box = s === QS.length ? $("resPass") : $("resFail");
+    if (box === $("resFail")) {
+      $("failTitle").textContent = "Not yet: " + s + " of " + QS.length;
+      var ul = $("failLinks"); ul.innerHTML = ""; var seen = {};
+      answers.forEach(function (x, i) {
+        if (x.right || seen[QS[i].anchor]) return; seen[QS[i].anchor] = true;
+        var li = el("li"); li.appendChild(el("span", "", "→"));
+        var a = el("a", "", QS[i].sec); a.href = "#" + QS[i].anchor; li.appendChild(a); ul.appendChild(li);
+      });
+    }
+    box.hidden = false; box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  LEFT.forEach(function (x) {
+    var li = el("li"); li.appendChild(el("span", x.done ? "hit" : "muted", x.done ? "✓" : "○"));
+    var t = rich("span", "", x.t); t.appendChild(el("span", "src", x.src)); li.appendChild(t); $("leftPass").appendChild(li);
+  });
+
+  function update() {
+    var s = score(), n = answers.filter(function (x) { return x !== null; }).length;
+    $("scoreNow").textContent = s; $("answered").textContent = n;
+    var head = n < QS.length ? "in progress, " + n + " of " + QS.length + " answered" : (s === QS.length ? "passed" : "not passed");
+    var L = ["brief-calibration quiz: " + s + " of " + QS.length + " correct (" + head + ").", ""];
+    QS.forEach(function (it, i) {
+      var x = answers[i];
+      L.push("- Q" + (i + 1) + ": " + (x === null ? "not answered" : x.right ? "correct" : "missed (picked " + KEYS[x.pick] + ", answer " + KEYS[it.a] + "; re-read " + it.sec + ")"));
+    });
+    L.push("", "Before merge:");
+    LEFT.forEach(function (x) { L.push("- [" + (x.done ? "x" : " ") + "] " + x.t.replace(/`/g, "")); });
+    var extra = $("extra").value.trim(); if (extra) L.push("", "Also: " + extra);
+    $("reply").textContent = L.join("\n");
+  }
+
+  function copy(text, btn) {
+    var orig = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = orig; }, 1400); }
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () { btn.textContent = "Copy failed; use Show"; });
+  }
+
+  $("retry").addEventListener("click", function () { build(); quiz.scrollIntoView({ behavior: "smooth", block: "start" }); });
+  $("extra").addEventListener("input", update);
+  $("copyReply").addEventListener("click", function () { copy($("reply").textContent, $("copyReply")); });
+  $("toggleReply").addEventListener("click", function () {
+    var r = $("reply"); r.hidden = !r.hidden;
+    this.setAttribute("aria-expanded", String(!r.hidden));
+    this.textContent = r.hidden ? "Show the reply text" : "Hide the reply text";
+  });
+  $("copyPrompt").addEventListener("click", function () { copy($("promptText").textContent, $("copyPrompt")); });
+  build();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tweakable plan: next hands over the page prompt</title>
+<style>
+  .prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); max-width: var(--reading-width); }
+  .prompt-card p { margin: 0 0 var(--space-3); font-style: italic; }
+  .small-btn { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-6) 0; }
+  .chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: var(--space-1) var(--space-4); font-size: var(--text-small); }
+  .chip b { color: var(--accent); margin-inline-start: var(--space-1); }
+  .banner { display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); align-items: center; background: var(--ink); color: var(--paper); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .banner .g { font-family: var(--font-code); font-size: var(--text-small); line-height: 1.3; white-space: pre; color: var(--accent-soft); }
+  .sec-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-top: var(--space-12); border-bottom: 2px solid var(--ink); padding-bottom: var(--space-2); }
+  .sec-head h2 { margin: 0; flex: 1 1 16rem; }
+  .letter { font-family: var(--font-code); font-weight: 700; background: var(--accent); color: var(--surface); border-radius: var(--control-radius); padding: 0 var(--space-3); font-size: 1.25rem; }
+  .letter.soft { background: var(--line); color: var(--ink); }
+  .lk { font-size: var(--text-small); font-weight: 650; border-radius: 999px; padding: 0 var(--space-3); }
+  .lk.hi { background: var(--warning-soft); color: var(--warning); border: 1px solid var(--warning); }
+  .lk.lo { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+  h3.sub { margin-top: var(--space-8); text-transform: uppercase; letter-spacing: .06em; font-size: var(--text-small); color: var(--muted); }
+  .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: var(--space-6); align-items: start; }
+  @media (max-width: 52rem) { .two { grid-template-columns: minmax(0, 1fr); } }
+  .rec { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); font-family: var(--font-code); font-size: var(--text-small); overflow: hidden; }
+  .rec .t { background: var(--ink); color: var(--paper); padding: var(--space-2) var(--space-4); }
+  .rec .r { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: var(--space-2); padding: var(--space-2) var(--space-4); border-top: 1px solid var(--line); }
+  .rec .r .v { color: var(--muted); overflow-wrap: anywhere; }
+  .rec .r.old { color: var(--muted); }
+  .rec .r.new { background: var(--accent-soft); }
+  .rec .r.flag { background: var(--warning-soft); }
+  .new-badge { font-size: .7rem; background: var(--accent); color: var(--surface); border-radius: 999px; padding: 0 var(--space-2); margin-inline-start: var(--space-2); }
+  .choice { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); margin-bottom: var(--space-4); }
+  .choice .h { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--line); }
+  .choice .h .n { font-family: var(--font-code); font-weight: 700; color: var(--warning); }
+  .choice .h .ti { font-weight: 650; flex: 1 1 12rem; }
+  .choice .b { padding: var(--space-3) var(--space-4); }
+  .pick { font-size: var(--text-small); text-transform: uppercase; letter-spacing: .06em; font-weight: 650; color: var(--accent); }
+  .choice[data-v="alt"] .pick { color: var(--warning); }
+  .choice[data-v="main"] .alt, .choice[data-v="alt"] .main { display: none; }
+  .slots { list-style: none; padding: 0; margin: var(--space-3) 0; font-size: var(--text-small); }
+  .slots li { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr) 1.5rem; gap: var(--space-2); padding: var(--space-1) 0; border-bottom: 1px dashed var(--line); }
+  .slots .f { font-family: var(--font-code); color: var(--muted); }
+  .slots mark { background: var(--accent-soft); color: inherit; padding: 0 .15em; }
+  .slots li.bad mark { background: #f6dfe1; }
+  .slots .ok { color: var(--accent); font-weight: 700; }
+  .slots li.bad .ok { color: var(--danger); }
+  .code-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: var(--space-6); align-items: start; }
+  @media (max-width: 52rem) { .code-grid { grid-template-columns: minmax(0, 1fr); } }
+  .code { background: var(--ink); color: #e6efe9; border-radius: var(--radius); padding: var(--space-4) 0; font-family: var(--font-code); font-size: .8rem; line-height: 1.6; overflow-x: auto; }
+  .code div { padding: 0 var(--space-4); white-space: pre; }
+  .code .cm { color: #9db5ad; }
+  .code .kw { color: #f2c38f; }
+  .code .fl { background: rgba(242, 195, 143, .14); border-inline-start: 3px solid #f2c38f; }
+  .fn { display: inline-block; background: #f2c38f; color: var(--ink); border-radius: 999px; font-size: .7rem; padding: 0 .45em; margin-inline-start: var(--space-2); font-weight: 700; }
+  .notes { display: grid; gap: var(--space-3); font-size: var(--text-small); }
+  .notes .m { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: var(--space-2); }
+  .notes .m b { background: #f2c38f; color: var(--ink); border-radius: 999px; text-align: center; height: 1.6rem; line-height: 1.6rem; }
+  .notes p { margin: 0; }
+  .tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-4) 0 var(--space-3); }
+  .tabs button { min-height: 38px; padding: var(--space-1) var(--space-4); }
+  .tabs button[aria-selected="false"] { background: var(--surface); color: var(--ink); border-color: var(--line); }
+  .ba { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: var(--space-4); }
+  @media (max-width: 52rem) { .ba { grid-template-columns: minmax(0, 1fr); } }
+  .ba h4 { margin: 0 0 var(--space-2); font-size: var(--text-small); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .ba pre { margin: 0 0 var(--space-3); font-size: .8rem; }
+  .ba pre.ho { border-color: var(--accent); }
+  .ba .today pre { color: var(--muted); }
+  .hl { background: var(--warning-soft); }
+  .weak { border: 1px solid var(--warning); background: var(--warning-soft); border-radius: var(--radius); padding: var(--space-3) var(--space-4); margin-top: var(--space-4); }
+  .weak b:first-child { color: var(--warning); text-transform: uppercase; font-size: var(--text-small); letter-spacing: .06em; display: block; }
+  .tests td:first-child { font-family: var(--font-code); font-size: .75rem; overflow-wrap: anywhere; min-width: 13rem; }
+  .tests td { font-size: var(--text-small); }
+  .st { font-size: .75rem; font-weight: 650; border-radius: 999px; padding: 0 var(--space-2); white-space: nowrap; }
+  .st.same { background: var(--accent-soft); color: var(--accent); }
+  .st.chg { background: var(--warning-soft); color: var(--warning); }
+  .st.new { background: var(--ink); color: var(--paper); }
+  ol.seq { list-style: none; padding: 0; counter-reset: s; }
+  ol.seq li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: var(--space-3); padding: var(--space-3) 0; border-bottom: 1px solid var(--line); }
+  ol.seq li::before { counter-increment: s; content: counter(s); font-family: var(--font-code); font-weight: 700; background: var(--accent-soft); color: var(--accent); border-radius: 999px; text-align: center; height: 2rem; line-height: 2rem; }
+  ol.seq .lands { display: block; font-size: var(--text-small); color: var(--muted); }
+  ul.mech li { margin-bottom: var(--space-2); }
+  ul.mech .why { color: var(--muted); font-size: var(--text-small); }
+  .reply { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-6); margin-top: var(--space-12); }
+  .reply h2 { margin-top: 0; }
+  .rrow { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: var(--space-2); padding: var(--space-2) 0; border-bottom: 1px dashed var(--line); }
+  .rrow .k { font-family: var(--font-code); font-weight: 700; color: var(--warning); }
+  .rrow.mine .k { color: var(--danger); }
+  .carried { font-size: var(--text-small); columns: 2 22rem; column-gap: var(--space-8); padding-inline-start: var(--space-6); }
+  .carried li { break-inside: avoid; margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="eyebrow">The tweakable plan · before code · next-prompt</div>
+  <h1>Implementation plan: <code>next</code> hands over the page prompt</h1>
+  <p class="lead">Each author, review, rewrite and build step from <code>cargo xtask task-artifact next</code> gains one text to pass to the subagent unchanged. The plan is sorted by how likely you are to change each part. The record shape and the hand-over wording come first; file moves and doc updates come last.</p>
+  <div class="prompt-card">
+    <p id="the-prompt">Write an implementation plan for making <code>cargo xtask task-artifact next</code> hand over the filled-in page prompt, exemplar and output path for each author, review and rewrite step as HTML, but lead with the decisions I'm most likely to tweak: data model changes, new type interfaces and anything user-facing. Bury the mechanical work at the bottom; I trust you on that part.</p>
+    <button type="button" class="small-btn secondary" data-copy="the-prompt">Copy prompt</button>
+  </div>
+</header>
+
+<div class="chips">
+  <span class="chip">Files touched<b>15 (2 new)</b></span>
+  <span class="chip">Record schema<b>stays at 6, one optional object</b></span>
+  <span class="chip">reviews.json<b>no shape change</b></span>
+  <span class="chip">Named tests<b>3 in the ticket → 7</b></span>
+  <span class="chip">Exit codes<b>unchanged</b></span>
+</div>
+
+<div class="banner">
+  <div class="g">↑ tweak
+↓ trust</div>
+  <div><strong>Sorted by how likely you are to change it, not by build order.</strong> A holds the calls, B is the build order with the tests each step lands, C is plumbing you can skip.</div>
+</div>
+
+<section>
+  <div class="sec-head"><span class="letter">A</span><h2>Decisions you'll probably want to change</h2><span class="lk hi">High tweak likelihood</span></div>
+  <p>Three calls are new here, each with a toggle. These eight came from earlier pages; change them there.</p>
+  <ul class="carried">
+    <li><b>One hand-over text plus <code>unfilled</code></b> per page step (interview Q1)</li>
+    <li><b>Brace values in an optional record object</b>, filled by the stub (Q2, Pair C)</li>
+    <li><b>Prompts compiled in from the guide</b>, keyed by a File column (Q3, Pair A)</li>
+    <li><b>Full findings via <code>verdict --notes -</code></b>, capped at 64 KiB (Q4, Pair D)</li>
+    <li><b>Two <code>{task}</code> values</b>, verb and noun (Q5)</li>
+    <li><b>Missing values stay as braces</b>, listed, exit unchanged (Q6)</li>
+    <li><b>Answering rule: one source in the guide</b>, on interview and buy-in (Q7, Pair B)</li>
+    <li><b>Build step carries the notes hand-over</b>; kept path only on best (B06, B07)</li>
+  </ul>
+
+  <h3 class="sub">A1 · Data model: the record's <code>prompt</code> object</h3>
+  <div class="two">
+    <div>
+      <div class="rec">
+        <div class="t">harness/tasks/next-prompt.json</div>
+        <div class="r new"><span>prompt<span class="new-badge">NEW</span></span><span class="v">optional object; absent on every record today</span></div>
+        <div class="r new"><span>&nbsp;.task</span><span class="v">"make `cargo xtask task-artifact next` hand over the filled-in page prompt, …"</span></div>
+        <div class="r flag"><span>&nbsp;.task_noun ①</span><span class="v" id="rec-noun"></span></div>
+        <div class="r new"><span>&nbsp;.area</span><span class="v">"xtask's page router (xtask/src/router.rs) and the prompt table in docs/ARTIFACTS.md"</span></div>
+        <div class="r flag"><span>&nbsp;.problem ②</span><span class="v">"`cargo xtask task-artifact next` tells the orchestrating agent which page step comes next … by hand"</span></div>
+        <div class="r new"><span>&nbsp;.reference</span><span class="v">one code path, singular, written to open a sentence (reference map, edge cases)</span></div>
+      </div>
+      <p class="muted" style="font-size:var(--text-small)">Values as this task's pages were started with. Checked in <code>next</code>, never in <code>task_record::read</code>, which rejects the whole record on a blank string (<code>task_record.rs:85</code>). <code>reviews.json</code> keeps its shape; only <code>notes</code> grows.</p>
+    </div>
+    <div>
+      <div class="choice" id="c1" data-v="main">
+        <div class="h"><span class="n">Choice ①</span><span class="ti">What shape <code>task_noun</code> takes</span><button type="button" class="small-btn secondary" data-toggle="1">View alternative →</button></div>
+        <div class="b">
+          <div class="pick main">Plan's pick: a noun phrase naming what is built</div>
+          <div class="pick alt">Alternative: the gerund, as this task's pages were filled</div>
+          <p class="main" style="margin:var(--space-2) 0">A gerund reads in two of the five noun slots; a noun phrase naming the thing reads in all five. Filled into the guide's rows by a prototype parse:</p>
+          <p class="alt" style="margin:var(--space-2) 0">"making X" is what this task's interview and plan prompts used. Filled in by the same prototype, it breaks three rows, and a cheaper model will not fix them:</p>
+          <ul class="slots" id="slots"></ul>
+          <p class="main" style="margin:0;font-size:var(--text-small)"><b>Cost:</b> the stub asks for a phrase people don't write naturally, so its placeholder must show the frame: <i>"reads after 'build' and 'shipping'"</i>.</p>
+          <p class="alt" style="margin:0;font-size:var(--text-small)"><b>Pick this if:</b> you'd rather reword the three rows. The ticket rules out rewording prompts, so that needs a ticket change.</p>
+        </div>
+      </div>
+      <div class="choice" id="c2" data-v="main">
+        <div class="h"><span class="n">Choice ②</span><span class="ti">Is a stub placeholder a value?</span><button type="button" class="small-btn secondary" data-toggle="2">View alternative →</button></div>
+        <div class="b">
+          <div class="pick main">Plan's pick: a value wrapped in &lt;…&gt; counts as unfilled</div>
+          <div class="pick alt">Alternative: only absent, null or blank is unfilled</div>
+          <p style="margin:var(--space-2) 0">Stub placeholders such as <code>"&lt;Problem, one sentence&gt;"</code> (write-ticket <code>SKILL.md:64</code>) pass <code>nonempty</code>. A half-filled stub gives the brainstorm:</p>
+          <pre class="main" style="font-size:.8rem;margin:0">Prompt: Here's the problem: <span class="hl">{problem}</span>. Search the codebase …
+"unfilled": ["problem"]</pre>
+          <pre class="alt" style="font-size:.8rem;margin:0">Prompt: Here's the problem: <span class="hl">&lt;Problem, one sentence&gt;</span>. Search the codebase …
+"unfilled": []</pre>
+          <p style="margin:var(--space-2) 0 0;font-size:var(--text-small)" class="main"><b>Cost:</b> a real value that begins with &lt; and ends with &gt; is treated as missing. None of this task's values has that shape.</p>
+          <p style="margin:var(--space-2) 0 0;font-size:var(--text-small)" class="alt"><b>Pick this if:</b> you want <code>unfilled</code> to mean exactly "no value", and trust the stub's author to replace every placeholder.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub">A2 · New type interfaces</h3>
+  <div class="code-grid">
+    <div class="code" aria-label="Proposed Rust interfaces">
+<div class="cm">// xtask/src/task_record.rs: one field on Task, beside tier</div>
+<div>    #[serde(default)]</div>
+<div>    <span class="kw">pub</span> prompt: Option&lt;Prompt&gt;,</div>
+<div>#[derive(Deserialize, Default)]</div>
+<div class="fl">#[serde(default, deny_unknown_fields)]<span class="fn">1</span></div>
+<div><span class="kw">pub struct</span> Prompt {</div>
+<div>    <span class="kw">pub</span> task: Option&lt;String&gt;,      <span class="cm">// "I'm about to {task}"</span></div>
+<div class="fl">    <span class="kw">pub</span> task_noun: Option&lt;String&gt;, <span class="cm">// the other five {task}s</span><span class="fn">2</span></div>
+<div>    <span class="kw">pub</span> area, problem, reference: Option&lt;String&gt;,</div>
+<div>}</div>
+<div> </div>
+<div class="cm">// xtask/src/handover.rs (new)</div>
+<div class="fl"><span class="kw">const</span> GUIDE: &amp;str = include_str!("../../docs/ARTIFACTS.md");<span class="fn">3</span></div>
+<div><span class="kw">pub struct</span> Row { file: &amp;'static str, prompt: &amp;'static str, exemplar: String }</div>
+<div><span class="kw">pub fn</span> rows() -&gt; Result&lt;Vec&lt;Row&gt;&gt;</div>
+<div><span class="kw">pub fn</span> answering_rule() -&gt; Result&lt;String&gt;</div>
+<div class="fl"><span class="kw">pub enum</span> For&lt;'a&gt; { Author, Review,<span class="fn">4</span></div>
+<div>    Rewrite { of: usize, round: usize, notes: &amp;'a str } }</div>
+<div><span class="kw">pub struct</span> Handover { <span class="kw">pub</span> text: String, <span class="kw">pub</span> unfilled: Vec&lt;&amp;'static str&gt; }</div>
+<div><span class="kw">pub fn</span> handover(root: &amp;Path, id: &amp;str, page: &amp;str,</div>
+<div>                task: &amp;Task, kind: For) -&gt; Result&lt;Handover&gt;</div>
+<div> </div>
+<div class="cm">// xtask/src/main.rs, verdict arm: only when --notes is exactly "-"</div>
+<div class="fl"><span class="kw">const</span> NOTES_CAP: usize = 64 * 1024;<span class="fn">5</span></div>
+<div><span class="kw">fn</span> piped_notes() -&gt; Result&lt;String&gt;</div>
+<div> </div>
+<div class="cm">// the step next prints, for author, review, rewrite and build</div>
+<div class="fl">{ "action", "page", "round", "say", "handover", "unfilled" }<span class="fn">6</span></div>
+    </div>
+    <div class="notes">
+      <div class="m"><b>1</b><p>Copies <code>tier</code>'s move (<code>task_record.rs:33</code>) with no schema bump. A typo such as <code>task_nuon</code> fails loudly. The one-way cost is that an xtask built before this change refuses a record that has the field (B03).</p></div>
+      <div class="m"><b>2</b><p>Choice ①. Only the blindspot row takes <code>task</code>; the match test asserts that it is the only row starting "I'm about to {task}".</p></div>
+      <div class="m"><b>3</b><p>The first file outside the crate compiled into the shipped binary. Renaming the guide stops every xtask command from compiling. A guide edit changes what <code>next</code> prints without a receipt (Pair A).</p></div>
+      <div class="m"><b>4</b><p>Choice ③. <code>notes</code> is the last revise row's full text; <code>of</code> and <code>round</code> feed "rewrite 1 of 2". No kept path.</p></div>
+      <div class="m"><b>5</b><p>Reads bytes up to cap + 1, checks the length, then decodes, and refuses empty input. Copying <code>artifact_hook.rs:10</code> as written would report an over-cap note as bad UTF-8 (Pair D).</p></div>
+      <div class="m"><b>6</b><p>Two fields are added; none change. No router test compares a whole step (<code>tests/router.rs:25</code>, 58, 105, 182, 247 read single fields), so the existing eight pass unchanged. Best, commit and complete steps get no hand-over.</p></div>
+    </div>
+  </div>
+
+  <h3 class="sub">A3 · What the orchestrator sees</h3>
+  <p>Left: today's step, run against this task. Right: the planned step, from a scratch prototype of <code>handover()</code>. With Choice ① on the gerund, the plan.html prompt below is this page's own prompt, word for word.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="ba" id="panel" role="tabpanel"></div>
+
+  <div class="two" style="margin-top:var(--space-4);grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)">
+  <div class="choice" id="c3" data-v="main" style="margin:0">
+    <div class="h"><span class="n">Choice ③</span><span class="ti">Which findings a second rewrite gets</span><button type="button" class="small-btn secondary" data-toggle="3">View alternative →</button></div>
+    <div class="b">
+      <div class="pick main">Plan's pick: the last revise row only</div>
+      <div class="pick alt">Alternative: every revise row for the page, oldest first</div>
+      <p style="margin:var(--space-2) 0">The only twice-revised page so far is router-polish's reference.html. The end of its round 3 hand-over, from the logged notes:</p>
+      <pre class="main" style="font-size:.8rem;margin:0">Round 2 findings; address every one:
+Note 2's repeated-row case is false for revise rows (round differs); an identical repeat needs pass rows (pass, edit, pass, revert, pass). <span class="hl">Still ~20% over length.</span></pre>
+      <pre class="alt" style="font-size:.8rem;margin:0">Round 1 findings:
+False: no task record carries tier (three of six do); 'never written back' uncited; section 1 bullets 2-3 and two edge rows repeat the notes; 6,194 px vs 4,680.
+Round 2 findings; address every one:
+Note 2's repeated-row case is false for revise rows (round differs); an identical repeat needs pass rows (pass, edit, pass, revert, pass). Still ~20% over length.</pre>
+      <p style="margin:var(--space-2) 0 0;font-size:var(--text-small)" class="main"><b>Why:</b> a fresh reviewer judges the whole page again (ARTIFACTS.md:46–50), so the last review states what still fails, as round 2 did with the length. <b>Cost:</b> the author can't see round 1's findings that round 2 did not re-check, such as the tier claim, and may undo those fixes.</p>
+      <p style="margin:var(--space-2) 0 0;font-size:var(--text-small)" class="alt"><b>Pick this if:</b> the author should see the history. Costs up to 128 KiB in a second rewrite.</p>
+    </div>
+  </div>
+
+  <div class="weak" style="margin:0"><b>Weakest part of this plan</b>A rewrite is only as good as what the orchestrator pipes into <code>verdict --notes -</code>. Pipe a summary and the rewrite gets a summary; nothing notices (brainstorm #3). The 24 rows in workflow-router's and router-polish's logs are 100–276-character digests (B07). The review say asks for "its whole reply"; a minimum length would refuse honest one-line passes, so nothing enforces it.</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="letter">T</span><h2>The tests, against the ticket</h2><span class="lk hi">Changes the ticket</span></div>
+  <div class="table-scroll">
+  <table class="tests">
+    <thead><tr><th>Test</th><th>Asserts</th><th>Ticket</th></tr></thead>
+    <tbody>
+      <tr><td>next_hands_over_the_filled_in_prompt<br><small>tests/router.rs · step 3</small></td><td>With every <code>prompt</code> value set, the author hand-over holds the filled prompt, exemplar repo path, output path, task context and earlier pages; <code>unfilled</code> is empty; exit 0.</td><td><span class="st chg">changed</span> values come from the record only; the ticket file is not read (B02)</td></tr>
+      <tr><td>review_and_rewrite_steps_carry_their_prompt<br><small>tests/router.rs · step 4</small></td><td>Review carries the same filled prompt, exemplar and earlier pages; its say ends <code>--notes -</code>. After a revise piped through stdin, the rewrite carries those notes byte for byte, backticks and <code>$</code> included.</td><td><span class="st chg">changed</span> drops "the kept version's path" (B07, interview Q4)</td></tr>
+      <tr><td>next_prompts_match_the_artifacts_guide<br><small>handover.rs unit · step 1</small></td><td>File column equals <code>DISCOVERY</code>, <code>NOTES</code>, <code>FINAL</code> in order; braces are the four; only blindspots.html starts "I'm about to {task}"; exemplars exist; the answering rule is found.</td><td><span class="st same">as named</span></td></tr>
+      <tr><td>build_step_hands_over_the_notes_prompt<br><small>tests/router.rs · step 3</small></td><td>After five passed, committed discovery pages, the build step carries the notes prompt, exemplar 09 and implementation.html's path.</td><td><span class="st new">new</span> B06</td></tr>
+      <tr><td>missing_values_stay_as_braces<br><small>tests/router.rs · step 3</small></td><td>No <code>prompt</code> object: braces stay in the text and are listed in <code>unfilled</code>; exit 0. A <code>&lt;…&gt;</code> value counts as unfilled.</td><td><span class="st new">new</span> Q6, Choice ②</td></tr>
+      <tr><td>verdict_reads_full_notes_from_stdin<br><small>tests/router.rs · step 4</small></td><td>65,536 bytes pass; 65,537 are refused as too long even when the cut splits a two-byte character; empty input and invalid UTF-8 are refused; other values stay literal.</td><td><span class="st new">new</span> Q4</td></tr>
+      <tr><td>prompt_values_are_optional_and_strict<br><small>task_record.rs unit · step 2</small></td><td>A missing, <code>null</code> or blank <code>prompt</code> value parses. An unknown key inside <code>prompt</code> is refused.</td><td><span class="st new">new</span> Pair C</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><b>Where this plan changes the ticket</b> (docs/plans/next-prompt.md): two acceptance tests are reworded as marked. Four tests are added. Scope changes from "possibly task_record.rs or the ticket skill" to both, plus a new <code>xtask/src/handover.rs</code>, <code>xtask/src/main.rs</code>, <code>docs/COMPLETION.md</code>, <code>examples/task-record.json</code> and the <code>.agents</code> copy of write-ticket. Out of scope is unchanged. The guide gains a column and a quoted sentence, but no prompt is reworded. Choice ① picks a phrase that fits the rows as they are.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="letter">B</span><h2>Sequencing</h2><span class="lk lo">Build order</span></div>
+  <p>Each step is one commit that passes <code>cargo xtask check ci</code>; the tests table shows which step lands each test. This page is the last discovery page, so all five are committed before step 1.</p>
+  <ol class="seq">
+    <li><span><strong>Guide and parser.</strong> Add the File column and the quoted answering rule to docs/ARTIFACTS.md. Add <code>handover.rs</code> with <code>rows()</code> and <code>answering_rule()</code>. Nothing prints them yet.</span></li>
+    <li><span><strong>Record field.</strong> Add <code>Prompt</code> to <code>Task</code> and the <code>prompt</code> values to this task's own record in the same commit, because a record test parses every file in harness/tasks/ (<code>task_record.rs:200–215</code>). Update the stub, the example record and COMPLETION.md.</span></li>
+    <li><span><strong>Author and build hand-overs.</strong> <code>handover()</code> fills braces, and the router puts <code>handover</code> and <code>unfilled</code> on author and build steps. This is the first product slice; <code>next</code> then says build, and implementation.html is started from that step's own hand-over, as the ticket's Validation asks.</span></li>
+    <li><span><strong><code>verdict --notes -</code>, then review and rewrite hand-overs.</strong> Stdin first, so the rewrite test can record real findings through it.</span></li>
+    <li><span><strong>Docs, readiness and receipt.</strong> Update steps 1 and 5 of the guide, the README line, readiness.json and the transition receipt. Then buy-in and quiz from <code>next</code>'s hand-overs, <code>check ci</code>, and <code>complete</code>.</span></li>
+  </ol>
+</section>
+
+<section>
+  <div class="sec-head"><span class="letter soft">C</span><h2>Mechanical work (trust me)</h2><span class="lk lo">Low tweak likelihood</span></div>
+  <p>Plumbing the feature needs, with no judgment calls. Collapsed on purpose.</p>
+  <details>
+    <summary>Boring but necessary · 10 items, folded into the steps above</summary>
+    <ul class="mech">
+      <li>Put the parse, fill and assembly in a new <code>xtask/src/handover.rs</code>; <code>router.rs</code> only calls it from <code>page_step</code> and the build arm. <span class="why">router.rs is 376 lines. SIZE001 (<code>checks.rs:82</code>, run by <code>cargo xtask architecture</code>) refuses a .rs file over the 400 lines set in harness/config.json.</span></li>
+      <li>Add <code>piped_notes()</code> to main.rs's verdict arm, and write <code>--notes TEXT|-</code> in the help line (<code>main.rs:74</code>), the usage error (118) and the review say (<code>router.rs:234</code>).</li>
+      <li>Add a <code>run_stdin</code> helper in <code>tests/support/hooks.rs</code>. <span class="why"><code>run_raw</code> and <code>Fixture::run</code> use <code>.output()</code>, which gives the child no stdin.</span></li>
+      <li>Leave the fixture record (<code>support/mod.rs:99–105</code>) without <code>prompt</code>, so existing tests keep covering "no values". Tests that need values write them.</li>
+      <li>Add the <code>prompt</code> object to the write-ticket stub in <code>.claude/skills/</code> and <code>.agents/skills/</code> with the same edit; DOC007 keeps the two identical. Placeholders say: verb phrase after "I'm about to"; noun phrase that reads after "build" and "shipping"; problem with no final period (the row adds one); one reference, singular.</li>
+      <li>Add a <code>prompt</code> bullet to the record field list in docs/COMPLETION.md (lines 82–98) and the object to examples/task-record.json.</li>
+      <li>Docs: in ARTIFACTS.md step 1, tell the orchestrator to hand over <code>handover</code> verbatim; in step 5, pipe the reviewer's whole reply to <code>--notes -</code>. Lines 116–118 point to the quoted rule rather than restate it. Update the README sentence at line 172.</li>
+      <li>harness/readiness.json: add <code>xtask/src/handover.rs</code> to task-artifacts' implementation and the seven test names to its tests.</li>
+      <li>Write a transition receipt in harness/transitions/next-prompt.json for <code>xtask/</code>, <code>.claude/</code> and docs/COMPLETION.md, then run <code>cargo xtask gaps --base origin/main</code>.</li>
+      <li>Rewrite this record's <code>remaining</code> list to the seven test names and the two Validation commands.</li>
+    </ul>
+  </details>
+</section>
+
+<section class="reply" aria-labelledby="reply-h">
+  <h2 id="reply-h">Your reply</h2>
+  <p>The three choices above build this reply. Flip any choice to change its line, add anything else, then copy it back.</p>
+  <div id="rrows"></div>
+  <label>Anything else (optional)<textarea id="extra" style="min-height:4rem" placeholder="e.g. name the module prompts.rs; carry the answering rule on review steps too"></textarea></label>
+  <button type="button" id="copy-reply">Copy reply</button> <span id="copied" class="muted" aria-live="polite"></span>
+</section>
+
+<footer>next-prompt · tweakable plan, before code. Follows the blindspot pass (B01–B08), the brainstorm (#1–#9), the interview (Q1–Q7) and the reference map (Pairs A–D).</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var NOUN = {
+    main: "the filled-in page prompt hand-over in `cargo xtask task-artifact next`",
+    alt: "making `cargo xtask task-artifact next` hand over the filled-in page prompt, exemplar and output path for each author, review and rewrite step"
+  };
+  var SLOTS = [
+    ["interview", "… anything still ambiguous in ", ".", 1],
+    ["reference", "{reference} already behaves the way ", " should.", 0],
+    ["plan", "Write an implementation plan for ", " as HTML, …", 1],
+    ["implementation", "Keep implementation notes as you build ", ".", 0],
+    ["buy-in", "… get buy-in on shipping ", ".", 0]
+  ];
+  var SHORT = { main: "the filled-in page prompt hand-over in `next`", alt: "making `next` hand over the filled-in page prompt" };
+  var state = { 1: "main", 2: "main", 3: "main" };
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  function renderSlots() {
+    var v = state[1], h = "";
+    SLOTS.forEach(function (s) {
+      var ok = v === "main" || s[3];
+      h += '<li class="' + (ok ? "" : "bad") + '"><span class="f">' + s[0] + '</span><span>' + esc(s[1]) + '<mark>' + esc(SHORT[v]) + '</mark>' + esc(s[2]) + '</span><span class="ok" aria-label="' + (ok ? "reads" : "breaks") + '">' + (ok ? "✓" : "✗") + '</span></li>';
+    });
+    $("slots").innerHTML = h;
+    $("rec-noun").textContent = '"' + NOUN[v] + '"';
+  }
+
+  var CTX = "Task context: harness/tasks/next-prompt.json, docs/plans/next-prompt.md\n";
+  var PLAN = "Write an implementation plan for @ as HTML, but lead with the decisions I'm most likely to tweak: data model changes, new type interfaces and anything user-facing. Bury the mechanical work at the bottom; I trust you on that part.";
+  var RULE = "When no one answers: If no one answers the discovery pages, answer each interview question with your recommendation, label it as the agent's call, and carry the questions still open into the buy-in doc.\n";
+  var TABS = [
+    { id: "author", label: "Author", today: '"action": "author", "page": "plan.html", "round": 1,\n"say": "Start a fresh artifact-author on plan.html with its prompt and exemplar (docs/ARTIFACTS.md) and the task context."',
+      say: "Start a fresh artifact-author on plan.html and give it the handover verbatim.", unfilled: "[]",
+      text: function (n) { return "Write harness/task-artifacts/next-prompt/plan.html.\nPrompt: " + PLAN.replace("@", n) + "\nExemplar: examples/thariq/08-implementation-plan.html\n" + CTX + "Pages so far: blindspots.html, interventions.html, interview.html, reference.html"; } },
+    { id: "review", label: "Review", today: '"action": "review", "page": "plan.html", "round": 1,\n"say": "Start a fresh artifact-reviewer, never the author, on plan.html; then record it: cargo xtask task-artifact verdict … --findings N --notes TEXT"',
+      say: "Start a fresh artifact-reviewer, never the author, and give it the handover verbatim; then pipe its whole reply into: cargo xtask task-artifact verdict --task next-prompt --page plan.html --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes -", unfilled: "[]",
+      text: function (n) { return "Review harness/task-artifacts/next-prompt/plan.html.\nThe prompt it answers: " + PLAN.replace("@", n) + "\nExemplar: examples/thariq/08-implementation-plan.html\n" + CTX + "Pages before it: blindspots.html, interventions.html, interview.html, reference.html"; } },
+    { id: "rewrite", label: "Rewrite", today: '"action": "rewrite", "page": "interview.html", "round": 2,\n"say": "Start a fresh artifact-author to rewrite interview.html from the round 1 findings (rewrite 1 of 2)."',
+      say: "Start a fresh artifact-author and give it the handover verbatim (rewrite 1 of 2).", unfilled: "[]",
+      note: "This task's interview.html after its round 1 revise. The findings are the row's logged notes; under the plan they would be the reviewer's whole reply.",
+      text: function (n) { return "Rewrite harness/task-artifacts/next-prompt/interview.html (rewrite 1 of 2).\nPrompt: Interview me one question at a time about anything still ambiguous in " + n + ". Prioritize questions where my answer would change the architecture.\nExemplar: examples/thariq/06-interview.html\n" + CTX + "Pages so far: blindspots.html, interventions.html\n" + RULE + "Round 1 findings; address every one:\nREVISE. 1 (blocking): Q4 option 1 and its leanWhy describe verdict reading --notes from stdin and the guide saying to pipe the reviewer's reply as existing behavior; neither exists (main.rs verdict arm takes --notes as a plain argument; …). 2 (non-blocking): 39.5 KB vs 27 KB; trim why-paragraphs that repeat their evidence block …"; } },
+    { id: "build", label: "Build", today: '"action": "build", "page": "implementation.html", "round": 1,\n"say": "Discovery is done. Build and commit the first product slice, then write implementation.html and commit it before the last product commit."',
+      say: "Discovery is done. Build and commit the first product slice, then start a fresh artifact-author on implementation.html with the handover, and commit it before the last product commit.", unfilled: "[]",
+      text: function (n) { return "Write harness/task-artifacts/next-prompt/implementation.html.\nPrompt: Keep implementation notes as you build " + n + ". When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going.\nExemplar: examples/thariq/09-implementation-notes.html\n" + CTX + "Pages so far: blindspots.html, interventions.html, interview.html, reference.html, plan.html"; } },
+    { id: "missing", label: "No values", today: '"action": "build", "page": "implementation.html", "round": 1,\n"say": "Discovery is done. Build and commit the first product slice, then write implementation.html …"\n(artifact-harness, run today: exit 0)',
+      say: "Discovery is done. … start a fresh artifact-author on implementation.html with the handover … First replace {task} in it: the record's prompt has no value for it.", unfilled: '["task"]',
+      note: "artifact-harness: a partial standard task from before the field, with five discovery pages and no plan file. The exit code stays 0.",
+      text: function () { return "Write harness/task-artifacts/artifact-harness/implementation.html.\nPrompt: Keep implementation notes as you build {task}. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going.\nExemplar: examples/thariq/09-implementation-notes.html\nTask context: harness/tasks/artifact-harness.json\nPages so far: blindspots.html, interventions.html, interview.html, reference.html, plan.html"; } }
+  ];
+  var cur = 0;
+  function renderTabs() {
+    var h = "";
+    TABS.forEach(function (t, i) { h += '<button type="button" role="tab" aria-selected="' + (i === cur) + '" data-tab="' + i + '">' + t.label + '</button>'; });
+    $("tabs").innerHTML = h;
+    var t = TABS[cur], n = NOUN[state[1]];
+    var body = esc(t.text(n)).replace(/\{task\}/g, '<span class="hl">{task}</span>');
+    $("panel").innerHTML = '<div class="today"><h4>Today</h4><pre>' + esc(t.today) + '</pre></div>' +
+      '<div><h4>Planned step</h4><pre>"say": "' + esc(t.say) + '",\n"unfilled": ' + esc(t.unfilled) + ',\n"handover": "…" (' + t.text(n).length + ' characters, one escaped line in the JSON)</pre>' +
+      '<h4>handover, as the subagent receives it</h4><pre class="ho">' + body + '</pre>' + (t.note ? '<p class="muted" style="font-size:var(--text-small);margin:0">' + esc(t.note) + '</p>' : '') + '</div>';
+    $("tabs").querySelectorAll("button").forEach(function (b) {
+      b.addEventListener("click", function () { cur = +b.getAttribute("data-tab"); renderTabs(); });
+    });
+  }
+
+  var REPLY = {
+    1: { main: "Keep ①: task_noun is a noun phrase naming what is built.", alt: "Switch ①: task_noun is the gerund (\"making …\"); reword the reference, notes and buy-in rows to fit, and change the ticket's out-of-scope line." },
+    2: { main: "Keep ②: a <…> placeholder value counts as unfilled.", alt: "Switch ②: only absent, null or blank counts as unfilled; placeholders are handed over as written." },
+    3: { main: "Keep ③: a rewrite gets the last revise row's notes only.", alt: "Switch ③: a rewrite gets every revise row's notes for the page, oldest first." }
+  };
+  function replyText() {
+    var lines = ["Plan for next-prompt:"];
+    [1, 2, 3].forEach(function (k) { lines.push(REPLY[k][state[k]]); });
+    var x = $("extra").value.trim();
+    if (x) lines.push(x);
+    return lines.join("\n");
+  }
+  function renderReply() {
+    var h = "";
+    [1, 2, 3].forEach(function (k) {
+      h += '<div class="rrow' + (state[k] === "alt" ? " mine" : "") + '"><span class="k">' + "①②③"[k - 1] + '</span><span>' + esc(REPLY[k][state[k]]) + '</span></div>';
+    });
+    $("rrows").innerHTML = h;
+  }
+
+  function render() { renderSlots(); renderTabs(); renderReply(); }
+  document.querySelectorAll("[data-toggle]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var k = +b.getAttribute("data-toggle");
+      state[k] = state[k] === "main" ? "alt" : "main";
+      $("c" + k).setAttribute("data-v", state[k]);
+      b.textContent = state[k] === "alt" ? "← Back to plan's pick" : "View alternative →";
+      render();
+    });
+  });
+
+  function copy(text, btn, done) {
+    var ok = function () { done(); };
+    var fallback = function () {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); ok(); } catch (e) {}
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fallback);
+    else fallback();
+  }
+  document.querySelectorAll("[data-copy]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      copy($(b.getAttribute("data-copy")).textContent, b, function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy prompt"; }, 1600); });
+    });
+  });
+  $("copy-reply").addEventListener("click", function () {
+    copy(replyText(), this, function () { $("copied").textContent = "Copied"; setTimeout(function () { $("copied").textContent = ""; }, 1600); });
+  });
+  render();
+})();
+</script>
+</body>
+</html>

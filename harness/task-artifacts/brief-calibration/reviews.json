@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "blindspots.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "8051c987c1e0bb69c31a701cdc305c43c2ed88878df0cbab164f7bf81a7b251d",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that the brief already fails uncited claims yet two of three reviewers still accepted the \"9/9\" tile, because step 2 sends them to confirm the claim. Separately, the stated validation (more subtle findings, committed pages still pass) conflicts on the committed plan page, which was raised against the kept-path requirement. Neither is visible from the diff, the code or the docs.\nChecked: render clean (no console errors, requests, local files, overflow); interactions read from script (fold checkboxes and radios rebuild chips and final prompt; copy fallback); claims true: review-artifact SKILL.md 17-22, 32, 36, 59-60; ARTIFACTS.md 61-62, 139-140; author skill 37-38; handover.rs:204; checks.rs:169-177; .claude protected, .agents not; administrative() excludes skill folders; reviewer tools have no click; reviews.json:80 and plan.html:191; draft quotes exact; /target/ gitignored; xtask diff since 3c1aa8e 684 lines; next-prompt.md:27; skill copies identical. Length 33 KB vs 27 KB, no filler; cards 05 and 07 lean to harness mechanics but bear on the rerun.\nFINDINGS: 0",
+      "findings": 0,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "interventions.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "be9adec198446c1590aebf21155b0013864e853e29a53141d941391dc0718367",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. The page shows that three of the four missed findings were visible on the page itself, and maps ten interventions to the files and line ranges where each would land, with the findings each targets (R, C, U, T). The code, docs and calibration record don't say this quickly.\nRendering clean (no console errors, requests, local files, overflow); one desktop tile viewed; controls not clicked, so reply bar, coverage counters and scope list unchecked.\nClaims checked: miss rates match docs/plans/brief-calibration.md:55-70; four wrong-prompt reviews per :65-69 support #5; reference.round1.html:459 reply line; buy-in.html:209-211 tiles with no command; ticket at 210807e names the kept path, plan.html:283 \"No kept path\", 9be3ba9 rewrote the ticket; handover.rs:191-193 answering rule; transitions.rs:40 protects xtask/.\nJob and form: ten interventions from a brief sentence to a seeded-defect corpus, each with size, path, found-in-code and cost; #3 and #4 marked as the ticket's plan; coverage bar and scope list; copyable reply. Length 36 KB vs 30 KB, acceptable for ten items.\n1. Minor, not blocking: #10's data-files value, \"a committed fixture folder\", is a description rather than a path, so the reply's \"Add to the ticket's scope\" line would show a description where a path belongs.\nFINDINGS: 0 (one minor note listed)",
+      "findings": 1,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "interview.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "eaf72863b6eb67c446211db24fc0c2c168617bde896302a9d428b4c7da5f8873",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. The page shows how each of 8 open design choices would change the calibrated briefs, each tied to a committed buy-in tile, a stored review row or a line in handover.rs, and the answers assemble into a copyable reply.\nChecked: draft SHA-256 and sizes (40074, 47053, 37052) match reviews.json round-1 rows; committed buy-in.html has \"cargo test\" 0 times, \"check ci\" once, \"93\" only at :189 and :210, tiles at :209-214, the draft has \"check ci\" 0 times; handover.rs :203-205 and :154-158; SKILL.md step 2 at :17, grounded row :32, discovery rule :59; EVALUATION.md criteria before running; host copies identical; 8 passing log rows with 2-4 findings; .gitignore ignores /target/; administrative() excludes the proposed calibration folder; ticket record supports the wrong-prompt claim. Render clean on desktop and phone. Controls read from script: Q3 drives Q4 sketch names, Q5 drives Q6's buy-in row, the reply follows every pick and lists open items for the buy-in doc.\nNon-blocking:\n1. Long next to the exemplar (8 questions vs 7, each with evidence and a \"why the agent picked\" paragraph); the \"Not asked\" box mostly restates earlier pages and could be cut.\n2. Q2 option 3 (\"both\") is a weak option.\n3. Q8 (when to rerun) has no evidence block.\nFINDINGS: 3",
+      "findings": 3,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "reference.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "12b66406245be17a12e6ad2417f4966eeee3d3b149a829f4d9d653880ff5c054",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that the reviewer table's length row works because both briefs use one yardstick, that the four missed defects fall into gaps with no shared rule (reply contradicting its page, reconstructed output, uncited tile, dropped ticket item), and that the proposed fixed checks differ from the table in order, an n/a column and a PASS report line.\nChecked: review-artifact SKILL.md:25-26, 28-37, 59-60, 64-66 and author-artifact SKILL.md:18-24, 31-47 match; host copies identical; ARTIFACTS.md:136-141 allows one short label; handover.rs:154-158 passes the ticket as a path, :204 has FINDINGS; note 7 holds (\"cited\" once inside \"uncited\" in the reviewer brief, 0 in author; \"reply\" twice in each); reference.round1.html:459, buy-in.round1.html:213 (no \"check ci\"), implementation.round1.html:172 and :255, plan.html:283, buy-in.html:209-214 as quoted. Calibration counts taken from the ticket. Render: problems false; 5659 px vs 4680, 35 KB vs 36.7 KB; tiles 03 and 07 clean. Interactions read from script: flags rebuild the reply, hover links counterparts.\nMinor, not blocking:\n1. About 1,000 px taller than the exemplar; section 3 (preserved, changed, left out) partly repeats Pair C's notes and could be trimmed.\n2. Pair C is a sketch of the target and is labelled as one.\nFINDINGS: 0 (two minor notes listed)",
+      "findings": 2,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "plan.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "c9d7555ca1e23326c701587f1f10852a0e15d6405cb687a5e61f3bed810efc59",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that the four fixed checks, as the plan words them, pass or fail each calibration page as intended, and which wording choices flip a verdict: the committed buy-in page's pass, the plan page's REVISE, and the three extra failures in next-prompt's log.\nRender clean (no console errors, requests, local files, overflow); first desktop tile viewed; interactions read from script, not clicked.\nChecked: \"cited\" once in review-artifact SKILL.md, inside \"uncited\" at :32; \"| cited |\" 0 times; \"reply\" twice in each brief; handover.rs:204 and :154-158; EVALUATION.md:38-40; brief-calibration.md:19; author step 5 at SKILL.md:37-38; readiness.json:107; checks.rs:155; buy-in.html:209-212 tiles and :214 check ci sentence; buy-in.round1.html:213; plan.html:283; .gitignore:1; implementation draft 5/7, In progress, --notes - finding; drafts total 124179 bytes; no outside citation of step numbers.\nMinor:\n1. Short as content allows: the A3 flow strip and most A4 \"met\" rows are skimmable; 44.8 KB vs 37 KB; fold unchanged steps and all-met rows into one line each.\n2. About the feature: A1 is labelled \"Data model\" though the artifacts are Markdown briefs and a test; Choice 4 is repository logistics.\n3. Interactions: Choice 2 changes only its text, the expected-verdict row and the reply line; all four feed the reply, none decorative.\nFINDINGS: 3",
+      "findings": 3,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "implementation.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "6e4be004e2f3245ae2888fd7d912da305453819eec996c5cccf2c99df9f075e5",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n1. consistent fails, in the \"Every defect the checks target was raised every time\" table, against the \"The rerun split across two brief wordings\" entry. That entry's conservative choice is to \"Report each round in its own column, so no count claims runs it didn't have.\" The table's \"New brief\" column does the opposite for the three draft rows: \"4 of 4\" is 3 runs on the first wording plus 1 on the final wording (docs/plans/brief-calibration.md round table); the plan page's \"3 of 3\" is final wording only. A rewrite must either split the column into \"Round 1 wording\" and \"Final wording\" with per-round counts, or label the draft rows as pooled and say how.\n2. cited fails on the first deviation's source line, `xtask/tests/briefs.rs:…, :37`. In a clean git archive HEAD copy with the ticket row deleted, the panic is reported at briefs.rs:38:9; the assert_eq! is at line 38, not 37. The captured failure output itself matched. Correct it to :38; :49 for the author-side assert is fine.\n3. Is it as short as its content allows fails: 5622px desktop against the exemplar's 3926px. Entry 1, the \"Plan-confirmed\" Steps 1-4 entry, is a dense paragraph plus about 12 citations restating what the ticket and commits show; the prompt asks for deviations, not confirming planned steps. Cut it to a line or drop it.\nEverything else held: test-failure output reproduced; git grep probe_guide cdaeb0f -- xtask finds nothing; buy-in.html:291 and :306 contain the quoted text; commit times and the record's remaining list match; figures and \"stricter than written\" findings match the plan doc's rerun section. Not run: check ci and complete. Rendering clean; one desktop tile viewed; filters and radios read from script, no mismatch.\nFixed checks: consistent failed (1); provenance held; cited failed (2); ticket n/a\nFINDINGS: 3",
+      "findings": 3,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "implementation.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "9f11cbbd4530fe1fa9a4691c581e0c1f8738f70b2a7572e71a9ab2c109a57a98",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that the calibration rerun caught every defect the new checks target, that it also failed two pages expected to pass, and which three calls (the buy-in page's expected verdict, what counts as a tile's source, how many draft runs to count) are theirs before completion.\nFixed checks: consistent held; provenance held; cited held; ticket n/a\nChecked: renders clean, 33 KB vs 27 KB with content; first deviation reproduced in a clean copy (ticket row deleted fails at briefs.rs:38 with the shown lists); briefs.rs anchors match; check ci in a clean copy ok, agreeing with 9 of 9; complete failure text matches completion.rs and transitions.rs; buy-in.html:306 fixed text exists; reviews.json at 17425b6 holds two implementation entries against :291; docs.json diff against 6d1c447 matches; plan.html :268, :345 wording; commit times match; rerun table matches the plan doc; interactions driven by the entries.\nMinor, not a finding: the shared-target-dir discovery and the step 6 entry lean toward verification process; each is short, sourced and drives a decision.\nFINDINGS: 0",
+      "findings": 0,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "buy-in.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "ee26ec777c2e165044766c20739f7e5e5f2d13d9b6ea3cdf676b5ef4ccb2fdf6",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n1. provenance fails in section 01, the demo's reviewer pane. For the four planted cases the page says \"the real page beside the review and its result\", but the \"review\" is a script-built narrative in stepsFor(), with the same fixed steps for every case (e.g. \"Samples the 9 / 9 tile, runs check ci in a clean copy… calls it grounded\", \"Samples three claims, as before\", \"Length and re-listing: caught every time\"). Nothing marks it as illustrative; only the counts and excerpts trace to the record, and only the \"Live: this task's notes\" tab is a real captured reviewer reply. A rewrite must label the step lists as a schematic of the brief's flow, or show a trimmed real reviewer reply for each case, as the Live tab does.\n2. Is it as short as its content allows fails: 5117 px desktop and 45 KB against the exemplar's 3175 px and 30 KB; 11 phone tiles against 6. Section 03 (four objections, two with terminal blocks) and section 04 (the ticket table, 9 rows) re-derive material earlier pages carried: the plan's choices, the notes' deviations, and the briefs.rs drift test Q3 re-proves. Keep one row per ticket item; make Q1, Q2 and Q4 one line each with a source. The risk card, the calls and the reply are what a reader needs to decide.\n3. Is it about the feature fails in Q4 and parts of Q3 and the ticket table: Q4 shows cargo xtask complete exiting 1 with protected-path lists and review-answer errors; the table explains the mid-rerun step-2 wording and the \"6 of 9 skipped rendering\" figure. That is harness and verification process. A buy-in reader needs only \"no xtask/src change; CI 9 of 9; completion waits on the quiz and review answers\". Cut the captured complete block and the rendering-skip detail, or reduce each to one sentence.\nFixed checks: consistent held; provenance failed (1); cited held; ticket held\nChecked true: briefs.rs asserts at 38 and 49-52 and a clean-copy run of the 2 tests; EVALUATION.md rows, counts and known gaps (73-75, 83-100); diff stats with zero lines under xtask/src, docs/ARTIFACTS.md and examples/; handover.rs:154-158; transitions.rs:39-46; draft excerpt line numbers and the 124,179-byte total; live reviewer notes in reviews.json. Not run: check ci and complete; controls read from script. Render clean.\nFINDINGS: 3",
+      "findings": 3,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "buy-in.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "91e55859ec7588bc6c399f287b25833674d3294fea0e0d1e7bc1c81324444cac",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that the calibrated briefs raised every targeted defect in every run (4 of 4 defects), that the same briefs failed pages that used to pass, and which six calls (each with the agent's recommendation) are left for the approver. The demo ties each defect to quoted page lines, the brief wording and per-run counts.\nRendering clean on desktop and phone; 4,326 px vs 3,175, acceptable. Controls read from script.\nFixed checks: consistent held (reply built from the same CALLS data, default and changed picks; \"six calls\" matches section 05); provenance held (excerpts labelled quoted and cut, live tab captured and trimmed with marks); cited held (tiles and Q&A carry file:line or command); ticket held (scope, both tests, validation, rerun, out of scope; changes say why).\nChecked: briefs tests 2 of 2 in a clean copy; briefs.rs :38, :49-52, brief-calibration.md :83-90, :109-114, :121-124, handover.rs:154-158, checks.rs:205, transitions.rs:39-46, EVALUATION.md 83-106 and the SKILL.md ranges match; no diff under xtask/src, docs/ARTIFACTS.md, examples; drafts total 124,179 bytes and quoted lines exact; live tab matches reviews.json. 9 of 9 CI not rerun; the notes' round-2 review records it.\nMinor notes, not findings: the plan page flip is treated as a call, which a reader could count as a third failure; the round-1 notes draft lives outside the repo, labelled so; section 03 lightly overlaps section 05.\nFINDINGS: 0",
+      "findings": 0,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "quiz.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "ef212636ea32df787a32fde599aebbb5efc8aedce8227a646c4bb00c33994800",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n1. consistent, Context table, last row. It reads \"The cost: reference page, then buy-in page, both expected to pass\", with results \"pass 1/3, 0/3\". That disagrees with docs/EVALUATION.md (the expected-verdicts table, about lines 74-75) and with the page's own Behaviour 04, which say the buy-in page's expected verdict was changed to revise after the result because \"the buy-in failures were mostly real defects\". As written the tile makes 0/3 look like pure over-strictness. Show the buy-in row as expected pass at first, changed to revise after the result because the failures were real, and say how much of the cost is the reference page's known gap (probe blocks) and how much is real defects.\n2. Quiz function, questions 1, 2, 3, 4 and 7. The correct option is the longest and most specific one in Q1 (C), Q3 (C), Q4 (D) and Q7 (D). Q2's option A and Q7's option D are near-verbatim sentences from the page (the \"six of nine ... skipped rendering\" sentence and the \"only as a path ... if that file exists\" sentence). Q5 (--findings is 2) and Q6 (known gap) restate a line the page states outright. A reader can pass by scanning for the matching phrase. Make wrong options as long and specific as the right one; replace the recall questions (Q2, Q5, Q6, Q7) with ones that need reasoning, for example a changed brief or a reviewer reply the reader has not seen, asking which check or test fires; vary where the right answer sits.\n3. cited, vague sources. \"implementation notes, 21:30\" in the mental-model paragraph is a timestamp, not a file or line. The \"9 / 9\" tile says \"captured in a throwaway clone\" and the Before-merge list repeats it; it names the command but not where the capture lives (the plan names target/verification/ci.json). Cite a file and line for the timing claim and the capture location for the CI claim.\n4. Length: 40 KB against the exemplar's 32 KB. The Context table re-derives the buy-in section 01 counts; the \"What was done, file by file\" list is git diff --stat in prose. Cut the file list to a pointer and condense the context table to the cost row and the one-line baseline.\nInteractions read from script, no logic faults in answering, scoring, reset or reply. Render clean on desktop and phone. Confirmed: +82/-18 and 14 files outside the pages; 16 commits and 0 lines under xtask/src; test lines :34, :45; readiness entries; checks.rs:205; handover.rs:154-158 and :204; 19 of 21 baseline and six of nine / ten of twelve; skill lines :27, :45, :82-85. Not rerun: check ci and Behaviour 02.\nFixed checks: consistent failed (1); provenance held; cited failed (3); ticket n/a\nFINDINGS: 4",
+      "findings": 4,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "quiz.html",
+      "round": 2,
+      "verdict": "revise",
+      "sha256": "801e9c4548bbc633ca1f024b54fb5601009cf9a6cc7e2c0e722e418e9ca1a36b",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n1. Quiz fails its job (questions answerable by matching a phrase). Q1 (\"tile with no source, you ran cargo test\") is answered by the page's own quoted rule in the mental-model section: \"a claim you confirm yourself by running something is still uncited if the page names no source or command for it\"; option B restates it and the other options have no matching text. Q7 (ticket renamed) is answered by the \"What this leans on\" box: \"adds docs/plans/<id>.md ... only if that file exists\"; option C restates it. Q3, Q4 and Q6 need reasoning and their answers hold (Q4 traces skip_while and expect; it panics as the page says). Replace Q1 and Q7 with cases the page's text doesn't settle: e.g. Q1 whether a tile citing only a command in the sentence beneath it counts as cited (a known gap on the page); Q7 what happens to the ticket check when the ticket exists but the reviewer never opens it.\n2. Is it as short as its content allows (re-derives an earlier page). The Context section rebuilds the calibration cost table for the reference and buy-in pages (1 of 3 and 0 of 3, the stricter-than-written explanation, rerun triggers, known-gap framing), all already in buy-in section 01 and docs/plans/brief-calibration.md:92-107. It also leans on process: the policy receipt, complete exiting 1, the record's review answers in the Before merge list. Cut Context to the change's cause in a few lines plus a pointer to buy-in section 01, keep only what a question depends on, and move the receipt and record items out of the page body.\nChecked correct: +82/-18 across the four brief files and 14 other non-task files; briefs.rs line references; handover.rs:154-158; EVALUATION.md:102-103; 19 of 21 and ten of twelve; in a clean copy renaming the .agents header to \"| Fixed check |\" panics both tests at briefs.rs:25:18. Not rerun: check ci. Render clean on desktop and phone; one tile viewed; quiz interactions not clicked.\nFixed checks: consistent held; provenance held; cited held; ticket n/a\nFINDINGS: 2",
+      "findings": 2,
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "quiz.html",
+      "round": 3,
+      "verdict": "pass",
+      "sha256": "9d9fc339d2352de5bed73eb38c0b1dabe37c6474ce49fd26eab2dd06004a8d33",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns how the four fixed checks, the two briefs, the briefs.rs test and the review hand-over behave together: what the test does and does not pin, where the checks stop being enforced, and which gaps the rerun left.\nFixed checks: consistent held; provenance held; cited held; ticket n/a\nRendered both pages clean; first and fifth desktop tiles viewed; quiz logic and reply read from script.\nChecked: +82/-18 across the four brief files, xtask/src diff empty; in a clean copy swapping provenance and cited rows fails only the reviewer test at briefs.rs:38:9 (1 passed, 1 failed), matching the page; renaming the .agents header fails both tests at briefs.rs:25:18, matching Q4; handover.rs:154-158, DOC007 text, router.rs verdict parsing; EVALUATION.md and the ticket support 19 of 21, the baseline miss rates and every-time detection after; six of nine skipped rendering holds.\nQuiz cases are not on the page; Q3, Q4 and Q7 need reasoning (Q3 and Q4 confirmed by running). Pass needs 7 of 7; a miss shows the rule or run and links back; reset rebuilds; reply carries the open items.\nMinor, not a finding: Q1 hinges on reading cited as a source on the page rather than on the tile, flagged on the page as a known gap.\nFINDINGS: 0",
+      "findings": 0,
+      "model": "claude-sonnet-5-5"
+    }
+  ]
+}

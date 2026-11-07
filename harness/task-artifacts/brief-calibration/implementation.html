@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implementation notes: the calibrated author and reviewer briefs</title>
+<style>
+  main { max-width: 62rem; }
+  .lead { color: var(--muted); font-size: 1.1rem; }
+  code { font-size: .86em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 .3em; overflow-wrap: anywhere; }
+  pre code { background: none; border: 0; padding: 0; font-size: .8rem; }
+  .card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); }
+  .label { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 650; color: var(--accent); margin: 0 0 var(--space-2); }
+  .promptcard blockquote { background: none; border: 0; padding: 0; margin: 0; font-style: italic; font-size: 1.08rem; max-width: 60ch; }
+  .copy { position: absolute; top: var(--space-4); right: var(--space-4); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: .8rem; }
+  .copy.done { background: var(--surface); color: var(--accent); }
+
+  .doc { margin-top: var(--space-6); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .doc-head { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding: var(--space-3) var(--space-6); background: var(--paper); border-bottom: 1px solid var(--line); font-family: var(--font-code); font-size: .78rem; color: var(--muted); }
+  .doc-head b { color: var(--ink); font-weight: 600; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); padding: var(--space-6) var(--space-6) 0; }
+  .stat { border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-2) var(--space-4); background: var(--paper); }
+  .stat .n { font-size: 1.9rem; font-weight: 600; line-height: 1.1; }
+  .stat .t { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .stat.dev .n { color: var(--warning); }
+  .stat.you { background: var(--warning-soft); border-color: var(--warning); }
+  .stats-src { padding: var(--space-2) var(--space-6) 0; margin: 0; font-size: .78rem; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-4) var(--space-6) 0; }
+  .chip { min-height: 36px; padding: var(--space-1) var(--space-4); border-radius: 999px; font-size: .82rem; background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+  .chip.on { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+  .chip .ct { opacity: .65; margin-left: .3em; }
+
+  .timeline { padding: var(--space-4) var(--space-6) var(--space-6); }
+  .entry { display: grid; grid-template-columns: 3.2rem 14px minmax(0, 1fr); gap: 0 var(--space-3); }
+  .entry .ts { grid-column: 1; grid-row: 1; font-family: var(--font-code); font-size: .78rem; color: var(--muted); text-align: right; padding-top: 3px; }
+  .entry .rail { position: relative; grid-column: 2; grid-row: 1 / span 2; }
+  .entry .rail::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1.5px; background: var(--line); transform: translateX(-50%); }
+  .entry.first .rail::before { top: 10px; }
+  .entry.last .rail::before { bottom: auto; height: 10px; }
+  .entry .node { position: absolute; left: 50%; top: 7px; width: 11px; height: 11px; border-radius: 50%; transform: translateX(-50%); border: 2px solid var(--surface); background: var(--line); }
+  .t-plan .node { background: var(--accent); } .t-dev .node { background: var(--warning); }
+  .t-disc .node { background: var(--muted); } .t-human .node { background: var(--ink); }
+  .entry .body { grid-column: 3; grid-row: 1 / span 2; padding-bottom: var(--space-6); min-width: 0; }
+  .badge { display: inline-block; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; padding: 1px 8px; border-radius: 5px; margin-bottom: var(--space-1); }
+  .t-plan .badge { color: var(--accent); background: var(--accent-soft); }
+  .t-dev .badge { color: var(--surface); background: var(--warning); }
+  .t-disc .badge { color: var(--ink); background: var(--paper); border: 1px solid var(--line); }
+  .t-human .badge { color: var(--surface); background: var(--ink); }
+  .entry h3 { font-size: 1rem; margin: 0 0 var(--space-1); }
+  .entry p { margin: var(--space-1) 0; font-size: .93rem; max-width: 70ch; }
+  .src { font-size: .78rem; color: var(--muted); margin-top: var(--space-1); }
+  .src code { font-size: .78rem; }
+  table.mini td:first-child { white-space: nowrap; }
+  .dev { margin-top: var(--space-2); border: 1px solid var(--line); border-left: 3px solid var(--warning); border-radius: var(--control-radius); background: var(--warning-soft); }
+  .dev .row { display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); gap: var(--space-3); padding: var(--space-1) var(--space-4); font-size: .88rem; line-height: 1.5; }
+  .dev .row + .row { border-top: 1px solid var(--line); }
+  .dev .k { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 650; color: var(--warning); padding-top: 3px; }
+  .dev .row.chosen .k { color: var(--accent); } .dev .row.chosen .v { font-weight: 550; }
+  .out { margin: var(--space-1) 0 0; padding: var(--space-3); font-size: .8rem; line-height: 1.5; }
+  .entry p.out-label { font-size: .78rem; color: var(--muted); margin: var(--space-2) 0 0; max-width: none; font-style: italic; }
+  table.mini { font-size: .85rem; margin-top: var(--space-2); }
+  table.mini caption { font-size: .85rem; margin: 0 0 var(--space-1); }
+  table.mini th { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  table.mini td, table.mini th { padding: var(--space-1) var(--space-2); }
+  .miss { color: var(--danger); font-weight: 600; }
+  .choices { margin-top: var(--space-2); display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .choices label { margin: 0; font-size: .86rem; padding: var(--space-1) var(--space-3); border: 1px solid var(--line); border-radius: var(--control-radius); background: var(--surface); }
+  .choices label:has(input:checked) { border-color: var(--ink); background: var(--paper); }
+  .lean { font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-left: .4em; }
+
+  .next { margin-top: var(--space-6); }
+  .next label { margin-block: var(--space-3); }
+  .next h2 { margin-top: 0; }
+  .next ol { padding-left: 1.3rem; } .next li { margin-bottom: var(--space-2); max-width: 70ch; font-size: .95rem; }
+  #extra { min-height: 3rem; }
+  #reply { white-space: pre-wrap; font-family: var(--font-code); font-size: .8rem; margin-top: var(--space-4); }
+  .replyrow { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-top: var(--space-3); }
+  .replyrow .copy { position: static; }
+
+  @media (max-width: 40rem) {
+    .stats { grid-template-columns: repeat(2, 1fr); padding: var(--space-4) var(--space-4) 0; }
+    .timeline, .chips, .stats-src { padding-left: var(--space-4); padding-right: var(--space-4); }
+    .doc-head { padding: var(--space-3) var(--space-4); }
+    .entry { grid-template-columns: 14px minmax(0, 1fr); }
+    .entry .ts { grid-column: 2; grid-row: 1; text-align: left; padding: 0; }
+    .entry .rail { grid-column: 1; }
+    .entry .body { grid-column: 2; grid-row: 2; }
+    .entry .rail { grid-row: 1 / span 2; }
+    .dev .row { grid-template-columns: 1fr; gap: 2px; }
+    .card { padding: var(--space-4); }
+    .promptcard blockquote { margin-top: var(--space-8); }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">brief-calibration · during implementation</p>
+    <h1>Implementation notes: the calibrated author and reviewer briefs</h1>
+    <p class="lead">What happened between the plan and the rerun: where the code and the calibration runs forced a different choice, what they turned up that no page predicted, and the three calls that need you.</p>
+    <div class="card promptcard">
+      <p class="label">The prompt</p>
+      <button type="button" class="copy" id="copyPrompt">Copy</button>
+      <blockquote id="promptText">“Keep implementation notes as you build the calibrated author and reviewer briefs. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going.”</blockquote>
+    </div>
+  </header>
+
+  <div class="doc">
+    <div class="doc-head"><b>Implementation notes</b><span>branch harness/brief-calibration</span><span>times are commit times, then the times of the checks below</span></div>
+    <div class="stats" id="stats">
+      <div class="stat"><div class="n" data-count="all"></div><div class="t">entries</div></div>
+      <div class="stat dev"><div class="n" data-count="dev"></div><div class="t">deviations</div></div>
+      <div class="stat"><div class="n" data-count="disc"></div><div class="t">discoveries</div></div>
+      <div class="stat you"><div class="n" data-count="human"></div><div class="t">need your call</div></div>
+    </div>
+    <p class="stats-src">Counted from the entries below.</p>
+    <div class="chips" role="group" aria-label="Filter entries">
+      <button type="button" class="chip on" data-f="all">All<span class="ct" data-count="all"></span></button>
+      <button type="button" class="chip" data-f="dev">Deviations<span class="ct" data-count="dev"></span></button>
+      <button type="button" class="chip" data-f="disc">Discoveries<span class="ct" data-count="disc"></span></button>
+      <button type="button" class="chip" data-f="human">For you<span class="ct" data-count="human"></span></button>
+    </div>
+
+    <div class="timeline" id="timeline">
+
+      <div class="entry t-plan" data-t="plan">
+        <div class="ts">21:25</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">Plan-confirmed</span>
+          <h3>Steps 1–4 landed as planned</h3>
+          <p class="src">commits 841a9a5, 2994b09, 528a964 · one wording change: <code>docs.json</code> swaps “fresh-agent artifact trial” for the test and the calibration rather than adding to it (<code>git diff 6d1c447 -- harness/docs.json</code>; plan.html:414)</p>
+        </div>
+      </div>
+
+      <div class="entry t-dev" data-t="dev">
+        <div class="ts">21:27</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">Deviation</span>
+          <h3>The test compares the whole check column, not one cell at a time</h3>
+          <div class="dev">
+            <div class="row"><div class="k">Plan said</div><div class="v"><code>contains("| {c} |")</code> per check; author rule found by <code>- {c}:</code> (plan A2 sketch).</div></div>
+            <div class="row"><div class="k">Code revealed</div><div class="v">The author rules landed bold (<code>- **cited**:</code>), so the sketch's anchor matches none of them. A per-cell check also passes a table with a fifth row.</div></div>
+            <div class="row chosen"><div class="k">Conservative choice</div><div class="v">Assert the first column under <code>| Check |</code> <em>equals</em> the four names, and anchor on the bold form. A check added, dropped or renamed fails until both briefs and the constant change together.</div></div>
+          </div>
+          <p class="out-label">Captured in a clean copy with the ticket row deleted; trimmed to the failure lines</p>
+<pre class="out"><code>$ cargo test -q -p xtask --test briefs
+thread 'reviewer_brief_runs_the_fixed_checks' (93132592) panicked at xtask/tests/briefs.rs:38:9:
+assertion `left == right` failed: .claude/skills
+  left: ["consistent", "provenance", "cited"]
+ right: ["consistent", "provenance", "cited", "ticket"]
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s</code></pre>
+          <p class="src">xtask/tests/briefs.rs:20–31 (column), :38 (equality), :49–52 (bold anchor)</p>
+        </div>
+      </div>
+
+      <div class="entry t-dev" data-t="dev">
+        <div class="ts">21:30</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">Deviation</span>
+          <h3>“Before you run anything” made reviewers skip rendering</h3>
+          <div class="dev">
+            <div class="row"><div class="k">Plan said</div><div class="v">Judge the checks “before any command runs” (plan A3, already flagged as the weakest step).</div></div>
+            <div class="row"><div class="k">Code revealed</div><div class="v">In round 1, six of nine reviewers read it as “run nothing” and never took screenshots.</div></div>
+            <div class="row chosen"><div class="k">Conservative choice</div><div class="v">Reword step 2's opening to “after rendering and before sampling claims”. The check table is unchanged.</div></div>
+            <div class="row"><div class="k">Revisit</div><div class="v">Ten of twelve rendered in round 2. One miss followed the calibration hand-off's own “do not run any task-artifact command” (second item below).</div></div>
+          </div>
+          <p class="src">commit d4be473 (step 2, both hosts) · docs/plans/brief-calibration.md:109–112</p>
+        </div>
+      </div>
+
+      <div class="entry t-dev" data-t="dev">
+        <div class="ts">21:34</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">Deviation</span>
+          <h3>The rerun split across two brief wordings</h3>
+          <div class="dev">
+            <div class="row"><div class="k">Plan said</div><div class="v">Three runs on each of the six pages at one brief (plan B5).</div></div>
+            <div class="row"><div class="k">Code revealed</div><div class="v">The reword came after round 1. Drafts got 3 runs on the first wording and 1 on the final; committed pages got 3 on the final only.</div></div>
+            <div class="row chosen"><div class="k">Conservative choice</div><div class="v">Report each wording in its own column. The ticket pools the drafts as “4 of 4”; every run raised the finding, so each column holds all of its runs.</div></div>
+          </div>
+          <div class="table-scroll"><table class="mini">
+            <caption>Every defect the checks target, raised in every run</caption>
+            <thead><tr><th>Page</th><th>Targeted finding</th><th>Before</th><th>Round 1 wording</th><th>Final wording</th></tr></thead>
+            <tbody>
+              <tr><td>reference draft</td><td><code>consistent</code>: reply vs Q5</td><td>2 of 3</td><td>3 of 3</td><td>1 of 1</td></tr>
+              <tr><td>buy-in draft</td><td><code>provenance</code>: typed output</td><td>2 of 3</td><td>3 of 3</td><td>1 of 1</td></tr>
+              <tr><td>buy-in draft</td><td><code>cited</code>: “9 / 9” tile</td><td>1 of 3</td><td>3 of 3</td><td>1 of 1</td></tr>
+              <tr><td>plan page</td><td><code>ticket</code>: dropped kept path</td><td>1 of 4</td><td>not run</td><td>3 of 3</td></tr>
+            </tbody>
+          </table></div>
+          <p class="src">docs/plans/brief-calibration.md:78–88 (round 1 ran 528a964, final d4be473) · “before”: docs/EVALUATION.md:77–79</p>
+        </div>
+      </div>
+
+      <div class="entry t-dev" data-t="dev">
+        <div class="ts">21:34</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">Deviation</span>
+          <h3>Two committed pages expected to pass did not</h3>
+          <div class="dev">
+            <div class="row"><div class="k">Plan said</div><div class="v">Reference page and buy-in page: pass (EVALUATION.md:72, :74).</div></div>
+            <div class="row"><div class="k">Code revealed</div><div class="v">Reference: pass, <span class="miss">revise ×2</span>. Buy-in: <span class="miss">revise ×3</span>. Some are real defects (next entry); others read the brief more strictly than written: uncited buy-in tiles (2 of 3), <code>ticket</code> on changes the page reports as decisions.</div></div>
+            <div class="row chosen"><div class="k">Conservative choice</div><div class="v">Change neither the expected verdicts nor the brief; record known gaps rather than tune the brief to its own six pages (EVALUATION.md:84–86).</div></div>
+          </div>
+          <p class="src">docs/plans/brief-calibration.md:89–107</p>
+        </div>
+      </div>
+
+      <div class="entry t-disc" data-t="disc">
+        <div class="ts">21:34</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">Discovery</span>
+          <h3>The checks found real defects on pages every earlier review passed</h3>
+          <table class="mini"><tbody>
+            <tr><td><code>consistent</code></td><td>next-prompt buy-in.html:306, “…nothing changes before merge”, is static text no choice updates.</td></tr>
+            <tr><td><code>consistent</code></td><td>buy-in.html:291 says “one real reply has gone through”; the log at 17425b6 holds two.</td></tr>
+            <tr><td><code>provenance</code></td><td>reference.html:224 shows <code>probe_guide</code> output; xtask has no <code>probe_guide</code> at cdaeb0f.</td></tr>
+          </tbody></table>
+          <p class="src"><code>grep -n 'nothing changes' buy-in.html</code> (one hit) · <code>git show 17425b6:…/next-prompt/reviews.json</code> · <code>git grep probe_guide cdaeb0f -- xtask</code></p>
+        </div>
+      </div>
+
+      <div class="entry t-disc" data-t="disc">
+        <div class="ts">21:48</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">Discovery</span>
+          <h3>Clean copies that share a target dir test each other's briefs</h3>
+          <p><code>brief()</code> resolves paths from <code>env!("CARGO_MANIFEST_DIR")</code> at compile time (briefs.rs:10–17). A second clean copy with its ticket row deleted, run with the first copy's <code>CARGO_TARGET_DIR</code>, did not recompile, read the first copy's intact briefs, and printed <code>test result: ok. 2 passed</code> (captured).</p>
+        </div>
+      </div>
+
+      <div class="entry t-plan" data-t="plan">
+        <div class="ts">21:50</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">Plan-confirmed</span>
+          <h3>Step 6: CI is green; completion waits only on record work</h3>
+          <p class="out-label">Captured in a throwaway clone at the branch head; both reports are JSON, cut to verdicts and error keys; # comments added</p>
+<pre class="out"><code>$ cargo xtask check ci &gt; target/verification/ci.json            # exit 0; 9 of 9 passed
+$ cargo xtask complete --task brief-calibration --base 6d1c447 \
+    --report target/verification/ci.json                          # exit 1
+review.acceptance · review.verification · review.assumptions · review.coverage
+task is partial/blocked; use handoff, do not claim completion
+missing exact transition rationale: policy      # .claude briefs, readiness.json, briefs.rs</code></pre>
+          <p class="src">xtask/src/transitions.rs:38–63, :170 · xtask/src/completion.rs:130 · 6d1c447 = origin/main</p>
+        </div>
+      </div>
+
+      <div class="entry t-human" data-t="human" data-q="Buy-in page's expected verdict for the next rerun">
+        <div class="ts">21:50</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">For you</span>
+          <h3>Buy-in page's expected verdict for the next rerun</h3>
+          <p>EVALUATION.md:74 expects a pass, but two of its failures are real <code>consistent</code> defects (above). Left as “pass”, every rerun reports a miss on a page that deserves to fail.</p>
+          <div class="choices">
+            <label><input type="radio" name="h1" value="set the next rerun's expectation to revise (consistent, buy-in.html:291 and :306); leave this run's table as written" checked data-lean>Expect <b>revise</b> next time<span class="lean">agent's lean</span></label>
+            <label><input type="radio" name="h1" value="keep pass and list the two defects as a known miss of the old reviews">Keep <b>pass</b>; known miss</label>
+            <label><input type="radio" name="h1" value="fix the two lines in next-prompt's buy-in page so pass holds (this changes the calibration set)">Fix them (alters the set)</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry t-human" data-t="human" data-q="What counts as a tile's source">
+        <div class="ts">21:50</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">For you</span>
+          <h3>What counts as a tile's source</h3>
+          <p>2 of 3 runs failed the buy-in tiles though <code>check ci</code> is named in the sentence under them. The reviewer asks for a source “on the page” (review SKILL.md:27); the author rule, “beside every tile” (author SKILL.md:48).</p>
+          <div class="choices">
+            <label><input type="radio" name="h2" value="leave both rows as worded; record the 2-of-3 strict reading as a known gap in EVALUATION.md" checked data-lean>Leave both; known gap<span class="lean">agent's lean</span></label>
+            <label><input type="radio" name="h2" value="add to the reviewer's cited row that a command named in the sentence under a tile counts">A command under a tile counts</label>
+            <label><input type="radio" name="h2" value="make the reviewer as strict as the author rule (a source beside each tile); the buy-in page then expects revise on cited too">Reviewer as strict as author</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry t-human" data-t="human" data-q="Draft runs at the final brief wording">
+        <div class="ts">21:50</div><div class="rail"><span class="node"></span></div>
+        <div class="body">
+          <span class="badge">For you</span>
+          <h3>Draft runs at the final brief wording</h3>
+          <p>Each draft has 1 run at the shipped wording; three per page is the method's minimum (EVALUATION.md:83–84). The reword left the check table alone.</p>
+          <div class="choices">
+            <label><input type="radio" name="h3" value="run two more fresh reviews per draft at the final wording before completion (6 runs)" checked data-lean>Run two more per draft first (6 runs)<span class="lean">agent's lean</span></label>
+            <label><input type="radio" name="h3" value="count 3 runs at the first wording plus 1 at the final one, reported per wording; the check table did not change">Count them as they are, per wording</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <section class="card next">
+    <p class="label">Fold back before completion</p>
+    <h2>What still has to land, and your calls</h2>
+    <ol id="nextList">
+      <li><strong>Record round 2 in EVALUATION.md:</strong> results, known gaps and your calls, as its :85 asks; today only the ticket has them (docs/plans/brief-calibration.md:77–112).</li>
+      <li><strong>Fix the calibration hand-off:</strong> “record no verdict” instead of “do not run any task-artifact command”, in the method too (EVALUATION.md:61–65).</li>
+      <li><strong>Update the task record:</strong> <code>remaining</code> (harness/tasks/brief-calibration.json:31–33) and <code>documentation.updated</code> (:19); then the four review answers and policy rationale <code>complete</code> asks for.</li>
+    </ol>
+    <label>Anything else<textarea id="extra" rows="2" placeholder="e.g. skip the extra draft runs, the reword is cosmetic"></textarea></label>
+    <output id="reply"></output>
+    <div class="replyrow"><button type="button" class="copy" id="copyReply">Copy reply</button><span class="muted" id="replyNote"></span></div>
+  </section>
+
+  <footer>brief-calibration · implementation notes · the four fixed checks in the author and reviewer briefs, and the rerun that measured them.</footer>
+</main>
+
+<script>
+(function () {
+  function copyText(btn, getText) {
+    var label = btn.textContent;
+    btn.addEventListener('click', function () {
+      var text = getText();
+      function done() { btn.textContent = 'Copied'; btn.classList.add('done'); setTimeout(function () { btn.textContent = label; btn.classList.remove('done'); }, 1500); }
+      function fallback() {
+        var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(ta); done();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+    });
+  }
+  function clean(el) { return el.textContent.replace(/\s+/g, ' ').trim(); }
+
+  var entries = Array.prototype.slice.call(document.querySelectorAll('.entry'));
+  // Counts and deviation numbers come from the entries themselves.
+  var counts = { all: entries.length, plan: 0, dev: 0, disc: 0, human: 0 };
+  entries.forEach(function (e) { counts[e.getAttribute('data-t')]++; });
+  document.querySelectorAll('[data-count]').forEach(function (n) { n.textContent = counts[n.getAttribute('data-count')]; });
+  var d = 0;
+  entries.forEach(function (e) { if (e.getAttribute('data-t') === 'dev') { d++; e.querySelector('.badge').textContent = 'Deviation ' + d + ' of ' + counts.dev; } });
+
+  function markEnds() {
+    var vis = entries.filter(function (e) { return !e.hidden; });
+    entries.forEach(function (e) { e.classList.remove('first', 'last'); });
+    if (vis.length) { vis[0].classList.add('first'); vis[vis.length - 1].classList.add('last'); }
+  }
+  var chips = document.querySelectorAll('.chip');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (x) { x.classList.remove('on'); }); c.classList.add('on');
+      var f = c.getAttribute('data-f');
+      entries.forEach(function (e) { e.hidden = !(f === 'all' || e.getAttribute('data-t') === f); });
+      markEnds();
+    });
+  });
+  markEnds();
+
+  // The reply reads the same entries and list the page shows.
+  var humans = entries.filter(function (e) { return e.getAttribute('data-t') === 'human'; });
+  var extra = document.getElementById('extra');
+  function build() {
+    var lines = ['brief-calibration implementation notes: my calls', ''], off = 0;
+    humans.forEach(function (e, i) {
+      var pick = e.querySelector('input:checked');
+      var lean = pick.hasAttribute('data-lean');
+      if (!lean) off++;
+      lines.push((i + 1) + '. ' + e.getAttribute('data-q') + ': ' + pick.value + (lean ? ' (agent\'s lean)' : ' (overrides the agent\'s lean)'));
+    });
+    lines.push('', 'Before completion:');
+    document.querySelectorAll('#nextList li').forEach(function (li) { lines.push('- ' + clean(li.querySelector('strong')).replace(/:$/, '')); });
+    var x = extra.value.trim();
+    if (x) lines.push('', 'Also: ' + x);
+    document.getElementById('reply').textContent = lines.join('\n');
+    document.getElementById('replyNote').textContent = off === 0
+      ? 'All ' + humans.length + ' calls are on the agent\'s lean.'
+      : off + ' of ' + humans.length + ' calls override the agent\'s lean.';
+  }
+  document.querySelectorAll('.choices input').forEach(function (i) { i.addEventListener('change', build); });
+  extra.addEventListener('input', build);
+  build();
+
+  copyText(document.getElementById('copyPrompt'), function () { return clean(document.getElementById('promptText')).replace(/^“|”$/g, ''); });
+  copyText(document.getElementById('copyReply'), function () { return document.getElementById('reply').textContent; });
+})();
+</script>
+</body>
+</html>

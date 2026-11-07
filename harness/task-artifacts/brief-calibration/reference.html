@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semantics map: the review question table and the calibrated briefs</title>
+<style>
+  main { max-width: 62rem; }
+  code { font-size: .86em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+  pre code, .cc code { border: 0; padding: 0; background: none; font-size: inherit; }
+  .promptbox { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .promptbox .label { font-size: var(--text-small); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 650; }
+  .promptbox blockquote { background: none; border: 0; padding: 0 6rem 0 0; margin: var(--space-2) 0 0; font-style: italic; }
+  .copy { position: absolute; top: var(--space-3); right: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  .done { background: var(--ink) !important; border-color: var(--ink) !important; }
+  .basis { color: var(--muted); font-size: var(--text-small); max-width: var(--reading-width); }
+  .sec { margin-top: var(--space-12); }
+  .sec-h { display: flex; gap: var(--space-3); align-items: center; font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 650; margin-bottom: var(--space-3); }
+  .num { flex: none; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--ink); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; font-size: .75rem; letter-spacing: 0; }
+  .sub { color: var(--muted); font-size: .95rem; max-width: var(--reading-width); margin-top: 0; }
+  .bul { list-style: none; padding: var(--space-2) var(--space-6); margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .bul li { padding: var(--space-3) 0; border-bottom: 1px dashed var(--line); font-size: .95rem; }
+  .bul li:last-child { border-bottom: 0; }
+  .tw { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .tw table { min-width: 40rem; font-size: var(--text-small); }
+  .tw th { background: var(--paper); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .tw tr:last-child td { border-bottom: 0; }
+  tr.gap td { background: var(--warning-soft); }
+  .cal { font-family: var(--font-code); font-size: .78rem; white-space: nowrap; }
+  .cal.lo { color: var(--danger); font-weight: 650; }
+  .cal.hi { color: var(--accent); font-weight: 650; }
+  .pair { margin-bottom: var(--space-8); }
+  .pt { display: flex; gap: var(--space-3); align-items: baseline; flex-wrap: wrap; margin-bottom: var(--space-3); }
+  .pt .n { font-family: var(--font-code); font-size: .75rem; color: var(--warning); }
+  .pt h3 { margin: 0; }
+  .pg { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+  @media (max-width: 48rem) { .pg { grid-template-columns: 1fr; } }
+  .cc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; min-width: 0; }
+  .ch { display: flex; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) var(--space-4); background: var(--paper); border-bottom: 1px solid var(--line); font-family: var(--font-code); font-size: .72rem; color: var(--muted); }
+  .ch .k { flex: none; text-transform: uppercase; letter-spacing: .08em; padding: 0 6px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .ch .k.prop { background: var(--warning-soft); color: var(--warning); }
+  .cc pre { margin: 0; border: 0; border-radius: 0; font-size: .78rem; line-height: 1.6; padding: var(--space-3) var(--space-4); }
+  .cm { color: var(--muted); font-style: italic; }
+  mark.hl { background: var(--warning-soft); border-bottom: 2px solid var(--warning); border-radius: 3px; padding: 0 2px; color: inherit; }
+  mark.hl sup { font-size: .6rem; color: var(--warning); margin-left: 1px; }
+  mark.hl.on { background: #f3dcc4; }
+  .notes { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+  .note { display: flex; gap: var(--space-3); align-items: baseline; font-size: .9rem; padding: var(--space-1) var(--space-2); border-radius: var(--control-radius); }
+  .note.on { background: var(--warning-soft); }
+  .nm { flex: none; width: 1.3rem; height: 1.3rem; border-radius: 50%; border: 1.5px solid var(--warning); color: var(--warning); font-size: .7rem; display: inline-flex; align-items: center; justify-content: center; }
+  .note .tx { flex: 1; }
+  .flag { flex: none; display: inline-flex; align-items: center; gap: 2px; margin: 0; font-size: .72rem; color: var(--muted); cursor: pointer; white-space: nowrap; }
+  .flag input { margin: 0; }
+  .note.flagged { outline: 2px solid var(--danger); outline-offset: 1px; }
+  tr.flagged td { background: #f7e3e5; }
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+  @media (max-width: 52rem) { .three { grid-template-columns: 1fr; } }
+  .col { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4); }
+  .col h3 { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 var(--space-2); }
+  .col.keep h3 { color: var(--accent); } .col.chg h3 { color: var(--warning); } .col.drop h3 { color: var(--muted); }
+  .col ul { list-style: none; margin: 0; padding: 0; }
+  .col li { font-size: .88rem; padding: var(--space-2) 0; border-top: 1px dashed var(--line); }
+  .col li:first-child { border-top: 0; }
+  .pill { display: inline-block; font-size: .68rem; letter-spacing: .05em; text-transform: uppercase; padding: 1px 8px; border-radius: 999px; white-space: nowrap; font-weight: 650; }
+  .pill.r { background: #f7e3e5; color: var(--danger); }
+  .pill.p { background: var(--accent-soft); color: var(--accent); }
+  .pill.c { background: var(--warning-soft); color: var(--warning); }
+  .confirm { background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius); padding: var(--space-6); }
+  .confirm h3 { margin-top: 0; }
+  #reply { white-space: pre-wrap; font-family: var(--font-code); font-size: .82rem; margin: var(--space-3) 0; }
+  .btns { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Point at a reference · before code · brief-calibration</div>
+  <h1>Semantics map: the review question table &rarr; the calibrated briefs</h1>
+  <p class="lead">What the question table actually does, which of its rules the author brief mirrors, and where four fixed checks cannot be a copy of it. Flag anything I misread. The reply at the end lists your flags.</p>
+
+  <div class="promptbox">
+    <div class="label">The prompt</div>
+    <button type="button" class="copy" id="copyPrompt">Copy</button>
+    <blockquote id="promptText">The question table in the review-artifact skill already behaves the way the calibrated author and reviewer briefs should. Read it and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything.</blockquote>
+  </div>
+  <p class="basis">Read: both skills (the <code>.claude</code> and <code>.agents</code> copies are identical), the reviewer agent, <code>handover.rs</code>, <code>docs/ARTIFACTS.md</code>, next-prompt's 14-row review log, its committed pages and saved drafts. Ran: counts of each proposed check name in both briefs. Check names follow the interview's agent's calls (Q2 to Q5).</p>
+
+  <!-- 1 -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">1</span> What the question table does, and its author mirror</div>
+    <p class="sub" style="color:var(--ink)">Each row is a question with an observable &ldquo;Fails when&rdquo; (<code>review-artifact SKILL.md:28–37</code>). The rows are answered last, in step 4, as &ldquo;a short verdict with the place on the page&rdquo; (<code>:25–26</code>), after the reviewer has rendered the page, verified at least three claims and used the controls. So <b>they judge evidence the steps already gathered</b>. Page types reach the table only through the job row, so <b>no row is ever n/a</b>. Findings are keyed by row (&ldquo;each names the question it fails&rdquo;, <code>:65–66</code>), and <b>a PASS shows only the first answer</b> (<code>:64</code>).</p>
+    <p class="sub">Seven of the eight rows have an author mirror. The closest mirror, with the same yardstick and the same verb, belongs to the length row, which every calibration run caught. The shaded lines have neither a row nor a rule. Figures count the fresh reviews that raised each defect (ticket, Calibration record).</p>
+    <div class="tw"><table>
+      <thead><tr><th style="width:30%">Reviewer row</th><th>Author counterpart</th><th style="width:15%">Calibration</th></tr></thead>
+      <tbody>
+        <tr><td><b>Job</b> <code>:31</code>, with page jobs at <code>:39–57</code></td><td>None. The author learns the job only from the prompt and exemplar (<code>:13–16</code>).</td><td class="cal">&ndash;</td></tr>
+        <tr><td><b>Grounded</b> <code>:32</code> &ldquo;A checked claim is wrong, vague &hellip; or uncited.&rdquo;</td><td><code>:18–21</code> &ldquo;a concrete basis the reader can follow&rdquo;</td><td class="cal lo">uncited 1/3</td></tr>
+        <tr><td><b>Short</b> <code>:35</code></td><td><code>:22–24</code> and <code>:46–47</code> (Pair A)</td><td class="cal hi">every run</td></tr>
+        <tr><td><b>Feature</b> <code>:36</code> &ldquo;harness, hashes, revisions, verification process or what the page is not&rdquo;</td><td><code>:37–38</code> &ldquo;No harness mechanics, hashes, revision talk or verification boilerplate&rdquo;. &ldquo;What the page is not&rdquo; is only in <code>ARTIFACTS.md:138–139</code>.</td><td class="cal">&ndash;</td></tr>
+        <tr><td><b>Learn, interaction, show, render</b> <code>:30</code>, <code>:33</code>, <code>:34</code>, <code>:37</code></td><td>Mirrored at <code>:44–46</code> (&ldquo;If the exemplar would teach a reader more&rdquo;), <code>:30–31</code> (&ldquo;Interactions exist to help the reader reason or reply&rdquo;), <code>:28–31</code> (&ldquo;Choose the representation&rdquo;) and <code>:42–44</code> (&ldquo;Fix every console error, network request and phone-width overflow&rdquo;)</td><td class="cal">&ndash;</td></tr>
+        <tr class="gap"><td><b>Reply rule</b> <code>:59–60</code>: &ldquo;must end with a reply&rdquo;</td><td><code>:31–32</code> &ldquo;End with a way to send a reaction back&rdquo;. Neither side says that the reply must agree with the page.</td><td class="cal lo">contradiction 2/3</td></tr>
+        <tr class="gap"><td><b>Captured output</b>: no row except grounded's &ldquo;wrong&rdquo;</td><td>None. <code>ARTIFACTS.md:139–140</code> allows &ldquo;one short label&rdquo;.</td><td class="cal lo">reconstructed 2/3</td></tr>
+        <tr class="gap"><td><b>Ticket</b>: no row</td><td>None. The ticket reaches both agents only as a path (<code>handover.rs:154–158</code>).</td><td class="cal lo">dropped 1/4</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">2</span> Matched excerpts: reviewer brief &harr; author brief</div>
+    <p class="sub">Quoted word for word from today's skills, rewrapped to fit; &hellip; marks a cut. Pair C is a sketch of the target. Hover a highlight to light its counterpart and its note.</p>
+
+    <div class="pair">
+      <div class="pt"><span class="n">PAIR A / 3</span><h3>Length: the pair that works, because both sides use one yardstick</h3></div>
+      <div class="pg">
+        <div class="cc"><div class="ch"><span>review-artifact/SKILL.md:35</span><span class="k">today</span></div>
+<pre><code>| Is it as short as its content allows? | A reader
+would <mark class="hl" data-p="a1">skim whole sections<sup>1</sup></mark>, it runs well <mark class="hl" data-p="a2">past the
+exemplar's length<sup>2</sup></mark> without carrying more, or it
+<mark class="hl" data-p="a3">derives again at length what an earlier page of
+this task already showed<sup>3</sup></mark>. |</code></pre></div>
+        <div class="cc"><div class="ch"><span>author-artifact/SKILL.md:22–24, 46–47</span><span class="k">today</span></div>
+<pre><code>   <mark class="hl" data-p="a3">Read the pages already written for this task. Cite
+   what they established in a line instead of deriving
+   it again<sup>3</sup></mark>, and spend your page on what only your
+   prompt asks for.
+&hellip;
+   this one, revise. If your page runs <mark class="hl" data-p="a2">longer than
+   the exemplar<sup>2</sup></mark>, cut what a
+   <mark class="hl" data-p="a1">reader would skim<sup>1</sup></mark> until every remaining section
+   carries something new.</code></pre></div>
+      </div>
+      <div class="notes">
+        <div class="note" data-p="a1" data-t="note 1 (both briefs name the failure the same way)"><span class="nm">1</span><span class="tx"><b>The same failure in the same words.</b> The author meets the exact condition the reviewer fails, and what to do instead (&ldquo;cut&rdquo;). Each fixed check keeps this: an author sentence under the check's own name.</span></div>
+        <div class="note" data-p="a2" data-t="note 2 (a measurable yardstick)"><span class="nm">2</span><span class="tx"><b>A yardstick anyone can measure.</b> All seven length findings in next-prompt's log measure against the exemplar, six with numbers: &ldquo;47 KB and 5914 px vs 3678&rdquo; (plan, round 1). No claim sampling is involved.</span></div>
+        <div class="note" data-p="a3" data-t="note 3 (earlier pages)"><span class="nm">3</span><span class="tx"><b>Anchored outside the page.</b> &ldquo;An earlier page of this task&rdquo; tells both agents where to look. The ticket check needs the same anchor: the ticket's acceptance and scope sections.</span></div>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="pt"><span class="n">PAIR B / 3</span><h3>Grounding and the reply: where the four misses live today</h3></div>
+      <div class="pg">
+        <div class="cc"><div class="ch"><span>review-artifact/SKILL.md:17–20, 32, 59–60</span><span class="k">today</span></div>
+<pre><code>2. Check the claims. Pick at least three concrete
+   claims the page rests on, favoring the ones a
+   decision depends on, and <mark class="hl" data-p="b1">verify each against the
+   code, tests, history or command output it cites<sup>4</sup></mark>.
+   One false or unsupported claim fails the page.
+&hellip;
+| Is every claim grounded? | <mark class="hl" data-p="b1">A checked claim</mark> is
+<mark class="hl" data-p="b3">wrong<sup>6</sup></mark>, vague ("various places") or <mark class="hl" data-p="b2">uncited<sup>5</sup></mark>. |
+&hellip;
+Discovery pages (the first five) <mark class="hl" data-p="b3">must end with a
+reply the reader can assemble</mark> and copy back.</code></pre></div>
+        <div class="cc"><div class="ch"><span>author-artifact/SKILL.md:18–21, 31–32</span><span class="k">today</span></div>
+<pre><code>   docs it concerns. Every finding, option, question
+   or claim needs <mark class="hl" data-p="b2">a concrete basis the reader can
+   follow<sup>5</sup></mark>: a file and line, function, test, commit or
+   command output. When the honest answer is short
+&hellip;
+   help the reader reason or reply. <mark class="hl" data-p="b3">End with a way
+   to send a reaction back, such as a reply assembled
+   from their choices<sup>6</sup></mark> that they can copy.</code></pre></div>
+      </div>
+      <div class="notes">
+        <div class="note" data-p="b1" data-t="note 4 (a checked claim is a confirmed claim)"><span class="nm">4</span><span class="tx"><b>&ldquo;A checked claim&rdquo; is already confirmed.</b> Step 2 verifies the sample before the row is answered. A reviewer who ran <code>cargo xtask check ci</code> found the 9 / 9 tile true, and two of three passed it (blindspots 02).</span></div>
+        <div class="note" data-p="b2" data-t="note 5 (what a basis is, not where it goes)"><span class="nm">5</span><span class="tx"><b>What a basis is, not where it goes.</b> The 9 / 9 tile had a basis, a <code>check ci</code> run, but the draft never names <code>check ci</code>. The rule must put the source beside the claim, or name its command on the page (interview Q5).</span></div>
+        <div class="note" data-p="b3" data-t="note 6 (the grounded row is the catch-all)"><span class="nm">6</span><span class="tx"><b>&ldquo;Wrong&rdquo; became the catch-all.</b> The log files caught cases as &ldquo;Is every claim grounded? (fails)&rdquo;: a 5 / 7 tile against the page's own entry, and a terminal block &ldquo;as if captured&rdquo;. The contradicting reply named no row. Neither brief asks that a reply agree with its page.</span></div>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="pt"><span class="n">PAIR C / 3</span><h3>The target: four fixed checks and their author rules</h3></div>
+      <div class="pg">
+        <div class="cc"><div class="ch"><span>review-artifact: new step 2</span><span class="k prop">sketch</span></div>
+<pre><code>2. Run the fixed checks on the page and the ticket
+   alone, before you run anything. <mark class="hl" data-p="c3">Confirming a
+   claim yourself does not repair it.<sup>9</sup></mark>
+
+| Check | Fails when | <mark class="hl" data-p="c2">n/a when<sup>8</sup></mark> |
+| <mark class="hl" data-p="c1">consistent<sup>7</sup></mark> | Two places on the page
+  disagree: the reply and what it summarizes, a
+  tile and the body, a badge and its section. | never |
+| <mark class="hl" data-p="c1">provenance</mark> | Something is shown as more real
+  than it is: typed output as captured, invented
+  lines in a quoted excerpt, unbuilt behaviour as
+  existing. | no output or code shown |
+| <mark class="hl" data-p="c1">cited</mark> | A tile, headline number or claim a
+  choice rests on has no source a reader can
+  follow on the page. | never |
+| <mark class="hl" data-p="c1">ticket</mark> | An acceptance or scope item is neither
+  met nor changed with a reason. | <mark class="hl" data-p="c2">not plan or
+  buy-in</mark> |
+
+<mark class="hl" data-p="c3">Fixed checks: consistent held; provenance held;
+cited failed (1); ticket n/a.</mark> <span class="cm">&larr; one unnumbered line</span></code></pre></div>
+        <div class="cc"><div class="ch"><span>author-artifact: new step before step 6</span><span class="k prop">sketch</span></div>
+<pre><code>Before you hand back, meet the reviewer's fixed
+checks:
+- <mark class="hl" data-p="c1">consistent<sup>7</sup></mark>: build the reply from the data
+  the page renders, and make tiles, badges and
+  summaries agree with what they summarize.
+- <mark class="hl" data-p="c1">provenance</mark>: give each output block one short
+  label, captured or sketched, and quote real
+  lines; mark a cut or a proposal as one.
+- <mark class="hl" data-p="c1">cited</mark>: put the source beside each tile,
+  headline number and claim a choice rests on,
+  or name the command that reproduces it.
+- <mark class="hl" data-p="c1">ticket</mark>: <mark class="hl" data-p="c2">on the plan and buy-in pages<sup>8</sup></mark>,
+  meet each acceptance and scope item or say
+  what changed and why.</code></pre></div>
+      </div>
+      <div class="notes">
+        <div class="note" data-p="c1" data-t="note 7 (check names are the test's anchors)"><span class="nm">7</span><span class="tx"><b>The names are the test's keys, and two already match.</b> <code>cited</code> occurs in today's reviewer brief inside &ldquo;uncited&rdquo; (<code>:32</code>), and <code>reply</code> occurs twice in each brief, so a plain <code>contains</code> test in <code>briefs.rs</code> passes before any edit. Anchor on <code>| cited |</code> and <code>- cited:</code>.</span></div>
+        <div class="note" data-p="c2" data-t="note 8 (the n/a column)"><span class="nm">8</span><span class="tx"><b>The n/a column is new.</b> Today page types arrive only through the job row. The reply part of <i>consistent</i> is owed by discovery pages only (<code>:59–60</code>), and <i>ticket</i> by plan and buy-in (brainstorm #3). Both briefs must give the same n/a.</span></div>
+        <div class="note" data-p="c3" data-t="note 9 (order and report line)"><span class="nm">9</span><span class="tx"><b>Order and report are the real departures.</b> The checks run before step 2's sampling (interview Q2). They report on one unnumbered line, which shows on a PASS too, and <code>FINDINGS: N</code> still counts findings only (<code>handover.rs:204</code>, Q4).</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">3</span> Table semantics: preserved, changed, left out</div>
+    <div class="three">
+      <div class="col keep"><h3>Preserved</h3><ul>
+        <li><b>Name plus an observable &ldquo;fails when&rdquo;</b>, never a virtue to weigh</li>
+        <li><b>A short verdict with the place</b> on the page (<code>:25–26</code>)</li>
+        <li><b>Findings name what they fail</b> (<code>:65–66</code>), now by check name</li>
+        <li><b>One failure is enough</b> (<code>:19–20</code>)</li>
+      </ul></div>
+      <div class="col chg"><h3>Deliberately changed</h3><ul>
+        <li><b>Runs before claim sampling</b>, from the page and the ticket alone (Q2)</li>
+        <li><b>An n/a column</b> instead of routing through the job row (note 8)</li>
+        <li><b>Reported on a PASS</b> on one unnumbered line (Q4); today a PASS shows one answer (<code>:64</code>)</li>
+        <li><b>The grounded row narrows</b> to &ldquo;wrong or vague&rdquo;; <i>cited</i> takes &ldquo;uncited&rdquo; so the rule lives in one place</li>
+      </ul></div>
+      <div class="col drop"><h3>Left out</h3><ul>
+        <li><b>The three-claim sample as citation's scope</b>: <i>cited</i> covers every tile, headline number and claim a choice rests on (blindspots 02)</li>
+        <li><b>Repair by confirmation</b>: a true but unsourced tile still fails</li>
+        <li><b>Hand-over changes and an enforced rerun</b>: the skills only (Q1, Q8)</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">4</span> Edge cases: today's table and the fixed checks</div>
+    <p class="sub">The calibrated defects plus two cases from next-prompt's log outside the calibration. The expected verdicts are what the rerun should show.</p>
+    <div class="tw"><table>
+      <thead><tr><th style="width:27%">Case</th><th style="width:27%">Today's table</th><th style="width:30%">Fixed checks</th><th>Expect</th></tr></thead>
+      <tbody id="edges">
+        <tr data-t="edge: reference draft reply"><td><b>Reply contradicts the table</b><br>reference draft: <code>"Interview calls Q1, Q3, Q5 and Q6 stand"</code> (<code>:459</code>, drawn at load) while <code>:168</code> marks Q2 and Q5 refined</td><td>No row. Raised 2 of 3; the original finding named no question.</td><td><i>consistent</i> fails in the default render, with no click needed.</td><td><span class="pill r">revise</span></td></tr>
+        <tr data-t="edge: 9 / 9 tile"><td><b>Uncited tile</b><br>buy-in draft <code>9 / 9 CI checks pass</code> (<code>:213</code>); <code>check ci</code> appears 0 times</td><td>Grounded, but step 2 confirms it first. Raised 1 of 3.</td><td><i>cited</i> fails before anything runs.</td><td><span class="pill r">revise</span></td></tr>
+        <tr data-t="edge: committed buy-in near-miss"><td><b>Near-miss</b><br>committed buy-in <code>7 / 7</code>, <code>93 / 93</code>, <code>9 / 9</code> tiles; <code>check ci</code> named in the sentence below (<code>:209–214</code>)</td><td>Passed all three runs and the Opus run.</td><td><i>cited</i> holds through the named command (Q5). It fails if each tile needs its own source.</td><td><span class="pill p">pass</span></td></tr>
+        <tr data-t="edge: reconstructed terminal"><td><b>Reconstructed output</b><br>buy-in draft origin/main terminal, typed in the same tuple format as the captured side</td><td>Grounded (&ldquo;wrong&rdquo;). Raised 2 of 3.</td><td><i>provenance</i> fails unless one short label marks them (<code>ARTIFACTS.md:139–140</code>).</td><td><span class="pill r">revise</span></td></tr>
+        <tr data-t="edge: committed plan page kept path"><td><b>Dropped requirement</b><br>committed plan page: <code>"No kept path."</code> (<code>plan.html:283</code>) against a ticket clause</td><td>Passed. Raised 1 of 4.</td><td><i>ticket</i> fails: changed with no reason. A committed page flips (Q6).</td><td><span class="pill r">revise</span></td></tr>
+        <tr data-t="edge: 5 / 7 tile"><td><b>Tile against body</b><br>implementation draft <code>5 / 7</code> (<code>:172</code>) against its &ldquo;In progress&rdquo; entry (<code>:255</code>)</td><td>Caught under grounded.</td><td><i>consistent</i> fails; a check named &ldquo;reply&rdquo; would hold (why Q3 widened it).</td><td><span class="pill r">revise</span></td></tr>
+        <tr data-t="edge: stitched excerpt"><td><b>Labelled stitch, invented lines</b><br>reference draft excerpt headed <code>artifacts.rs:23–26, 84, 136</code> with comments the file lacks</td><td>Minor note only.</td><td>The stitch holds; its header names the lines. The invented comments fail <i>provenance</i> and now block.</td><td><span class="pill c">revise*</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:var(--space-2);font-size:.85rem">* Today a reviewer may leave this as a minor note; under <i>provenance</i> it blocks. Flag the row if invented lines inside a quoted excerpt should stay minor.</p>
+  </section>
+
+  <!-- 5 -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">5</span> Sign-off</div>
+    <div class="confirm">
+      <h3>Confirm or correct the map</h3>
+      <p class="sub">Tick <b>flag</b> on any note or edge row I got wrong. The reply below lists exactly the items you flagged. With nothing flagged, it confirms the map.</p>
+      <output id="reply" aria-live="polite"></output>
+      <div class="btns"><button type="button" id="copyReply">Copy reply</button><button type="button" class="secondary" id="clearFlags">Clear flags</button></div>
+    </div>
+  </section>
+
+  <footer>Reference map for brief-calibration, before code. Follows the blindspot pass, the brainstorm and the interview; feeds the plan.</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  function $(id) { return document.getElementById(id); }
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = "Copied"; btn.classList.add("done"); setTimeout(function () { btn.textContent = label; btn.classList.remove("done"); }, 1600); }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  }
+
+  // flag boxes on every note and edge row; the reply reads them back
+  var items = Array.prototype.slice.call(document.querySelectorAll(".note[data-t], #edges tr[data-t]"));
+  items.forEach(function (el) {
+    var lab = document.createElement("label"); lab.className = "flag";
+    var cb = document.createElement("input"); cb.type = "checkbox";
+    cb.setAttribute("aria-label", "flag " + el.getAttribute("data-t"));
+    lab.appendChild(cb); lab.appendChild(document.createTextNode("flag"));
+    if (el.tagName === "TR") el.lastElementChild.appendChild(document.createElement("br")), el.lastElementChild.appendChild(lab);
+    else el.appendChild(lab);
+    cb.addEventListener("change", function () { el.classList.toggle("flagged", cb.checked); render(); });
+    el._cb = cb;
+  });
+  function checks() {
+    return Array.prototype.map.call(document.querySelectorAll("mark.hl[data-p='c1']"), function (m) { return m.textContent.replace(/\d+$/, ""); })
+      .filter(function (v, i, a) { return a.indexOf(v) === i; });
+  }
+  function reply() {
+    var flagged = items.filter(function (el) { return el._cb.checked; });
+    if (!flagged.length) {
+      return "Semantics confirmed. Build the fixed checks as mapped: " + checks().join(", ") +
+        "; run before claim sampling, with an n/a column and one unnumbered report line, and an author rule under each check name.";
+    }
+    var L = ["Correction to the semantics map:"];
+    flagged.forEach(function (el) { L.push("- " + el.getAttribute("data-t") + ": what you got wrong: ; correct behavior: "); });
+    L.push("Everything not listed stands.");
+    return L.join("\n");
+  }
+  function render() { $("reply").textContent = reply(); }
+  $("copyReply").addEventListener("click", function () { copy(reply(), $("copyReply")); });
+  $("clearFlags").addEventListener("click", function () { items.forEach(function (el) { el._cb.checked = false; el.classList.remove("flagged"); }); render(); });
+  $("copyPrompt").addEventListener("click", function () { copy($("promptText").textContent.trim(), $("copyPrompt")); });
+
+  // hover a highlight or note to light its counterparts
+  function set(p, on) { document.querySelectorAll("[data-p='" + p + "']").forEach(function (e) { e.classList.toggle("on", on); }); }
+  document.querySelectorAll("mark.hl, .note").forEach(function (el) {
+    var p = el.getAttribute("data-p"); if (!p) return;
+    el.addEventListener("mouseenter", function () { set(p, true); });
+    el.addEventListener("mouseleave", function () { set(p, false); });
+  });
+  render();
+})();
+</script>
+</body>
+</html>
