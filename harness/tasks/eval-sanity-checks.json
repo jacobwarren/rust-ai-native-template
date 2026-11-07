@@ -1,0 +1,28 @@
+{
+  "schema_version": 6,
+  "id": "eval-sanity-checks",
+  "work_item": null,
+  "status": "partial",
+  "tier": "small",
+  "requirements": ["task-artifacts"],
+  "related_gaps": [
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "unaffected",
+      "rationale": "This adds evaluation guidance to docs/EVALUATION.md; the artifact gate is untouched."
+    }
+  ],
+  "gap_review": "Read the open gaps; none covers evaluation guidance. artifact-gate-holes is the nearest and is unaffected.",
+  "discoveries": [],
+  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "documentation": {
+    "updated": ["docs/EVALUATION.md"],
+    "rationale": "EVALUATION.md gains a section of checks to run on a task set before tuning against it, and what to do when tuning stalls."
+  },
+  "summary": "docs/EVALUATION.md asks for repeated runs but not the other checks that show a task set can measure a change: capability shows, headroom is left, tasks come from need, and failures are grouped when tuning stalls.",
+  "remaining": [
+    "Add the task-set checks section to docs/EVALUATION.md",
+    "cargo xtask check ci > target/verification/ci.json",
+    "cargo xtask complete --task eval-sanity-checks --base origin/main --report target/verification/ci.json"
+  ]
+}
