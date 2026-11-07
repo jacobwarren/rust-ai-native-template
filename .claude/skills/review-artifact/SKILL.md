@@ -14,22 +14,35 @@ the page a reader would get, not the effort behind it.
 1. Read the exemplar in full, then the page in full. Render both with
    `node scripts/artifact-screenshots.cjs OUT_DIR PAGE.html EXEMPLAR.html`
    (a scratch OUT_DIR under `target/`) and view the tiles side by side.
-2. Check the claims. Pick at least three concrete claims the page rests on,
+2. Run the fixed checks, after rendering and before sampling claims. Judge
+   each from what the page, its script and the task's ticket give a reader: a
+   claim you confirm yourself by running something is still uncited if the
+   page names no source or command for it. These are the defects a sampled
+   review misses about half the time (docs/EVALUATION.md).
+
+   | Check | Fails when | Not applicable |
+   | --- | --- | --- |
+   | consistent | Two places on the page disagree: the reply and what it summarizes, a tile and the body, a badge and its section. Read the reply as the script builds it, for the default choices and one changed choice. | never |
+   | provenance | Something is shown as more real than it is: typed or reconstructed output as captured, invented lines in a quoted excerpt, unbuilt behaviour as existing. | the page shows no output or excerpt |
+   | cited | A tile, headline number or claim a decision rests on has no source on the page: no file, test or output, and no command named that reproduces it. | never |
+   | ticket | An acceptance, scope or validation item of the ticket is neither met nor changed with its reason. | not a plan or buy-in page |
+
+3. Check the claims. Pick at least three concrete claims the page rests on,
    favoring the ones a decision depends on, and verify each against the code,
    tests, history or command output it cites. One false or unsupported claim
    fails the page. Run builds and tests in a clean copy
    (`git archive HEAD | tar -x -C DIR` under `target/` with its own
    `CARGO_TARGET_DIR`), because other agents may be editing the worktree.
-3. Use each interaction. Note what changes and whether that change helps the
+4. Use each interaction. Note what changes and whether that change helps the
    reader reason or reply.
-4. Answer the questions below. Each answer is a short verdict with the place on
+5. Answer the questions below. Each answer is a short verdict with the place on
    the page it refers to.
 
 | Question | Fails when |
 | --- | --- |
 | What does a reader learn here that the diff, code and docs do not tell them quickly? | You cannot name it in one sentence, or it restates the prompt or the code. |
 | Does the page do its job (below)? | It produces the page type in form but not in function. |
-| Is every claim grounded? | A checked claim is wrong, vague ("various places") or uncited. |
+| Is every claim grounded? | A checked claim is wrong or vague ("various places"). |
 | Does each interaction change what the reader sees or decides? | A control is decorative, broken, or reveals text that could simply be shown. |
 | Does it show rather than tell? | Findings are prose where an excerpt, diagram, before/after or demo would make them checkable. |
 | Is it as short as its content allows? | A reader would skim whole sections, it runs well past the exemplar's length without carrying more, or it derives again at length what an earlier page of this task already showed. |
@@ -62,9 +75,14 @@ and copy back.
 Return one verdict:
 
 - **PASS** with the one-sentence answer to the first question, or
-- **REVISE** with numbered findings. Each names the question it fails, where on
-  the page, what is wrong, and what a rewrite must do. Make every finding
-  something an author can act on without asking you.
+- **REVISE** with numbered findings. Each names the check or question it fails,
+  where on the page, what is wrong, and what a rewrite must do. Make every
+  finding something an author can act on without asking you.
+
+Either way, put one unnumbered line after the verdict, such as
+`Fixed checks: consistent held; provenance failed (1); cited held; ticket n/a`,
+where a failed check names its finding's number. It is not a finding, so
+`FINDINGS: N` still counts only the numbered findings.
 
 Do not pass a page because it is long, polished or plausible. Do not fail it
 for layout choices that differ from the exemplar. If you could not render it,
