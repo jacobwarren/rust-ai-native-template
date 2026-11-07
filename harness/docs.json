@@ -246,6 +246,12 @@
     "verified_by": "cargo xtask docs; focused gap discovery and completion regression tests"
   },
   {
+    "path": "docs/plans/brief-calibration.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; harness/tasks/brief-calibration.json"
+  },
+  {
     "path": "docs/plans/next-prompt.md",
     "owner": "maintainers",
     "status": "active",
