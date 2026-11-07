@@ -41,6 +41,29 @@ completion claims. Set an experiment budget and stop rule. Keep or remove the
 change based on the result. A handful of greeting tasks cannot demonstrate gains
 across arbitrary Rust codebases.
 
+## Check the task set before tuning against it
+
+Before using a task set to tune a prompt, skill or harness change, check that
+it can measure one. Run each check once per set, and again when tasks or
+graders change:
+
+- **Capability shows.** Scores rise with a stronger model and with more
+  thinking budget. If they do not, the tasks or the grader measure something
+  else, such as format or luck.
+- **Headroom is left.** The best model and budget still fail some tasks. A set
+  every configuration passes cannot show an improvement.
+- **Runs agree.** Repeated runs of one configuration give similar scores. If
+  the spread is as large as the difference you hope to see, add runs or tasks
+  before comparing.
+- **Tasks come from need.** Pick tasks for what the product must do, not from
+  one model's failures. Failures peculiar to one model may disappear with the
+  next, and a prompt tuned to them overfits.
+
+When tuning stops improving, group the remaining failures by cause before
+changing the prompt again. Ambiguous tasks and broken graders are the usual
+causes, and the fix is the task or the grader, not the prompt. Record what each
+group was and what changed.
+
 ## Guardrail tests
 
 A mechanical checker should have an allowed fixture and an intentional violation.
