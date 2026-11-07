@@ -2,9 +2,11 @@
   "schema_version": 6,
   "id": "eval-sanity-checks",
   "work_item": null,
-  "status": "partial",
+  "status": "complete",
   "tier": "small",
-  "requirements": ["task-artifacts"],
+  "requirements": [
+    "task-artifacts"
+  ],
   "related_gaps": [
     {
       "id": "artifact-gate-holes",
@@ -14,15 +16,19 @@
   ],
   "gap_review": "Read the open gaps; none covers evaluation guidance. artifact-gate-holes is the nearest and is unaffected.",
   "discoveries": [],
-  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "discovery_review": "No discoveries: the change is one new section of guidance, and nothing in the repo contradicted it.",
   "documentation": {
-    "updated": ["docs/EVALUATION.md"],
+    "updated": [
+      "docs/EVALUATION.md"
+    ],
     "rationale": "EVALUATION.md gains a section of checks to run on a task set before tuning against it, and what to do when tuning stalls."
   },
   "summary": "docs/EVALUATION.md asks for repeated runs but not the other checks that show a task set can measure a change: capability shows, headroom is left, tasks come from need, and failures are grouped when tuning stalls.",
-  "remaining": [
-    "Add the task-set checks section to docs/EVALUATION.md",
-    "cargo xtask check ci > target/verification/ci.json",
-    "cargo xtask complete --task eval-sanity-checks --base origin/main --report target/verification/ci.json"
-  ]
+  "remaining": [],
+  "review": {
+    "acceptance": "docs/EVALUATION.md has a section 'Check the task set before tuning against it' with the four checks (capability shows, headroom is left, runs agree, tasks come from need) and the instruction to group remaining failures by cause when tuning stalls. No named test: this is prose guidance, checked by cargo xtask docs and by reading it.",
+    "verification": "cargo xtask check ci passed 9 of 9 at 3db48ce in a clean clone (target/verification/ci.json); cargo xtask docs passed; the small tier was checked by complete against origin/main (23 added lines, no protected or ceremony path).",
+    "assumptions": "No readiness requirement covers EVALUATION.md, so the record names task-artifacts, whose reviewer calibration this guidance applies to; the readiness map is unchanged. The checks have not yet been run against any task set here.",
+    "coverage": "Nothing enforces that a tuning run applies these checks; they are guidance, like the rest of EVALUATION.md."
+  }
 }
