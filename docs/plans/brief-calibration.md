@@ -106,6 +106,13 @@ pages expected to pass. Their failures, as checked against the files:
   the buy-in page for ticket changes it reports only as decisions. These are
   known gaps, not tuned away.
 
+Round 3 ran d4be473 again on each draft, two more runs each, handed "record no
+verdict in any log" instead of "do not run any task-artifact command". All six
+revised, all six rendered, and each raised its draft's targeted findings: the
+contradicting reply on the reference draft 2 of 2, length on the plan draft
+2 of 2, and the typed main output and the uncited tiles on the buy-in draft
+2 of 2. With round 2 that makes 3 of 3 per draft at the final wording.
+
 Rendering: in round 1, six of nine runs skipped the screenshot step, reading
 "before you run anything" as "run nothing". With d4be473, ten of twelve
 rendered. One of the two that did not cited this calibration's own "do not

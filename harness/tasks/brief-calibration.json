@@ -36,8 +36,7 @@
   },
   "summary": "Add the fixed checks the reviewer calibration found it misses to the reviewer brief, the matching rules to the author brief, and the calibration method to docs/EVALUATION.md.",
   "remaining": [
-    "Record the final-wording draft runs and known gaps in docs/EVALUATION.md.",
-    "Write and review the buy-in and quiz pages.",
+    "Review the buy-in page, then write and review the quiz.",
     "Run cargo xtask check ci > target/verification/ci.json and cargo xtask complete --task brief-calibration --base origin/main."
   ]
 }
