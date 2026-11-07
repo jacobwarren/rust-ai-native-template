@@ -2,7 +2,7 @@
   "schema_version": 6,
   "id": "brief-calibration",
   "work_item": null,
-  "status": "partial",
+  "status": "complete",
   "tier": "standard",
   "requirements": [
     "task-artifacts"
@@ -15,8 +15,29 @@
     }
   ],
   "gap_review": "Read the open gaps; only artifact-gate-holes is near this work and it is unaffected.",
-  "discoveries": [],
-  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "discoveries": [
+    {
+      "summary": "Telling reviewers to judge the fixed checks 'before you run anything' made six of nine skip rendering; step 2 now runs after rendering.",
+      "record": "docs/plans/brief-calibration.md"
+    },
+    {
+      "summary": "A calibration hand-off saying 'do not run any task-artifact command' also suppresses rendering; the method now says 'record no verdict in any log'.",
+      "record": "docs/EVALUATION.md"
+    },
+    {
+      "summary": "The fixed checks found real defects on next-prompt's committed buy-in page (buy-in.html:291 and :306) that every earlier review passed, so its expected verdict moved to revise.",
+      "record": "docs/EVALUATION.md"
+    },
+    {
+      "summary": "Reviewers read cited more strictly than written for tiles sourced by a nearby sentence, and ticket fires on buy-in pages for changes reported only as decisions; recorded as known gaps.",
+      "record": "docs/EVALUATION.md"
+    },
+    {
+      "summary": "Clean copies that share one CARGO_TARGET_DIR reuse a test binary built against another copy's briefs, so briefs.rs can pass on the wrong copy; give each copy its own target dir.",
+      "record": "harness/task-artifacts/brief-calibration/implementation.html"
+    }
+  ],
+  "discovery_review": "Five discoveries, each recorded where the next reader of that area looks: two in the calibration method and rerun record, two as known gaps in EVALUATION.md, one in the implementation notes.",
   "documentation": {
     "updated": [
       ".claude/skills/review-artifact/SKILL.md",
@@ -35,8 +56,11 @@
     "reference": "The question table in the review-artifact skill"
   },
   "summary": "Add the fixed checks the reviewer calibration found it misses to the reviewer brief, the matching rules to the author brief, and the calibration method to docs/EVALUATION.md.",
-  "remaining": [
-    "Review the buy-in page, then write and review the quiz.",
-    "Run cargo xtask check ci > target/verification/ci.json and cargo xtask complete --task brief-calibration --base origin/main."
-  ]
+  "remaining": [],
+  "review": {
+    "acceptance": "Both named tests exist and pass: reviewer_brief_runs_the_fixed_checks pins the review-artifact check table to consistent, provenance, cited, ticket in both hosts; author_brief_answers_each_fixed_check requires an author rule under each. The ticket's acceptance wording changed with the plan (reply and captured widened to consistent and provenance), as the ticket records. The rerun validation is met: every targeted defect was raised 3 of 3 at the final wording.",
+    "verification": "cargo xtask check ci passed 9 of 9 (target/verification/ci.json). Pages: blindspots.html pass in round 1 (0 findings); interventions.html pass in round 1 (1 findings); interview.html pass in round 1 (3 findings); reference.html pass in round 1 (2 findings); plan.html pass in round 1 (3 findings); implementation.html pass in round 2 (0 findings); buy-in.html pass in round 2 (0 findings); quiz.html pass in round 3 (0 findings). Open notes carried: the reference page's scratch-probe blocks and the stricter cited reading are known gaps in docs/EVALUATION.md; the buy-in page's six calls are left for the owner.",
+    "assumptions": "The calibration set is six pages from one task, so the miss rates are small samples; EVALUATION.md warns against tuning to it. The checks are judgement, not code: briefs.rs pins the briefs' wording, not what a reviewer does. The ticket reaches the reviewer only as a path, so the ticket check depends on the reviewer opening it. Codex was not observed using the new briefs.",
+    "coverage": "No test checks reviewer behaviour; that is what the calibration measures and EVALUATION.md says when to rerun it. Drift between the two host copies is caught by DOC007, not briefs.rs. Expected-pass pages now fail more often, which may cost extra rewrites; the rate is recorded, not yet measured on a new task."
+  }
 }
