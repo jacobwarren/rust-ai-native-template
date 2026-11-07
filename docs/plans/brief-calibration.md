@@ -74,6 +74,43 @@ one-reference prompt instead of the four-reference prompt the page answers.
 All four failed it on that ground, and on length. They are left out of the
 counts above. The result shows how strongly the given prompt steers a verdict.
 
+## Rerun with the fixed checks (2026-11-06)
+Round 1 ran 528a964 on the three drafts. Round 2 ran d4be473 (step 2 reworded)
+on the three committed pages, three runs each, plus one more run per draft.
+Expected verdicts are the ones in docs/EVALUATION.md, written before either
+round.
+
+| Page | Expected | Round 1 | Round 2 | Targeted finding raised |
+| --- | --- | --- | --- | --- |
+| reference draft | revise | revise ×3 | revise | contradicting reply 4 of 4 (was 2 of 3) |
+| plan draft | revise | revise ×3 | revise | length 4 of 4 (was 3 of 3) |
+| buy-in draft | revise | revise ×3 | revise | typed main output 4 of 4 (was 2 of 3); uncited 9 / 9 tile 4 of 4 (was 1 of 3) |
+| plan page | revise | | revise ×3 | dropped kept path 3 of 3 (was 1 of 4) |
+| reference page | pass | | pass, revise ×2 | |
+| buy-in page | pass | | revise ×3 | |
+
+Every defect the fixed checks target was raised every time. The cost is on
+pages expected to pass. Their failures, as checked against the files:
+
+- Real, missed by all earlier reviews. The buy-in page's "With the leans as
+  they stand, nothing changes before merge" (buy-in.html:306) is fixed text
+  the choices never update (`consistent`, 2 of 3). Its "So far one real reply
+  has gone through" (:291) contradicts the review log at 17425b6, which holds
+  two piped replies for implementation.html (`consistent`, 2 of 3).
+- Real, by the stricter rule. The reference page shows `$`-prompted output
+  from scratch probes (`probe_guide`, a patched `Task`) that exist nowhere a
+  reader can run (`provenance` and `cited`, 2 of 3).
+- Stricter than written. Two of three buy-in runs failed its tiles as
+  uncited although `cargo xtask check ci` is named in the sentence beneath
+  them, which the plan counts as a source. The `ticket` check also fired on
+  the buy-in page for ticket changes it reports only as decisions. These are
+  known gaps, not tuned away.
+
+Rendering: in round 1, six of nine runs skipped the screenshot step, reading
+"before you run anything" as "run nothing". With d4be473, ten of twelve
+rendered. One of the two that did not cited this calibration's own "do not
+run any task-artifact command" instruction, which real reviews do not get.
+
 ## Out of scope
 A rewrite-rate command; changing the prompts, the exemplars or the gate;
 running several reviewers per round; moving the reviewer to another model
