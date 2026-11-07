@@ -35,8 +35,22 @@ anything.
    and use its tokens. Inline your own layout CSS and scripts. Load nothing,
    neither from the network nor from files beside the page.
 5. Keep the page about the feature. No harness mechanics, hashes, revision
-   talk or verification boilerplate. Report those to the caller instead.
-6. Check your work by looking at it, not by reasoning about the markup. Render
+   talk or verification boilerplate. One short label on each output block,
+   captured or sketched, is not boilerplate. Report the rest to the caller.
+6. Before you hand back, meet the reviewer's fixed checks. A reviewer runs
+   them on every page and fails the page on any one:
+   - **consistent**: build the reply from the same data the page shows, so a
+     choice, table row or tile and the reply can never disagree; check that a
+     tile, badge or summary matches its section.
+   - **provenance**: show output as captured only if you ran it and pasted it.
+     Label typed, reconstructed or trimmed output, excerpts you shortened, and
+     behaviour that does not exist yet as what they are.
+   - **cited**: put a source beside every tile, headline number and claim a
+     decision rests on: a file and line, a test, captured output, or the
+     command that reproduces it. A true number with no source still fails.
+   - **ticket**: on a plan or buy-in page, account for each acceptance, scope
+     and validation item of the ticket: met, or changed with its reason.
+7. Check your work by looking at it, not by reasoning about the markup. Render
    your page and the exemplar with
    `node scripts/artifact-screenshots.cjs OUT_DIR YOUR_PAGE.html EXEMPLAR.html`
    (use a scratch OUT_DIR under `target/`) and view the PNG tiles. Fix every

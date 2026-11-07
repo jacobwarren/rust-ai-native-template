@@ -9,7 +9,7 @@
     "path": ".agents/skills/author-artifact/SKILL.md",
     "owner": "maintainers",
     "status": "active",
-    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); xtask/tests/briefs.rs; reviewer calibration (docs/EVALUATION.md)"
   },
   {
     "path": ".agents/skills/investigate/SKILL.md",
@@ -21,7 +21,7 @@
     "path": ".agents/skills/review-artifact/SKILL.md",
     "owner": "maintainers",
     "status": "active",
-    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); xtask/tests/briefs.rs; reviewer calibration (docs/EVALUATION.md)"
   },
   {
     "path": ".agents/skills/write-ticket/SKILL.md",
@@ -51,7 +51,7 @@
     "path": ".claude/skills/author-artifact/SKILL.md",
     "owner": "maintainers",
     "status": "active",
-    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); xtask/tests/briefs.rs; reviewer calibration (docs/EVALUATION.md)"
   },
   {
     "path": ".claude/skills/investigate/SKILL.md",
@@ -63,7 +63,7 @@
     "path": ".claude/skills/review-artifact/SKILL.md",
     "owner": "maintainers",
     "status": "active",
-    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); fresh-agent artifact trial"
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); xtask/tests/briefs.rs; reviewer calibration (docs/EVALUATION.md)"
   },
   {
     "path": ".claude/skills/write-ticket/SKILL.md",

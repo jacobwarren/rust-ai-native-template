@@ -116,7 +116,9 @@
         "xtask/src/router.rs",
         ".claude/skills/write-ticket/SKILL.md",
         ".claude/skills/investigate/SKILL.md",
-        "xtask/src/handover.rs"
+        "xtask/src/handover.rs",
+        ".claude/skills/review-artifact/SKILL.md",
+        ".claude/skills/author-artifact/SKILL.md"
       ],
       "tests": [
         "completion_requires_eight_pages_carrying_the_stylesheet_inline",
@@ -152,7 +154,9 @@
         "build_step_hands_over_the_notes_prompt",
         "missing_values_stay_as_braces",
         "verdict_reads_full_notes_from_stdin",
-        "review_and_rewrite_steps_carry_their_prompt"
+        "review_and_rewrite_steps_carry_their_prompt",
+        "reviewer_brief_runs_the_fixed_checks",
+        "author_brief_answers_each_fixed_check"
       ],
       "workflows": []
     }
