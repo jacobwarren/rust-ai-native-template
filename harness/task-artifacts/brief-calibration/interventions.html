@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brainstorm: where to catch what the page reviewer misses</title>
+<style>
+  main { max-width: 62rem; padding-top: var(--space-8); padding-bottom: 11rem; }
+  main > h1 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); margin-block: var(--space-3); }
+  main > .lead { font-size: 1.05rem; margin-block: 0 var(--space-4); }
+  main > h2 { margin-block: var(--space-8) var(--space-3); }
+  .prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .prompt-card blockquote { margin: var(--space-2) 0 0; font-style: italic; }
+  .row-label { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
+  .tag { font: 650 .72rem/1.2 var(--font-code); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  button.copy { min-height: 32px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); background: var(--surface); color: var(--ink); border-color: var(--line); white-space: nowrap; }
+  button.copy:hover { border-color: var(--accent); color: var(--accent); }
+  button.copy.done { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+  .scan { color: var(--muted); font-size: var(--text-small); }
+  code { font-size: .86em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 .3em; overflow-wrap: anywhere; }
+  .pattern { border-inline-start: 3px solid var(--accent); background: var(--accent-soft); padding: var(--space-3) var(--space-4); border-radius: 0 var(--control-radius) var(--control-radius) 0; font-size: .95rem; }
+  .pattern p { margin: var(--space-2) 0; }
+
+  .misses { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); margin-block: var(--space-4); }
+  .miss { border: 1px solid var(--line); border-radius: var(--control-radius); background: var(--surface); padding: var(--space-2) var(--space-3); font-size: .82rem; line-height: 1.35; }
+  .miss b { display: block; font: 650 1.2rem/1.2 var(--font-code); }
+  .miss .k { font: 650 .7rem var(--font-code); letter-spacing: .08em; }
+  @media (max-width: 40rem) { .misses { grid-template-columns: 1fr 1fr; } }
+
+  .spectrum { margin-block: var(--space-6) var(--space-2); }
+  .spec-labels, .spec-ticks { display: flex; justify-content: space-between; font: var(--text-small) var(--font-code); color: var(--muted); }
+  .spec-track { position: relative; height: 44px; margin-block: var(--space-1); }
+  .spec-line { position: absolute; left: 0; right: 0; top: 21px; height: 2px; background: linear-gradient(90deg, var(--accent-soft), var(--accent), var(--warning)); }
+  button.spec-dot { position: absolute; top: 6px; width: 32px; height: 32px; min-height: 0; padding: 0; margin-left: -16px; border-radius: 50%; font: 650 .8rem var(--font-code); background: var(--surface); color: var(--ink); border: 2px solid var(--line); }
+  button.spec-dot.on { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+  .spec-ticks span { flex: 1; text-align: center; }
+  @media (max-width: 40rem) { button.spec-dot { width: 24px; height: 24px; margin-left: -12px; top: 10px; font-size: .68rem; } }
+
+  .iv { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); margin-block: var(--space-3); font-size: .92rem; line-height: 1.55; }
+  .iv.checked { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .iv-top { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
+  .iv-top h3 { margin: 0; flex: 1 1 18rem; font-size: 1.08rem; }
+  .num { font: 650 var(--text-small) var(--font-code); color: var(--muted); }
+  .chips { display: flex; gap: var(--space-1); flex-wrap: wrap; }
+  .chip { font: 650 .68rem/1 var(--font-code); letter-spacing: .06em; text-transform: uppercase; padding: .35em .55em; border-radius: 4px; border: 1px solid var(--line); background: var(--paper); color: var(--muted); }
+  .chip.S { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .chip.M { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+  .chip.L { color: var(--danger); border-color: var(--danger); background: #fbeeee; }
+  .chip.plan { color: var(--ink); border-color: var(--ink); }
+  .path { display: block; font: .78rem/1.4 var(--font-code); color: var(--muted); margin-top: var(--space-1); overflow-wrap: anywhere; }
+  .iv p { margin-block: var(--space-2); }
+  .found { font-weight: 650; color: var(--accent); }
+  .ex { font: .76rem/1.5 var(--font-code); margin-block: var(--space-2); padding: var(--space-3); white-space: pre-wrap; }
+  .ex .c { color: var(--muted); }
+  .ex .hit { color: var(--danger); }
+  .cap { font-size: .78rem; color: var(--muted); margin-top: calc(-1 * var(--space-1)); }
+  .iv-foot { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); align-items: center; justify-content: space-between; border-top: 1px dashed var(--line); padding-top: var(--space-2); margin-top: var(--space-3); }
+  .cost { font-size: .85rem; color: var(--ink); flex: 1 1 22rem; }
+  .cost b { font: 650 .7rem var(--font-code); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-right: var(--space-1); }
+  .hits { display: flex; gap: var(--space-1); }
+  .hit-k { font: 650 .7rem/1 var(--font-code); padding: .35em .5em; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); }
+  .hit-k.y { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  label.resonate { margin: 0; display: flex; align-items: center; font-size: .88rem; font-weight: 650; cursor: pointer; }
+
+  .replybar { position: fixed; left: 0; right: 0; bottom: 0; background: var(--surface); border-top: 2px solid var(--ink); z-index: 5; }
+  .rb-in { max-width: 62rem; margin: 0 auto; padding: var(--space-2) var(--space-6); display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-2) var(--space-4); align-items: center; }
+  .rb-cov { display: flex; gap: var(--space-1); flex-wrap: wrap; }
+  .rb-cov span { font: 650 .7rem/1 var(--font-code); padding: .4em .55em; border-radius: 4px; border: 1px solid var(--danger); color: var(--danger); background: #fbeeee; }
+  .rb-cov span.ok { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .rb-reply { font-size: .84rem; color: var(--muted); max-height: 4.6em; overflow: auto; }
+  .rb-reply.live { color: var(--ink); }
+  .rb-side { display: flex; flex-direction: column; gap: var(--space-1); }
+  #extra { min-height: 2.2rem; height: 2.2rem; padding: var(--space-1) var(--space-2); font-size: .8rem; width: 14rem; }
+  @media (max-width: 40rem) { .rb-in { grid-template-columns: 1fr auto; padding: var(--space-2) var(--space-3); } .rb-reply { grid-column: 1 / -1; grid-row: 2; } #extra { width: 9rem; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Brainstorm the intervention · before code · brief-calibration</div>
+  <h1>Ten places to catch what the page reviewer misses, cheapest first</h1>
+  <p class="lead">Where each of the four findings fresh reviewers raised only one to two times in three could be caught, located in the code with its cost. Check the ones that resonate. The bar at the bottom shows which findings your picks leave uncovered and which files they add beyond the ticket's scope.</p>
+
+  <div class="prompt-card">
+    <div class="row-label"><span class="tag">The prompt</span><button class="copy" id="copyPrompt" type="button">Copy</button></div>
+    <blockquote id="promptText">Here's the problem: In a calibration of 21 fresh reviews, every run caught pages that ran long or re-listed earlier pages, but a reply contradicting its page, reconstructed output shown as captured, an uncited claim and a dropped ticket requirement were caught only one to two times in three, and the author brief guards against none of them. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate.</blockquote>
+  </div>
+
+  <p class="scan"><b>Read:</b> both page skills and agent definitions, <code>handover.rs</code>, the verdict path in <code>router.rs</code>, <code>scripts/artifact-screenshots.cjs</code>, <code>docs/EVALUATION.md</code>, next-prompt's review log and saved drafts. <b>Ran:</b> a prototype of #7 on the reference draft, and searches for the plan page's test names and the buy-in tiles' sources.</p>
+
+  <div class="misses" aria-label="The four findings and how often fresh reviews raised them">
+    <div class="miss"><span class="k">R</span><b>2 of 3</b>reply contradicts its page (reference draft)</div>
+    <div class="miss"><span class="k">C</span><b>2 of 3</b>reconstructed output shown as captured (buy-in draft)</div>
+    <div class="miss"><span class="k">U</span><b>1 of 3</b>uncited "9 / 9 CI checks" tile (buy-in draft)</div>
+    <div class="miss"><span class="k">T</span><b>1 of 4</b>ticket requirement dropped (plan page)</div>
+  </div>
+
+  <div class="pattern">
+    <p><b>The pattern: in three of the four cases the evidence was on the page.</b> The reference draft's contradicting reply line is drawn into the reply box when the page loads (<code>reference.round1.html:459</code>, by <code>render()</code> at <code>:480</code>), so no click was needed to see it. The plan page names all three of the ticket's tests and drops a clause inside one of them. The 9 / 9 tile sits on a page that never names <code>check ci</code>. Only reconstructed output cannot be told from captured output by looking (blindspots 03).</p>
+    <p>So the cheap options change what a reviewer must write down. The costly ones put evidence where looking is not enough. #3 and #4 are the ticket's own plan. The rest strengthen it or replace parts of it.</p>
+  </div>
+
+  <div class="spectrum">
+    <div class="spec-labels"><span>a sentence in a brief</span><span>a new corpus</span></div>
+    <div class="spec-track">
+      <div class="spec-line"></div>
+      <button class="spec-dot" style="left:3%" data-n="1" type="button" title="Judge citation from the page alone">1</button>
+      <button class="spec-dot" style="left:12%" data-n="2" type="button" title="Make each check quote its evidence">2</button>
+      <button class="spec-dot" style="left:21%" data-n="3" type="button" title="Four fixed-check rows">3</button>
+      <button class="spec-dot" style="left:30%" data-n="4" type="button" title="Matching author rules">4</button>
+      <button class="spec-dot" style="left:41%" data-n="5" type="button" title="Checks in the review hand-over">5</button>
+      <button class="spec-dot" style="left:51%" data-n="6" type="button" title="Ticket clauses in the hand-over">6</button>
+      <button class="spec-dot" style="left:61%" data-n="7" type="button" title="Dump every reply">7</button>
+      <button class="spec-dot" style="left:71%" data-n="8" type="button" title="Provenance lint">8</button>
+      <button class="spec-dot" style="left:83%" data-n="9" type="button" title="Captured by construction">9</button>
+      <button class="spec-dot" style="left:96%" data-n="10" type="button" title="Seeded-defect calibration set">10</button>
+    </div>
+    <div class="spec-ticks"><span>brief text</span><span>hand-over</span><span>tooling</span><span>new corpus</span></div>
+  </div>
+
+  <h2>The ten</h2>
+
+  <div class="iv" id="iv1" data-hits="U">
+    <div class="iv-top"><span class="num">#1</span><h3>Judge citation from the page alone, before confirming anything</h3><div class="chips"><span class="chip S">S</span></div></div>
+    <span class="path">.claude/skills/review-artifact/SKILL.md:17–22, :32</span>
+    <p><span class="found">Found in code:</span> the grounded row fails an "uncited" claim, but step 2 tells the reviewer to verify claims and run builds, so a reviewer who runs <code>check ci</code> has confirmed the tile (blindspots 02). Split the row in two: <em>cited</em>, judged from the page before any command runs, and <em>true</em>, sampled afterwards. The rule decides which committed pages pass. The committed buy-in page passed every fresh run with a <b>7 / 7</b> and a <b>93 / 93</b> tile that name no command beside them (<code>buy-in.html:209–210</code>). Only the 9 / 9 tile has the sentence naming <code>cargo xtask check ci</code> (<code>:214</code>).</p>
+    <div class="iv-foot"><span class="cost"><b>Cost</b>Two sentences, mirrored to <code>.agents/</code>. First settle what must carry a source (blindspots 01 and 02), or the rerun's committed-page baseline moves.</span><span class="hits"></span><label class="resonate"><input type="checkbox" data-n="1">This resonates</label></div>
+  </div>
+
+  <div class="iv" id="iv2" data-hits="R U T">
+    <div class="iv-top"><span class="num">#2</span><h3>Make each check quote its evidence instead of naming a place</h3><div class="chips"><span class="chip S">S</span></div></div>
+    <span class="path">review-artifact SKILL.md:25–26 (answer form), :64 (PASS form)</span>
+    <p><span class="found">Found in code:</span> an answer today is "a short verdict with the place on the page it refers to", and a PASS carries one sentence. Asking for quotes turns looking into a written step: the reviewer copies the default reply's lines next to the conclusions they summarize, the caption over each output block, the source beside each stat tile, and each ticket clause next to where the page meets it.</p>
+<pre class="ex"><span class="c">reference.round1.html:459, in reply(); rendered into #reply at load</span>
+L.push(<span class="hit">"- Interview calls Q1, Q3, Q5 and Q6 stand as answered."</span>);
+<span class="c">:168, the page's own table: Q2 and Q5 marked</span> <span class="hit">refine</span></pre>
+    <div class="iv-foot"><span class="cost"><b>Cost</b>One sentence each in step 4 and the PASS form; reviews get longer. Quotes go on an unnumbered line so <code>FINDINGS: N</code> still counts findings only (blindspots 06).</span><span class="hits"></span><label class="resonate"><input type="checkbox" data-n="2">This resonates</label></div>
+  </div>
+
+  <div class="iv" id="iv3" data-hits="R C U T">
+    <div class="iv-top"><span class="num">#3</span><h3>Four fixed-check rows in the reviewer's question table</h3><div class="chips"><span class="chip S">S</span><span class="chip plan">ticket's plan</span></div></div>
+    <span class="path">review-artifact SKILL.md:28–37, :59–60 · new xtask/tests/briefs.rs</span>
+    <p><span class="found">Found in code:</span> the table's eight questions cover learning, job, grounding, interactions, showing, length, focus and rendering. None asks whether the page agrees with itself, whether output was captured, or whether the ticket is met. This is <code>reviewer_brief_runs_the_fixed_checks</code>. Each row needs an n/a: a reply is owed only by the five discovery pages (<code>:59–60</code>), and the ticket check bears on plan and buy-in. A row alone may not be enough: the grounded row has named "uncited" all along (<code>:32</code>), and two of three runs still let the 9 / 9 tile through.</p>
+    <div class="iv-foot"><span class="cost"><b>Cost</b>Four rows, mirrored; a test that matches each check's short name in both hosts. DOC007 keeps the copies equal.</span><span class="hits"></span><label class="resonate"><input type="checkbox" data-n="3">This resonates</label></div>
+  </div>
+
+  <div class="iv" id="iv4" data-hits="R C U T">
+    <div class="iv-top"><span class="num">#4</span><h3>Matching rules in the author brief, so the page arrives clean</h3><div class="chips"><span class="chip S">S</span><span class="chip plan">ticket's plan</span></div></div>
+    <span class="path">.claude/skills/author-artifact/SKILL.md:18–24, :31–32, :37–38</span>
+    <p><span class="found">Found in code:</span> the author brief asks for "a concrete basis the reader can follow" (<code>:18–21</code>) but not that it sit beside the claim. It asks for a reply (<code>:31–32</code>) but not that the reply be built from the data the page renders; the draft typed its reply separately from its table (blindspots 04). It forbids "verification boilerplate" (<code>:37–38</code>) without the one-line provenance label <code>docs/ARTIFACTS.md:139–140</code> allows. It never mentions the ticket. This is <code>author_brief_answers_each_fixed_check</code>: four rules under the reviewer's check names.</p>
+    <div class="iv-foot"><span class="cost"><b>Cost</b>Four sentences, mirrored. The only brief change that prevents a defect instead of catching it, so the reviewer's 1-in-3 matters less.</span><span class="hits"></span><label class="resonate"><input type="checkbox" data-n="4">This resonates</label></div>
+  </div>
+
+  <div class="iv" id="iv5" data-hits="R C U T" data-files="xtask/src/handover.rs|xtask/tests/handover.rs">
+    <div class="iv-top"><span class="num">#5</span><h3>Name the page's own checks in the review hand-over</h3><div class="chips"><span class="chip M">S–M</span><span class="chip">adds xtask</span></div></div>
+    <span class="path">xtask/src/handover.rs:191–205 · xtask/tests/handover.rs:264–271</span>
+    <p><span class="found">Found in code:</span> the hand-over's last line is the only instruction on how to review that it carries (<code>"Follow the review-artifact skill: PASS or REVISE … FINDINGS: N …"</code>, <code>:203–205</code>). The calibration showed how hard hand-over text steers. Four reviewers given a different prompt all failed the page on that ground (ticket, Calibration record). <code>handover()</code> already adds lines by page, such as the answering rule for interview and buy-in at <code>:191–193</code>. It could name only the checks that apply: the reply for the five discovery pages, the ticket for plan and buy-in, provenance and citation for all.</p>
+    <div class="iv-foot"><span class="cost"><b>Cost</b>A match on the page name and one test line. <code>xtask/</code> is protected (<code>transitions.rs:40</code>), so it rides on the receipt the <code>.claude/</code> edit already needs. Outside the ticket's scope list.</span><span class="hits"></span><label class="resonate"><input type="checkbox" data-n="5">This resonates</label></div>
+  </div>
+
+  <div class="iv" id="iv6" data-hits="T" data-files="xtask/src/handover.rs|xtask/tests/handover.rs">
+    <div class="iv-top"><span class="num">#6</span><h3>Hand plan and buy-in reviewers the ticket's acceptance text, not just its path</h3><div class="chips"><span class="chip M">M</span><span class="chip">adds xtask</span></div></div>
+    <span class="path">xtask/src/handover.rs:154–158 · write-ticket SKILL.md:35</span>
+    <p><span class="found">Found in code:</span> the ticket reaches the reviewer only as a path under "Task context". Matching test names would not have caught the plan page. All three of next-prompt's named tests appear in <code>plan.html</code> once each. The dropped requirement was a clause inside one of them, and the page answers it with three words and no reason:</p>
+<pre class="ex"><span class="c">docs/plans/next-prompt.md:30–31, at the plan page's commit</span>
+…and a rewrite step carries the last review's notes <span class="hit">and the kept version's path.</span>
+<span class="c">plan.html:283</span>
+…<code>of</code> and <code>round</code> feed "rewrite 1 of 2". <span class="hit">No kept path.</span></pre>
+    <p>Tickets from the write-ticket skill carry the fixed heading "Acceptance as named tests" (<code>:35</code>; all three in <code>docs/plans/</code> do), so <code>handover()</code> can paste those bullets in full. It must read them from the reviewed commit, because the ticket at HEAD was later edited to approve the change (blindspots 05).</p>
+    <div class="iv-foot"><span class="cost"><b>Cost</b>A section parser and a fixture test. The clause-by-clause comparison stays semantic; this only puts the text in front of the reviewer.</span><span class="hits"></span><label class="resonate"><input type="checkbox" data-n="6">This resonates</label></div>
+  </div>
+
+  <div class="iv" id="iv7" data-hits="R" data-files="scripts/artifact-screenshots.cjs">
+    <div class="iv-top"><span class="num">#7</span><h3>Dump every reply a choice can produce into the screenshot report</h3><div class="chips"><span class="chip M">M</span><span class="chip">adds script</span></div></div>
+    <span class="path">scripts/artifact-screenshots.cjs:100–116 (capture)</span>
+    <p><span class="found">Found in code:</span> <code>capture()</code> renders the default state, measures overflow and takes tiles. Nothing clicks. A prototype that reloads the page, toggles one checkbox or radio, and records which reply lines appear ran against the reference draft:</p>
+<pre class="ex"><span class="c">default reply, 7 lines, among them</span>
+  <span class="hit">- Interview calls Q1, Q3, Q5 and Q6 stand as answered.</span>
+<span class="c">fields: String fields like Review; a null value breaks the record</span>
+  + - Pair C: what the prompt object's fields are: String fields like Review; … (my pick)
+<span class="c">stdin: artifact_hook.rs as it is: read_to_string, 1 MiB, empty acce…</span>
+  + - Pair D: how verdict reads --notes -: artifact_hook.rs as it is: … (my pick)
+<span class="c">… two more controls, each adding one "(my pick)" line</span></pre>
+    <p class="cap">Captured from the prototype; its JSON reformatted, long lines cut at "…".</p>
+    <p>No choice touches the contradicting line, so for the calibrated case the dump adds nothing the default render lacked. It pays off on pages whose contradiction sits behind a choice, and it answers the interaction question for every page (blindspots 04).</p>
+    <div class="iv-foot"><span class="cost"><b>Cost</b>About 60 lines of JS and a <code>states</code> field in the report. The reply element must be found; the prototype keys on <code>id*=reply</code>. <code>scripts/</code> is protected.</span><span class="hits"></span><label class="resonate"><input type="checkbox" data-n="7">This resonates</label></div>
+  </div>
+
+  <div class="iv" id="iv8" data-hits="U C" data-files="scripts/artifact-screenshots.cjs">
+    <div class="iv-top"><span class="num">#8</span><h3>Flag sourceless tiles and uncaptioned output in the same report</h3><div class="chips"><span class="chip M">M</span><span class="chip">adds script</span></div></div>
+    <span class="path">scripts/artifact-screenshots.cjs:103–115 (the evaluate call) · docs/EVALUATION.md:47–48</span>
+    <p><span class="found">Found in code:</span> EVALUATION.md wants an unmeasured checker to stay advisory, and this one would measure badly. A rule that wants a source inside each tile flags all four tiles on both the buy-in draft and the page that passed (<code>buy-in.round1.html:211–214</code>, <code>buy-in.html:209–212</code>). A rule that wants a caption over each output block passes the quiz draft, whose caption reads "Real output from <code>next</code>" (<code>quiz.round1.html:234</code>) over strings typed by hand.</p>
+    <div class="iv-foot"><span class="cost"><b>Cost</b>Tens of lines. Useful as an author's self-check; too noisy to steer a reviewer.</span><span class="hits"></span><label class="resonate"><input type="checkbox" data-n="8">This resonates</label></div>
+  </div>
+
+  <div class="iv" id="iv9" data-hits="C U" data-files="xtask/src/main.rs|xtask/src/artifacts.rs|docs/ARTIFACTS.md">
+    <div class="iv-top"><span class="num">#9</span><h3>Make captured output come from a command the reviewer can rerun</h3><div class="chips"><span class="chip L">L</span><span class="chip">new command</span></div></div>
+    <span class="path">new <code>task-artifact capture</code> in xtask/src/main.rs and artifacts.rs</span>
+    <p><span class="found">Found in code:</span> the markup cannot tell captured lines from typed ones; in the buy-in draft both are the same tuples in one array (blindspots 03). A <code>cargo xtask task-artifact capture -- CMD</code> that runs CMD in a clean copy and prints an escaped block, tagged in a data attribute with the command and commit, gives the reviewer something to rerun. Any untagged block is then reconstructed by definition. Tiles that count a run, such as 9 / 9 and 93 / 93, could cite the same tag.</p>
+    <div class="iv-foot"><span class="cost"><b>Cost</b>A reviewer running commands a page names, pinning the commit (blindspots 05), and keeping the hash off the visible page (author brief <code>:37–38</code>). Most of the four checks still need judgement.</span><span class="hits"></span><label class="resonate"><input type="checkbox" data-n="9">This resonates</label></div>
+  </div>
+
+  <div class="iv" id="iv10" data-hits="" data-files="a committed fixture folder">
+    <div class="iv-top"><span class="num">#10</span><h3>A seeded-defect calibration set with known answers</h3><div class="chips"><span class="chip L">L</span><span class="chip">measures</span></div></div>
+    <span class="path">docs/EVALUATION.md:44–50 · target/artifact-reviews/next-prompt/ · .gitignore:1</span>
+    <p><span class="found">Found in code:</span> four natural cases, with baselines of 2/3, 2/3, 1/3 and 1/4, leave one step of headroom each (blindspots 01). The drafts live under the ignored <code>/target/</code>. EVALUATION.md asks a semantic checker for "benign near-misses, calibration" (<code>:47</code>). Commit the three drafts and three passing pages as fixtures. Add four seeded copies of passing pages, one defect each: a reply line flipped, a tile's source deleted, a caption changed to "captured", a ticket clause dropped. Each class then has a known answer, and the untouched originals are the near-misses.</p>
+    <div class="iv-foot"><span class="cost"><b>Cost</b>Writing the defects, a new fixture folder, and three fresh reviews for each of the ten cases on every rerun, about 30 reviews. It catches nothing itself, so it targets none of the four; it tells you which of #1–#9 worked.</span><span class="hits"></span><label class="resonate"><input type="checkbox" data-n="10">This resonates</label></div>
+  </div>
+</main>
+
+<div class="replybar">
+  <div class="rb-in">
+    <div class="rb-cov" id="rbCov" aria-label="How many picks target each finding"></div>
+    <div class="rb-reply" id="rbReply">Check the interventions that resonate; your reply builds here.</div>
+    <div class="rb-side">
+      <button class="copy" id="rbCopy" type="button" disabled>Copy reply</button>
+      <input id="extra" type="text" aria-label="Anything to add" placeholder="Anything to add">
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var NAMES = { R: "reply contradicting its page", C: "reconstructed output shown as captured", U: "uncited claim", T: "dropped ticket requirement" };
+  var KEYS = ["R", "C", "U", "T"];
+  var $ = function (id) { return document.getElementById(id); };
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".iv"));
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("label.resonate input"));
+  var dots = {};
+
+  cards.forEach(function (card) {
+    var hits = (card.getAttribute("data-hits") || "").split(" ");
+    card.querySelector(".hits").innerHTML = KEYS.map(function (k) {
+      return '<span class="hit-k' + (hits.indexOf(k) >= 0 ? " y" : "") + '" title="' + NAMES[k] + '">' + k + "</span>";
+    }).join("");
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".spec-dot"), function (d) {
+    dots[d.getAttribute("data-n")] = d;
+    d.addEventListener("click", function () {
+      $("iv" + d.getAttribute("data-n")).scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  });
+
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = "Copied"; btn.classList.add("done"); setTimeout(function () { btn.textContent = label; btn.classList.remove("done"); }, 1400); }
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = text; t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select(); try { document.execCommand("copy"); } catch (e) {} t.remove(); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  }
+
+  var reply = "";
+  function update() {
+    var picked = boxes.filter(function (b) { return b.checked; }).map(function (b) { return +b.getAttribute("data-n"); }).sort(function (a, b) { return a - b; });
+    var cover = {}, files = [];
+    boxes.forEach(function (b) {
+      var n = b.getAttribute("data-n"), card = $("iv" + n);
+      card.classList.toggle("checked", b.checked);
+      dots[n].classList.toggle("on", b.checked);
+      if (!b.checked) return;
+      card.getAttribute("data-hits").split(" ").forEach(function (k) { if (k) cover[k] = (cover[k] || 0) + 1; });
+      (card.getAttribute("data-files") || "").split("|").forEach(function (f) { if (f && files.indexOf(f) < 0) files.push(f); });
+    });
+    $("rbCov").innerHTML = KEYS.map(function (k) {
+      return '<span class="' + (cover[k] ? "ok" : "") + '" title="' + NAMES[k] + '">' + k + " " + (cover[k] || 0) + "</span>";
+    }).join("");
+    var gaps = KEYS.filter(function (k) { return !cover[k]; }).map(function (k) { return NAMES[k]; });
+    var extra = $("extra").value.trim();
+    if (!picked.length) {
+      reply = "";
+      $("rbReply").textContent = "Check the interventions that resonate; your reply builds here.";
+      $("rbReply").classList.remove("live");
+      $("rbCopy").disabled = true;
+      return;
+    }
+    var L = ["These resonate: " + picked.map(function (n) { return "#" + n; }).join(", ") + "; start with #" + picked[0] + "."];
+    if (picked.indexOf(3) < 0 || picked.indexOf(4) < 0) L.push("Ticket's plan not picked: " + [3, 4].filter(function (n) { return picked.indexOf(n) < 0; }).map(function (n) { return "#" + n; }).join(" and ") + ".");
+    L.push(gaps.length ? "Nothing picked targets: " + gaps.join(", ") + "." : "Each of the four findings is targeted by at least one pick.");
+    if (picked.indexOf(10) >= 0) L.push("Use #10 to measure the others.");
+    if (files.length) L.push("Add to the ticket's scope: " + files.join(", ") + ".");
+    if (extra) L.push("Also: " + extra);
+    reply = L.join(" ");
+    $("rbReply").textContent = reply;
+    $("rbReply").classList.add("live");
+    $("rbCopy").disabled = false;
+  }
+  boxes.forEach(function (b) { b.addEventListener("change", update); });
+  $("extra").addEventListener("input", update);
+  $("rbCopy").addEventListener("click", function () { if (reply) copy(reply, $("rbCopy")); });
+  $("copyPrompt").addEventListener("click", function () { copy($("promptText").textContent.trim(), $("copyPrompt")); });
+  update();
+})();
+</script>
+</body>
+</html>

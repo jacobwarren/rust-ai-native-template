@@ -10,6 +10,16 @@
       "notes": "PASS. A reader learns that the brief already fails uncited claims yet two of three reviewers still accepted the \"9/9\" tile, because step 2 sends them to confirm the claim. Separately, the stated validation (more subtle findings, committed pages still pass) conflicts on the committed plan page, which was raised against the kept-path requirement. Neither is visible from the diff, the code or the docs.\nChecked: render clean (no console errors, requests, local files, overflow); interactions read from script (fold checkboxes and radios rebuild chips and final prompt; copy fallback); claims true: review-artifact SKILL.md 17-22, 32, 36, 59-60; ARTIFACTS.md 61-62, 139-140; author skill 37-38; handover.rs:204; checks.rs:169-177; .claude protected, .agents not; administrative() excludes skill folders; reviewer tools have no click; reviews.json:80 and plan.html:191; draft quotes exact; /target/ gitignored; xtask diff since 3c1aa8e 684 lines; next-prompt.md:27; skill copies identical. Length 33 KB vs 27 KB, no filler; cards 05 and 07 lean to harness mechanics but bear on the rerun.\nFINDINGS: 0",
       "findings": 0,
       "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "interventions.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "be9adec198446c1590aebf21155b0013864e853e29a53141d941391dc0718367",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. The page shows that three of the four missed findings were visible on the page itself, and maps ten interventions to the files and line ranges where each would land, with the findings each targets (R, C, U, T). The code, docs and calibration record don't say this quickly.\nRendering clean (no console errors, requests, local files, overflow); one desktop tile viewed; controls not clicked, so reply bar, coverage counters and scope list unchecked.\nClaims checked: miss rates match docs/plans/brief-calibration.md:55-70; four wrong-prompt reviews per :65-69 support #5; reference.round1.html:459 reply line; buy-in.html:209-211 tiles with no command; ticket at 210807e names the kept path, plan.html:283 \"No kept path\", 9be3ba9 rewrote the ticket; handover.rs:191-193 answering rule; transitions.rs:40 protects xtask/.\nJob and form: ten interventions from a brief sentence to a seeded-defect corpus, each with size, path, found-in-code and cost; #3 and #4 marked as the ticket's plan; coverage bar and scope list; copyable reply. Length 36 KB vs 30 KB, acceptable for ten items.\n1. Minor, not blocking: #10's data-files value, \"a committed fixture folder\", is a description rather than a path, so the reply's \"Add to the ticket's scope\" line would show a description where a path belongs.\nFINDINGS: 0 (one minor note listed)",
+      "findings": 1,
+      "model": "claude-sonnet-5-5"
     }
   ]
 }
