@@ -40,6 +40,16 @@
       "notes": "PASS. A reader learns that the reviewer table's length row works because both briefs use one yardstick, that the four missed defects fall into gaps with no shared rule (reply contradicting its page, reconstructed output, uncited tile, dropped ticket item), and that the proposed fixed checks differ from the table in order, an n/a column and a PASS report line.\nChecked: review-artifact SKILL.md:25-26, 28-37, 59-60, 64-66 and author-artifact SKILL.md:18-24, 31-47 match; host copies identical; ARTIFACTS.md:136-141 allows one short label; handover.rs:154-158 passes the ticket as a path, :204 has FINDINGS; note 7 holds (\"cited\" once inside \"uncited\" in the reviewer brief, 0 in author; \"reply\" twice in each); reference.round1.html:459, buy-in.round1.html:213 (no \"check ci\"), implementation.round1.html:172 and :255, plan.html:283, buy-in.html:209-214 as quoted. Calibration counts taken from the ticket. Render: problems false; 5659 px vs 4680, 35 KB vs 36.7 KB; tiles 03 and 07 clean. Interactions read from script: flags rebuild the reply, hover links counterparts.\nMinor, not blocking:\n1. About 1,000 px taller than the exemplar; section 3 (preserved, changed, left out) partly repeats Pair C's notes and could be trimmed.\n2. Pair C is a sketch of the target and is labelled as one.\nFINDINGS: 0 (two minor notes listed)",
       "findings": 2,
       "model": "claude-sonnet-5-5"
+    },
+    {
+      "page": "plan.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "c9d7555ca1e23326c701587f1f10852a0e15d6405cb687a5e61f3bed810efc59",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that the four fixed checks, as the plan words them, pass or fail each calibration page as intended, and which wording choices flip a verdict: the committed buy-in page's pass, the plan page's REVISE, and the three extra failures in next-prompt's log.\nRender clean (no console errors, requests, local files, overflow); first desktop tile viewed; interactions read from script, not clicked.\nChecked: \"cited\" once in review-artifact SKILL.md, inside \"uncited\" at :32; \"| cited |\" 0 times; \"reply\" twice in each brief; handover.rs:204 and :154-158; EVALUATION.md:38-40; brief-calibration.md:19; author step 5 at SKILL.md:37-38; readiness.json:107; checks.rs:155; buy-in.html:209-212 tiles and :214 check ci sentence; buy-in.round1.html:213; plan.html:283; .gitignore:1; implementation draft 5/7, In progress, --notes - finding; drafts total 124179 bytes; no outside citation of step numbers.\nMinor:\n1. Short as content allows: the A3 flow strip and most A4 \"met\" rows are skimmable; 44.8 KB vs 37 KB; fold unchanged steps and all-met rows into one line each.\n2. About the feature: A1 is labelled \"Data model\" though the artifacts are Markdown briefs and a test; Choice 4 is repository logistics.\n3. Interactions: Choice 2 changes only its text, the expected-verdict row and the reply line; all four feed the reply, none decorative.\nFINDINGS: 3",
+      "findings": 3,
+      "model": "claude-sonnet-5-5"
     }
   ]
 }
