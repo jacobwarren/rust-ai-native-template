@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+
+<title>Implementation notes: the narrowed ceremony paths</title>
+<style>
+  main { padding-block: var(--space-6) var(--space-8); }
+  h1 { margin-block: var(--space-2) var(--space-3); }
+  code { font-size: .86em; background: var(--accent-soft); padding: 0 .25em; border-radius: .25rem; }
+  .eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+  .lede { max-width: var(--reading-width); color: var(--muted); font-size: 1.05rem; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); position: relative; }
+  .card .label { font: 700 .7rem/1.3 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-2); }
+  .card blockquote { border: 0; background: none; padding: 0; margin: 0; font-style: italic; max-width: 62ch; padding-right: 6.5rem; }
+  .copy { position: absolute; top: var(--space-3); right: var(--space-3); min-height: 36px; font-size: .78rem; }
+  .copy.done { color: var(--accent); border-color: var(--accent); }
+  .divider { display: flex; align-items: center; gap: var(--space-4); margin: var(--space-8) 0 var(--space-4); font: 700 .72rem/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .divider::before, .divider::after { content: ""; height: 1px; background: var(--line); flex: 1; }
+  .doc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .doc-head { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding: var(--space-3) var(--space-6); background: var(--paper); border-bottom: 1px solid var(--line); font: .78rem/1.4 var(--font-code); color: var(--muted); }
+  .doc-head .meta { margin-left: auto; }
+  .tiles { display: flex; flex-wrap: wrap; gap: var(--space-3); padding: var(--space-4) var(--space-6) 0; }
+  .tile { flex: 1 1 9rem; border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3) var(--space-4); background: var(--paper); }
+  .tile .n { font-size: 1.9rem; font-weight: 650; line-height: 1.1; }
+  .tile .t { font: 700 .66rem/1.3 var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .tile .s { font-size: .72rem; color: var(--muted); margin-top: var(--space-1); }
+  .tile.dev .n { color: var(--warning); } .tile.open { background: var(--warning-soft); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-4) var(--space-6) 0; }
+  .chip { border-radius: 999px; min-height: 36px; padding: 0 var(--space-4); font-size: .82rem; background: var(--surface); border: 1px solid var(--line); color: var(--ink); }
+  .chip.on { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .timeline { padding: var(--space-4) var(--space-6) var(--space-6); }
+  .entry { display: grid; grid-template-columns: 2.6rem 14px minmax(0, 1fr); gap: 0 var(--space-3); }
+  .entry .st { font: 700 .75rem/1 var(--font-code); color: var(--muted); text-align: right; padding-top: .45rem; }
+  .entry .rail { position: relative; }
+  .entry .rail::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--line); }
+  .entry.first .rail::before { top: .7rem; } .entry.last .rail::before { bottom: auto; height: .7rem; }
+  .entry .node { position: absolute; left: 50%; top: .45rem; width: 10px; height: 10px; border-radius: 50%; transform: translateX(-50%); background: var(--line); }
+  .t-plan .node { background: var(--accent); } .t-dev .node { background: var(--warning); } .t-disc .node { background: var(--surface); border: 2px solid var(--muted); } .t-open .node { background: var(--danger); }
+  .entry .body { padding-bottom: var(--space-6); min-width: 0; }
+  .entry h3 { margin: var(--space-1) 0; font-size: 1rem; }
+  .entry p { margin: var(--space-1) 0; font-size: .92rem; max-width: 74ch; }
+  .badge { display: inline-block; font: 700 .64rem/1.5 var(--font-body); letter-spacing: .1em; text-transform: uppercase; padding: .1rem .5rem; border-radius: .3rem; border: 1px solid; }
+  .t-plan .badge { color: var(--accent); background: var(--accent-soft); }
+  .t-dev .badge { color: var(--surface); background: var(--warning); border-color: var(--warning); }
+  .t-disc .badge { color: var(--muted); background: var(--paper); }
+  .t-open .badge { color: var(--surface); background: var(--danger); border-color: var(--danger); }
+  .st-m { display: none; font: .72rem var(--font-code); color: var(--muted); margin-left: var(--space-2); }
+  .dg { margin-top: var(--space-3); border: 1px solid var(--line); border-left: 3px solid var(--warning); border-radius: var(--control-radius); background: var(--warning-soft); }
+  .dg .row { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: var(--space-3); padding: var(--space-2) var(--space-4); font-size: .88rem; }
+  .dg .v, .dg .k { min-width: 0; overflow-wrap: anywhere; }
+  .entry code, .decide span { overflow-wrap: anywhere; }
+  .dg .row + .row { border-top: 1px solid var(--line); }
+  .dg .k { font: 700 .64rem/1.5 var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--warning); padding-top: .15rem; }
+  .dg .row.chosen .k { color: var(--accent); } .dg .row.chosen .v { font-weight: 550; }
+  .decide { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; margin-top: var(--space-3); font-size: .8rem; color: var(--muted); }
+  .decide button { min-height: 32px; padding: 0 var(--space-3); font-size: .8rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--control-radius); }
+  .decide button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .cap { font: 700 .62rem/1.4 var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: var(--space-3) 0 var(--space-1); }
+  .entry pre { font-size: .76rem; margin: 0; padding: var(--space-3); }
+  table.g { font-size: .8rem; margin-top: var(--space-1); }
+  table.g td { padding: var(--space-1) var(--space-2); } table.g td:last-child { white-space: nowrap; }
+  .yes { color: var(--danger); font-weight: 650; } .no { color: var(--accent); font-weight: 650; }
+  .next { margin-top: var(--space-6); }
+  .next ol { padding-left: 1.3rem; } .next li { margin-bottom: var(--space-3); max-width: 74ch; font-size: .95rem; }
+  #reply { white-space: pre-wrap; font: .82rem/1.5 var(--font-code); }
+  .hidden { display: none !important; }
+  @media (max-width: 600px) {
+    main { padding-inline: var(--space-3); }
+    .entry { grid-template-columns: 14px minmax(0, 1fr); } .entry .st { display: none; } .st-m { display: inline; }
+    .dg .row { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .next .copy { position: static; margin-bottom: var(--space-3); }
+    .timeline, .tiles, .chips { padding-inline: var(--space-3); }
+    .card { padding-inline: var(--space-4); } .card blockquote { padding-right: 0; padding-top: var(--space-6); }
+    table.g td:last-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+  <div class="eyebrow">ceremony-paths · during implementation</div>
+  <h1>Implementation notes: the narrowed ceremony paths</h1>
+  <p class="lede">All three of the plan's picks held: no receipt for a skill outside the ceremony, a list that names the three ceremony skills, and DOC014 for nested host folders. Three smaller things changed during the build, and each took the stricter option. Three items remain before completion.</p>
+
+  <div class="card">
+    <div class="label">The prompt</div>
+    <button class="copy" id="copyPrompt" type="button">Copy prompt</button>
+    <blockquote id="promptText">“Keep implementation notes as you build the narrowed ceremony paths. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going.”</blockquote>
+  </div>
+
+  <div class="divider">The notes</div>
+
+  <div class="doc">
+    <div class="doc-head"><span>branch harness/ceremony-paths</span><span class="meta">left column: the plan's step (B1–B4 build order, C records)</span></div>
+    <div class="tiles">
+      <div class="tile"><div class="n" data-count="all">12</div><div class="t">entries</div><div class="s">counted from the log below</div></div>
+      <div class="tile dev"><div class="n" data-count="dev">3</div><div class="t">deviations</div><div class="s">each with its stricter choice</div></div>
+      <div class="tile open"><div class="n" data-count="open">3</div><div class="t">open before completion</div><div class="s">step C</div></div>
+      <div class="tile"><div class="n">9 / 9</div><div class="t">CI checks passed</div><div class="s"><code>cargo xtask check ci</code>, clean copy incl. B4</div></div>
+    </div>
+    <div class="chips" role="group" aria-label="Filter entries">
+      <button class="chip secondary on" type="button" data-f="all">All <span data-count="all">12</span></button>
+      <button class="chip secondary" type="button" data-f="dev">Deviations <span data-count="dev">3</span></button>
+      <button class="chip secondary" type="button" data-f="disc">Discoveries <span data-count="disc">2</span></button>
+      <button class="chip secondary" type="button" data-f="open">Open <span data-count="open">3</span></button>
+    </div>
+
+    <div class="timeline" id="timeline">
+
+      <div class="entry t-plan" data-t="plan"><div class="st">B1</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">As planned</span><span class="st-m">B1</span>
+        <h3>One list of three names, and the four docs checks</h3>
+        <p><code>CEREMONY_SKILLS</code> is at <code>transitions.rs:66-67</code>, the guard's copy is at <code>agent-hook.sh:16</code>, and the parity test asserts that they match (<code>transitions.rs:249</code>). <code>free_skills</code> in <code>checks.rs:264-311</code> adds DOC011–DOC014, and each message ends with "add the skill to CEREMONY_SKILLS" (interview question 5). The test is <code>free_skills_stay_plain_text</code> (<code>hooks_author.rs:159</code>). The plan's fallback of moving the checks to <code>skills.rs</code> wasn't needed: <code>checks.rs</code> is now 375 lines against the 400-line limit (<code>harness/config.json:3</code>), which leaves 25 lines for the next check. DOC014 walks the disk through <code>repo::files</code> (<code>repo.rs:20-56</code>), as choice 3's cost predicted.</p>
+        <div class="cap">captured · <code>cargo xtask docs</code> on the branch, trimmed to the result</div>
+        <pre>"errors": [],
+"ok": true</pre>
+      </div></div>
+
+      <div class="entry t-dev" data-t="dev" data-title="ceremony_skill(path) replaces free_skill(host, path)"><div class="st">B1</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">Deviation 1 of 3</span><span class="st-m">B1</span>
+        <h3>One positive predicate, <code>ceremony_skill(path)</code>, replaces <code>free_skill(host, path)</code></h3>
+        <div class="dg">
+          <div class="row"><div class="k">The plan said</div><div class="v"><code>free_skill(host, path)</code> returns true for a skill outside the ceremony. <code>protected()</code> negates it under <code>.claude/skills/</code> and <code>forces_standard</code> negates it under <code>.agents/skills/</code> (plan A2, marks 2–4).</div></div>
+          <div class="row"><div class="k">The code showed</div><div class="v">Three callers need the same answer: <code>protected()</code> (<code>transitions.rs:83-86</code>), <code>forces_standard</code> (<code>size.rs:27</code>) and the new docs check (<code>checks.rs:282</code>). Each one must treat a loose file such as <code>.claude/skills/README.md</code> as ceremony. With a "free" predicate, each caller would have to repeat that negation.</div></div>
+          <div class="row chosen"><div class="k">Conservative choice</div><div class="v"><code>ceremony_skill</code> (<code>transitions.rs:73-81</code>) covers both hosts. It returns true for the three names and for any file outside a skill folder (<code>None =&gt; true</code>, line 78). A path it doesn't recognise costs a standard task and never gets through free. A new test, <code>only_ceremony_skills_stay_protected_under_claude</code>, pins this behaviour and shows that <code>author-artifact-notes/</code> stays free: names are matched whole, never by prefix.</div></div>
+          <div class="row"><div class="k">Revisit</div><div class="v">Nothing is pending. A skill outside the ceremony can never put a file directly in <code>skills/</code>.</div></div>
+        </div>
+      </div></div>
+
+      <div class="entry t-dev" data-t="dev" data-title="Skill names compare without case on every checkout"><div class="st">B1</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">Deviation 2 of 3</span><span class="st-m">B1</span>
+        <h3>Skill names compare without case on every checkout</h3>
+        <div class="dg">
+          <div class="row"><div class="k">The plan said</div><div class="v">Blindspot card 03: the guard's list must "go through <code>lower()</code> like PREFIXES_CMP". <code>lower()</code> folds case only when <code>core.ignorecase</code> is set (<code>agent-hook.sh:93-95</code>).</div></div>
+          <div class="row"><div class="k">The code showed</div><div class="v">Nothing in <code>xtask/src</code> reads <code>core.ignorecase</code> (grep). A conditional fold in the guard would have no Rust counterpart, so on a case-sensitive checkout the guard and handoff could disagree.</div></div>
+          <div class="row chosen"><div class="k">Conservative choice</div><div class="v">Both sides always fold: <code>eq_ignore_ascii_case</code> in Rust (<code>transitions.rs:77</code>) and <code>tr</code> in the guard (<code>agent-hook.sh:147</code>). On Linux, a separate <code>Author-Artifact/</code> folder therefore counts as the ceremony skill, which is stricter and never looser. Captured on this macOS checkout: an edit to <code>.Claude/Skills/Author-Artifact/SKILL.md</code> gets the receipt note.</div></div>
+          <div class="row"><div class="k">Revisit</div><div class="v">Only if someone wants a free skill whose name differs from a ceremony skill by case alone.</div></div>
+        </div>
+      </div></div>
+
+      <div class="entry t-disc" data-t="disc"><div class="st">B1</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">Discovery</span><span class="st-m">B1</span>
+        <h3>DOC012 also refuses prose that quotes the <code>!`</code> syntax</h3>
+        <p>The check is <code>text.contains("!`")</code> on every <code>.md</code> file in a free skill (<code>checks.rs:303</code>). A skill that explains the syntax has to write it some other way or join the list. No skill trips it today: <code>cargo xtask docs</code> is ok above. No plan change.</p>
+      </div></div>
+
+      <div class="entry t-plan" data-t="plan"><div class="st">B2</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">As planned</span><span class="st-m">B2</span>
+        <h3>The <code>protected()</code> carve-out and its guard copy, together</h3>
+        <p><code>protected()</code> returns <code>ceremony_skill(path)</code> for anything under <code>.claude/skills/</code> (<code>transitions.rs:83-86</code>). The guard's <code>tier()</code> applies the same rule before its prefix loop (<code>agent-hook.sh:143-150</code>). <code>.codex/</code> and the rest of <code>.claude/</code> stay protected. Tested by <code>guard_passes_unrelated_skills_without_a_receipt_note</code> (<code>hooks_guard.rs:90</code>).</p>
+        <div class="cap">captured · <code>scripts/agent-hook.sh guard claude</code> with an Edit event per path, clean copy of the branch</div>
+        <table class="g"><tbody>
+          <tr><td><code>.claude/skills/investigate/SKILL.md</code></td><td class="no">{}</td></tr>
+          <tr><td><code>.claude/skills/new-skill/SKILL.md</code></td><td class="no">{}</td></tr>
+          <tr><td><code>.claude/skills/author-artifact-notes/SKILL.md</code></td><td class="no">{}</td></tr>
+          <tr><td><code>.claude/skills/author-artifact/SKILL.md</code></td><td class="yes">note</td></tr>
+          <tr><td><code>.claude/skills/README.md</code></td><td class="yes">note</td></tr>
+          <tr><td><code>.claude/settings.json</code></td><td class="yes">note</td></tr>
+        </tbody></table>
+        <p>Each "note" reads in full: "<code>&lt;path&gt;</code> is a protected policy file. This branch will need a transition receipt: run cargo xtask gaps --base origin/main before completion."</p>
+      </div></div>
+
+      <div class="entry t-dev" data-t="dev" data-title="A bare folder under .claude/skills/ gets the guard note for every skill"><div class="st">B2</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">Deviation 3 of 3</span><span class="st-m">B2</span>
+        <h3>A bare folder under <code>.claude/skills/</code> gets the guard note for every skill, free or not</h3>
+        <div class="dg">
+          <div class="row"><div class="k">The plan said</div><div class="v">Footnote 5: the guard matches only <code>.claude/skills/*/*</code>. A bare <code>rm -r .claude/skills/author-artifact</code> falls through to the <code>.claude/</code> prefix and keeps its note.</div></div>
+          <div class="row"><div class="k">The code showed</div><div class="v">From the name alone, the guard can't tell a one-segment path such as <code>investigate</code> (a folder) from <code>README.md</code> (a loose file). After an <code>rm</code>, there is nothing left on disk to check.</div></div>
+          <div class="row chosen"><div class="k">Conservative choice</div><div class="v">Any one-segment path under <code>.claude/skills/</code> ranks as policy (<code>agent-hook.sh:146</code>). Captured: <code>rm -r .claude/skills/investigate</code> gets the receipt note even though handoff won't ask for a receipt, and <code>mv .claude/skills/investigate .claude/skills/author-artifact</code> names the source instead of the destination. Extra notes are safe because the note is only advisory and handoff reads git's list of files.</div></div>
+          <div class="row"><div class="k">Revisit</div><div class="v">If the spurious note gets in the way, check a one-segment name without an extension against <code>CEREMONY_SKILLS</code>.</div></div>
+        </div>
+      </div></div>
+
+      <div class="entry t-disc" data-t="disc"><div class="st">B2</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">Discovery</span><span class="st-m">B2</span>
+        <h3>The <code>mv</code> tie from blindspot card 03 now resolves toward the ceremony skill</h3>
+        <p>Captured: <code>mv .claude/skills/investigate/SKILL.md .claude/skills/author-artifact/SKILL.md</code> gets a note naming <code>.claude/skills/author-artifact/SKILL.md</code>. The source now ranks none, so the guard keeps the destination, the higher-ranked path. Also captured: <code>cp /tmp/x .claude/skills/author-artifact-notes/SKILL.md</code> passes with <code>{}</code>.</p>
+      </div></div>
+
+      <div class="entry t-plan" data-t="plan"><div class="st">B3</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">As planned</span><span class="st-m">B3</span>
+        <h3><code>size::CEREMONY</code> narrowed from six entries to five, plus one check that reads the list</h3>
+        <p><code>CEREMONY</code> is now <code>docs/ARTIFACTS.md</code>, the two <code>docs/skills/</code> pointers and the two agent folders (<code>size.rs:14-20</code>). <code>forces_standard</code> also calls <code>ceremony_skill</code> (<code>size.rs:27</code>). In <code>unrelated_skills_stay_small</code> (<code>tiers.rs:177</code>), a small task edits investigate in both hosts, its seed, and a new skill in both hosts, and handoff reports neither a tier error nor a missing rationale. Adding one line to <code>.claude/skills/review-artifact/SKILL.md</code> brings both errors back. Steps B1–B3 landed as one change instead of three. The plan ordered them so that no commit frees a skill nothing checks, and one change guarantees that too.</p>
+        <div class="cap">captured · <code>cargo test -p xtask</code> for the ticket's tests, clean copy</div>
+        <pre>test unrelated_skills_stay_small ... ok
+test protected_cargo_and_ceremony_paths_force_standard ... ok
+test guard_passes_unrelated_skills_without_a_receipt_note ... ok
+test transitions::tests::guard_tiers_match_protected_paths ... ok
+test transitions::tests::only_ceremony_skills_stay_protected_under_claude ... ok
+test free_skills_stay_plain_text ... ok</pre>
+      </div></div>
+
+      <div class="entry t-plan" data-t="plan"><div class="st">B4</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">As planned</span><span class="st-m">B4</span>
+        <h3>Docs and readiness, with one paragraph more than A4 sketched</h3>
+        <p><code>COMPLETION.md:199-202</code> and both write-ticket copies match A4, and DOC007 confirms the copies are identical. <code>ARTIFACTS.md:119-124</code> adds a paragraph that names DOC011–DOC014 and says where the list lives: "a skill that needs hooks, tool grants or scripts joins it" (interview question 5). <code>readiness.json</code> gains all four new test names. These edits are in the working tree, and the CI run included them.</p>
+      </div></div>
+
+      <div class="entry t-open" data-t="open" data-title="Name the two missing ceremony-skill paths in the tier test"><div class="st">C</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">Open</span><span class="st-m">C</span>
+        <h3>The tier test names four of the six ceremony-skill paths</h3>
+        <p>The ticket extends <code>protected_cargo_and_ceremony_paths_force_standard</code> to "any ceremony skill in either host". Its list (<code>tiers.rs:138-156</code>) is missing <code>.agents/skills/author-artifact/SKILL.md</code> and <code>.claude/skills/review-artifact/SKILL.md</code>. The second one appears only in <code>unrelated_skills_stay_small</code> (<code>tiers.rs:196</code>). Adding both lines in a scratch copy, the test passes (captured: <code>test protected_cargo_and_ceremony_paths_force_standard ... ok</code>). The fix is two lines.</p>
+      </div></div>
+
+      <div class="entry t-open" data-t="open" data-title="Record the rm -r .claude discovery"><div class="st">C</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">Open</span><span class="st-m">C</span>
+        <h3>Record the <code>rm -r .claude</code> discovery; the other planned discovery no longer applies</h3>
+        <p>The guard still passes <code>rm -r .claude</code> with no note (captured: <code>{}</code>). The <code>".claude/"*</code> prefix doesn't match the bare folder name (blindspot card 03), and handoff still catches the deletion file by file. Plan C said to record this, and the task record's <code>discoveries</code> is still empty. The second planned discovery, about nested host folders passing as small, is closed because DOC014 was built.</p>
+      </div></div>
+
+      <div class="entry t-open" data-t="open" data-title="Write the receipt over the ten protected files, then complete"><div class="st">C</div><div class="rail"><span class="node"></span></div><div class="body">
+        <span class="badge">Open</span><span class="st-m">C</span>
+        <h3>The receipt covers ten files, and one asymmetry shows in the list</h3>
+        <p>Against <code>origin/main</code>, <code>cargo xtask gaps</code> lists the files the receipt must bind. <code>.claude/skills/write-ticket/SKILL.md</code> is on the list. Its <code>.agents/</code> twin isn't: that copy forces a standard task without needing a receipt (blindspot card 05). Write the receipt last, then run <code>complete</code>.</p>
+        <div class="cap">captured · <code>cargo xtask gaps --base &lt;origin/main&gt;</code> on a copy holding main and the branch state, trimmed</div>
+        <pre>"errors": [ "missing exact transition rationale: policy" ],
+"protected_files": [
+  ".claude/skills/write-ticket/SKILL.md", "docs/COMPLETION.md",
+  "harness/readiness.json", "scripts/agent-hook.sh",
+  "xtask/src/checks.rs", "xtask/src/size.rs", "xtask/src/transitions.rs",
+  "xtask/tests/hooks_author.rs", "xtask/tests/hooks_guard.rs", "xtask/tests/tiers.rs" ]</pre>
+      </div></div>
+
+    </div>
+  </div>
+
+  <div class="card next">
+    <div class="label">Fold back into the buy-in doc</div>
+    <button class="copy" id="copyNext" type="button">Copy bullets</button>
+    <h2 style="margin-top:0">What the build changes about the story</h2>
+    <ol id="nextList">
+      <li><strong>Handoff decides; the guard is coarser in both directions.</strong> Any one-segment path under <code>.claude/skills/</code> gets a note, and <code>rm -r .claude</code> never does. Say this in the buy-in doc instead of promising that the two always agree.</li>
+      <li><strong>Membership is a folder name in one list, compared without case.</strong> A skill that needs hooks, tool grants or scripts joins <code>CEREMONY_SKILLS</code> in the same change. Until it does, DOC011–DOC013 refuse it, and the parity test keeps the guard's copy equal.</li>
+      <li><strong>Before completion:</strong> name <code>.agents/skills/author-artifact</code> and <code>.claude/skills/review-artifact</code> in the tier test, record the <code>rm -r .claude</code> discovery, and write the receipt over the ten protected files last.</li>
+    </ol>
+  </div>
+
+  <div class="card next">
+    <div class="label">Send back</div>
+    <button class="copy" id="copyReply" type="button">Copy reply</button>
+    <h2 style="margin-top:0">Your call on each deviation and open item</h2>
+    <p style="font-size:.9rem;color:var(--muted)">Each item defaults to the choice made during the build. Flip any you disagree with; the reply below is built from the entries above.</p>
+    <div id="decisions"></div>
+    <label>Anything else<textarea id="extra" rows="2"></textarea></label>
+    <output id="reply"></output>
+  </div>
+
+  <footer>ceremony-paths · implementation notes. Captured blocks come from clean copies of the branch with B4's edits.</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  var entries = Array.prototype.slice.call(document.querySelectorAll(".entry"));
+  function count(t) { return entries.filter(function (e) { return t === "all" || e.dataset.t === t; }).length; }
+  document.querySelectorAll("[data-count]").forEach(function (el) { el.textContent = count(el.dataset.count); });
+
+  function markEnds() {
+    var vis = entries.filter(function (e) { return !e.classList.contains("hidden"); });
+    entries.forEach(function (e) { e.classList.remove("first", "last"); });
+    if (vis.length) { vis[0].classList.add("first"); vis[vis.length - 1].classList.add("last"); }
+  }
+  var chips = document.querySelectorAll(".chip");
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      chips.forEach(function (x) { x.classList.remove("on"); });
+      c.classList.add("on");
+      var f = c.dataset.f;
+      entries.forEach(function (e) { e.classList.toggle("hidden", !(f === "all" || e.dataset.t === f)); });
+      markEnds();
+    });
+  });
+  markEnds();
+
+  // Decisions: one per deviation and open entry, read from the entries themselves.
+  var OPTS = { dev: ["keep", "revisit"], open: ["do it", "skip"] };
+  var state = [];
+  var box = document.getElementById("decisions");
+  entries.forEach(function (e) {
+    var t = e.dataset.t;
+    if (!OPTS[t]) return;
+    var label = e.querySelector(".badge").textContent.replace(/ of \d+$/, "");
+    var item = { label: label, title: e.dataset.title, opts: OPTS[t], pick: 0 };
+    state.push(item);
+    var row = document.createElement("div");
+    row.className = "decide";
+    var span = document.createElement("span");
+    span.textContent = label + ": " + item.title;
+    row.appendChild(span);
+    item.opts.forEach(function (o, i) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "secondary"; b.textContent = o; b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+      b.addEventListener("click", function () {
+        item.pick = i;
+        row.querySelectorAll("button").forEach(function (x, j) { x.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+        render();
+      });
+      row.appendChild(b);
+    });
+    box.appendChild(row);
+  });
+  function buildReply() {
+    var lines = ["Implementation notes for the narrowed ceremony paths:"], changed = 0;
+    state.forEach(function (s) {
+      if (s.pick !== 0) changed++;
+      lines.push("- " + s.label + " (" + s.title + "): " + s.opts[s.pick] + (s.pick !== 0 ? "  <- changed" : ""));
+    });
+    var x = document.getElementById("extra").value.trim();
+    if (x) lines.push("- " + x);
+    lines.push(changed || x ? "Adjust, then finish step C." : "No changes: finish step C as logged.");
+    return lines.join("\n");
+  }
+  function render() { document.getElementById("reply").textContent = buildReply(); }
+  document.getElementById("extra").addEventListener("input", render);
+  render();
+
+  function copy(id, get) {
+    var b = document.getElementById(id), orig = b.textContent;
+    b.addEventListener("click", function () {
+      var text = get();
+      function done() { b.textContent = "Copied"; b.classList.add("done"); setTimeout(function () { b.textContent = orig; b.classList.remove("done"); }, 1500); }
+      function fallback() {
+        var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+    });
+  }
+  copy("copyPrompt", function () { return document.getElementById("promptText").textContent.replace(/[“”]/g, "").trim(); });
+  copy("copyNext", function () {
+    return Array.prototype.map.call(document.querySelectorAll("#nextList li"), function (li, i) { return (i + 1) + ". " + li.textContent.replace(/\s+/g, " ").trim(); }).join("\n");
+  });
+  copy("copyReply", buildReply);
+})();
+</script>
+</body>
+</html>
