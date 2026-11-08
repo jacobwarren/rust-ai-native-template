@@ -109,6 +109,10 @@ fn guard_passes_unrelated_skills_without_a_receipt_note() {
             o.stdout
         );
     }
+    // A bare ceremony skill folder is still that skill.
+    let rm = shell(&f, "rm -r .claude/skills/author-artifact");
+    let o = hook(&f, "guard", "claude", &rm, None);
+    assert!(o.stdout.contains("transition receipt"), "{}", o.stdout);
 }
 
 #[test]

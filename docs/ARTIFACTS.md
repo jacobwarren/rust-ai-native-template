@@ -112,8 +112,16 @@ refuse a small task when:
 - its changed lines, added plus deleted, exceed 100 outside administrative paths
   (moves count on both sides; untracked files count; any binary file refuses);
 - it touches a protected policy path, any `Cargo.toml`, or the ceremony's own
-  definitions (this guide, `docs/skills/`, the skill and agent folders under
-  `.claude/`, `.agents/` and `.codex/`).
+  definitions (this guide, the author-artifact, review-artifact and write-ticket
+  skills and their `docs/skills/` pointers, and the agent folders under
+  `.claude/` and `.codex/`).
+
+Any other skill can change in a small task, with no transition receipt.
+`cargo xtask docs` holds it to Markdown with only a name and description, and
+no `!` commands (DOC011 to DOC013); agent host folders exist only at the
+repository root (DOC014). The list is `CEREMONY_SKILLS` in
+`xtask/src/transitions.rs`; a skill that needs hooks, tool grants or scripts
+joins it.
 
 A small task that outgrows the tier is split, or restarted as a standard task on
 a new branch. The limit counts lines, not meaning: dense or minified lines count

@@ -156,7 +156,7 @@ fn skill_copies_must_match_and_name_their_folder() {
 }
 
 #[test]
-fn skills_outside_the_ceremony_only_describe_themselves() {
+fn free_skills_stay_plain_text() {
     let f = Fixture::new();
     let skill = "---\nname: demo\ndescription: >\n  A demo skill.\n---\n\nBody.\n";
     let mut catalog = vec![];

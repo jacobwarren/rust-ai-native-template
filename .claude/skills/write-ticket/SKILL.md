@@ -27,9 +27,10 @@ Write these five sections, short and concrete:
 2. **Scope.** The files or areas that change, and the tier:
    - **small** when the change is at most 100 changed lines and touches no
      protected path (policy, gates, goldens, hooks), no `Cargo.toml`, and none
-     of the ceremony's own files: skills, agents, `docs/ARTIFACTS.md`. Small
-     tasks need no pages; the gate measures the branch and refuses one that
-     grows.
+     of the ceremony's own files: the author-artifact, review-artifact and
+     write-ticket skills, agents, `docs/ARTIFACTS.md`. Other skills can change
+     in a small task. Small tasks need no pages; the gate measures the branch
+     and refuses one that grows.
    - **standard** otherwise. It owes the eight task pages, discovery before
      code (docs/ARTIFACTS.md). When unsure, say standard.
 3. **Acceptance as named tests.** One line per behaviour:

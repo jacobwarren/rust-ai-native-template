@@ -196,7 +196,10 @@ never run in CI, which still runs `cargo xtask check ci` and, on pull requests,
 `handoff`. To turn hooks off for a session, set `"disableAllHooks": true` in
 `.claude/settings.local.json` or run `claude --settings '{"disableAllHooks": true}'`;
 on Codex set `[features] hooks = false`. `.claude/` and `.codex/` are protected
-paths, so changing a hook on a branch needs a transition receipt. Claude Code's
+paths, so changing a hook on a branch needs a transition receipt. The exception
+is a skill folder under `.claude/skills/` not on the ceremony list: it needs no
+receipt, and `cargo xtask docs` refuses hooks, tool grants and shell commands in
+it. Claude Code's
 per-machine `.claude/settings.local.json` and `.claude/worktrees/` are ignored and
 never change the source fingerprint. User cancellation stays possible: neither
 host runs the stop gate after an interrupt.

@@ -4,7 +4,10 @@
   "work_item": null,
   "status": "partial",
   "tier": "standard",
-  "requirements": ["task-artifacts", "completion"],
+  "requirements": [
+    "task-artifacts",
+    "completion"
+  ],
   "related_gaps": [
     {
       "id": "artifact-gate-holes",
@@ -18,11 +21,29 @@
     }
   ],
   "gap_review": "Read the four open gaps. artifact-gate-holes and hosting-enforcement are near this work and unaffected; product-acceptance and platform-qualification are unrelated.",
-  "discoveries": [],
-  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "discoveries": [
+    {
+      "summary": "Skill frontmatter can register hooks, grant tools and run shell commands, so a skill can leave the receipt only while cargo xtask docs holds it to plain text (DOC011 to DOC013); the same carve-out was dropped in workflow-router for want of that check.",
+      "record": "docs/ARTIFACTS.md"
+    },
+    {
+      "summary": "Agent host folders below the repository root, such as crates/app/.claude/skills/, escaped both the receipt and the tier rule; DOC014 now refuses them.",
+      "record": "docs/ARTIFACTS.md"
+    },
+    {
+      "summary": "The edit guard gives no note for a bare top-level protected folder (rm -r .claude, rm -r xtask), and any one-segment path under .claude/skills/ gets a note even when handoff needs no receipt; completion and CI still judge the files.",
+      "record": "harness/task-artifacts/ceremony-paths/implementation.html"
+    }
+  ],
+  "discovery_review": "Three discoveries, each recorded where its next reader looks: the frontmatter and nested-folder rules in docs/ARTIFACTS.md Task size, and the guard's coarseness in the implementation notes. One scratch-only observation from a page author (the guard reads a redirect target against the event's cwd after a cd) is carried in the buy-in doc.",
   "documentation": {
-    "updated": [],
-    "rationale": "docs/ARTIFACTS.md Task size, docs/COMPLETION.md Default hooks and CI, and the write-ticket skill in both hosts describe which paths are ceremony or protected."
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "docs/COMPLETION.md",
+      ".claude/skills/write-ticket/SKILL.md",
+      ".agents/skills/write-ticket/SKILL.md"
+    ],
+    "rationale": "ARTIFACTS.md Task size names the three ceremony skills and the docs checks that hold every other skill to text; COMPLETION.md says a skill folder outside the ceremony needs no receipt; the write-ticket skill tells ticket writers that other skills can change in a small task."
   },
   "prompt": {
     "task": "narrow the protected and ceremony paths so a skill outside the task-page ceremony can change in a small task",
@@ -33,10 +54,7 @@
   },
   "summary": "Narrow the protected and ceremony paths so skills outside the task-page ceremony can change in a small task, while the ceremony skills, agents and host config stay standard.",
   "remaining": [
-    "unrelated_skills_stay_small: given a small task that edits the investigate skill in both hosts and its seed, then handoff keeps the tier and needs no receipt",
-    "protected_cargo_and_ceremony_paths_force_standard: extended to each ceremony skill, the docs/skills pointers, .claude/settings.json and a new non-skill .claude/ file",
-    "guard_passes_unrelated_skills_without_a_receipt_note: the guard notes author-artifact but not investigate",
-    "transitions::tests::guard_tiers_match_protected_paths: extended to the ceremony-skill list",
+    "Write and review buy-in.html and quiz.html",
     "cargo xtask check ci > target/verification/ci.json",
     "cargo xtask complete --task ceremony-paths --base origin/main --report target/verification/ci.json"
   ]
