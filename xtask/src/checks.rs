@@ -179,6 +179,7 @@ pub fn docs(root: &Path) -> Result<Value> {
         }
     }
     errors.extend(skill_copies(root)?);
+    errors.extend(free_skills(root)?);
     Ok(json!({"ok":errors.is_empty(),"errors":errors,
         "scope":"Markdown catalog, relative inline file links and skill copies; semantic accuracy and heading anchors need review"}))
 }
@@ -255,6 +256,59 @@ fn skill_copies(root: &Path) -> Result<Vec<String>> {
     }
     Ok(errors)
 }
+
+/// A skill outside the ceremony changes with no receipt and can be a small task
+/// (transitions::ceremony_skill), so it may only be text: .md files, frontmatter
+/// of name and description once each, and no `!` command. A host folder below
+/// the root would escape every path rule, so there is none.
+fn free_skills(root: &Path) -> Result<Vec<String>> {
+    let mut errors = Vec::new();
+    for path in repo::files(root)? {
+        let path = path.to_string_lossy().replace('\\', "/");
+        let segments: Vec<&str> = path.split('/').collect();
+        if segments[1..].iter().any(|s| {
+            [".claude", ".agents", ".codex"]
+                .iter()
+                .any(|h| h.eq_ignore_ascii_case(s))
+        }) {
+            errors.push(format!(
+                "DOC014 {path}: agent host folders belong only at the repository root"
+            ));
+            continue;
+        }
+        let in_skills = path.starts_with(".claude/skills/") || path.starts_with(".agents/skills/");
+        if !in_skills || crate::transitions::ceremony_skill(&path) {
+            continue;
+        }
+        if !path.ends_with(".md") {
+            errors.push(format!("DOC013 {path}: a skill outside the ceremony holds only .md files; add it to CEREMONY_SKILLS for more"));
+            continue;
+        }
+        let text = std::fs::read_to_string(root.join(&path))?;
+        if path.ends_with("/SKILL.md") {
+            let mut keys = BTreeSet::new();
+            let plain = text
+                .lines()
+                .skip(1)
+                .take_while(|l| *l != "---")
+                .filter(|l| !l.starts_with([' ', '\t']) && !l.trim().is_empty())
+                .all(|l| {
+                    l.split_once(':')
+                        .is_some_and(|(k, _)| SKILL_KEYS.contains(&k) && keys.insert(k))
+                });
+            if !plain {
+                errors.push(format!("DOC011 {path}: frontmatter may set only name and description, once each; add the skill to CEREMONY_SKILLS for more"));
+            }
+        }
+        if text.contains("!`") || text.lines().any(|l| l.trim_start().starts_with("```!")) {
+            errors.push(format!("DOC012 {path}: !`command` and ```! blocks run at load; add the skill to CEREMONY_SKILLS for them"));
+        }
+    }
+    Ok(errors)
+}
+
+/// The frontmatter keys a skill outside the ceremony may set.
+const SKILL_KEYS: [&str; 2] = ["name", "description"];
 
 /// Skills whose body is an experiment's seed file, kept byte-identical.
 const SEEDS: [(&str, &str); 1] = [("investigate", "docs/skills/investigate.md")];

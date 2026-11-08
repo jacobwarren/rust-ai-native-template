@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semantics map: administrative() and the narrowed ceremony paths</title>
+<style>
+  main { max-width: 64rem; padding-block: var(--space-8) 8rem; }
+  h1 { margin-block: var(--space-2) var(--space-3); }
+  h2 { font-size: 1.3rem; margin-block: var(--space-12) var(--space-2); display: flex; gap: var(--space-3); align-items: center; }
+  h2 .n { font: 650 .75rem/1 var(--font-code); width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--ink); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  h3 { margin: 0; font-size: 1.05rem; }
+  .lead { font-size: 1.1rem; margin-block: 0 var(--space-4); }
+  code { font-size: .86em; background: var(--accent-soft); padding: 0 .25em; border-radius: .25rem; overflow-wrap: anywhere; }
+  pre code { background: none; padding: 0; font-size: inherit; }
+  .src { font-size: .8rem; color: var(--muted); }
+  .prompt { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); padding-right: 8rem; }
+  .prompt .k, .tag { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+  .prompt blockquote { margin: var(--space-2) 0 0; font-style: italic; background: none; border-inline-start-color: var(--line); padding-block: 0; }
+  .prompt button { position: absolute; top: var(--space-3); right: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  .verdict { margin-block: var(--space-6) var(--space-2); }
+  .verdict p { margin: var(--space-1) 0 0; }
+  .paths { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-6); font: .78rem/1.6 var(--font-code); color: var(--muted); margin-top: var(--space-3); }
+  .paths b { color: var(--ink); }
+  .bullets { list-style: none; padding: var(--space-2) var(--space-6); margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .bullets li { padding: var(--space-3) 0; border-bottom: 1px dashed var(--line); font-size: .95rem; }
+  .bullets li:last-child { border-bottom: 0; }
+  .sub { color: var(--muted); max-width: var(--reading-width); margin: 0 0 var(--space-4); font-size: .95rem; }
+  .tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .tbl table { min-width: 44rem; font-size: .875rem; }
+  .tbl th { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+  .tbl tr:last-child td { border-bottom: 0; }
+  .pill { display: inline-block; font: 700 .68rem/1.5 var(--font-body); letter-spacing: .06em; text-transform: uppercase; padding: .05rem .5rem; border-radius: 999px; border: 1px solid; white-space: nowrap; }
+  .pill.part { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+  .pill.opp { color: var(--danger); border-color: var(--danger); background: var(--warning-soft); }
+  .pill.new { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .tally { font-size: .875rem; color: var(--muted); margin-top: var(--space-2); }
+  .flag { display: inline-flex; align-items: center; gap: .25rem; margin: 0; font-size: .72rem; color: var(--muted); cursor: pointer; white-space: nowrap; }
+  .flag input { margin: 0; }
+  .fix { display: none; width: 100%; margin-top: var(--space-2); font-size: .8rem; padding: var(--space-2) !important; }
+  .flagged .fix { display: block; }
+  tr.flagged td, .note.flagged { background: var(--warning-soft); }
+  .pair { margin-block: var(--space-8); }
+  .pair-title { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); align-items: baseline; margin-bottom: var(--space-3); }
+  .pair-title .pt { font: 650 .72rem/1 var(--font-code); color: var(--warning); letter-spacing: .06em; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  @media (max-width: 52rem) { .grid2 { grid-template-columns: 1fr; } }
+  .stack { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+  .cc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; min-width: 0; display: flex; flex-direction: column; }
+  .cc .ch { display: flex; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: var(--paper); border-bottom: 1px solid var(--line); font: .74rem/1.4 var(--font-code); color: var(--muted); }
+  .cc .ch .lbl { flex: none; white-space: nowrap; align-self: flex-start; font-family: var(--font-body); font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .05rem .45rem; border-radius: 999px; background: var(--line); color: var(--ink); }
+  .cc .ch .lbl.sk { background: var(--warning-soft); color: var(--warning); border: 1px solid var(--warning); }
+  .cc .ch .lbl.cap { background: var(--accent); color: var(--surface); }
+  .cc pre { margin: 0; border: 0; border-radius: 0; font-size: .78rem; line-height: 1.6; white-space: pre; overflow-x: auto; flex: 1; }
+  .kw { color: #8a3b1c; } .st { color: var(--accent); } .cm { color: var(--muted); font-style: italic; }
+  mark.hl { background: var(--warning-soft); border-bottom: 2px solid var(--warning); border-radius: 2px; color: inherit; padding: 0 1px; }
+  mark.hl sup { font: 700 .6rem var(--font-code); color: var(--warning); margin-left: 1px; }
+  mark.hl.on { background: #f3dcc3; }
+  .notes { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+  .note { display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-2) var(--space-3); align-items: start; font-size: .9rem; padding: var(--space-2) var(--space-3); border-radius: var(--control-radius); }
+  .note.on { background: var(--accent-soft); }
+  .nm { font: 700 .66rem/1 var(--font-code); width: 1.3rem; height: 1.3rem; border-radius: 50%; border: 1.5px solid var(--warning); color: var(--warning); display: inline-flex; align-items: center; justify-content: center; margin-top: .2rem; }
+  .note .fix { grid-column: 2 / 4; }
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+  @media (max-width: 52rem) { .three { grid-template-columns: 1fr; } }
+  .col { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4); }
+  .col .tag { display: block; margin-bottom: var(--space-2); }
+  .col.keep .tag { color: var(--accent); } .col.chg .tag { color: var(--warning); } .col.drop .tag { color: var(--danger); }
+  .col ul { margin: 0; padding: 0; list-style: none; }
+  .col li { font-size: .86rem; padding: var(--space-2) 0; border-top: 1px dashed var(--line); }
+  .col li:first-child { border-top: 0; }
+  .tf { font: 650 .78rem var(--font-code); white-space: nowrap; }
+  .tf .t { color: var(--danger); } .tf .f { color: var(--accent); }
+  .tf .chg { background: var(--warning-soft); outline: 1px solid var(--warning); border-radius: 3px; padding: 0 2px; }
+  td.p { font-family: var(--font-code); font-size: .78rem; overflow-wrap: anywhere; }
+  .cap-label { font: .74rem var(--font-code); color: var(--muted); margin: var(--space-4) 0 var(--space-1); }
+  .signoff { background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .signoff p { margin-block: var(--space-2); }
+  .signoff pre { max-height: 16rem; overflow: auto; font-size: .8rem; }
+  .btns { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+  .btns .count { font-size: .85rem; color: var(--muted); }
+  button.done { background: var(--ink); border-color: var(--ink); }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">ceremony-paths · before code · point at a reference</p>
+<h1>Semantics map: <code>administrative()</code> and the narrowed ceremony paths</h1>
+<p class="lead">What the administrative-path exemption does, what a match means to each of its readers, and every place the narrowed rule cannot copy it. Flag anything I got wrong. Nothing gets built until you sign off.</p>
+
+<div class="prompt">
+  <div class="k">The prompt</div>
+  <button type="button" id="copyPrompt">Copy prompt</button>
+  <blockquote id="promptText">The administrative-path exemption in xtask/src/artifacts.rs already behaves the way the narrowed ceremony paths should. Read it and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything.</blockquote>
+</div>
+
+<div class="callout verdict">
+  <span class="tag">Short answer: partly</span>
+  <p><code>administrative()</code> is the right model for <b>how to match</b> a path (pair A). It is the wrong model for <b>what a match does</b> (§2): each of its readers exempts a path from more than a free skill should escape. The narrowed rule has to live in <code>protected()</code>, <code>size::forces_standard</code> and the default edit guard, and none of them calls <code>administrative()</code> (pair B).</p>
+</div>
+<div class="paths">
+  <span><b>reference</b> xtask/src/artifacts.rs:32-43, unchanged since ed782ef</span>
+  <span><b>readers</b> size.rs:91 · artifacts.rs:150, 167 · artifact_hook.rs:39</span>
+  <span><b>target</b> transitions.rs:62-64 · size.rs:12-29 · agent-hook.sh:13-15, 91-97, 137-144</span>
+</div>
+
+<h2><span class="n">1</span>What <code>administrative()</code> actually does</h2>
+<ul class="bullets">
+  <li><b>It is a pure string test with six entries.</b> Four folder prefixes end in <code>/</code>, and two exact file names follow. It uses <code>starts_with</code> and <code>==</code> and nothing else: no normalization, no case folding, no filesystem access. <span class="src">artifacts.rs:33-43; <code>git log -L33,43:xtask/src/artifacts.rs</code> lists one commit, ed782ef.</span></li>
+  <li><b>The receipt and the default guard never call it.</b> <code>transitions::required</code> filters by <code>protected()</code> alone, and <code>scripts/agent-hook.sh</code> has no copy of the list. The administrative paths escape a receipt only because no protected entry covers them. <span class="src">transitions.rs:114-115; captured: <code>grep -c administrative scripts/agent-hook.sh</code> → <code>0</code>.</span></li>
+  <li><b>An administrative path is still checked by other rules.</b> Closing a gap in <code>harness/gaps.json</code> needs a receipt, and receipts under <code>harness/transitions/</code> are append-only. A free skill will likewise stay under the DOC007–DOC010 skill lints. <span class="src">transitions.rs:65-113; checks.rs:205-235.</span></li>
+</ul>
+
+<h2><span class="n">2</span>Its readers: what a match means, and what a free skill needs</h2>
+<p class="sub">Each reader decides what a match means, so the reference is answered reader by reader. The last two rows are where the narrowed rule lives, and the reference is absent from both.</p>
+<div class="tbl"><table id="readers">
+  <thead><tr><th style="width:21%">Reader</th><th style="width:30%">A match to <code>administrative()</code> means</th><th style="width:30%">A free skill (investigate) must mean</th><th>Same?</th></tr></thead>
+  <tbody>
+  <tr class="fl" data-k="Reader R1"><td><b>R1 <span class="ttl"><code>size::check_small</code></span></b><br><span class="src">size.rs:91-93; small tier, completion and handoff (completion.rs:31-34)</span> <label class="flag"><input type="checkbox">flag</label></td>
+    <td>Skipped before anything else: no ceremony check and <b>no line count</b>.</td>
+    <td>Not forced standard, but every copy still counts toward 100 lines.</td>
+    <td><span class="pill part" data-v="part">partly</span></td></tr>
+  <tr class="fl" data-k="Reader R2"><td><b>R2 <span class="ttl"><code>artifacts::committed</code></span></b><br><span class="src">artifacts.rs:146-151; completion, both tiers</span> <label class="flag"><input type="checkbox">flag</label></td>
+    <td>May stay <b>uncommitted</b>, unless it is in this task's own page folder.</td>
+    <td>Must be committed like any change.</td>
+    <td><span class="pill opp" data-v="opp">opposite</span></td></tr>
+  <tr class="fl" data-k="Reader R3"><td><b>R3 <span class="ttl"><code>artifacts::order</code></span></b><br><span class="src">artifacts.rs:166-168; standard-tier completion</span> <label class="flag"><input type="checkbox">flag</label></td>
+    <td>A commit touching only these paths is <b>not a product-code commit</b>.</td>
+    <td>A skill commit is product code; the discovery pages must precede it.</td>
+    <td><span class="pill opp" data-v="opp">opposite</span></td></tr>
+  <tr class="fl" data-k="Reader R4"><td><b>R4 <span class="ttl"><code>artifact_hook::run</code></span></b><br><span class="src">artifact_hook.rs:39-42; opt-in Codex example only (docs/ARTIFACTS.md:164-167)</span> <label class="flag"><input type="checkbox">flag</label></td>
+    <td>A patch of only these paths <b>skips the discovery-page guard</b>.</td>
+    <td>On a standard task, a skill edit waits for the discovery pages like other code.</td>
+    <td><span class="pill opp" data-v="opp">opposite</span></td></tr>
+  <tr class="fl" data-k="Reader R5"><td><b>R5 <span class="ttl"><code>transitions::required</code></span></b><br><span class="src">transitions.rs:114-115</span> <label class="flag"><input type="checkbox">flag</label></td>
+    <td>Not called. These paths are simply not protected.</td>
+    <td><b>The exemption lives here:</b> a free skill drops out of the policy digest, so no receipt.</td>
+    <td><span class="pill new" data-v="new">new</span></td></tr>
+  <tr class="fl" data-k="Reader R6"><td><b>R6 <span class="ttl"><code>agent-hook.sh</code> <code>tier()</code></span></b><br><span class="src">agent-hook.sh:137-144</span> <label class="flag"><input type="checkbox">flag</label></td>
+    <td>Not called; there is no shell copy. Captured: an Edit of <code>docs/plans/x.md</code> → <code>{}</code>.</td>
+    <td>Must agree with <code>protected()</code>: no receipt note for investigate (today it gets one, captured), a note for author-artifact.</td>
+    <td><span class="pill new" data-v="new">new</span></td></tr>
+  </tbody>
+</table></div>
+<p class="tally" id="tally"></p>
+<p class="src">R6, captured in a clean, git-initialised copy of this branch: <code>printf '{"tool_name":"Edit","cwd":"'"$PWD"'","tool_input":{"file_path":"docs/plans/x.md"}}' | scripts/agent-hook.sh guard claude</code> prints <code>{}</code>. With <code>.claude/skills/investigate/SKILL.md</code> it prints the <code>additionalContext</code> “… is a protected policy file. This branch will need a transition receipt …”.</p>
+<p class="sub"><b>Why skills cannot simply join the list:</b> R1's skip runs before <code>forces_standard</code> and the line count (size.rs:91-99), so a listed skill would count zero lines and stay protected. Blindspot card 02 measured what the count costs a free skill; interventions #1 traced the rest.</p>
+
+<h2><span class="n">3</span>Side by side: the reference and the narrowed rule</h2>
+<p class="sub">Highlighted regions correspond across each pair. Hover over or focus one to light up its counterpart and its note. Each right-hand card is a sketch, not the implementation. Pairs A and B together are the whole Rust change, so you can apply them and rerun the §5 probe.</p>
+
+<div class="pair">
+  <div class="pair-title"><span class="pt">PAIR A / 2</span><h3>The predicate: prefixes up to a slash, exact files apart</h3></div>
+  <div class="grid2">
+    <div class="cc"><div class="ch"><span>xtask/src/artifacts.rs:32-43, rewrapped</span><span class="lbl">reference</span></div>
+<pre><code><mark class="hl" data-p="4"><span class="cm">/// Edits that record or review work</span>
+<span class="cm">/// rather than change the product.</span><sup>4</sup></mark>
+<span class="kw">pub fn</span> administrative(path: &amp;str) -&gt; bool {
+    [
+        <mark class="hl" data-p="1"><span class="st">"harness/task-artifacts/"</span><sup>1</sup></mark>,
+        <span class="st">"harness/tasks/"</span>,
+        <span class="st">"harness/transitions/"</span>,
+        <span class="st">"docs/plans/"</span>,
+    ]
+    .iter()
+    .any(|p| <mark class="hl" data-p="3">path.starts_with(p)<sup>3</sup></mark>)
+        || <mark class="hl" data-p="2">[<span class="st">"harness/docs.json"</span>,
+            <span class="st">"harness/gaps.json"</span>]
+            .contains(&amp;path)<sup>2</sup></mark>
+}</code></pre></div>
+    <div class="cc"><div class="ch"><span>xtask/src/transitions.rs, replacing 62-64, rewrapped</span><span class="lbl sk">sketch</span></div>
+<pre><code><span class="kw">pub</span>(crate) <span class="kw">const</span> CEREMONY_SKILLS: [&amp;str; 3] =
+    [<span class="st">"author-artifact"</span>, <span class="st">"review-artifact"</span>, <span class="st">"write-ticket"</span>];
+
+<span class="kw">pub</span>(crate) <span class="kw">fn</span> skill_name&lt;'a&gt;(host: &amp;str, path: &amp;'a str)
+    -&gt; Option&lt;&amp;'a str&gt; {
+    <mark class="hl" data-p="3">path.strip_prefix(host)?</mark>
+        .<mark class="hl" data-p="1">split_once('/')<sup>1</sup></mark>.map(|(n, _)| n)
+}
+<span class="kw">pub</span>(crate) <span class="kw">fn</span> free_skill(host: &amp;str, path: &amp;str) -&gt; bool {
+    skill_name(host, path)
+        .is_some_and(|n| <mark class="hl" data-p="4">!CEREMONY_SKILLS.contains(&amp;n)<sup>4</sup></mark>)
+}
+<span class="kw">pub</span>(crate) <span class="kw">fn</span> protected(path: &amp;str) -&gt; bool {
+    (PROTECTED_PREFIXES.iter()
+        .any(|p| <mark class="hl" data-p="3">path.starts_with(p)<sup>3</sup></mark>)
+        <mark class="hl" data-p="5">&amp;&amp; !free_skill(<span class="st">".claude/skills/"</span>, path)<sup>5</sup></mark>)
+        || <mark class="hl" data-p="2">PROTECTED_FILES.contains(&amp;path)<sup>2</sup></mark>
+}</code></pre></div>
+  </div>
+  <div class="notes">
+    <div class="note fl" data-p="1" data-k="Note 1"><span class="nm">1</span><span><b class="ttl">A trailing slash is a folder boundary, and a miss fails safe.</b> <code>harness/tasks</code> and <code>harness/tasks-old/x.json</code> are not administrative (probe, §5). The sketch gets the same boundary from <code>split_once('/')</code>: a path with no name segment followed by <code>/</code>, such as <code>.claude/skills/README.md</code>, stays protected. Git hands Rust files only, so bare folders reach just the guard (blindspot card 03).</span><label class="flag"><input type="checkbox">flag</label></div>
+    <div class="note fl" data-p="2" data-k="Note 2"><span class="nm">2</span><span><b class="ttl">Exact files compare whole strings.</b> <code>harness/gaps.json.bak</code> is not administrative (probe). The sketch leaves <code>PROTECTED_FILES</code> alone. <code>.claude/settings.json</code> stays protected through the <code>.claude/</code> prefix and is never a skill.</span><label class="flag"><input type="checkbox">flag</label></div>
+    <div class="note fl" data-p="3" data-k="Note 3"><span class="nm">3</span><span><b class="ttl">There is no normalization; the callers make it safe.</b> <code>docs/plans/../../xtask/src/main.rs</code> <em>is</em> administrative (probe). That is harmless because callers pass git's repo-relative paths (history.rs:33-95) or the output of <code>relative()</code>, which refuses any <code>..</code> or <code>.</code> component (artifacts.rs:45-58). The sketch inherits this, so a <code>..</code> spelling of a ceremony skill is free in Rust (§5, last rows). The guard resolves <code>..</code> in <code>normalize()</code> (agent-hook.sh:105-116) before <code>tier()</code> sees the path.</span><label class="flag"><input type="checkbox">flag</label></div>
+    <div class="note fl" data-p="4" data-k="Note 4"><span class="nm">4</span><span><b class="ttl">The failure direction inverts.</b> <code>administrative()</code> lists what is exempt, so a typo or a different case (<code>Docs/Plans/x.md</code>, probe) makes a path product code, which is stricter. The narrowed rule lists what stays protected, so any name missing from <code>CEREMONY_SKILLS</code> is free. That is the price of a new skill being small (interview, settled list). Interventions #5, the allowlist, keeps the reference's direction.</span><label class="flag"><input type="checkbox">flag</label></div>
+  </div>
+</div>
+
+<div class="pair">
+  <div class="pair-title"><span class="pt">PAIR B / 2</span><h3>One exception, three readers: where the carve-back lives</h3></div>
+  <div class="grid2">
+    <div class="cc"><div class="ch"><span>xtask/src/artifacts.rs:146-151, rewrapped</span><span class="lbl">reference</span></div>
+<pre><code><span class="kw">pub fn</span> committed(root: &amp;Path, id: &amp;str) -&gt; Result&lt;()&gt; {
+    <span class="kw">let</span> prefix = format!(<span class="st">"{}/"</span>, directory(id));
+    <span class="kw">let</span> dirty: Vec&lt;String&gt; = history::uncommitted(root)?
+        .into_iter()
+        .filter(|p| <mark class="hl" data-p="5">p.starts_with(&amp;prefix) ||<sup>5</sup></mark>
+            !administrative(p))
+        .collect();
+    <span class="cm">// …error listing `dirty` (152-159)</span></code></pre></div>
+    <div class="stack">
+      <div class="cc"><div class="ch"><span>xtask/src/size.rs:11-29, rewrapped</span><span class="lbl sk">sketch</span></div>
+<pre><code><span class="kw">const</span> CEREMONY: [&amp;str; 5] = [
+    <span class="st">"docs/ARTIFACTS.md"</span>,
+    <mark class="hl" data-p="6"><span class="st">"docs/skills/author-artifact.md"</span>,
+    <span class="st">"docs/skills/review-artifact.md"</span>,<sup>6</sup></mark>
+    <span class="st">".claude/agents/"</span>,
+    <span class="st">".codex/agents/"</span>,
+];  <span class="cm">// was: "docs/skills/", ".agents/skills/",</span>
+    <span class="cm">//      ".claude/skills/" in place of the two pointers</span>
+<span class="kw">pub fn</span> forces_standard(path: &amp;str) -&gt; bool {
+    transitions::protected(path)
+        || path == <span class="st">"Cargo.toml"</span>
+        || path.ends_with(<span class="st">"/Cargo.toml"</span>)
+        || <mark class="hl" data-p="5">(path.starts_with(<span class="st">".agents/skills/"</span>)
+            &amp;&amp; !transitions::free_skill(
+                <span class="st">".agents/skills/"</span>, path))<sup>5</sup></mark>
+        || CEREMONY.iter().any(<span class="cm">/* unchanged */</span>)
+}</code></pre></div>
+      <div class="cc"><div class="ch"><span>scripts/agent-hook.sh, three additions</span><span class="lbl sk">sketch</span></div>
+<pre><code><span class="cm"># after PROTECTED_FILES (line 15)</span>
+<mark class="hl" data-p="7">CEREMONY_SKILLS=<sup>7</sup></mark><span class="st">"author-artifact review-artifact write-ticket"</span>
+<span class="cm"># after FILES_CMP (line 97)</span>
+CEREMONY_CMP=<mark class="hl" data-p="8">$(lower <span class="st">"$CEREMONY_SKILLS"</span>)<sup>8</sup></mark>
+<span class="cm"># in tier(), after the golden/deps case;</span>
+<span class="cm"># $p is already $(lower "$1")</span>
+  <span class="kw">case</span> <span class="st">"$p"</span> <span class="kw">in</span> .claude/skills/*/*)
+    x=${p#.claude/skills/}; x=${x%%/*}
+    <span class="kw">case</span> <span class="st">" $CEREMONY_CMP "</span> <span class="kw">in</span> *<span class="st">" $x "</span>*) ;;
+      *) echo none; <span class="kw">return</span> ;; <span class="kw">esac</span> ;;
+  <span class="kw">esac</span></code></pre></div>
+    </div>
+  </div>
+  <div class="notes">
+    <div class="note fl" data-p="5" data-k="Note 5"><span class="nm">5</span><span><b class="ttl">The reference carves its exception at one call site; the narrowed rule carves it inside one predicate that two readers share.</b> Only <code>committed()</code> keeps this task's own pages strict, so another task's pages may stay dirty at completion (test <code>completion_requires_committed_code_and_pages</code>, xtask/tests/artifacts.rs:154). The ceremony names are needed by <code>required()</code> through <code>protected()</code> and by <code>forces_standard()</code>. Both call the one <code>free_skill</code>, the second for the <code>.agents/</code> copies, which are not protected (blindspot card 05).</span><label class="flag"><input type="checkbox">flag</label></div>
+    <div class="note fl" data-p="6" data-k="Note 6"><span class="nm">6</span><span><b class="ttl"><code>docs/skills/</code> narrows to the two pointers, which frees the seed.</b> <code>ls docs/skills</code> shows <code>author-artifact.md</code>, <code>investigate.md</code> and <code>review-artifact.md</code>; write-ticket has no file there. Dropping <code>".claude/skills/"</code> from <code>CEREMONY</code> loses nothing, because <code>protected()</code> runs first and still covers the ceremony skills there.</span><label class="flag"><input type="checkbox">flag</label></div>
+    <div class="note fl" data-p="7" data-k="Note 7"><span class="nm">7</span><span><b class="ttl">The reference has no shell copy, so the guard follows the <code>PROTECTED_*</code> pattern instead.</b> <code>script_list</code> parses one unindented <code>NAME="…"</code> line (transitions.rs:209-219; blindspot card 06). The ticket's extended <code>guard_tiers_match_protected_paths</code> becomes one more line: <code>assert_eq!(script_list("CEREMONY_SKILLS"), CEREMONY_SKILLS);</code>.</span><label class="flag"><input type="checkbox">flag</label></div>
+    <div class="note fl" data-p="8" data-k="Note 8"><span class="nm">8</span><span><b class="ttl">Case folds in the guard only where git ignores case; Rust never folds.</b> <code>lower()</code> lowercases only when <code>core.ignorecase</code> is <code>true</code> (agent-hook.sh:91-95; test <code>guard_folds_case_where_git_ignores_case</code>, hooks_guard.rs:308). For an edit through <code>.claude/skills/Author-Artifact/</code>:
+      <br><b>Case-insensitive checkout:</b> the guard folds the name and gives the receipt note. Rust never sees that spelling. Captured in a clean copy, after appending through it, <code>git status --short</code> prints <code>M .claude/skills/author-artifact/SKILL.md</code>, which stays protected.
+      <br><b>Case-sensitive checkout:</b> it is a separate folder, and both sides treat it as free, like any new skill (note 4).</span><label class="flag"><input type="checkbox">flag</label></div>
+  </div>
+</div>
+
+<h2><span class="n">4</span>Port, change, or leave behind</h2>
+<div class="three">
+  <div class="col keep"><span class="tag">Port exactly</span><ul>
+    <li><b>Prefix up to a slash, exact files apart.</b> A bare or partial name never matches (notes 1, 2).</li>
+    <li><b>A pure string test on git's repo-relative paths.</b> No folding or normalization in Rust (note 3).</li>
+    <li><b>One owner in Rust.</b> One const that every Rust reader calls, under protected <code>xtask/</code> (note 5).</li>
+    <li><b>Exempt from one rule, checked by the rest.</b> Free skills still pass DOC007–DOC010.</li>
+  </ul></div>
+  <div class="col chg"><span class="tag">Deliberately different</span><ul>
+    <li><b>Subtracts from <code>protected()</code></b> instead of standing beside it (R5).</li>
+    <li><b>Exception inside the predicate</b>, shared by two readers (note 5).</li>
+    <li><b>A shell copy with a parity test</b>, folding case only where git does (notes 7, 8).</li>
+    <li><b>Lists what stays protected</b>, so a missing name is free (note 4).</li>
+  </ul></div>
+  <div class="col drop"><span class="tag">Leave behind</span><ul>
+    <li><b>Skipping the line count</b> (R1).</li>
+    <li><b>Tolerating uncommitted edits</b> at completion (R2).</li>
+    <li><b>“Not a code commit”</b> in the page order (R3).</li>
+    <li><b>Bypassing the opt-in page guard</b> (R4).</li>
+  </ul></div>
+</div>
+
+<h2><span class="n">5</span>Edge cases: today and under the sketch</h2>
+<p class="sub">The probe prints <code>administrative()</code>, <code>protected()</code> and <code>forces_standard()</code> for each path, <code>T</code> or <code>F</code>. Notes 1–4 cite its first five lines. The table takes its “today” values from the same output. Its “sketch” values are expected, not captured: they are what pairs A and B give, and applying those pairs and rerunning the probe should reproduce them.</p>
+<div class="grid2">
+  <div class="cc"><div class="ch"><span>appended to xtask/src/size.rs in a clean copy; path list elided</span><span class="lbl">probe</span></div>
+<pre><code><span class="cm">#[cfg(test)]</span>
+<span class="cm">#[test]</span>
+<span class="kw">fn</span> probe_paths() {
+    <span class="kw">let</span> b = |v: bool| <span class="kw">if</span> v { <span class="st">"T"</span> } <span class="kw">else</span> { <span class="st">"F"</span> };
+    <span class="kw">for</span> p <span class="kw">in</span> [ <span class="cm">/* the 17 paths in the output */</span> ] {
+        <span class="kw">let</span> (a, pr) = (artifacts::administrative(p),
+                       transitions::protected(p));
+        println!(<span class="st">"{} {} {}  {p}"</span>,
+                 b(a), b(pr), b(forces_standard(p)));
+    }
+}
+<span class="cm">// cargo test -p xtask --bin xtask probe_paths -- --nocapture</span></code></pre></div>
+  <div class="cc"><div class="ch"><span>administrative · protected · forces_standard, this branch</span><span class="lbl cap">captured</span></div>
+<pre><code>F F F  harness/tasks
+F F F  harness/tasks-old/x.json
+F F F  harness/gaps.json.bak
+F F F  Docs/Plans/x.md
+T F F  docs/plans/../../xtask/src/main.rs
+F T T  .claude/skills/investigate/SKILL.md
+F T T  .claude/skills/new-skill/SKILL.md
+F F T  .agents/skills/investigate/SKILL.md
+F F T  docs/skills/investigate.md
+F T T  .claude/skills/author-artifact/SKILL.md
+F F T  .agents/skills/author-artifact/SKILL.md
+F F T  docs/skills/author-artifact.md
+F F T  .agents/skills/README.md
+F T T  .claude/skills/README.md
+F T T  .claude/settings.json
+F T T  .claude/skills/x/../author-artifact/SKILL.md
+F T T  .claude/skills/Author-Artifact/SKILL.md</code></pre></div>
+</div>
+
+<p class="cap-label">today: captured above · sketch: expected from pairs A and B · outlined: the sketch changes it · red: a receipt or a standard task</p>
+<div class="tbl"><table id="edges">
+  <thead><tr><th style="width:38%">Path</th><th style="width:15%">protected()<br>today → sketch</th><th style="width:15%">forces_&shy;standard()<br>today → sketch</th><th>What it shows</th></tr></thead>
+  <tbody>
+  <tr class="fl" data-k="Edge investigate, new-skill in .claude"><td class="p">.claude/skills/investigate/SKILL.md · .claude/skills/new-skill/SKILL.md <label class="flag"><input type="checkbox">flag</label></td><td class="tf"><span class="t">T</span> → <span class="chg f">F</span></td><td class="tf"><span class="t">T</span> → <span class="chg f">F</span></td><td class="ttl">The ticket's case, and a new skill: no receipt, stays small.</td></tr>
+  <tr class="fl" data-k="Edge investigate in .agents and docs/skills"><td class="p">.agents/skills/investigate/SKILL.md · docs/skills/investigate.md <label class="flag"><input type="checkbox">flag</label></td><td class="tf"><span class="f">F</span> → <span class="f">F</span></td><td class="tf"><span class="t">T</span> → <span class="chg f">F</span></td><td class="ttl">Never protected; freed by the <code>.agents/skills/</code> line and the two named pointers (notes 5, 6).</td></tr>
+  <tr class="fl" data-k="Edge author-artifact in .claude"><td class="p">.claude/skills/author-artifact/SKILL.md <label class="flag"><input type="checkbox">flag</label></td><td class="tf"><span class="t">T</span> → <span class="t">T</span></td><td class="tf"><span class="t">T</span> → <span class="t">T</span></td><td class="ttl">A ceremony name: receipt and standard, as today.</td></tr>
+  <tr class="fl" data-k="Edge author-artifact copies and .agents README"><td class="p">.agents/skills/author-artifact/SKILL.md · docs/skills/author-artifact.md · .agents/skills/README.md <label class="flag"><input type="checkbox">flag</label></td><td class="tf"><span class="f">F</span> → <span class="f">F</span></td><td class="tf"><span class="t">T</span> → <span class="t">T</span></td><td class="ttl">Standard but no receipt, as today. The loose README has no skill name, so it stays ceremony (note 1).</td></tr>
+  <tr class="fl" data-k="Edge .claude README and settings"><td class="p">.claude/skills/README.md · .claude/settings.json <label class="flag"><input type="checkbox">flag</label></td><td class="tf"><span class="t">T</span> → <span class="t">T</span></td><td class="tf"><span class="t">T</span> → <span class="t">T</span></td><td class="ttl">No skill name, or not a skill: stays protected (notes 1, 2).</td></tr>
+  <tr class="fl" data-k="Edge dot-dot and case spellings of author-artifact"><td class="p">.claude/skills/x/../author-artifact/SKILL.md · .claude/skills/Author-Artifact/SKILL.md <label class="flag"><input type="checkbox">flag</label></td><td class="tf"><span class="t">T</span> → <span class="chg f">F</span></td><td class="tf"><span class="t">T</span> → <span class="chg f">F</span></td><td class="ttl">Free when Rust reads them raw. Git never reports either spelling for the existing folder, and the guard normalizes and folds them (notes 3, 8).</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="n">6</span>Sign-off</h2>
+<div class="signoff">
+  <p><b>Confirm or correct the map.</b> If nothing is flagged, the reply confirms it, and I build the narrowed rule to the sketches in pairs A and B. To correct something, flag the reader, note or edge row above and say what is wrong. The reply lists every flag.</p>
+  <div class="btns"><button type="button" id="copyReply">Copy reply</button><span class="count" id="count"></span></div>
+  <pre id="reply" aria-live="polite"></pre>
+</div>
+
+<footer>ceremony-paths · reference. Captured outputs come from a clean copy of this branch; sketches and their expected values are labelled.</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = "Copied"; btn.classList.add("done"); setTimeout(function () { btn.textContent = label; btn.classList.remove("done"); }, 1600); }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); done(); } catch (e) {} document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  }
+  document.getElementById("copyPrompt").addEventListener("click", function () { copy(document.getElementById("promptText").textContent.trim(), this); });
+
+  // Linked highlights: hovering or focusing a mark or note lights up all with the same number.
+  function setOn(p, on) { document.querySelectorAll('[data-p="' + p + '"]').forEach(function (el) { el.classList.toggle("on", on); }); }
+  document.querySelectorAll("mark.hl, .note").forEach(function (el) {
+    var p = el.getAttribute("data-p");
+    if (el.tagName === "MARK") el.tabIndex = 0;
+    el.addEventListener("mouseenter", function () { setOn(p, true); });
+    el.addEventListener("mouseleave", function () { setOn(p, false); });
+    el.addEventListener("focusin", function () { setOn(p, true); });
+    el.addEventListener("focusout", function () { setOn(p, false); });
+  });
+
+  // Reader tally, counted from the pills in the table itself.
+  var pills = document.querySelectorAll("#readers .pill");
+  var n = { part: 0, opp: 0, "new": 0 };
+  pills.forEach(function (p) { n[p.getAttribute("data-v")]++; });
+  document.getElementById("tally").textContent = "Of " + pills.length + " readers: " + n.part + " partly the same, " + n.opp + " opposite, " + n["new"] + " new, where the reference is not consulted.";
+
+  // Flags: each flaggable item gets a correction box; the reply is built from the same items.
+  var items = Array.prototype.slice.call(document.querySelectorAll(".fl"));
+  items.forEach(function (it) {
+    var box = document.createElement("input");
+    box.type = "text"; box.className = "fix"; box.placeholder = "What is wrong, and what is right?";
+    box.setAttribute("aria-label", "Correction for " + it.getAttribute("data-k"));
+    var cb = it.querySelector(".flag input");
+    cb.setAttribute("aria-label", "Flag " + it.getAttribute("data-k"));
+    if (it.tagName === "TR") { it.querySelector("td").appendChild(box); } else { it.appendChild(box); }
+    cb.addEventListener("change", function () { it.classList.toggle("flagged", cb.checked); if (cb.checked) box.focus(); render(); });
+    box.addEventListener("input", render);
+    it._cb = cb; it._box = box;
+  });
+  function title(it) { var t = it.querySelector(".ttl"); return t.textContent.replace(/\s+/g, " ").trim(); }
+  function render() {
+    var flagged = items.filter(function (it) { return it._cb.checked; });
+    document.getElementById("count").textContent = flagged.length ? flagged.length + " flagged" : "nothing flagged";
+    var out;
+    if (!flagged.length) {
+      out = "Semantics map confirmed for administrative() and the narrowed ceremony paths. Port the matching (pair A). Put the ceremony-name exception in one free_skill() that protected() and forces_standard() both call, narrow CEREMONY to the two docs/skills pointers, and add a parity-tested guard copy that folds case only where core.ignorecase is true (pair B). Leave check_small's administrative skip alone so free skills still count their lines (R1).";
+    } else {
+      out = "Corrections to the semantics map (administrative() and the narrowed ceremony paths):\n" + flagged.map(function (it) {
+        var why = it._box.value.trim();
+        return "- " + it.getAttribute("data-k") + ": " + title(it) + "\n  " + (why || "[say what is wrong]");
+      }).join("\n") + "\nRevise the map before building.";
+    }
+    document.getElementById("reply").textContent = out;
+  }
+  document.getElementById("copyReply").addEventListener("click", function () { copy(document.getElementById("reply").textContent, this); });
+  render();
+})();
+</script>
+</body>
+</html>

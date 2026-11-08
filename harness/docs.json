@@ -252,6 +252,12 @@
     "verified_by": "cargo xtask docs; harness/tasks/brief-calibration.json"
   },
   {
+    "path": "docs/plans/ceremony-paths.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; harness/tasks/ceremony-paths.json"
+  },
+  {
     "path": "docs/plans/next-prompt.md",
     "owner": "maintainers",
     "status": "active",

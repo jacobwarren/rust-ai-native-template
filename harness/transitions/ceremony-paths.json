@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "base_commit": "00ca2250e300c88dcabaf9a6ca08bc26f4acd2cb",
+  "changes": [
+    {
+      "change": {
+        "after_sha256": "75e5ab72b49318a2d24ab48b6c336a42f70f2d0267d13816bf757c8e84f71f1a",
+        "before_sha256": "1f0ba85439992ffe306f7a2df3bd2da313926be6618b52535ad8ff1e45eb76c6",
+        "subject": "policy"
+      },
+      "rationale": "Narrow the ceremony to the skills that define it. CEREMONY_SKILLS in transitions.rs names author-artifact, review-artifact and write-ticket; under .claude/skills/ only those, and any file loose in the folder, stay protected, and in either host only those force a standard task. Every other skill can change in a small task without a transition receipt. Names compare without case. That carve-out was dropped once before (workflow-router) because skill frontmatter can register hooks, grant tools and run shell commands, so it lands with cargo xtask docs checks that hold a skill outside the ceremony to plain text: frontmatter of name and description only, once each (DOC011), no !-commands or ```! blocks (DOC012), and only .md files (DOC013). DOC014 refuses agent host folders below the repository root, which today escape every path rule. The guard mirrors the list on one line and the parity test keeps it equal; size::CEREMONY names the two docs/skills pointers instead of the folder. docs/ARTIFACTS.md, docs/COMPLETION.md and the write-ticket skill say the same. Limits: a hook added to a skill outside the ceremony is refused at cargo xtask docs and CI, not at the edit; the 100-line limit is unchanged and counts every host copy; the guard still gives no note for a bare top-level folder such as rm -r .claude.",
+      "evidence": [
+        "docs/plans/ceremony-paths.md",
+        "harness/task-artifacts/ceremony-paths/plan.html",
+        "harness/task-artifacts/ceremony-paths/implementation.html",
+        "xtask/tests/tiers.rs",
+        "xtask/tests/hooks_author.rs",
+        "xtask/tests/hooks_guard.rs"
+      ],
+      "manual_justification": null
+    }
+  ]
+}

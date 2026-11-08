@@ -59,7 +59,31 @@ const PROTECTED_FILES: [&str; 11] = [
     "AGENTS.md",
 ];
 
+/// The skills that define the task-page ceremony. Under `.claude/skills/` only
+/// these stay protected, so another skill changes without a receipt and, being
+/// outside the ceremony, can change in a small task (docs/ARTIFACTS.md "Task
+/// size"). The guard copies this list too.
+pub(crate) const CEREMONY_SKILLS: [&str; 3] =
+    ["author-artifact", "review-artifact", "write-ticket"];
+
+/// Whether `path` lies in one of the ceremony skills, in either host's folder.
+/// Names compare without case: on a case-insensitive checkout
+/// `Author-Artifact/` is the ceremony skill's own folder. A file loose in the
+/// skills folder, outside any skill, counts as ceremony too.
+pub(crate) fn ceremony_skill(path: &str) -> bool {
+    [".claude/skills/", ".agents/skills/"].iter().any(|host| {
+        path.strip_prefix(host)
+            .is_some_and(|rest| match rest.split_once('/') {
+                Some((name, _)) => CEREMONY_SKILLS.iter().any(|s| s.eq_ignore_ascii_case(name)),
+                None => true,
+            })
+    })
+}
+
 pub(crate) fn protected(path: &str) -> bool {
+    if path.starts_with(".claude/skills/") {
+        return ceremony_skill(path);
+    }
     PROTECTED_PREFIXES.iter().any(|p| path.starts_with(p)) || PROTECTED_FILES.contains(&path)
 }
 fn sensitive(old: &Gap, new: Option<&Gap>) -> bool {
@@ -204,7 +228,7 @@ pub fn check(root: &Path, revision: &str, report: Option<&Path>) -> Result<Value
 
 #[cfg(test)]
 mod tests {
-    use super::{PROTECTED_FILES, PROTECTED_PREFIXES};
+    use super::{CEREMONY_SKILLS, PROTECTED_FILES, PROTECTED_PREFIXES, protected};
 
     fn script_list(name: &str) -> Vec<String> {
         let script = include_str!("../../scripts/agent-hook.sh");
@@ -222,5 +246,30 @@ mod tests {
     fn guard_tiers_match_protected_paths() {
         assert_eq!(script_list("PROTECTED_PREFIXES"), PROTECTED_PREFIXES);
         assert_eq!(script_list("PROTECTED_FILES"), PROTECTED_FILES);
+        assert_eq!(script_list("CEREMONY_SKILLS"), CEREMONY_SKILLS);
+    }
+
+    #[test]
+    fn only_ceremony_skills_stay_protected_under_claude() {
+        for path in [
+            ".claude/skills/author-artifact/SKILL.md",
+            ".claude/skills/write-ticket/SKILL.md",
+            ".claude/skills/Author-Artifact/SKILL.md",
+            ".claude/skills/README.md",
+            ".claude/settings.json",
+            ".claude/agents/artifact-author.md",
+            ".claude/commands/new.md",
+            ".codex/hooks.json",
+        ] {
+            assert!(protected(path), "{path}");
+        }
+        for path in [
+            ".claude/skills/investigate/SKILL.md",
+            ".claude/skills/new-skill/SKILL.md",
+            ".claude/skills/author-artifact-notes/SKILL.md",
+            ".agents/skills/author-artifact/SKILL.md",
+        ] {
+            assert!(!protected(path), "{path}");
+        }
     }
 }

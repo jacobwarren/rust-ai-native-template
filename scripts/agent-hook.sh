@@ -13,6 +13,7 @@ trap 'rc=$?; case $rc in 0 | 2) ;; *) echo "agent-hook: internal error (exit $rc
 # Copied from xtask/src/transitions.rs; transitions::tests keeps them equal.
 PROTECTED_PREFIXES="xtask/ .github/ scripts/ .cargo/ harness/goldens/ .claude/ .codex/"
 PROTECTED_FILES="harness/config.json harness/readiness.json harness/tracking.json harness/workflows.json harness/scenarios.json Cargo.toml Cargo.lock docs/PRODUCT.md docs/READINESS.md docs/COMPLETION.md AGENTS.md"
+CEREMONY_SKILLS="author-artifact review-artifact write-ticket"
 
 mode=${1:-}
 host=${2:-}
@@ -135,9 +136,18 @@ relative() {
 
 # Tier of one repository-relative path: golden, deps, policy or none.
 tier() {
-  local p x
+  local p x s
   p=$(lower "$1")
   case "$p" in "" ) echo none; return ;; harness/goldens | harness/goldens/*) echo golden; return ;; harness/config.json) echo deps; return ;; esac
+  # Under .claude/skills/ only the ceremony skills are policy.
+  case "$p" in .claude/skills/*)
+    # Skill names compare without case on every checkout, as in transitions.rs.
+    # A file loose in the folder, outside any skill, stays policy.
+    x=${p#.claude/skills/}; case "$x" in */*) ;; *) echo policy; return ;; esac
+    x=$(printf '%s' "${x%%/*}" | tr '[:upper:]' '[:lower:]')
+    for s in $CEREMONY_SKILLS; do [ "$x" = "$s" ] && { echo policy; return; }; done
+    echo none; return ;;
+  esac
   for x in $PREFIXES_CMP; do case "$p" in "$x"*) echo policy; return ;; esac; done
   for x in $FILES_CMP; do [ "$p" = "$x" ] && { echo policy; return; }; done
   echo none

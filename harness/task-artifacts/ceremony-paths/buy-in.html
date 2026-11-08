@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Buy-in: the narrowed ceremony paths</title>
+<style>
+  .promptcard { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); margin-top: var(--space-6); }
+  .promptcard .lab { font-size: var(--text-small); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 650; }
+  .promptcard blockquote { background: none; border: 0; padding: var(--space-2) 0 0; font-style: italic; max-width: 62ch; }
+  .promptcard button { position: absolute; top: var(--space-3); right: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  .doc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1rem, 4vw, 2.75rem); margin-top: var(--space-8); }
+  .doc-top { display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; align-items: baseline; }
+  .chip { display: inline-block; font-size: var(--text-small); background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 0 var(--space-3); white-space: nowrap; }
+  .doc h2.title { font-size: clamp(1.6rem, 3.4vw, 2.2rem); margin: var(--space-3) 0 var(--space-2); }
+  .ask { color: var(--muted); margin-top: 0; }
+  .ask strong { color: var(--ink); }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin: var(--space-6) 0 0; }
+  @media (max-width: 52rem) { .tiles { grid-template-columns: 1fr 1fr; } }
+  .tile { border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); background: var(--paper); }
+  .tile b { display: block; font-size: 1.35rem; line-height: 1.2; }
+  .tile > span { display: block; font-size: var(--text-small); }
+  .tile small { display: block; margin-top: var(--space-1); font-size: .75rem; }
+  h3.sec { font-size: 1.3rem; margin: var(--space-8) 0 var(--space-4); padding-top: var(--space-6); border-top: 1px solid var(--line); display: flex; gap: var(--space-3); align-items: baseline; }
+  h3.sec .n { font-family: var(--font-code); font-size: var(--text-small); color: var(--accent); font-weight: 400; }
+  code { font-size: .88em; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 0 .3em; overflow-wrap: anywhere; }
+  .src { font-family: var(--font-code); font-size: .75rem; color: var(--muted); }
+  .demo { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
+  .bar { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; justify-content: space-between; padding: var(--space-3); background: var(--surface); border-bottom: 1px solid var(--line); }
+  .seg { display: inline-flex; flex-wrap: wrap; gap: var(--space-1); }
+  .seg button, .caption button { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  .seg button[aria-pressed="false"] { background: var(--surface); color: var(--ink); border-color: var(--line); }
+  .seg.when button[aria-pressed="true"][data-v="before"] { background: var(--warning); border-color: var(--warning); }
+  .stages { padding: var(--space-4); display: grid; gap: var(--space-3); }
+  .stage { display: grid; grid-template-columns: 9.5rem 1fr; gap: var(--space-3); align-items: start; opacity: .2; transition: opacity .35s; }
+  .stage.on { opacity: 1; }
+  @media (max-width: 40rem) { .stage { grid-template-columns: 1fr; gap: var(--space-1); } }
+  .stage .where { font-size: var(--text-small); font-weight: 650; }
+  .stage .where small { display: block; font-weight: 400; }
+  .stage pre { margin: 0; font-size: .78rem; line-height: 1.5; }
+  .v { display: inline-block; font-size: .72rem; font-weight: 650; border-radius: 999px; padding: 0 var(--space-2); margin-top: var(--space-1); color: var(--surface); }
+  .v.pass { background: var(--accent); } .v.note { background: var(--warning); } .v.refuse { background: var(--danger); }
+  .outcome { margin: 0 var(--space-4) var(--space-4); padding: var(--space-3) var(--space-4); border-radius: var(--control-radius); font-weight: 650; opacity: 0; transition: opacity .35s; }
+  .outcome.on { opacity: 1; }
+  .outcome.good { background: var(--accent-soft); border-inline-start: 3px solid var(--accent); }
+  .outcome.bad { background: var(--warning-soft); border-inline-start: 3px solid var(--warning); }
+  .caption { display: flex; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; align-items: center; margin-top: var(--space-2); font-size: .8rem; color: var(--muted); }
+  .pitch { font-size: 1.1rem; max-width: var(--reading-width); }
+  table.spec { font-size: .88rem; min-width: 42rem; }
+  table.spec th { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); background: var(--paper); }
+  table.spec td { padding: var(--space-2) var(--space-3); }
+  .was { color: var(--warning); } .now { color: var(--accent); font-weight: 650; }
+  .st { font-weight: 650; white-space: nowrap; }
+  .st.met { color: var(--accent); } .st.added { color: var(--warning); } .st.pending { color: var(--danger); }
+  details.obj { padding: 0; margin-block: var(--space-2); }
+  details.obj summary { padding: var(--space-3) var(--space-4); display: flex; gap: var(--space-3); }
+  details.obj summary .q { font-family: var(--font-code); color: var(--accent); font-weight: 400; flex: none; }
+  details.obj[open] summary { border-bottom: 1px solid var(--line); background: var(--paper); }
+  details.obj .a { padding: var(--space-2) var(--space-4) var(--space-4); }
+  .risk { border: 1px solid var(--line); border-inline-start: 4px solid var(--warning); border-radius: var(--radius); padding: var(--space-4) var(--space-6); background: var(--paper); }
+  .risk h4 { margin: 0 0 var(--space-2); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--warning); }
+  .risk ul { padding-inline-start: 1.1rem; margin: 0; }
+  .risk li { margin-bottom: var(--space-2); font-size: .95rem; }
+  .risk pre { font-size: .75rem; margin: var(--space-2) 0; }
+  ol.dec { list-style: none; padding: 0; margin: var(--space-4) 0; font-size: .9rem; }
+  ol.dec li { display: grid; grid-template-columns: 1.6rem 1fr; gap: var(--space-2); padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
+  ol.dec li > span:first-child { font-family: var(--font-code); color: var(--muted); }
+  ol.dec label { margin: var(--space-1) 0 0; }
+  ol.dec li.over { background: var(--warning-soft); }
+  ol.dec li.off { opacity: .5; }
+  .who { font-size: .72rem; font-weight: 650; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+  li.over .who { color: var(--warning); } li.off .who { color: var(--muted); }
+  .reply textarea { min-height: 3.5rem; }
+  .reply output { white-space: pre-wrap; font-family: var(--font-code); font-size: .82rem; }
+  .reply .row { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; margin-top: var(--space-3); }
+  .bottomline { margin-top: var(--space-8); padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">ceremony-paths &middot; after implementation &middot; the buy-in doc</div>
+  <h1>Buy-in: the narrowed ceremony paths</h1>
+  <p class="lead">The plan, the implementation notes and the evidence in one place, so you can decide whether to ship.</p>
+  <div class="promptcard">
+    <div class="lab">The prompt</div>
+    <button type="button" id="copyPrompt" class="secondary">Copy prompt</button>
+    <blockquote>&ldquo;Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping the narrowed ceremony paths. Lead with the demo.&rdquo;</blockquote>
+  </div>
+
+  <article class="doc">
+    <div class="doc-top">
+      <div class="eyebrow">Ship proposal &middot; harness policy</div>
+      <span class="chip">6-minute read</span>
+    </div>
+    <h2 class="title">A typo fix in the investigate skill no longer costs eight pages and a receipt</h2>
+    <p class="ask"><strong>Ask:</strong> confirm or override the <span data-count="live">9</span> open calls the agent made without you (section 05), then approve the policy change in review. CI passes and the receipt is written.</p>
+
+    <div class="tiles">
+      <div class="tile"><b>refused &rarr; small</b><span>a one-word fix to investigate in both hosts and its seed</span><small class="src">captured: demo tab 1, cargo xtask handoff</small></div>
+      <div class="tile"><b>3 skills</b><span>keep the ceremony: author-artifact, review-artifact, write-ticket</span><small class="src">xtask/src/transitions.rs:66-67</small></div>
+      <div class="tile"><b>6 / 6 &middot; 9 / 9</b><span>named tests pass, and so do all CI checks</span><small class="src">captured: cargo test, cargo xtask check ci, clean clone</small></div>
+      <div class="tile"><b><span data-count="live">9</span> open calls</b><span>agent's calls no one answered: <span data-count="over">0</span> overridden<span data-count="dropped"></span></span><small class="src">interview Q1&ndash;Q6, blindspots card 01, implementation deviations 2&ndash;3</small></div>
+    </div>
+
+    <!-- 01 DEMO -->
+    <h3 class="sec"><span class="n">01</span> Watch it work</h3>
+    <div class="demo" aria-label="Captured outputs for three small tasks on main and on this branch">
+      <div class="bar">
+        <div class="seg" id="scenTabs" role="group" aria-label="Scenario"></div>
+        <div class="seg when" id="whenTabs" role="group" aria-label="Which code">
+          <button type="button" data-v="before" aria-pressed="true">main</button>
+          <button type="button" data-v="after" aria-pressed="false">this branch</button>
+        </div>
+      </div>
+      <div class="stages" id="stages"></div>
+      <div class="outcome" id="outcome"></div>
+    </div>
+    <div class="caption">
+      <span>Captured from a small-task branch in clean clones of main and of this branch. Handoff output is trimmed to its tier and receipt fields; guard JSON is shortened to its message. The guard decides on the path alone, so one guard run serves tabs 1 and 2.</span>
+      <button type="button" class="secondary" id="replay">&#8635; replay</button>
+    </div>
+
+    <!-- 02 PITCH -->
+    <h3 class="sec"><span class="n">02</span> The pitch</h3>
+    <p class="pitch">Today any skill edit is refused as a small task, because every path under <code>.claude/</code> is protected and every skill folder counts as ceremony. A one-word fix costs <strong>eight pages, sixteen subagent runs and a policy receipt</strong>. This change keeps that cost for the three skills that define the ceremony and drops it for the rest. The workflow-router task dropped this carve-out because frontmatter can register hooks and only the receipt stood in the way. This branch adds the missing check: <strong>CI refuses any skill outside the ceremony that is more than plain Markdown</strong> (tab 2). The change is <strong>15 files, +359 &minus;17</strong>: code 4 files +122 &minus;7, tests 3 files +121, docs and config 6 files +33 &minus;10, the receipt +23 and the plan +60. No record or receipt format changes, so a revert restores today's rules.</p>
+    <p class="src">docs/plans/ceremony-paths.md:15 &middot; harness/tasks/workflow-router.json discoveries[0] &middot; git diff --numstat origin/main HEAD -- . ':(exclude)harness/task-artifacts' ':(exclude)harness/tasks' with origin/main = 00ca225, then split by path &middot; Receipt struct unchanged, transitions.rs:23-27</p>
+
+    <!-- 03 TICKET + EVIDENCE -->
+    <h3 class="sec" id="ticket"><span class="n">03</span> Against the ticket</h3>
+    <div class="table-scroll">
+      <table class="spec">
+        <thead><tr><th>Ticket item</th><th>Status</th><th>What an edit now costs: <span class="was">main</span> &rarr; <span class="now">branch</span></th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr><td><code>unrelated_skills_stay_small</code></td><td class="st met">met</td><td>investigate in both hosts and its seed, or a new skill: <span class="was">standard + receipt</span> &rarr; <span class="now">small, no receipt</span></td><td class="src">tiers.rs:179; demo tab 1; guard on new-skill/SKILL.md captured: note &rarr; {}</td></tr>
+          <tr><td><code>protected_cargo_and_ceremony_paths_force_standard</code>, extended</td><td class="st met">met</td><td>the three ceremony skills in either host, their <code>docs/skills/</code> pointers, <code>docs/ARTIFACTS.md</code>, agent folders, <code>.claude/settings.json</code>, any other <code>.claude/</code> file: unchanged, standard; <code>.claude/</code> and <code>.codex/</code> paths also need a receipt</td><td class="src">tiers.rs:137, 19 paths; size.rs:14-20; demo tab 3</td></tr>
+          <tr><td><code>guard_passes_unrelated_skills_without_a_receipt_note</code></td><td class="st met">met</td><td>guard on investigate: <span class="was">receipt note</span> &rarr; <span class="now">{}</span>; author-artifact and <code>settings.json</code> still noted</td><td class="src">hooks_guard.rs:90; guard captured both sides</td></tr>
+          <tr><td><code>guard_tiers_match_protected_paths</code>, extended</td><td class="st met">met</td><td>the guard's skill list equals <code>CEREMONY_SKILLS</code>; new <code>only_ceremony_skills_stay_protected_under_claude</code> pins whole-name matching</td><td class="src">transitions.rs:246, 253; agent-hook.sh:16</td></tr>
+          <tr><td>Scope: code, guard, tests, docs, write-ticket in both hosts, readiness.json, a receipt</td><td class="st met">met</td><td>both docs name the three ceremony skills and the docs checks; readiness.json gains 4 test names</td><td class="src">transitions.rs:61-88; agent-hook.sh:142-150; size.rs:14-31; ARTIFACTS.md:114-124; COMPLETION.md:200</td></tr>
+          <tr><td>Not in the ticket: DOC011&ndash;DOC013</td><td class="st added">added</td><td>a skill outside the ceremony with a hook, tool grant, <code>!`cmd`</code> or a non-<code>.md</code> file: <span class="was">passes docs</span> &rarr; <span class="now">refused</span>. Without the receipt, this is what keeps hooks out.</td><td class="src">checks.rs:264-306; free_skills_stay_plain_text (hooks_author.rs:159); demo tab 2</td></tr>
+          <tr><td>Not in the ticket: DOC014</td><td class="st added">added</td><td>a host folder below the root, e.g. <code>crates/app/.claude/skills/helper/</code>: <span class="was">escaped the tier and receipt rules</span> &rarr; <span class="now">refused</span></td><td class="src">checks.rs:266-278; task record discoveries[1]; captured: cargo xtask docs on branch</td></tr>
+          <tr><td>Validation: <code>cargo xtask check ci</code>, <code>cargo xtask gaps --base origin/main</code></td><td class="st met">met</td><td>9 of 9 checks passed. Gaps lists 10 protected files and no errors, so the one policy receipt covers them.</td><td class="src">captured, clean clone of this branch</td></tr>
+          <tr><td>Validation: <code>cargo xtask complete</code></td><td class="st pending">pending</td><td>refused only while the task is partial: this doc and the quiz remain</td><td class="src">harness/tasks/ceremony-paths.json &laquo;remaining&raquo;</td></tr>
+          <tr><td>Out of scope: 100-line limit, administrative paths, <code>.codex/</code>, a rewrite-rate report, hosting</td><td class="st met">untouched</td><td><code>SMALL_LINES</code> stays 100; <code>.codex/</code> stays a protected prefix; none of the files behind the others is in the diff</td><td class="src">size.rs:9; agent-hook.sh:14; the numstat in section 02</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 04 OBJECTIONS -->
+    <h3 class="sec"><span class="n">04</span> What the demo does not answer</h3>
+    <details class="obj" open>
+      <summary><span class="q">Q1</span>When does an agent find out its skill edit broke the rule?</summary>
+      <div class="a">At the next <code>cargo xtask docs</code>, not at the edit. The guard never runs Cargo, so on this branch it says nothing when a hook is added to investigate (tab 2, &laquo;At the edit&raquo;). The <code>fast</code> and <code>ci</code> profiles both run docs, and completion refuses a ci report that is not ok, so the hook cannot ship, but the session that adds it gets no warning. A guard reminder on every free-skill edit is call 7 below.
+        <br><span class="src">scripts/agent-hook.sh:4; harness/config.json:59, 106; xtask/src/readiness.rs:113-116</span></div>
+    </details>
+    <details class="obj">
+      <summary><span class="q">Q2</span>Do the guard and handoff always agree?</summary>
+      <div class="a">No. The guard is advisory and coarser in both directions; handoff reads git's file list and decides. The guard notes any one-segment path under <code>.claude/skills/</code>, so <code>rm -r .claude/skills/investigate</code> gets a receipt note handoff will not ask for (call 9). It stays silent for <code>rm -r .claude</code> and after a <code>cd</code> (risks below), as on main; handoff catches both.
+        <br><span class="src">scripts/agent-hook.sh:146; captured on both sides: rm -r .claude &rarr; {}; rm -r .claude/skills/investigate &rarr; receipt note</span></div>
+    </details>
+
+    <!-- 05 RISK + CALLS -->
+    <h3 class="sec" id="decide"><span class="n">05</span> Risk, rollback, and what I need from you</h3>
+    <div class="risk">
+      <h4>Risk and rollback</h4>
+      <ul>
+        <li><strong>Rollback is a revert</strong> of the code and docs commits. No record or receipt format changed, so nothing migrates.</li>
+        <li><strong>DOC012 also refuses prose that quotes <code>!`</code>.</strong> A skill that explains that syntax has to spell it another way or join the list. <span class="src">checks.rs:303</span></li>
+        <li><strong>DOC014 reads untracked files</strong>, so a nested host folder left on someone's machine fails docs there. <span class="src">captured with an untracked folder; checks.rs:266</span></li>
+        <li><strong>The guard ignores <code>cd</code></strong>, so a relative write after one goes unnoted. Main behaves the same, handoff still catches it, and the fix is guard work outside this change. Captured on this branch:
+<pre>cd .claude/skills/author-artifact &amp;&amp; echo x &gt;&gt; SKILL.md   &rarr; {}
+echo x &gt;&gt; .claude/skills/author-artifact/SKILL.md           &rarr; "… is a protected policy file. …"</pre></li>
+      </ul>
+    </div>
+
+    <p>No one answered the earlier pages, so each call below is the agent's recommendation, labelled as such, with the page that argues it. Keep it or pick the alternative. Calls 4&ndash;7 and 9 exist only while call 1 says no receipt; the counts at the top and the reply follow this list.</p>
+    <ol class="dec" id="dec"></ol>
+
+    <!-- 06 REPLY -->
+    <h3 class="sec"><span class="n">06</span> Send back</h3>
+    <div class="reply">
+      <label><input type="checkbox" id="approve"> I approve the policy change as described in the receipt</label>
+      <label for="extra">Anything else</label>
+      <textarea id="extra" placeholder="Optional note"></textarea>
+      <output id="replyOut" aria-live="polite"></output>
+      <div class="row"><button type="button" id="copyReply">Copy reply</button><span class="muted" id="replyMeta"></span></div>
+    </div>
+
+    <div class="bottomline">Built, tested, CI passing, receipt written. Approve it in review, or override a call and send the reply.</div>
+  </article>
+
+  <footer>ceremony-paths &middot; buy-in. Demo panels, guard lines, tests, CI and gaps were captured in clean clones of main (00ca225) and this branch (331c2ca).</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function copy(text, btn, label) {
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1500); }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+  }
+  var cp = document.getElementById("copyPrompt");
+  cp.addEventListener("click", function () {
+    copy("Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping the narrowed ceremony paths. Lead with the demo.", cp, "Copy prompt");
+  });
+
+  // ---------- demo: captured outputs ----------
+  var NOTE = "“… is a protected policy file. This branch will need a transition receipt: run cargo xtask gaps --base origin/main before completion.”";
+  function TIER(paths) {
+    return "task tier small: " + paths.map(function (p) { return p + " is a policy, dependency or ceremony path"; }).join("; ") +
+      "; a small task changes at most 100 lines and none of these paths. Narrow the change, or restart it as a standard task …";
+  }
+  var INV = [".agents/skills/investigate/SKILL.md", ".claude/skills/investigate/SKILL.md", "docs/skills/investigate.md"];
+  var AA = [".agents/skills/author-artifact/SKILL.md", ".claude/skills/author-artifact/SKILL.md"];
+  var W = ["At the edit", "At handoff", "At cargo xtask docs"];
+  var WS = ["the guard hook", "tier and receipt", "fast and ci profiles"];
+  var GUARD_MAIN = ".claude/skills/investigate/SKILL.md → " + NOTE + "\n.agents/skills/investigate/SKILL.md → {}\ndocs/skills/investigate.md          → {}";
+  var GUARD_AFTER = ".claude/skills/investigate/SKILL.md → {}\n.agents/skills/investigate/SKILL.md → {}\ndocs/skills/investigate.md          → {}";
+  var SMALL_OK = "no tier error\ntransitions: \"ok\": true, \"protected_files\": []";
+  var SCEN = [
+    { tab: "Fix a typo in investigate",
+      did: "Replace “Inspect existing tests” with “Read existing tests” in both host copies and the seed, as a small task.",
+      before: [
+        { v: "note", t: "receipt note on 1 of 3", out: GUARD_MAIN },
+        { v: "refuse", t: "refused", out: TIER(INV) + "\ntransitions: missing exact transition rationale: policy\nprotected_files: [\".claude/skills/investigate/SKILL.md\"]" },
+        { v: "pass", t: "ok", out: "\"ok\": true" } ],
+      beforeOut: ["bad", "Refused as small. Restart as a standard task with eight pages, and write a receipt."],
+      after: [
+        { v: "pass", t: "no note", out: GUARD_AFTER },
+        { v: "pass", t: "small holds", out: SMALL_OK },
+        { v: "pass", t: "ok", out: "\"ok\": true" } ],
+      afterOut: ["good", "A small task. No pages and no receipt."] },
+    { tab: "Add a hook to investigate",
+      did: "On top of the typo fix, add “hooks:” with “PreToolUse: []” to investigate's frontmatter in both hosts.",
+      before: [
+        { v: "note", t: "receipt note on 1 of 3", out: GUARD_MAIN },
+        { v: "refuse", t: "refused", out: TIER(INV) + "\ntransitions: missing exact transition rationale: policy" },
+        { v: "pass", t: "hook passes", out: "\"errors\": [], \"ok\": true" } ],
+      beforeOut: ["bad", "The hook passes every check. Only the standard tier and a receipt the agent writes itself stand in its way."],
+      after: [
+        { v: "pass", t: "no note", out: GUARD_AFTER + "\n(the guard never runs Cargo, so it cannot see the hook)" },
+        { v: "pass", t: "small holds", out: SMALL_OK },
+        { v: "refuse", t: "refused", out: "\"ok\": false\nDOC011 .agents/skills/investigate/SKILL.md: frontmatter may set only name and description, once each; add the skill to CEREMONY_SKILLS for more\nDOC011 .claude/skills/investigate/SKILL.md: frontmatter may set only name and description, once each; add the skill to CEREMONY_SKILLS for more" } ],
+      afterOut: ["good", "Refused outright. The ci report fails, so completion refuses the task. A skill that needs a hook joins CEREMONY_SKILLS in a protected change."] },
+    { tab: "Edit author-artifact",
+      did: "Append one blank line to author-artifact's SKILL.md in both hosts, as a small task.",
+      before: [
+        { v: "note", t: "receipt note", out: ".claude/skills/author-artifact/SKILL.md → " + NOTE },
+        { v: "refuse", t: "refused", out: TIER(AA) + "\ntransitions: missing exact transition rationale: policy\nprotected_files: [\".claude/skills/author-artifact/SKILL.md\"]" },
+        { v: "pass", t: "ok", out: "\"ok\": true" } ],
+      beforeOut: ["bad", "Standard task with a receipt."],
+      afterOut: ["good", "Unchanged: still a standard task with a receipt. The ceremony keeps its cost."] }
+  ];
+  SCEN[2].after = SCEN[2].before;
+
+  var scenTabs = document.getElementById("scenTabs"), whenTabs = document.getElementById("whenTabs");
+  var stagesEl = document.getElementById("stages"), outcomeEl = document.getElementById("outcome");
+  var cur = 0, timers = [], auto = true;
+  SCEN.forEach(function (s, i) {
+    var b = document.createElement("button"); b.type = "button"; b.textContent = s.tab; b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+    b.addEventListener("click", function () { stopAuto(); show(i, "before"); });
+    scenTabs.appendChild(b);
+  });
+  whenTabs.querySelectorAll("button").forEach(function (b) {
+    b.addEventListener("click", function () { stopAuto(); show(cur, b.getAttribute("data-v")); });
+  });
+  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function clear() { timers.forEach(clearTimeout); timers = []; }
+  function stopAuto() { auto = false; clear(); }
+  function show(i, w) {
+    clear(); cur = i;
+    var s = SCEN[i], out = s[w + "Out"];
+    scenTabs.querySelectorAll("button").forEach(function (b, j) { b.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+    whenTabs.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-v") === w ? "true" : "false"); });
+    var h = '<p class="muted" style="margin:0">' + esc(s.did) + "</p>";
+    s[w].forEach(function (r, k) {
+      h += '<div class="stage"><div class="where">' + W[k] + "<small>" + WS[k] + '</small><span class="v ' + r.v + '">' + esc(r.t) + "</span></div><pre>" + esc(r.out) + "</pre></div>";
+    });
+    stagesEl.innerHTML = h;
+    outcomeEl.className = "outcome " + out[0];
+    outcomeEl.textContent = (w === "before" ? "On main: " : "On this branch: ") + out[1];
+    var st = stagesEl.querySelectorAll(".stage");
+    st.forEach(function (el, k) { at(250 + k * 550, function () { el.classList.add("on"); }); });
+    at(250 + st.length * 550, function () { outcomeEl.classList.add("on"); });
+    if (auto) {
+      at(250 + st.length * 550 + 3200, function () {
+        if (w === "before") show(i, "after"); else show((i + 1) % SCEN.length, "before");
+      });
+    }
+  }
+  document.getElementById("replay").addEventListener("click", function () { auto = true; show(0, "before"); });
+  show(0, "before");
+
+  // ---------- calls: one list drives the rows, the counts at the top and the reply ----------
+  // free: the call exists only while call 1 keeps "no receipt" (plan choice 1's alternative drops DOC011-DOC013 and the guard carve-out).
+  var DEC = [
+    { t: "receipt for a free skill", q: "Does an edit to a skill outside the ceremony need a receipt?", call: "No; CI holds the skill to plain Markdown", alt: "Keep the receipt, drop only the pages", src: "interview Q1" },
+    { t: "what the list names", q: "Which skills does the list name?", call: "The three ceremony skills; any other skill, new ones included, is free", alt: "Name the free skills; a new skill stays standard until listed", src: "blindspots card 01" },
+    { t: "nested host folders", q: "Host folders below the repository root", call: "DOC014 refuses them", alt: "Drop DOC014 and record the hole as a discovery", src: "interview Q2" },
+    { t: "frontmatter rule", free: true, q: "How docs reads a free skill's frontmatter", call: "Allow only name and description, once each", alt: "Deny listed keys (hooks, allowed-tools, …), allow the rest", src: "interview Q3" },
+    { t: "folder contents", free: true, q: "What a free skill folder may hold", call: "Only .md files", alt: "Check SKILL.md only", src: "interview Q4" },
+    { t: "a skill that needs a hook", free: true, q: "Where a skill that needs a hook goes", call: "It joins CEREMONY_SKILLS", alt: "A second list: receipted but allowed to be small", src: "interview Q5" },
+    { t: "when the agent learns", free: true, q: "When an agent learns its skill broke the rule", call: "At cargo xtask docs", alt: "Also a guard reminder on every free-skill edit", src: "interview Q6; Q1 above" },
+    { t: "case in skill names", q: "Case in ceremony skill names", call: "Matched without case on every checkout", alt: "Fold case only where git ignores case", src: "implementation deviation 2" },
+    { t: "guard on a one-segment path", free: true, q: "Guard on a one-segment path under .claude/skills/", call: "Always note it", alt: "Check the name against the list, so rm -r of a free skill gets no note", src: "implementation deviation 3; Q2 above" }
+  ];
+  var pick = DEC.map(function () { return 0; });
+  var list = document.getElementById("dec");
+  list.innerHTML = DEC.map(function (d, i) {
+    return '<li id="row' + i + '"><span>' + (i + 1) + "</span><div>" + esc(d.q) + ' <span class="who" id="who' + i + '"></span> <span class="src">' + esc(d.src) + "</span>" +
+      '<label><input type="radio" name="d' + i + '" value="0" checked> ' + esc(d.call) + "</label>" +
+      '<label><input type="radio" name="d' + i + '" value="1"> ' + esc(d.alt) + "</label></div></li>";
+  }).join("");
+  list.addEventListener("change", function (e) {
+    var t = e.target; if (!t.name) return;
+    pick[parseInt(t.name.slice(1), 10)] = parseInt(t.value, 10); render();
+  });
+  var approve = document.getElementById("approve"), extra = document.getElementById("extra"), out = document.getElementById("replyOut");
+  approve.addEventListener("change", render); extra.addEventListener("input", render);
+  function setAll(key, text) { document.querySelectorAll('[data-count="' + key + '"]').forEach(function (el) { el.textContent = text; }); }
+  function render() {
+    var over = 0, lines = [], skipped = [], receipt = pick[0] === 1;
+    DEC.forEach(function (d, i) {
+      var off = d.free && receipt, o = !off && pick[i] === 1;
+      document.getElementById("row" + i).className = o ? "over" : (off ? "off" : "");
+      document.getElementById("row" + i).querySelectorAll("input").forEach(function (inp) { inp.disabled = off; });
+      document.getElementById("who" + i).textContent = off ? "drops out under your call 1" : (o ? "your override" : "agent's call");
+      if (off) { skipped.push(i + 1); return; }
+      if (o) { over++; lines.push("- #" + (i + 1) + " " + d.t + ": " + d.alt + " (instead of: " + d.call + ")"); }
+    });
+    var live = DEC.length - skipped.length, kept = live - over;
+    setAll("live", live);
+    setAll("over", over);
+    setAll("dropped", skipped.length ? "; " + skipped.length + " dropped by your call 1" : "");
+    var r = "Re: the narrowed ceremony paths\n";
+    if (over) r += "Change these before shipping:\n" + lines.join("\n") + "\n";
+    if (skipped.length) r += "Calls " + skipped.join(", ") + " drop out: they exist only while a free skill needs no receipt.\n";
+    r += (over ? "Keep the other " : "Keep all ") + kept + " of " + live + " open calls as built.\n";
+    r += approve.checked ? (over ? "Policy change: approved once the changes above are made.\n" : "Policy change: approved as built.\n") : "Policy change: not approved yet.\n";
+    if (extra.value.trim()) r += "Note: " + extra.value.trim() + "\n";
+    out.textContent = r;
+    document.getElementById("replyMeta").textContent = over + " of " + live + " open calls changed" + (skipped.length ? ", " + skipped.length + " dropped" : "");
+  }
+  var cr = document.getElementById("copyReply");
+  cr.addEventListener("click", function () { copy(out.textContent, cr, "Copy reply"); });
+  render();
+})();
+</script>
+</body>
+</html>

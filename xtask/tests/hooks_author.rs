@@ -156,6 +156,61 @@ fn skill_copies_must_match_and_name_their_folder() {
 }
 
 #[test]
+fn free_skills_stay_plain_text() {
+    let f = Fixture::new();
+    let skill = "---\nname: demo\ndescription: >\n  A demo skill.\n---\n\nBody.\n";
+    let mut catalog = vec![];
+    for name in ["demo", "author-artifact"] {
+        for host in [".claude/skills", ".agents/skills"] {
+            let path = format!("{host}/{name}/SKILL.md");
+            f.text(&path, &skill.replace("demo", name));
+            catalog.push(json!({"path":path,"owner":"o","status":"active","verified_by":"test"}));
+        }
+    }
+    f.write("harness/docs.json", json!(catalog));
+    assert_eq!(docs(&f)["ok"], true, "{}", docs(&f));
+    for changed in [
+        skill.replace("---\n\n", "hooks:\n  Stop: []\n---\n\n"),
+        skill.replace("---\n\n", "allowed-tools: Bash\n---\n\n"),
+        skill.replace("---\n\n", "name: other\n---\n\n"),
+        skill.replace("Body.", "Run !`date` first."),
+        skill.replace("Body.", "```!\ndate\n```"),
+    ] {
+        for host in [".claude/skills", ".agents/skills"] {
+            f.text(&format!("{host}/demo/SKILL.md"), &changed);
+            f.text(
+                &format!("{host}/author-artifact/SKILL.md"),
+                &changed.replace("demo", "author-artifact"),
+            );
+        }
+        let v = docs(&f).to_string();
+        assert!(
+            v.contains("DOC011 .claude/skills/demo/SKILL.md")
+                || v.contains("DOC012 .claude/skills/demo/SKILL.md"),
+            "{changed}: {v}"
+        );
+        // A ceremony skill may set more; its edits need a receipt instead.
+        assert!(
+            !v.contains(".claude/skills/author-artifact/SKILL.md: frontmatter"),
+            "{v}"
+        );
+        assert!(!v.contains("DOC012 .claude/skills/author-artifact"), "{v}");
+    }
+    // Only text files, and no host folder below the root.
+    for host in [".claude/skills", ".agents/skills"] {
+        f.text(&format!("{host}/demo/SKILL.md"), skill);
+        f.text(&format!("{host}/demo/run.sh"), "date\n");
+    }
+    f.text("crates/app/.claude/skills/helper/SKILL.md", skill);
+    let v = docs(&f).to_string();
+    assert!(v.contains("DOC013 .claude/skills/demo/run.sh"), "{v}");
+    assert!(
+        v.contains("DOC014 crates/app/.claude/skills/helper/SKILL.md"),
+        "{v}"
+    );
+}
+
+#[test]
 fn investigate_skill_matches_its_seed() {
     let f = Fixture::new();
     let seed = "# Repository investigation skill\n\nStart with AGENTS.md.\n";

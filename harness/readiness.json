@@ -91,6 +91,8 @@
         "guard_never_runs_cargo",
         "guard_fails_closed_on_an_internal_error",
         "transitions::tests::guard_tiers_match_protected_paths",
+        "transitions::tests::only_ceremony_skills_stay_protected_under_claude",
+        "guard_passes_unrelated_skills_without_a_receipt_note",
         "stop_allows_turns_that_claim_nothing",
         "stop_refuses_an_unverified_claim_and_allows_a_verified_one",
         "stop_blocks_a_claim_when_the_gate_cannot_run",
@@ -156,7 +158,9 @@
         "verdict_reads_full_notes_from_stdin",
         "review_and_rewrite_steps_carry_their_prompt",
         "reviewer_brief_runs_the_fixed_checks",
-        "author_brief_answers_each_fixed_check"
+        "author_brief_answers_each_fixed_check",
+        "unrelated_skills_stay_small",
+        "free_skills_stay_plain_text"
       ],
       "workflows": []
     }

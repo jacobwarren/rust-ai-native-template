@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<title>Interventions: ceremony paths</title>
+<style>
+  main { max-width: 60rem; padding-block: var(--space-8) 10rem; }
+  h1 { margin-block: var(--space-2) var(--space-4); }
+  .lead { margin-block: 0 var(--space-4); font-size: 1.125rem; }
+  h2 { font-size: 1.25rem; margin-block: var(--space-8) var(--space-2); }
+  code { font-size: .875em; background: var(--accent-soft); padding: 0 .25em; border-radius: .25rem; overflow-wrap: anywhere; }
+  pre { font-size: .8125rem; line-height: 1.45; margin-block: var(--space-2); padding: var(--space-3); }
+  pre code { background: none; padding: 0; font-size: inherit; }
+  pre .hl { color: var(--accent); font-weight: 650; }
+  pre .bad { color: var(--danger); font-weight: 650; }
+  pre .dim { color: var(--muted); }
+  .prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); position: relative; }
+  .prompt-card blockquote { font-style: italic; margin: var(--space-2) 0 0; font-size: .9375rem; }
+  .tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+  .history { border: 1px solid var(--warning); background: var(--warning-soft); border-radius: var(--radius); padding: var(--space-3) var(--space-4); margin-block: var(--space-6) 0; font-size: .9375rem; }
+  .history p { margin: var(--space-1) 0 0; }
+  .src { font-size: .8125rem; color: var(--muted); }
+  .label { font-family: var(--font-code); font-size: .75rem; color: var(--muted); margin: var(--space-3) 0 0; }
+
+  /* matrix */
+  .matrix { font-size: .875rem; margin-top: var(--space-3); }
+  .matrix th { font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 650; }
+  .matrix td, .matrix th { padding: var(--space-2) var(--space-3); }
+  .matrix td:first-child { min-width: 13rem; }
+  .matrix tr.row { cursor: pointer; }
+  .matrix tr.row:hover td { background: var(--accent-soft); }
+  .matrix tr.today td { background: var(--paper); font-style: italic; }
+  .matrix tr.picked td:first-child { box-shadow: inset 4px 0 0 var(--accent); font-weight: 650; }
+  .out { display: inline-block; font-size: .75rem; font-weight: 650; padding: .1rem .45rem; border-radius: .35rem; border: 1px solid; white-space: nowrap; }
+  .out.good { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .out.part { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+  .out.bad { color: var(--surface); border-color: var(--danger); background: var(--danger); }
+  .out.neutral { color: var(--muted); border-color: var(--line); background: var(--paper); }
+  .cap { font-size: .7rem; color: var(--accent); font-weight: 700; margin-inline-start: .25rem; }
+  .legend { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: .8125rem; color: var(--muted); margin-top: var(--space-2); }
+
+  /* cards */
+  .cards { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-4); }
+  .iv { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6); scroll-margin-top: var(--space-6); font-size: .9375rem; }
+  .iv.checked { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+  .iv-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); }
+  .iv-num { font-family: var(--font-code); font-size: .8125rem; font-weight: 700; color: var(--accent); }
+  .iv h3 { flex: 1 1 14rem; margin: 0; }
+  .effort { font-family: var(--font-code); font-size: .7rem; font-weight: 700; letter-spacing: .06em; border-radius: 999px; padding: .1rem .55rem; border: 1px solid var(--line); background: var(--paper); color: var(--muted); }
+  .effort.l, .effort.xl { border-color: var(--warning); color: var(--warning); background: var(--warning-soft); }
+  .flag { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--danger); border: 1px solid var(--danger); border-radius: .35rem; padding: .05rem .4rem; }
+  .flag.add { color: var(--accent); border-color: var(--accent); }
+  .path { display: inline-block; font-family: var(--font-code); font-size: .75rem; background: var(--paper); border: 1px solid var(--line); border-radius: var(--control-radius); padding: .1rem .5rem; margin-top: var(--space-2); max-width: 100%; overflow-wrap: anywhere; }
+  .iv p { margin-block: var(--space-2); }
+  .found { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-inline-end: var(--space-1); }
+  .impact { border-inline-start: 3px solid var(--accent); padding: var(--space-1) var(--space-3); background: var(--accent-soft); border-radius: 0 var(--control-radius) var(--control-radius) 0; }
+  .impact.cost { border-color: var(--warning); background: var(--warning-soft); }
+  .impact b { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; margin-inline-end: var(--space-2); }
+  .outs { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; margin-top: var(--space-3); font-size: .8125rem; color: var(--muted); }
+  .outs .pair { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin-inline-end: var(--space-3); }
+  .iv-foot { margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px dashed var(--line); }
+  label.resonate { display: inline-flex; align-items: center; margin: 0; font-weight: 600; font-size: .875rem; cursor: pointer; }
+  label.resonate input { width: 1.1rem; height: 1.1rem; }
+
+  /* reply bar */
+  .replybar { position: fixed; left: 0; right: 0; bottom: 0; background: var(--ink); color: var(--surface); z-index: 10; }
+  .replybar-inner { max-width: 60rem; margin: 0 auto; padding: var(--space-2) var(--space-6); display: flex; align-items: center; gap: var(--space-4); }
+  .rb-count { font-family: var(--font-code); font-size: .8125rem; white-space: nowrap; }
+  .rb-count b { font-size: 1rem; }
+  .rb-reply { flex: 1; min-width: 0; font-family: var(--font-code); font-size: .8125rem; opacity: .7; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rb-reply.live { opacity: 1; }
+  #rbCopy { background: var(--surface); color: var(--ink); border-color: var(--surface); min-height: 36px; padding: var(--space-1) var(--space-4); font-size: .8125rem; }
+  #rbCopy.done { background: var(--accent-soft); }
+  #copyPrompt { min-height: 32px; padding: var(--space-1) var(--space-3); font-size: .75rem; position: absolute; top: var(--space-3); right: var(--space-3); }
+  @media (max-width: 40rem) {
+    .replybar-inner { flex-wrap: wrap; gap: var(--space-2); padding: var(--space-2) var(--space-4); }
+    .rb-reply { order: 3; flex-basis: 100%; }
+    #copyPrompt { position: static; margin-top: var(--space-3); }
+    .iv { padding: var(--space-3) var(--space-4); }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">ceremony-paths · before code</div>
+  <h1>Where to intervene: ceremony paths</h1>
+  <p class="lead">Nine places the cost of a skill edit is decided, from a one-line change to a new tier. Each one is shown against the same three edits so you can see what it frees and what it lets through. Tick the ones that resonate.</p>
+
+  <div class="prompt-card">
+    <div class="tag">The prompt</div>
+    <blockquote>Here's the problem: Every path under .claude/ is protected and every skill folder counts as ceremony, so fixing or adding a skill unrelated to the task pages, such as investigate, forces a standard task with eight pages and a policy receipt. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate.</blockquote>
+    <button type="button" class="secondary" id="copyPrompt">Copy prompt</button>
+  </div>
+
+  <div class="history">
+    <div class="tag" style="color:var(--warning)">This carve-out was tried once and dropped</div>
+    <p>On 2026-11-04 the workflow-router task was asked to take <code>.claude/skills</code> off the ceremony list and dropped it as the agent's delegated call:<em>“Skill frontmatter can register hooks, grant tools and run shell commands at load, so skills act as policy.”</em> The blindspot pass confirmed the mechanism (its card 01). So the third column below, “give investigate a hook”, is the test each option has to pass, not a footnote.</p>
+    <p class="src">harness/tasks/workflow-router.json, discoveries[0]; harness/transitions/workflow-router.json rationale (“Skills stay ceremony paths: the requested carve-out was dropped…”).</p>
+  </div>
+
+  <h2>Three edits, nine interventions</h2>
+  <p class="src">Rows are in order of cost. Click a row to jump to its card. Green means the edit gets cheaper; for the hook column green means the edit still needs a receipt or is refused, and red means it slips through as a small task with no receipt.</p>
+  <div class="table-scroll">
+    <table class="matrix">
+      <thead><tr><th>Intervention</th><th>Fix investigate's text</th><th>Add a new unrelated skill</th><th>Give investigate a hook</th></tr></thead>
+      <tbody id="matrixBody"></tbody>
+    </table>
+  </div>
+  <div class="legend"><span><span class="cap">●</span> captured from a run (today's row on the blindspot pass, #2 in a scratch copy for this page)</span><span>unmarked: traced from the code cited on the card</span></div>
+
+  <h2>The interventions</h2>
+  <div class="cards">
+
+    <div class="iv" id="iv1" data-n="1" data-short="administrative skill folders" data-o="rcpt rcpt rcpt">
+      <div class="iv-top"><span class="iv-num">#1</span><h3>List skill folders as administrative paths</h3><span class="effort">S · 1 line</span><span class="flag">trap</span></div>
+      <span class="path">xtask/src/artifacts.rs:33-43 · size.rs:90-96</span>
+      <p><span class="found">Found in code</span><code>check_small</code> skips an administrative path before it asks <code>forces_standard</code>, so a listed folder drops out of both the ceremony check and the line count. It is the exemption the ticket names as its reference, so it is the first thing a reader reaches for.</p>
+      <p>But <code>transitions::required</code> filters by <code>protected()</code> alone (transitions.rs:114-115) and never asks <code>administrative()</code>, so the receipt stays. And <code>committed()</code> lets administrative paths sit uncommitted at completion (artifacts.rs:147-151), while <code>order()</code> does not count them as code (165-167).</p>
+      <div class="impact cost"><b>Costs</b>Pages go, the receipt stays, a skill of any length counts zero lines, and completion accepts the skill edit uncommitted. It solves half the problem and opens two new holes.</div>
+      <div class="outs"></div>
+      <div class="iv-foot"><label class="resonate"><input type="checkbox" data-n="1"> This resonates</label></div>
+    </div>
+
+    <div class="iv" id="iv2" data-n="2" data-short="keep the receipt, drop the pages" data-o="rcpt rcpt rcpt" data-cap="0">
+      <div class="iv-top"><span class="iv-num">#2</span><h3>Keep the receipt, drop the pages</h3><span class="effort">S · size.rs only</span></div>
+      <span class="path">xtask/src/size.rs:11-29</span>
+      <p><span class="found">Found in code</span><code>forces_standard</code> opens with <code>transitions::protected(path)</code> (size.rs:23), so every receipt path is also an eight-page path. The two costs don't have to go together: a small task already “owes … any transition receipt” (docs/ARTIFACTS.md:107-108), and handoff checks receipts at every tier. Keep non-ceremony skill folders protected and stop them forcing standard. transitions.rs, the guard and its parity test stay unchanged, the guard's receipt note on investigate stays true, and so does COMPLETION.md:198-199: “changing a hook on a branch needs a transition receipt.”</p>
+      <p class="label">excerpt, shortened: the size.rs variant run in a scratch copy (+15 −4 lines)</p>
+<pre><code>const CEREMONY_SKILLS: [&amp;str; 3] = ["author-artifact", "review-artifact", "write-ticket"];
+<span class="dim">// .claude/skills/&lt;name&gt;/… or .agents/skills/&lt;name&gt;/… with name not in the list</span>
+fn free_skill(path: &amp;str) -&gt; bool { … }
+pub fn forces_standard(path: &amp;str) -&gt; bool {
+    <span class="hl">(transitions::protected(path) &amp;&amp; !free_skill(path))</span>
+        || … <span class="dim">// CEREMONY: docs/skills/ narrowed to the two pointers; .agents/skills/ only for ceremony names</span></code></pre>
+      <p class="label">captured: cargo xtask handoff --base BASE, small task adding 7 lines to investigate in .claude, .agents and docs/skills (fields kept, rest cut)</p>
+<pre><code><span class="dim">before a receipt:</span>  no "task tier small" error; task errors = the four review answers only
+  "transitions": { "errors": ["missing exact transition rationale: policy"],
+                   "protected_files": [".claude/skills/investigate/SKILL.md"] }
+<span class="dim">with a receipt and the review answers:</span>
+  <span class="hl">"ok": true</span>
+<span class="dim">same branch, one line added to author-artifact in both hosts:</span>
+  <span class="bad">"task tier small: .agents/skills/author-artifact/SKILL.md is a policy, dependency or ceremony path; .claude/skills/author-artifact/SKILL.md is a policy, dependency or ceremony path; …"</span></code></pre>
+      <div class="impact"><b>Frees</b>The eight pages and sixteen subagent runs for every skill edit and every new skill. The hook column stays safe without any new mechanism.</div>
+      <div class="impact cost"><b>Costs</b>One receipt per skill edit, written from <code>cargo xtask gaps</code>. A receipt is “not independent approval” (transitions.rs:201). The ticket's acceptance “needs no receipt” and its guard test would change.</div>
+      <div class="outs"></div>
+      <div class="iv-foot"><label class="resonate"><input type="checkbox" data-n="2"> This resonates</label></div>
+    </div>
+
+    <div class="iv" id="iv3" data-n="3" data-short="host stubs, body in docs/skills" data-o="free std std">
+      <div class="iv-top"><span class="iv-num">#3</span><h3>Make the host skill a stub and keep the body in docs/skills/</h3><span class="effort">S–M</span></div>
+      <span class="path">docs/skills/ · size.rs:14 · checks.rs:240-260 · experiments/gepa/README.md:5-9</span>
+      <p><span class="found">Found in code</span><code>docs/</code> is not a protected prefix (transitions.rs:39-47); <code>docs/skills/</code> is ceremony only through size.rs:14. investigate's body already lives in <code>docs/skills/investigate.md</code> as the GEPA seed, and DOC009 makes both host copies repeat it byte for byte. Flip that: the two host SKILL.md files keep their frontmatter and one line, “follow docs/skills/investigate.md”, and size.rs narrows <code>docs/skills/</code> to the two pointer files. <code>docs/skills/author-artifact.md</code> is already a pointer, in the opposite direction.</p>
+      <div class="impact"><b>Frees</b>Text fixes become small with no receipt, and the edit is counted once. Today an 18-line rewrite of investigate counts as 108 lines (blindspot card 02). Frontmatter stays in protected <code>.claude/</code>, so the hook column stays safe.</div>
+      <div class="impact cost"><b>Costs</b>Adding a skill is still standard. Every load costs the agent one more Read, and whether both hosts reliably follow the pointer was not checked. DOC009 and the GEPA README change meaning. Converting each skill is itself a standard task.</div>
+      <div class="outs"></div>
+      <div class="iv-foot"><label class="resonate"><input type="checkbox" data-n="3"> This resonates</label></div>
+    </div>
+
+    <div class="iv" id="iv4" data-n="4" data-short="exempt non-ceremony skills (ticket's plan)" data-o="free free free">
+      <div class="iv-top"><span class="iv-num">#4</span><h3>Exempt every non-ceremony skill folder: the ticket's plan</h3><span class="effort">M</span></div>
+      <span class="path">transitions.rs:39-64 · scripts/agent-hook.sh:14, 137-144 · size.rs:12-19</span>
+      <p><span class="found">Found in code</span><code>.claude/</code> stays protected except <code>.claude/skills/&lt;name&gt;/</code> for a name outside author-artifact, review-artifact and write-ticket, with the same list in the guard and in size.rs. That makes three copies of one list; the parity test parses one unindented shell line per list (transitions.rs:209-225; blindspot card 06), and the guard needs the bare-directory and move cases from blindspot card 03.</p>
+      <div class="impact"><b>Frees</b>Fixing and adding skills both become small with no receipt, which is everything the problem statement asks for.</div>
+      <div class="impact cost"><b>Costs</b>On its own it reopens exactly what was declined on 11-04. A small task with no receipt can give investigate a <code>PreToolUse</code> hook that then runs in most sessions, and COMPLETION.md:198-199 stops being true. It needs #6 or #7 alongside it.</div>
+      <div class="outs"></div>
+      <div class="iv-foot"><label class="resonate"><input type="checkbox" data-n="4"> This resonates</label></div>
+    </div>
+
+    <div class="iv" id="iv5" data-n="5" data-short="allowlist named free skills" data-o="free std free">
+      <div class="iv-top"><span class="iv-num">#5</span><h3>Allowlist the free skills by name instead</h3><span class="effort">M</span></div>
+      <span class="path">same files as #4 · list: investigate, add-product-command</span>
+      <p><span class="found">Found in code</span>The same edits as #4, but the list names the skills that are free rather than the ones that are ceremony. A new folder under <code>.claude/skills/</code> is protected until a policy change names it. Five skill folders exist today (<code>git ls-files .claude/skills</code>); the two non-ceremony ones last changed in 713ac8d.</p>
+      <div class="impact"><b>Frees</b>Fixes to investigate and add-product-command. The safe default is reversed, so a forgotten list entry costs pages, not a hole.</div>
+      <div class="impact cost"><b>Costs</b>It drops the “adding a skill” half of the problem, and the two listed skills keep the hook hole unless #6 is added.</div>
+      <div class="outs"></div>
+      <div class="iv-foot"><label class="resonate"><input type="checkbox" data-n="5"> This resonates</label></div>
+    </div>
+
+    <div class="iv" id="iv6" data-n="6" data-short="lint free skills' frontmatter (with #4)" data-o="free free refused">
+      <div class="iv-top"><span class="iv-num">#6</span><h3>Refuse hooks, tools and shell injection in free skills</h3><span class="effort">S–M</span><span class="flag add">add-on to #4 or #5</span></div>
+      <span class="path">xtask/src/checks.rs:213-236 (skill_copies)</span>
+      <p><span class="found">Found in code</span><code>skill_copies</code> already walks every SKILL.md's frontmatter for DOC008 (name) and DOC010 (quoted description). A new check refuses <code>hooks:</code> and <code>allowed-tools:</code> in the frontmatter, and <code>!`…`</code> injection in the body, for any skill outside the ceremony. No skill uses them today: <code>grep</code> over both skill folders and <code>.claude/agents</code> finds <code>hooks:</code> only in <code>.claude/agents/artifact-author.md:8-11</code>. The check lives under <code>xtask/</code>, which stays protected, so loosening it needs a receipt.</p>
+      <div class="impact"><b>Frees</b>Nothing by itself. Paired with #4 (its row in the table shows that pairing) the hook edit fails <code>cargo xtask docs</code> in CI instead of slipping through.</div>
+      <div class="impact cost"><b>Costs</b>It is a denylist of keys. A frontmatter key a host adds later, or one only Codex reads, passes until someone adds it.</div>
+      <div class="outs"></div>
+      <div class="iv-foot"><label class="resonate"><input type="checkbox" data-n="6"> This resonates</label></div>
+    </div>
+
+    <div class="iv" id="iv7" data-n="7" data-short="protect the frontmatter, not the file" data-o="free rcpt rcpt">
+      <div class="iv-top"><span class="iv-num">#7</span><h3>Protect a free skill's frontmatter, not the whole file</h3><span class="effort l">L</span></div>
+      <span class="path">transitions.rs:103-130 · history.rs:102-123</span>
+      <p><span class="found">Found in code</span><code>required()</code> builds the policy digest from <code>history::before</code> and <code>current</code>, which hash whole files. For a non-ceremony SKILL.md, hash only the block between the <code>---</code> lines. Body edits then change no digest and need no receipt. Any frontmatter change, including a new skill or a key no lint knows yet, needs one, and size.rs drops these folders from <code>forces_standard</code> as in #2.</p>
+      <div class="impact"><b>Frees</b>Text fixes become free. New skills and hooks become small tasks with a receipt. Unlike #6 it catches keys nobody has listed.</div>
+      <div class="impact cost"><b>Costs</b>The policy digest stops meaning “these files”. The guard sees only a path, so it either notes every skill edit or parses <code>old_string</code>. <code>!`cmd`</code> lives in the body, so the injection half of #6 is still needed.</div>
+      <div class="outs"></div>
+      <div class="iv-foot"><label class="resonate"><input type="checkbox" data-n="7"> This resonates</label></div>
+    </div>
+
+    <div class="iv" id="iv8" data-n="8" data-short="one source, generated host copies" data-o="paired paired paired">
+      <div class="iv-top"><span class="iv-num">#8</span><h3>One source per skill, generated host copies</h3><span class="effort l">L</span><span class="flag">outside ticket scope</span></div>
+      <span class="path">checks.rs:186-207 (DOC007) · size.rs:33-58</span>
+      <p><span class="found">Found in code</span>“The harness rejects symlinks, so each skill is two copies that must stay identical” (checks.rs:186-188), and investigate has a third copy as the seed. A <code>cargo xtask skills sync</code> would write both hosts from one source. DOC007 would become “the copies equal the generated output”, and size.rs would count generated copies as zero.</p>
+      <div class="impact"><b>Frees</b>Ends the triple counting. Even with the path rules narrowed, a small task could add only about 33 lines to investigate (blindspot card 02). Pair it with #2, #4 or #7 for the tier itself.</div>
+      <div class="impact cost"><b>Costs</b>A generator in <code>xtask/</code>, a source layout for frontmatter, and a change to the line rule, which the ticket puts out of scope.</div>
+      <div class="outs"></div>
+      <div class="iv-foot"><label class="resonate"><input type="checkbox" data-n="8"> This resonates</label></div>
+    </div>
+
+    <div class="iv" id="iv9" data-n="9" data-short="a light tier for small protected changes" data-o="light light light">
+      <div class="iv-top"><span class="iv-num">#9</span><h3>A light tier for small changes to protected paths</h3><span class="effort xl">XL</span></div>
+      <span class="path">task_record.rs:19-25 · completion.rs:21-34 · artifacts.rs:208-215 · router.rs:296 · docs/ARTIFACTS.md “Task size”</span>
+      <p><span class="found">Found in code</span><code>Tier</code> has two values, and every protected path forces the top one (size.rs:23). A three-line fix to <code>scripts/</code> pays the same eight pages as this task. A third tier, under the 100-line limit and touching protected paths, owes the receipt plus one reviewed page, the quiz, and no discovery pages.</p>
+      <div class="impact"><b>Frees</b>Fixes the whole class, not only skills: hooks, xtask, CI config.</div>
+      <div class="impact cost"><b>Costs</b>A task-record schema change, the page gate, the router, <code>task-artifact check</code> (main.rs:154) and every tier test. It is a larger argument than this ticket and would deserve its own.</div>
+      <div class="outs"></div>
+      <div class="iv-foot"><label class="resonate"><input type="checkbox" data-n="9"> This resonates</label></div>
+    </div>
+
+  </div>
+
+  <footer>ceremony-paths · interventions. Today's row: the blindspot pass, “two separate refusals for a 6-line investigate fix”.</footer>
+</main>
+
+<div class="replybar">
+  <div class="replybar-inner">
+    <span class="rb-count"><b id="rbNum">0</b> resonate</span>
+    <span class="rb-reply" id="rbReply">Tick the interventions that resonate; your reply builds here.</span>
+    <button type="button" id="rbCopy" disabled>Copy reply</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var LABELS = {
+    std: 'standard + receipt', rcpt: 'small + receipt', free: 'small, no receipt',
+    refused: 'refused by cargo xtask docs', light: 'light tier + receipt', paired: 'as the option it pairs with'
+  };
+  // Column 0-1: cheaper is better. Column 2 (hook): only "small, no receipt" is a hole.
+  function grade(code, col) {
+    if (code === 'paired') return 'neutral';
+    if (col === 2) return code === 'free' ? 'bad' : 'good';
+    if (code === 'free') return 'good';
+    if (code === 'std') return 'bad';
+    return 'part';
+  }
+  var COLS = ["Fix investigate's text", 'Add a new unrelated skill', 'Give investigate a hook'];
+  function chip(code, col, cap) {
+    var s = document.createElement('span');
+    s.className = 'out ' + grade(code, col);
+    s.textContent = LABELS[code];
+    var wrap = document.createElement('span');
+    wrap.appendChild(s);
+    if (cap) { var c = document.createElement('span'); c.className = 'cap'; c.textContent = '●'; c.title = 'captured'; wrap.appendChild(c); }
+    return wrap;
+  }
+
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.iv'));
+  var body = document.getElementById('matrixBody');
+  var rows = {};
+
+  function addRow(label, codes, capCol, n) {
+    var tr = document.createElement('tr');
+    var th = document.createElement('td');
+    th.textContent = label;
+    tr.appendChild(th);
+    codes.forEach(function (code, i) {
+      var td = document.createElement('td');
+      td.appendChild(chip(code, i, capCol === i));
+      tr.appendChild(td);
+    });
+    if (n) {
+      tr.className = 'row';
+      tr.addEventListener('click', function () {
+        document.getElementById('iv' + n).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      rows[n] = tr;
+    } else {
+      tr.className = 'today';
+    }
+    body.appendChild(tr);
+  }
+
+  addRow('Today', ['std', 'std', 'std'], 0, null);
+  cards.forEach(function (card) {
+    var n = card.getAttribute('data-n');
+    var codes = card.getAttribute('data-o').split(' ');
+    var cap = card.hasAttribute('data-cap') ? parseInt(card.getAttribute('data-cap'), 10) : -1;
+    addRow('#' + n + ' ' + card.getAttribute('data-short'), codes, cap, n);
+    var outs = card.querySelector('.outs');
+    codes.forEach(function (code, i) {
+      var pair = document.createElement('span');
+      pair.className = 'pair';
+      var k = document.createElement('span');
+      k.className = 'k';
+      k.textContent = COLS[i] + ':';
+      pair.appendChild(k);
+      pair.appendChild(chip(code, i, cap === i));
+      outs.appendChild(pair);
+    });
+  });
+
+  function copyText(text, btn, label) {
+    function done() {
+      btn.classList.add('done'); btn.textContent = 'Copied';
+      setTimeout(function () { btn.classList.remove('done'); btn.textContent = label; }, 1500);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta); done();
+    }
+  }
+
+  var promptText = document.querySelector('.prompt-card blockquote').textContent;
+  var copyPrompt = document.getElementById('copyPrompt');
+  copyPrompt.addEventListener('click', function () { copyText(promptText, copyPrompt, 'Copy prompt'); });
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('label.resonate input'));
+  var rbNum = document.getElementById('rbNum');
+  var rbReply = document.getElementById('rbReply');
+  var rbCopy = document.getElementById('rbCopy');
+  var reply = '';
+
+  function update() {
+    var picked = [];
+    boxes.forEach(function (b) {
+      var n = b.getAttribute('data-n');
+      var card = document.getElementById('iv' + n);
+      card.classList.toggle('checked', b.checked);
+      rows[n].classList.toggle('picked', b.checked);
+      if (b.checked) picked.push(card);
+    });
+    rbNum.textContent = picked.length;
+    if (!picked.length) {
+      reply = '';
+      rbReply.textContent = 'Tick the interventions that resonate; your reply builds here.';
+      rbReply.classList.remove('live');
+      rbCopy.disabled = true;
+      return;
+    }
+    var list = picked.map(function (c) {
+      return '#' + c.getAttribute('data-n') + ' ' + c.querySelector('h3').textContent;
+    });
+    reply = 'These resonate: ' + list.join('; ') + '. Start with #' + picked[0].getAttribute('data-n') + '.';
+    rbReply.textContent = reply;
+    rbReply.classList.add('live');
+    rbCopy.disabled = false;
+  }
+  boxes.forEach(function (b) { b.addEventListener('change', update); });
+  rbCopy.addEventListener('click', function () { if (reply) copyText(reply, rbCopy, 'Copy reply'); });
+  update();
+})();
+</script>
+</body>
+</html>

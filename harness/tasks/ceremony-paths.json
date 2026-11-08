@@ -1,0 +1,63 @@
+{
+  "schema_version": 6,
+  "id": "ceremony-paths",
+  "work_item": null,
+  "status": "complete",
+  "tier": "standard",
+  "requirements": [
+    "task-artifacts",
+    "completion"
+  ],
+  "related_gaps": [
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "unaffected",
+      "rationale": "This changes which paths force a standard task or a receipt; the page gate's commit-order and page checks are untouched."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "The protected-path list is local policy; hosting rules stay the owner's to configure."
+    }
+  ],
+  "gap_review": "Read the four open gaps. artifact-gate-holes and hosting-enforcement are near this work and unaffected; product-acceptance and platform-qualification are unrelated.",
+  "discoveries": [
+    {
+      "summary": "Skill frontmatter can register hooks, grant tools and run shell commands, so a skill can leave the receipt only while cargo xtask docs holds it to plain text (DOC011 to DOC013); the same carve-out was dropped in workflow-router for want of that check.",
+      "record": "docs/ARTIFACTS.md"
+    },
+    {
+      "summary": "Agent host folders below the repository root, such as crates/app/.claude/skills/, escaped both the receipt and the tier rule; DOC014 now refuses them.",
+      "record": "docs/ARTIFACTS.md"
+    },
+    {
+      "summary": "The edit guard gives no note for a bare top-level protected folder (rm -r .claude, rm -r xtask), and any one-segment path under .claude/skills/ gets a note even when handoff needs no receipt; completion and CI still judge the files.",
+      "record": "harness/task-artifacts/ceremony-paths/implementation.html"
+    }
+  ],
+  "discovery_review": "Three discoveries, each recorded where its next reader looks: the frontmatter and nested-folder rules in docs/ARTIFACTS.md Task size, and the guard's coarseness in the implementation notes. One scratch-only observation from a page author (the guard reads a redirect target against the event's cwd after a cd) is carried in the buy-in doc.",
+  "documentation": {
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "docs/COMPLETION.md",
+      ".claude/skills/write-ticket/SKILL.md",
+      ".agents/skills/write-ticket/SKILL.md"
+    ],
+    "rationale": "ARTIFACTS.md Task size names the three ceremony skills and the docs checks that hold every other skill to text; COMPLETION.md says a skill folder outside the ceremony needs no receipt; the write-ticket skill tells ticket writers that other skills can change in a small task."
+  },
+  "prompt": {
+    "task": "narrow the protected and ceremony paths so a skill outside the task-page ceremony can change in a small task",
+    "task_noun": "the narrowed ceremony paths",
+    "area": "the tier and protected-path rules (xtask/src/size.rs, xtask/src/transitions.rs, scripts/agent-hook.sh) and the docs that describe them",
+    "problem": "Every path under .claude/ is protected and every skill folder counts as ceremony, so fixing or adding a skill unrelated to the task pages, such as investigate, forces a standard task with eight pages and a policy receipt",
+    "reference": "The administrative-path exemption in xtask/src/artifacts.rs"
+  },
+  "summary": "Narrow the protected and ceremony paths so skills outside the task-page ceremony can change in a small task, while the ceremony skills, agents and host config stay standard.",
+  "remaining": [],
+  "review": {
+    "acceptance": "All four named tests exist and pass: unrelated_skills_stay_small (investigate in both hosts, its seed and a new skill stay small with no receipt; a ceremony skill needs both), protected_cargo_and_ceremony_paths_force_standard extended to each ceremony skill in both hosts, mixed case, a loose skills-folder file, the docs/skills pointers, .claude/settings.json, a new non-skill .claude/ file and the agents, guard_passes_unrelated_skills_without_a_receipt_note (including a bare ceremony folder), and guard_tiers_match_protected_paths extended to CEREMONY_SKILLS. Added beyond the ticket, as the plan records: free_skills_stay_plain_text (DOC011 to DOC014) and transitions::tests::only_ceremony_skills_stay_protected_under_claude.",
+    "verification": "cargo xtask check ci passed 9 of 9 in a clean clone at the final commit (target/verification/ci.json); cargo xtask gaps --base origin/main is ok with the one policy receipt covering ten protected files. Pages: blindspots.html pass in round 3 (0 findings); interventions.html pass in round 1 (0); interview.html pass in round 1 (0); reference.html pass in round 3 (0); plan.html pass in round 2 (0); implementation.html pass in round 1 (0); buy-in.html pass in round 2 (0); quiz.html best of three rounds, the round-2 version, with 2 open findings: its pass message miscounts the record's remaining steps, and one captured guard line is wrapped for display. unrelated_skills_stay_small and guard_passes_unrelated_skills_without_a_receipt_note were run against the old rules and failed there.",
+    "assumptions": "Hosts load only the frontmatter and !-syntax that DOC011 and DOC012 look for; a host that grows a new way to run code from a skill's Markdown would need the checks widened. The check is a line-based allowlist, not a YAML parser, so any unrecognised key or spelling is refused. Skill names are assumed case-insensitive on some checkouts, so the ceremony match ignores case. The owner answered no discovery page; nine agent's calls are carried open in buy-in.html.",
+    "coverage": "A hook added to a skill outside the ceremony is refused at cargo xtask docs and CI, not at the edit; the guard stays advisory and is coarser than handoff in both directions (recorded as a discovery). The 100-line limit still counts every host copy. Nothing tests how Claude Code or Codex actually load a free skill; the checks pin the files, not host behaviour. Codex was not observed."
+  }
+}
