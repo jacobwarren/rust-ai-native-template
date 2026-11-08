@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "blindspots.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "97db8e487a0aa91873657e42d6e9a9bb4ad7f37ef7320466c99689bd70eba3a8",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. consistent: the reply under a changed choice (cards 1, 3, 6, and the final prompt built by the script). Each card's reply joins its fixed chip text to \"Decision: <picked reply>\". Several chips contradict the non-default choices beside them.\n - Chip 1 says \"Keep docs/COMPLETION.md's 'changing a hook needs a transition receipt' true, and add a test that puts a hook in an exempt skill.\" Choice 1, option 3, says to accept hooks without a receipt and change that COMPLETION.md promise. The built prompt then asks for both.\n - Chip 3 says \"any other skill is none\" for .claude/skills/. Choice 1, option 2, says every other folder stays protected and new skills stay standard.\n - Chip 6 says to have protected() and size.rs read one shared const. Choice 6, option 2, says to keep docs/skills/ as a prefix and exempt only investigate.md.\n - Chip 3 also assumes the default answer to choice 1.\n The fix: build each reply from the decision alone, or write chips that hold under every option. Alternatively, give each option its own chip text. Then check that every combination of choices reads as one coherent instruction.\n\n2. Short as its content allows (whole page, card 7, the baseline section). The page renders 9320px tall against the exemplar's 4707px, so it is about twice as long.\n - Card 7 is a low-stakes history note. Its own text says readiness::assess only checks that files exist, and its decision is to leave the list alone.\n - Part of the baseline section repeats card 2's 110 arithmetic and the \"two mechanisms\" point from card 5.\n The fix: cut card 7 down to a line in the final prompt, or drop it. Trim the baseline to the two refusals plus a pointer to card 2. A reader should not skim any section.\n\nChecked: render clean at desktop and phone; size.rs:9-19, transitions.rs:39-47, agent-hook.sh decide and tier, checks.rs:260, docs/skills three files, investigate 23 and seed 18 lines, commits 7fa7665 and 713ac8d, COMPLETION.md:198-199, readiness list, the 15-line seed bound. Not run: captured handoff and guard outputs. Interactions rebuild the final prompt; copy works.\n\nFixed checks: consistent failed (1); provenance held; cited held; ticket held\n\nFINDINGS: 2",
+      "findings": 2,
+      "model": "sonnet"
+    },
+    {
+      "page": "blindspots.html",
+      "round": 2,
+      "verdict": "revise",
+      "sha256": "384cfc85eced3a7ea043cec9e1aef95a6cdee029e52bd1439637a88beeb023c8",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. consistent (final reply vs chip 6). In the script, the `c1` choice fills `{list}` in chip 6's fixed text. With the second `c1` choice (\"Exempt only investigate and add-product-command\"), the copied reply tells the implementer two things that conflict. They are to \"Put the three ceremony skill names in one const in transitions.rs. size.rs builds its .claude/skills/ and .agents/skills/ entries from it\", and also that \"protected() exempts a second const, EXEMPT_SKILLS (investigate, add-product-command)\". Under that choice every other skill stays protected, including new ones. A fixed three-name ceremony const cannot express that, so size.rs built from it would leave new skills small. That contradicts the choice's own reply. The rewrite must give chip 6 a per-choice variant. For the exempt-only choice, size.rs should be built from the exempt const (everything under the skills folders forces standard except the exempt names). Then re-read the assembled reply for all three `c1` choices, and for each `c3`, `c5` and `c6` choice that changes it.\n\nThe page is otherwise sound. I checked these claims against the code and they hold: `forces_standard` and `check_small`, the `PROTECTED_PREFIXES` list in both transitions.rs and agent-hook.sh (same seven prefixes), the `script_list` parity test, DOC008's `.any(…)` name match, docs/COMPLETION.md lines 198-199, commit 7fa7665, the hooks block in artifact-author.md, docs/skills containing only the three files named, and the guard output (`rm -r .claude` gives `{}`, `rm -r .claude/skills/author-artifact` gives the receipt note). The render is clean: no console errors, no external requests, no local files, no phone overflow. The badge counts match the cards (3, 2 and 1).\n\nFixed checks: consistent failed (1); provenance held; cited held; ticket n/a\n\nFINDINGS: 1",
+      "findings": 1,
+      "model": "sonnet"
+    },
+    {
+      "page": "blindspots.html",
+      "round": 3,
+      "verdict": "pass",
+      "sha256": "7824915a2c8b68a0a6bf3aefef5a374254ffa271370b6c6078ff278e6246b13d",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that exempting the investigate skill is not just two path-rule edits: a skill's hooks and allowed-tools would escape the receipt that `docs/COMPLETION.md:198-199` promises, and the 100-line limit bills investigate three times (`.claude`, `.agents` and `docs/skills`).\n\nFixed checks: consistent held; provenance held; cited held; ticket n/a\n\nRendering: the screenshot report shows no console errors, network requests or local files, and no overflow at desktop or phone width. I rendered it next to the exemplar; at about 35 KB against 27 KB it is slightly longer but carries more.\n\nClaims I checked against the code:\n- **Commit 7fa7665:** it exists and the quoted rationale is accurate.\n- **`PROTECTED_PREFIXES`:** it has `.claude/` and `.codex/` but not `.agents/`.\n- **`CEREMONY`:** it covers `.agents/skills/` and `.claude/skills/`.\n- **`SMALL_LINES = 100`:** it is the limit in `size.rs`.\n- **DOC007 and DOC009:** they enforce identical copies and the seed body.\n- **DOC008:** it uses `.any(...)` on the `name:` lines.\n- **`script_list` and `guard_tiers_match_protected_paths`:** the page describes the parity test correctly.\n- **`tier()`:** `\"$x\"*` matching does miss a bare `.claude`.\n- **Investigate line counts:** the 18-line seed is correct, and the `SKILL.md` is 23 lines.\n- **`docs/skills/`:** it holds only the two pointers and the seed.\n- **`readiness.json:118`:** it lists `.claude/skills/investigate/SKILL.md`.\n- **Line-limit arithmetic:** about 33 added lines, about 16 rewritten lines, a 50-line cap for a new skill, and a GEPA seed of 15 lines or fewer all work out.\n\nNot checked: the \"baseline lists only the Claude copy under `protected_files`\" remark in card 05, and the external Claude Code documentation quotes. The page names its sources for both.\n\nInteractions: the radio choices and include checkboxes rebuild each chip and the final prompt. The `{rule}` and `{const}` placeholders resolve from choice 1, and the card counts match the strip. The copy buttons work. Each choice changes the prompt the reader copies back.\n\nThe reply ends the page, as a discovery page requires.\n\nFINDINGS: 0",
+      "findings": 0,
+      "model": "sonnet"
+    }
+  ]
+}

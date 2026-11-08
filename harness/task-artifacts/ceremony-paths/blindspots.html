@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blindspot pass: narrowing the ceremony paths</title>
+<style>
+  main { max-width: 60rem; padding-block: var(--space-8); }
+  h1 { margin-block: var(--space-2) var(--space-4); }
+  .lead { margin-block: 0 var(--space-4); font-size: 1.125rem; }
+  .prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .prompt-card blockquote { font-style: italic; margin: var(--space-2) 0 0; font-size: .9375rem; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-block: var(--space-6) var(--space-4); }
+  @media (max-width: 44rem) { .vs { grid-template-columns: 1fr; } }
+  .vs > div { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4); background: var(--surface); font-size: .9375rem; }
+  .vs > div.actual { border-color: var(--danger); background: var(--warning-soft); }
+  .vs p { margin: var(--space-1) 0 0; }
+  .tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--muted); }
+  .actual .tag { color: var(--danger); }
+  .strip { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); padding: var(--space-3) var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--accent-soft); font-family: var(--font-code); font-size: var(--text-small); }
+  .strip b { font-size: 1rem; }
+  .strip .bad b { color: var(--danger); }
+  h2 { font-size: 1.25rem; margin-block: var(--space-6) var(--space-2); }
+  .label { font-family: var(--font-code); font-size: .75rem; color: var(--muted); margin: var(--space-2) 0 calc(-1 * var(--space-2)); }
+  pre { font-size: .8125rem; line-height: 1.45; margin-block: var(--space-3); padding: var(--space-3); }
+  pre .hl { background: var(--warning-soft); color: var(--danger); font-weight: 650; }
+  pre .dim { color: var(--muted); }
+  code { font-size: .875em; background: var(--accent-soft); padding: 0 .25em; border-radius: .25rem; overflow-wrap: anywhere; }
+  pre code { background: none; padding: 0; font-size: inherit; }
+  .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6); margin-block: var(--space-4); font-size: .9375rem; }
+  .card p { margin-block: var(--space-2); }
+  .card-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+  .card-head h3 { flex: 1 1 100%; margin: var(--space-1) 0 0; font-size: 1.125rem; }
+  .badge { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; padding: .1rem .5rem; border: 1px solid; border-radius: .35rem; }
+  .badge[data-kind="landmine"] { color: var(--danger); border-color: var(--danger); background: var(--warning-soft); }
+  .badge[data-kind="convention"] { color: var(--muted); border-color: var(--line); background: var(--paper); }
+  .badge[data-kind="concept"] { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .num { font-family: var(--font-code); font-size: .75rem; color: var(--muted); }
+  .bite { border-inline-start: 3px solid var(--danger); background: var(--warning-soft); padding: var(--space-2) var(--space-4); border-radius: 0 var(--control-radius) var(--control-radius) 0; margin-block: var(--space-3); }
+  .bite b { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--danger); margin-inline-end: var(--space-2); }
+  .src { font-size: .8125rem; color: var(--muted); }
+  .choice { border: 1px dashed var(--line); border-radius: var(--control-radius); padding: var(--space-2) var(--space-4); margin-block: var(--space-3) 0; }
+  .choice .q { font-weight: 650; font-size: var(--text-small); margin: 0; }
+  .choice label { margin: var(--space-1) 0; font-size: var(--text-small); display: flex; align-items: flex-start; }
+  .choice input { margin-top: .3rem; flex: none; }
+  .chip-row { display: flex; gap: var(--space-2); align-items: flex-start; margin-top: var(--space-3); }
+  .chip { flex: 1; min-width: 0; font-family: var(--font-code); font-size: .8125rem; line-height: 1.5; background: var(--paper); border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-2) var(--space-3); overflow-wrap: anywhere; }
+  .chip::before { content: "› "; color: var(--accent); font-weight: 700; }
+  .chip-row label { margin: 0; font-size: .75rem; white-space: nowrap; display: flex; align-items: center; }
+  @media (max-width: 30rem) { .chip-row { flex-direction: column; } }
+  button.secondary { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: .8125rem; }
+  button.secondary.done, #copy-final.done { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
+  .final { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6); margin-top: var(--space-8); }
+  .final-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3); }
+  .final h2 { margin: var(--space-1) 0 var(--space-2); }
+  #final-prompt { font-size: .8125rem; background: var(--paper); max-height: 26rem; overflow-y: auto; }
+  footer { margin-top: var(--space-6); }
+</style>
+</head>
+<body>
+<main>
+
+<p class="eyebrow">ceremony-paths · before code</p>
+<h1>Blindspot pass: ceremony paths</h1>
+<p class="lead">What you don't yet know about the tier rules, the edit guard and the skill folders, each with the code or run that shows it, folded into a better prompt at the end.</p>
+
+<div class="prompt-card">
+  <div class="tag">The prompt</div>
+  <blockquote>I'm about to narrow the protected and ceremony paths so a skill outside the task-page ceremony can change in a small task in the tier and protected-path rules (xtask/src/size.rs, xtask/src/transitions.rs, scripts/agent-hook.sh) and the docs that describe them. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation.</blockquote>
+</div>
+
+<div class="vs">
+  <div>
+    <div class="tag">What you asked for</div>
+    <p>Swap two prefix rules for a skill exemption: three ceremony names in <code>transitions.rs</code>, the same in the guard, a shorter <code>CEREMONY</code> in <code>size.rs</code>, matching doc lines, four tests.</p>
+  </div>
+  <div class="actual">
+    <div class="tag">What you're actually walking into</div>
+    <p>A skill can <strong>register session-long hooks</strong>, which is why <code>.claude/</code> was protected. The line limit <strong>bills every copy</strong> of a skill. The guard sees <strong>directories and moves</strong>, not just files. And the folder name becomes the protection key, which makes <strong>DOC008 a policy check</strong>.</p>
+  </div>
+</div>
+
+<div class="strip" id="strip">
+  <span class="bad"><b data-count="landmine">3</b> landmines</span>
+  <span><b data-count="convention">2</b> conventions</span>
+  <span><b data-count="concept">1</b> missing concept</span>
+  <span class="bad"><b>2</b> separate refusals for a 6-line investigate fix today (below)</span>
+</div>
+
+<h2>Today: two refusals for one six-line fix</h2>
+<p>In a clean copy, a small task appended the same 6 lines to investigate in both hosts and its seed, then ran handoff. Each rule refuses on its own, so narrowing <code>size.rs</code> alone frees nothing. Card 02 covers what the line count does once both are narrowed.</p>
+<p class="label">captured: cargo xtask handoff --base BASE (two fields kept, the rest cut)</p>
+<pre>"task tier small: <span class="hl">.agents/skills/investigate/SKILL.md is a policy, dependency or ceremony path</span>; .claude/skills/... ; docs/skills/investigate.md ..."
+"transitions": { "errors": [ <span class="hl">"missing exact transition rationale: policy"</span> ], "protected_files": [ ".claude/skills/investigate/SKILL.md" ] }</pre>
+<p class="src">From <code>size::check_small</code> (size.rs:87-106, via <code>forces_standard</code> 22-29) and <code>transitions::required</code> (transitions.rs:79, 114-129), which handoff runs at every tier.</p>
+
+<h2>The blindspots</h2>
+
+<section class="card" data-n="1">
+  <div class="card-head"><span class="badge" data-kind="landmine">Landmine</span><span class="num">01</span>
+    <h3>A skill can register hooks for the rest of the session, which is why <code>.claude/</code> is protected</h3></div>
+  <p>Commit 7fa7665 ("Protect agent host config…", 2026-11-04) added <code>.claude/</code> to <code>PROTECTED_PREFIXES</code> <em>"so removing or weakening a hook needs a transition receipt."</em> The repo already puts hooks in frontmatter (<code>.claude/agents/artifact-author.md:8-14</code>), and Claude Code accepts the same key in a skill: <code>hooks</code> are <em>"registers[ed] when the skill is invoked and keeps running for the rest of the session"</em>; <code>allowed-tools</code> run <em>"without asking permission"</em>; <code>!`cmd`</code> <em>"runs shell commands before the skill content is sent."</em></p>
+  <div class="bite"><b>Why it bites</b>Exempt <code>.claude/skills/investigate/</code> and a small task with no receipt can give it a <code>PreToolUse</code> or <code>Stop</code> hook. Its description asks to be loaded <em>"when a task asks you to find, diagnose or fix behavior"</em>, so that hook runs in most sessions. <code>docs/COMPLETION.md:198-199</code>, "changing a hook on a branch needs a transition receipt", would quietly stop being true.</div>
+  <p class="src">transitions.rs:39-47; code.claude.com/docs/en/skills (frontmatter table) and /docs/en/hooks ("Hooks in skills and agents"). Not checked: whether a skill hook can override the guard's <code>ask</code>.</p>
+  <div class="choice">
+    <p class="q">Which skills does protected() exempt, and what holds their hooks?</p>
+    <label><input type="radio" name="c1" checked
+      data-rule="author-artifact, review-artifact and write-ticket stay policy and every other skill is none"
+      data-const="Put the three ceremony skill names (author-artifact, review-artifact, write-ticket) in one const, CEREMONY_SKILLS, in transitions.rs. protected() keeps .claude/skills/NAME/ for those names and exempts every other skill folder; size.rs builds its .claude/skills/ and .agents/skills/ entries from the same const, so any other skill is small."
+      data-reply="Exempt every skill folder except author-artifact, review-artifact and write-ticket. Add a docs check in xtask/src/checks.rs that refuses hooks, allowed-tools and !-command injection (inline and ```! fences) in any other SKILL.md; a skill that needs one joins the ceremony list, which is a protected change. That keeps docs/COMPLETION.md:198-199 true. Test it with a hook added to investigate."><span>Exempt all non-ceremony skills; a docs check refuses hooks, <code>allowed-tools</code> and injection in them (recommended)</span></label>
+    <label><input type="radio" name="c1"
+      data-rule="investigate and add-product-command are none and every other skill, including a new one, stays policy"
+      data-const="Put the two exempt skill names (investigate, add-product-command) in one const, EXEMPT_SKILLS, in transitions.rs. protected() exempts .claude/skills/NAME/ for those names and keeps every other path under .claude/skills/; size.rs builds its rule from the same const: any path under .claude/skills/ or .agents/skills/ forces a standard task unless its folder is one of those two, so a new skill stays standard."
+      data-reply="Exempt only investigate and add-product-command by name; every other folder under .claude/skills/, including a new skill, stays protected. This drops the ticket's goal that adding an unrelated skill is small. A hook added to either named skill needs no receipt, so say that beside docs/COMPLETION.md:198-199."><span>Exempt only investigate and add-product-command; new skills stay standard (drops the ticket's "adding a skill")</span></label>
+    <label><input type="radio" name="c1"
+      data-rule="author-artifact, review-artifact and write-ticket stay policy and every other skill is none"
+      data-const="Put the three ceremony skill names (author-artifact, review-artifact, write-ticket) in one const, CEREMONY_SKILLS, in transitions.rs. protected() keeps .claude/skills/NAME/ for those names and exempts every other skill folder; size.rs builds its .claude/skills/ and .agents/skills/ entries from the same const, so any other skill is small."
+      data-reply="Exempt every skill folder except author-artifact, review-artifact and write-ticket, and accept that such a skill may carry hooks, allowed-tools or !-command injection with no receipt. Rewrite docs/COMPLETION.md:198-199 to say only the ceremony skills, agents and host config need one."><span>Exempt all non-ceremony skills and accept their hooks; rewrite the COMPLETION.md promise</span></label>
+  </div>
+  <div class="chip-row"><div class="chip" id="chip-1" data-fixed="Before changing protected(), read the hooks block in .claude/agents/artifact-author.md and Claude Code's skill frontmatter (hooks, allowed-tools, !-command injection)."></div><label><input type="checkbox" checked data-include>include</label><button class="secondary" data-copy="chip-1">Copy</button></div>
+</section>
+
+<section class="card" data-n="2">
+  <div class="card-head"><span class="badge" data-kind="landmine">Landmine</span><span class="num">02</span>
+    <h3>The 100-line limit bills every copy: investigate three times, any other skill twice</h3></div>
+  <p>DOC007 keeps the <code>.claude</code> and <code>.agents</code> copies byte-identical (checks.rs:189-207), DOC009 keeps investigate's body equal to <code>docs/skills/investigate.md</code> (checks.rs:240-260), and <code>size::changes</code> counts each path's numstat (size.rs:33-58). A same-length rewrite of investigate's 18-line body, with <code>cargo xtask docs</code> passing:</p>
+  <p class="label">captured: git diff --numstat BASE</p>
+<pre>18  18  .agents/skills/investigate/SKILL.md
+18  18  .claude/skills/investigate/SKILL.md
+18  18  docs/skills/investigate.md          <span class="dim">total</span> <span class="hl">108 &gt; 100</span></pre>
+  <div class="bite"><b>Why it bites</b>Even with both path rules narrowed, a small task can add about 33 lines to investigate or rewrite about 16, and a new skill can be at most 50 lines. Landing a GEPA result replaces the seed and both bodies (experiments/gepa/README.md:5-9): 18 deleted lines × 3 plus the new seed × 3 fits only if the new seed is 15 lines or fewer. <span class="src">(Arithmetic from <code>SMALL_LINES = 100</code>, size.rs:9, and <code>wc -l</code>: seed 18 lines.)</span></div>
+  <div class="choice">
+    <p class="q">The limit and duplicated copies:</p>
+    <label><input type="radio" name="c2" checked data-reply="Keep the 100-line limit and say in docs/ARTIFACTS.md Task size that each host copy counts, so an investigate edit counts three times and any other skill twice. Make unrelated_skills_stay_small edit a few lines in all three investigate copies, and add a case where a same-length rewrite of investigate (108 counted lines) is refused for size only, not for its path."><span>Keep the limit and document the per-copy cost (recommended; stays in scope)</span></label>
+    <label><input type="radio" name="c2" data-reply="Count a path once when DOC007 or DOC009 holds it identical to another changed path. This changes the line limit, which the ticket put out of scope, so update the ticket first. Test that a same-length rewrite of investigate in all three copies stays small."><span>Count identical copies once (changes a rule the ticket put out of scope)</span></label>
+  </div>
+  <div class="chip-row"><div class="chip" id="chip-2" data-fixed=""></div><label><input type="checkbox" checked data-include>include</label><button class="secondary" data-copy="chip-2">Copy</button></div>
+</section>
+
+<section class="card" data-n="3">
+  <div class="card-head"><span class="badge" data-kind="landmine">Landmine</span><span class="num">03</span>
+    <h3>The guard sees directories and moves, not just files</h3></div>
+  <p>Handoff reads file paths from git, but the guard tiers whatever a command writes: <code>rm</code>, <code>mv</code> and <code>cp</code> operands as given (agent-hook.sh:210-224), resolved against the event's cwd (121-134), and <code>decide</code> keeps the first path of the highest rank (167, strict <code>-gt</code>). Today every <code>.claude/</code> path ranks policy, so none of this has mattered.</p>
+  <p class="label">first three captured from scripts/agent-hook.sh guard claude (path named in the note); last two traced from tier() at 137-144, not run</p>
+<pre>mv .claude/skills/investigate .claude/skills/author-artifact → .claude/skills/investigate  <span class="dim">(first operand wins)</span>
+cp /tmp/x ../author-artifact/SKILL.md <span class="dim">(cwd investigate/)</span> → .claude/skills/author-artifact/SKILL.md
+Edit .Claude/Skills/Author-Artifact/SKILL.md → .Claude/Skills/Author-Artifact/SKILL.md  <span class="dim">(ignorecase)</span>
+<span class="dim">traced:</span> rm -r .claude/skills/author-artifact → note  <span class="dim">(matches ".claude/"*)</span>
+<span class="dim">traced:</span> rm -r .claude → <span class="hl">no note</span>  <span class="dim">(".claude" misses ".claude/"*; so does rm -r xtask)</span></pre>
+  <div class="bite"><b>Why it bites</b>A ceremony list written as <code>.claude/skills/author-artifact/</code> prefixes misses the bare directory, so <code>rm -r .claude/skills/author-artifact</code> would pass silently. Once investigate ranks none the <code>mv</code> tie breaks, and the note must name the destination. The list must also go through <code>lower()</code> like <code>PREFIXES_CMP</code> (93-97). The bare top-level gap exists today; handoff still catches it because git lists each deleted file.</div>
+  <div class="choice">
+    <p class="q">The existing bare-directory gap (<code>rm -r .claude</code>):</p>
+    <label><input type="radio" name="c3" checked data-reply="Record the bare top-level directory gap (rm -r .claude and rm -r xtask get no note) as a discovery in the task record; do not fix it here."><span>Record it as a discovery (recommended; the note is advisory and handoff catches it)</span></label>
+    <label><input type="radio" name="c3" data-reply="Also fix the bare top-level directory gap: a path equal to a protected prefix without its slash is policy. Add rm -r .claude and rm -r xtask to the guard tests."><span>Fix it here, since <code>tier()</code> is being edited anyway</span></label>
+  </div>
+  <div class="chip-row"><div class="chip" id="chip-3" data-fixed="In tier(), decide a path under .claude/skills/ by the folder segment after skills/, with or without a trailing slash: .claude/skills itself stays policy, {rule}. Compare after lower(). Test rm -r .claude/skills/author-artifact, mv .claude/skills/investigate .claude/skills/author-artifact (the note names the destination) and a mixed-case path."></div><label><input type="checkbox" checked data-include>include</label><button class="secondary" data-copy="chip-3">Copy</button></div>
+</section>
+
+<section class="card" data-n="4">
+  <div class="card-head"><span class="badge" data-kind="concept">Missing concept</span><span class="num">04</span>
+    <h3>The folder name becomes the protection key, so DOC008 becomes a policy check</h3></div>
+  <p>Agents preload ceremony skills by <em>name</em> (<code>skills: - author-artifact</code>, artifact-author.md:6-7); the narrowed rule matches by <em>folder</em>. DOC008 is the only link, and it accepts <em>any</em> matching <code>name:</code> line (checks.rs:216-219, <code>.any(…)</code>).</p>
+  <p class="label">captured: cargo xtask docs, new skills/helper/SKILL.md in both hosts</p>
+<pre>name: author-artifact                → DOC008 … must … set name: helper
+name: helper + name: author-artifact → <span class="hl">no DOC007/DOC008 error</span></pre>
+  <div class="bite"><b>Why it bites</b>Today that folder is protected anyway; after the change it is free. How each host reads a duplicate YAML key is <em>not verified</em>: one may refuse the file, another may keep the last value and load a second <code>author-artifact</code>. DOC008 is under <code>xtask/</code>, which this task already changes, so tightening it adds no new receipt.</div>
+  <div class="chip-row"><div class="chip" id="chip-4" data-fixed="Tighten DOC008 so a SKILL.md has exactly one name: line, equal to its folder, and test the duplicate-name case: the skill const is keyed on folder names, and DOC008 is what ties a folder to the name agents preload."></div><label><input type="checkbox" checked data-include>include</label><button class="secondary" data-copy="chip-4">Copy</button></div>
+</section>
+
+<section class="card" data-n="5">
+  <div class="card-head"><span class="badge" data-kind="convention">Convention</span><span class="num">05</span>
+    <h3>The Codex copies were never protected; DOC007 holds them in place</h3></div>
+  <p><code>PROTECTED_PREFIXES</code> has <code>.claude/</code> and <code>.codex/</code> but not <code>.agents/</code> (transitions.rs:39-47). Only <code>size::CEREMONY</code> covers <code>.agents/skills/</code>, which is why the baseline lists only the Claude copy under <code>protected_files</code>. The guard's whole answer to an Edit of <code>.agents/skills/author-artifact/SKILL.md</code> is <code>{}</code> (captured: <code>agent-hook.sh guard claude</code>).</p>
+  <div class="bite"><b>Why it bites</b>"Ceremony skills in both hosts" is two mechanisms: either copy forces a standard task, but only the <code>.claude</code> copy needs a receipt or gets a note. That is safe only because DOC007 fails a branch where the copies differ. A guard test expecting a note for the <code>.agents</code> copy fails, and a doc line saying both are protected would be wrong.</div>
+  <div class="choice">
+    <p class="q">Ceremony skills under <code>.agents/skills/</code>:</p>
+    <label><input type="radio" name="c5" checked data-reply="Keep .agents/ out of protected(): size.rs makes a standard task of any change to its copies of the protected skills, and DOC007 holds them equal to the .claude copies, so expect no note for them, and write the docs to say exactly that."><span>Leave them unprotected and rely on DOC007 (recommended; matches today)</span></label>
+    <label><input type="radio" name="c5" data-reply="Also protect .agents/skills/ by the same rule as .claude/skills/ ({rule}) in transitions.rs and the guard, so both copies of a protected skill need a receipt and get a note."><span>Protect them too, in both lists</span></label>
+  </div>
+  <div class="chip-row"><div class="chip" id="chip-5" data-fixed="In guard_passes_unrelated_skills_without_a_receipt_note, assert the result for .agents/skills/author-artifact/SKILL.md explicitly."></div><label><input type="checkbox" checked data-include>include</label><button class="secondary" data-copy="chip-5">Copy</button></div>
+</section>
+
+<section class="card" data-n="6">
+  <div class="card-head"><span class="badge" data-kind="convention">Convention</span><span class="num">06</span>
+    <h3>One list, three readers, and the parity test parses one shell line</h3></div>
+  <p><code>script_list</code> finds the line starting <code>NAME="</code> in agent-hook.sh, strips the closing quote and splits on whitespace (transitions.rs:209-219); <code>guard_tiers_match_protected_paths</code> compares that to the Rust const (221-225). So the guard list must be one unindented line with the same strings in the same order. <code>size.rs</code> needs the same names for both hosts; its own literal would be a third copy with no test.</p>
+  <div class="bite"><b>Why it bites</b><code>docs/skills/</code> is not one file per skill: <code>author-artifact.md</code> and <code>review-artifact.md</code> are pointers, <code>investigate.md</code> is a seed, write-ticket has none (<code>ls docs/skills</code>). Those entries cannot be built from the skill list.</div>
+  <div class="choice">
+    <p class="q">Files under <code>docs/skills/</code>:</p>
+    <label><input type="radio" name="c6" checked data-reply="In size.rs, name docs/skills/author-artifact.md and docs/skills/review-artifact.md exactly; any other file under docs/skills/ is outside the ceremony."><span>Name the two pointers exactly; anything else there is small (recommended; matches the ticket)</span></label>
+    <label><input type="radio" name="c6" data-reply="In size.rs, keep docs/skills/ as a ceremony prefix and exempt only docs/skills/investigate.md, so a new file there stays standard."><span>Keep the prefix and exempt only <code>investigate.md</code></span></label>
+  </div>
+  <div class="chip-row"><div class="chip" id="chip-6" data-fixed="{const} Mirror that const in agent-hook.sh as one unindented NAME=&quot;...&quot; line with the same names in the same order, compared in guard_tiers_match_protected_paths."></div><label><input type="checkbox" checked data-include>include</label><button class="secondary" data-copy="chip-6">Copy</button></div>
+</section>
+
+<section class="final">
+  <div class="final-head">
+    <span class="eyebrow">Your improved prompt</span>
+    <button id="copy-final">Copy prompt</button>
+  </div>
+  <h2>Everything above, folded into the prompt to give me</h2>
+  <p class="muted">Each item is the chip above it, which already includes the option you picked. Change a choice and both follow.</p>
+  <pre id="final-prompt" aria-live="polite"></pre>
+  <p class="src">The readiness line: <code>readiness::assess</code> checks only that each implementation file exists (readiness.rs:25-27, 76), and <code>.claude/skills/investigate/SKILL.md</code> is listed under task-artifacts (readiness.json:118). The receipt step: a receipt binds the digests of every protected file (transitions.rs:114-129), so a later protected edit makes it stale.</p>
+</section>
+
+<footer>ceremony-paths · blindspot pass</footer>
+</main>
+
+<script>
+(function () {
+  var head = "Narrow the protected and ceremony paths so a skill outside the task-page ceremony can change in a small task (xtask/src/transitions.rs, xtask/src/size.rs, scripts/agent-hook.sh, the docs that describe them). Constraints from the blindspot pass:";
+  var tail = "Add unrelated_skills_stay_small to task-artifacts and guard_passes_unrelated_skills_without_a_receipt_note to completion in harness/readiness.json, in the same edit as the code. Leave .claude/skills/investigate/SKILL.md in the task-artifacts implementation list: readiness only checks that it exists, so editing it stays small and renaming it means a protected readiness.json edit.\n\nOrder: the skill const in transitions.rs and its parity test, then protected() and size.rs, then the guard, then any docs-check change, then the docs. Show me handoff output for the small investigate case before the docs. Write the transition receipt last, after the final edit to any protected path.";
+  function picked(name) { return document.querySelector('input[name="' + name + '"]:checked'); }
+  function fill(text) {
+    var c1 = picked("c1");
+    return text.replace("{rule}", c1.getAttribute("data-rule")).replace("{const}", c1.getAttribute("data-const"));
+  }
+  function build() {
+    var items = [];
+    document.querySelectorAll("section.card").forEach(function (card) {
+      var chip = card.querySelector(".chip");
+      var parts = [];
+      var fixed = chip.getAttribute("data-fixed");
+      if (fixed) parts.push(fill(fixed));
+      var opt = card.querySelector('.choice input[type="radio"]:checked');
+      if (opt) parts.push(fill(opt.getAttribute("data-reply")));
+      chip.textContent = parts.join(" ");
+      if (card.querySelector("input[data-include]").checked) items.push(items.length + 1 + ". " + chip.textContent);
+    });
+    document.getElementById("final-prompt").textContent =
+      head + "\n\n" + (items.length ? items.join("\n\n") : "(no constraints ticked)") + "\n\n" + tail;
+  }
+  function counts() {
+    var c = {};
+    document.querySelectorAll("section.card .badge[data-kind]").forEach(function (b) {
+      var k = b.getAttribute("data-kind"); c[k] = (c[k] || 0) + 1;
+    });
+    document.querySelectorAll("#strip [data-count]").forEach(function (el) {
+      el.textContent = c[el.getAttribute("data-count")] || 0;
+    });
+  }
+  function copy(text, btn) {
+    function done() {
+      var prev = btn.textContent; btn.textContent = "Copied"; btn.classList.add("done");
+      setTimeout(function () { btn.textContent = prev; btn.classList.remove("done"); }, 1500);
+    }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text;
+      ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(); done(); });
+    } else { fallback(); done(); }
+  }
+  document.addEventListener("change", function (e) {
+    if (e.target.matches('input[type="radio"], input[data-include]')) build();
+  });
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-copy]");
+    if (b) { copy(document.getElementById(b.getAttribute("data-copy")).textContent, b); return; }
+    if (e.target.id === "copy-final") copy(document.getElementById("final-prompt").textContent, e.target);
+  });
+  counts();
+  build();
+})();
+</script>
+</body>
+</html>
