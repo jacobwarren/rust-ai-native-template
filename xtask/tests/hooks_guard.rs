@@ -87,6 +87,31 @@ fn guard_reads_every_patch_path_and_blocks_what_it_cannot_read() {
 }
 
 #[test]
+fn guard_passes_unrelated_skills_without_a_receipt_note() {
+    let f = Fixture::new();
+    for rel in [
+        ".claude/skills/investigate/SKILL.md",
+        ".claude/skills/new-skill/SKILL.md",
+    ] {
+        let o = hook(&f, "guard", "claude", &edit(&f, rel), None);
+        assert_eq!((o.code, o.stdout.trim()), (0, "{}"), "{rel}");
+    }
+    for rel in [
+        ".claude/skills/author-artifact/SKILL.md",
+        ".claude/skills/Write-Ticket/SKILL.md",
+        ".claude/settings.json",
+    ] {
+        let o = hook(&f, "guard", "claude", &edit(&f, rel), None);
+        assert_eq!(o.code, 0, "{rel}");
+        assert!(
+            o.stdout.contains("transition receipt"),
+            "{rel}: {}",
+            o.stdout
+        );
+    }
+}
+
+#[test]
 fn guard_notes_policy_files_and_passes_product_files() {
     let f = Fixture::new();
     let o = hook(&f, "guard", "claude", &edit(&f, "xtask/src/repo.rs"), None);

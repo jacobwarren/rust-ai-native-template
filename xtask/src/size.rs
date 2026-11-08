@@ -8,12 +8,13 @@ use std::path::Path;
 /// administrative paths. Changing it is a policy change with a receipt.
 pub const SMALL_LINES: u64 = 100;
 
-/// Paths that define the ceremony itself; editing them always needs a standard task.
-const CEREMONY: [&str; 6] = [
+/// Paths that define the ceremony itself; editing them always needs a standard
+/// task. The ceremony skills, in either host, are added by `ceremony_skill`;
+/// other skills are ordinary paths.
+const CEREMONY: [&str; 5] = [
     "docs/ARTIFACTS.md",
-    "docs/skills/",
-    ".agents/skills/",
-    ".claude/skills/",
+    "docs/skills/author-artifact.md",
+    "docs/skills/review-artifact.md",
     ".claude/agents/",
     ".codex/agents/",
 ];
@@ -23,6 +24,7 @@ pub fn forces_standard(path: &str) -> bool {
     transitions::protected(path)
         || path == "Cargo.toml"
         || path.ends_with("/Cargo.toml")
+        || transitions::ceremony_skill(path)
         || CEREMONY
             .iter()
             .any(|c| path == *c || (c.ends_with('/') && path.starts_with(c)))

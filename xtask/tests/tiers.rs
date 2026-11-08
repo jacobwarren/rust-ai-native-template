@@ -142,7 +142,15 @@ fn protected_cargo_and_ceremony_paths_force_standard() {
         "crates/app/Cargo.toml",
         "docs/ARTIFACTS.md",
         "docs/skills/author-artifact.md",
+        "docs/skills/review-artifact.md",
         ".agents/skills/review-artifact/SKILL.md",
+        ".agents/skills/write-ticket/SKILL.md",
+        ".claude/skills/author-artifact/SKILL.md",
+        ".claude/skills/write-ticket/SKILL.md",
+        ".agents/skills/Review-Artifact/SKILL.md",
+        ".agents/skills/README.md",
+        ".claude/settings.json",
+        ".claude/commands/new.md",
         ".claude/agents/artifact-author.md",
         ".codex/agents/artifact-author.toml",
     ] {
@@ -163,6 +171,33 @@ fn protected_cargo_and_ceremony_paths_force_standard() {
     f.text("docs/GUIDE.md", "a fix\n");
     let v = handoff_at(&f, &base);
     assert!(!errors(&v).contains("task tier small"), "{v}");
+}
+
+#[test]
+fn unrelated_skills_stay_small() {
+    let f = Fixture::new();
+    let base = f.git(&["rev-parse", "HEAD"]);
+    f.write("harness/tasks/TASK-1.json", small(&f, "partial"));
+    // A skill outside the ceremony, its seed and a new skill, in both hosts.
+    for path in [
+        ".claude/skills/investigate/SKILL.md",
+        ".agents/skills/investigate/SKILL.md",
+        "docs/skills/investigate.md",
+        ".claude/skills/new-skill/SKILL.md",
+        ".agents/skills/new-skill/SKILL.md",
+    ] {
+        f.text(path, "one line\n");
+    }
+    f.commit("skills");
+    let v = handoff_at(&f, &base);
+    assert!(!errors(&v).contains("task tier small"), "{v}");
+    assert!(!errors(&v).contains("transition rationale"), "{v}");
+    // The same edit to a ceremony skill needs a receipt as well as the standard tier.
+    f.text(".claude/skills/review-artifact/SKILL.md", "one line\n");
+    f.commit("ceremony skill");
+    let v = handoff_at(&f, &base);
+    assert!(errors(&v).contains("task tier small"), "{v}");
+    assert!(errors(&v).contains("transition rationale"), "{v}");
 }
 
 #[test]
