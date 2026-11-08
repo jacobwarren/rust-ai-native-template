@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interview: narrowed ceremony paths</title>
+<style>
+  main { max-width: 64rem; }
+  .prompt { position: relative; padding-right: 7.5rem; }
+  .prompt p { margin: 0; font-style: italic; max-width: var(--reading-width); }
+  .prompt .k { font-size: var(--text-small); font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-2); font-style: normal; }
+  .copy { font-size: var(--text-small); min-height: 36px; padding: var(--space-1) var(--space-3); }
+  .prompt .copy { position: absolute; top: var(--space-3); right: var(--space-3); }
+  .copy.done { background: var(--ink); border-color: var(--ink); }
+
+  .settled { margin-top: var(--space-8); }
+  .settled h2 { font-size: 1.05rem; margin: 0 0 var(--space-2); }
+  .settled ul { margin: 0; padding-left: 1.2rem; font-size: var(--text-small); }
+  .settled li { margin-block: var(--space-1); }
+  .src { font-family: var(--font-code); font-size: .78rem; color: var(--muted); }
+
+  .artifact { margin-top: var(--space-8); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .art-head { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); align-items: baseline; padding: var(--space-3) var(--space-6); background: var(--accent-soft); border-bottom: 1px solid var(--line); }
+  .art-head b { font-size: 1.05rem; }
+  .art-head span { font-family: var(--font-code); font-size: .78rem; color: var(--muted); }
+  .art-body { display: grid; grid-template-columns: 15rem 1fr; }
+  .rail { display: block; border-right: 1px solid var(--line); border-bottom: none; padding: var(--space-4); background: var(--paper); }
+  .rail-label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-2); }
+  .ri { display: flex; align-items: center; gap: var(--space-2); width: 100%; min-height: 36px; padding: var(--space-1) var(--space-2); margin-bottom: 2px; text-align: left; font-size: .84rem; background: none !important; color: var(--ink) !important; border: 1px solid transparent !important; border-radius: var(--control-radius); }
+  .ri:hover { border-color: var(--line) !important; }
+  .ri.cur { background: var(--accent-soft) !important; font-weight: 650; }
+  .ri.skip { color: var(--muted) !important; text-decoration: line-through; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; flex: none; background: var(--dc); }
+  .ri .who { margin-left: auto; font-family: var(--font-code); font-size: .68rem; color: var(--muted); flex: none; }
+  .ri .who.you { color: var(--accent); font-weight: 650; }
+  .rq { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .legend { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--line); font-size: .74rem; color: var(--muted); line-height: 1.9; }
+  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; }
+
+  .stage { padding: var(--space-6) var(--space-8) var(--space-8); min-width: 0; }
+  .badge { display: inline-block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: #fff; padding: 2px 8px; border-radius: 4px; }
+  .qnum { font-family: var(--font-code); font-size: .78rem; color: var(--muted); margin-left: var(--space-2); }
+  .qtext { font-size: clamp(1.25rem, 2.6vw, 1.55rem); margin: var(--space-3) 0 var(--space-2); }
+  .why { color: var(--muted); max-width: var(--reading-width); margin: 0 0 var(--space-4); }
+  .ev { margin: 0 0 var(--space-4); }
+  .ev .lab { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--warning); font-weight: 650; }
+  .ev pre { margin: var(--space-1) 0 0; font-size: .78rem; line-height: 1.55; background: var(--paper); }
+  .ev .src { display: block; margin-top: var(--space-1); }
+  .opts { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+  .opt { text-align: left; background: var(--paper) !important; color: var(--ink) !important; border: 1.5px solid var(--line) !important; border-radius: var(--radius); padding: var(--space-3) var(--space-4); position: relative; }
+  .opt:hover { border-color: var(--accent) !important; }
+  .opt.picked { border-color: var(--accent) !important; background: var(--surface) !important; box-shadow: 0 0 0 3px var(--accent-soft); }
+  .opt .ot { display: block; font-weight: 650; font-size: .95rem; margin-bottom: 2px; }
+  .opt .od { display: block; font-size: .82rem; color: var(--muted); line-height: 1.45; }
+  .opt .tag { display: inline-block; margin-bottom: var(--space-1); font-size: .66rem; letter-spacing: .05em; text-transform: uppercase; background: var(--warning-soft); color: var(--warning); border: 1px solid var(--warning); border-radius: 4px; padding: 0 5px; }
+  .call { margin-top: var(--space-3); font-size: .86rem; padding: var(--space-3); }
+  .call b { color: var(--warning); }
+  .other { display: flex; gap: var(--space-2); margin-top: var(--space-3); }
+  .other input { flex: 1; min-width: 0; }
+  .other button { font-size: var(--text-small); }
+  .nav { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: var(--space-4); flex-wrap: wrap; }
+  .nav button { font-size: var(--text-small); min-height: 38px; }
+  .nav button[hidden] { display: none; }
+
+  .dtable td, .dtable th { font-size: .86rem; }
+  .dtable th { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .pill { font-size: .66rem; letter-spacing: .05em; text-transform: uppercase; color: #fff; padding: 1px 6px; border-radius: 4px; white-space: nowrap; }
+  .by { font-family: var(--font-code); font-size: .72rem; white-space: nowrap; }
+  .redo { font-size: .78rem; min-height: 30px; padding: 2px 8px; }
+  .reply pre { background: var(--ink); color: var(--paper); border-color: var(--ink); font-size: .8rem; line-height: 1.6; margin-top: var(--space-2); }
+  .reply { position: relative; margin-top: var(--space-6); }
+  .reply .copy { position: absolute; top: 0; right: 0; }
+  .reply .lab { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 650; }
+
+  @media (max-width: 46rem) {
+    .art-body { grid-template-columns: 1fr; }
+    .rail { border-right: none; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: var(--space-1); }
+    .rail-label, .rq, .ri .who, .legend { display: none; }
+    .ri { width: auto; }
+    .stage { padding: var(--space-4); }
+    .prompt { padding-right: var(--space-4); }
+    .prompt .copy { position: static; margin-top: var(--space-3); }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">ceremony-paths · before code · the interview</div>
+  <h1>Interview: the narrowed ceremony paths</h1>
+  <p class="lead">Six questions the ticket and the two earlier pages leave open, ordered by how much of the change each answer moves. No one has answered the discovery pages yet, so each question opens on the agent's call, marked as such. Pick another card to override it. The reply at the end shows which answers are yours.</p>
+
+  <div class="surface prompt">
+    <div class="k">The prompt</div>
+    <p id="promptText">Interview me one question at a time about anything still ambiguous in the narrowed ceremony paths. Prioritize questions where my answer would change the architecture.</p>
+    <button type="button" class="copy" id="copyPrompt">Copy prompt</button>
+  </div>
+
+  <section class="surface settled" aria-labelledby="settled-h">
+    <h2 id="settled-h">Not asked again: settled on the earlier pages or by the code</h2>
+    <ul>
+      <li>The ceremony list names author-artifact, review-artifact and write-ticket. Every other skill folder, including a new one, is outside it. <span class="src">blindspot card 01 (agent's call)</span></li>
+      <li>The ceremony skill names live in one const in transitions.rs. The guard mirrors it as one unindented shell line, which the parity test compares. <span class="src">blindspot card 06</span></li>
+      <li>The <code>.agents/</code> copies stay unprotected, and DOC007 holds them equal to the <code>.claude</code> copies. The two <code>docs/skills/</code> pointers are named exactly. <span class="src">blindspot cards 05, 06</span></li>
+      <li>The 100-line limit is unchanged, and every copy counts. The bare-directory gap in the guard is recorded as a discovery. <span class="src">blindspot cards 02, 03</span></li>
+      <li>Adding a skill touches no other protected file. DOC004 asks for one harness/docs.json entry per file, and that file is administrative. <span class="src">captured: cargo xtask docs on a new skill; xtask/src/artifacts.rs:42</span></li>
+    </ul>
+  </section>
+
+  <div class="artifact">
+    <div class="art-head"><b>Narrowed ceremony paths: spec interview</b><span id="headMeta"></span></div>
+    <div class="art-body">
+      <nav class="rail" id="rail" aria-label="Interview progress"></nav>
+      <div class="stage" id="stage" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <footer>ceremony-paths · interview. Captured outputs come from a clean copy of this branch, with a probe task record marked small.</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var RADII = {
+    arch: { label: "Architecture", color: "var(--danger)" },
+    rule: { label: "Check design", color: "var(--warning)" },
+    ax:   { label: "Agent experience", color: "var(--accent)" }
+  };
+
+  // needsFree: the question exists only if Q1 is answered "no receipt" (option 0).
+  var QUESTIONS = [
+    {
+      radius: "arch", short: "Receipt or not", topic: "Receipt for a free skill edit",
+      q: "When a small task edits investigate, should the branch still need a policy receipt?",
+      why: "This decides which files change at all. Keeping the receipt touches only size.rs. Dropping it touches transitions.rs, the guard, the parity test and a new docs check. Questions 3 to 6 exist only if the receipt goes.",
+      ev: {
+        lab: "From the interventions page and the code",
+        pre: "#2 (keep the receipt) in a scratch copy, size.rs +15 −4:\n  small task, investigate in 3 copies → one receipt, then \"ok\": true\n#4 (the ticket's plan) alone: a hook added to investigate passes as small, with no receipt\n\ntransitions.rs:201  \"review\":\"Rationale is not independent approval. Enforce reviewer authority in hosting rules.\"",
+        src: "interventions.html cards #2, #4 and the matrix; xtask/src/transitions.rs:199-201"
+      },
+      opts: [
+        { t: "No receipt; CI holds free skills to plain text", d: "The ticket as written. Frontmatter and !-injection are the only ways a skill acts without the agent choosing to (blindspot card 01), so cargo xtask docs refuses them outside the ceremony.",
+          reply: "A non-ceremony skill edit needs no receipt. Add a docs check that holds such skills to plain text (questions 3-4), and rewrite docs/COMPLETION.md:198-199 to say the ceremony skills, agents and host config are what need a receipt." },
+        { t: "Keep the receipt, drop only the pages", d: "Interventions #2. Only size.rs changes. The guard and COMPLETION.md:198-199 stay as they are. Every skill fix still writes a receipt, and the ticket's “needs no receipt” test and guard test change.",
+          reply: "Keep non-ceremony skills protected; change only size.rs so they stop forcing a standard task. Rewrite unrelated_skills_stay_small to expect one receipt, and drop guard_passes_unrelated_skills_without_a_receipt_note." },
+        { t: "Receipt only when the frontmatter changes", d: "Interventions #7. Hash only the block between the --- lines. Unknown keys are caught, but the policy digest stops meaning “these files”, and the guard cannot tell a body edit from a frontmatter edit.",
+          reply: "Hash only the frontmatter of a non-ceremony SKILL.md in the policy digest, so body edits need no receipt; still refuse !-injection in the body." }
+      ],
+      rec: 0,
+      call: "A receipt is written by the same agent that makes the change (transitions.rs:201), so for a skill a check in CI is the stronger control. It also removes the whole cost the ticket names."
+    },
+    {
+      radius: "arch", short: "Nested host folders", topic: "Host folders below the root",
+      q: "Should the rule also cover .claude/ and .agents/ folders below the repository root?",
+      why: "Both hosts load skills from nested folders. protected() and CEREMONY match by prefix, so today a skill with a hook in a nested folder is a small task with no receipt. A nested folder would also bypass whatever the free-skill check enforces.",
+      ev: {
+        lab: "Captured in a clean copy, fields kept and the rest cut",
+        pre: "# small task adds crates/app/.claude/skills/helper/SKILL.md, frontmatter has hooks: PreToolUse\nhandoff      task errors: the four review answers only\n             \"transitions\": {\"ok\": true, \"errors\": [], \"protected_files\": []}\ndocs         DOC004 crates/app/.claude/skills/helper/SKILL.md: add ownership and verification to harness/docs.json\nguard        {}\n\n# the same file at .claude/skills/helper/SKILL.md\nhandoff      task tier small: .claude/skills/helper/SKILL.md is a policy, dependency or ceremony path; …\n             \"transitions\": {\"ok\": false, \"errors\": [\"missing exact transition rationale: policy\"], …}\nguard        .claude/skills/helper/SKILL.md is a protected policy file. This branch will need a transition receipt: …",
+        src: "cargo xtask handoff --base BASE · cargo xtask docs · scripts/agent-hook.sh guard claude < Edit event. Claude Code docs: skills in a nested .claude/skills/ \"load the first time Claude reads or edits a file in that subdirectory\"; Codex docs: \"scans .agents/skills in every directory from your current working directory up to the repository root\". git ls-files: no nested host folder exists today."
+      },
+      opts: [
+        { t: "Refuse host folders below the root", d: "A rule in cargo xtask docs beside skill_copies fails any path with a .claude, .agents or .codex segment below the root. None exist today. Loosening the rule is an xtask/ edit, so it needs a receipt.",
+          reply: "In cargo xtask docs, refuse any tracked path with a .claude, .agents or .codex directory below the repository root, and test it with crates/app/.claude/skills/helper/SKILL.md." },
+        { t: "Protect a host-folder segment anywhere", d: "protected(), the guard's tier() and size.rs each match the segment anywhere in the path. That is three matchers in two languages, and the parity test compares lists, not matching logic (transitions.rs:209-225).",
+          reply: "Make protected(), the guard's tier() and size.rs treat a .claude/ or .codex/ segment anywhere in a path as protected, and .agents/skills/ anywhere as ceremony; add guard and tier tests for crates/app/.claude/skills/helper/SKILL.md." },
+        { t: "Record it as a discovery and leave it", d: "This task did not create the hole. While it stands, though, the rule that free skills carry no hooks is not true.",
+          reply: "Record nested host folders (crates/app/.claude/skills/… passes as small with no receipt) as a discovery in the task record; do not fix it here." }
+      ],
+      rec: 0,
+      call: "It is one rule in the function this task already edits, and it lets every other check assume skills sit at the root. Nothing legitimate is refused today."
+    },
+    {
+      radius: "rule", short: "Frontmatter rule", topic: "How the check reads frontmatter", needsFree: true,
+      q: "How should cargo xtask docs decide that a free skill's frontmatter is safe?",
+      why: "Claude Code reads 20 frontmatter keys. Besides hooks and allowed-tools, the keys model, context: fork, agent, shell and paths also change behaviour. All five skills today use only name and description. In every option the body is also refused !`cmd` and ```! blocks, and no skill uses either today (grep).",
+      ev: {
+        lab: "Captured: how YAML reads three spellings a prefix match on “hooks:” misses (PyYAML 6.0.3; ⏎ marks a line break)",
+        pre: "\"hooks\": {PreToolUse: []}                   → {'hooks': {'PreToolUse': []}}\nname: helper ⏎ ? hooks ⏎ : {PreToolUse: []}  → {'name': 'helper', 'hooks': {'PreToolUse': []}}\n{name: helper, hooks: {PreToolUse: []}}      → {'name': 'helper', 'hooks': {'PreToolUse': []}}",
+        src: "python3 -c 'yaml.safe_load(…)'. Not checked: whether Claude Code's own parser accepts each spelling. Key list: code.claude.com/docs/en/skills, frontmatter table. xtask deps: xtask/Cargo.toml (serde, serde_json, sha2)."
+      },
+      opts: [
+        { t: "Allow only name and description lines", d: "Every unindented frontmatter line starts with name: or description:, each once, and name equals the folder. Indented lines continue the description. This catches unknown and disguised keys, and covers blindspot card 04's duplicate-name fix to DOC008.",
+          reply: "For each SKILL.md outside the ceremony, every unindented frontmatter line must start with name: or description:, each exactly once, with name equal to the folder; indented lines are description continuation. Refuse !` at a line start or after whitespace and ```! fences in the body. Test a hooks: key, a quoted \"hooks\": key and a duplicate name:." },
+        { t: "Deny listed keys", d: "Refuse hooks:, allowed-tools: and others by prefix. A key a host adds later gets through, and so do all three spellings above.",
+          reply: "Refuse hooks:, allowed-tools:, model:, context:, agent:, shell: and paths: in the frontmatter of a SKILL.md outside the ceremony, and !-injection in its body." },
+        { t: "Parse YAML; allow name and description", d: "Exact, but xtask has no YAML crate. Adding one edits Cargo.toml and harness/config.json, where the guard asks the owner first (agent-hook.sh:140).",
+          reply: "Add a YAML parser to xtask (owner approval for harness/config.json) and require the parsed frontmatter of a non-ceremony SKILL.md to have exactly the keys name and description." }
+      ],
+      rec: 0,
+      call: "It refuses by default, needs no new dependency and is a few lines beside DOC008. A skill that needs another key joins the ceremony list."
+    },
+    {
+      radius: "rule", short: "Folder contents", topic: "What a free skill folder may hold", needsFree: true,
+      q: "What may a free skill folder contain besides SKILL.md?",
+      why: "The check in question 3 reads SKILL.md. Codex also reads agents/openai.yaml from the same folder, which declares the invocation policy and tool dependencies such as an MCP server. Both hosts document scripts/ for executables. DOC007 copies every file in the folder to both hosts.",
+      ev: {
+        lab: "Captured: git ls-files .claude/skills .agents/skills",
+        pre: ".agents/skills/{add-product-command,author-artifact,investigate,review-artifact,write-ticket}/SKILL.md\n.claude/skills/{add-product-command,author-artifact,investigate,review-artifact,write-ticket}/SKILL.md\n(10 files; brace-grouped here for width)",
+        src: "Codex docs (learn.chatgpt.com/docs/build-skills): agents/openai.yaml has interface, policy (allow_implicit_invocation) and dependencies. DOC007: xtask/src/checks.rs:189-207."
+      },
+      opts: [
+        { t: "Markdown only", d: "SKILL.md plus reference .md files. agents/openai.yaml, scripts/ or any other file fails cargo xtask docs unless the skill is on the ceremony list.",
+          reply: "A skill folder outside the ceremony may hold only .md files; any other file (agents/openai.yaml, scripts/) fails cargo xtask docs." },
+        { t: "Anything", d: "Matches what the hosts allow, but agents/openai.yaml's dependencies and policy then change with no receipt.",
+          reply: "Check only SKILL.md; other files in a free skill folder are unrestricted." },
+        { t: "SKILL.md only", d: "Simplest. A skill cannot split long reference text into separate files, which Claude Code recommends past 500 lines.",
+          reply: "A skill folder outside the ceremony may hold only SKILL.md." }
+      ],
+      rec: 0,
+      call: "Every folder holds only SKILL.md today, so nothing breaks, and the rule stays a file-extension test."
+    },
+    {
+      radius: "rule", short: "Skills that need a hook", topic: "Home for a skill that needs more", needsFree: true,
+      q: "Where does a skill go that genuinely needs something the free-skill check refuses, such as a hook or a tool grant?",
+      why: "Under the rules above, the only way out is the ceremony list, and every name on it forces a standard task on every edit, because a protected path always forces standard. A second list could mean protected and receipted, but still allowed to be small.",
+      ev: {
+        lab: "Excerpt: xtask/src/size.rs:22-29",
+        pre: "pub fn forces_standard(path: &str) -> bool {\n    transitions::protected(path)\n        || path == \"Cargo.toml\"\n        || path.ends_with(\"/Cargo.toml\")\n        || CEREMONY.iter().any(|c| path == *c || (c.ends_with('/') && path.starts_with(c)))\n}   // last line joined from three",
+        src: "Skills using any key beyond name and description today: none (frontmatter of all five, read above)."
+      },
+      opts: [
+        { t: "One list: it joins the ceremony skills", d: "No such skill exists today. It pays what a hook change pays now: a standard tier and a receipt. The list keeps one meaning for transitions.rs, the guard and size.rs.",
+          reply: "Keep one list. A skill that needs something the free-skill check refuses is added to the ceremony list, a protected change." },
+        { t: "A second list: policy skills", d: "Protected and receipted, but forces_standard skips them, like interventions #2 for named skills. That is another list to keep in parity with the guard.",
+          reply: "Add a POLICY_SKILLS list: protected and receipted, exempt from the frontmatter check, but not forcing a standard task; mirror it in the guard and the parity test." }
+      ],
+      rec: 0,
+      call: "The second list would serve zero skills today. Add it when the first one appears."
+    },
+    {
+      radius: "ax", short: "When the agent learns", topic: "Feedback on a broken free skill", needsFree: true,
+      q: "When should an agent learn that its skill edit broke the free-skill rule?",
+      why: "The guard never runs Cargo, and the post-edit check runs only after Cargo and .rs edits. So a hook added to investigate is first reported by cargo xtask docs, which the fast and ci profiles both run.",
+      ev: {
+        lab: "Excerpt, shortened: scripts/agent-hook.sh",
+        pre: "4    # The guard never runs Cargo, so a broken xtask/ cannot break it.\n341        Cargo.lock | Cargo.toml | */Cargo.toml | harness/config.json) workspace=1; arch=1 ;;\n342        *.rs)  arch=1 …\n350    [ \"$arch\" -eq 1 ] || allow",
+        src: "harness/config.json profiles fast and ci both list the docs step; post-edit hook timeout 300 s in .claude/settings.json."
+      },
+      opts: [
+        { t: "At the next cargo xtask docs", d: "No hook changes. Even a small task owes current CI evidence (docs/ARTIFACTS.md, Task size), and the ci profile runs docs. The failure names the file.",
+          reply: "Leave the hooks alone; cargo xtask docs (fast and ci) reports a broken free skill." },
+        { t: "A guard note on every free-skill edit", d: "A one-line reminder of the rule, not a receipt note, so the ticket's guard test still holds. It adds one more message string to the shell guard.",
+          reply: "Have the guard note on a free-skill edit that its frontmatter may hold only name and description (not a receipt note), and assert that note in guard_passes_unrelated_skills_without_a_receipt_note." },
+        { t: "The post-edit check runs xtask docs", d: "Immediate, but it builds xtask inside a hook on every skill edit.",
+          reply: "Extend the post-edit check to run xtask docs after a SKILL.md edit." }
+      ],
+      rec: 0,
+      call: "Every task already has to produce a ci report before completion, and that report runs docs. A new message or a hook build would add upkeep for little gain."
+    }
+  ];
+
+  var answers = QUESTIONS.map(function (q) { return { oi: q.rec, text: null, by: "agent" }; });
+  var current = 0;
+  var rail = document.getElementById("rail");
+  var stage = document.getElementById("stage");
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function freeChosen() { return answers[0].text === null && answers[0].oi === 0; }
+  function asked(i) { return !QUESTIONS[i].needsFree || freeChosen(); }
+  function nextAsked(i, step) { var j = i + step; while (j >= 0 && j < QUESTIONS.length && !asked(j)) j += step; return j; }
+  function answerTitle(i) { var a = answers[i]; return a.text !== null ? a.text : QUESTIONS[i].opts[a.oi].t; }
+  function answerReply(i) { var a = answers[i]; return a.text !== null ? a.text + " [my wording; ask if unclear]" : QUESTIONS[i].opts[a.oi].reply; }
+  function whoLabel(i) { var a = answers[i]; return a.by === "agent" ? "agent's call" : (a.text !== null ? "your wording" : "your answer"); }
+
+  function renderHead() {
+    var n = QUESTIONS.filter(function (q, i) { return asked(i); }).length;
+    var mine = answers.filter(function (a, i) { return asked(i) && a.by === "you"; }).length;
+    document.getElementById("headMeta").textContent = n + " open questions · ordered by blast radius · " + mine + " answered by you, " + (n - mine) + " agent's calls";
+  }
+
+  function renderRail() {
+    var h = '<div class="rail-label">Questions</div>';
+    QUESTIONS.forEach(function (q, i) {
+      var cls = "ri" + (i === current ? " cur" : "") + (asked(i) ? "" : " skip");
+      var who = asked(i) ? (answers[i].by === "you" ? '<span class="who you">you</span>' : '<span class="who">agent</span>') : '<span class="who">n/a</span>';
+      h += '<button type="button" class="' + cls + '" data-i="' + i + '"' + (asked(i) ? "" : " disabled") + ' style="--dc:' + RADII[q.radius].color + '" aria-label="Question ' + (i + 1) + ": " + esc(q.short) + '">' +
+        '<span class="dot"></span><span class="rq">' + (i + 1) + ". " + esc(q.short) + "</span>" + who + "</button>";
+    });
+    h += '<button type="button" class="ri' + (current >= QUESTIONS.length ? " cur" : "") + '" data-i="' + QUESTIONS.length + '" style="--dc:var(--ink)"><span class="dot"></span><span class="rq">Decisions and reply</span></button>';
+    h += '<div class="legend"><i style="background:var(--danger)"></i>architecture<br><i style="background:var(--warning)"></i>check design<br><i style="background:var(--accent)"></i>agent experience<br>Struck out: not asked under your answer to question 1.</div>';
+    rail.innerHTML = h;
+    rail.querySelectorAll(".ri:not([disabled])").forEach(function (b) {
+      b.addEventListener("click", function () { go(parseInt(b.getAttribute("data-i"), 10)); });
+    });
+  }
+
+  function renderQuestion() {
+    var q = QUESTIONS[current], r = RADII[q.radius], a = answers[current];
+    var total = QUESTIONS.length;
+    var h = '<span class="badge" style="background:' + r.color + '">' + esc(r.label) + '</span><span class="qnum">Question ' + (current + 1) + " of " + total + "</span>" +
+      '<h2 class="qtext">' + esc(q.q) + "</h2>" +
+      '<p class="why">' + esc(q.why) + "</p>" +
+      '<div class="ev"><div class="lab">' + esc(q.ev.lab) + "</div><pre>" + esc(q.ev.pre) + '</pre><span class="src">' + esc(q.ev.src) + "</span></div>" +
+      '<div class="opts">';
+    q.opts.forEach(function (o, oi) {
+      var picked = a.text === null && a.oi === oi;
+      h += '<button type="button" class="opt' + (picked ? " picked" : "") + '" data-oi="' + oi + '" aria-pressed="' + picked + '">' +
+        (oi === q.rec ? '<span class="tag">agent\'s call</span>' : "") +
+        '<span class="ot">' + esc(o.t) + '</span><span class="od">' + esc(o.d) + "</span></button>";
+    });
+    h += "</div>" +
+      '<div class="callout warning call"><b>Agent\'s call:</b> ' + esc(q.opts[q.rec].t) + ". " + esc(q.call) + "</div>" +
+      '<div class="other"><input type="text" id="otherInput" aria-label="Your own answer" placeholder="Other: type your own answer" value="' + (a.text !== null ? esc(a.text) : "") + '"><button type="button" class="secondary" id="otherGo">Answer</button></div>' +
+      '<div class="nav"><button type="button" class="secondary" id="backBtn"' + (nextAsked(current, -1) < 0 ? " hidden" : "") + '>← Previous</button>' +
+      '<span class="src">Now: ' + esc(whoLabel(current)) + '</span>' +
+      '<button type="button" id="nextBtn">' + (a.by === "agent" ? "Keep the agent's call →" : "Next →") + "</button></div>";
+    stage.innerHTML = h;
+    stage.querySelectorAll(".opt").forEach(function (b) {
+      b.addEventListener("click", function () {
+        answers[current] = { oi: parseInt(b.getAttribute("data-oi"), 10), text: null, by: "you" };
+        go(nextAsked(current, 1));
+      });
+    });
+    var input = document.getElementById("otherInput");
+    function submit() {
+      var v = input.value.trim();
+      if (!v) { input.focus(); return; }
+      answers[current] = { oi: -1, text: v, by: "you" };
+      go(nextAsked(current, 1));
+    }
+    document.getElementById("otherGo").addEventListener("click", submit);
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") submit(); });
+    document.getElementById("backBtn").addEventListener("click", function () { go(nextAsked(current, -1)); });
+    document.getElementById("nextBtn").addEventListener("click", function () { go(nextAsked(current, 1)); });
+  }
+
+  function buildReply() {
+    var lines = ["Interview answers for the narrowed ceremony paths:", ""];
+    var open = [], skipped = [];
+    QUESTIONS.forEach(function (q, i) {
+      if (!asked(i)) { skipped.push((i + 1) + ". " + q.topic); return; }
+      lines.push((i + 1) + ". " + q.topic + " (" + whoLabel(i) + "): " + answerTitle(i) + ".");
+      lines.push("   " + answerReply(i));
+      if (answers[i].by === "agent") open.push((i + 1) + ". " + q.topic);
+    });
+    if (skipped.length) {
+      lines.push("");
+      lines.push("Not asked, because question 1 keeps a receipt for some free-skill edits: " + skipped.join("; ") + ". Interview me again on them if that changes.");
+    }
+    lines.push("");
+    lines.push("The blindspot-pass calls listed at the top of the interview stand.");
+    lines.push(open.length ? "Still open, carry into the buy-in doc as the agent's calls: " + open.join("; ") + "." : "Nothing left open from this interview.");
+    return lines.join("\n");
+  }
+
+  function renderSummary() {
+    var rows = "";
+    QUESTIONS.forEach(function (q, i) {
+      var r = RADII[q.radius];
+      rows += "<tr><td><span class=\"dot\" style=\"--dc:" + r.color + ";display:inline-block;margin-right:6px\" title=\"" + esc(r.label) + "\"></span>" + (i + 1) + ". " + esc(q.topic) + "</td>" +
+        (asked(i)
+          ? "<td><b>" + esc(answerTitle(i)) + "</b></td><td class=\"by\">" + esc(whoLabel(i)) + "</td><td><button type=\"button\" class=\"secondary redo\" data-i=\"" + i + "\">change</button></td>"
+          : "<td class=\"muted\">not asked under question 1's answer</td><td class=\"by\">n/a</td><td></td>") + "</tr>";
+    });
+    stage.innerHTML = '<span class="badge" style="background:var(--ink)">Decisions</span>' +
+      '<h2 class="qtext">What the implementation will assume</h2>' +
+      '<p class="why">Each row is the card picked above. The reply below is built from the same rows, and every agent\'s call you leave is carried into the buy-in doc as open.</p>' +
+      '<div class="table-scroll"><table class="dtable"><thead><tr><th>Question</th><th>Decision</th><th>By</th><th></th></tr></thead><tbody>' + rows + "</tbody></table></div>" +
+      '<div class="reply"><div class="lab">Reply to send back</div><button type="button" class="copy" id="copyReply">Copy reply</button><pre id="replyPre">' + esc(buildReply()) + "</pre></div>";
+    stage.querySelectorAll(".redo").forEach(function (b) {
+      b.addEventListener("click", function () { go(parseInt(b.getAttribute("data-i"), 10)); });
+    });
+    wireCopy(document.getElementById("copyReply"), buildReply);
+  }
+
+  function go(i) {
+    current = (i < 0 || i >= QUESTIONS.length) ? (i < 0 ? 0 : QUESTIONS.length) : i;
+    renderHead();
+    renderRail();
+    if (current >= QUESTIONS.length) renderSummary(); else renderQuestion();
+  }
+
+  function wireCopy(btn, getText) {
+    btn.addEventListener("click", function () {
+      var text = getText(), label = btn.textContent;
+      function done() { btn.textContent = "Copied"; btn.classList.add("done"); setTimeout(function () { btn.textContent = label; btn.classList.remove("done"); }, 1500); }
+      function fallback() {
+        var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+    });
+  }
+
+  wireCopy(document.getElementById("copyPrompt"), function () { return document.getElementById("promptText").textContent; });
+  go(0);
+})();
+</script>
+</body>
+</html>
