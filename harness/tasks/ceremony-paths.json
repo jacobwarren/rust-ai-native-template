@@ -1,0 +1,43 @@
+{
+  "schema_version": 6,
+  "id": "ceremony-paths",
+  "work_item": null,
+  "status": "partial",
+  "tier": "standard",
+  "requirements": ["task-artifacts", "completion"],
+  "related_gaps": [
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "unaffected",
+      "rationale": "This changes which paths force a standard task or a receipt; the page gate's commit-order and page checks are untouched."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "The protected-path list is local policy; hosting rules stay the owner's to configure."
+    }
+  ],
+  "gap_review": "Read the four open gaps. artifact-gate-holes and hosting-enforcement are near this work and unaffected; product-acceptance and platform-qualification are unrelated.",
+  "discoveries": [],
+  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "documentation": {
+    "updated": [],
+    "rationale": "docs/ARTIFACTS.md Task size, docs/COMPLETION.md Default hooks and CI, and the write-ticket skill in both hosts describe which paths are ceremony or protected."
+  },
+  "prompt": {
+    "task": "narrow the protected and ceremony paths so a skill outside the task-page ceremony can change in a small task",
+    "task_noun": "the narrowed ceremony paths",
+    "area": "the tier and protected-path rules (xtask/src/size.rs, xtask/src/transitions.rs, scripts/agent-hook.sh) and the docs that describe them",
+    "problem": "Every path under .claude/ is protected and every skill folder counts as ceremony, so fixing or adding a skill unrelated to the task pages, such as investigate, forces a standard task with eight pages and a policy receipt",
+    "reference": "The administrative-path exemption in xtask/src/artifacts.rs"
+  },
+  "summary": "Narrow the protected and ceremony paths so skills outside the task-page ceremony can change in a small task, while the ceremony skills, agents and host config stay standard.",
+  "remaining": [
+    "unrelated_skills_stay_small: given a small task that edits the investigate skill in both hosts and its seed, then handoff keeps the tier and needs no receipt",
+    "protected_cargo_and_ceremony_paths_force_standard: extended to each ceremony skill, the docs/skills pointers, .claude/settings.json and a new non-skill .claude/ file",
+    "guard_passes_unrelated_skills_without_a_receipt_note: the guard notes author-artifact but not investigate",
+    "transitions::tests::guard_tiers_match_protected_paths: extended to the ceremony-skill list",
+    "cargo xtask check ci > target/verification/ci.json",
+    "cargo xtask complete --task ceremony-paths --base origin/main --report target/verification/ci.json"
+  ]
+}
