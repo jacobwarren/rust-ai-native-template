@@ -1,0 +1,42 @@
+{
+  "schema_version": 6,
+  "id": "agent-discoverability",
+  "work_item": null,
+  "status": "partial",
+  "tier": "standard",
+  "requirements": ["completion"],
+  "related_gaps": [
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "unaffected",
+      "rationale": "This changes help text, argument errors and one docs sentence; the page gate's checks are untouched."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "Nothing here changes what is protected or what hosting must enforce."
+    }
+  ],
+  "gap_review": "Read the four open gaps. artifact-gate-holes and hosting-enforcement are near this work and unaffected; product-acceptance and platform-qualification are unrelated.",
+  "discoveries": [],
+  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "documentation": {
+    "updated": [],
+    "rationale": "docs/ARTIFACTS.md Task size gains the DOC009 seed rule and README.md's command table names help and --help."
+  },
+  "prompt": {
+    "task": "make the harness explain itself where a fresh agent got lost: per-command help, usage on wrong arguments, a true agent-stop description and the investigate seed rule in the task-size docs",
+    "task_noun": "the per-command help and corrected harness descriptions",
+    "area": "the xtask command dispatch and help table (xtask/src/main.rs), the stop hook (scripts/agent-complete.sh) and docs/ARTIFACTS.md Task size",
+    "problem": "A fresh agent opened 30 files to learn the harness, was told any non-ceremony skill changes freely when investigate must also match its seed, was told agent-stop is the hook gate when the stop hook runs complete, and got no help from cargo xtask task-artifact next --help",
+    "reference": "The task-artifact verdict arm in xtask/src/main.rs, which answers wrong arguments with its own usage"
+  },
+  "summary": "Make cargo xtask help answer for one command, show usage on wrong arguments, describe agent-stop truly, and state the investigate seed rule where task size is explained.",
+  "remaining": [
+    "help_narrows_to_the_commands_asked: given task-artifact next --help, then exactly that entry; help task-artifact lists every task-artifact command; nonsense --help fails and points at cargo xtask help",
+    "wrong_arguments_print_the_matching_usage: given complete --task X, then the error contains complete's usage; an unknown first word lists no usage",
+    "help_flags_after_run_belong_to_the_application: given run -- --help, then xtask does not print its own help",
+    "agent_stop_help_names_the_hook_that_runs: agent-stop's entry says the stop hook runs complete, and agent-complete.sh runs complete",
+    "cargo xtask check ci > target/verification/ci.json; cargo xtask gaps --base origin/main for the receipt; cargo xtask complete --task agent-discoverability --base origin/main --report target/verification/ci.json"
+  ]
+}
