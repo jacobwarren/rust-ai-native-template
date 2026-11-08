@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz before merge: the narrowed ceremony paths</title>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<style>
+.prompt{position:relative;padding-inline-end:9rem}
+.prompt #copyPrompt{position:absolute;top:var(--space-4);right:var(--space-4);min-height:0;padding:var(--space-2) var(--space-3);font-size:var(--text-small)}
+@media (max-width:40rem){.prompt{padding-inline-end:var(--space-6)}.prompt #copyPrompt{position:static;margin-top:var(--space-3)}}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(12.5rem,1fr));gap:var(--space-3);margin-block:var(--space-6)}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-4)}
+.tile b{display:block;font-size:1.5rem;line-height:1.2}
+.src{display:block;font-size:var(--text-small);color:var(--muted);overflow-wrap:anywhere}
+:not(pre)>code{background:var(--accent-soft);padding:0 .25em;border-radius:.25rem;font-size:.9em;overflow-wrap:anywhere}
+pre{font-size:.8rem;margin-block:var(--space-2) var(--space-4)}
+.lab{font-size:var(--text-small);color:var(--muted);margin-block:var(--space-4) 0}
+.lab b{color:var(--accent)}
+.q{background:var(--surface)}
+.q legend{font-size:var(--text-small);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.qt{margin-top:0;font-weight:600}
+.opt{display:flex;gap:var(--space-2);align-items:flex-start;border:1px solid var(--line);border-radius:var(--control-radius);padding:var(--space-1) var(--space-3);margin-block:var(--space-1);cursor:pointer}
+.opt.right{border-color:var(--accent);background:var(--accent-soft)}
+.opt.wrong{border-color:var(--danger);background:var(--warning-soft)}
+.fb{margin-top:var(--space-3);font-size:var(--text-small)}
+.fb.bad{border-color:var(--danger);background:var(--warning-soft)}
+.table-scroll table{min-width:40rem}
+.bar{display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:center}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">ceremony-paths · quiz before merge</p>
+<h1>Quiz before merge: the narrowed ceremony paths</h1>
+<p class="lead">Before this change every skill edit cost a transition receipt and a standard task. Now three skills keep that cost, every other skill can change in a small task, and <code>cargo xtask docs</code> holds those other skills to plain text in the receipt's place.</p>
+
+<div class="surface prompt">
+  <p class="eyebrow" style="margin-top:0">The prompt</p>
+  <button id="copyPrompt" class="secondary">Copy prompt</button>
+  <blockquote id="promptText">I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass.</blockquote>
+</div>
+
+<div class="tiles">
+  <div class="tile"><b>16 files · +420 −17</b>outside the task pages<span class="src">git diff --numstat main...HEAD -- . ':(exclude)harness/task-artifacts'</span></div>
+  <div class="tile"><b>+122 −7</b>code in transitions.rs, size.rs, checks.rs, agent-hook.sh<span class="src">same command, -- xtask/src scripts</span></div>
+  <div class="tile"><b>+121</b>test lines in tiers.rs, hooks_guard.rs, hooks_author.rs<span class="src">same command, -- xtask/tests</span></div>
+  <div class="tile"><b>6 / 6</b>new or extended tests pass<span class="src">captured, section 4</span></div>
+</div>
+
+<h2>1 · Why it changed</h2>
+<p>On main, <code>transitions::protected</code> matched every path under <code>.claude/</code>, and <code>size::CEREMONY</code> listed all of <code>docs/skills/</code>, <code>.agents/skills/</code> and <code>.claude/skills/</code>. A one-line fix to the investigate skill therefore needed a receipt and eight pages. The <a href="blindspots.html">blindspots</a> and <a href="plan.html">plan</a> pages walk through that cost.</p>
+<p>Only three skills define the task-page ceremony. The workflow-router task tried this carve-out and dropped it, because skill frontmatter can register hooks, grant tools and run shell commands at load, and the receipt was all that stopped it (<code>harness/tasks/ceremony-paths.json</code> discoveries[0]). So the change has two halves: narrow both path rules to a named list, and add checks that keep every other skill plain Markdown.</p>
+
+<h2>2 · The intuition: one list, four readers</h2>
+<p><code>CEREMONY_SKILLS</code> names author-artifact, review-artifact and write-ticket (transitions.rs:66; copied at agent-hook.sh:16). Four readers consult it, each answering a different question. The receipt and the tier are separate answers, so a path can owe one without the other.</p>
+<div class="table-scroll"><table>
+<thead><tr><th>Reader</th><th>Question it answers</th><th>When it runs</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td><code>transitions::protected(p)</code></td><td>Does the branch owe a transition receipt for <code>p</code>?</td><td>handoff and completion</td><td>transitions.rs:39-60, 83-88; read at 138-139</td></tr>
+<tr><td><code>size::forces_standard(p)</code></td><td>Must a task touching <code>p</code> be standard, whatever its size?</td><td>handoff, for a small task</td><td>size.rs:14-31, 89-117; completion.rs:32</td></tr>
+<tr><td>guard <code>tier()</code></td><td>Should the agent get a receipt note at the edit?</td><td>before each edit or shell command; never runs Cargo</td><td>agent-hook.sh:138-154</td></tr>
+<tr><td><code>free_skills()</code></td><td>Is a skill outside the list plain text, and is every host folder at the root?</td><td><code>cargo xtask docs</code>, in the fast and ci profiles</td><td>checks.rs:264-306; harness/config.json:59, 106</td></tr>
+</tbody></table></div>
+
+<h2>3 · What was done</h2>
+<p class="lab"><b>excerpt</b> · xtask/src/transitions.rs:66-88, verbatim</p>
+<pre>pub(crate) const CEREMONY_SKILLS: [&amp;str; 3] =
+    ["author-artifact", "review-artifact", "write-ticket"];
+
+/// Whether `path` lies in one of the ceremony skills, in either host's folder.
+/// Names compare without case: on a case-insensitive checkout
+/// `Author-Artifact/` is the ceremony skill's own folder. A file loose in the
+/// skills folder, outside any skill, counts as ceremony too.
+pub(crate) fn ceremony_skill(path: &amp;str) -&gt; bool {
+    [".claude/skills/", ".agents/skills/"].iter().any(|host| {
+        path.strip_prefix(host)
+            .is_some_and(|rest| match rest.split_once('/') {
+                Some((name, _)) =&gt; CEREMONY_SKILLS.iter().any(|s| s.eq_ignore_ascii_case(name)),
+                None =&gt; true,
+            })
+    })
+}
+
+pub(crate) fn protected(path: &amp;str) -&gt; bool {
+    if path.starts_with(".claude/skills/") {
+        return ceremony_skill(path);
+    }
+    PROTECTED_PREFIXES.iter().any(|p| path.starts_with(p)) || PROTECTED_FILES.contains(&amp;path)
+}</pre>
+<p><code>PROTECTED_PREFIXES</code> is unchanged: <code>xtask/ .github/ scripts/ .cargo/ harness/goldens/ .claude/ .codex/</code> (transitions.rs:39-47).</p>
+
+<p><code>size::CEREMONY</code> drops <code>docs/skills/</code>, <code>.agents/skills/</code> and <code>.claude/skills/</code>, names the pointers <code>docs/skills/author-artifact.md</code> and <code>docs/skills/review-artifact.md</code>, and keeps <code>docs/ARTIFACTS.md</code>, <code>.claude/agents/</code> and <code>.codex/agents/</code> (size.rs:14-20). <code>forces_standard</code> gains one condition, <code>|| transitions::ceremony_skill(path)</code> (size.rs:27).</p>
+
+<p class="lab"><b>excerpt</b> · scripts/agent-hook.sh:143-151, two comment lines cut. Paths arrive lower-cased on a case-folding checkout (agent-hook.sh:92-96)</p>
+<pre>  case "$p" in .claude/skills/*)
+    x=${p#.claude/skills/}; case "$x" in */*) ;; *) echo policy; return ;; esac
+    x=$(printf '%s' "${x%%/*}" | tr '[:upper:]' '[:lower:]')
+    for s in $CEREMONY_SKILLS; do [ "$x" = "$s" ] &amp;&amp; { echo policy; return; }; done
+    echo none; return ;;
+  esac
+  for x in $PREFIXES_CMP; do case "$p" in "$x"*) echo policy; return ;; esac; done</pre>
+
+<p class="lab"><b>condensed</b> · xtask/src/checks.rs:264-306; messages and parsing replaced by comments, so read the file for the code</p>
+<pre>for path in repo::files(root)? {                        // every file on disk, tracked or not
+    // any segment after the first is .claude, .agents or .codex, in any case
+    if host_folder_below_root { DOC014; continue; }
+    let in_skills = path.starts_with(".claude/skills/") || path.starts_with(".agents/skills/");
+    if !in_skills || ceremony_skill(&amp;path) { continue; }
+    if !path.ends_with(".md") { DOC013; continue; }
+    if path.ends_with("/SKILL.md") {
+        // frontmatter lines up to the closing ---, skipping blank lines and lines
+        // that start with a space or tab, must each be `key:` with key in
+        // SKILL_KEYS = ["name", "description"], no key twice; else DOC011
+    }
+    if text.contains("!`") || text.lines().any(|l| l.trim_start().starts_with("```!")) { DOC012 }
+}</pre>
+
+<div class="callout">
+<strong>Existing rules this leans on.</strong> The 100-line small limit is unchanged and sums added plus deleted lines over every changed file outside administrative paths (size.rs:89-110; artifacts.rs:33-43). Skill copies are tied together: DOC007 keeps the <code>.claude/skills/</code> and <code>.agents/skills/</code> copies identical (checks.rs:206), and DOC009 makes a seeded skill's body equal its seed file; <code>SEEDS</code> lists one skill, investigate, seeded by <code>docs/skills/investigate.md</code> (checks.rs:243-255, 314). Completion never runs <code>docs</code> itself: it accepts a ci report only when that report is <code>ok</code> (completion.rs:61; readiness.rs:110-116).
+</div>
+<p>The docs say the same in <code>docs/ARTIFACTS.md</code> "Task size", <code>docs/COMPLETION.md</code> and the write-ticket skill in both hosts. The branch's receipt is <code>harness/transitions/ceremony-paths.json</code>. The <a href="implementation.html">implementation notes</a> record where the build left the plan and how coarse the guard is. The <a href="buy-in.html">buy-in doc</a> carries the risks.</p>
+
+<h2>4 · Probe it yourself</h2>
+<p>Each block below was run in a fresh <code>git archive HEAD</code> copy of this branch, and its output is pasted as printed.</p>
+<p class="lab"><b>captured</b> · the six tests this change adds or extends; output filtered to result lines</p>
+<pre>cargo test -p xtask -- only_ceremony_skills_stay_protected_under_claude guard_tiers_match_protected_paths \
+  free_skills_stay_plain_text guard_passes_unrelated_skills_without_a_receipt_note \
+  unrelated_skills_stay_small protected_cargo_and_ceremony_paths_force_standard
+
+test transitions::tests::only_ceremony_skills_stay_protected_under_claude ... ok
+test transitions::tests::guard_tiers_match_protected_paths ... ok
+test free_skills_stay_plain_text ... ok
+test guard_passes_unrelated_skills_without_a_receipt_note ... ok
+test unrelated_skills_stay_small ... ok
+test protected_cargo_and_ceremony_paths_force_standard ... ok</pre>
+<p>No command prints <code>protected()</code> or <code>forces_standard()</code> for a path. To ask about another path, add it to the lists in <code>only_ceremony_skills_stay_protected_under_claude</code> (transitions.rs:253) or <code>protected_cargo_and_ceremony_paths_force_standard</code> (xtask/tests/tiers.rs) and rerun that test. The "probe" values in the graded answers came from a scratch test that printed both functions for each quiz path in a clean copy; adding the path to either list checks the same thing.</p>
+
+<p class="lab"><b>captured</b> · the guard, fed one event on stdin. It finds the root with git, so an archive copy needs <code>git init</code>; a clone works as is</p>
+<pre>e() { printf '{"hook_event_name":"PreToolUse","cwd":"%s","tool_name":"Edit","tool_input":{"file_path":"%s/%s"}}' \
+  "$PWD" "$PWD" "$1" | bash scripts/agent-hook.sh guard claude; echo; }
+b() { printf '{"hook_event_name":"PreToolUse","cwd":"%s","tool_name":"Bash","tool_input":{"command":"%s"}}' \
+  "$PWD" "$1" | bash scripts/agent-hook.sh guard claude; echo; }
+e .claude/skills/investigate/SKILL.md
+e .claude/settings.json
+
+{}
+{"hookSpecificOutput":{"hookEventName":"PreToolUse","additionalContext":".claude/settings.json is a protected
+policy file. This branch will need a transition receipt: run cargo xtask gaps --base origin/main before completion."}}</pre>
+
+<p class="lab"><b>captured, seeded</b> · the three files below were written for this probe and are not in the repo</p>
+<pre>for d in .claude/skills/demo .agents/skills/demo crates/app/.claude/skills/helper; do mkdir -p $d
+  printf -- '---\nname: demo\ndescription: A demo.\nhooks:\n  Stop: []\n---\n\nBody.\n' &gt; $d/SKILL.md; done
+cargo xtask docs | grep -oE 'DOC01[1-4] [^:]*'
+
+DOC011 .agents/skills/demo/SKILL.md
+DOC011 .claude/skills/demo/SKILL.md
+DOC014 crates/app/.claude/skills/helper/SKILL.md</pre>
+<p>The graded answers' "seeded probe" lines ran the same way, one skill folder per question (qa to qf), each holding the file the question shows. The "captured guard output" lines used <code>e</code> and <code>b</code> above.</p>
+
+<h2 id="quiz-h">5 · Eight questions before you merge</h2>
+<p>One question per rule, each about a path or file this page does not show. Nothing is graded until you submit all eight. A new set gives every topic a question you have not seen and reorders the options; after three sets questions repeat, and the result says how many did.</p>
+<div id="quiz"></div>
+<div class="bar"><button id="submit" disabled>Submit answers</button><span id="progress" class="muted"></span></div>
+<div id="result" hidden></div>
+
+<h2>6 · Send back</h2>
+<p>The reply is built from your latest graded set. Add anything you want changed before merge.</p>
+<label>Note (optional)<textarea id="note" placeholder="Anything you want changed or answered before merge"></textarea></label>
+<pre id="reply"></pre>
+<button id="copyReply">Copy reply</button>
+<footer>ceremony-paths · quiz before merge</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  function copy(text, btn, label) {
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1500); }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  }
+  var cp = document.getElementById("copyPrompt");
+  cp.addEventListener("click", function () { copy(document.getElementById("promptText").textContent, cp, "Copy prompt"); });
+
+  var TIER = ["Small task allowed; no receipt needed", "Small task allowed; a receipt needed",
+    "Standard task forced; no receipt needed", "Standard task forced; a receipt needed"];
+  var DOCS = ["DOC011: frontmatter beyond name and description", "DOC012: a command that would run at load",
+    "DOC013: a file that is not Markdown", "No DOC011 to DOC014 error for this file"];
+  var GUARD = ["The guard notes a receipt; handoff asks for one", "The guard notes a receipt; handoff does not ask",
+    "The guard says nothing; handoff asks for a receipt", "The guard says nothing; handoff does not ask"];
+  var PATHQ = "A branch changes only <code>%</code>, a few lines. What does handoff require of it?";
+  var FILEQ = "In a small task, both host copies of a new skill <code>triage</code> get this <code>%</code>. What does <code>cargo xtask docs</code> report for it?";
+  var CMDQ = "In a checkout of this branch an agent makes this tool call: <code>%</code>. What happens at the edit, and later at handoff?";
+  function pv(p, a, why, src) { return { q: PATHQ.replace("%", p), a: a, why: why, src: src }; }
+  function fv(name, body, a, why, src) { return { q: FILEQ.replace("%", name), pre: body, a: a, why: why, src: src }; }
+  function gv(cmd, a, why, src) { return { q: CMDQ.replace("%", cmd), a: a, why: why, src: src }; }
+  var FM = "---\nname: triage\ndescription: Sort new issues.\n";
+
+  var TOPICS = [
+    { t: "skill names", opts: TIER, v: [
+      pv(".claude/skills/write-ticket-v2/SKILL.md", 0, "<code>ceremony_skill</code> compares the whole folder name, so write-ticket-v2 is not write-ticket. Under <code>.claude/skills/</code>, <code>protected()</code> returns just that answer.", "transitions.rs:73-88 · probe: protected false, forces_standard false; guard {}"),
+      pv(".claude/skills/REVIEW-ARTIFACT/checklist.md", 3, "Names compare without case (<code>eq_ignore_ascii_case</code>), so this is review-artifact's own folder: ceremony, and under <code>.claude/skills/</code> also protected.", "transitions.rs:73-88 · probe: protected true, forces_standard true; captured guard output: receipt note"),
+      pv(".claude/skills/add-product-command/SKILL.md", 0, "add-product-command is a real skill but not one of the three, so it changes like an ordinary file. <code>cargo xtask docs</code> still holds it to plain text.", "transitions.rs:66-88 · probe: protected false, forces_standard false; captured guard output: {}") ] },
+    { t: "two hosts and loose files", opts: TIER, v: [
+      pv(".agents/skills/review-artifact/checklist.md", 2, "<code>ceremony_skill</code> reads both hosts, so the tier is forced. <code>protected()</code> special-cases only <code>.claude/skills/</code>, and <code>.agents/</code> is not a protected prefix, so no receipt.", "transitions.rs:39-47, 73-88 · probe: protected false, forces_standard true; captured guard output: {}"),
+      pv(".agents/skills/index.md", 2, "A file directly in a skills folder takes the <code>None</code> arm and counts as ceremony, in either host. <code>.agents/</code> still owes no receipt.", "transitions.rs:73-81 · probe: protected false, forces_standard true"),
+      pv(".claude/skills/notes.txt", 3, "A loose file under <code>.claude/skills/</code> takes the <code>None</code> arm, and there <code>protected()</code> returns <code>ceremony_skill</code>: tier forced and receipt owed.", "transitions.rs:73-88 · probe: protected true, forces_standard true; captured guard output: receipt note") ] },
+    { t: "paths beside the skills", opts: TIER, v: [
+      pv(".claude/commands/ship.md", 3, "Only <code>.claude/skills/</code> was carved out. Every other <code>.claude/</code> path still falls to the <code>.claude/</code> prefix, and a protected path forces the tier.", "transitions.rs:39-47, 83-88; size.rs:23-24 · probe: protected true, forces_standard true; captured guard output: receipt note"),
+      pv("docs/skills/write-ticket.md", 0, "<code>size::CEREMONY</code> names only the author-artifact and review-artifact pointers, and <code>docs/</code> is not protected. No write-ticket pointer exists today; a new one would be an ordinary file.", "size.rs:14-20 · probe: protected false, forces_standard false"),
+      pv(".codex/agents/reviewer.toml", 3, "<code>.codex/</code> is a protected prefix and <code>.codex/agents/</code> is still on <code>size::CEREMONY</code>. Nothing outside the skills folders moved.", "transitions.rs:39-47; size.rs:14-20 · probe: protected true, forces_standard true") ] },
+    { t: "the 100-line budget", v: [
+      { q: "A small task replaces 20 lines in the body of the investigate skill, plus whatever <code>cargo xtask docs</code> then requires. What does the small-tier line count see?",
+        opts: ["40 changed lines, one copy: fits a small task", "80 changed lines, two host copies: fits a small task", "120 changed lines, three copies: over the limit", "0 changed lines: skill folders are administrative"], a: 2,
+        why: "A replaced line is one added and one deleted, so 40 per file. DOC007 makes both host copies change and DOC009 makes the seed match the body: three files, 120 lines, over 100.", src: "size.rs:89-110; checks.rs:206 (DOC007), 243-255 and 314 (DOC009, SEEDS); artifacts.rs:33-43" },
+      { q: "A small task replaces 15 lines in the body of the investigate skill, plus whatever <code>cargo xtask docs</code> then requires. What does the small-tier line count see?",
+        opts: ["30 changed lines, one copy: fits a small task", "60 changed lines, two host copies: fits a small task", "90 changed lines, three copies: fits a small task", "120 changed lines, four copies: over the limit"], a: 2,
+        why: "15 replaced lines are 30 changed lines per file. Both host copies (DOC007) and the seed (DOC009) carry the body: 90, under 100.", src: "size.rs:89-110; checks.rs:206, 243-255, 314" },
+      { q: "A small task replaces 30 lines in add-product-command's SKILL.md, plus whatever <code>cargo xtask docs</code> then requires. What does the small-tier line count see?",
+        opts: ["60 changed lines, one copy: fits a small task", "120 changed lines, two host copies: over the limit", "180 changed lines, three copies: over the limit", "30 changed lines, one copy: fits a small task"], a: 1,
+        why: "30 replaced lines are 60 changed lines. DOC007 makes both host copies change; <code>SEEDS</code> lists only investigate, so there is no third copy: 120, over 100.", src: "size.rs:89-110; checks.rs:206, 314" } ] },
+    { t: "frontmatter (DOC011)", opts: DOCS, v: [
+      fv("SKILL.md", FM + "model: haiku\n---\n\nBody.", 0, "<code>model</code> is not in <code>SKILL_KEYS</code>, which holds only name and description.", "checks.rs:288-301, 311 · seeded probe (folder qa, same frontmatter): DOC011 on both copies"),
+      fv("SKILL.md", "---\nname: triage\ndescription: >\n  Sort new issues.\n  Use hooks: only when asked.\n---\n\nBody.", 3, "The key check skips lines that start with a space (checks.rs:294). The indented line belongs to the folded description, so only name and description are read as keys.", "checks.rs:288-301 · seeded probe (folder qb): no DOC011 to DOC014 error"),
+      fv("reference.md", "---\nallowed-tools: Bash\n---\n\nNotes.", 3, "The frontmatter rule reads only files ending <code>/SKILL.md</code>. reference.md is held to the .md and ! rules, and passes both.", "checks.rs:283-305 · seeded probe (folder qc): no DOC011 to DOC014 error") ] },
+    { t: "files and body (DOC012, DOC013)", opts: DOCS, v: [
+      fv("examples/sample.json", "{}", 2, "Every file in a skill outside the ceremony must end in .md; the check stops at that for this file.", "checks.rs:283-286 · seeded probe (folder qd): DOC013 on both copies"),
+      fv("reference.md", "Run this:\n\n```bash\ngit status\n```", 3, "DOC012 looks for the two characters !` anywhere, or a line starting ```!. A ```bash fence has neither.", "checks.rs:303-305 · seeded probe (folder qe): no DOC011 to DOC014 error"),
+      fv("SKILL.md", FM + "---\n\nPrefix a line with `!` to run it in your shell.", 1, "In <code>`!`</code> a backtick follows the !, so the text contains !` and DOC012 fires, though nothing would run. The check matches characters, not intent.", "checks.rs:303-305 · seeded probe (folder qf): DOC012 on both copies") ] },
+    { t: "guard note versus handoff", opts: GUARD, v: [
+      gv("Bash: rm -r .claude/skills/add-product-command", 1, "The guard sees one segment under <code>.claude/skills/</code> and cannot tell a skill folder from a loose file, so it notes a receipt. Handoff reads git's file list: every deleted file is inside add-product-command, and none is protected.", "agent-hook.sh:146; transitions.rs:73-88 · captured guard output: receipt note"),
+      gv("Bash: rm -r .codex", 2, "The guard compares the path with prefixes that end in /, and a bare <code>.codex</code> matches none. Handoff sees <code>.codex/hooks.json</code> and the other files deleted, all under a protected prefix.", "agent-hook.sh:151; transitions.rs:39-47; task record discoveries[2] · captured guard output: {}"),
+      gv("Edit: .claude/skills/REVIEW-ARTIFACT/checklist.md", 0, "The guard lower-cases the skill name on every checkout and finds review-artifact. Handoff's <code>ceremony_skill</code> ignores case too, and under <code>.claude/skills/</code> that makes it protected.", "agent-hook.sh:147-148; transitions.rs:73-88 · captured guard output: receipt note") ] },
+    { t: "changing the list", v: [
+      { q: "A new skill <code>deploy</code> needs <code>allowed-tools: Bash</code> in its frontmatter. What is the supported route?",
+        opts: ["Add allowed-tools to SKILL_KEYS in checks.rs; small task", "Add deploy to both CEREMONY_SKILLS lists; standard, receipt", "Add deploy to the Rust CEREMONY_SKILLS only; standard, no receipt", "Grant tools in the .agents/ copy only; small, no receipt"], a: 1,
+        why: "Every DOC011 to DOC013 message says to add the skill to CEREMONY_SKILLS. The parity test keeps the guard's copy equal to the Rust list, and both files sit under protected prefixes (xtask/, scripts/). DOC007 rules out a one-host grant.", src: "transitions.rs:39-47, 66, 246-250; agent-hook.sh:16; checks.rs:206, 284, 300, 304" },
+      { q: "A branch adds <code>deploy</code> to <code>CEREMONY_SKILLS</code> in transitions.rs but not in agent-hook.sh. What catches it first?",
+        opts: ["cargo xtask docs: DOC007 on the deploy skill's copies", "cargo test: guard_tiers_match_protected_paths fails", "Nothing: the guard is advisory, so its copy may drift", "cargo test: only_ceremony_skills_stay_protected fails"], a: 1,
+        why: "The parity test reads the guard's CEREMONY_SKILLS line and compares it with the Rust list. The protected-paths test lists named paths with no deploy entry, so it still passes.", src: "transitions.rs:246-250 · captured in a clean copy with only the Rust list edited: guard_tiers_match_protected_paths FAILED, left [author-artifact, review-artifact, write-ticket], right adds deploy; the other transitions test passed" },
+      { q: "A later PR removes the <code>docs</code> step from the <code>ci</code> profile in harness/config.json. What changes for skills outside the ceremony?",
+        opts: ["Nothing: handoff runs cargo xtask docs itself first", "They lose their only gate, and that PR owes a receipt", "They lose their only gate, and that PR can be small", "The guard starts noting their edits in docs' place"], a: 1,
+        why: "Completion never runs docs; it accepts a ci report only when it is ok. Without the step a <code>hooks:</code> key would pass. harness/config.json is a protected file, so the PR itself owes a receipt and a standard task.", src: "harness/config.json:85, 106; completion.rs:61; readiness.rs:110-116; transitions.rs:48-60" } ] }
+  ];
+  var KEYS = "ABCD";
+
+  var quizEl = document.getElementById("quiz"), submitBtn = document.getElementById("submit"),
+    progEl = document.getElementById("progress"), resEl = document.getElementById("result");
+  var seen = TOPICS.map(function () { return []; });
+  var attempt = 0, cur = [], graded = false, last = null;
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+  function newSet() {
+    attempt++; graded = false;
+    cur = TOPICS.map(function (tp, ti) {
+      var all = tp.v.map(function (_, i) { return i; });
+      var fresh = all.filter(function (i) { return seen[ti].indexOf(i) < 0; });
+      var pool = fresh.length ? fresh : all;
+      return { vi: pool[Math.floor(Math.random() * pool.length)], repeat: !fresh.length, order: shuffle([0, 1, 2, 3]), chosen: null };
+    });
+    render(); resEl.hidden = true; update();
+  }
+
+  function opts(ti) { var tp = TOPICS[ti]; return tp.opts || tp.v[cur[ti].vi].opts; }
+
+  function render() {
+    quizEl.innerHTML = cur.map(function (c, ti) {
+      var v = TOPICS[ti].v[c.vi], o = opts(ti);
+      var h = '<fieldset class="q" id="q' + ti + '"><legend>Question ' + (ti + 1) + " of 8 · " + TOPICS[ti].t + '</legend><p class="qt">' + v.q + "</p>";
+      if (v.pre) h += "<pre>" + esc(v.pre) + "</pre>";
+      c.order.forEach(function (oi, k) {
+        h += '<label class="opt" data-o="' + oi + '"><input type="radio" name="r' + ti + '" value="' + oi + '"' + (graded ? " disabled" : "") +
+          (c.chosen === oi ? " checked" : "") + "><span><b>" + KEYS[k] + "</b> " + esc(o[oi]) + "</span></label>";
+      });
+      return h + '<div class="fb" id="fb' + ti + '" hidden></div></fieldset>';
+    }).join("");
+  }
+
+  quizEl.addEventListener("change", function (e) {
+    if (graded || e.target.type !== "radio") return;
+    cur[+e.target.name.slice(1)].chosen = +e.target.value; update();
+  });
+
+  function update() {
+    var n = cur.filter(function (c) { return c.chosen !== null; }).length;
+    submitBtn.disabled = graded || n < 8;
+    progEl.textContent = graded ? "" : "Set " + attempt + ": " + n + " of 8 answered";
+    reply();
+  }
+
+  function letter(ti, oi) { return KEYS[cur[ti].order.indexOf(oi)]; }
+
+  submitBtn.addEventListener("click", function () {
+    if (graded) return;
+    graded = true;
+    var score = 0, missed = [], repeats = 0;
+    cur.forEach(function (c, ti) {
+      var v = TOPICS[ti].v[c.vi], o = opts(ti), ok = c.chosen === v.a;
+      if (ok) score++; else missed.push(TOPICS[ti].t);
+      if (c.repeat) repeats++;
+      if (seen[ti].indexOf(c.vi) < 0) seen[ti].push(c.vi);
+      document.querySelectorAll("#q" + ti + " .opt").forEach(function (l) {
+        var oi = +l.dataset.o; l.querySelector("input").disabled = true;
+        if (oi === v.a) l.classList.add("right"); else if (oi === c.chosen) l.classList.add("wrong");
+      });
+      var fb = document.getElementById("fb" + ti);
+      fb.className = "fb callout" + (ok ? "" : " bad"); fb.hidden = false;
+      fb.innerHTML = "<strong>" + (ok ? "Correct." : "You chose " + letter(ti, c.chosen) + "; the answer is " + letter(ti, v.a) + ": " + esc(o[v.a]) + ".") +
+        "</strong> " + v.why + '<span class="src">' + esc(v.src) + "</span>";
+    });
+    last = { attempt: attempt, score: score, missed: missed, repeats: repeats };
+    var h;
+    if (score === 8) {
+      h = '<div class="callout"><h3 style="margin-top:0">Passed: 8 / 8 on set ' + attempt + "</h3><p>" +
+        (repeats ? repeats + " of the 8 repeated a question you had already seen graded, so those answers show recall, not that you can apply the rule." : "Every question was new to you in this set, so the score reflects applying the rules to cases the page does not show.") +
+        "</p><p>The task record (<code>harness/tasks/ceremony-paths.json</code>) still lists two steps as remaining: <code>cargo xtask check ci</code> and <code>cargo xtask complete --task ceremony-paths</code>.</p></div>";
+    } else {
+      h = '<div class="callout warning"><h3 style="margin-top:0">Not yet: ' + score + " / 8 on set " + attempt + "</h3><p>Missed: " + esc(missed.join("; ")) +
+        ". The graded answers above say why. A new set gives each topic a question you have not seen" + (attempt >= 3 ? " where one is left" : "") + ", with the options reordered.</p>" +
+        '<button id="again">Try a new set</button></div>';
+    }
+    resEl.innerHTML = h; resEl.hidden = false;
+    var again = document.getElementById("again");
+    if (again) again.addEventListener("click", function () { newSet(); document.getElementById("quiz-h").scrollIntoView({ behavior: "smooth" }); });
+    update();
+    resEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  var noteEl = document.getElementById("note"), replyEl = document.getElementById("reply");
+  function reply() {
+    var lines = ["ceremony-paths · quiz before merge"];
+    if (!last) lines.push("Set " + attempt + ": not submitted yet.");
+    else {
+      lines.push("Set " + last.attempt + ": " + last.score + "/8" + (last.score === 8 ? ", passed" : "") + "; " + last.repeats + " of 8 were repeated questions.");
+      if (last.missed.length) lines.push("Missed: " + last.missed.join("; ") + ".");
+    }
+    lines.push("Still open: cargo xtask check ci; cargo xtask complete --task ceremony-paths.");
+    var n = noteEl.value.trim(); if (n) lines.push("Note: " + n);
+    replyEl.textContent = lines.join("\n");
+  }
+  noteEl.addEventListener("input", reply);
+  var cr = document.getElementById("copyReply");
+  cr.addEventListener("click", function () { copy(replyEl.textContent, cr, "Copy reply"); });
+  newSet();
+})();
+</script>
+</body>
+</html>
