@@ -32,9 +32,13 @@
     {
       "summary": "Out of scope: a wrong --task id answers 'No such file or directory (os error 2)' without naming the task (task_record.rs reads the record file directly).",
       "record": "harness/task-artifacts/agent-discoverability/reference.html"
+    },
+    {
+      "summary": "help::tests::every_key_reads_as_a_usage checks only which characters each key word uses, so a lowercase placeholder slips through: respelled as readiness [--report path], every test still passes, and workflow [id] is caught only because a help test pins that key. Holding placeholders to UPPERCASE needs a check that compares keys with the dispatch arms, which is out of this task's scope.",
+      "record": "harness/task-artifacts/agent-discoverability/quiz.html"
     }
   ],
-  "discovery_review": "Three discoveries, each recorded where its next reader looks: the --help capture in the main.rs comment above the scan, the pinned verdict wording in the router test it changed, and the unnamed missing task in the reference page. Calls the implementation left to the reader (flags still in fixed order; verdict notes of exactly -h now ask for help) are in the implementation notes.",
+  "discovery_review": "Four discoveries, each recorded where its next reader looks: the --help capture in the main.rs comment above the scan, the pinned verdict wording in the router test it changed, the unnamed missing task in the reference page, and the spelling test's blind spot for lowercase placeholders in the quiz page. Calls the implementation left to the reader (flags still in fixed order; verdict notes of exactly -h now ask for help) are in the implementation notes.",
   "documentation": {
     "updated": [
       "docs/ARTIFACTS.md",
