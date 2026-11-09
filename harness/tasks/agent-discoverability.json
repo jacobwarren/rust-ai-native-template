@@ -4,7 +4,9 @@
   "work_item": null,
   "status": "partial",
   "tier": "standard",
-  "requirements": ["completion"],
+  "requirements": [
+    "completion"
+  ],
   "related_gaps": [
     {
       "id": "artifact-gate-holes",
@@ -18,11 +20,27 @@
     }
   ],
   "gap_review": "Read the four open gaps. artifact-gate-holes and hosting-enforcement are near this work and unaffected; product-acceptance and platform-qualification are unrelated.",
-  "discoveries": [],
-  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "discoveries": [
+    {
+      "summary": "check, workflow and release bind any word, so they took --help as their value (unknown profile, unknown workflow id, unknown release scope); a help scan had to run before the match, which now stops at -- so run's arguments stay the application's.",
+      "record": "xtask/src/main.rs"
+    },
+    {
+      "summary": "The verdict catch-all's wording was pinned by verdict_records_findings_and_model, a completion test, so removing the catch-all meant changing that assertion to look for the usage; the interview page had assumed no test checked it, and the reference page corrected it.",
+      "record": "xtask/tests/router.rs"
+    },
+    {
+      "summary": "Out of scope: a wrong --task id answers 'No such file or directory (os error 2)' without naming the task (task_record.rs reads the record file directly).",
+      "record": "harness/task-artifacts/agent-discoverability/reference.html"
+    }
+  ],
+  "discovery_review": "Three discoveries, each recorded where its next reader looks: the --help capture in the main.rs comment above the scan, the pinned verdict wording in the router test it changed, and the unnamed missing task in the reference page. Calls the implementation left to the reader (flags still in fixed order; verdict notes of exactly -h now ask for help) are in the implementation notes.",
   "documentation": {
-    "updated": [],
-    "rationale": "docs/ARTIFACTS.md Task size gains the DOC009 seed rule and README.md's command table names help and --help."
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "README.md"
+    ],
+    "rationale": "docs/ARTIFACTS.md Task size states that every skill keeps its two host copies equal (DOC007) and that the investigate skill must also equal its seed docs/skills/investigate.md (DOC009); README.md's command table names cargo xtask help [WORDS] and --help."
   },
   "prompt": {
     "task": "make the harness explain itself where a fresh agent got lost: per-command help, usage on wrong arguments, a true agent-stop description and the investigate seed rule in the task-size docs",
