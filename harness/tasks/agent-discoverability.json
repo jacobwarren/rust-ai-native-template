@@ -2,7 +2,7 @@
   "schema_version": 6,
   "id": "agent-discoverability",
   "work_item": null,
-  "status": "partial",
+  "status": "complete",
   "tier": "standard",
   "requirements": [
     "completion"
@@ -54,11 +54,11 @@
     "reference": "The task-artifact verdict arm in xtask/src/main.rs, which answers wrong arguments with its own usage"
   },
   "summary": "Make cargo xtask help answer for one command, show usage on wrong arguments, describe agent-stop truly, and state the investigate seed rule where task size is explained.",
-  "remaining": [
-    "help_narrows_to_the_commands_asked: given task-artifact next --help, then exactly that entry; help task-artifact lists every task-artifact command; nonsense --help fails and points at cargo xtask help",
-    "wrong_arguments_print_the_matching_usage: given complete --task X, then the error contains complete's usage; an unknown first word lists no usage",
-    "help_flags_after_run_belong_to_the_application: given run -- --help, then xtask does not print its own help",
-    "agent_stop_help_names_the_hook_that_runs: agent-stop's entry says the stop hook runs complete, and agent-complete.sh runs complete",
-    "cargo xtask check ci > target/verification/ci.json; cargo xtask gaps --base origin/main for the receipt; cargo xtask complete --task agent-discoverability --base origin/main --report target/verification/ci.json"
-  ]
+  "remaining": [],
+  "review": {
+    "acceptance": "All four named tests exist in xtask/tests/help.rs and pass: help_narrows_to_the_commands_asked (task-artifact next --help gives exactly its entry, also with --help mid-call; help task-artifact gives the six task-artifact entries; check, workflow and release --help narrow; nonsense --help fails, points at cargo xtask help and carries no usage), wrong_arguments_print_the_matching_usage (complete --task X gets complete's usage and the flag-order clause, a second-word typo gets every command under the first, a bare check gets no order clause, nonsense lists no usage), help_flags_after_run_belong_to_the_application, and agent_stop_help_names_the_hook_that_runs (agent-stop and complete both name the stop hook, which runs complete and not agent-stop). Three of them failed on main's main.rs; the run test guards the new scan and passed on both. Added beyond the ticket: help::tests::every_key_reads_as_a_usage, an artifact-hook and a help entry, and removal of the verdict catch-all, whose router test now looks for the usage.",
+    "verification": "cargo xtask check ci passed 9 of 9 in a clean clone at the final commit (target/verification/ci.json); cargo xtask gaps --base origin/main is ok with one policy receipt (harness/transitions/agent-discoverability.json). Pages: blindspots.html pass in round 1 (0 findings); interventions.html pass in round 2 (0); interview.html pass in round 1 (0); reference.html pass in round 1 (0); plan.html pass in round 3 (0); implementation.html pass in round 2 (0); buy-in.html pass in round 1 (0); quiz.html pass in round 2 (0). No review finding is left open; non-blocking notes in reviews.json include the pages' length against their exemplars and quiz.html citing main.rs:29 where the pretty-print is on line 30.",
+    "assumptions": "Nothing parses xtask's help output except the new tests, so respelling the keys and moving the table breaks no reader (git grep). Agents read the error line, so a usage array next to it is additive. Verdict notes of exactly -h or --help now ask for help; such notes go through --notes - on stdin. The owner answered no discovery page; six calls are carried open in buy-in.html, including whether AGENTS.md should point at cargo xtask help (interview Q9, outside this ticket).",
+    "coverage": "Dispatch still matches fixed flag order, so the usage says the order instead of accepting another one. Nothing checks that the match arms and help::TABLE stay in step: an arm with no entry answers unknown command, and a lowercase placeholder in a key passes every test (recorded as a discovery). The one-line error shape the stop hook depends on is held by a code comment, not a test. A wrong --task id still answers without naming the task (discovery, out of scope). Codex and Claude Code were not run against the new help; the tests pin xtask's replies."
+  }
 }
