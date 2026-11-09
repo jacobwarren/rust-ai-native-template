@@ -48,6 +48,7 @@ GitHub template if desired. See [adoption steps](docs/ADOPTING.md).
 
 | Command | Purpose |
 | --- | --- |
+| `cargo xtask help [WORDS]` | List every command, or those starting with WORDS; `cargo xtask WORDS --help` does the same, and wrong arguments print the matching usage |
 | `cargo xtask doctor` | Check tool availability and configuration |
 | `cargo xtask map` | Inspect packages, layers, owners, and declared dependencies |
 | `cargo xtask check fast` | Formatting, architecture, docs, workspace tests |

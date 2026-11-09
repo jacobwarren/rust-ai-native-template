@@ -123,6 +123,12 @@ repository root (DOC014). The list is `CEREMONY_SKILLS` in
 `xtask/src/transitions.rs`; a skill that needs hooks, tool grants or scripts
 joins it.
 
+Every skill keeps its `.claude/skills/` and `.agents/skills/` copies identical
+(DOC007). The investigate skill is also an experiment's seed: its body must
+equal `docs/skills/investigate.md` (DOC009, `SEEDS` in `xtask/src/checks.rs`),
+so a change to it edits all three files, and only a measured, independently
+reviewed improvement should replace the seed (README.md).
+
 A small task that outgrows the tier is split, or restarted as a standard task on
 a new branch. The limit counts lines, not meaning: dense or minified lines count
 once, and one feature split across several small branches passes each gate. CI

@@ -345,7 +345,7 @@ fn verdict_records_findings_and_model() {
         short["error"]
             .as_str()
             .unwrap()
-            .contains("--model and --findings are required"),
+            .contains("--model MODEL --findings N"),
         "{short}"
     );
     let long = "m".repeat(65);
