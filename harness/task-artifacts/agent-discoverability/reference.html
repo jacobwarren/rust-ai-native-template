@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference: the task-artifact verdict arm, mapped onto every command</title>
+<style>
+  main { max-width: 64rem; }
+  code { font-size: .88em; background: var(--accent-soft); border-radius: .3rem; padding: 0 .3em; overflow-wrap: anywhere; }
+  pre code, .codecard code { background: none; padding: 0; }
+  .prompt { position: relative; padding-right: 7.5rem; }
+  .prompt .copy { position: absolute; top: var(--space-3); right: var(--space-3); min-height: 36px; padding: var(--space-1) var(--space-3); font-size: var(--text-small); }
+  .prompt blockquote { font-style: italic; margin: var(--space-2) 0 0; }
+  .paths { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-6); font: var(--text-small)/1.5 var(--font-code); color: var(--muted); margin: var(--space-4) 0 var(--space-8); }
+  .paths b { color: var(--ink); }
+  .sec-eyebrow { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 650; margin-top: var(--space-12); }
+  .num { display: inline-flex; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--ink); color: var(--surface); align-items: center; justify-content: center; font-size: .75rem; flex: none; }
+  h2 { margin-top: var(--space-2); }
+
+  /* three-stage flow */
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: var(--space-3); align-items: stretch; margin-top: var(--space-4); }
+  .flow .arrow { align-self: center; color: var(--muted); font-size: 1.5rem; }
+  .stage { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4); font-size: .93rem; }
+  .stage.ref { border: 2px solid var(--accent); background: var(--accent-soft); }
+  .stage h3 { margin: 0 0 var(--space-1); }
+  .stage .where { font: var(--text-small)/1.4 var(--font-code); color: var(--muted); margin-bottom: var(--space-2); overflow-wrap: anywhere; }
+  .stage ul { margin: 0; padding-left: 1.1rem; }
+  .stage li { margin-bottom: var(--space-1); }
+  .tag { display: inline-block; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 650; padding: .1rem .5rem; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+  .tag.ref { color: var(--accent); }
+  .tag.cap { color: var(--muted); }
+  .tag.sk { color: var(--warning); }
+  @media (max-width: 52rem) { .flow { grid-template-columns: 1fr; } .flow .arrow { transform: rotate(90deg); justify-self: center; } }
+
+  .facts { list-style: none; padding: 0; margin: var(--space-6) 0 0; }
+  .facts li { padding: var(--space-3) 0 var(--space-3) var(--space-6); border-bottom: 1px dashed var(--line); position: relative; }
+  .facts li::before { content: ""; position: absolute; left: .3rem; top: 1.15rem; width: .5rem; height: .5rem; background: var(--accent); transform: rotate(45deg); }
+  .facts li.warn::before { background: var(--danger); }
+
+  /* code pairs */
+  .pair { margin-top: var(--space-8); }
+  .pair-title { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); align-items: baseline; }
+  .pair-title h3 { margin: 0; }
+  .pt-n { font: var(--text-small)/1 var(--font-code); color: var(--warning); }
+  .pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-3); }
+  @media (max-width: 52rem) { .pair-grid { grid-template-columns: 1fr; } }
+  .codecard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .chead { display: flex; justify-content: space-between; gap: var(--space-2); align-items: center; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); background: var(--paper); font: .75rem/1.4 var(--font-code); color: var(--muted); }
+  .chead .fp { overflow-wrap: anywhere; }
+  .codecard pre { margin: 0; border: 0; border-radius: 0; flex: 1; font-size: .78rem; line-height: 1.6; white-space: pre; overflow-x: auto; overflow-wrap: normal; }
+  .codecard pre.wrap { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .kw { color: var(--danger); }
+  .st { color: var(--accent); }
+  .cm { color: var(--muted); font-style: italic; }
+  mark.hl { background: var(--warning-soft); color: inherit; border-bottom: 2px solid var(--warning); border-radius: .2rem; padding: 0 .1rem; cursor: default; }
+  mark.hl sup { font-size: .62rem; color: var(--warning); margin-left: .1rem; }
+  mark.hl.active { background: #f3dcc0; }
+  .notes { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+  .note { display: flex; gap: var(--space-3); align-items: baseline; font-size: .93rem; padding: var(--space-1) var(--space-2); border-radius: var(--control-radius); }
+  .note .nm { flex: none; width: 1.3rem; height: 1.3rem; border-radius: 50%; border: 1.5px solid var(--warning); color: var(--warning); display: inline-flex; align-items: center; justify-content: center; font: .7rem/1 var(--font-code); }
+  .note.active { background: var(--warning-soft); }
+  .note.active .nm { background: var(--warning); color: var(--surface); }
+
+  /* columns */
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-top: var(--space-4); }
+  @media (max-width: 52rem) { .three { grid-template-columns: 1fr; } }
+  .col { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4); font-size: .92rem; }
+  .col h3 { margin: 0 0 var(--space-2); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; }
+  .col.keep h3 { color: var(--accent); } .col.chg h3 { color: var(--warning); } .col.drop h3 { color: var(--muted); }
+  .col ul { margin: 0; padding: 0; list-style: none; }
+  .col li { padding: var(--space-2) 0; border-top: 1px dashed var(--line); }
+  .col li:first-child { border-top: 0; }
+
+  /* edge table */
+  .edge { min-width: 46rem; font-size: .9rem; background: var(--surface); }
+  .edge th { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+  .edge td code { white-space: normal; }
+  .pill { display: inline-block; font-size: .72rem; font-weight: 650; padding: .1rem .55rem; border-radius: 999px; white-space: nowrap; }
+  .pill.same { background: var(--accent-soft); color: var(--accent); }
+  .pill.chg { background: var(--warning-soft); color: var(--warning); }
+  .pill.open { background: #f7e3e5; color: var(--danger); }
+  .tbl-wrap { border: 1px solid var(--line); border-radius: var(--radius); }
+
+  /* sign-off */
+  .choice { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); margin-top: var(--space-4); }
+  .choice h3 { margin: 0 0 var(--space-1); }
+  .choice .why { font-size: .93rem; color: var(--muted); margin: 0 0 var(--space-2); }
+  .opt { display: flex; gap: var(--space-2); align-items: baseline; margin: var(--space-2) 0; font-size: .95rem; cursor: pointer; }
+  .opt input { flex: none; }
+  .rec { font-size: .72rem; color: var(--accent); font-weight: 650; text-transform: uppercase; letter-spacing: .06em; margin-left: var(--space-1); }
+  .reply-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+  #reply { white-space: pre-wrap; font: .85rem/1.55 var(--font-code); margin-top: var(--space-3); overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Point at a reference · agent-discoverability · before code</p>
+  <h1>Semantics map: the <code>task-artifact verdict</code> arm, applied to every command</h1>
+  <p class="lead">One command already answers wrong arguments with its own usage. This page shows what that arm actually does, how each part carries over to help and usage for all 23 help entries (<code>cargo xtask help</code>, counted), and where copying it as it is would go wrong. Nothing gets built until you sign off at the bottom.</p>
+
+  <div class="surface prompt">
+    <div class="eyebrow">The prompt</div>
+    <button type="button" class="copy secondary" id="copyPrompt">Copy prompt</button>
+    <blockquote id="promptText">The task-artifact verdict arm in xtask/src/main.rs, which answers wrong arguments with its own usage already behaves the way the per-command help and corrected harness descriptions should. Read it and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything.</blockquote>
+  </div>
+
+  <div class="paths">
+    <span><b>reference</b> xtask/src/main.rs:104-150 · piped_notes 54-68 · Err print 42-45</span>
+    <span><b>target</b> dispatch fallback main.rs:264 + a help table function (Scope, docs/plans/agent-discoverability.md)</span>
+    <span><b>read</b> router.rs:96-133 · tests router.rs:276, handover.rs:195 · commits 78e8fee, a766413</span>
+  </div>
+
+  <p class="muted">The earlier pages settled these, and this page builds on them without re-deriving them: three arms bind <code>--help</code> as a value (blindspot 01), the help keys use five placeholder spellings (blindspot 02), the stop hook reads xtask's JSON layout (blindspot 03), and the interview's calls on reply shape (Q2), flag position (Q3), matching (Q5) and removing this arm (Q6).</p>
+
+  <!-- 1 -->
+  <div class="sec-eyebrow"><span class="num">1</span>What the arm actually does</div>
+  <h2>A verdict call passes three checks, and only the first answers with usage</h2>
+  <div class="flow">
+    <div class="stage ref">
+      <span class="tag ref">the reference</span>
+      <h3>1 · Shape</h3>
+      <div class="where">match in dispatch · main.rs:110-127, 147-150</div>
+      <ul>
+        <li>Exactly 16 positional words, flags in one order.</li>
+        <li>Anything else that starts <code>task-artifact verdict</code> gets verdict's usage.</li>
+        <li><code>task-artifact verdikt</code> misses both arms and gets the generic error (264).</li>
+      </ul>
+    </div>
+    <div class="arrow" aria-hidden="true">&rarr;</div>
+    <div class="stage">
+      <h3>2 · Stdin</h3>
+      <div class="where">piped_notes · main.rs:54-68</div>
+      <ul>
+        <li>Only when the notes word is <code>-</code>.</li>
+        <li>Refuses more than 64 KiB, non-UTF-8 input or blank input.</li>
+        <li>Runs before any value is checked: with <code>--task nosuch</code> and empty stdin, the stdin error is the one reported (§4 row 8).</li>
+      </ul>
+    </div>
+    <div class="arrow" aria-hidden="true">&rarr;</div>
+    <div class="stage">
+      <h3>3 · Values</h3>
+      <div class="where">router::verdict · router.rs:106-133</div>
+      <ul>
+        <li>Task record, page name, verdict word, reviewer, findings count, model, page on disk.</li>
+        <li>Each error names its field (<code>--findings two must count…</code>), with no usage.</li>
+        <li>Then a row goes into reviews.json.</li>
+      </ul>
+    </div>
+  </div>
+
+  <ul class="facts">
+    <li><b>Two arms, one command, and their order matters.</b> The full 16-word slice comes first (main.rs:110). The catch-all <code>["task-artifact", "verdict", ..]</code> comes after it (147), so it sees only calls that do not fit. A missing flag, a reordered flag, an extra word and <code>--help</code> all get the same message (captured, §4).</li>
+    <li><b>It was written as a migration note.</b> 78e8fee (2026-11-04) made <code>--model</code> and <code>--findings</code> required and added the catch-all in the same diff. Its commit message says the flags come "in the order --reviewer --model --findings --notes". That is why the message ends "in that order; --model and --findings are required".</li>
+    <li><b>The message is a hand-made second copy of the help key.</b> The pattern in the message (148) matches the help key on line 96 word for word. Both 78e8fee and a766413 (which added <code>TEXT|-</code>) edited the two copies in step. Nothing checks that they stay equal.</li>
+    <li class="warn"><b>A completion test pins part of its wording.</b> <code>verdict_records_findings_and_model</code> sends the old six-flag form and asserts the error contains <code>--model and --findings are required</code> (xtask/tests/router.rs:326-349). harness/readiness.json:151 lists that test under <code>completion</code>. The interview's Q6 said a grep of xtask/tests finds no test of this text. That holds for the opening words, but this test asserts the closing clause. Removing the arm, which is the interview's call, fails this test unless its assertion changes (sign-off choice 1).</li>
+  </ul>
+
+  <!-- 2 -->
+  <div class="sec-eyebrow"><span class="num">2</span>Side by side: the reference &rarr; the general rule</div>
+  <h2>Matched excerpts</h2>
+  <p class="muted">Left: today's code, copied from main.rs and dedented, trimmed where the header says so. Right: a sketch of the change, not yet written. Highlights with the same number correspond; hover or tap one to light up its note.</p>
+
+  <!-- pair A -->
+  <div class="pair">
+    <div class="pair-title"><span class="pt-n">PAIR A / 3</span><h3>A catch-all for one command becomes the fallback for all of them</h3></div>
+    <div class="pair-grid">
+      <div class="codecard">
+        <div class="chead"><span class="fp">xtask/src/main.rs:147-150 and 264 · excerpt, comment added</span><span class="tag cap">today</span></div>
+<pre class="wrap"><code><mark class="hl" data-p="a1">["task-artifact", "verdict", ..]<sup>1</sup></mark> =&gt; Err(
+    <span class="st">"<mark class="hl" data-p="a3">task-artifact verdict takes --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-<sup>3</sup></mark>, in that order; <mark class="hl" data-p="a3">--model and --findings are required</mark>"</span>
+        .into(),
+),
+<span class="cm">// <mark class="hl" data-p="a2">after the full arm at line 110<sup>2</sup></mark>; line 264 catches the rest:</span>
+_ =&gt; Err(<span class="st">"unknown command or extra arguments; run cargo xtask help"</span>.into()),</code></pre>
+      </div>
+      <div class="codecard">
+        <div class="chead"><span class="fp">main.rs fallback + help table function (sketch)</span><span class="tag sk">sketch</span></div>
+<pre><code><span class="cm">// still the last arm, so a call that fits never gets here</span>
+<mark class="hl" data-p="a2">_ =&gt; Err(help::wrong_arguments(&amp;words).into()),<sup>2</sup></mark>
+
+<span class="kw">pub fn</span> wrong_arguments(words: &amp;[&amp;str]) -&gt; UsageError {
+    <span class="cm">// the longest run of typed words that some
+    // entry starts with; placeholders match any word</span>
+    <span class="kw">let</span> usage = <mark class="hl" data-p="a1">(1..=words.len()).rev()
+        .map(|n| starting_with(&amp;words[..n]))
+        .find(|m| !m.is_empty())<sup>1</sup></mark>
+        .unwrap_or_default(); <span class="cm">// unknown first word: none</span>
+    <mark class="hl" data-p="a3">UsageError { usage } <span class="cm">// keys of table()</span><sup>3</sup></mark>
+}</code></pre>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note" data-p="a1"><span class="nm">1</span><span><b>The prefix is the rule.</b> <code>["task-artifact", "verdict", ..]</code> is "the commands that start with the same words" (plan, Scope), written out by hand for one entry. The sketch tries the longest typed prefix first. That is the interview's Q5 call: <code>task-artifact nxt</code> gets all six task-artifact usages and <code>complete --task X</code> gets complete's. Placeholders such as <code>ID</code> must match any word, which only works once the keys use one spelling (blindspot 02). The verdict key adds a spelling that card did not list: alternations, <code>pass|revise|best</code> and <code>TEXT|-</code>, the only <code>|</code> in any key. Read as literal words, they never match a typed <code>pass</code>. The shorter run before them still picks out verdict alone, so the reply is the same either way.</span></div>
+      <div class="note" data-p="a2"><span class="nm">2</span><span><b>Placement carries the meaning.</b> The catch-all only ever sees calls the full arm rejected, because it comes second. The fallback keeps that by staying last. Arms that bind a free word (<code>["check", profile]</code> 217, <code>workflow</code> 222, <code>release</code> 232) match before any fallback, so <code>check nonsense</code> never gets usage. See §4 row 10 and sign-off choice 2.</span></div>
+      <div class="note" data-p="a3"><span class="nm">3</span><span><b>The text comes from the table, not a copy.</b> Today's pattern matches line 96 exactly because two commits edited both copies. Reading the keys from <code>table()</code> keeps them equal by construction. The closing clause <code>--model and --findings are required</code> exists only in this copy, and router.rs:348 tests for it.</span></div>
+    </div>
+  </div>
+
+  <!-- pair B -->
+  <div class="pair">
+    <div class="pair-title"><span class="pt-n">PAIR B / 3</span><h3>The notes word takes anything; a help scan has to come before it</h3></div>
+    <div class="pair-grid">
+      <div class="codecard">
+        <div class="chead"><span class="fp">xtask/src/main.rs:125-145 · trimmed (Review fields on one line)</span><span class="tag cap">today</span></div>
+<pre><code>    <span class="st">"--notes"</span>,
+    <mark class="hl" data-p="b1">notes,<sup>4</sup></mark>
+] =&gt; {
+    <span class="kw">let</span> piped = <span class="kw">if</span> <mark class="hl" data-p="b2">*notes == <span class="st">"-"</span><sup>5</sup></mark> {
+        <mark class="hl" data-p="b3">Some(piped_notes()?)<sup>6</sup></mark>
+    } <span class="kw">else</span> {
+        None
+    };
+    router::verdict(&amp;root, id, &amp;router::Review {
+        page, verdict, reviewer,
+        notes: piped.as_deref().unwrap_or(notes),
+        findings, model,
+    })
+}</code></pre>
+      </div>
+      <div class="codecard">
+        <div class="chead"><span class="fp">dispatch, before the match (sketch)</span><span class="tag sk">sketch</span></div>
+<pre><code><span class="cm">// nothing after `run --` belongs to xtask</span>
+<span class="kw">let</span> head = <mark class="hl" data-p="b2">args.split(|a| a == <span class="st">"--"</span>).next()<sup>5</sup></mark>
+    .unwrap_or_default();
+<span class="kw">if</span> <mark class="hl" data-p="b1">head.iter().any(|a| a == <span class="st">"--help"</span> || a == <span class="st">"-h"</span>)<sup>4</sup></mark> {
+    <span class="kw">let</span> words: Vec&lt;&amp;str&gt; = head.iter()
+        .filter(|a| *a != <span class="st">"--help"</span> &amp;&amp; *a != <span class="st">"-h"</span>)
+        .map(String::as_str).collect();
+    <mark class="hl" data-p="b3"><span class="kw">return</span> help::narrowed(&amp;words);<sup>6</sup></mark>
+}
+<span class="cm">// then the match, unchanged</span></code></pre>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note" data-p="b1"><span class="nm">4</span><span><b><code>notes</code> binds any word.</b> Today, a call of the right shape that ends in <code>--notes --help</code> stores <code>--help</code> as the review notes. The call went on to the page check (captured, §4 row 6). A scan that runs before the match turns it into a help request. That is the interview's Q3 call ("anywhere before the first <code>--</code>"). The reference arm itself cannot tell help from notes.</span></div>
+      <div class="note" data-p="b2"><span class="nm">5</span><span><b>One dash and two.</b> The stdin marker is a single <code>-</code>, and the scan stops at <code>--</code>. Neither can be mistaken for the other, so <code>--notes -</code> still reads stdin, and <code>run -- --help</code> (main.rs:239) still hands <code>--help</code> to the app, as the ticket's <code>help_flags_after_run_belong_to_the_application</code> requires.</span></div>
+      <div class="note" data-p="b3"><span class="nm">6</span><span><b>Stdin is read before any value is checked.</b> <code>piped_notes()?</code> runs after the shape matched and before <code>router::verdict</code>. Help returns before either, so a <code>--help</code> anywhere in a verdict call never consumes a piped review.</span></div>
+    </div>
+  </div>
+
+  <!-- pair C -->
+  <div class="pair">
+    <div class="pair-title"><span class="pt-n">PAIR C / 3</span><h3>The reply: one compact line on the Err path, which has to carry more than a string</h3></div>
+    <div class="pair-grid">
+      <div class="codecard">
+        <div class="chead"><span class="fp">xtask/src/main.rs:42-45 · config.rs:5</span><span class="tag cap">today</span></div>
+<pre><code>Err(error) =&gt; {
+    println!(<mark class="hl" data-p="c1"><span class="st">"{}"</span><sup>7</sup></mark>, json!({<span class="st">"ok"</span>:<span class="kw">false</span>,
+        <span class="st">"error"</span>:<mark class="hl" data-p="c2">error.to_string()<sup>8</sup></mark>}));
+    <mark class="hl" data-p="c3">ExitCode::FAILURE<sup>9</sup></mark>
+}
+
+<span class="cm">// config.rs:5</span>
+<span class="kw">pub type</span> Result&lt;T&gt; = std::result::Result&lt;T,
+    <mark class="hl" data-p="c2">Box&lt;dyn std::error::Error&gt;</mark>&gt;;</code></pre>
+      </div>
+      <div class="codecard">
+        <div class="chead"><span class="fp">main's Err arm (sketch)</span><span class="tag sk">sketch</span></div>
+<pre><code>Err(error) =&gt; {
+    <span class="kw">let mut</span> reply = json!({<span class="st">"ok"</span>:<span class="kw">false</span>,
+        <span class="st">"error"</span>:<mark class="hl" data-p="c3">error.to_string()<sup>9</sup></mark>});
+    <span class="kw">if let</span> Some(u) = <mark class="hl" data-p="c2">error.downcast_ref::&lt;UsageError&gt;()<sup>8</sup></mark> {
+        reply[<span class="st">"usage"</span>] = json!(u.usage);
+    }
+    println!(<mark class="hl" data-p="c1"><span class="st">"{reply}"</span><sup>7</sup></mark>); <span class="cm">// still one line</span>
+    ExitCode::FAILURE
+}</code></pre>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note" data-p="c1"><span class="nm">7</span><span><b>Compact, never pretty.</b> Errors print with <code>{}</code>, and Ok values with <code>{value:#}</code> (main.rs:29). The stop hook treats exit 1 as a refused claim only when the first line is <code>{</code> (agent-complete.sh:78, blindspot 03). Usage therefore stays on this path, and a malformed <code>complete</code> call still reads as "could not run".</span></div>
+      <div class="note" data-p="c2"><span class="nm">8</span><span><b>Only a string reaches the reply.</b> The error type is <code>Box&lt;dyn Error&gt;</code>, so the reference can only put the usage inside the sentence. A <code>usage</code> array beside it (the interview's Q2 call) needs a typed error found with <code>downcast_ref</code>.</span></div>
+      <div class="note" data-p="c3"><span class="nm">9</span><span><b>The usage stays in <code>error</code> as well.</b> The ticket's <code>wrong_arguments_print_the_matching_usage</code> and router.rs:348 both read the <code>error</code> string, so <code>UsageError</code>'s Display has to include each usage. Exit stays 1, and stdout stays one line with nothing on stderr (captured from the built xtask binary for <code>task-artifact verdict --help</code>: stdout 1 line of 210 bytes, stderr 0 bytes).</span></div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="sec-eyebrow"><span class="num">3</span>Behaviours</div>
+  <h2>Preserved, deliberately changed, dropped</h2>
+  <div class="three">
+    <div class="col keep">
+      <h3>Preserved exactly</h3>
+      <ul>
+        <li><b>Err path, one line, exit 1</b>: main.rs:42-45, so the hook's reading holds (note 7)</li>
+        <li><b>Catch after the arms that fit</b>: the fallback stays last, as 147 sits after 110 (note 2)</li>
+        <li><b>Usage words = help key words</b>: the same text the help table shows</li>
+        <li><b>Value errors stay where they are</b>: router.rs:115-133 keep their messages, with no usage</li>
+        <li><b><code>--notes -</code> reads stdin only after the shape matches</b>: main.rs:129-133</li>
+      </ul>
+    </div>
+    <div class="col chg">
+      <h3>Deliberately changed</h3>
+      <ul>
+        <li><b>Text source</b>: a hand copy becomes a lookup in <code>table()</code> (note 3)</li>
+        <li><b>Prefix</b>: two fixed words become the longest typed run, for every entry (note 1; interview Q5)</li>
+        <li><b><code>verdict --help</code></b>: an error with exit 1 becomes the verdict help entry with <code>ok:true</code></li>
+        <li><b><code>--notes --help</code> / <code>-h</code></b>: stored as notes today, a help request after (note 4; interview Q3)</li>
+        <li><b>Reply</b>: gains a <code>usage</code> array beside <code>error</code> (note 8; interview Q2)</li>
+      </ul>
+    </div>
+    <div class="col drop">
+      <h3>Dropped</h3>
+      <ul>
+        <li><b>The verdict-only arm</b>, main.rs:147-150 (interview Q6)</li>
+        <li><b>"--model and --findings are required"</b>: a 78e8fee migration note. The usage shows both flags. router.rs:348 must change (choice 1)</li>
+        <li><b>"in that order" as verdict's own clause</b>: order matters for every command (<code>complete</code> with reordered flags gets the generic error, interview Q1), so the generic usage error says it once</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="sec-eyebrow"><span class="num">4</span>Edge cases</div>
+  <h2>What each input gets today and after the change</h2>
+  <p class="muted">"Today" is captured: run through <code>cargo xtask</code> in a clean <code>git archive</code> copy, with stdin from <code>/dev/null</code>; every reply below exited 1. <code>T</code> stands for <code>agent-discoverability</code>, and the rest of a full verdict call is written <code>…</code>. That copy had no reference.html, so <code>--page reference.html</code> reaches the last value check. "After" is the sketch in §2, not built.</p>
+  <div class="table-scroll tbl-wrap">
+    <table class="edge">
+      <thead><tr><th style="width:4%">#</th><th style="width:22%">Input</th><th style="width:31%">Today · captured</th><th style="width:31%">After · sketch</th><th>Match</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>task-artifact verdict --help</code></td><td>Catch-all (pattern trimmed): <code>{"error":"task-artifact verdict takes --task ID … --notes TEXT|-, in that order; --model and --findings are required","ok":false}</code></td><td>The help scan answers first: exactly the verdict entry, <code>ok:true</code>, exit 0</td><td><span class="pill chg">changed</span></td></tr>
+        <tr><td>2</td><td><code>task-artifact verdict</code></td><td>Same catch-all message as row 1</td><td>Usage error whose <code>usage</code> holds the verdict entry</td><td><span class="pill same">same intent</span></td></tr>
+        <tr><td>3</td><td>Old six-flag form: <code>--task T --page blindspots.html --verdict pass --reviewer r --notes n</code></td><td>Same catch-all message. router.rs:348 asserts it contains <code>--model and --findings are required</code></td><td>Verdict usage, which shows <code>--model MODEL --findings N</code>. The assertion fails unless it changes</td><td><span class="pill open">test moves</span></td></tr>
+        <tr><td>4</td><td>Flags reordered: <code>--page reference.html --task T …</code></td><td>Same catch-all message</td><td>Verdict usage. Other commands gain this too: reordered <code>complete</code> flags get the generic error today (interview Q1)</td><td><span class="pill same">same</span></td></tr>
+        <tr><td>5</td><td>Full call plus a trailing <code>extra</code></td><td>Same catch-all message</td><td>The longest run stops before <code>extra</code>, so the reply is still verdict's usage</td><td><span class="pill same">same</span></td></tr>
+        <tr><td>6</td><td>Full call ending <code>--notes --help</code></td><td><code>{"error":"reference.html does not exist","ok":false}</code>: <code>--help</code> was taken as notes and reached router.rs:133</td><td>Help request: the verdict entry</td><td><span class="pill chg">changed</span></td></tr>
+        <tr><td>7</td><td><code>--verdict maybe …</code> / <code>--findings two …</code></td><td><code>verdict maybe must be pass, revise or best</code> / <code>--findings two must count the findings the reviewer listed</code></td><td>Unchanged. The shape matched, so the value checks answer, without usage</td><td><span class="pill same">same</span></td></tr>
+        <tr><td>8</td><td><code>--task nosuch … --notes -</code>, empty stdin</td><td><code>--notes - read nothing from stdin; …</code>. With <code>--notes n</code> instead: <code>No such file or directory (os error 2)</code>, which does not name the task (task_record.rs:94)</td><td>Unchanged. Neither is a shape miss, so usage cannot help. The unnamed file is outside this ticket</td><td><span class="pill same">same</span></td></tr>
+        <tr><td>9</td><td><code>task-artifact verdikt --task T</code></td><td><code>unknown command or extra arguments; run cargo xtask help</code></td><td>The longest run is <code>task-artifact</code>, so the reply lists all six task-artifact usages</td><td><span class="pill chg">newly covered</span></td></tr>
+        <tr><td>10</td><td><code>check nonsense</code></td><td><code>unknown profile: nonsense</code>. The <code>["check", profile]</code> arm bound the word, so the fallback never ran</td><td>Unchanged unless choice 2 below adds usage to free-word arms</td><td><span class="pill open">your call</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5 -->
+  <div class="sec-eyebrow"><span class="num">5</span>Sign-off</div>
+  <h2>Two things the reference cannot decide for you</h2>
+  <div id="choices"></div>
+  <label for="corr">Anything this map gets wrong (quote a note number or a row, for example "note 5" or "row 8")</label>
+  <textarea id="corr" placeholder="Leave empty to confirm as is"></textarea>
+  <div class="reply-actions">
+    <button type="button" id="copyReply">Copy reply</button>
+  </div>
+  <output id="reply" aria-live="polite"></output>
+
+  <footer>Output marked captured was run and pasted; excerpts are dedented, and the trimmed one says how. Code marked sketch does not exist yet.</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var CHOICES = [
+    {
+      id: "test",
+      title: "1 · router.rs:348 pins “--model and --findings are required”",
+      why: "verdict_records_findings_and_model is a completion test (readiness.json:151). Dropping the arm removes the phrase it looks for (§4 row 3).",
+      opts: [
+        { t: "Change the assertion to look for verdict's usage (--model MODEL --findings N). The test still proves the old form is refused and shown both flags.", rec: true },
+        { t: "Keep a verdict-only note: the usage error carries an optional per-entry hint, used once, so the phrase survives." },
+        { t: "Keep the verdict catch-all as it is and add the help scan before it (overrules interview Q6)." }
+      ]
+    },
+    {
+      id: "free",
+      title: "2 · Arms that bind a free word never reach the fallback",
+      why: "check, workflow and release accept any word and then fail on its value: “unknown profile: nonsense” (§4 row 10). The reference cannot reach them for the same reason.",
+      opts: [
+        { t: "Leave them. Their errors already name the bad word, and the ticket's acceptance tests cover shape misses only.", rec: true },
+        { t: "Add their entries' usage to those three errors too, e.g. check fast and check ci for an unknown profile." }
+      ]
+    }
+  ];
+  var picked = CHOICES.map(function (c) {
+    for (var i = 0; i < c.opts.length; i++) if (c.opts[i].rec) return i;
+    return 0;
+  });
+
+  var host = document.getElementById("choices");
+  CHOICES.forEach(function (c, ci) {
+    var box = document.createElement("div");
+    box.className = "choice";
+    var h = document.createElement("h3"); h.textContent = c.title; box.appendChild(h);
+    var p = document.createElement("p"); p.className = "why"; p.textContent = c.why; box.appendChild(p);
+    c.opts.forEach(function (o, oi) {
+      var lab = document.createElement("label"); lab.className = "opt";
+      var r = document.createElement("input");
+      r.type = "radio"; r.name = c.id; r.checked = picked[ci] === oi;
+      r.addEventListener("change", function () { picked[ci] = oi; render(); });
+      var s = document.createElement("span"); s.textContent = o.t;
+      if (o.rec) { var b = document.createElement("span"); b.className = "rec"; b.textContent = "recommended"; s.appendChild(b); }
+      lab.appendChild(r); lab.appendChild(s); box.appendChild(lab);
+    });
+    host.appendChild(box);
+  });
+
+  var corr = document.getElementById("corr");
+  var out = document.getElementById("reply");
+  function replyText() {
+    var c = corr.value.trim();
+    var lines = [c ? "Semantics map for the verdict arm: confirmed with corrections." : "Semantics confirmed for the verdict arm."];
+    CHOICES.forEach(function (ch, ci) {
+      var o = ch.opts[picked[ci]];
+      lines.push("- " + ch.title.replace(/^\d+ · /, "") + ": " + o.t + (o.rec ? " (recommended)" : " (overrides the recommendation)"));
+    });
+    if (c) lines.push("Corrections: " + c);
+    return lines.join("\n");
+  }
+  function render() { out.textContent = replyText(); }
+  corr.addEventListener("input", render);
+  render();
+
+  function copy(text, btn) {
+    var label = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1600); }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+    else fallback();
+  }
+  document.getElementById("copyReply").addEventListener("click", function () { copy(replyText(), this); });
+  document.getElementById("copyPrompt").addEventListener("click", function () {
+    copy(document.getElementById("promptText").textContent.trim(), this);
+  });
+
+  function setActive(p, on) {
+    document.querySelectorAll('[data-p="' + p + '"]').forEach(function (el) { el.classList.toggle("active", on); });
+  }
+  document.querySelectorAll("mark.hl, .note").forEach(function (el) {
+    var p = el.getAttribute("data-p");
+    if (!p) return;
+    el.addEventListener("mouseenter", function () { setActive(p, true); });
+    el.addEventListener("mouseleave", function () { setActive(p, false); });
+    el.addEventListener("click", function () {
+      var on = !el.classList.contains("active");
+      document.querySelectorAll(".active").forEach(function (a) { a.classList.remove("active"); });
+      setActive(p, on);
+    });
+  });
+})();
+</script>
+</body>
+</html>
