@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "base_commit": "cb7867824a228d6c0cc3c3e61704f30ee0e725bb",
+  "changes": [
+    {
+      "change": {
+        "after_sha256": "684a72687a97f42fb98fc322030819535161f2ac01bf9ed179ace87d03211693",
+        "before_sha256": "75e5ab72b49318a2d24ab48b6c336a42f70f2d0267d13816bf757c8e84f71f1a",
+        "subject": "policy"
+      },
+      "rationale": "Make cargo xtask explain itself where a fresh agent got lost. The help table moves from a json! literal in main.rs to help::TABLE in xtask/src/help.rs, the one copy that help, usage errors and tests read; its keys become usages (lowercase words, UPPERCASE placeholders, [ ] optional, | alternatives), and it gains entries for artifact-hook, which was dispatched but never listed, and help. cargo xtask WORDS --help or -h anywhere before -- lists only the commands that start with the words typed before the first flag, read before the match so check, workflow and release no longer take --help as their value; cargo xtask help WORDS does the same. Arguments no arm accepts get UsageError: the sentence names the matched command words and the usages that start with the longest run of typed words, adds that flags go in the order shown only when a usage has flags, and main adds a usage array; an unknown first word gets only the pointer to cargo xtask help. The reply stays one compact line, because agent-complete.sh reads a first line of { as a refusal. The verdict catch-all goes, so its test in xtask/tests/router.rs now looks for the usage. agent-stop is no longer called the hook gate: since 41c49e0 the default stop hook runs complete, which its entry now says too. harness/readiness.json lists help.rs and the five new tests under completion. No check is weakened; dispatch still matches fixed flag order, and verdict notes of exactly -h now ask for help (use --notes - for those).",
+      "evidence": [
+        "docs/plans/agent-discoverability.md",
+        "harness/task-artifacts/agent-discoverability/plan.html",
+        "harness/task-artifacts/agent-discoverability/implementation.html",
+        "xtask/tests/help.rs",
+        "xtask/tests/router.rs"
+      ],
+      "manual_justification": null
+    }
+  ]
+}

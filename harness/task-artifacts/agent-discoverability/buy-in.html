@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buy-in: cargo xtask explains itself</title>
+<style>
+  main { max-width: 64rem; }
+  code { font-size: .86em; background: var(--paper); border: 1px solid var(--line); border-radius: .3rem; padding: 0 .3em; overflow-wrap: anywhere; }
+  .src { font-size: .78rem; color: var(--muted); margin: var(--space-1) 0 0; }
+  .src code { font-size: .95em; }
+  button.small { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: .85rem; }
+  .tag { font-family: var(--font-code); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; padding: .1rem .45rem; border-radius: .3rem; border: 1px solid var(--accent); background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+
+  .prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .prompt-card .row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
+  .prompt-card blockquote { margin: var(--space-3) 0 0; font-style: italic; }
+
+  .doc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-top: var(--space-8); padding: clamp(1rem, 4vw, 2.5rem); }
+  .doc-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2); align-items: center; }
+  .chip { font-family: var(--font-code); font-size: .75rem; background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: .2rem .8rem; white-space: nowrap; }
+  .doc h2.title { font-size: clamp(1.6rem, 3.4vw, 2.2rem); margin: var(--space-3) 0 var(--space-2); }
+  .ask { color: var(--muted); margin: 0 0 var(--space-6); }
+  .ask strong { color: var(--ink); }
+  .doc h3.sec { font-size: 1.25rem; margin: var(--space-8) 0 var(--space-3); padding-top: var(--space-6); border-top: 1px solid var(--line); display: flex; gap: var(--space-3); align-items: baseline; }
+  .doc h3.sec .n { font-family: var(--font-code); font-size: .8rem; color: var(--accent); font-weight: 400; }
+
+  /* demo */
+  .steps { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-3); }
+  .steps button { min-height: 36px; border-radius: 999px; padding: .15rem .8rem; font-size: .82rem; }
+  .steps button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .steps .ctl { margin-left: auto; }
+  .panes { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .pane { background: var(--ink); color: var(--paper); border-radius: var(--control-radius); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .pane .bar { display: flex; justify-content: space-between; gap: var(--space-2); padding: .35rem .75rem; font-family: var(--font-code); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; background: #0f2420; color: #b9cbc4; }
+  .pane.after .bar { color: #9fe0c9; }
+  .pane .exit { font-weight: 650; }
+  .pane .exit.bad { color: #f2a7ae; }
+  .pane .exit.good { color: #9fe0c9; }
+  .pane pre { margin: 0; border: 0; border-radius: 0; background: none; color: inherit; font-size: .76rem; line-height: 1.5; min-height: 13.5rem; padding: .75rem; }
+  .pane .cmd { color: #f4e3c3; }
+  .pane .none { color: #b9cbc4; font-style: italic; }
+  .pane .caret { display: inline-block; width: .5em; background: #f4e3c3; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .stepnote { display: grid; grid-template-columns: 1fr auto; gap: var(--space-1) var(--space-4); align-items: baseline; margin-top: var(--space-3); }
+  .stepnote h4 { margin: 0; font-size: 1rem; }
+  .stepnote p { margin: 0; grid-column: 1 / -1; font-size: .93rem; max-width: 72ch; }
+  .stepnote .test { font-family: var(--font-code); font-size: .75rem; color: var(--accent); }
+
+  /* pitch + tiles */
+  .pitch { font-size: 1.08rem; max-width: 68ch; }
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+  .tile { border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3) var(--space-4); background: var(--paper); }
+  .tile .v { font-size: 1.7rem; font-weight: 650; line-height: 1.15; }
+  .tile .k { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .tile.open { background: var(--warning-soft); border-color: var(--warning); }
+  .tile.open .v { color: var(--warning); }
+
+  /* objections */
+  details.obj { padding: 0; margin-block: var(--space-2); overflow: hidden; }
+  details.obj summary { padding: var(--space-3) var(--space-4); display: flex; gap: var(--space-3); align-items: baseline; list-style: none; }
+  details.obj summary::-webkit-details-marker { display: none; }
+  details.obj summary .q { font-family: var(--font-code); font-size: .75rem; color: var(--accent); flex: none; }
+  details.obj summary::after { content: "+"; margin-left: auto; font-family: var(--font-code); color: var(--muted); }
+  details.obj[open] summary::after { content: "–"; }
+  details.obj[open] summary { background: var(--accent-soft); border-bottom: 1px solid var(--line); }
+  details.obj .a { padding: var(--space-3) var(--space-4) var(--space-4); font-size: .93rem; }
+  details.obj .a p { margin: 0 0 var(--space-2); }
+  details.obj pre { font-size: .74rem; margin: var(--space-2) 0; }
+
+  /* spec + ledger */
+  table.spec { font-size: .88rem; }
+  table.spec th { font-family: var(--font-code); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 400; background: var(--paper); }
+  table.spec td:first-child { font-weight: 650; width: 9rem; }
+  table.spec td.ref { font-family: var(--font-code); font-size: .75rem; color: var(--muted); width: 11rem; }
+  details.full { padding: var(--space-3) var(--space-4); }
+  .ledger { list-style: none; padding: 0; margin: 0; }
+  .ledger li { display: grid; grid-template-columns: 6.5rem 1fr; gap: var(--space-3); padding: var(--space-2) 0; border-bottom: 1px solid var(--line); font-size: .92rem; }
+  .ledger li:last-child { border-bottom: 0; }
+  .ledger .grp { font-family: var(--font-code); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-top: var(--space-3); grid-column: 1 / -1; border-bottom: 0; }
+  .st { font-family: var(--font-code); font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; padding: .1rem .4rem; border-radius: .3rem; text-align: center; align-self: start; }
+  .st.met { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+  .st.changed, .st.added { background: var(--warning-soft); color: var(--warning); border: 1px solid var(--warning); }
+  .st.pending { background: var(--surface); color: var(--danger); border: 1px dashed var(--danger); }
+  .st.out { background: var(--paper); color: var(--muted); border: 1px solid var(--line); }
+
+  /* risk + needs */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+  .card { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); background: var(--paper); }
+  .card.risk { border-left: 4px solid var(--warning); }
+  .card.need { border-left: 4px solid var(--accent); }
+  .card h4 { margin: 0 0 var(--space-2); font-family: var(--font-code); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 400; }
+  .card.risk h4 { color: var(--warning); }
+  .card.need h4 { color: var(--accent); }
+  .card ul { margin: 0; padding-left: 1.1rem; font-size: .92rem; }
+  .card li { margin-bottom: var(--space-2); }
+
+  fieldset.q { padding: var(--space-3) var(--space-4); margin-block: var(--space-3); background: var(--surface); }
+  fieldset.q legend { font-size: .98rem; }
+  fieldset.q .why { font-size: .86rem; color: var(--muted); margin: 0 0 var(--space-2); }
+  fieldset.q label { margin: var(--space-1) 0; font-size: .92rem; overflow-wrap: anywhere; }
+  fieldset.q .call { display: inline-block; font-family: var(--font-code); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-left: var(--space-2); }
+  .replyhead { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+  #reply { white-space: pre-wrap; font-family: var(--font-code); font-size: .8rem; }
+  .bottomline { margin-top: var(--space-6); padding: var(--space-4) var(--space-6); background: var(--accent-soft); border-radius: var(--control-radius); }
+
+  @media (max-width: 44rem) {
+    .panes, .cards { grid-template-columns: 1fr; }
+    .pane pre { min-height: 0; }
+    .ledger li { grid-template-columns: 1fr; gap: var(--space-1); }
+    .ledger .st { justify-self: start; }
+    .steps .ctl { margin-left: 0; }
+    .tiles { grid-template-columns: 1fr 1fr; }
+    table.spec, table.spec tbody, table.spec tr, table.spec td { display: block; width: auto !important; }
+    table.spec thead { display: none; }
+    table.spec tr { border-bottom: 1px solid var(--line); padding: var(--space-2) 0; }
+    table.spec td { border: 0; padding: var(--space-1) 0; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Buy-in doc · agent-discoverability · before merge</p>
+<h1>cargo xtask now explains itself to a fresh agent</h1>
+<p class="lead">The plan, the implementation notes and the evidence in one page: what an agent sees before and after, the questions a reviewer will ask, the ticket item by item, and the six calls still open.</p>
+
+<div class="prompt-card">
+  <div class="row"><span class="eyebrow">The prompt</span><button class="small secondary" id="copyPrompt" type="button">Copy prompt</button></div>
+  <blockquote id="promptText">Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping the per-command help and corrected harness descriptions. Lead with the demo.</blockquote>
+</div>
+
+<article class="doc">
+  <div class="doc-top"><span class="eyebrow">Ship proposal · cargo xtask help</span><span class="chip">3-minute read</span></div>
+  <h2 class="title">Help for one command, usage on wrong arguments, and two descriptions that were wrong</h2>
+  <p class="ask"><strong>Ask:</strong> a maintainer's approval of the policy change to <code>xtask/</code> and <code>harness/readiness.json</code>, and an answer to the <span id="askN"></span> open questions in section 07. Everything else is built and passing.</p>
+
+  <h3 class="sec"><span class="n">01</span> Watch it work</h3>
+  <div class="steps" id="steps" role="group" aria-label="Demo steps"></div>
+  <div class="panes" aria-live="polite">
+    <div class="pane before"><div class="bar"><span>main · before</span><span class="exit" id="exitB"></span></div><pre id="paneB"></pre></div>
+    <div class="pane after"><div class="bar"><span>this branch · after</span><span class="exit" id="exitA"></span></div><pre id="paneA"></pre></div>
+  </div>
+  <div class="stepnote"><h4 id="stepTitle"></h4><span class="test" id="stepTest"></span><p id="stepWhy"></p></div>
+  <p class="src">captured · <code>xtask</code> built from clean copies of <code>main</code> and this branch, run with stdin closed; stdout as printed, exit status in each bar. The typing is replayed; the text is not edited.</p>
+
+  <h3 class="sec"><span class="n">02</span> The pitch</h3>
+  <p class="pitch">A fresh agent answered twelve questions about the harness correctly, but opened 30 files to do it and was misled three times: <code>task-artifact next --help</code> answered with a generic error, <code>agent-stop</code> was called the hook gate when the stop hook runs <code>complete</code>, and the Task size docs said any non-ceremony skill changes freely when the investigate skill must also match its seed (<a href="#ticket">ticket, Problem</a>). <strong>Now every command answers <code>--help</code> with its own entry, wrong arguments come back with the usage of the commands they started, both descriptions say who runs what, and the seed rule sits where task size is explained.</strong> The help reply keeps its shape, every error is still one line for the stop hook, and the whole change reverts in one commit with no data or config to unwind.</p>
+  <div class="tiles" id="tiles"></div>
+
+  <h3 class="sec"><span class="n">03</span> What reviewers will ask</h3>
+  <div id="objections"></div>
+
+  <h3 class="sec" id="spec"><span class="n">04</span> Spec at a glance</h3>
+  <div class="table-scroll"><table class="spec">
+    <thead><tr><th>Area</th><th>As built</th><th>Where</th></tr></thead>
+    <tbody>
+      <tr><td>Command table</td><td>One <code>const</code>, <code>help::TABLE</code>: 25 entries, main's 23 plus <code>artifact-hook --task ID</code> and <code>help [WORDS]</code>. Keys are usages: lowercase words, UPPERCASE placeholders, <code>[ ]</code> optional, <code>|</code> alternatives; five keys were respelled to that rule.</td><td class="ref">help.rs:6-98</td></tr>
+      <tr><td>Help request</td><td><code>--help</code> or <code>-h</code> anywhere before the first <code>--</code>, read before dispatch, narrows to the command words typed before the first flag. <code>help WORDS</code> does the same; bare <code>--help</code> lists all.</td><td class="ref">help.rs:135-159; main.rs:83-85, 92-93</td></tr>
+      <tr><td>Wrong arguments</td><td><code>UsageError</code>: the usages that start with the longest run of typed words; adds "flags go in the order shown" only when a usage has flags. An unknown first word gets only the pointer to <code>cargo xtask help</code>.</td><td class="ref">help.rs:100-131, 161-186</td></tr>
+      <tr><td>Reply shape</td><td>Help: the same <code>{"ok":true,"commands":{USAGE: does}}</code> map, sorted. Errors: one compact line, plus a <code>usage</code> array when something matched.</td><td class="ref">main.rs:44-51</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="sec" id="ticket"><span class="n">05</span> The ticket, item by item</h3>
+  <p class="src" id="ledgerSum"></p>
+  <ul class="ledger" id="ledgerDiff"></ul>
+  <details class="full"><summary id="ledgerAll"></summary><ul class="ledger" id="ledger"></ul></details>
+
+  <h3 class="sec"><span class="n">06</span> Risk, rollback, and what I need from you</h3>
+  <div class="cards">
+    <div class="card risk">
+      <h4>Risk &amp; rollback</h4>
+      <ul>
+        <li><strong>Rollback is one revert.</strong> No data, schema or config changes; the help reply's shape is unchanged.</li>
+        <li><strong>Every error's wording changed.</strong> Anything matching <code>unknown command or extra arguments</code> would miss. Nothing in the repository does: outside this task's pages, <code>git grep</code> finds that text and <code>Hook gate</code> only in the ticket.</li>
+        <li><strong>Known gaps:</strong> fixed flag order (Q5), an unlisted future command (Q4), and verdict notes of exactly <code>-h</code> (open question 3).</li>
+      </ul>
+    </div>
+    <div class="card need">
+      <h4>What I need from you</h4>
+      <ul>
+        <li><strong>A maintainer's approval</strong> of the policy change. <code>gaps --base origin/main</code> lists five protected files, and its own reply says the receipt's rationale "is not independent approval".</li>
+        <li><strong>Answers to the open questions below.</strong> The interview's other eight answers and the plan's five choices were the agent's calls; nobody overruled them, and section 04 is what they built (interview.html, plan.html).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sec" id="open"><span class="n">07</span> Open questions and your reply</h3>
+  <p class="src">Each pick starts at the agent's call. Leave one alone and the reply says so.</p>
+  <fieldset class="q" id="shipQ"></fieldset>
+  <div id="questions"></div>
+  <label>Anything else (optional)<textarea id="extra" placeholder="e.g. who approves the policy change"></textarea></label>
+  <div class="replyhead"><strong id="replyCount"></strong><button type="button" id="copyReply">Copy reply</button></div>
+  <output id="reply" aria-live="polite"></output>
+
+  <div class="bottomline">Built, tested and green on <code>check ci</code>. Reply with your picks above, and the completion gate runs once the task record carries its review answers.</div>
+</article>
+
+<footer>Earlier pages for this task: blindspots, interventions, interview, reference, plan, implementation. Deviation and open-call wording is the implementation notes'.</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  function $(id) { return document.getElementById(id); }
+  function esc(x) { return String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function fmt(x) { return esc(x).replace(/`([^`]+)`/g, "<code>$1</code>"); }
+
+  // ---------- demo: captured from clean builds of main and this branch ----------
+  var OLD = '{"error":"unknown command or extra arguments; run cargo xtask help","ok":false}';
+  var STEPS = [
+    { cmd: "cargo xtask task-artifact next --help", short: "One command", title: "Help for one command",
+      why: "The ticket's own stumble: the agent asked one command for help and got the generic error. Now it gets that command's entry and nothing else.",
+      test: "help_narrows_to_the_commands_asked",
+      b: { x: 1, o: OLD },
+      a: { x: 0, o: '{\n  "commands": {\n    "task-artifact next --task ID": "Say which page to write, review, rewrite or commit next; exit 3 adds advice, such as a page edited after review"\n  },\n  "ok": true\n}' } },
+    { cmd: "cargo xtask complete --task X", short: "Wrong arguments", title: "Usage on wrong arguments",
+      why: "A call missing two flags now names them and their order; the usage array holds the line whole for an agent to copy. An unknown first word still gets only the pointer to `cargo xtask help`.",
+      test: "wrong_arguments_print_the_matching_usage",
+      b: { x: 1, o: OLD },
+      a: { x: 1, o: '{"error":"wrong arguments for complete; usage: complete --task ID --base REV --report PATH; flags go in the order shown","ok":false,"usage":["complete --task ID --base REV --report PATH"]}' } },
+    { cmd: "cargo xtask check --help", short: "--help as a value", title: "--help is no longer taken as a value",
+      why: "`check`, `workflow` and `release` bind any word, so they took `--help` as a profile, an id or a scope (blindspots card 01). The help scan now runs before dispatch.",
+      test: "help_narrows_to_the_commands_asked",
+      b: { x: 1, o: '{"error":"unknown profile: --help","ok":false}' },
+      a: { x: 0, o: '{\n  "commands": {\n    "check ci": "Full configured pre-merge checks; emits evidence JSON",\n    "check fast": "Short edit feedback loop; emits evidence JSON"\n  },\n  "ok": true\n}' } },
+    { cmd: "cargo xtask help | grep agent-stop", short: "agent-stop", title: "agent-stop described truly",
+      why: "No hook has run `agent-stop` since commit 41c49e0; `scripts/agent-complete.sh:76` runs `complete`. The test reads the hook script too, so the entry and the hook cannot drift apart silently.",
+      test: "agent_stop_help_names_the_hook_that_runs",
+      b: { x: 0, o: '    "agent-stop --task ID --base REV --report PATH": "Hook gate: completion or explicit partial/blocked handoff",' },
+      a: { x: 0, o: '    "agent-stop --task ID --base REV --report PATH": "One task\'s stop verdict, by hand: complete\'s gate when the record says complete, otherwise a partial or blocked handoff check that accepts a missing report. The default stop hook runs complete, not this",' } },
+    { cmd: "grep -n investigate docs/ARTIFACTS.md", short: "Seed rule", title: "The seed rule where task size is explained",
+      why: "Line 119, \"Any other skill can change in a small task\", is still true for most skills; the new paragraph after it says investigate is the exception and why. No test pins the sentence; `cargo xtask docs` passes with it.",
+      test: "docs only · cargo xtask docs",
+      b: { x: 1, o: "" },
+      a: { x: 0, o: "127:(DOC007). The investigate skill is also an experiment's seed: its body must\n128:equal `docs/skills/investigate.md` (DOC009, `SEEDS` in `xtask/src/checks.rs`)," } }
+  ];
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var cur = 0, playing = !reduce, timers = [];
+  function later(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function clear() { timers.forEach(clearTimeout); timers = []; }
+  function exitLabel(el, x, show) {
+    el.textContent = show ? "exit " + x : "";
+    el.className = "exit " + (show ? (x === 0 ? "good" : "bad") : "");
+  }
+  function paint(s, typed, done) {
+    var line = '<span class="cmd">$ ' + esc(s.cmd.slice(0, typed)) + "</span>" + (done ? "" : '<span class="caret">&nbsp;</span>');
+    $("paneB").innerHTML = line + (done ? "\n" + (s.b.o ? esc(s.b.o) : '<span class="none">no lines match</span>') : "");
+    $("paneA").innerHTML = line + (done ? "\n" + esc(s.a.o) : "");
+    exitLabel($("exitB"), s.b.x, done); exitLabel($("exitA"), s.a.x, done);
+  }
+  function renderSteps() {
+    $("steps").innerHTML = STEPS.map(function (s, i) {
+      return '<button type="button" class="secondary" data-i="' + i + '" aria-pressed="' + (i === cur) + '">' + (i + 1) + ". " + esc(s.short) + "</button>";
+    }).join("") + '<button type="button" class="secondary ctl" id="playBtn">' + (playing ? "Pause" : "Play") + "</button>";
+    $("steps").querySelectorAll("button[data-i]").forEach(function (b) {
+      b.addEventListener("click", function () { playing = false; show(+b.getAttribute("data-i")); });
+    });
+    $("playBtn").addEventListener("click", function () { playing = !playing; show(playing ? (cur + 1) % STEPS.length : cur); });
+  }
+  function show(i, still) {
+    clear(); cur = i; renderSteps();
+    var s = STEPS[i];
+    $("stepTitle").textContent = (i + 1) + " of " + STEPS.length + " · " + s.title;
+    $("stepTest").textContent = s.test;
+    $("stepWhy").innerHTML = fmt(s.why);
+    if (!playing || still) {
+      paint(s, s.cmd.length, true);
+      if (playing) later(6000, function () { show((cur + 1) % STEPS.length); });
+      return;
+    }
+    for (var k = 0; k <= s.cmd.length; k++) (function (k) { later(250 + k * 28, function () { paint(s, k, false); }); })(k);
+    var end = 250 + s.cmd.length * 28 + 350;
+    later(end, function () { paint(s, s.cmd.length, true); });
+    later(end + 5200, function () { show((cur + 1) % STEPS.length); });
+  }
+
+  // ---------- tiles ----------
+  var QUESTIONS = [
+    { id: "agents", ask: "A pointer to `cargo xtask help` in AGENTS.md",
+      why: "Interview Q9, left open. A fresh agent starts at AGENTS.md, which names xtask commands but never `help`; README's new row is one hop away (AGENTS.md:32). AGENTS.md is protected (transitions.rs:59) and the ticket rules out rewriting it.",
+      opts: ["README only, as built", "add `cargo xtask help [WORDS]` to AGENTS.md in this task", "add it in a follow-up task"] },
+    { id: "order", ask: "Flags must still come in the order shown",
+      why: "Every dispatch arm matches a fixed slice, so `complete --base B --task T --report R` is refused; it now gets the usage and the order clause instead of the generic error (captured in Q5 above). Any order needs table-driven dispatch across all arms.",
+      opts: ["accept: the usage and the order clause are enough", "open a follow-up task for table-driven dispatch"] },
+    { id: "notes", ask: "Verdict notes that are exactly -h",
+      why: "The scan reads `-h` anywhere before `--`, and `--notes` is verdict's last flag, so such a review now gets verdict's help and is not recorded. `--notes -` on stdin still takes any text (implementation notes, captured).",
+      opts: ["accept: such notes go through --notes -", "exempt the word after --notes from the help scan"] },
+    { id: "dev1", ask: "Deviation 1: the error names only literal command words",
+      why: "The plan named every typed word before the first flag, which would print `wrong arguments for release myscope`. The build names `release` (help.rs:171-178). No test pins it.",
+      opts: ["keep, and add a release myscope assertion to wrong_arguments_print_the_matching_usage", "keep as built, no new assertion", "revert to the plan's naming"] },
+    { id: "dev2", ask: "Deviation 2: the unit test on the table's spelling",
+      why: "Any all-uppercase token is a placeholder, so a key spelled like main's `workflow [id]` would break matching. `every_key_reads_as_a_usage` checks every token, and repeats two integration assertions.",
+      opts: ["keep it as built", "keep it, drop the two repeated assertions", "drop it; the four ticket tests are enough"] },
+    { id: "taskid", ask: "A wrong --task id says only \"No such file or directory\"",
+      why: "Found during the work and kept out of scope: `complete --task nope` answers `{\"error\":\"No such file or directory (os error 2)\",\"ok\":false}` (captured on this branch) without naming the task.",
+      opts: ["record it as a follow-up task", "leave it"] }
+  ];
+  var SHIP = { ask: "Ship it?", opts: ["ship, with the picks below", "hold; see my notes"] };
+  var TILES = [
+    { v: "23 → 25", k: "help entries", s: "`cargo xtask help` keys on main and on this branch" },
+    { v: "4 / 4", k: "ticket tests pass", s: "`cargo test -p xtask --test help`, plus 1 unit test" },
+    { v: "104", k: "xtask tests, 0 failed", s: "`cargo test -p xtask`, 17 binaries" },
+    { v: "9 / 9", k: "check ci passed", s: "`cargo xtask check ci` in a clean clone" },
+    { v: "266 → 253", k: "main.rs lines", s: "`wc -l`; the table moved to help.rs (244)" },
+    { v: String(QUESTIONS.length), k: "open questions", s: "section 07", open: true }
+  ];
+  function renderTiles() {
+    $("tiles").innerHTML = TILES.map(function (t) {
+      return '<div class="tile' + (t.open ? " open" : "") + '"><div class="v">' + esc(t.v) + '</div><div class="k">' + esc(t.k) + '</div><p class="src">' + fmt(t.s) + "</p></div>";
+    }).join("");
+    $("askN").textContent = QUESTIONS.length;
+  }
+
+  // ---------- objections ----------
+  var OBJ = [
+    { q: "Does the stop hook read failures differently now?",
+      a: "No. Every error, the new usage error included, still prints as one compact line (main.rs:44-51). The hook counts exit 1 as a refused claim only when the first output line is exactly `{`, which is a pretty-printed completion verdict (agent-complete.sh:78). A malformed `complete` call is still reported as \"could not run\", and the hook builds its own `complete` call in the order the usage shows (line 76).",
+      ref: "main.rs:44-51 · agent-complete.sh:76-78" },
+    { q: "Could anything that reads the old output break?",
+      a: "The help reply keeps its shape: a `commands` map from usage to sentence. Outside the new help tests, nothing in the repository reads xtask's map; the engine's own `commands` lists are a different protocol (interview Q4; `git grep '\"commands\"'`). Five keys are respelled. The two removed sentences, the generic error and \"Hook gate\", appear nowhere on this branch outside the ticket and this task's pages. The one test that pinned the old verdict wording now looks for the usage (router.rs:348).",
+      ref: "git grep on this branch · router.rs:344-350" },
+    { q: "Can a --help meant for the app reach xtask?",
+      a: "No. The scan stops at the first `--` (help.rs:139), so `run -- --help` passes the flag to starter-app, which answers with its own usage:",
+      pre: "$ cargo xtask run -- --help        # this branch, first lines\n{\n  \"application_stdout\": \"{\\\"error\\\":{\\\"code\\\":\\\"usage\\\",\\\"message\\\":\\\"usage: starter-app greet <name>\\\"}}\\n\",\n  \"ok\": false,\n  \"process\": {\n    \"argv\": [",
+      preLab: "captured · trimmed after five lines",
+      ref: "help_flags_after_run_belong_to_the_application" },
+    { q: "Can the table drift from dispatch again?",
+      a: "Partly guarded. Today every command word dispatch accepts has an entry; `artifact-hook` was the one missing. `every_key_reads_as_a_usage` checks each key's spelling and the agent-stop test pins the description that drifted. Not guarded: a new arm added without an entry would answer its wrong arguments with \"unknown command\" (help.rs:182-185). Table-driven dispatch would close that; the interview kept it out of this task (Q1).",
+      ref: "help.rs:9-98 vs main.rs match arms · interview Q1" },
+    { q: "Why must flags still come in order?",
+      a: "Each arm matches a fixed slice, and the interview kept the hand-written match. The error now says so instead of the generic pointer:",
+      pre: "$ cargo xtask complete --base B --task T --report R\n{\"error\":\"wrong arguments for complete; usage: complete --task ID --base REV --report PATH; flags go in the order shown\",\"ok\":false,\"usage\":[\"complete --task ID --base REV --report PATH\"]}",
+      preLab: "captured · this branch, exit 1",
+      ref: "help.rs:121-128 · open question 2" },
+    { q: "Where did the build depart from the plan?",
+      a: "In one wording rule and one extra test. The error names only the typed words that match literal command words, so `release myscope` gets \"wrong arguments for release\" (help.rs:171-178); and a unit test holds the table to its spelling (help.rs:222-243). Of 15 inputs run through the plan's reply script and the built binary, 13 agree and the two that differ are that wording rule.",
+      ref: "implementation.html, Deviations 1 and 2" }
+  ];
+  function renderObjections() {
+    $("objections").innerHTML = OBJ.map(function (o, i) {
+      return '<details class="obj"' + (i === 0 ? " open" : "") + '><summary><span class="q">Q' + (i + 1) + "</span>" + esc(o.q) + '</summary><div class="a"><p>' + fmt(o.a) + "</p>" +
+        (o.pre ? '<span class="tag">' + esc(o.preLab) + "</span><pre>" + esc(o.pre) + "</pre>" : "") +
+        '<p class="src">' + fmt(o.ref) + "</p></div></details>";
+    }).join("");
+  }
+
+  // ---------- ticket ledger (docs/plans/agent-discoverability.md) ----------
+  var LEDGER = [
+    { g: "Acceptance" },
+    { st: "met", t: "`help_narrows_to_the_commands_asked`: `task-artifact next --help` gives exactly that entry, `help task-artifact` all six, `nonsense --help` fails and points at `cargo xtask help`. Demo steps 1 and 3; test ok." },
+    { st: "met", t: "`wrong_arguments_print_the_matching_usage`: `complete --task X` contains complete's usage; `nonsense` gives \"unknown command nonsense; run cargo xtask help\" and no usage. Demo step 2; test ok." },
+    { st: "met", t: "`help_flags_after_run_belong_to_the_application`: `run -- --help` reply has no `commands` or `usage` key. Q3; test ok." },
+    { st: "met", t: "`agent_stop_help_names_the_hook_that_runs`: the entry says the default stop hook runs complete, and the test reads agent-complete.sh for `$xtask complete --task` and no `agent-stop`. Demo step 4; test ok." },
+    { g: "Scope" },
+    { st: "changed", t: "\"Move the help table into one function\": it is one `const`, `help::TABLE`, which `narrowed`, `usage_error` and the tests read. A const formats under rustfmt and tests can read it; it is still the only copy (plan A2 note 1)." },
+    { st: "met", t: "`--help` or `-h` after command words, and `help` before them, print only the matching entries (help.rs:135-159)." },
+    { st: "met", t: "Unknown command or wrong arguments print the usage of the commands that start with the same words; an unknown first word gets none. The named words follow Deviation 1." },
+    { st: "met", t: "`agent-stop` says what it checks and that the default stop hook runs `complete` (help.rs:77-80)." },
+    { st: "met", t: "Arguments after `run --` stay the application's (help.rs:139; Q3)." },
+    { st: "met", t: "docs/ARTIFACTS.md Task size states the DOC009 seed rule, as a paragraph because the guide's tables are parsed (ARTIFACTS.md:126-130; demo step 5)." },
+    { st: "met", t: "README.md's command table names `help` and `--help` (README.md:51)." },
+    { st: "met", t: "New `xtask/tests/help.rs`; its four tests, plus the unit test, join `completion` in harness/readiness.json, and `cargo xtask readiness` reports `completion` verified with no missing tests." },
+    { st: "added", t: "Beyond the ticket, each an interview call: five respelled keys, entries for `artifact-hook` and `help`, complete's description, the `usage` array, and the verdict catch-all removed (router.rs:348 updated)." },
+    { g: "Validation" },
+    { st: "met", t: "`cargo xtask check ci`: ok, all nine checks passed (format, architecture, docs, coordination, clippy, tests, rustdoc, scenarios, workflows)." },
+    { st: "met", t: "`cargo xtask gaps --base origin/main`: lists the five protected files; the receipt in harness/transitions matches, with no errors." },
+    { st: "pending", t: "`cargo xtask complete --task agent-discoverability …`: not yet. It refuses while the task record says partial and lacks its four review answers; it is the last step before merge." },
+    { g: "Out of scope" },
+    { st: "out", t: "`agent-stop` stays a command; its entry now says it is run by hand." },
+    { st: "out", t: "settings.local.json precedence and the FINDINGS wording difference are untouched." },
+    { st: "out", t: "AGENTS.md is not rewritten; whether it gets a one-line pointer is open question 1." }
+  ];
+  var ST = { met: "met", changed: "changed", added: "added", pending: "not yet", out: "kept out" };
+  function row(r) { return '<li><span class="st ' + r.st + '">' + ST[r.st] + "</span><span>" + fmt(r.t) + "</span></li>"; }
+  function renderLedger() {
+    var n = {}, items = LEDGER.filter(function (r) { return r.st; });
+    items.forEach(function (r) { n[r.st] = (n[r.st] || 0) + 1; });
+    $("ledgerSum").textContent = Object.keys(ST).filter(function (k) { return n[k]; }).map(function (k) { return n[k] + " " + ST[k]; }).join(" · ") +
+      ". Items from docs/plans/agent-discoverability.md; tests from cargo test -p xtask; validation run in a clean clone of this branch. The items that are not simply met:";
+    $("ledgerDiff").innerHTML = items.filter(function (r) { return r.st === "changed" || r.st === "added" || r.st === "pending"; }).map(row).join("");
+    $("ledgerAll").textContent = "Every ticket item, " + items.length + " in all";
+    $("ledger").innerHTML = LEDGER.map(function (r) { return r.g ? '<li class="grp">' + esc(r.g) + "</li>" : row(r); }).join("");
+  }
+
+  // ---------- open questions and reply ----------
+  var picks = {};
+  function radios(name, opts) {
+    return opts.map(function (o, j) {
+      var on = (picks[name] || 0) === j;
+      return '<label><input type="radio" name="' + name + '" value="' + j + '"' + (on ? " checked" : "") + ">" + fmt(o) +
+        (j === 0 ? '<span class="call">agent\'s call</span>' : "") + "</label>";
+    }).join("");
+  }
+  function renderQuestions() {
+    $("shipQ").innerHTML = "<legend>" + esc(SHIP.ask) + "</legend>" + radios("ship", SHIP.opts);
+    $("questions").innerHTML = QUESTIONS.map(function (q, i) {
+      return '<fieldset class="q"><legend>' + (i + 1) + ". " + fmt(q.ask) + '</legend><p class="why">' + fmt(q.why) + "</p>" + radios(q.id, q.opts) + "</fieldset>";
+    }).join("");
+    document.querySelectorAll("#shipQ input, #questions input").forEach(function (inp) {
+      inp.addEventListener("change", function () { picks[inp.name] = +inp.value; renderReply(); });
+    });
+  }
+  function replyText() {
+    var s = picks.ship || 0, lines = ["Buy-in: per-command help and corrected harness descriptions.", "Decision: " + SHIP.opts[s] + "."];
+    QUESTIONS.forEach(function (q, i) {
+      var j = picks[q.id] || 0;
+      lines.push((i + 1) + ". " + q.ask.replace(/`/g, "") + ": " + q.opts[j].replace(/`/g, "") + (j === 0 ? " (agent's call, left as is)" : " (my call)") + ".");
+    });
+    var x = $("extra").value.trim();
+    if (x) lines.push("Also: " + x);
+    return lines.join("\n");
+  }
+  function renderReply() {
+    var mine = QUESTIONS.filter(function (q) { return (picks[q.id] || 0) !== 0; }).length;
+    $("replyCount").textContent = mine + " of " + QUESTIONS.length + " open questions changed from the agent's call";
+    $("reply").textContent = replyText();
+  }
+  function copy(text, btn) {
+    var old = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = old; }, 1500); }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+    else fallback();
+  }
+
+  renderTiles(); renderObjections(); renderLedger(); renderQuestions(); renderReply(); show(0, true);
+  $("extra").addEventListener("input", renderReply);
+  $("copyReply").addEventListener("click", function () { copy(replyText(), this); });
+  $("copyPrompt").addEventListener("click", function () { copy($("promptText").textContent.trim(), this); });
+})();
+</script>
+</body>
+</html>

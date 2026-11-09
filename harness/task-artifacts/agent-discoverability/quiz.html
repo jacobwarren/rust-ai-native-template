@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz me before I merge: cargo xtask explains itself</title>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<style>
+  main { max-width: 60rem; }
+  code { font-size: .9em; background: var(--accent-soft); border-radius: 4px; padding: 0 .25em; }
+  .src { font-size: var(--text-small); color: var(--muted); margin: var(--space-2) 0 0; }
+  .src code { background: none; padding: 0; }
+  .prompt { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) 8.5rem var(--space-4) var(--space-6); margin-bottom: var(--space-8); }
+  .prompt .label { font-size: var(--text-small); font-weight: 650; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .prompt blockquote { background: none; border: 0; padding: 0; margin: var(--space-1) 0 0; font-style: italic; }
+  .prompt button { position: absolute; top: var(--space-4); right: var(--space-4); }
+  @media (max-width: 40rem) { .prompt { padding-right: var(--space-6); } .prompt button { position: static; margin-top: var(--space-3); } }
+
+  .report { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .report > header { padding: var(--space-6) var(--space-8); border-bottom: 1px solid var(--line); }
+  .report > header h2 { margin: var(--space-2) 0 var(--space-3); }
+  .rbody { padding: var(--space-2) var(--space-8) var(--space-8); }
+  @media (max-width: 40rem) { .report > header, .rbody { padding-inline: var(--space-4); } }
+  .chips { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: var(--space-3); margin-top: var(--space-4); }
+  .chip { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-2) var(--space-4); }
+  .chip b { display: block; font-size: 1.6rem; line-height: 1.2; }
+  .chip .add { color: var(--accent); } .chip .del { color: var(--danger); }
+  .chip span { font-size: var(--text-small); color: var(--muted); }
+
+  section { margin-top: var(--space-8); }
+  section > h3 { font-size: 1.25rem; margin: 0 0 var(--space-1); }
+  .sub { color: var(--muted); font-size: var(--text-small); margin-top: 0; }
+  ul.tight { padding-left: 1.2rem; margin: var(--space-2) 0; } ul.tight li { margin-bottom: var(--space-1); }
+
+  .flows { display: grid; grid-template-columns: 1fr 1.3fr; gap: var(--space-4); }
+  @media (max-width: 44rem) { .flows { grid-template-columns: 1fr; } }
+  .flow { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3); background: var(--paper); }
+  .flow.after { border-color: var(--accent); }
+  .fl { font-size: .75rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-2); }
+  .after .fl { color: var(--accent); }
+  .node { font-family: var(--font-code); font-size: .78rem; text-align: center; background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--control-radius); padding: var(--space-1) var(--space-2); overflow-wrap: anywhere; }
+  .node.new { border-style: dashed; border-color: var(--accent); }
+  .node.on { background: var(--accent-soft); border: 1.5px solid var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+  .node.bad.on { background: var(--warning-soft); border-color: var(--warning); box-shadow: 0 0 0 2px var(--warning); }
+  .ar { text-align: center; color: var(--muted); font-size: .72rem; line-height: 1.5; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+  .picks { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-4) 0 var(--space-2); }
+  .picks button { min-height: 36px; padding: var(--space-1) var(--space-3); font-family: var(--font-code); font-size: .8rem; }
+  .picks button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .outs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  @media (max-width: 44rem) { .outs { grid-template-columns: 1fr; } }
+  .outs pre, .fb pre { margin: 0; font-size: .74rem; padding: var(--space-2) var(--space-3); }
+  .ol { font-size: .75rem; font-weight: 650; color: var(--muted); margin-bottom: var(--space-1); }
+
+  .rule { border: 1px solid var(--line); border-radius: var(--radius); margin-top: var(--space-3); }
+  .rule h4 { margin: 0; padding: var(--space-2) var(--space-4); background: var(--paper); border-radius: var(--radius) var(--radius) 0 0; font-size: 1rem; }
+  .rule h4 i { font-style: normal; font-family: var(--font-code); color: var(--accent); margin-right: var(--space-2); }
+  .rule dl { margin: 0; padding: var(--space-2) var(--space-4) var(--space-3); display: grid; grid-template-columns: 4rem 1fr; gap: var(--space-2) var(--space-3); }
+  .rule dt { font-size: .7rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-top: .25rem; }
+  .rule dd { margin: 0; }
+  .rule dd .src { display: inline; }
+  @media (max-width: 30rem) { .rule dl { grid-template-columns: 1fr; gap: 0 var(--space-3); } .rule dt { padding-top: var(--space-2); } }
+  .leans { margin-top: var(--space-4); border-left: 4px solid var(--warning); background: var(--warning-soft); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .leans p { margin: 0; }
+  .leans b.lab { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--warning); }
+
+  .qhead { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--space-4); flex-wrap: wrap; }
+  .score { font-family: var(--font-code); font-size: var(--text-small); background: var(--paper); border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-2) var(--space-3); }
+  .q { border: 1.5px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4) var(--space-2); margin-top: var(--space-3); }
+  .q.right { border-color: var(--accent); } .q.wrong { border-color: var(--warning); }
+  .qn { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .qt { font-weight: 600; margin: var(--space-1) 0 var(--space-2); }
+  button.opt { display: flex; gap: var(--space-3); width: 100%; text-align: left; margin-bottom: 6px; min-height: 38px; padding: 6px var(--space-3); line-height: 1.4; background: var(--paper); color: var(--ink); border-color: var(--line); }
+  button.opt:hover:not(:disabled) { border-color: var(--accent); }
+  button.opt:disabled { cursor: default; opacity: 1; }
+  .opt .key { font-family: var(--font-code); color: var(--muted); flex: none; }
+  .opt.dim { opacity: .5 !important; }
+  .opt.sel-right { background: var(--accent-soft); border-color: var(--accent); }
+  .opt.sel-wrong { background: var(--warning-soft); border-color: var(--warning); }
+  .opt.reveal { border: 2px solid var(--accent); }
+  .fb { border-radius: var(--control-radius); padding: var(--space-3) var(--space-4); font-size: .95rem; }
+  .fb.good { background: var(--accent-soft); } .fb.bad { background: var(--warning-soft); }
+  .fb .ft { font-weight: 650; }
+  .fb p { margin: var(--space-1) 0 var(--space-2); }
+  .result { margin-top: var(--space-4); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .result.pass { background: var(--accent-soft); border: 1.5px solid var(--accent); }
+  .result.fail { background: var(--warning-soft); border: 1.5px solid var(--warning); }
+  .result h3 { margin: 0; }
+  .gaps { display: grid; gap: var(--space-2); }
+  .gaps label { margin: 0; display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--space-3); align-items: center; }
+  @media (max-width: 40rem) { .gaps label { grid-template-columns: 1fr; gap: var(--space-1); } }
+  .gaps select { width: 100%; padding: var(--space-2); }
+  #note { min-height: 3rem; }
+  #replyOut { font-size: .78rem; margin: var(--space-3) 0; }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Quiz me before I merge &middot; agent-discoverability</p>
+  <h1>Before you merge: how cargo xtask now explains itself</h1>
+  <p class="lead">Three short sections on what changed and why, then seven questions about inputs and edits the report never shows you. You pass at 7/7.</p>
+
+  <div class="prompt">
+    <div class="label">The prompt</div>
+    <button type="button" class="secondary" id="copyPrompt">Copy prompt</button>
+    <blockquote id="promptText">I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass.</blockquote>
+  </div>
+
+  <article class="report">
+    <header>
+      <p class="eyebrow">Merge readiness report</p>
+      <h2>One command table, read by help and by wrong-argument errors</h2>
+      <p>Before this change, xtask's help was a JSON literal inside <code>dispatch</code>, and any argument list no arm accepted got one generic error. Now <code>help::TABLE</code> holds every usage. A help scan runs before dispatch, and the last arm answers with the usages that match what was typed. Two descriptions that misled a fresh agent are corrected.</p>
+      <div class="chips">
+        <div class="chip"><b>7</b><span>files changed</span></div>
+        <div class="chip"><b class="add">+393</b><span>lines added</span></div>
+        <div class="chip"><b class="del">&minus;32</b><span>lines removed</span></div>
+        <div class="chip"><b>5</b><span>new tests, all pass</span></div>
+      </div>
+      <p class="src">Source: <code>git diff --shortstat main...HEAD -- xtask README.md docs/ARTIFACTS.md harness/readiness.json</code>, which leaves out the task's record, plan and pages; most lines are <code>xtask/src/help.rs</code> (+244) and <code>xtask/tests/help.rs</code> (+117). Tests: the four in <code>xtask/tests/help.rs</code> and <code>help::tests::every_key_reads_as_a_usage</code>; all of <code>cargo test -p xtask</code> passes in a clean copy of the branch.</p>
+    </header>
+    <div class="rbody">
+
+      <section id="sec-context">
+        <h3>Context: where a fresh agent got lost</h3>
+        <p class="sub">From the ticket's Problem section, <code>docs/plans/agent-discoverability.md</code>. The <a href="buy-in.html">buy-in page</a> replays each one on both builds.</p>
+        <ul class="tight">
+          <li><code>task-artifact next --help</code> got the same generic error as a typo, and no command ever showed its usage.</li>
+          <li><code>help</code> called <code>agent-stop</code> the "Hook gate", but the stop hook runs <code>complete</code> (<code>scripts/agent-complete.sh:76</code>, since commit 41c49e0).</li>
+          <li>"Task size" said any skill outside the ceremony can change freely. The investigate skill must also equal its seed (DOC009). That rule is now at <code>docs/ARTIFACTS.md:126-130</code>.</li>
+        </ul>
+      </section>
+
+      <section id="sec-model">
+        <h3>The mental model: one table, two readers</h3>
+        <p class="sub">Pick an input below the diagram to light its route. Replies are captured from xtask built from clean copies of main and this branch.</p>
+        <div class="flows">
+          <div class="flow">
+            <div class="fl">main</div>
+            <div class="node" data-n="b-match">match on fixed word slices</div>
+            <div class="ar">&darr;</div>
+            <div class="two">
+              <div class="node" data-n="b-arm">an arm runs; <code>check</code>, <code>workflow</code>, <code>release</code> take any word</div>
+              <div class="node bad" data-n="b-catch"><code>_</code> &rarr; "unknown command or extra arguments"</div>
+            </div>
+          </div>
+          <div class="flow after">
+            <div class="fl">this branch</div>
+            <div class="node new" data-n="a-scan">help::requested &mdash; <code>--help</code> or <code>-h</code> before the first <code>--</code>?</div>
+            <div class="two">
+              <div><div class="ar">&darr; yes</div><div class="node new" data-n="a-narrow">narrowed(command words)</div></div>
+              <div><div class="ar">&darr; no</div><div class="node" data-n="a-match">match on fixed word slices</div>
+                <div class="two"><div><div class="ar">&darr;</div><div class="node" data-n="a-arm">an arm runs</div></div><div><div class="ar">&darr; none fits</div><div class="node new bad" data-n="a-usage">usage_error</div></div></div>
+              </div>
+            </div>
+            <div class="ar">&uarr; both read &uarr;</div>
+            <div class="node new" data-n="a-table">help::TABLE &middot; 25 usages, read by both</div>
+          </div>
+        </div>
+        <p class="src">Branch: <code>main.rs:81-85</code> (scan), <code>main.rs:251</code> (last arm), <code>help.rs:9</code> (TABLE). Main: <code>git show main:xtask/src/main.rs</code>, the <code>json!</code> help literal and the <code>_</code> arm.</p>
+        <div class="picks" id="picks" role="group" aria-label="Inputs to trace"></div>
+        <div class="outs">
+          <div><div class="ol" id="labB"></div><pre id="outB"></pre></div>
+          <div><div class="ol" id="labA"></div><pre id="outA"></pre></div>
+        </div>
+        <p class="src" id="traceWhy"></p>
+      </section>
+
+      <section id="sec-rules">
+        <h3>Three rules the diff does not spell out</h3>
+        <p class="sub">Each one decides what an agent sees for an input nobody tested.</p>
+
+        <div class="rule" id="r-scan">
+          <h4><i>01</i>The scan stops at the first <code>--</code>, and command words stop at the first flag</h4>
+          <dl>
+            <dt>What</dt><dd><code>requested</code> cuts the arguments at the first <code>--</code>. If any word before that cut is exactly <code>--help</code> or <code>-h</code>, no arm runs. Only the words before the first word that starts with <code>-</code> count as command words. <code>narrowed</code> then prints every entry whose usage starts with those words. <span class="src">(<code>help.rs:135-159</code>, <code>main.rs:81-85</code>)</span></dd>
+            <dt>Why</dt><dd>The arms <code>["check", profile]</code>, <code>["workflow", id]</code> and <code>["release", scope, ...]</code> bind any word in that slot, so on main <code>check --help</code> asked for a profile named <code>--help</code>. A scan inside the match would come too late. Words after <code>--</code> belong to the starter app.</dd>
+            <dt>Cost</dt><dd>A value that is exactly <code>-h</code> counts as a help request. <code>task-artifact verdict … --notes -h</code> now prints verdict's entry and records nothing (captured, exit 0). Notes like that have to go through <code>--notes -</code>.</dd>
+          </dl>
+        </div>
+
+        <div class="rule" id="r-keys">
+          <h4><i>02</i>Usage keys are read by a matcher, so how a key is spelled changes behaviour</h4>
+          <dl>
+            <dt>What</dt><dd>A key splits on spaces and drops <code>[ ]</code>. An all-UPPERCASE token (<code>ID</code>, <code>SCOPE</code>, <code>ARGS...</code>) is a placeholder and matches any word that does not start with <code>--</code>. Any other token matches only itself, and <code>a|b</code> matches either. Five of main's keys were respelled to this rule, for example <code>workflow [id]</code> became <code>workflow [ID]</code> (compare <code>git show main:xtask/src/main.rs</code>).</dd>
+            <dt>Gap</dt><dd><code>every_key_reads_as_a_usage</code> checks which characters each token uses, not what the token was meant to be. A lowercase word meant as a placeholder passes it. The integration tests pin the spelling of <code>workflow [ID]</code> and <code>release SCOPE --report PATH</code>, and nothing pins a key added later. <span class="src">(<code>help.rs:188-216</code>, test at <code>help.rs:222-243</code>, <code>tests/help.rs:35-41</code>)</span></dd>
+          </dl>
+        </div>
+
+        <div class="rule" id="r-errors">
+          <h4><i>03</i>Wrong arguments get the usages under the longest matching prefix, on one compact line</h4>
+          <dl>
+            <dt>What</dt><dd><code>usage_error</code> tries every typed word, then one word fewer each time, until some usage starts with them. The error names only the typed words that matched literal command words, so <code>release myscope</code> says "wrong arguments for release". It adds "flags go in the order shown" only when a matched usage has a <code>--name</code> flag. If not even the first word matches, the reply is "unknown command WORD; run cargo xtask help" with no <code>usage</code> array. <span class="src">(<code>help.rs:100-131</code>, <code>161-186</code>, <code>main.rs:251</code>)</span></dd>
+            <dt>Why</dt><dd>The arms still match fixed slices, because the interview kept the hand-written match, so that order clause is the one rule an agent cannot see. Successful replies print pretty, so their first line is <code>{</code> (<code>main.rs:29</code>). Errors stay on one line (<code>main.rs:43-53</code>). That is because the stop hook reads exit 1 with a first line of exactly <code>{</code> as the gate's verdict, and reads anything else as "could not run" (<code>agent-complete.sh:77-78</code>).</dd>
+            <dt>Gap</dt><dd>Only a comment holds that one-line shape (<code>main.rs:44</code>). In a scratch copy with errors pretty-printed, every <code>cargo test -p xtask</code> binary still passed.</dd>
+          </dl>
+        </div>
+
+        <p class="src"><strong>Also in the diff.</strong> <code>agent-stop</code>'s entry now says the default stop hook runs <code>complete</code>, and <code>agent_stop_help_names_the_hook_that_runs</code> reads <code>scripts/agent-complete.sh</code> with <code>include_str!</code> (<code>tests/help.rs:108-116</code>). TABLE has main's 23 entries plus <code>artifact-hook --task ID</code> (dispatched but never listed) and <code>help [WORDS]</code>. The verdict catch-all arm is gone, so <code>tests/router.rs:348</code> now looks for its usage text. <code>harness/readiness.json</code> lists <code>help.rs</code> and the five tests under <code>completion</code>, and <code>README.md:51</code> names <code>help</code>.</p>
+
+        <div class="leans" id="sec-leans">
+          <p><b class="lab">Existing structure this leans on</b><br>
+          <strong>The match arms in <code>dispatch</code> and <code>TABLE</code> are kept in step by hand.</strong> The match decides whether a command runs. TABLE decides what its help and its usage errors say. Nothing checks that every arm has an entry, or that every entry has an arm. Today they agree. Table-driven dispatch would close the gap, and the interview left it out of scope.</p>
+        </div>
+      </section>
+
+      <section id="quiz-sec">
+        <div class="qhead">
+          <div>
+            <h3>Seven questions before you merge</h3>
+            <p class="sub">Each asks what xtask does for an input or an edit this report does not show. One try each. A reset shuffles the options.</p>
+          </div>
+          <div class="score" aria-live="polite">Score <b id="scoreNow">0</b> / <b id="scoreMax">7</b> &middot; <span id="doneNow">0</span> answered</div>
+        </div>
+        <div id="quiz"></div>
+        <div class="result pass" id="resPass" hidden>
+          <h3>Cleared to merge, on your understanding</h3>
+          <p>You can predict what an agent sees for help and for wrong arguments, and which gaps no test holds. Make your call on those three gaps below and send the reply.</p>
+        </div>
+        <div class="result fail" id="resFail" hidden>
+          <h3 id="failTitle">Not yet</h3>
+          <p>Re-read these, then reset. The options come back in a new order.</p>
+          <ul class="tight" id="failLinks"></ul>
+          <button type="button" class="secondary" id="retry">Reset quiz</button>
+        </div>
+      </section>
+
+      <section id="sec-reply">
+        <h3>Your reply</h3>
+        <p class="sub">Built from your answers and the three calls below. Any question you have not answered is listed as not answered.</p>
+        <div class="gaps" id="gaps"></div>
+        <label>Anything else (optional)<textarea id="note"></textarea></label>
+        <pre id="replyOut" aria-live="polite"></pre>
+        <button type="button" id="copyReply">Copy reply</button> <span class="src" id="copied"></span>
+      </section>
+    </div>
+  </article>
+</main>
+<script>
+(function () {
+  "use strict";
+  function $(id) { return document.getElementById(id); }
+  function esc(x) { return String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function fmt(x) { return esc(x).replace(/`([^`]+)`/g, "<code>$1</code>"); }
+  function copy(text, done) {
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta);
+      ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+    else fallback();
+  }
+  $("copyPrompt").addEventListener("click", function () {
+    var b = this; copy($("promptText").textContent, function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy prompt"; }, 1500); });
+  });
+
+  // ---- tracer: replies captured from xtask built from clean copies of main and this branch ----
+  var GENERIC = '{"error":"unknown command or extra arguments; run cargo xtask help","ok":false}';
+  var RUN = '{\n  "application_stdout": "{\\"error\\":{\\"code\\":\\"usage\\",\\"message\\":\\"usage: starter-app greet <name>\\"}}\\n",\n  "ok": false,\n  "process": {\n    "argv": ["@app", "--help"],\n    …';
+  var TRACE = [
+    { w: "task-artifact next --help", on: ["b-match", "b-catch", "a-scan", "a-narrow", "a-table"],
+      bo: GENERIC, bx: 1,
+      ao: '{\n  "commands": {\n    "task-artifact next --task ID": "Say which page to write, review, rewrite or commit next; exit 3 adds advice, such as a page edited after review"\n  },\n  "ok": true\n}', ax: 0,
+      why: "The scan finds `--help`. The command words are `task-artifact next`, and exactly one usage starts with them. Pinned by `help_narrows_to_the_commands_asked`." },
+    { w: "check --help", on: ["b-match", "b-arm", "a-scan", "a-narrow", "a-table"],
+      bo: '{"error":"unknown profile: --help","ok":false}', bx: 1,
+      ao: '{\n  "commands": {\n    "check ci": "Full configured pre-merge checks; emits evidence JSON",\n    "check fast": "Short edit feedback loop; emits evidence JSON"\n  },\n  "ok": true\n}', ax: 0,
+      why: "On main, the arm `[\"check\", profile]` took `--help` as a profile name. Here the scan runs first (rule 01)." },
+    { w: "complete --task X", on: ["b-match", "b-catch", "a-scan", "a-match", "a-usage", "a-table"],
+      bo: GENERIC, bx: 1,
+      ao: '{"error":"wrong arguments for complete; usage: complete --task ID --base REV --report PATH; flags go in the order shown","ok":false,"usage":["complete --task ID --base REV --report PATH"]}', ax: 1,
+      why: "There is no help flag, and no arm accepts the call. The last arm builds the usage error, and the `Err` arm adds `usage` on the same line (rule 03). Pinned by `wrong_arguments_print_the_matching_usage`." },
+    { w: "run -- --help", on: ["b-match", "b-arm", "a-scan", "a-match", "a-arm"],
+      bo: RUN, bx: 1, ao: RUN, ax: 1, trimmed: true,
+      why: "The scan stops at `--`, so `--help` reaches starter-app, which answers with its own usage. Both builds give the same reply, and `help_flags_after_run_belong_to_the_application` keeps it that way." }
+  ];
+  function trace(i) {
+    var t = TRACE[i], cut = t.trimmed ? " · trimmed at …" : "";
+    $("picks").querySelectorAll("button").forEach(function (b, j) { b.setAttribute("aria-pressed", String(j === i)); });
+    document.querySelectorAll("#sec-model .node").forEach(function (n) { n.classList.toggle("on", t.on.indexOf(n.getAttribute("data-n")) >= 0); });
+    $("labB").textContent = "main · captured · exit " + t.bx + cut;
+    $("labA").textContent = "this branch · captured · exit " + t.ax + cut;
+    $("outB").textContent = "$ cargo xtask " + t.w + "\n" + t.bo;
+    $("outA").textContent = "$ cargo xtask " + t.w + "\n" + t.ao;
+    $("traceWhy").innerHTML = fmt(t.why);
+  }
+  $("picks").innerHTML = TRACE.map(function (t, i) {
+    return '<button type="button" class="secondary" aria-pressed="false" data-i="' + i + '">' + esc(t.w) + "</button>";
+  }).join("");
+  $("picks").addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) trace(+b.getAttribute("data-i")); });
+  trace(0);
+
+  // ---- quiz: opts[0] is the right answer; the order shown is shuffled on every build ----
+  var QS = [
+    { q: "An agent types `cargo xtask workflow nightly -h`. What does it get?",
+      opts: ["The `workflow [ID]` entry, exit 0, and no workflow runs",
+             "The nightly workflow runs, and `-h` is ignored",
+             "Exit 1: \"wrong arguments for workflow nightly\"",
+             "Every command, because `nightly` is not a command word"],
+      sec: "r-scan", label: "Rule 01 and rule 02",
+      why: "The scan sees `-h`, so no arm runs. The command words are `workflow nightly`. `ID` is uppercase, so it is a placeholder that accepts `nightly`, and the one workflow key matches.",
+      out: 'captured · exit 0\n{\n  "commands": {\n    "workflow [ID]": "Run independent stateful process workflows; capture requests, replies and golden comparisons"\n  },\n  "ok": true\n}' },
+    { q: "An agent types `cargo xtask task-artifact --task X next --help`. What does it get?",
+      opts: ["All six `task-artifact` entries, exit 0",
+             "Only `task-artifact next --task ID`, exit 0",
+             "Exit 1 with the six `task-artifact` usages, because the flag comes before `next`",
+             "Exit 1: \"unknown command task-artifact\""],
+      sec: "r-scan", label: "Rule 01: command words stop at the first flag",
+      why: "`--help` comes before any `--`, so this is a help request. The command words stop at `--task`, so they are just `task-artifact`, and six usages start with it. `next`, after the flag, is never read.",
+      out: 'captured · exit 0 · trimmed to the six keys\ntask-artifact check --task ID\ntask-artifact guard --task ID\ntask-artifact next --task ID\ntask-artifact screenshot --task ID\ntask-artifact style --task ID\ntask-artifact verdict --task ID --page PAGE …' },
+    { q: "An agent types `cargo xtask help check fast extra`. What does it get?",
+      opts: ["Exit 1: \"wrong arguments for check fast; usage: check fast\"",
+             "The `check fast` entry, exit 0; `extra` is ignored",
+             "Exit 1: \"wrong arguments for check; usage: check fast, check ci\"",
+             "Exit 1: \"unknown command help\""],
+      sec: "r-errors", label: "Rule 03: the longest matching prefix",
+      why: "`help WORDS` narrows to `check fast extra`. No key has three words that fit, so `narrowed` returns the usage error. Dropping `extra` leaves `check fast`, which matches one key, and both words are literals, so both are named. That key has no flags, so there is no order clause.",
+      out: 'captured · exit 1\n{"error":"wrong arguments for check fast; usage: check fast","ok":false,"usage":["check fast"]}' },
+    { q: "An agent types `cargo xtask run --release -- --help`. What does it get?",
+      opts: ["Exit 1: \"wrong arguments for run; usage: run -- ARGS...\", and nothing is built",
+             "Exit 1: the same, with \"; flags go in the order shown\" appended",
+             "xtask's help entry for `run`, exit 0",
+             "starter-app's own usage, as with `run -- --help`"],
+      sec: "r-errors", label: "Rule 01 and rule 03",
+      why: "The scan only looks before the first `--`, at `run --release`, and finds no help flag. No arm takes `run --release`, so the usage error falls back to `run`. Its key's only flag-like token is `--`, which is not a `--name` flag, so there is no order clause.",
+      out: 'captured · exit 1\n{"error":"wrong arguments for run; usage: run -- ARGS...","ok":false,"usage":["run -- ARGS..."]}' },
+    { q: "A follow-up prints errors pretty, like successful replies, to make the usage list easier to read. A `complete` call then fails because its task record does not exist. What does the stop hook tell the agent?",
+      opts: ["\"Completion claim refused\", with advice to refresh evidence, even though the gate never got to judge anything",
+             "\"Completion claim not checked\", with advice to fix the build, as before",
+             "Nothing different, because the hook reads only the exit code",
+             "Nothing, because the change fails the help tests and never merges"],
+      sec: "r-errors", label: "Rule 03: one compact line for the hook",
+      why: "The hook treats exit 1 with a first line of exactly `{` as the gate's verdict (`agent-complete.sh:78`). A pretty error starts with `{`, so \"could not run\" turns into \"refused\". In a scratch copy with that change, every xtask test still passed.",
+      out: 'captured · scratch copy with errors pretty-printed · exit 1\n$ cargo xtask complete --task nosuch --base HEAD --report r.json\n{\n  "error": "No such file or directory (os error 2)",\n  "ok": false\n}' },
+    { q: "Someone adds a working arm `[\"purge\", \"--task\", id]` to dispatch and forgets TABLE. What do `cargo xtask purge --help` and `cargo xtask purge --task` (no id) answer?",
+      opts: ["Both: exit 1, \"unknown command purge; run cargo xtask help\", even though `purge --task T` works",
+             "`--help` prints purge's usage, worked out from the arm",
+             "The build fails, because TABLE must cover every arm",
+             "`--help` prints every command, because nothing narrowed"],
+      sec: "sec-leans", label: "Callout: the arms and TABLE are kept in step by hand",
+      why: "The scan runs first and `narrowed` finds no entry for `purge`, so it returns the usage error. With no key under `purge` at any prefix length, that error is \"unknown command\". `purge --task` takes the same path through the last arm. Every xtask test still passed.",
+      out: 'captured · scratch copy with the arm and no entry · each reply joined onto one line\n$ cargo xtask purge --task T        → {"ok": true, "purged": "T"}, exit 0\n$ cargo xtask purge --help          → {"error":"unknown command purge; run cargo xtask help","ok":false}, exit 1\n$ cargo xtask purge --task          → {"error":"unknown command purge; run cargo xtask help","ok":false}, exit 1' },
+    { q: "Someone adds the key `deploy env --task ID`, meaning `env` as a placeholder, and the arm `[\"deploy\", _env, \"--task\", id]`. What happens?",
+      opts: ["Every test passes and `deploy staging --task T` runs, but `deploy staging --help` answers exit 1 with deploy's usage",
+             "`every_key_reads_as_a_usage` fails, because `env` is not uppercase",
+             "Every test passes and `deploy staging --help` prints deploy's entry",
+             "`deploy staging --task T` is refused with deploy's usage"],
+      sec: "r-keys", label: "Rule 02: how a key is spelled is behaviour",
+      why: "`env` is lowercase, so it is a literal that matches only `env`. Help for `deploy staging` finds no entry and falls back to the usage under `deploy`. The unit test only checks that each token is all lowercase, all uppercase or a dash, and `env` is all lowercase. The arm does not read TABLE, so the call itself still runs.",
+      out: 'captured · scratch copy with the key and arm\n$ cargo xtask deploy staging --help\n{"error":"wrong arguments for deploy; usage: deploy env --task ID; flags go in the order shown","ok":false,"usage":["deploy env --task ID"]}' }
+  ];
+  var KEYS = ["A", "B", "C", "D"], order = [], picked = [];
+  $("scoreMax").textContent = QS.length;
+  function shuffled(n) {
+    var a = []; for (var i = 0; i < n; i++) a.push(i);
+    for (var j = n - 1; j > 0; j--) { var k = Math.floor(Math.random() * (j + 1)), t = a[j]; a[j] = a[k]; a[k] = t; }
+    return a;
+  }
+  function build() {
+    picked = QS.map(function () { return null; });
+    order = QS.map(function (it) { return shuffled(it.opts.length); });
+    $("quiz").innerHTML = QS.map(function (it, qi) {
+      return '<div class="q" id="q' + qi + '"><div class="qn">Question ' + (qi + 1) + " of " + QS.length + '</div><div class="qt">' + fmt(it.q) + "</div>" +
+        order[qi].map(function (oi, pos) {
+          return '<button type="button" class="opt secondary" data-q="' + qi + '" data-o="' + oi + '"><span class="key">' + KEYS[pos] + "</span><span>" + fmt(it.opts[oi]) + "</span></button>";
+        }).join("") + '<div class="fb" id="fb' + qi + '" hidden></div></div>';
+    }).join("");
+    $("resPass").hidden = true; $("resFail").hidden = true;
+    update();
+  }
+  function score() { return picked.filter(function (p) { return p === 0; }).length; }
+  function answered() { return picked.filter(function (p) { return p !== null; }).length; }
+  function keyOf(qi, oi) { return KEYS[order[qi].indexOf(oi)]; }
+
+  $("quiz").addEventListener("click", function (e) {
+    var b = e.target.closest(".opt"); if (!b || b.disabled) return;
+    var qi = +b.getAttribute("data-q"), oi = +b.getAttribute("data-o"), it = QS[qi];
+    if (picked[qi] !== null) return;
+    picked[qi] = oi;
+    var right = oi === 0;
+    $("q" + qi).classList.add(right ? "right" : "wrong");
+    $("q" + qi).querySelectorAll(".opt").forEach(function (o) {
+      var k = +o.getAttribute("data-o"); o.disabled = true;
+      o.classList.add(k === oi ? (right ? "sel-right" : "sel-wrong") : (k === 0 ? "reveal" : "dim"));
+    });
+    var fb = $("fb" + qi); fb.hidden = false;
+    fb.className = "fb " + (right ? "good" : "bad");
+    fb.innerHTML = '<div class="ft">' + (right ? "Correct." : "Not quite. The answer is " + keyOf(qi, 0) + ".") + "</div><p>" + fmt(it.why) +
+      (right ? "" : ' See <a href="#' + it.sec + '">' + esc(it.label) + "</a>.") + "</p><pre>" + esc(it.out) + "</pre>";
+    update();
+    if (answered() === QS.length) finish();
+  });
+  function finish() {
+    var s = score();
+    if (s === QS.length) { $("resPass").hidden = false; $("resPass").scrollIntoView({ behavior: "smooth", block: "nearest" }); return; }
+    $("failTitle").textContent = "Not yet: " + s + "/" + QS.length;
+    var seen = {};
+    $("failLinks").innerHTML = QS.map(function (it, i) {
+      if (picked[i] === 0 || seen[it.sec]) return "";
+      seen[it.sec] = true;
+      return '<li><a href="#' + it.sec + '">' + esc(it.label) + "</a></li>";
+    }).join("");
+    $("resFail").hidden = false;
+    $("resFail").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  $("retry").addEventListener("click", function () { build(); $("quiz-sec").scrollIntoView({ behavior: "smooth" }); });
+
+  // ---- reply: the three gaps the report names, each with a call ----
+  var GAPS = [
+    { ask: "Key spelling no test checks (rule 02)", opts: ["accept for now", "test before merge: VALUE --help for every key with a placeholder before its first flag", "follow-up task"] },
+    { ask: "One-line errors held only by a comment (rule 03)", opts: ["accept for now", "test before merge: a usage error prints one line", "follow-up task"] },
+    { ask: "Arms and TABLE kept in step by hand (callout)", opts: ["accept for now", "follow-up task: table-driven dispatch"] }
+  ];
+  var calls = GAPS.map(function () { return 0; });
+  $("gaps").innerHTML = GAPS.map(function (g, i) {
+    return "<label><span>" + esc(g.ask) + '</span><select data-g="' + i + '">' +
+      g.opts.map(function (o, j) { return '<option value="' + j + '">' + esc(o) + "</option>"; }).join("") + "</select></label>";
+  }).join("");
+  $("gaps").addEventListener("change", function (e) { calls[+e.target.getAttribute("data-g")] = +e.target.value; update(); });
+  $("note").addEventListener("input", update);
+
+  function replyText() {
+    var lines = ["Quiz before merge, agent-discoverability: " + score() + "/" + QS.length + " right, " + answered() + " answered."];
+    QS.forEach(function (it, i) {
+      var p = picked[i];
+      lines.push("Q" + (i + 1) + " (" + it.label + "): " + (p === null ? "not answered" : p === 0 ? "right" : "wrong, picked \"" + it.opts[p].replace(/`/g, "").replace(/"/g, "'") + "\""));
+    });
+    GAPS.forEach(function (g, i) { lines.push(g.ask + ": " + g.opts[calls[i]]); });
+    var n = $("note").value.trim();
+    if (n) lines.push("Notes: " + n);
+    return lines.join("\n");
+  }
+  function update() {
+    $("scoreNow").textContent = score();
+    $("doneNow").textContent = answered();
+    $("replyOut").textContent = replyText();
+  }
+  $("copyReply").addEventListener("click", function () {
+    copy(replyText(), function () { $("copied").textContent = "Copied"; setTimeout(function () { $("copied").textContent = ""; }, 1500); });
+  });
+
+  build();
+})();
+</script>
+</body>
+</html>

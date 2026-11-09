@@ -5,6 +5,7 @@ mod completion;
 mod config;
 mod golden;
 mod handover;
+mod help;
 mod history;
 mod readiness;
 mod repo;
@@ -40,7 +41,14 @@ fn main() -> ExitCode {
             }
         }
         Err(error) => {
-            println!("{}", json!({"ok":false,"error":error.to_string()}));
+            // One compact line: the stop hook reads a first line of `{` as a refusal.
+            let mut reply = json!({"ok":false,"error":error.to_string()});
+            if let Some(wrong) = error.downcast_ref::<help::UsageError>()
+                && !wrong.usage.is_empty()
+            {
+                reply["usage"] = json!(wrong.usage);
+            }
+            println!("{reply}");
             ExitCode::FAILURE
         }
     }
@@ -70,36 +78,19 @@ fn piped_notes() -> Result<String> {
 fn dispatch() -> Result<Value> {
     let root = repo::root()?.canonicalize()?;
     let args: Vec<String> = std::env::args().skip(1).collect();
+    // Before the match, so arms that take any word (check, workflow, release)
+    // cannot take --help as their value.
+    if let Some(words) = help::requested(&args) {
+        return help::narrowed(&words);
+    }
     match args
         .iter()
         .map(String::as_str)
         .collect::<Vec<_>>()
         .as_slice()
     {
-        [] | ["help"] => Ok(json!({"ok":true,"commands":{
-            "doctor":"Check local tools and configuration",
-            "map":"Workspace package and layer inventory",
-            "check fast":"Short edit feedback loop; emits evidence JSON",
-            "check ci":"Full configured pre-merge checks; emits evidence JSON",
-            "architecture":"Validate all declared workspace dependency edges",
-            "docs":"Validate catalog, AGENTS size, and local file links",
-            "scenario":"Build and replay application boundary cases",
-            "workflow [id]":"Run independent stateful process workflows; capture requests, replies and golden comparisons",
-            "readiness [--report path]":"Compute implemented and verified requirements from source-bound evidence",
-            "release scope --report path":"Fail unless the named scope is ready; never publishes",
-            "gaps":"Read known project gaps (does not generate them); --base REV [--report PATH] validates transitions",
-            "task-artifact style --task ID":"Create the task's artifact folder and write the shared stylesheet block to paste into each page (docs/ARTIFACTS.md)",
-            "task-artifact check --task ID":"Check the task's required pages exist and carry the stylesheet inline",
-            "task-artifact screenshot --task ID":"Render the task's pages to PNG tiles under target/artifact-screenshots with local Chrome; reports console errors, phone overflow and network requests",
-            "task-artifact guard --task ID":"Fail until the five discovery pages are committed; for host hooks before product edits",
-            "task-artifact next --task ID":"Say which page to write, review, rewrite or commit next; exit 3 adds advice, such as a page edited after review",
-            "task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-":"Append one page review, with the page's SHA-256, finding count and reviewer model, to the task's reviews.json; --notes - reads the notes from stdin",
-            "coordination":"Validate task record structure without demanding completion",
-            "agent-stop --task ID --base REV --report PATH":"Hook gate: completion or explicit partial/blocked handoff",
-            "complete --task ID --base REV --report PATH":"Gate a completion claim with reconciliation and current evidence",
-            "handoff --base REV [--report PATH]":"Check changed tasks; partial/blocked handoffs are explicitly allowed",
-            "run -- greet Ada":"Run example with isolated state and JSON logs",
-            "env":"Show worktree-specific context"}})),
+        [] => help::narrowed(&[]),
+        ["help", words @ ..] => help::narrowed(words),
         ["artifact-hook", "--task", id] => artifact_hook::run(&root, id),
         ["agent-stop", "--task", id, "--base", base, "--report", path] => {
             completion::agent_stop(&root, id, base, std::path::Path::new(path))
@@ -144,10 +135,6 @@ fn dispatch() -> Result<Value> {
                 },
             )
         }
-        ["task-artifact", "verdict", ..] => Err(
-            "task-artifact verdict takes --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-, in that order; --model and --findings are required"
-                .into(),
-        ),
         ["task-artifact", "screenshot", "--task", id] => artifacts::screenshots(&root, id),
         ["task-artifact", "check", "--task", id] => {
             let task = task_record::read(&root, id)?;
@@ -261,6 +248,6 @@ fn dispatch() -> Result<Value> {
                 "application_stdout":std::fs::read_to_string(&outcome.stdout)?}),
             )
         }
-        _ => Err("unknown command or extra arguments; run cargo xtask help".into()),
+        words => Err(help::usage_error(words).into()),
     }
 }

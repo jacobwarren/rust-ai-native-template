@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implementation notes: cargo xtask explains itself</title>
+<style>
+  main { max-width: 64rem; }
+  code { font-size: .86em; background: var(--paper); border: 1px solid var(--line); border-radius: .3rem; padding: 0 .3em; overflow-wrap: anywhere; }
+  pre code { border: 0; background: none; padding: 0; }
+  pre { font-size: .8rem; line-height: 1.5; margin: var(--space-2) 0; }
+  .src { font-size: .78rem; color: var(--muted); margin: var(--space-1) 0 0; }
+  .tag { font-family: var(--font-code); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; padding: .1rem .45rem; border-radius: .3rem; border: 1px solid var(--line); background: var(--paper); color: var(--muted); white-space: nowrap; }
+  .tag.cap { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .tag.plan { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+
+  .prompt-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-4) var(--space-6); }
+  .prompt-card .row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
+  .prompt-card blockquote { margin: var(--space-3) 0 0; font-style: italic; }
+  button.small { min-height: 36px; padding: var(--space-1) var(--space-3); font-size: .85rem; }
+
+  .doc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-top: var(--space-8); overflow: hidden; }
+  .doc-head { padding: var(--space-3) var(--space-6); background: var(--accent-soft); border-bottom: 1px solid var(--line); font-family: var(--font-code); font-size: .8rem; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+  .doc-head .meta { margin-left: auto; color: var(--muted); }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); gap: var(--space-3); padding: var(--space-6) var(--space-6) 0; }
+  .tile { border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3) var(--space-4); background: var(--paper); }
+  .tile .n { font-size: 1.9rem; font-weight: 650; line-height: 1.1; }
+  .tile .t { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .tile.dev .n { color: var(--warning); }
+  .tile.you { background: var(--warning-soft); border-color: var(--warning); }
+  .tile .src { font-size: .72rem; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-4) var(--space-6) 0; }
+  .chips button { min-height: 36px; border-radius: 999px; padding: .2rem .9rem; font-size: .85rem; }
+  .chips button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+
+  .timeline { padding: var(--space-4) var(--space-6) var(--space-6); }
+  .entry { display: grid; grid-template-columns: 4.2rem 1rem 1fr; gap: 0 var(--space-3); }
+  .entry .step { font-family: var(--font-code); font-size: .75rem; color: var(--muted); text-align: right; padding-top: .3rem; }
+  .entry .rail { position: relative; }
+  .entry .rail::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--line); transform: translateX(-50%); }
+  .entry.first .rail::before { top: .7rem; }
+  .entry.last .rail::before { bottom: auto; height: .7rem; }
+  .entry .node { position: absolute; left: 50%; top: .45rem; width: .7rem; height: .7rem; border-radius: 50%; transform: translateX(-50%); background: var(--accent); border: 2px solid var(--surface); }
+  .entry.k-dev .node { background: var(--warning); }
+  .entry.k-disc .node { background: var(--line); box-shadow: 0 0 0 1.5px var(--muted); }
+  .entry.k-open .node { background: var(--surface); box-shadow: 0 0 0 1.5px var(--muted); }
+  .entry.k-you .node { background: var(--ink); }
+  .entry .body { padding-bottom: var(--space-6); min-width: 0; }
+  .entry h3 { margin: var(--space-1) 0; font-size: 1rem; }
+  .entry p { margin: var(--space-1) 0 var(--space-2); font-size: .93rem; max-width: 70ch; }
+  .badge { font-family: var(--font-code); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; padding: .1rem .5rem; border-radius: .3rem; }
+  .k-plan .badge { color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent); }
+  .k-dev .badge { color: var(--surface); background: var(--warning); }
+  .k-disc .badge { color: var(--muted); background: var(--paper); border: 1px solid var(--line); }
+  .k-open .badge { color: var(--ink); background: var(--surface); border: 1px dashed var(--muted); }
+  .k-you .badge { color: var(--surface); background: var(--ink); }
+  .devgrid { border: 1px solid var(--warning); border-left-width: 3px; border-radius: var(--control-radius); background: var(--warning-soft); margin: var(--space-2) 0; }
+  .devgrid .row { display: grid; grid-template-columns: 10rem 1fr; gap: var(--space-3); padding: var(--space-2) var(--space-3); font-size: .9rem; }
+  .devgrid .row + .row { border-top: 1px solid #efdcc6; }
+  .devgrid .k { font-family: var(--font-code); font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; color: var(--warning); padding-top: .15rem; }
+  .devgrid .row.chosen .k { color: var(--accent); }
+  .devgrid .row.chosen .v { font-weight: 600; }
+
+  table.replay { font-size: .82rem; }
+  table.replay td:first-child { font-family: var(--font-code); width: 30%; }
+  table.replay td.res { white-space: nowrap; }
+  table.replay pre { margin: 0; font-size: .76rem; }
+  tr.diff td { background: var(--warning-soft); }
+  .ok-mark { color: var(--accent); font-weight: 650; }
+  .diff-mark { color: var(--warning); font-weight: 650; }
+
+  fieldset.q { padding: var(--space-2) var(--space-4); margin-block: var(--space-3); }
+  fieldset.q legend { font-size: .95rem; }
+  fieldset.q label { margin: var(--space-1) 0; font-size: .92rem; }
+  #replyOut { white-space: pre-wrap; font-family: var(--font-code); font-size: .8rem; background: var(--surface); border: 1px solid var(--line); }
+
+  @media (max-width: 40rem) {
+    .entry { grid-template-columns: 1rem 1fr; }
+    .entry .step { display: none; }
+    .devgrid .row { grid-template-columns: 1fr; gap: 0; }
+    .tiles, .chips, .timeline { padding-inline: var(--space-4); }
+    table.replay td:first-child { width: auto; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Implementation notes · agent-discoverability · during the build</p>
+<h1>Building cargo xtask help: two deviations, two calls for you</h1>
+<p class="lead">The plan held almost everywhere. Of 15 inputs run through both the plan page's reply script and the built binary, 13 agree; the two that differ are Deviation 1. Below is each step, what the code forced, and the two behaviours the plan left for you to settle.</p>
+
+<div class="prompt-card">
+  <div class="row"><span class="eyebrow">The prompt</span><button class="small secondary" id="copyPrompt" type="button">Copy prompt</button></div>
+  <blockquote id="promptText">Keep implementation notes as you build the per-command help and corrected harness descriptions. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going.</blockquote>
+</div>
+
+<div class="doc">
+  <div class="doc-head"><span>xtask/src/help.rs (new) · xtask/src/main.rs · xtask/tests/help.rs (new) · docs/ARTIFACTS.md · README.md</span><span class="meta">plan steps B1–B6 from plan.html</span></div>
+  <div class="tiles" id="tiles"></div>
+  <div class="chips" id="chips" role="group" aria-label="Filter entries"></div>
+  <div class="timeline" id="timeline"></div>
+</div>
+
+<h2 id="replay">The plan's replies, run against the build</h2>
+<p>The plan page computes each reply from its planned table in script. That script ran on the plan&#39;s 13 inputs (its 11 listed, <code>nonsense --help</code> and the weakest-part input) and on <code>release myscope</code> and <code>workflow myid extra</code>. Each input also ran against <code>cargo xtask</code> built in a clean copy of the commit; the built reply is its stdout as printed, with the exit status in the label. <q>same</q> means the two replies agree once JSON key order is ignored and any description the plan elides is skipped. Help replies exit 0 and errors exit 1; <code>run -- --help</code> exits 1 because the app itself rejected <code>--help</code> (its <code>exit_code</code> is 2).</p>
+<p class="src" id="replayCap"></p>
+<div class="table-scroll"><table class="replay">
+  <thead><tr><th>cargo xtask …</th><th>Built reply</th><th>vs plan</th></tr></thead>
+  <tbody id="replayDiff"></tbody>
+</table></div>
+<details><summary id="sameSum"></summary>
+<div class="table-scroll"><table class="replay">
+  <thead><tr><th>cargo xtask …</th><th>Built reply</th><th>vs plan</th></tr></thead>
+  <tbody id="replaySame"></tbody>
+</table></div>
+</details>
+
+<h2>Your reply</h2>
+<p>One choice per deviation and per open call, built from the same entries as the timeline. A choice you leave alone goes back as the first option.</p>
+<div id="questions"></div>
+<label>Anything else (optional)<textarea id="extra" placeholder="e.g. also pin the run -- --help reply"></textarea></label>
+<p><button type="button" id="copyReply">Copy reply</button></p>
+<output id="replyOut" aria-live="polite"></output>
+
+<footer>Earlier pages for this task: blindspots, interventions, interview, reference, plan. Step numbers (B1–B6) and choices ①–⑤ are the plan page's.</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  // Built replies, pasted from the clean-copy binary (stdout as printed). Only #7's run-directory paths are shortened to …
+  var OUT = {
+    1: "{\n  \"commands\": {\n    \"task-artifact next --task ID\": \"Say which page to write, review, rewrite or commit next; exit 3 adds advice, such as a page edited after review\"\n  },\n  \"ok\": true\n}",
+    2: "{\n  \"commands\": {\n    \"task-artifact check --task ID\": \"Check the task's required pages exist and carry the stylesheet inline\",\n    \"task-artifact guard --task ID\": \"Fail until the five discovery pages are committed; for host hooks before product edits\",\n    \"task-artifact next --task ID\": \"Say which page to write, review, rewrite or commit next; exit 3 adds advice, such as a page edited after review\",\n    \"task-artifact screenshot --task ID\": \"Render the task's pages to PNG tiles under target/artifact-screenshots with local Chrome; reports console errors, phone overflow and network requests\",\n    \"task-artifact style --task ID\": \"Create the task's artifact folder and write the shared stylesheet block to paste into each page (docs/ARTIFACTS.md)\",\n    \"task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-\": \"Append one page review, with the page's SHA-256, finding count and reviewer model, to the task's reviews.json; --notes - reads the notes from stdin\"\n  },\n  \"ok\": true\n}",
+    3: "{\"error\":\"wrong arguments for complete; usage: complete --task ID --base REV --report PATH; flags go in the order shown\",\"ok\":false,\"usage\":[\"complete --task ID --base REV --report PATH\"]}",
+    4: "{\"error\":\"unknown command nonsense; run cargo xtask help\",\"ok\":false}",
+    5: "{\"error\":\"unknown command nonsense; run cargo xtask help\",\"ok\":false}",
+    6: "{\n  \"commands\": {\n    \"agent-stop --task ID --base REV --report PATH\": \"One task's stop verdict, by hand: complete's gate when the record says complete, otherwise a partial or blocked handoff check that accepts a missing report. The default stop hook runs complete, not this\"\n  },\n  \"ok\": true\n}",
+    7: "{\n  \"application_stdout\": \"{\\\"error\\\":{\\\"code\\\":\\\"usage\\\",\\\"message\\\":\\\"usage: starter-app greet <name>\\\"}}\\n\",\n  \"ok\": false,\n  \"process\": {\n    \"argv\": [\n      \"@app\",\n      \"--help\"\n    ],\n    \"duration_ms\": 273,\n    \"error\": null,\n    \"exit_code\": 2,\n    \"id\": \"app\",\n    \"status\": \"failed\",\n    \"stderr\": \"…/target/harness/runs/…/app.stderr.log\",\n    \"stdout\": \"…/target/harness/runs/…/app.stdout.log\"\n  }\n}",
+    8: "{\"error\":\"wrong arguments for check; usage: check fast, check ci\",\"ok\":false,\"usage\":[\"check fast\",\"check ci\"]}",
+    9: "{\"error\":\"wrong arguments for task-artifact; usage: task-artifact style --task ID, task-artifact check --task ID, task-artifact screenshot --task ID, task-artifact guard --task ID, task-artifact next --task ID, task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-; flags go in the order shown\",\"ok\":false,\"usage\":[\"task-artifact style --task ID\",\"task-artifact check --task ID\",\"task-artifact screenshot --task ID\",\"task-artifact guard --task ID\",\"task-artifact next --task ID\",\"task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-\"]}",
+    10: "{\n  \"commands\": {\n    \"task-artifact next --task ID\": \"Say which page to write, review, rewrite or commit next; exit 3 adds advice, such as a page edited after review\"\n  },\n  \"ok\": true\n}",
+    11: "{\"error\":\"wrong arguments for task-artifact verdict; usage: task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-; flags go in the order shown\",\"ok\":false,\"usage\":[\"task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-\"]}",
+    12: "{\n  \"commands\": {\n    \"task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-\": \"Append one page review, with the page's SHA-256, finding count and reviewer model, to the task's reviews.json; --notes - reads the notes from stdin\"\n  },\n  \"ok\": true\n}",
+    13: "{\"error\":\"wrong arguments for complete; usage: complete --task ID --base REV --report PATH; flags go in the order shown\",\"ok\":false,\"usage\":[\"complete --task ID --base REV --report PATH\"]}",
+    14: "{\"error\":\"wrong arguments for release; usage: release SCOPE --report PATH; flags go in the order shown\",\"ok\":false,\"usage\":[\"release SCOPE --report PATH\"]}",
+    15: "{\"error\":\"wrong arguments for workflow; usage: workflow [ID]\",\"ok\":false,\"usage\":[\"workflow [ID]\"]}"
+  };
+  function shot(cmd, i) { return "<pre>$ cargo xtask " + esc(cmd) + "\n" + esc(OUT[i]) + "</pre>"; }
+
+  // Every timeline entry. k: plan | dev | disc | open | you. Deviations and "you" entries carry options for the reply.
+  var ENTRIES = [
+    { k: "plan", step: "B1", title: "Tests first: three red on the parent, as the plan predicted",
+      html: "<p><code>xtask/tests/help.rs</code> holds the four ticket tests, all through <code>Fixture::run</code>. Copied onto the parent commit's tree, three fail and the <code>run</code> test passes, because today's binary already leaves <code>run -- --help</code> to the app; it guards the new scan instead.</p>" +
+        "<p><span class='tag cap'>captured · filtered by the grep shown</span></p><pre>$ cargo test -p xtask --test help 2>&1 | grep -E '^test |test result|running'   # parent tree + new tests/help.rs\nrunning 4 tests\ntest agent_stop_help_names_the_hook_that_runs ... FAILED\ntest help_narrows_to_the_commands_asked ... FAILED\ntest wrong_arguments_print_the_matching_usage ... FAILED\ntest help_flags_after_run_belong_to_the_application ... ok\ntest result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.47s</pre>" },
+    { k: "plan", step: "B2", title: "help.rs: the table and matcher as sketched in A2",
+      html: "<p><code>TABLE</code> (help.rs:9-98) is the one copy: 25 entries, HEAD's 23 plus <code>artifact-hook --task ID</code> and <code>help [WORDS]</code>; the five respelled keys and the new <code>agent-stop</code> and <code>complete</code> sentences are the plan's word for word (help.rs:79, 83). <code>UsageError</code> (103-108), <code>requested</code> (138-146), <code>narrowed</code> (149-159) and <code>usage_error</code> (163-186) have the sketched signatures. Help stays a map and prints sorted (no <code>preserve_order</code>, Cargo.toml:16); the <code>usage</code> array keeps table order.</p>" },
+    { k: "dev", step: "B2", title: "The error names only the typed words that are command words",
+      said: "The command named in the error is every typed word before the first flag (A2 note 4). The plan page's own script gives <code>wrong arguments for release myscope</code>.",
+      found: "Two commands take a bare value right after their name: <code>release SCOPE</code> and <code>workflow [ID]</code> (help.rs:30, 38). Naming typed words puts the user's value into the command's name, as if <code>release myscope</code> were a command.",
+      chose: "Name only the typed words that line up with literal words of the first matching usage (help.rs:171-178): <code>wrong arguments for release; usage: release SCOPE --report PATH</code>. The usage list is unchanged.",
+      revisit: "No test pins it. One more assertion in <code>wrong_arguments_print_the_matching_usage</code> would.",
+      ask: "Deviation 1, error names literal command words only",
+      opts: ["keep, and add a release myscope assertion to wrong_arguments_print_the_matching_usage", "keep as built, no new assertion", "revert to the plan: name every typed word before the first flag"] },
+    { k: "dev", step: "B2", title: "A fifth test holds the table to its spelling",
+      said: "The four ticket tests join <code>completion</code> in harness/readiness.json (B5).",
+      found: "The matcher treats any all-uppercase token as a placeholder (help.rs:201-204) and everything else as a literal word (208-216). A key spelled like HEAD's <code>workflow [id]</code> would make <code>id</code> a literal, so <code>workflow nightly</code> would get the usage error. None of the four ticket tests reaches that key.",
+      chose: "A unit test, <code>help::tests::every_key_reads_as_a_usage</code> (help.rs:222-243), checks every token of every key, and is listed in <code>completion</code> beside the four.",
+      revisit: "It also repeats two integration assertions (the <code>nxt</code> typo gets 6 usages; a bare <code>check</code>). Those could go.",
+      ask: "Deviation 2, the table spelling unit test",
+      opts: ["keep it as built", "keep it, but drop the two assertions the integration tests already make", "drop it; the four ticket tests are enough"] },
+    { k: "plan", step: "B3", title: "main.rs wired as A2; the verdict catch-all is gone",
+      html: "<p>The help scan runs before the match (main.rs:83-85), so <code>check</code>, <code>workflow</code> and <code>release</code> can no longer take <code>--help</code> as a value; <code>[]</code> and <code>help WORDS</code> narrow (92-93); the last arm returns <code>usage_error</code> (251). The <code>Err</code> arm adds <code>usage</code> and still prints one compact line (43-53), which the stop hook needs: it reads a first line of <code>{</code> as a refusal (agent-complete.sh:78). Choice ⑤ as planned: the verdict catch-all is removed and router.rs:348 now looks for <code>--model MODEL --findings N</code>. main.rs went from 266 to 253 lines.</p>" },
+    { k: "disc", step: "B3", title: "Built replies match the plan's, except Deviation 1",
+      html: "<p>13 of the 15 inputs in <a href='#replay'>the table below</a> give the reply the plan computed; the two that differ are the <code>release</code> and <code>workflow</code> naming. The plan's weakest-part input, <code>complete --base B --task T --report R</code>, is among the matches: still refused.</p>" },
+    { k: "disc", step: "B3", title: "Nothing else read the strings that changed",
+      html: "<p><code>git grep</code> for <code>Hook gate</code> and <code>unknown command or extra</code> finds only the ticket, so dropping both sentences broke no test or doc. In a clean copy of the build, <code>cargo test -p xtask</code> passed 104 tests in 17 binaries with 0 failures; <code>cargo clippy -p xtask --all-targets -- -D warnings</code> and <code>cargo fmt --check -p xtask</code> were clean.</p>" },
+    { k: "plan", step: "B4", title: "Docs: the seed rule and a help row, with two wording changes",
+      html: "<p>The DOC009 paragraph is at docs/ARTIFACTS.md:126-130. The plan placed it after line 119; that paragraph runs to 124, so it follows the whole paragraph. It is a paragraph, not a table row, because handover.rs parses the guide's tables (blindspot 07). README.md:51 is the new first command row. <code>cargo xtask docs</code> reports no errors. The prose differs from the plan's in two places, neither forced by code: the README row adds <q>and wrong arguments print the matching usage</q>, and the paragraph cites <q>(README.md)</q> without the section name.</p>" },
+    { k: "open", step: "B5–6", title: "Readiness, the task record and validation are not finished",
+      html: "<p>harness/readiness.json lists <code>xtask/src/help.rs</code> and the five test names, but that edit is not committed yet. The task record still has <code>documentation.updated: []</code> (plan C6). None of the ticket's validation lines has run: <code>check ci</code>, <code>gaps --base origin/main</code> (no harness/transitions/agent-discoverability.json exists) and <code>complete</code>.</p>" },
+    { k: "you", step: "—", title: "Flags must still come in the order shown",
+      html: "<p>Every dispatch arm is a fixed slice, and interview Q1 kept the hand-written match, so <code>complete --base B --task T --report R</code> is still refused. The agent now gets the usage and <q>flags go in the order shown</q> (help.rs:121-128) instead of the generic pointer. Accepting flags in any order means table-driven dispatch across all arms, which the plan calls its own task.</p>" +
+        "<p><span class='tag cap'>captured · exit 1</span></p>" + shot("complete --base B --task T --report R", 13),
+      ask: "Flag order",
+      opts: ["accept: the usage and the order clause are enough", "open a follow-up task for table-driven dispatch"] },
+    { k: "you", step: "—", title: "Verdict notes that are just -h now get help",
+      html: "<p>The scan treats <code>-h</code> or <code>--help</code> anywhere before <code>--</code> as a help request (choice ④), and <code>--notes</code> is verdict's last flag. A review whose notes are literally <code>-h</code> was recorded before; now the reviewer gets verdict's entry and nothing is written. <code>--notes -</code> on stdin still takes any text (main.rs:120-124).</p>" +
+        "<p><span class='tag cap'>captured · exit 0</span></p>" + shot("task-artifact verdict --task agent-discoverability --page blindspots.html --verdict pass --reviewer r --model m --findings 0 --notes -h", 12),
+      ask: "Verdict notes that are just -h",
+      opts: ["accept: such notes go through --notes -", "exempt the word after --notes from the help scan"] }
+  ];
+
+  // The plan's inputs plus its weakest-part input and two extras. r indexes OUT; x is the exit status of cargo xtask.
+  var REPLAY = [
+    {"w":"task-artifact next --help","t":"help_narrows","x":0,"r":1},
+    {"w":"help task-artifact","t":"help_narrows","x":0,"r":2},
+    {"w":"complete --task X","t":"wrong_arguments","x":1,"r":3},
+    {"w":"nonsense","t":"wrong_arguments","x":1,"r":4},
+    {"w":"nonsense --help","t":"help_narrows","x":1,"r":5},
+    {"w":"agent-stop --help","t":"agent_stop_help","x":0,"r":6},
+    {"w":"run -- --help","t":"help_flags_after_run","x":1,"r":7,"lab":"paths","note":"the plan showed this as prose: the app gets --help (process.argv), xtask adds nothing"},
+    {"w":"check","x":1,"r":8},
+    {"w":"task-artifact nxt --task X","x":1,"r":9},
+    {"w":"task-artifact next --help --task X","x":0,"r":10},
+    {"w":"task-artifact verdict --task T --page blindspots.html --verdict pass --reviewer r --notes n","x":1,"r":11},
+    {"w":"task-artifact verdict --task agent-discoverability --page blindspots.html --verdict pass --reviewer r --model m --findings 0 --notes -h","x":0,"r":12,"note":"also shown under “Verdict notes that are just -h” above"},
+    {"w":"complete --base B --task T --report R","x":1,"r":13},
+    {"w":"release myscope","x":1,"r":14,"plan":"wrong arguments for release myscope; …"},
+    {"w":"workflow myid extra","x":1,"r":15,"plan":"wrong arguments for workflow myid; …"}
+  ];
+  var LAB = { paths: "captured · run-directory paths shortened to …" };
+
+  var KIND = { plan: "Plan-confirmed", dev: "Deviation", disc: "Discovery", open: "Open", you: "For you" };
+  var FILTERS = [["all", "All"], ["dev", "Deviations"], ["you", "For you"], ["open", "Open"]];
+  var filter = "all";
+  var picks = {};
+
+  function $(id) { return document.getElementById(id); }
+  function esc(x) { return String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function of(k) { return ENTRIES.filter(function (e) { return e.k === k; }); }
+  var asks = ENTRIES.filter(function (e) { return e.opts; });
+
+  function renderTiles() {
+    var same = REPLAY.filter(function (r) { return !r.plan; }).length;
+    var tiles = [
+      ["", ENTRIES.length, "entries", "this page's timeline"],
+      ["dev", of("dev").length, "deviations", "help.rs:171-178; help.rs:222-243"],
+      ["you", of("you").length, "need your call", "flag order; --notes -h"],
+      ["", same + " / " + REPLAY.length, "replies as planned", "plan.html's script vs the built binary, table below"],
+      ["", "104", "xtask tests pass", "cargo test -p xtask, clean copy, 17 binaries"]
+    ];
+    $("tiles").innerHTML = tiles.map(function (t) {
+      return '<div class="tile ' + t[0] + '"><div class="n">' + esc(t[1]) + '</div><div class="t">' + esc(t[2]) + '</div><p class="src">' + esc(t[3]) + '</p></div>';
+    }).join("");
+  }
+
+  function renderChips() {
+    $("chips").innerHTML = FILTERS.map(function (f) {
+      var n = f[0] === "all" ? ENTRIES.length : of(f[0]).length;
+      return '<button type="button" class="secondary" data-f="' + f[0] + '" aria-pressed="' + (filter === f[0]) + '">' + f[1] + ' · ' + n + '</button>';
+    }).join("");
+    $("chips").querySelectorAll("button").forEach(function (b) {
+      b.addEventListener("click", function () { filter = b.getAttribute("data-f"); renderChips(); renderTimeline(); $("chips").querySelector('[data-f="' + filter + '"]').focus(); });
+    });
+  }
+
+  function renderTimeline() {
+    var devN = 0;
+    var shown = [];
+    ENTRIES.forEach(function (e) {
+      if (e.k === "dev") devN++;
+      if (filter === "all" || filter === e.k) shown.push({ e: e, dev: devN });
+    });
+    $("timeline").innerHTML = shown.map(function (s, i) {
+      var e = s.e, cls = "entry k-" + e.k + (i === 0 ? " first" : "") + (i === shown.length - 1 ? " last" : "");
+      var badge = e.k === "dev" ? "Deviation " + s.dev + " of " + of("dev").length : KIND[e.k];
+      var body = e.k === "dev"
+        ? '<div class="devgrid"><div class="row"><div class="k">What the plan said</div><div class="v">' + e.said + '</div></div>' +
+          '<div class="row"><div class="k">What the code revealed</div><div class="v">' + e.found + '</div></div>' +
+          '<div class="row chosen"><div class="k">Conservative choice</div><div class="v">' + e.chose + '</div></div>' +
+          '<div class="row"><div class="k">Revisit</div><div class="v">' + e.revisit + '</div></div></div>'
+        : e.html;
+      return '<div class="' + cls + '"><div class="step">' + esc(e.step) + '</div><div class="rail"><span class="node"></span></div><div class="body">' +
+        '<span class="badge">' + esc(badge) + '</span><h3>' + e.title + '</h3>' + body + '</div></div>';
+    }).join("");
+  }
+
+  function renderReplay() {
+    var same = REPLAY.filter(function (r) { return !r.plan; }).length;
+    $("replayCap").textContent = same + " of " + REPLAY.length + " as planned; the " + (REPLAY.length - same) + " that differ come first. Small text under an input names the ticket test that asserts it.";
+    $("sameSum").textContent = "The " + same + " inputs whose built reply is the plan's";
+    function row(r) {
+      var lab = '<span class="tag cap">' + esc((LAB[r.lab] || "captured") + " · exit " + r.x) + '</span>';
+      var vs = r.plan
+        ? '<span class="diff-mark">differs</span><br><span class="tag plan">plan</span> <code>' + esc(r.plan) + '</code><br><small>Deviation 1</small>'
+        : '<span class="ok-mark">same</span>' + (r.note ? '<br><small>' + esc(r.note) + '</small>' : "");
+      return '<tr class="' + (r.plan ? "diff" : "") + '"><td>' + esc(r.w) + (r.t ? '<br><small>' + esc(r.t) + '</small>' : "") + '</td><td>' + lab + '<pre>' + esc(OUT[r.r]) + '</pre></td><td>' + vs + '</td></tr>';
+    }
+    $("replayDiff").innerHTML = REPLAY.filter(function (r) { return r.plan; }).map(row).join("");
+    $("replaySame").innerHTML = REPLAY.filter(function (r) { return !r.plan; }).map(row).join("");
+  }
+
+  function renderQuestions() {
+    $("questions").innerHTML = asks.map(function (e, i) {
+      return '<fieldset class="q"><legend>' + esc(e.ask) + '</legend>' + e.opts.map(function (o, j) {
+        return '<label><input type="radio" name="q' + i + '" value="' + j + '"' + (j === 0 ? " checked" : "") + '>' + esc(o) + '</label>';
+      }).join("") + '</fieldset>';
+    }).join("");
+    $("questions").querySelectorAll("input").forEach(function (inp) {
+      inp.addEventListener("change", function () { picks[inp.name] = +inp.value; renderReply(); });
+    });
+  }
+
+  function replyText() {
+    var lines = ["Implementation notes for agent-discoverability: my calls."];
+    asks.forEach(function (e, i) {
+      var j = picks["q" + i] || 0;
+      lines.push("- " + e.ask + ": " + e.opts[j] + (j === 0 ? " (default)" : "") + ".");
+    });
+    var x = $("extra").value.trim();
+    if (x) lines.push("- Also: " + x);
+    return lines.join("\n");
+  }
+  function renderReply() { $("replyOut").textContent = replyText(); }
+
+  function copy(text, btn) {
+    var old = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = old; }, 1500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
+    else done();
+  }
+
+  renderTiles(); renderChips(); renderTimeline(); renderReplay(); renderQuestions(); renderReply();
+  $("extra").addEventListener("input", renderReply);
+  $("copyReply").addEventListener("click", function () { copy(replyText(), this); });
+  $("copyPrompt").addEventListener("click", function () { copy($("promptText").textContent, this); });
+})();
+</script>
+</body>
+</html>

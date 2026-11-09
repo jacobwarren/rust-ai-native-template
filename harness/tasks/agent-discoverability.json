@@ -1,0 +1,64 @@
+{
+  "schema_version": 6,
+  "id": "agent-discoverability",
+  "work_item": null,
+  "status": "complete",
+  "tier": "standard",
+  "requirements": [
+    "completion"
+  ],
+  "related_gaps": [
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "unaffected",
+      "rationale": "This changes help text, argument errors and one docs sentence; the page gate's checks are untouched."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "Nothing here changes what is protected or what hosting must enforce."
+    }
+  ],
+  "gap_review": "Read the four open gaps. artifact-gate-holes and hosting-enforcement are near this work and unaffected; product-acceptance and platform-qualification are unrelated.",
+  "discoveries": [
+    {
+      "summary": "check, workflow and release bind any word, so they took --help as their value (unknown profile, unknown workflow id, unknown release scope); a help scan had to run before the match, which now stops at -- so run's arguments stay the application's.",
+      "record": "xtask/src/main.rs"
+    },
+    {
+      "summary": "The verdict catch-all's wording was pinned by verdict_records_findings_and_model, a completion test, so removing the catch-all meant changing that assertion to look for the usage; the interview page had assumed no test checked it, and the reference page corrected it.",
+      "record": "xtask/tests/router.rs"
+    },
+    {
+      "summary": "Out of scope: a wrong --task id answers 'No such file or directory (os error 2)' without naming the task (task_record.rs reads the record file directly).",
+      "record": "harness/task-artifacts/agent-discoverability/reference.html"
+    },
+    {
+      "summary": "help::tests::every_key_reads_as_a_usage checks only which characters each key word uses, so a lowercase placeholder slips through: respelled as readiness [--report path], every test still passes, and workflow [id] is caught only because a help test pins that key. Holding placeholders to UPPERCASE needs a check that compares keys with the dispatch arms, which is out of this task's scope.",
+      "record": "harness/task-artifacts/agent-discoverability/quiz.html"
+    }
+  ],
+  "discovery_review": "Four discoveries, each recorded where its next reader looks: the --help capture in the main.rs comment above the scan, the pinned verdict wording in the router test it changed, the unnamed missing task in the reference page, and the spelling test's blind spot for lowercase placeholders in the quiz page. Calls the implementation left to the reader (flags still in fixed order; verdict notes of exactly -h now ask for help) are in the implementation notes.",
+  "documentation": {
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "README.md"
+    ],
+    "rationale": "docs/ARTIFACTS.md Task size states that every skill keeps its two host copies equal (DOC007) and that the investigate skill must also equal its seed docs/skills/investigate.md (DOC009); README.md's command table names cargo xtask help [WORDS] and --help."
+  },
+  "prompt": {
+    "task": "make the harness explain itself where a fresh agent got lost: per-command help, usage on wrong arguments, a true agent-stop description and the investigate seed rule in the task-size docs",
+    "task_noun": "the per-command help and corrected harness descriptions",
+    "area": "the xtask command dispatch and help table (xtask/src/main.rs), the stop hook (scripts/agent-complete.sh) and docs/ARTIFACTS.md Task size",
+    "problem": "A fresh agent opened 30 files to learn the harness, was told any non-ceremony skill changes freely when investigate must also match its seed, was told agent-stop is the hook gate when the stop hook runs complete, and got no help from cargo xtask task-artifact next --help",
+    "reference": "The task-artifact verdict arm in xtask/src/main.rs, which answers wrong arguments with its own usage"
+  },
+  "summary": "Make cargo xtask help answer for one command, show usage on wrong arguments, describe agent-stop truly, and state the investigate seed rule where task size is explained.",
+  "remaining": [],
+  "review": {
+    "acceptance": "All four named tests exist in xtask/tests/help.rs and pass: help_narrows_to_the_commands_asked (task-artifact next --help gives exactly its entry, also with --help mid-call; help task-artifact gives the six task-artifact entries; check, workflow and release --help narrow; nonsense --help fails, points at cargo xtask help and carries no usage), wrong_arguments_print_the_matching_usage (complete --task X gets complete's usage and the flag-order clause, a second-word typo gets every command under the first, a bare check gets no order clause, nonsense lists no usage), help_flags_after_run_belong_to_the_application, and agent_stop_help_names_the_hook_that_runs (agent-stop and complete both name the stop hook, which runs complete and not agent-stop). Three of them failed on main's main.rs; the run test guards the new scan and passed on both. Added beyond the ticket: help::tests::every_key_reads_as_a_usage, an artifact-hook and a help entry, and removal of the verdict catch-all, whose router test now looks for the usage.",
+    "verification": "cargo xtask check ci passed 9 of 9 in a clean clone at the final commit (target/verification/ci.json); cargo xtask gaps --base origin/main is ok with one policy receipt (harness/transitions/agent-discoverability.json). Pages: blindspots.html pass in round 1 (0 findings); interventions.html pass in round 2 (0); interview.html pass in round 1 (0); reference.html pass in round 1 (0); plan.html pass in round 3 (0); implementation.html pass in round 2 (0); buy-in.html pass in round 1 (0); quiz.html pass in round 2 (0). No review finding is left open; non-blocking notes in reviews.json include the pages' length against their exemplars and quiz.html citing main.rs:29 where the pretty-print is on line 30.",
+    "assumptions": "Nothing parses xtask's help output except the new tests, so respelling the keys and moving the table breaks no reader (git grep). Agents read the error line, so a usage array next to it is additive. Verdict notes of exactly -h or --help now ask for help; such notes go through --notes - on stdin. The owner answered no discovery page; six calls are carried open in buy-in.html, including whether AGENTS.md should point at cargo xtask help (interview Q9, outside this ticket).",
+    "coverage": "Dispatch still matches fixed flag order, so the usage says the order instead of accepting another one. Nothing checks that the match arms and help::TABLE stay in step: an arm with no entry answers unknown command, and a lowercase placeholder in a key passes every test (recorded as a discovery). The one-line error shape the stop hook depends on is held by a code comment, not a test. A wrong --task id still answers without naming the task (discovery, out of scope). Codex and Claude Code were not run against the new help; the tests pin xtask's replies."
+  }
+}

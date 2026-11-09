@@ -67,6 +67,7 @@
         "xtask/src/completion.rs",
         "xtask/src/tracking.rs",
         "xtask/src/transitions.rs",
+        "xtask/src/help.rs",
         "scripts/agent-complete.sh",
         "scripts/agent-hook.sh",
         ".claude/settings.json",
@@ -101,7 +102,12 @@
         "committed_local_settings_are_still_reported",
         "hook_configs_wire_existing_scripts_and_no_subagent_stop",
         "guard_folds_case_where_git_ignores_case",
-        "stop_judges_only_this_branchs_records_when_stacked"
+        "stop_judges_only_this_branchs_records_when_stacked",
+        "help_narrows_to_the_commands_asked",
+        "wrong_arguments_print_the_matching_usage",
+        "help_flags_after_run_belong_to_the_application",
+        "agent_stop_help_names_the_hook_that_runs",
+        "help::tests::every_key_reads_as_a_usage"
       ],
       "workflows": []
     },
