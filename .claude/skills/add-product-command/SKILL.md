@@ -36,6 +36,6 @@ step names the file that owns it; the existing `add`, `complete`, `remove` and
    and, if acceptance changes, [the product contract](../../../docs/PRODUCT.md).
 7. **Checks.** Run `cargo xtask check fast` while editing, then
    `cargo xtask workflow`, then `cargo xtask check ci` before handoff. Changing
-   `harness/workflows.json` or a golden touches protected policy, so this is a
-   standard-tier task (a brief and a report) with a transition receipt
+   `harness/workflows.json` or a golden touches protected policy, so the
+   branch needs a transition receipt; it is still a small task with no pages
    ([task size](../../../docs/ARTIFACTS.md)).

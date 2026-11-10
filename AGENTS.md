@@ -9,8 +9,9 @@ Start here. Two commands carry the detail, so run them before reading further:
 2. Give the task a record, `harness/tasks/ID.json`, from
    [the example](examples/task-record.json) or the write-ticket skill. Its
    `tier` sets what the task owes ([task size](docs/ARTIFACTS.md)): `small`,
-   no pages; `standard`, the default, a brief before code and a report after;
-   `full`, the eight-page set for risky work. Then follow `task-artifact next`.
+   the default, no pages; `standard`, a brief before code, for changes to
+   policy, dependency or ceremony paths; `full`, the eight-page set when a
+   person asks to steer. Then follow `task-artifact next`.
 3. Run `cargo xtask doctor` on first setup and `cargo xtask check fast`
    for the baseline. Distinguish pre-existing failures from your changes.
 4. Make the smallest coherent change and add a meaningful regression check

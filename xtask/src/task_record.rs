@@ -13,17 +13,15 @@ pub enum Status {
     Partial,
     Blocked,
 }
-/// How much ceremony a task owes (docs/ARTIFACTS.md "Task size"). A small task
-/// changes a few lines away from policy and needs no pages; the gate measures its
-/// branch (size.rs). A standard task, the default, owes a brief before code and a
-/// report after it. A full task owes the eight-page set. Read it through
-/// `Task::tier()`: a record from schema 6 or earlier wrote "standard" for the
-/// eight pages.
-#[derive(Deserialize, PartialEq, Eq, Clone, Copy, Debug, Default)]
+/// How much ceremony a task owes (docs/ARTIFACTS.md "Task size"). A small task,
+/// the default, owes no pages and stays away from policy paths; the gate reads its
+/// branch (size.rs). A standard task owes a brief before code. A full task owes
+/// the eight-page set. Read it through `Task::tier()`: a record from schema 6 or
+/// earlier wrote "standard" for the eight pages and made them the default.
+#[derive(Deserialize, PartialEq, Eq, Clone, Copy, Debug)]
 #[serde(rename_all = "snake_case")]
 pub enum Tier {
     Small,
-    #[default]
     Standard,
     Full,
 }
@@ -46,8 +44,8 @@ pub struct Task {
     pub id: String,
     pub work_item: Option<String>,
     pub status: Status,
-    #[serde(default, rename = "tier")]
-    declared_tier: Tier,
+    #[serde(default, rename = "tier", deserialize_with = "named_tier")]
+    declared_tier: Option<Tier>,
     #[serde(default, rename = "reader")]
     declared_reader: Option<Reader>,
     pub requirements: Vec<String>,
@@ -66,13 +64,22 @@ pub struct Task {
     #[serde(default)]
     pub prompt: Option<Prompt>,
 }
+/// A tier that is written must be one of the three; `null` is not "no tier".
+fn named_tier<'de, D: serde::Deserializer<'de>>(
+    deserializer: D,
+) -> std::result::Result<Option<Tier>, D::Error> {
+    Tier::deserialize(deserializer).map(Some)
+}
+
 impl Task {
     /// The ceremony this record owes. Schema 6 and earlier called the eight
     /// pages "standard" and made them the default.
     pub fn tier(&self) -> Tier {
+        let old = self.schema_version <= FULL_BY_DEFAULT;
         match self.declared_tier {
-            Tier::Standard if self.schema_version <= FULL_BY_DEFAULT => Tier::Full,
-            tier => tier,
+            Some(Tier::Standard) | None if old => Tier::Full,
+            Some(tier) => tier,
+            None => Tier::Small,
         }
     }
     /// Who answers the pages. Records from before the field were written for a

@@ -72,6 +72,87 @@ abstain. Prefer advisory output until measured precision supports blocking CI.
 Policy edits and grader edits should receive separate review from product changes
 when possible. Local scripts are mutable; enforce authority in the hosting/CI layer.
 
+## Pages on product tasks
+
+The paired comparison above, run once on this template's own example, is why
+most tasks owe no pages ([task size](ARTIFACTS.md)).
+
+**Set.** Five features of the task board, each specified by observable
+behaviour: the commands `rename`, `reopen`, `clear_done` and `redo`, and a
+read-only `stats` method. Each had a held-out grader the agents never saw: 11 to
+15 checks driving the built binary over its JSON-lines protocol, covering the
+stated behaviour and what `docs/DRIVER.md` promises for any new surface (strict
+admission, discovery, replay, save and load, both transports). Every grader
+failed on the starting commit. The graders and prompts lived outside the
+repository.
+
+**Arms.** The same model (Claude Sonnet 5.5, as subagents of one session), the
+same starting commit, one fresh clone per run, one run per cell. No pages:
+"implement, test, finish when `check ci` passes", with no task record. Standard:
+the tier as it then stood, a task record, a brief before code and a report
+after, each written by a fresh author subagent and reviewed by a fresh reviewer,
+finishing at `cargo xtask complete`. Full, on two features: the six pages a
+full task owes without a reader.
+
+**Grade.** The held-out grader on a clean build of what the run committed, and
+`check ci` on a clean export of it. The agent's own claim was not the grade.
+
+| Feature | No pages | Standard (two pages) | Full (six pages) |
+| --- | --- | --- | --- |
+| rename | accepted, 3 min | accepted, 53 min, 5 reviews | accepted, 95 min, 10 reviews |
+| reopen | accepted, 3 min | accepted, 45 min, 4 reviews | not run |
+| clear_done | accepted, 3 min | accepted, 34 min, 3 reviews | not run |
+| stats | accepted, 3 min | accepted, 33 min, 3 reviews | not run |
+| redo | accepted, 3 min | accepted, 54 min, 6 reviews | run not finished when this was written |
+
+All twelve graded runs were accepted and passed CI. Pages bought no accepted
+change and cost about 15 times the wall-clock time for two pages and about 30
+times for six. The standard runs wrote 507 to 668 lines of HTML each; the full
+run 2,585 for a feature of a few dozen lines. In the run reports, most
+rewrites were for page length or a citation. The report page took more review
+rounds than the brief in three of five standard runs, and a late code fix
+forced it to be rewritten.
+
+**What this does not show.**
+
+- No headroom: every no-pages run passed, so this set could not have shown a
+  benefit. A brief may still help on tasks a model fails without one. Build
+  that set before putting pages back: tasks from real need that the best
+  configuration still fails some of (see the checks above).
+- One run per cell, one model, one small codebase. The time ratio is large
+  enough to survive that; an acceptance difference of one run would not be.
+- Wall-clock time is the cost measure. Token counts were available only for the
+  top-level agent (about 96,000 without pages, 147,000 with two), not for the
+  page authors and reviewers it started, so the token ratio is higher than
+  those two numbers suggest and was not measured.
+- The runs were subagents working in clones, so the repository's edit and stop
+  hooks did not fire. Both arms lacked them equally.
+- One grader check was wrong (it expected a request id on a rejected request,
+  which the protocol returns as null) and was corrected before the affected run
+  was counted. No other failure occurred to group by cause.
+
+**Where a page did find something.** Three harness changes made in the same
+period each wrote a brief. Two found defects before the code was committed: a
+crash and a text floor that would have refused six existing pages; and an
+archive check that would have failed for anyone starting without Git history.
+All three changed the gates. That, and no product result, is the evidence for
+keeping one brief on policy, dependency and ceremony paths.
+
+**A held-out build.** One fresh agent, same model, was given an export of this
+template with no history and a specification for a different product: a small
+HTTP link shortener, std only. Following `docs/ADOPTING.md` under the standard
+tier, it replaced the example product in 57 minutes, passed its own
+`check ci` and completion gate, and passed 19 of 20 held-out checks made over
+real HTTP (creation, redirects, listing, deletion, every error case, twenty
+concurrent clients, restart, an unwritable store). The one miss was an
+ambiguity in the specification: a body `{"url":5}` answered `invalid_url` where
+the grader expected `invalid_request`, a call the agent recorded. It is one
+build and proves little about other products. What it did show is a limit of
+the harness, recorded as the gap `service-acceptance`: the workflow and
+scenario runners assume a program that exits, so the agent rewrote
+`xtask/src/workflows.rs` and added a service driver before it could grade its
+own product.
+
 ## Calibrating the page reviewer
 
 The artifact reviewer is a semantic checker, so it gets the calibration above.

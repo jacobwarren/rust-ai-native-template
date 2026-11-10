@@ -1,6 +1,5 @@
-//! The page loop as commands: `next` says which page to write, review, rewrite or
-//! commit, from the task record, the pages and the verdict log; `verdict` appends one
-//! review to that log. Both advise. Completion never reads the log (docs/ARTIFACTS.md).
+//! The page loop as commands: `next` names the next page step from the record, the
+//! pages and the verdict log; `verdict` appends one review. Both only advise.
 use crate::{
     artifacts::{self, Pages},
     config::{Result, valid_id},
@@ -227,14 +226,20 @@ fn page_step(
     let dirty = history::uncommitted(root)?;
     let path = format!("{}/{page}", artifacts::directory(id));
     let committed = !dirty.contains(&path);
+    // A brief's first review is the owner's call: committing the page moves on.
+    let optional = page == artifacts::BRIEF && rows.is_empty();
+    let lead = if optional {
+        format!(
+            "Optional: review {page} when it changes a gate or a person asked for a review; otherwise commit {page} and go on. To review: "
+        )
+    } else {
+        String::new()
+    };
     let review = |round: usize| {
-        step(
-            "review",
-            page,
-            round,
-            format!(
-                "Start a fresh artifact-reviewer, never the author, on {page} and give it the handover verbatim; then pipe its whole reply into: cargo xtask task-artifact verdict --task {id} --page {page} --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes -"
-            ),
+        Some(
+            json!({"action":"review","page":page,"round":round,"optional":optional,"say":format!(
+                "{lead}Start a fresh artifact-reviewer, never the author, on {page} and give it the handover verbatim; then pipe its whole reply into: cargo xtask task-artifact verdict --task {id} --page {page} --verdict pass|revise --reviewer NAME --model MODEL --findings N --notes -"
+            )}),
         )
     };
     match rows.last() {
@@ -300,7 +305,7 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
     if task.tier() == Tier::Small {
         return Ok(
             json!({"ok":true,"task":id,"tier":"small","next":{"action":"build","say":
-            "Small task: no pages. Build, commit, run cargo xtask check ci, then complete; the gate measures the size."},
+            "No pages owed. Build, commit, answer the record's four review questions, run cargo xtask check ci, then cargo xtask complete. A change to a policy, dependency or ceremony path needs a standard task and its brief first."},
             "advisories":[]}),
         );
     }
@@ -390,6 +395,6 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
         "from each page's review".into()
     };
     let next = found.unwrap_or_else(|| json!({"action":"complete","say":format!(
-        "Every page is reviewed and committed. Copy each page's final verdict and open notes {source} into review.verification, run cargo xtask check ci (it writes target/verification/ci.json), then cargo xtask complete.")}));
+        "Every page this task owes is committed. Build, verify and commit the work if you have not; answer the record's four review questions, with each page's final verdict and open notes {source} in review.verification; run cargo xtask check ci (it writes target/verification/ci.json), then cargo xtask complete.")}));
     Ok(json!({"ok":true,"task":id,"pages":pages.all(),"next":next,"advisories":advisories}))
 }

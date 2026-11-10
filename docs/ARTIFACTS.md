@@ -1,42 +1,49 @@
 # Task pages
 
-A task leaves HTML pages that let a human understand it: what was unknown
-before code and why the result is ready to merge. The method is Thariq
-Shihipar's [Know your unknowns](../examples/thariq/index.html): each page is
-what a capable model produces from **one short, specific prompt, given its full
-attention**. Rules and checklists do not make these pages good. The prompt, a
-strong example, a dedicated author and an independent reviewer do.
+A task can leave HTML pages that let a human understand it before code is
+written. The method is Thariq Shihipar's
+[Know your unknowns](../examples/thariq/index.html): each page is what a capable
+model produces from **one short, specific prompt, given its full attention**.
+Rules and checklists do not make these pages good. The prompt, a strong example
+and a dedicated author do.
 
-Pages cost more than the code they describe, so a task writes as few as its
-risk calls for. `cargo xtask task-artifact next --task ID` names the next step
-for whichever tier the record declares.
+Pages cost far more than the code they describe, so most tasks write none. A
+paired run on product features found no accepted change that pages bought and
+ten to fifteen times the wall-clock time ([evaluation](EVALUATION.md)); the
+pages that did find defects were briefs on changes to the gates themselves.
+The tiers follow that evidence. `cargo xtask task-artifact next --task ID`
+names the next step for whichever tier the record declares.
 
 ## Task size
 
 A task record carries `"tier": "small"`, `"standard"` or `"full"`; a record
-without a tier is standard. Choose the tier at task start: pages due before
-code must be committed before the first product-code commit, so a task cannot
-move up a tier after its code lands.
+without a tier is small. Choose the tier at task start: a brief must be
+committed before the first product-code commit, so a task cannot move up a tier
+after its code lands.
 
 | Tier | Pages | Choose it when |
 | --- | --- | --- |
-| small | none | At most 100 changed lines, away from policy, dependency and ceremony paths. |
-| standard | `brief.html` before code, `report.html` after | Everything else. This is the default. |
-| full | the eight-page set below | The change is risky or hard to undo: a persistence or wire format, a security boundary, a migration, a public contract, or a design a person has asked to steer. |
+| small | none | Any change, of any size, away from policy, dependency and ceremony paths. This is the default. |
+| standard | `brief.html` before code | The change touches a path the gates protect, a `Cargo.toml` or the ceremony's own files, or is otherwise hard to undo: a persistence or wire format, a security boundary, a migration. |
+| full | the eight-page set below | A person has asked to steer the design before code and to understand it before merge. |
 
 Every tier owes its task record, the four review answers, current CI evidence
-and any transition receipt. The gates never force a task to be full; the owner
-or the ticket asks for it.
+and any transition receipt. The four review answers are the report on the
+finished work; no page restates them.
 
 A small task needs no pages and no page reviews. The completion and handoff
-gates measure the branch against its merge base and refuse a small task when:
-
-- its changed lines, added plus deleted, exceed 100 outside administrative paths
-  (moves count on both sides; untracked files count; any binary file refuses);
-- it touches a protected policy path, any `Cargo.toml`, or the ceremony's own
-  definitions (this guide, the author-artifact, review-artifact and write-ticket
-  skills and their `docs/skills/` pointers, and the agent folders under
-  `.claude/` and `.codex/`).
+gates read the branch against its merge base and refuse a small task when it
+touches a protected policy path other than the product's own acceptance files,
+any `Cargo.toml`, or the ceremony's own
+definitions (this guide, the author-artifact, review-artifact and write-ticket
+skills and their `docs/skills/` pointers, and the agent folders under
+`.claude/` and `.codex/`). A mistake there changes what every later task is
+held to, so those changes owe a brief. Size alone never does: a 600-line
+feature with tests is a small task. Neither do `harness/workflows.json`,
+`harness/scenarios.json`, `harness/readiness.json`, `harness/goldens/` and
+`docs/PRODUCT.md`: a feature adds its workflow case and its tests there, and
+those edits keep their transition receipt (and a golden its approval) without
+a brief.
 
 Any other skill can change in a small task, with no transition receipt.
 `cargo xtask docs` holds it to Markdown with only a name and description, and
@@ -51,36 +58,40 @@ equal `docs/skills/investigate.md` (DOC009, `SEEDS` in `xtask/src/checks.rs`),
 so a change to it edits all three files, and only a measured, independently
 reviewed improvement should replace the seed (README.md).
 
-A small task that outgrows the tier is split, or restarted as a standard task on
-a new branch. The limit counts lines, not meaning: dense or minified lines count
-once, and one feature split across several small branches passes each gate. CI
-and reviewers remain the check on both. The limits live in `xtask/src/size.rs`;
-changing them needs a transition receipt.
+A small task that turns out to need a protected path is split, or restarted as
+a standard task on a new branch with its brief first. The path list lives in
+`xtask/src/size.rs`; changing it needs a transition receipt.
 
 Records written at schema version 6 or earlier called the eight-page set
 "standard" and made it the default. They keep that meaning and stay valid; a
-new record uses schema version 7.
+new record uses schema version 7. A schema 7 record written while the standard
+tier also owed a `report.html` keeps that page as history; nothing reads it.
 
-## The standard pages
+## The standard page
 
-Two pages, one on each side of the code:
+One page, before the code:
 
 | When | Page | File | Prompt | Exemplar |
 | --- | --- | --- | --- | --- |
 | Before code | The brief | brief.html | "I'm about to {task} in {area}. Before I write code, give me one page: the unknowns in this part of the codebase that the ticket does not show, each with the code that proves it, then the plan, leading with the decisions I'm most likely to tweak and burying the mechanical work at the bottom." | [08](../examples/thariq/08-implementation-plan.html) |
-| Before merge | The report | report.html | "I built {task}. Give me one page I can decide the merge from: lead with the demo and the evidence, then what the code forced to change from the brief, logged as deviations with the conservative option taken, then what is still open." | [09](../examples/thariq/09-implementation-notes.html) |
 
-The exemplars were written for the full set, one job per page. A standard page
-does two jobs in less room:
+The exemplar was written for the full set, one job per page. A brief does two
+jobs in less room:
 
 > A standard page is short: at most 20 KB as a file, the pasted stylesheet
-> included. Keep to five unknowns or deviations at most, each proven by code or
-> captured output, and one decision per screen. Cut anything a reader would
-> learn as fast from the diff.
+> included. Keep to five unknowns at most, each proven by code or captured
+> output, and one decision per screen. Cut anything a reader would learn as
+> fast from the diff.
 
-`next` hands this rule to the author and the reviewer of a standard page, and
-adds an advisory when a page's file is over the limit. The limit is a size
-because reviewers measured "about half the exemplar" two ways and disagreed.
+`next` hands this rule to the brief's author and reviewer, and adds an advisory
+when the file is over the limit. The limit is a size because reviewers measured
+"about half the exemplar" two ways and disagreed.
+
+A brief gets one author pass. An independent review is the owner's call: ask
+for one when the change alters a gate or a person wants a second reading, and
+otherwise read the brief, act on what it found and commit it. `next` offers
+the review as optional. The review loop cost more than the authoring in the
+paired run, and most of its findings were about the page, not the change.
 
 ## The full set
 
@@ -117,7 +128,7 @@ otherwise. A record that names no reader has none.
 
 Without a reader a full task writes six pages: no `interview.html` and no
 `quiz.html`. Their content is not dropped. `next` hands this rule to the
-authors of the plan, the buy-in doc and both standard pages:
+authors of the plan, the buy-in doc and the brief:
 
 > No person will answer this task's pages. Put each question you would have
 > asked into this page with your recommendation, label it as the agent's call,
@@ -150,7 +161,7 @@ read the log.
    [examples/thariq/](../examples/thariq/) in full before writing. Match its
    depth, density and the job its interactions do, not its layout or domain.
    Those pages run 27–41 KB. A full-set page a fraction of that size on a
-   comparable task usually summarizes where it should show; a standard page
+   comparable task usually summarizes where it should show; a brief
    follows its own length rule above.
 3. **Ground every claim.** Name the file, function, test or commit behind each
    finding. Do not invent findings, options, questions or reference code to fill
@@ -165,7 +176,8 @@ read the log.
    (`node scripts/artifact-screenshots.cjs OUT_DIR examples/thariq/PAGE.html`)
    and fix what the report flags before committing. Without Node or Chrome, say
    so rather than implying visual review.
-5. **Get an independent review.** Start another fresh subagent, never the
+5. **Get an independent review** of each page of the full set, and of a brief
+   when its owner wants one. Start another fresh subagent, never the
    author, with the [reviewer brief](../.claude/skills/review-artifact/SKILL.md) and
    the review step's `handover`: the page, its prompt, the exemplar and the task
    context. A different model is better when
@@ -235,8 +247,7 @@ reviewer's and the human's call.
 3. Commit as you go. Completion and handoff read the branch's own commits since
    the base. At any stage, the pages due before code come before the first
    product-code commit. At completion, a full task's notes come before the last
-   product-code commit, and the pages due before merge (the report, or the
-   buy-in doc and quiz) at or after it. Code and pages must be committed when
+   product-code commit, and its buy-in doc and quiz at or after it. Code and pages must be committed when
    you claim completion. Git history keeps every earlier version.
 
 On a pull request a code host checks out a merge commit it built, from which

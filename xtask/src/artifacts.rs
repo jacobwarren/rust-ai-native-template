@@ -1,5 +1,5 @@
 //! Task HTML pages: self-contained agent-authored pages and their commit order. A
-//! standard task owes a brief and a report, a full task the eight-page set.
+//! standard task owes a brief before code, a full task the eight-page set.
 //! Checks establish presence, a floor of text and order; people judge usefulness.
 use crate::{
     config::{Result, valid_id},
@@ -22,10 +22,10 @@ pub const DISCOVERY: [&str; 5] = [
 ];
 pub const NOTES: &str = "implementation.html";
 pub const FINAL: [&str; 2] = ["buy-in.html", "quiz.html"];
-/// The standard tier's two pages: one before code, one after it.
+/// The standard tier's one page, due before code. The record's four review
+/// answers, not a second page, report on the finished work.
 pub const BRIEF: &str = "brief.html";
-pub const REPORT: &str = "report.html";
-/// The two pages written only when a person will answer them.
+/// The two full-set pages written only when a person will answer them.
 const FOR_A_READER: [&str; 2] = ["interview.html", "quiz.html"];
 /// Fewest characters, outside tags and styles, a required page may hold. Script
 /// text counts: an interactive page builds its content from data in a script.
@@ -57,7 +57,7 @@ impl Pages {
             Tier::Standard => Self {
                 before: vec![BRIEF],
                 notes: None,
-                after: vec![REPORT],
+                after: Vec::new(),
             },
             Tier::Full => Self {
                 before: DISCOVERY.into_iter().filter(wanted).collect(),
@@ -79,7 +79,7 @@ impl Pages {
 
 /// Every page name any tier uses, in the order the guide's prompt tables list them.
 pub fn known() -> Vec<&'static str> {
-    [BRIEF, REPORT]
+    [BRIEF]
         .into_iter()
         .chain(DISCOVERY)
         .chain([NOTES])
@@ -341,7 +341,7 @@ pub fn guard(root: &Path, id: &str) -> Result<Value> {
     let pages = match crate::task_record::read(root, id) {
         Ok(task) => Pages::of(&task),
         Err(e) if root.join(format!("harness/tasks/{id}.json")).is_file() => return Err(e),
-        Err(_) => Pages::for_tier(Tier::Standard, Reader::None),
+        Err(_) => Pages::for_tier(Tier::Small, Reader::None),
     };
     if pages.is_empty() {
         check_written(root, id)?;

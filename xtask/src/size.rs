@@ -1,15 +1,12 @@
-//! The small tier: a change small enough, and far enough from policy, to need no
-//! task pages. The gate measures the branch against its base so a task cannot
-//! declare itself small and then grow. See docs/ARTIFACTS.md "Task size".
+//! The small tier, the default: a task that owes no pages. It may be any size,
+//! but not touch the paths where a mistake changes what every later task is held
+//! to; those owe a brief first. The gate reads the branch against its base, so a
+//! task cannot declare itself small and then edit a gate. See docs/ARTIFACTS.md.
 use crate::{artifacts, config::Result, history, transitions};
 use std::path::Path;
 
-/// Most changed lines (added plus deleted) a small task may have outside
-/// administrative paths. Changing it is a policy change with a receipt.
-pub const SMALL_LINES: u64 = 100;
-
 /// Paths that define the ceremony itself; editing them always needs a standard
-/// task. The ceremony skills, in either host, are added by `ceremony_skill`;
+/// task and its brief. The ceremony skills, in either host, are added by `ceremony_skill`;
 /// other skills are ordinary paths.
 const CEREMONY: [&str; 5] = [
     "docs/ARTIFACTS.md",
@@ -19,9 +16,22 @@ const CEREMONY: [&str; 5] = [
     ".codex/agents/",
 ];
 
+/// Protected files that record what the product must do. Product work edits them
+/// with every feature, so they need their transition receipt but not a brief.
+const PRODUCT_ACCEPTANCE: [&str; 5] = [
+    "harness/workflows.json",
+    "harness/scenarios.json",
+    "harness/readiness.json",
+    "harness/goldens/",
+    "docs/PRODUCT.md",
+];
+
 /// Whether a change to this path needs a standard task whatever its size.
 pub fn forces_standard(path: &str) -> bool {
-    transitions::protected(path)
+    let acceptance = PRODUCT_ACCEPTANCE
+        .iter()
+        .any(|p| path == *p || (p.ends_with('/') && path.starts_with(p)));
+    (transitions::protected(path) && !acceptance)
         || path == "Cargo.toml"
         || path.ends_with("/Cargo.toml")
         || transitions::ceremony_skill(path)
@@ -30,36 +40,19 @@ pub fn forces_standard(path: &str) -> bool {
             .any(|c| path == *c || (c.ends_with('/') && path.starts_with(c)))
 }
 
-/// Changed lines per path against `base`, including uncommitted and untracked
-/// files. `None` marks a binary file. Moves count on both sides.
-fn changes(root: &Path, base: &str) -> Result<Vec<(String, Option<u64>)>> {
+/// Paths changed against `base`, including uncommitted and untracked files.
+fn changed(root: &Path, base: &str) -> Result<Vec<String>> {
     let mut out = Vec::new();
-    let diff = String::from_utf8(history::git(
-        root,
+    for args in [
         &[
             "-c",
             "core.quotePath=false",
             "diff",
-            "--numstat",
+            "--name-only",
             "--no-renames",
             "-z",
             base,
-        ],
-    )?)?;
-    for entry in diff.split('\0').filter(|e| !e.is_empty()) {
-        let mut parts = entry.splitn(3, '\t');
-        let (Some(added), Some(deleted), Some(path)) = (parts.next(), parts.next(), parts.next())
-        else {
-            return Err(format!("unreadable diff entry: {entry}").into());
-        };
-        let lines = match (added.parse::<u64>(), deleted.parse::<u64>()) {
-            (Ok(a), Ok(d)) => Some(a + d),
-            _ => None,
-        };
-        out.push((path.to_owned(), lines));
-    }
-    let untracked = String::from_utf8(history::git(
-        root,
+        ][..],
         &[
             "-c",
             "core.quotePath=false",
@@ -67,50 +60,27 @@ fn changes(root: &Path, base: &str) -> Result<Vec<(String, Option<u64>)>> {
             "-o",
             "--exclude-standard",
             "-z",
-        ],
-    )?)?;
-    for path in untracked.split('\0').filter(|p| !p.is_empty()) {
-        let bytes = std::fs::read(root.join(path))?;
-        let head = &bytes[..bytes.len().min(8000)];
-        let lines = if head.contains(&0) {
-            None
-        } else {
-            // Count lines as Git does: a final line without a newline still counts.
-            let newlines = bytes.iter().filter(|&&b| b == b'\n').count() as u64;
-            Some(newlines + u64::from(bytes.last().is_some_and(|&b| b != b'\n')))
-        };
-        out.push((path.to_owned(), lines));
+        ][..],
+    ] {
+        let text = String::from_utf8(history::git(root, args)?)?;
+        out.extend(text.split('\0').filter(|p| !p.is_empty()).map(String::from));
     }
     Ok(out)
 }
 
-/// Refuses a small task whose branch is too large or touches a path that needs
-/// the full ceremony. `base` is the merge base.
+/// Refuses a small task whose branch touches a path that owes a brief. `base` is
+/// the merge base.
 pub fn check_small(root: &Path, base: &str) -> Result<()> {
-    let mut total = 0;
-    let mut problems = Vec::new();
-    for (path, lines) in changes(root, base)? {
-        if artifacts::administrative(&path) {
-            continue;
-        }
-        if forces_standard(&path) {
-            problems.push(format!("{path} is a policy, dependency or ceremony path"));
-        }
-        match lines {
-            Some(n) => total += n,
-            None => problems.push(format!("{path} is a binary file")),
-        }
-    }
-    if total > SMALL_LINES {
-        problems.push(format!(
-            "{total} changed lines exceed the small limit of {SMALL_LINES}"
-        ));
-    }
+    let problems: Vec<String> = changed(root, base)?
+        .into_iter()
+        .filter(|path| !artifacts::administrative(path) && forces_standard(path))
+        .map(|path| format!("{path} is a policy, dependency or ceremony path"))
+        .collect();
     if problems.is_empty() {
         return Ok(());
     }
     Err(format!(
-        "{}; a small task changes at most {SMALL_LINES} lines and none of these paths. Narrow the change, or restart it as a standard task on a new branch with its brief committed before code (docs/ARTIFACTS.md)",
+        "{}; a task without pages changes none of these paths. Narrow the change, or restart it as a standard task on a new branch with its brief committed before code (docs/ARTIFACTS.md)",
         problems.join("; ")
     )
     .into())

@@ -3,7 +3,7 @@
 //! exemplar, the output path and the pages written so far. The guide is compiled
 //! in, so the prompt text has one source and a fixture repository needs no copy.
 use crate::{
-    artifacts::{self, BRIEF, REPORT},
+    artifacts::{self, BRIEF},
     config::Result,
     router::{Log, Verdict},
     task_record::{Prompt, Reader, Task, Tier},
@@ -90,9 +90,9 @@ pub fn no_reader_rule() -> Result<String> {
     quoted("Pages need a reader")
 }
 
-/// The quoted length rule for the standard tier's two pages.
+/// The quoted length rule for the standard tier's brief.
 pub fn standard_rule() -> Result<String> {
-    quoted("The standard pages")
+    quoted("The standard page")
 }
 
 /// Who receives the hand-over.
@@ -204,8 +204,7 @@ pub fn handover(root: &Path, id: &str, page: &str, task: &Task, to: For) -> Resu
         lines.push(format!("Answering rule: {}", answering_rule()?));
     }
     // Without a reader no interview is written: its questions belong to these pages.
-    if task.reader() == Reader::None && ["plan.html", "buy-in.html", BRIEF, REPORT].contains(&page)
-    {
+    if task.reader() == Reader::None && ["plan.html", "buy-in.html", BRIEF].contains(&page) {
         lines.push(format!("No reader: {}", no_reader_rule()?));
     }
     if task.tier() == Tier::Standard {
@@ -245,7 +244,7 @@ pub fn size_advisories(root: &Path, id: &str, task: &Task) -> Vec<String> {
                 .len();
             (size > limit).then(|| {
                 format!(
-                    "{page} is {size} bytes; a standard page stays within {limit} (docs/ARTIFACTS.md, The standard pages)"
+                    "{page} is {size} bytes; a standard page stays within {limit} (docs/ARTIFACTS.md, The standard page)"
                 )
             })
         })

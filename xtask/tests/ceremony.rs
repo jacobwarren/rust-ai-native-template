@@ -1,5 +1,5 @@
 #![allow(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
-//! The tiers of schema 7: a standard task owes a brief and a report, a full task
+//! The tiers of schema 7: a small task owes no pages, a standard task a brief, a full task
 //! the eight-page set, and the interview and quiz only when a person will answer.
 mod support;
 use serde_json::{Value, json};
@@ -58,42 +58,65 @@ fn code(f: &Fixture, n: u32) {
 }
 
 #[test]
-fn standard_task_owes_a_brief_before_code_and_a_report_after() {
+fn a_task_with_no_tier_owes_no_pages_at_any_size() {
     let f = Fixture::new();
     let base = f.git(&["rev-parse", "HEAD"]);
     f.write(
         "harness/tasks/TASK-1.json",
         record(&f, "complete", None, None),
     );
+    f.text("src/feature.rs", &"// a line of the feature\n".repeat(500));
+    f.commit("a 500-line feature and its record");
+    let done = complete(&f, &base);
+    assert!(done.contains("\"complete\":true"), "{done}");
+    assert!(!f.0.join("harness/task-artifacts/TASK-1").exists());
+    let v = xtask(&f, &["task-artifact", "next", "--task", "TASK-1"]);
+    assert_eq!(v["tier"], "small", "{v}");
+    assert!(
+        v["next"]["say"]
+            .as_str()
+            .unwrap()
+            .starts_with("No pages owed."),
+        "{v}"
+    );
+}
+
+#[test]
+fn a_standard_task_owes_only_a_brief_before_code() {
+    let f = Fixture::new();
+    let base = f.git(&["rev-parse", "HEAD"]);
+    f.write(
+        "harness/tasks/TASK-1.json",
+        record(&f, "complete", Some("standard"), None),
+    );
     f.run(&["task-artifact", "style", "--task", "TASK-1"]);
     code(&f, 1);
     f.commit("code first");
     assert!(complete(&f, &base).contains("missing brief.html"));
-    f.pages(&["brief.html", "report.html"]);
-    f.commit("pages after code");
+    f.page("brief.html");
+    f.commit("brief after code");
     assert!(complete(&f, &base).contains("brief.html must be committed before the first"));
 
     let f = Fixture::new();
     let base = f.git(&["rev-parse", "HEAD"]);
     f.write(
         "harness/tasks/TASK-1.json",
-        record(&f, "complete", None, None),
+        record(&f, "complete", Some("standard"), None),
     );
     f.run(&["task-artifact", "style", "--task", "TASK-1"]);
     f.page("brief.html");
     f.commit("brief");
     code(&f, 1);
     f.commit("code");
-    assert!(complete(&f, &base).contains("missing report.html"));
-    f.page("report.html");
-    f.commit("report");
+    // Nothing is owed after the code: no report, none of the eight-page set.
     let done = complete(&f, &base);
     assert!(done.contains("\"complete\":true"), "{done}");
-    // None of the eight-page set is asked for.
-    assert!(!f.0.join("harness/task-artifacts/TASK-1/plan.html").exists());
     code(&f, 2);
-    f.commit("code after the report");
-    assert!(complete(&f, &base).contains("report.html must be updated at or after"));
+    f.commit("a late fix");
+    let done = complete(&f, &base);
+    assert!(done.contains("\"complete\":true"), "{done}");
+    let v = xtask(&f, &["task-artifact", "check", "--task", "TASK-1"]);
+    assert_eq!(v["pages"], json!(["brief.html"]), "{v}");
 }
 
 #[test]
@@ -161,7 +184,7 @@ fn a_placeholder_page_is_refused() {
     let f = Fixture::new();
     f.write(
         "harness/tasks/TASK-1.json",
-        record(&f, "partial", None, None),
+        record(&f, "partial", Some("standard"), None),
     );
     f.text(
         "harness/task-artifacts/TASK-1/brief.html",
@@ -190,7 +213,7 @@ fn a_partial_handoff_checks_that_the_brief_came_before_code() {
     let base = f.git(&["rev-parse", "HEAD"]);
     f.write(
         "harness/tasks/TASK-1.json",
-        record(&f, "partial", None, None),
+        record(&f, "partial", Some("standard"), None),
     );
     f.run(&["task-artifact", "style", "--task", "TASK-1"]);
     code(&f, 1);
@@ -212,7 +235,7 @@ fn handoff_reads_the_branchs_commits_from_a_pull_request_merge() {
     f.git(&["switch", "-qc", "work"]);
     f.write(
         "harness/tasks/TASK-1.json",
-        record(&f, "partial", None, None),
+        record(&f, "partial", Some("standard"), None),
     );
     f.run(&["task-artifact", "style", "--task", "TASK-1"]);
     code(&f, 1);
@@ -248,7 +271,7 @@ fn handoff_reads_the_branchs_commits_from_a_pull_request_merge() {
     f2.git(&["switch", "-qc", "work"]);
     f2.write(
         "harness/tasks/TASK-1.json",
-        record(&f2, "partial", None, None),
+        record(&f2, "partial", Some("standard"), None),
     );
     f2.run(&["task-artifact", "style", "--task", "TASK-1"]);
     code(&f2, 1);
@@ -270,108 +293,4 @@ fn handoff_reads_the_branchs_commits_from_a_pull_request_merge() {
     ]);
     let v = xtask(&f2, &["handoff", "--base", &base]);
     assert!(v.to_string().contains(late), "{v}");
-}
-
-#[test]
-fn next_walks_a_standard_task_through_two_pages() {
-    let f = Fixture::new();
-    let mut r = record(&f, "partial", None, None);
-    r["prompt"] =
-        json!({"task":"add a board command","task_noun":"the board command","area":"the engine"});
-    f.write("harness/tasks/TASK-1.json", r);
-    f.run(&["task-artifact", "style", "--task", "TASK-1"]);
-    let v = xtask(&f, &["task-artifact", "next", "--task", "TASK-1"]);
-    assert_eq!(v["pages"], json!(["brief.html", "report.html"]), "{v}");
-    assert_eq!(v["next"]["action"], "author", "{v}");
-    let text = v["next"]["handover"].as_str().unwrap();
-    for line in [
-        "Write harness/task-artifacts/TASK-1/brief.html.",
-        "Prompt: I'm about to add a board command in the engine. Before I write code, give me one page",
-        "Exemplar: examples/thariq/08-implementation-plan.html",
-        "Pages so far: none",
-        "No reader: No person will answer this task's pages.",
-        "Length: A standard page is short: at most 20 KB as a file",
-    ] {
-        assert!(text.contains(line), "{line}\n{text}");
-    }
-    assert!(!text.contains('{'), "{text}");
-    f.page("brief.html");
-    let v = xtask(&f, &["task-artifact", "next", "--task", "TASK-1"]);
-    assert_eq!(v["next"]["action"], "review", "{v}");
-    assert!(
-        v["next"]["handover"]
-            .as_str()
-            .unwrap()
-            .contains("Length: A standard page is short: at most 20 KB"),
-        "{v}"
-    );
-    // A page of the full set is not one a standard task owes.
-    let stray = xtask(
-        &f,
-        &[
-            "task-artifact",
-            "verdict",
-            "--task",
-            "TASK-1",
-            "--page",
-            "quiz.html",
-            "--verdict",
-            "pass",
-            "--reviewer",
-            "r",
-            "--model",
-            "m",
-            "--findings",
-            "0",
-            "--notes",
-            "n",
-        ],
-    );
-    assert!(
-        stray
-            .to_string()
-            .contains("not a task page this task owes (brief.html, report.html)"),
-        "{stray}"
-    );
-    let pass = xtask(
-        &f,
-        &[
-            "task-artifact",
-            "verdict",
-            "--task",
-            "TASK-1",
-            "--page",
-            "brief.html",
-            "--verdict",
-            "pass",
-            "--reviewer",
-            "r",
-            "--model",
-            "m",
-            "--findings",
-            "0",
-            "--notes",
-            "n",
-        ],
-    );
-    assert_eq!(pass["ok"], true, "{pass}");
-    f.commit("brief");
-    let v = xtask(&f, &["task-artifact", "next", "--task", "TASK-1"]);
-    assert_eq!(v["next"]["page"], "report.html", "{v}");
-    let say = v["next"]["say"].as_str().unwrap();
-    assert!(
-        say.starts_with("Build, verify and commit the product work; then"),
-        "{say}"
-    );
-    let text = v["next"]["handover"].as_str().unwrap();
-    assert!(
-        text.contains("Prompt: I built the board command."),
-        "{text}"
-    );
-    assert!(text.contains("Pages so far: brief.html"), "{text}");
-    // The guard holds product edits until the brief is committed, and no longer.
-    assert_eq!(
-        f.run(&["task-artifact", "guard", "--task", "TASK-1"])["ok"],
-        true
-    );
 }

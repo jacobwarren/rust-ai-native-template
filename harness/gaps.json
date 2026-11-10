@@ -49,5 +49,17 @@
     "requirements": [
       "task-artifacts"
     ]
+  },
+  {
+    "id": "service-acceptance",
+    "rank": 4,
+    "state": "open",
+    "blocks": [
+      "product"
+    ],
+    "impact": "The scenario and workflow runners can grade only a program that reads its input and exits, and name the example binary in several places. A product that is a long-running service cannot be accepted through them as shipped.",
+    "evidence": "docs/EVALUATION.md, A held-out build: an agent adopting the template for an HTTP service rewrote xtask/src/workflows.rs and added a service driver (start on port 0, wait for a readiness line, speak HTTP, kill the process group, restart on the same data directory) before it could grade its product. The runner also always sets APP_DATA_DIR, so a scenario cannot test starting without it.",
+    "next_action": "Add a service transport to the workflow runner along the lines docs/HARNESS.md already describes (start an instance, wait for readiness, exercise flows, capture logs, tear down), and take the binary name from harness/config.json instead of the source.",
+    "resolution": null
   }
 ]

@@ -8,9 +8,9 @@ Behavior, boundaries, contracts, and intentional policy changes.
 
 ## HTML task review
 
-Link the pages in harness/task-artifacts/ID/: the brief and report of a
-standard task, or a full task's discovery pages, implementation notes and
-buy-in doc (and the quiz, when a person takes it). A small task has none. Distinguish demonstration from
+Most tasks are small and have no pages. Link a standard task's brief, or a
+full task's discovery pages, implementation notes and buy-in doc (and the
+quiz, when a person takes it), from harness/task-artifacts/ID/. Distinguish demonstration from
 observed behavior. Quiz completion is not reviewer approval.
 
 ## Evidence

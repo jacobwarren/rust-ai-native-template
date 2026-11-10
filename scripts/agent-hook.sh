@@ -186,7 +186,7 @@ EOF
       ask "$best_path holds the per-layer dependency allowlists that ARCH004 checks. Widening one adds a dependency, which the owner approves." \
         "Blocked: $best_path holds the dependency allowlists and Codex hooks cannot ask. Ask the owner to widen it." ;;
     policy)
-      note PreToolUse "$best_path is a protected policy file. This branch will need a transition receipt: run cargo xtask gaps --base origin/main before completion." ;;
+      note PreToolUse "$best_path is a protected policy file. This branch will need a transition receipt: run cargo xtask gaps --base BASE before completion, where BASE is the branch this one will merge into (origin/main unless it is stacked)." ;;
     *) allow ;;
   esac
 }

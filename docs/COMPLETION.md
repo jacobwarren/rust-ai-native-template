@@ -43,10 +43,10 @@ findings into existing gaps. No quota requires a new gap per task.
    gaps the assignment addresses and create harness/tasks/ID.json using
    examples/task-record.json and choose its tier. A ticket URL, ID or plan reference is
    optional; the [write-ticket skill](../.claude/skills/write-ticket/SKILL.md)
-   turns a request into a ticket and a partial record stub. A standard task commits its brief before
-   implementation and its report after; a full task its discovery pages before,
-   notes during the work and the buy-in doc last; a small
-   task needs no pages ([task pages](ARTIFACTS.md)).
+   turns a request into a ticket and a partial record stub. A small task, the default, needs no pages;
+   a standard task commits its brief before implementation; a full task its
+   discovery pages before, notes during the work and the buy-in doc last
+   ([task pages](ARTIFACTS.md)).
 2. Material discovery: investigate immediately. Fix it within authorized scope,
    update an existing gap, or record a new durable gap/observation. Do not silently
    expand the task into a project-wide audit.
@@ -98,7 +98,7 @@ The other fields are demonstrated in [the example](../examples/task-record.json)
 - summary and remaining form the handoff. Partial/blocked status needs next steps.
   A complete record may leave `remaining` out, or retain follow-up work outside
   its accepted scope.
-- tier is `small`, `standard` (the default) or `full`; reader is `human` or
+- tier is `small` (the default), `standard` or `full`; reader is `human` or
   `none` (the default) and decides whether a full task writes its interview
   and quiz ([task size](ARTIFACTS.md)).
 - prompt, optional, holds the values `task-artifact next` fills into the
@@ -278,7 +278,8 @@ handoff checks this for a partial task too. At completion a full task's
 implementation notes come before the last product-code commit, and the pages due
 before merge at or after it. Product code and the task's pages must be committed;
 task records, gaps and reports need not be. A small task needs no pages;
-completion and handoff instead refuse it when the branch outgrows the small tier.
+completion and handoff instead refuse it when the branch touches a policy,
+dependency or ceremony path.
 Commit order shows sequence, not usefulness, and a rewritten history can fake it;
 the text floor stops a placeholder, not a page of filler. An independent reviewer
 agent and human review against the exemplars judge quality. The default stop hook

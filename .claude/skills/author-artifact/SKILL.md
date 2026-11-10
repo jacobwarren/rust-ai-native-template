@@ -1,6 +1,6 @@
 ---
 name: author-artifact
-description: Write one of this repository's task HTML pages (a standard task's brief or report, or a full task's blindspots, interventions, interview, reference, plan, implementation notes, buy-in or quiz) from its prompt and exemplar. Use when docs/ARTIFACTS.md asks for a page.
+description: Write one of this repository's task HTML pages (a standard task's brief, or a full task's blindspots, interventions, interview, reference, plan, implementation notes, buy-in or quiz) from its prompt and exemplar. Use when docs/ARTIFACTS.md asks for a page.
 ---
 
 # Artifact author brief
@@ -48,7 +48,7 @@ anything.
    - **cited**: put a source beside every tile, headline number and claim a
      decision rests on: a file and line, a test, captured output, or the
      command that reproduces it. A true number with no source still fails.
-   - **ticket**: on a plan, buy-in, brief or report page, account for each acceptance, scope
+   - **ticket**: on a plan, buy-in or brief page, account for each acceptance, scope
      and validation item of the ticket: met, or changed with its reason.
 7. Check your work by looking at it, not by reasoning about the markup. Render
    your page and the exemplar with
@@ -60,7 +60,7 @@ anything.
    this one, revise. If your page runs longer than the exemplar, cut what a
    reader would skim until every remaining section carries something new.
    When your hand-over carries a `Length:` line, that line is the limit, not
-   the exemplar: a brief or a report does two of the exemplars' jobs in a
+   the exemplar: a brief does two of the exemplars' jobs in a
    file of at most 20 KB. Check your file's size before you hand back.
 
 If you were given reviewer findings, address every one of them, and rewrite more

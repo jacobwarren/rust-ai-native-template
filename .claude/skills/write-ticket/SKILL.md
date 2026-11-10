@@ -25,18 +25,20 @@ Write these five sections, short and concrete:
 1. **Problem.** What is wrong or missing and who notices, with the evidence: a
    command and its output, a file and line, a failing case.
 2. **Scope.** The files or areas that change, and the tier:
-   - **small** when the change is at most 100 changed lines and touches no
-     protected path (policy, gates, goldens, hooks), no `Cargo.toml`, and none
+   - **small**, the default, at any size, when the change touches no
+     protected path (policy, gates, hooks) beyond the product's own
+     acceptance files (workflows, scenarios, readiness, goldens,
+     `docs/PRODUCT.md`), no `Cargo.toml`, and none
      of the ceremony's own files: the author-artifact, review-artifact and
      write-ticket skills, agents, `docs/ARTIFACTS.md`. Other skills can change
-     in a small task. Small tasks need no pages; the gate measures the branch
-     and refuses one that grows.
-   - **standard** otherwise, and by default. It owes two pages: a brief
-     before code and a report before merge (docs/ARTIFACTS.md). When unsure,
-     say standard.
-   - **full** when the change is risky or hard to undo (a persistence or wire
-     format, a security boundary, a migration, a public contract) or the
-     owner asks to steer it. It owes the eight-page set. Say who reads the
+     in a small task. Small tasks need no pages; the gate reads the branch
+     and refuses one that touches those paths.
+   - **standard** when it does touch one of them, or is otherwise hard to
+     undo (a persistence or wire format, a security boundary, a migration).
+     It owes one page, a brief before code (docs/ARTIFACTS.md); the record's
+     four review answers report on the finished work.
+   - **full** when the owner asks to steer the design before code and to
+     understand it before merge. It owes the eight-page set. Say who reads the
      pages: `"reader": "human"` only when a person has agreed to answer the
      interview and take the quiz; otherwise `"none"`, and those two pages are
      not written.

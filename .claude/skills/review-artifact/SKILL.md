@@ -25,7 +25,7 @@ the page a reader would get, not the effort behind it.
    | consistent | Two places on the page disagree: the reply and what it summarizes, a tile and the body, a badge and its section. Read the reply as the script builds it, for the default choices and one changed choice. | never |
    | provenance | Something is shown as more real than it is: typed or reconstructed output as captured, invented lines in a quoted excerpt, unbuilt behaviour as existing. | the page shows no output or excerpt |
    | cited | A tile, headline number or claim a decision rests on has no source on the page: no file, test or output, and no command named that reproduces it. | never |
-   | ticket | An acceptance, scope or validation item of the ticket is neither met nor changed with its reason. | not a plan, buy-in, brief or report page |
+   | ticket | An acceptance, scope or validation item of the ticket is neither met nor changed with its reason. | not a plan, buy-in or brief page |
 
 3. Check the claims. Pick at least three concrete claims the page rests on,
    favoring the ones a decision depends on, and verify each against the code,
@@ -56,9 +56,6 @@ layout or domain:
   show, each proven by code, then a plan that leads with the decisions most
   likely to change. Without a reader, its open questions are answered on the
   page as the agent's calls.
-- **Report** (standard task, before merge): leads with the demo and evidence,
-  then the deviations from the brief with the conservative option taken, then
-  what is still open, enough to decide the merge from this page alone.
 - **Blindspot pass**: real unknowns a competent implementer would miss, each
   proven by code, plus how to prompt better.
 - **Brainstorm the intervention**: distinct places to intervene, ordered from

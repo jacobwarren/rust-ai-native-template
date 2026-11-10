@@ -156,9 +156,10 @@ schemas, discovery guidance, hook setup and authority limits.
 
 ## HTML task reviews
 
-A task leaves [HTML pages](docs/ARTIFACTS.md) a human can review, as few as its
-risk calls for. A standard task, the default, writes two: a brief before code and
-a report before merge. A full task, for risky or hard-to-undo work, writes eight:
+A task leaves [HTML pages](docs/ARTIFACTS.md) only when its risk calls for
+them. Most tasks are small and write none, at any size. A standard task, for a
+change to policy, dependency or ceremony paths, writes one: a brief before code.
+A full task, when a person asks to steer the design, writes eight:
 five discovery pages before code, implementation notes during the work, and a
 buy-in doc and quiz before merge; the interview and the quiz are written only
 when the record names a human reader. Each page comes from one prompt adapted from Thariq
@@ -167,9 +168,8 @@ the quality bar. A dedicated subagent writes each page and another reviews it
 against its exemplar before it is committed. Each page is a single file carrying
 the shared stylesheet from `cargo xtask task-artifact style --task ID` inline.
 Completion reads commit order: the pages due before code come before the first
-code commit, and the pages due before merge after the last. A small task (at most 100 changed
-lines, no policy, dependency or ceremony path) needs no pages; the gate measures
-its branch. Claude Code and Codex load the author and reviewer briefs as skills,
+code commit, and a full task's final pages after the last. A small task needs no
+pages; the gate refuses it only for policy, dependency and ceremony paths. Claude Code and Codex load the author and reviewer briefs as skills,
 and `.claude/agents/` and `.codex/agents/` define the two roles.
 `cargo xtask task-artifact next --task ID` names the next page step and hands
 over the filled-in prompt for it, and `task-artifact verdict` logs each review

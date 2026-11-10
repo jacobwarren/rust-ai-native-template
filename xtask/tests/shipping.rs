@@ -229,6 +229,7 @@ fn next_reports_a_standard_page_over_its_size_limit() {
     let f = Fixture::new();
     let mut r = f.record("partial");
     r["schema_version"] = json!(7);
+    r["tier"] = json!("standard");
     f.write("harness/tasks/TASK-1.json", r);
     f.run(&["task-artifact", "style", "--task", "TASK-1"]);
     f.page("brief.html");
@@ -276,6 +277,7 @@ fn a_late_brief_on_a_merge_commit_points_at_head() {
     f.git(&["switch", "-qc", "work"]);
     let mut r = f.record("partial");
     r["schema_version"] = json!(7);
+    r["tier"] = json!("standard");
     f.write("harness/tasks/TASK-1.json", r);
     f.run(&["task-artifact", "style", "--task", "TASK-1"]);
     // A correctly ordered branch: brief, then code.

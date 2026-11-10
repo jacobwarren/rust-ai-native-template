@@ -1,5 +1,5 @@
 #![allow(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
-//! A small task needs no pages; the gate measures its branch so it stays small.
+//! A small task needs no pages; the gate reads its branch so it stays off policy paths.
 mod support;
 use serde_json::{Value, json};
 use std::process::Command;
@@ -62,28 +62,32 @@ fn small_task_completes_with_no_pages() {
 }
 
 #[test]
-fn small_task_is_refused_past_100_lines_at_handoff() {
+fn a_pageless_task_is_refused_on_policy_paths_only() {
     let f = Fixture::new();
     let base = f.git(&["rev-parse", "HEAD"]);
     f.write("harness/tasks/TASK-1.json", small(&f, "partial"));
-    f.text("src/lib.rs", &"// line\n".repeat(100));
-    f.commit("100 lines");
+    // Size never refuses: 500 lines, a move and a binary file are all a small task.
+    f.text("src/lib.rs", &"// line\n".repeat(500));
+    f.commit("500 lines");
+    f.git(&["mv", "src/lib.rs", "src/moved.rs"]);
+    std::fs::write(f.0.join("src/blob.bin"), [0u8, 1, 2, 0]).unwrap();
+    f.commit("a move and a binary");
     let v = handoff_at(&f, &base);
     assert!(!errors(&v).contains("task tier small"), "{v}");
-    f.text("src/lib.rs", &"// line\n".repeat(101));
-    f.commit("101 lines");
+    // A gate's own source does, committed or not yet tracked.
+    f.text("xtask/src/new_gate.rs", "// one line\n");
     let v = handoff_at(&f, &base);
     assert_eq!(v["ok"], false);
     let e = errors(&v);
     assert!(
-        e.contains("101 changed lines exceed the small limit of 100"),
+        e.contains("xtask/src/new_gate.rs is a policy, dependency or ceremony path"),
         "{v}"
     );
     assert!(
-        e.contains("restart it as a standard task on a new branch"),
+        e.contains("restart it as a standard task on a new branch with its brief"),
         "{v}"
     );
-    // A blocked handoff may stop while the gap register is broken, but not past the size limit.
+    // A blocked handoff may stop while the gap register is broken, but not on a policy path.
     let mut blocked = small(&f, "blocked");
     blocked["remaining"] = json!(["Repair the gap register"]);
     f.write("harness/tasks/TASK-1.json", blocked);
@@ -109,36 +113,10 @@ fn small_task_is_refused_past_100_lines_at_handoff() {
 }
 
 #[test]
-fn moves_untracked_and_binary_files_count_toward_size() {
-    let f = Fixture::new();
-    f.text("src/big.rs", &"// line\n".repeat(60));
-    f.commit("existing file");
-    let base = f.git(&["rev-parse", "HEAD"]);
-    f.write("harness/tasks/TASK-1.json", small(&f, "partial"));
-    // A move counts on both sides: 60 deleted plus 60 added.
-    f.git(&["mv", "src/big.rs", "src/moved.rs"]);
-    f.commit("move");
-    let v = handoff_at(&f, &base);
-    assert!(errors(&v).contains("120 changed lines"), "{v}");
-    f.git(&["mv", "src/moved.rs", "src/big.rs"]);
-    f.commit("move back");
-    // An untracked file counts, including a last line without a newline.
-    f.text("src/new.rs", &format!("{}tail", "// line\n".repeat(100)));
-    let v = handoff_at(&f, &base);
-    assert!(errors(&v).contains("101 changed lines"), "{v}");
-    std::fs::remove_file(f.0.join("src/new.rs")).unwrap();
-    // Any binary file needs a standard task.
-    std::fs::write(f.0.join("src/blob.bin"), [0u8, 1, 2, 0]).unwrap();
-    let v = handoff_at(&f, &base);
-    assert!(errors(&v).contains("src/blob.bin is a binary file"), "{v}");
-}
-
-#[test]
 fn protected_cargo_and_ceremony_paths_force_standard() {
     for path in [
         "xtask/src/main.rs",
         "scripts/agent-hook.sh",
-        "harness/goldens/kept.json",
         "crates/app/Cargo.toml",
         "docs/ARTIFACTS.md",
         "docs/skills/author-artifact.md",
@@ -166,6 +144,21 @@ fn protected_cargo_and_ceremony_paths_force_standard() {
             "{path}: {v}"
         );
     }
+    // Product acceptance files change with every feature: a receipt, but no brief.
+    let f = Fixture::new();
+    let base = f.git(&["rev-parse", "HEAD"]);
+    f.write("harness/tasks/TASK-1.json", small(&f, "partial"));
+    for path in [
+        "harness/workflows.json",
+        "harness/scenarios.json",
+        "harness/goldens/kept.json",
+        "docs/PRODUCT.md",
+    ] {
+        f.text(path, "one line\n");
+    }
+    let v = handoff_at(&f, &base);
+    assert!(!errors(&v).contains("task tier small"), "{v}");
+    assert!(errors(&v).contains("transition rationale"), "{v}");
     // Administrative paths and an ordinary docs edit stay small.
     let f = Fixture::new();
     let base = f.git(&["rev-parse", "HEAD"]);
@@ -250,7 +243,7 @@ fn every_page_check_reads_the_tier() {
 }
 
 #[test]
-fn tier_is_small_or_standard_and_defaults_to_standard() {
+fn tier_is_strict_and_an_old_record_defaults_to_the_full_set() {
     let f = Fixture::new();
     let mut r = f.record("partial");
     r["tier"] = json!("tiny");
@@ -281,7 +274,7 @@ fn tier_is_small_or_standard_and_defaults_to_standard() {
             "{out}"
         );
     }
-    // No tier field means standard: discovery pages are required.
+    // A schema 6 record with no tier keeps its meaning: the eight-page set.
     f.write("harness/tasks/TASK-1.json", f.record("complete"));
     let o = Command::new(env!("CARGO_BIN_EXE_xtask"))
         .args(["task-artifact", "check", "--task", "TASK-1"])
