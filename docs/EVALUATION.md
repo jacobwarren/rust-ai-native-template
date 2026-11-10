@@ -103,12 +103,12 @@ full task owes without a reader.
 | reopen | accepted, 3 min | accepted, 45 min, 4 reviews | not run |
 | clear_done | accepted, 3 min | accepted, 34 min, 3 reviews | not run |
 | stats | accepted, 3 min | accepted, 33 min, 3 reviews | not run |
-| redo | accepted, 3 min | accepted, 54 min, 6 reviews | run not finished when this was written |
+| redo | accepted, 3 min | accepted, 54 min, 6 reviews | accepted, 126 min, 12 reviews |
 
 All twelve graded runs were accepted and passed CI. Pages bought no accepted
-change and cost about 15 times the wall-clock time for two pages and about 30
+change and cost about 15 times the wall-clock time for two pages and 30 to 40
 times for six. The standard runs wrote 507 to 668 lines of HTML each; the full
-run 2,585 for a feature of a few dozen lines. In the run reports, most
+runs 2,585 and 2,629 for features of a few dozen lines. In the run reports, most
 rewrites were for page length or a citation. The report page took more review
 rounds than the brief in three of five standard runs, and a late code fix
 forced it to be rewritten.
