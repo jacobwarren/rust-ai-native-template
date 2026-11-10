@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "brief.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "aa563750a2d604b84b5d44e6837d9c78e18e288fc1077da760a7446e9008f8e5",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. Reader learns clear_done is safe without a journal version bump; older builds fail loudly on load.\nFINDINGS: 0",
+      "findings": 0,
+      "model": "sonnet"
+    }
+  ]
+}
