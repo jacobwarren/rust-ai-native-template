@@ -199,3 +199,104 @@ fn clear_done_survives_save_and_load() {
     drop(d);
     std::fs::remove_dir_all(&dir).unwrap();
 }
+
+#[test]
+fn stats_counts_open_and_done_for_the_live_board() {
+    let mut d = Driver::default();
+    assert_eq!(
+        call(&mut d, json!({"method":"stats"}))["result"],
+        json!({"total":0,"open":0,"done":0})
+    );
+    for title in ["a", "b", "c"] {
+        add(&mut d, title);
+    }
+    call(
+        &mut d,
+        json!({"method":"execute","command":{"command":"complete","id":2}}),
+    );
+    call(
+        &mut d,
+        json!({"method":"execute","command":{"command":"remove","id":3}}),
+    );
+    let reply = call(&mut d, json!({"method":"stats"}));
+    assert_eq!(reply["ok"], true);
+    assert_eq!(reply["result"], json!({"total":2,"open":1,"done":1}));
+    assert_eq!(reply["result"].as_object().unwrap().len(), 3);
+    // Undo of the remove brings the task back as open; replay rebuilds the same counts.
+    call(
+        &mut d,
+        json!({"method":"execute","command":{"command":"undo"}}),
+    );
+    assert_eq!(
+        call(&mut d, json!({"method":"stats"}))["result"],
+        json!({"total":3,"open":2,"done":1})
+    );
+    let journal = call(&mut d, json!({"method":"capture"}))["result"]["journal"].clone();
+    let mut fresh = Driver::default();
+    call(&mut fresh, json!({"method":"replay","commands":journal}));
+    assert_eq!(
+        call(&mut fresh, json!({"method":"stats"}))["result"],
+        json!({"total":3,"open":2,"done":1})
+    );
+}
+
+#[test]
+fn stats_never_changes_board_revision_journal_or_undo() {
+    let mut d = Driver::default();
+    let empty = call(&mut d, json!({"method":"capture"}))["result"].clone();
+    call(&mut d, json!({"method":"stats"}));
+    assert_eq!(call(&mut d, json!({"method":"capture"}))["result"], empty);
+    add(&mut d, "x");
+    let before = call(&mut d, json!({"method":"capture"}))["result"].clone();
+    for _ in 0..3 {
+        call(&mut d, json!({"method":"stats"}));
+    }
+    let after = call(&mut d, json!({"method":"capture"}))["result"].clone();
+    assert_eq!(after, before);
+    assert_eq!(after["snapshot"]["revision"], 1);
+    assert_eq!(after["snapshot"]["can_undo"], true);
+}
+
+#[test]
+fn stats_needs_no_storage_directory() {
+    let mut d = Driver::open(None).unwrap();
+    let reply = call(&mut d, json!({"method":"stats"}));
+    assert_eq!(reply["ok"], true);
+    assert_eq!(reply["result"], json!({"total":0,"open":0,"done":0}));
+}
+
+#[test]
+fn stats_is_strict_and_discoverable() {
+    let mut d = Driver::default();
+    add(&mut d, "x");
+    let before = call(&mut d, json!({"method":"capture"}))["result"].clone();
+    for action in [
+        json!({"method":"stats","typo":true}),
+        json!({"method":"stats","id":1}),
+    ] {
+        let reply = call(&mut d, action);
+        assert_eq!(reply["ok"], false);
+        assert_eq!(reply["error"]["code"], "invalid_request");
+    }
+    assert_eq!(
+        d.handle(br#"{"schema_version":1,"id":1,"action":{"method":"stats"},"extra":1}"#)["ok"],
+        false
+    );
+    assert_eq!(call(&mut d, json!({"method":"capture"}))["result"], before);
+    // Guard: the discovered methods are exactly the ones this list names, and each
+    // answers a minimal request. A new Action must be listed here and in discovery.
+    let discovered = call(&mut d, json!({"method":"discover"}))["result"]["methods"].clone();
+    let expected = [
+        "discover", "inspect", "stats", "execute", "replay", "capture", "save", "load",
+    ];
+    assert_eq!(discovered, json!(expected));
+    for method in expected {
+        let action = match method {
+            "execute" => json!({"method":method,"command":{"command":"undo"}}),
+            "replay" => json!({"method":method,"commands":[]}),
+            _ => json!({"method":method}),
+        };
+        let code = call(&mut d, action)["error"]["code"].clone();
+        assert_ne!(code, json!("invalid_request"), "{method}");
+    }
+}

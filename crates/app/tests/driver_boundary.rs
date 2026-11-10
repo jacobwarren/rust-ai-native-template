@@ -80,3 +80,39 @@ fn script_and_stdin_are_identical_through_real_process_entrypoints() {
     assert_eq!(code, 0);
     assert_eq!(actual, expected);
 }
+
+#[test]
+fn stats_over_stdin_and_script_agree_and_match_inspect() {
+    let input = b"{\"schema_version\":1,\"id\":1,\"action\":{\"method\":\"execute\",\"command\":{\"command\":\"add\",\"title\":\"A\"}}}\n{\"schema_version\":1,\"id\":2,\"action\":{\"method\":\"execute\",\"command\":{\"command\":\"add\",\"title\":\"B\"}}}\n{\"schema_version\":1,\"id\":3,\"action\":{\"method\":\"execute\",\"command\":{\"command\":\"complete\",\"id\":1}}}\n{\"schema_version\":1,\"id\":4,\"action\":{\"method\":\"stats\"}}\n{\"schema_version\":1,\"id\":5,\"action\":{\"method\":\"stats\",\"typo\":1}}\n";
+    let p = std::env::temp_dir().join(format!("starter-stats-{}.jsonl", std::process::id()));
+    fs::write(&p, input).unwrap();
+    let result = Command::new(env!("CARGO_BIN_EXE_starter-app"))
+        .arg("script")
+        .arg(&p)
+        .env_remove("APP_DATA_DIR")
+        .output()
+        .unwrap();
+    fs::remove_file(p).unwrap();
+    let scripted: Vec<Value> = String::from_utf8(result.stdout)
+        .unwrap()
+        .lines()
+        .map(|l| serde_json::from_str(l).unwrap())
+        .collect();
+    let (code, piped) = run(input);
+    assert_eq!(code, 2);
+    assert_eq!(scripted, piped);
+    assert_eq!(piped[3]["result"], json!({"total":2,"open":1,"done":1}));
+    assert_eq!(
+        String::from_utf8(
+            Command::new(env!("CARGO_BIN_EXE_starter-app"))
+                .arg("capabilities")
+                .output()
+                .unwrap()
+                .stdout
+        )
+        .unwrap()
+        .contains("\"stats\""),
+        true
+    );
+    assert_eq!(piped[4]["error"]["code"], "invalid_request");
+}

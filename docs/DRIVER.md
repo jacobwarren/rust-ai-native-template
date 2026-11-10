@@ -26,6 +26,7 @@ A new process starts empty; request load explicitly to restore the saved board.
 {"schema_version":1,"id":1,"action":{"method":"discover"}}
 {"schema_version":1,"id":2,"action":{"method":"execute","command":{"command":"add","title":"Review"}}}
 {"schema_version":1,"id":3,"action":{"method":"inspect"}}
+{"schema_version":1,"id":6,"action":{"method":"stats"}}
 {"schema_version":1,"id":4,"action":{"method":"save"}}
 {"schema_version":1,"id":5,"action":{"method":"capture"}}
 ```
@@ -45,6 +46,7 @@ the tail is never interpreted as a new command. Output is flushed after each rep
 | discover | none | Version, limits, methods and typed command examples |
 | execute | command | One edit through Session; domain rejection preserves all state |
 | inspect | none | Ordered tasks, next_id, revision, can_undo |
+| stats | none | Read-only {total, open, done} counts; changes no state and needs no APP_DATA_DIR |
 | capture | none | Snapshot, journal, snapshot_sha256 and application_engine boundary |
 | replay | commands | Rebuild from an empty session; commit only if every command succeeds |
 | save | none | Persist journal to APP_DATA_DIR/board.json |

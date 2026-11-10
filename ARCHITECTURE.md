@@ -12,7 +12,7 @@ or Python dependency. Product intent lives in docs/PRODUCT.md.
 | Input invariants and business behavior | crates/domain/src/lib.rs: Name, NameError, greet | Parse once; deterministic domain behavior |
 | Stateful domain | crates/domain/src/board.rs: Title, Board | Validated deterministic edits; no serialization or I/O |
 | Shared application path | crates/engine/src/lib.rs: Command, Session | Prepare/commit edits, undo history, atomic replay |
-| Application driver | crates/engine/src/protocol.rs: Driver, Request | Discover, execute, inspect, capture, replay, save/load |
+| Application driver | crates/engine/src/protocol.rs: Driver, Request | Discover, execute, inspect, stats, capture, replay, save/load |
 | Persistence | crates/engine/src/store.rs: Store | Writer lock, bounded versioned journal, atomic replacement |
 | CLI protocol and telemetry | crates/app/src/main.rs and driver.rs: main, serve | Arguments, bounded JSON-lines/script transport, exit codes/events |
 | Command navigation | xtask/src/main.rs: dispatch | Public harness command interface |

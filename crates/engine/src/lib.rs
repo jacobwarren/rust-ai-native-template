@@ -111,6 +111,13 @@ impl Session {
         self.board.tasks().values().any(|task| task.done)
     }
 
+    /// Read-only counts for the live board; never touches history or journal.
+    pub fn stats(&self) -> Value {
+        let tasks = self.board.tasks();
+        let done = tasks.values().filter(|task| task.done).count();
+        json!({"total":tasks.len(),"open":tasks.len() - done,"done":done})
+    }
+
     pub fn journal(&self) -> &[Command] {
         &self.journal
     }
