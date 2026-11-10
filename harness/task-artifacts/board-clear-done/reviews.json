@@ -10,6 +10,26 @@
       "notes": "PASS. Reader learns clear_done is safe without a journal version bump; older builds fail loudly on load.\nFINDINGS: 0",
       "findings": 0,
       "model": "sonnet"
+    },
+    {
+      "page": "report.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "6f14b31db1bb9d40c8215cb0fbb3eb49a503b8874471060154e4fa6fc4e807a3",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE. Too long (six deviation/decision items vs five): drop V2, fold C3 and C2; uncited scratch-test counts and 9/9 tile need a reproducible command; V2/V3 off-feature.\nFINDINGS: 3",
+      "findings": 3,
+      "model": "sonnet"
+    },
+    {
+      "page": "report.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "1b3a36917071d6b38aab559a1a2da986fc68cebb9a6cd1574b9ec526e7f08f2f",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. Reader learns clear_done works end to end; open calls are V2, B, D1.\nFINDINGS: 0",
+      "findings": 0,
+      "model": "sonnet"
     }
   ]
 }
