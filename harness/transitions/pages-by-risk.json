@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "base_commit": "4a5039cc5eff3badc21aa45678745b9e9ebd07b8",
+  "changes": [
+    {
+      "change": {
+        "subject": "policy",
+        "before_sha256": "d6431f0e8a46fa4cb04dc2aa4fd2c850340e6d85adcadcdd0c3ee4e8bf3c565a",
+        "after_sha256": "e31c3c84ae8430fea91db3d2e24c1f7db38e45a4248d5a75e4aaabd4adbd6a57"
+      },
+      "rationale": "Lower the default page requirement on the evidence of a paired run (docs/EVALUATION.md, Pages on product tasks): twelve graded runs of five product features were all accepted with or without pages, and two pages cost about 15 times the wall-clock time. A schema 7 record with no tier is now small and owes no pages. The small tier loses its 100-line and binary-file limits and is refused only for policy, dependency and ceremony paths; the product's acceptance files (harness/workflows.json, scenarios.json, readiness.json, goldens/, docs/PRODUCT.md) no longer force a brief because every feature edits them, and they keep their transition receipt and, for goldens, the edit guard's approval. The standard tier owes one page, brief.html, before code; report.html is no longer a page, and the record's four review answers, already required, report on the finished work. next offers a brief's first review as optional; the review loop is otherwise unchanged. What stays as strict as before: a brief before the first code commit for any change to xtask, hooks, CI, Cargo manifests, the ceremony's own files and the other protected paths; the text floor; order at partial handoff; receipts for every protected path; the full tier. Schema 6 records and the four schema 7 records already committed keep what they owed. The edit guard's receipt hint no longer assumes origin/main. harness/readiness.json renames and adds the tests.",
+      "evidence": [
+        "docs/EVALUATION.md",
+        "docs/plans/pages-by-risk.md",
+        "harness/task-artifacts/pages-by-risk/brief.html",
+        "xtask/tests/tiers.rs",
+        "xtask/tests/brief.rs",
+        "xtask/tests/ceremony.rs"
+      ],
+      "manual_justification": null
+    }
+  ]
+}
