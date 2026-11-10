@@ -2,7 +2,7 @@
   "schema_version": 7,
   "id": "ship-clean",
   "work_item": null,
-  "status": "partial",
+  "status": "complete",
   "tier": "standard",
   "reader": "none",
   "requirements": [
@@ -23,11 +23,37 @@
     }
   ],
   "gap_review": "Read the three open gaps (product-acceptance, platform-qualification, hosting-enforcement); none is changed. The closed gap artifact-gate-holes cited an archived page as evidence, so its evidence text is re-pointed.",
-  "discoveries": [],
-  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "discoveries": [
+    {
+      "summary": "Checking the archive commit on every coordination run would fail for an adopter who unpacks the template without history; the commit is read only when a deletion relies on it.",
+      "record": "harness/task-artifacts/ship-clean/brief.html"
+    },
+    {
+      "summary": "The stop hook judged every completed record of a stack kept on local branches against origin/main, because it looked for other branches only among remotes; it now counts local branches too.",
+      "record": "scripts/agent-complete.sh"
+    },
+    {
+      "summary": ".github/workflows/ci.yml keeps its mkdir and redirect, which work there; the runner now writes the same bytes to the same path. A failed check's tail is 30 lines in one field, not the brief's 20 per stream.",
+      "record": "harness/task-artifacts/ship-clean/report.html"
+    },
+    {
+      "summary": "Two experiment runs found that coordination, and so check ci, fails for a record marked complete before its report page exists; the working order is report, then CI, then status complete. Not changed here.",
+      "record": "harness/task-artifacts/ship-clean/report.html"
+    }
+  ],
+  "discovery_review": "Four discoveries: one changed the archive design before code, one is a stop-hook fix added beyond the ticket, one records two small deviations, and one is an ordering trap left as documented behaviour.",
   "documentation": {
-    "updated": [],
-    "rationale": "docs/ARTIFACTS.md, docs/COMPLETION.md, docs/EVALUATION.md, docs/ADOPTING.md and README.md change; listed when the work lands."
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "docs/COMPLETION.md",
+      "docs/EVALUATION.md",
+      "docs/ADOPTING.md",
+      "docs/HARNESS.md",
+      "docs/READINESS.md",
+      "README.md",
+      "AGENTS.md"
+    ],
+    "rationale": "docs/COMPLETION.md documents the archive manifest, the optional remaining field and local stacks; docs/ARTIFACTS.md the 20 KB limit, hand corrections and the --head hint; docs/EVALUATION.md points the reviewer calibration at the archive commit; docs/ADOPTING.md says where the history is; docs/HARNESS.md, docs/READINESS.md, README.md and AGENTS.md describe the report path and output_tail."
   },
   "prompt": {
     "task": "let archived task history be deleted from the tree, remove the template's own, and fix the friction twelve agent runs reported",
@@ -37,8 +63,10 @@
     "reference": "The protected-path and immutable-receipt checks in xtask/src/transitions.rs"
   },
   "summary": "Add an archive manifest so merged task history can leave the tree, remove the template's own, and fix six points of friction from the first runs under the new tiers.",
-  "remaining": [
-    "Commit the brief before the code, then the code, the removal and the receipt",
-    "cargo xtask check ci, then complete against product/board-stats"
-  ]
+  "review": {
+    "acceptance": "All six named tests exist in xtask/tests/shipping.rs and pass: archived_history_may_be_deleted_and_nothing_else, a_profile_run_writes_its_report_where_the_docs_say, a_failed_check_shows_the_end_of_its_output, a_complete_record_needs_no_remaining_field, next_reports_a_standard_page_over_its_size_limit and a_late_brief_on_a_merge_commit_points_at_head. The eleven merged tasks' records, pages and receipts, the calibration drafts and their tickets are out of the tree (108 files); git ls-tree showcase/template-history lists the eleven records. Beyond the ticket: the archive commit must hold the same blob, and the stop hook handles local stacks (stop_judges_only_this_branchs_records_when_stacked).",
+    "verification": "cargo xtask check ci passed 9 of 9 (target/verification/ci.json); cargo xtask handoff --base product/board-stats --report target/verification/ci.json accepts the deletions with harness/transitions/ship-clean.json. An export of this branch with no history (git archive, then git init) also passed check ci. Pages: brief.html pass in round 1 (0 findings); report.html pass in round 1 (0 findings); both reviewers left one non-blocking wording note each in reviews.json. GitHub Actions has not run: nothing is pushed, and showcase/template-history exists only locally until it is.",
+    "assumptions": "The archive commit 0913680 is the current origin/main, so its objects travel with any clone that has the default branch; a shallow clone that lacks it could not verify a later deletion of archived paths. That other local branches mark stack boundaries assumes a local backup copy of the current branch is rare; such a copy hides this branch's records from the stop hook, as a pushed copy under another name already did, and PR CI still judges them.",
+    "coverage": "No test runs the archive check against a shallow clone. The 20 KB limit is advice from next and a reviewer check, not a gate. The stop-hook change is tested with one local lower branch, not with several or with a local copy of the same branch. Codex hooks were not run."
+  }
 }
