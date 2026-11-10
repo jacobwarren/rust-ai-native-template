@@ -189,7 +189,7 @@ test stats_is_strict_and_discoverable ... ok
 test stats_counts_open_and_done_for_the_live_board ... ok</pre></figure>
       <div class="so">
         <p class="so"><span class="met">Met as written:</span> the five ticket tests (E1); <code>Session::stats(&amp;self)</code>, lib.rs:102-107 (brief A1); <code>Stats {}</code>, protocol.rs:23 (brief unknown 3); nothing changed under crates/app/src (brief unknown 4); DRIVER.md:29, :49 and ARCHITECTURE.md:15; the brief committed before the code.</p>
-        <p class="so"><span class="chg">Changed:</span> the discovery guard, D1. <span class="chg">Misnamed:</span> the transport test, C2. <span class="chg">Pending:</span> <code>cargo xtask check ci</code> is not shown here.</p>
+        <p class="so"><span class="chg">Changed:</span> the discovery guard, D1. <span class="chg">Misnamed:</span> the transport test, C2. <span class="chg">After this page:</span> a later commit rewrote one bool assertion in that test for clippy; <code>cargo xtask check ci</code> then passed (report at target/verification/ci.json).</p>
       </div>
     </div>
   </section>
@@ -236,7 +236,7 @@ test stats_counts_open_and_done_for_the_live_board ... ok</pre></figure>
 
   <section class="card decision" id="c2" data-title="C2 transport test name">
     <h3><span class="tag">C2</span> The transport test promises an inspect check it never makes</h3>
-    <p><code>stats_over_stdin_and_script_agree_and_match_inspect</code> (crates/app/tests/driver_boundary.rs:85-118) sends no <code>inspect</code> request; it compares against the literal <code>{"total":2,"open":1,"done":1}</code> (:104). Agreement with inspect is shown only in the demo, not in any test.</p>
+    <p><code>stats_over_stdin_and_script_agree_and_match_inspect</code> (crates/app/tests/driver_boundary.rs:85-120) sends no <code>inspect</code> request; it compares against the literal <code>{"total":2,"open":1,"done":1}</code> (about :104). Agreement with inspect is shown only in the demo, not in any test.</p>
     <div class="opts">
       <label><input type="radio" name="c2" checked data-when="before" data-reply="before merge: add an inspect request to the transport test and assert stats equals counts of its tasks."><span class="who">Agent's call · before merge</span><br><b>Add the check the name claims.</b> Send <code>inspect</code> in the same input and assert stats equals the counts of its <code>tasks</code>. That equality is the ticket's problem statement.</label>
       <label><input type="radio" name="c2" data-when="before" data-reply="before merge: rename the test to stats_over_stdin_and_script_agree, the brief's name."><span class="who">Alternative · before merge</span><br><b>Rename it</b> to the brief's <code>stats_over_stdin_and_script_agree</code>. Honest, but nothing then ties stats to inspect.</label>
