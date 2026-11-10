@@ -39,5 +39,6 @@
     "verification": "brief.html: round 1 REVISE (3 findings), rewritten, round 2 PASS (0). report.html: PASS (0 findings). cargo xtask check ci report: target/verification/ci.json.",
     "assumptions": "Agent's calls: counting in Session::stats(&self); discovery guarded by a pinned methods-list test (deviation D1: an exhaustive match is impossible from integration tests because Action is private). Open on the report: C1 in-crate tripwire, C2 the transport test name overstates (it never sends inspect), C3 two DRIVER.md nits. No readiness.json or workflows.json change (protected).",
     "coverage": "Engine tests use the Driver without a store; the app test reaches the real process by stdin and script. Not covered: a new Action left out of the methods list still passes (pre-existing gap), and no workflows.json scenario."
-  }
+  },
+  "remaining": []
 }
