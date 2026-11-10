@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brief: pages by risk</title>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<style>
+main { max-width: 62rem; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: 0; list-style: none; }
+.chips li { background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: var(--space-1) var(--space-4); font-size: var(--text-small); }
+.chips b { font-size: 1rem; }
+.u { margin-block: var(--space-6); }
+.u h3 { margin: 0 0 var(--space-2); }
+.u .why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-4); align-items: start; }
+@media (max-width: 46rem) { .u .why { grid-template-columns: 1fr; } }
+.u pre { margin: 0; font-size: .8rem; }
+.lbl { display: block; font-size: .75rem; color: var(--muted); margin-bottom: var(--space-1); }
+.tag { font-size: .75rem; font-weight: 650; padding: 0 var(--space-2); border-radius: var(--control-radius); background: var(--warning-soft); color: var(--warning); border: 1px solid var(--warning); }
+.d { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: var(--space-4) var(--space-6); margin-block: var(--space-4); }
+.d h3 { margin: 0; }
+.d .opt { display: flex; gap: var(--space-2); margin-block: var(--space-2); }
+.d .opt input { margin-top: .4rem; }
+.d .then { font-size: var(--text-small); border-inline-start: 3px solid var(--accent); padding-inline-start: var(--space-3); color: var(--muted); }
+.ok, .chg { color: var(--accent); font-weight: 650; }
+.chg { color: var(--warning); }
+#reply { white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Brief · pages-by-risk · no reader</p>
+<h1>No pages by default, a brief only where the gates change</h1>
+<p class="lead">Default <code>small</code> at any size, <code>standard</code> owes one brief before code, no report page. The biggest unknown: adding a board command still touches a path that forces a brief.</p>
+<ul class="chips">
+<li><b>5</b> unknowns, each proven below</li>
+<li><b id="nd">5</b> decisions, all the agent's call</li>
+<li><b>27</b> tests fail if the default is flipped naively <small>(U2)</small></li>
+</ul>
+
+<h2>What the ticket does not show</h2>
+
+<section class="u">
+<h3>U1 · Adding a board command touches a protected path, so it still needs a brief <span class="tag">→ D1</span></h3>
+<div class="why">
+<p><code>forces_standard</code> starts with <code>transitions::protected(path)</code> (<code>xtask/src/size.rs:23-24</code>), and that list includes <code>harness/workflows.json</code>, <code>harness/readiness.json</code> and <code>docs/PRODUCT.md</code> (<code>transitions.rs:49-62</code>). The add-product-command skill requires a workflows.json case for every command (step 5) and concludes "this is a standard-tier task" (lines 38-41). The committed clear_done command touched all three. The board-stats method touched none (<code>git diff --stat 79f7032^ 7264ab6</code>). As written, a new command still owes a brief.</p>
+<div><span class="lbl">Captured: <code>git show --stat 16f9ead</code>, trimmed to its protected paths</span>
+<pre>Add clear_done board command
+ docs/PRODUCT.md        |   2 +-
+ harness/readiness.json |  20 ++-
+ harness/workflows.json | 341 ++++++++++
+ 11 files changed, 559 insertions(+), 16 deletions(-)</pre></div>
+</div>
+</section>
+
+<section class="u">
+<h3>U2 · Moving the serde default to Small would make every schema-6 fixture small <span class="tag">→ D4</span></h3>
+<div class="why">
+<p><code>Tier</code> has <code>#[default] Standard</code> (<code>task_record.rs:26</code>), and <code>tier()</code> remaps Standard to Full for schema ≤6 (line 74). That remap is the only reason a schema-6 record without a tier owes eight pages. The shared test record is schema 6 and has no tier (<code>tests/support/mod.rs:100</code>). If <code>#[default]</code> moves to Small, those records read as small and skip the remap. <code>declared_tier</code> has to become <code>Option&lt;Tier&gt;</code>, resolved by schema version. All four committed records are schema 7 and spell <code>"tier": "standard"</code>, so none changes meaning.</p>
+<div><span class="lbl">Captured: <code>cargo test -p xtask --no-fail-fast</code> in a clean export with only the <code>#[default]</code> line moved to Small, condensed from the six failing targets' result lines. At HEAD the same targets pass 42 of 42.</span>
+<pre>tests/artifacts.rs  4 passed; 5 failed
+tests/ceremony.rs   2 passed; 5 failed
+tests/handover.rs   0 passed; 5 failed
+tests/router.rs     1 passed; 7 failed
+tests/shipping.rs   4 passed; 2 failed
+tests/tiers.rs      4 passed; 3 failed   (27 FAILED)</pre></div>
+</div>
+</section>
+
+<section class="u">
+<h3>U3 · New records name their tier, so the default rarely applies <span class="tag">→ D5</span></h3>
+<p><code>examples/task-record.json:5</code> writes <code>"tier": "standard"</code>, and AGENTS.md step 2 tells agents to start every record from that example or from the write-ticket stub. The stub makes the author pick a tier, and write-ticket's <code>SKILL.md:34-36</code> says "standard otherwise, and by default … When unsure, say standard." The ticket's scope lists neither file; unchanged, new tasks keep writing standard and paying for a brief.</p>
+</section>
+
+<section class="u">
+<h3>U4 · The gate already treats review as optional; only <code>next</code> requires it <span class="tag">→ D3</span></h3>
+<p>Completion never reads <code>reviews.json</code>: <code>completion.rs</code> imports no router, and docs/ARTIFACTS.md:139 says "Completion does not read the log." Only <code>page_step</code> requires it: it returns <code>None =&gt; return Ok(review(1))</code> for an authored page with no verdict (<code>router.rs:243</code>), and its closing step asks you to copy "each page's final verdict" (line 393). The fourth test is a router-only change.</p>
+</section>
+
+<section class="u">
+<h3>U5 · The report is compiled into the prompt table, so the code and the guide drop it together</h3>
+<p><code>handover.rs:14</code> compiles docs/ARTIFACTS.md into the binary with <code>include_str!</code>. <code>rows()</code> refuses a table whose File column differs from <code>artifacts::known()</code> (<code>handover.rs:57</code>), which today is <code>[BRIEF, REPORT]</code> followed by the full set (<code>artifacts.rs:82</code>). If one side drops report.html without the other, every hand-over from <code>next</code> errors, so both must change in the same commit. Old report.html files stay; <code>check_written</code> simply stops inspecting them.</p>
+</section>
+
+<h2>Decisions, most likely to change first</h2>
+<p class="muted">No one answers before code, so each "agent's call" is what the build does. Picking the other option changes the reply below.</p>
+<div id="decisions"></div>
+
+<h2>Build order</h2>
+<ol>
+<li>Commit this brief with the ticket and record, before any code.</li>
+<li><code>task_record.rs</code>: <code>Option&lt;Tier&gt;</code>. No tier at schema ≤6 resolves to Full, and no tier at 7 resolves to Small. Test <code>a_task_with_no_tier_owes_no_pages_at_any_size</code>.</li>
+<li><code>size.rs</code>, following D1 and D2: drop <code>SMALL_LINES</code> and the line counting. Test <code>a_pageless_task_is_refused_on_policy_paths_only</code>, and rewrite the 100-line and binary tests in <code>tiers.rs</code>.</li>
+<li><code>artifacts.rs</code> (standard owes <code>before: [BRIEF]</code> and <code>after: []</code>; remove <code>REPORT</code>) and the guide's prompt-table row, in one commit (U5). Test <code>a_standard_task_owes_only_a_brief_before_code</code>.</li>
+<li><code>router.rs</code>, following D3. Test <code>next_offers_review_of_a_brief_without_requiring_it</code>.</li>
+<li>Docs and skills: ARTIFACTS, AGENTS, README, COMPLETION, the ceremony skills, add-product-command, the example record (D5), the EVALUATION section, the <code>service-acceptance</code> gap, and the hook's receipt hint.</li>
+<li>Transition receipt, because <code>xtask/</code>, AGENTS.md and docs/COMPLETION.md are protected. Then <code>cargo xtask check ci</code>, then complete against <code>harness/ship-clean</code>.</li>
+</ol>
+
+<h2>Ticket, item by item</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Ticket item</th><th>Where</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Test: no tier owes no pages at any size</td><td>step 2</td><td class="ok">as written</td></tr>
+<tr><td>Test: pageless task refused on policy paths only</td><td>step 3</td><td class="chg">changed by D1: the four product-acceptance files no longer refuse. <code>xtask/</code>, <code>Cargo.toml</code> and ceremony paths still do.</td></tr>
+<tr><td>Test: standard owes only a brief before code</td><td>step 4</td><td class="ok">as written</td></tr>
+<tr><td>Test: next offers review without requiring it</td><td>step 5</td><td class="ok">as written, plus D3's started-review case</td></tr>
+<tr><td>Scope: the five xtask files</td><td>steps 2-5</td><td class="ok">as written</td></tr>
+<tr><td>Scope: ARTIFACTS, AGENTS, README, COMPLETION, ceremony skills</td><td>step 6</td><td class="chg">widened: plus the example record (U3) and the add-product-command skill (U1)</td></tr>
+<tr><td>Scope: EVALUATION, gaps.json, agent-hook.sh</td><td>step 6</td><td class="ok">as written; numbers from the ticket's Problem</td></tr>
+<tr><td>Validation: <code>check ci</code> 9 of 9</td><td>step 7</td><td class="ok">as written</td></tr>
+<tr><td>Validation: complete against ship-clean (a brief, no report)</td><td>step 7</td><td class="ok">as written</td></tr>
+<tr><td>Out of scope: full tier, the service grader, a rerun</td><td>none</td><td class="ok">untouched; <code>Tier::Full</code> keeps its pages</td></tr>
+</tbody></table></div>
+
+<details>
+<summary>Mechanical work (6 items, no decisions)</summary>
+<ul>
+<li>Remove <code>REPORT</code> from the No-reader list at <code>handover.rs:207</code>. Keep the "The standard pages" heading: <code>standard_rule()</code> quotes it by name.</li>
+<li>With no record the guard still fails closed (<code>artifacts.rs:344</code>) but asks for the record, not a brief.</li>
+<li><code>router.rs:283</code> names the log only if one exists; line 393 accepts an unreviewed brief.</li>
+<li>Doc comments: <code>task_record.rs:16-21</code>, <code>artifacts.rs:1-2</code>, <code>size.rs:1-9</code>.</li>
+<li>Seven lines of <code>tests/ceremony.rs</code> (72-360) name report.html; they move to the brief or assert that it is not owed.</li>
+<li>Remove "100 changed lines" from ARTIFACTS "Task size" and <code>write-ticket SKILL.md:28</code>; AGENTS.md step 2 stops calling standard the default.</li>
+</ul>
+</details>
+
+<h2>Reply</h2>
+<p class="muted">Assembled from your choices above; the open calls are decided at merge.</p>
+<output id="reply"></output>
+<p><button type="button" id="copy">Copy reply</button></p>
+</main>
+<script>
+var D = [
+ {id:"D1", t:"Do the product-acceptance files force a brief?", open:true,
+  a:["Agent's call: no. Remove harness/workflows.json, harness/readiness.json, harness/scenarios.json and docs/PRODUCT.md from forces_standard. They still need a transition receipt, because protected() does not change.",
+     "Keep the rule as written: every protected path forces a brief, so each new command owes one."],
+  c:["A new command (U1) is pageless; gate, dependency and ceremony changes owe a brief. Basis: both briefs that found something changed gates (ticket, Problem).",
+     "clear_done-style work still costs an authored brief; only read-only work like stats skips it."]},
+ {id:"D2", t:"Binary files on a pageless task", open:false,
+  a:["Agent's call: drop the refusal at size.rs:101 and the line counter. changes() becomes a list of names (with renames off, a move still lists both paths).",
+     "Keep refusing any binary file."],
+  c:["The refusal exists only because numstat cannot count a binary. With no line limit nothing is counted; a binary on a policy path is still refused by its path.",
+     "Adding a product asset needs a standard task with a brief."]},
+ {id:"D3", t:"A review that has already started", open:true,
+  a:["Agent's call: next names review as optional and the commit as the next step. Once a verdict is recorded, the current loop (rewrite, two-rewrite cap, best) applies.",
+     "Every verdict is advisory: next always offers the commit, even after a REVISE."],
+  c:["A recorded REVISE is not dropped; skipping review never enters the loop.",
+     "The loop never binds, so a REVISE finding can ship without being addressed."]},
+ {id:"D4", t:"Record schema version", open:false,
+  a:["Agent's call: stay at 7. With no tier, schema 6 or earlier resolves to Full and schema 7 to Small.",
+     "Bump to 8. A schema 7 record with no tier keeps owing a brief."],
+  c:["Matches the first named test, which uses schema 7. No committed record omits its tier (U2).",
+     "An adopter's tierless schema 7 record keeps its meaning; costs a bump and fixtures."]},
+ {id:"D5", t:"The tier that new records write", open:false,
+  a:["Agent's call: examples/task-record.json writes \"small\", and write-ticket reads: small by default; standard for policy, dependency or ceremony paths.",
+     "Drop tier from the example so that the default applies."],
+  c:["The record states the tier, and the gate refuses a small record that touches a policy path.",
+     "Shorter, but the record no longer shows its tier."]}
+];
+var box = document.getElementById("decisions"), out = document.getElementById("reply");
+document.getElementById("nd").textContent = D.length;
+D.forEach(function (d) {
+  var el = document.createElement("section"); el.className = "d";
+  el.innerHTML = "<h3>" + d.id + " · " + d.t + "</h3>" + d.a.map(function (txt, k) {
+    return '<label class="opt"><input type="radio" name="' + d.id + '" value="' + k + '"' + (k ? "" : " checked") + "><span>" + txt + "</span></label>";
+  }).join("") + '<p class="then" id="' + d.id + 'c"></p>';
+  box.appendChild(el);
+});
+function render() {
+  var lines = [], open = [];
+  D.forEach(function (d) {
+    var k = +document.querySelector('input[name="' + d.id + '"]:checked').value;
+    document.getElementById(d.id + "c").textContent = "Then: " + d.c[k];
+    lines.push(d.id + " (" + d.t + "): " + (k ? "change to: " : "keep: ") + d.a[k]);
+    if (d.open) open.push(d.id);
+  });
+  out.textContent = "pages-by-risk brief\n" + lines.join("\n") + "\nStill open at merge: " + open.join(", ");
+}
+box.addEventListener("change", render); render();
+document.getElementById("copy").onclick = function () {
+  var b = this; (navigator.clipboard ? navigator.clipboard.writeText(out.textContent) : Promise.reject()).then(function () { b.textContent = "Copied"; }, function () { b.textContent = "Select the text above to copy"; });
+};
+</script>
+</body>
+</html>

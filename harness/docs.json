@@ -228,6 +228,12 @@
     "verified_by": "cargo xtask docs; harness/tasks/lighter-ceremony.json"
   },
   {
+    "path": "docs/plans/pages-by-risk.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; harness/tasks/pages-by-risk.json"
+  },
+  {
     "path": "docs/plans/ship-clean.md",
     "owner": "maintainers",
     "status": "active",

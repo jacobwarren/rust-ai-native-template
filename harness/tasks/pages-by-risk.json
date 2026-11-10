@@ -1,0 +1,43 @@
+{
+  "schema_version": 7,
+  "id": "pages-by-risk",
+  "work_item": null,
+  "status": "partial",
+  "tier": "standard",
+  "reader": "none",
+  "requirements": [
+    "task-artifacts",
+    "completion"
+  ],
+  "related_gaps": [
+    {
+      "id": "product-acceptance",
+      "disposition": "unaffected",
+      "rationale": "Which tasks owe pages does not establish acceptance for an adopted product."
+    }
+  ],
+  "gap_review": "Read the three open gaps; none changes. This task adds one, service-acceptance, for what the held-out build found.",
+  "discoveries": [
+    {
+      "summary": "The held-out service build could not be graded by the workflow and scenario runners as shipped; the adopting agent rewrote them.",
+      "record": "gap:service-acceptance"
+    }
+  ],
+  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "documentation": {
+    "updated": [],
+    "rationale": "docs/ARTIFACTS.md, docs/EVALUATION.md, docs/COMPLETION.md, AGENTS.md and README.md change; listed when the work lands."
+  },
+  "prompt": {
+    "task": "make no pages the default for any task away from policy paths, cut the standard tier to a brief before code, and drop the report page",
+    "task_noun": "pages by risk: no pages by default and a brief only for policy changes",
+    "area": "xtask's tiers and page sets (xtask/src/task_record.rs, artifacts.rs, size.rs, router.rs, handover.rs) and docs/ARTIFACTS.md",
+    "problem": "every task over 100 lines owes two reviewed pages that a paired run found add 30 to 50 minutes and no accepted change on product work",
+    "reference": "The small tier's gate in xtask/src/size.rs and the page sets in xtask/src/artifacts.rs"
+  },
+  "summary": "Default to no pages, keep one brief for changes to policy, dependency and ceremony paths, drop the report page, and record the paired run that says why.",
+  "remaining": [
+    "Commit the brief before the code, then the code, docs and receipt",
+    "cargo xtask check ci, then complete against harness/ship-clean"
+  ]
+}
