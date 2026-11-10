@@ -2,7 +2,7 @@
   "schema_version": 7,
   "id": "lighter-ceremony",
   "work_item": null,
-  "status": "partial",
+  "status": "complete",
   "tier": "standard",
   "reader": "none",
   "requirements": [
@@ -22,11 +22,34 @@
     }
   ],
   "gap_review": "Read the four open gaps. artifact-gate-holes is this task's subject; hosting-enforcement is adjacent and unchanged; product-acceptance and platform-qualification are unrelated.",
-  "discoveries": [],
-  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "discoveries": [
+    {
+      "summary": "A text floor that skips script text refuses six committed interview pages and exemplar 06, whose content is built from data in a script; the floor counts everything outside tags and style blocks instead.",
+      "record": "harness/task-artifacts/lighter-ceremony/brief.html"
+    },
+    {
+      "summary": "Without --head, handoff on a merge commit built after the target branch moved reads the target's new commits as the branch's and refuses a correctly ordered branch with an error that blames the brief. CI passes --head; a local run on such a merge needs it too. The error does not say so yet.",
+      "record": "harness/task-artifacts/lighter-ceremony/report.html"
+    },
+    {
+      "summary": "Reviewers measured the standard pages' length rule ('about half its exemplar's length') two ways: by rendered height (54 percent, no finding) and by file size (81 percent, a finding), so the same page passed and failed on length in consecutive rounds. The rule needs one measurable limit.",
+      "record": "harness/task-artifacts/lighter-ceremony/reviews.json"
+    },
+    {
+      "summary": "xtask/src/size.rs still tells a refused small task to restart 'with its discovery pages committed before code', and scripts/agent-artifact-write.sh still calls its guard the discovery-page guard; both are wording left for the next harness task.",
+      "record": "harness/task-artifacts/lighter-ceremony/report.html"
+    }
+  ],
+  "discovery_review": "Four discoveries. The first changed the floor's definition before code. The other three are follow-ups for the next harness task: the handoff error on a moved-target merge without --head, a measurable length limit for standard pages, and two stale messages.",
   "documentation": {
-    "updated": [],
-    "rationale": "docs/ARTIFACTS.md, docs/COMPLETION.md, AGENTS.md and README.md change with the tiers; listed when the work lands."
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "docs/COMPLETION.md",
+      "AGENTS.md",
+      "README.md",
+      "ARCHITECTURE.md"
+    ],
+    "rationale": "docs/ARTIFACTS.md defines the three tiers, both standard prompts, the reader rule and the text floor; docs/COMPLETION.md the schema 7 record, artifact admission and handoff --head; AGENTS.md is shortened to lead with cargo xtask help and task-artifact next; README.md and ARCHITECTURE.md describe pages per tier."
   },
   "prompt": {
     "task": "cut the task-page ceremony to a two-page default tier, write the interview and quiz only for a human reader, and close the three holes in the page gate",
@@ -36,8 +59,11 @@
     "reference": "The small tier in xtask/src/size.rs and its tests in xtask/tests/tiers.rs"
   },
   "summary": "Make a two-page tier the default, keep the eight pages as an opt-in full tier, write reader-facing pages only for a reader, and close artifact-gate-holes.",
-  "remaining": [
-    "Commit the brief before the code, then the code, docs and receipt",
-    "cargo xtask check ci, then complete against origin/main"
-  ]
+  "remaining": [],
+  "review": {
+    "acceptance": "All seven named tests exist in xtask/tests/ceremony.rs and pass: standard_task_owes_a_brief_before_code_and_a_report_after, full_task_writes_the_interview_and_quiz_only_for_a_human_reader, reader_and_tier_are_strict, a_placeholder_page_is_refused, a_partial_handoff_checks_that_the_brief_came_before_code, handoff_reads_the_branchs_commits_from_a_pull_request_merge and next_walks_a_standard_task_through_two_pages. The floor counts characters outside tags and styles, as the ticket now says, not outside scripts. artifact-gate-holes is closed against the task-artifacts requirement.",
+    "verification": "cargo xtask check ci passed 9 of 9 (target/verification/ci.json); cargo xtask gaps --base origin/main --report target/verification/ci.json is ok with harness/transitions/lighter-ceremony.json. Pages: brief.html pass in round 3 (0 findings) after revise for length and for one mislabelled table row, which the task owner corrected by hand before round 3; report.html best at round 3 after three revise verdicts (4, 3 and 1 findings). Its one open finding, that Deviation 2 quoted the owner's request without saying it is in no repository file, was then fixed by a hand edit of that one sentence, which no reviewer has seen. The GitHub Actions pull-request path, including handoff --head on a real merge commit, has not run: nothing is pushed.",
+    "assumptions": "That GitHub checks out its own merge commit on pull_request events rests on GitHub's documentation, not a run. The reader default of none assumes most tasks run unattended; an owner who wants to answer sets reader human. The AGENTS.md trim follows the owner's request made in conversation, recorded only here and in the report. Schema 6 records are assumed to stay as they are; none was edited.",
+    "coverage": "No test covers handoff on a merge built after the target moved without --head (the misleading-error case in the discoveries). The floor is tested with one placeholder and one padded page, not against real pages beyond the coordination check passing on the ten committed tasks. The length rule for standard pages is enforced only by reviewers, who measured it inconsistently. Codex was not run against the new tiers."
+  }
 }

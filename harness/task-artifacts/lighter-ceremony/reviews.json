@@ -30,6 +30,46 @@
       "notes": "PASS: The page shows that a clean pull-request CI run reads no commits and counts that as a pass, and that a page floor which skips script text would refuse the six interview pages and the interview exemplar. Length is about 64% of the exemplar's bytes, over the 'about half' target, not failed. Fixed checks: consistent held; provenance held; cited held; ticket held. FINDINGS: 0. Note from the task owner: the round 3 page differs from round 2 by one hand-corrected table label, not a fresh author's rewrite.",
       "findings": 0,
       "model": "sonnet"
+    },
+    {
+      "page": "report.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "652f9df477b3430f9eee4f0680bf2b945190699773ade01c781dc82fc9b2594b",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. Consistent / cited / length. The sixth tile in section 1 reads \"312 · 3 HTML lines · reviews, vs 3,235–5,159 · 12–17\". The 312 is the brief alone; the report is 308 lines, so the task's pages total 620. The comparison figures are whole-task totals from the earlier five tasks, so the tile sets one page against eight-page totals. The \"3\" counts the brief's reviews only, and the source note adds \"round 3 passed on a label fixed by hand\", which is review-process detail, not the feature. A rewrite must either count both pages (620 lines, with the report's own review count marked pending) or drop the tile.\n\n2. Length. The report renders 2,430px tall on desktop against the exemplar's 3,926px (62%); the file is 23 KB against 27 KB (86%). The hand-over asked for about half. Cut the \"Held as briefed\" paragraph, the long source note under the tiles, and Deviation 1 (which the page marks \"Nothing to decide\") to one line each or fold them into the tile source note.\n\n3. Is it about the feature. \"Open at merge\" is mostly filling in the task record and the review answers: process, not something a merge decision turns on. Reduce it to the one real open item, the first pull request CI run, and keep C1.\n\n4. Provenance (minor). The first demo block is labelled \"captured: ... (rewrapped)\" and the \"next\" block \"(2 fields)\". Either paste the raw output or say the fields were extracted by hand.\n\nFixed checks: consistent failed (1); provenance held; cited failed (1); ticket held\n\nFINDINGS: 4",
+      "findings": 4,
+      "model": "sonnet"
+    },
+    {
+      "page": "report.html",
+      "round": 2,
+      "verdict": "revise",
+      "sha256": "dffdcd1625fd13e58773268f9c0acc037ee738d8dd3d3bd763297342683c25dd",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. Is it as short as its content allows (fails). The page is 21,515 bytes and 291 lines, against 26,697 for the exemplar. The hand-over asked for about half the exemplar, so roughly 13 KB. Cuts: drop the \"prompt this page answers\" details block; merge the two demo pre blocks of hand-copied \"pages\" lists into one sentence plus the task_record.rs:70-81 cite; drop the \"Held as briefed\" paragraph; fold Deviation 3 into one line under Open; cut the \"Against the ticket\" paragraph to a single line.\n\n2. Is it about the feature / conservative option (fails). The tile \"2 · 603 · 3+\" compares page counts, HTML lines and review counts with five earlier tasks: verification process, not the feature, and it counts this unfinished page's own review. Remove the tile or keep only the page count. Deviation 2 says \"Not the conservative option\" and defaults C2 to keeping the AGENTS.md trim. State the conservative option (restore the plan-template step and the gaps/map/rg line) and take it, or say plainly why the non-conservative call is safe and mark it as the single decision the reader should look at.\n\n3. cited (fails). The four-row table of Holes 1 and 2 has no reproducible command. Its rows should cite the test that builds them (handoff_reads_the_branchs_commits_from_a_pull_request_merge may be that source) or give the exact commands.\n\nFixed checks: consistent held; provenance held; cited failed (3); ticket held\nFINDINGS: 3",
+      "findings": 3,
+      "model": "sonnet"
+    },
+    {
+      "page": "report.html",
+      "round": 3,
+      "verdict": "revise",
+      "sha256": "a788a4b24103828a752c03717365c48b36db96d03bee8eb559cd9551d40eb753",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. cited / provenance, Deviation 2 and C2. The page rests the AGENTS.md trim on a quote of the owner's request and gives no source for it. The quote was said in conversation and is in no repository file, and the page never says so. A rewrite must say in Deviation 2 that the request is from the task owner's conversation and is not recorded in the repository, name docs/plans/lighter-ceremony.md:35-36 as the only written source, and present restoring the lines as the safer option with the unrecorded request as the reason to keep the trim.\n\nEverything else held: 111 of 111 xtask tests, Hole 3, demo rows 3 and 4 rebuilt from the page's commands, all source citations, rendering, reply consistency.\n\nFixed checks: consistent held; provenance failed (1); cited failed (1); ticket held\nFINDINGS: 1",
+      "findings": 1,
+      "model": "sonnet"
+    },
+    {
+      "page": "report.html",
+      "round": 3,
+      "verdict": "best",
+      "sha256": "a788a4b24103828a752c03717365c48b36db96d03bee8eb559cd9551d40eb753",
+      "reviewer": "task-owner",
+      "notes": "Round 3 is the best reviewed version: its one open finding is that Deviation 2 quotes the owner's request without saying it was made in conversation and is in no repository file.",
+      "findings": 1,
+      "model": "fable"
     }
   ]
 }
