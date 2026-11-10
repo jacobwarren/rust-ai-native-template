@@ -19,14 +19,15 @@ step names the file that owns it; the existing `add`, `complete`, `remove` and
    history and journal unchanged. Map domain errors to a stable error code.
 3. **Discovery.** Add a descriptor to `capabilities()` in
    `crates/engine/src/protocol.rs` with an id, a strict example payload and its
-   effect. `crates/engine/tests/protocol.rs` runs every descriptor's example, so
-   the example must be valid.
+   effect. `crates/engine/tests/protocol.rs` runs every descriptor's example
+   against one seed board, so the example must be valid there: a command that
+   needs a particular state (a completed task, something undone) means widening
+   that test's seed, never dropping the example from it.
 4. **Saved boards.** `crates/engine/src/store.rs` saves the command journal with
    `schema_version: 1` and replays it on load. A build that lacks the new variant
    cannot parse a journal that contains it. Decide whether that is acceptable or
    whether the journal format must be versioned, and record the decision in the
-   task record. Versioning has been explored on the unmerged
-   `trial/journal-versioning` branch; nothing on `main` supports it yet.
+   task record. Nothing on `main` versions the journal yet.
 5. **Process evidence.** Drive the command through the real binary in a case in
    `harness/workflows.json`. Golden files under `harness/goldens/` are reviewed
    baselines: a missing golden fails, and you never regenerate one to make a

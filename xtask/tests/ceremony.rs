@@ -290,7 +290,7 @@ fn next_walks_a_standard_task_through_two_pages() {
         "Exemplar: examples/thariq/08-implementation-plan.html",
         "Pages so far: none",
         "No reader: No person will answer this task's pages.",
-        "Length: A standard page is short. Aim for about half its exemplar's length",
+        "Length: A standard page is short: at most 20 KB as a file",
     ] {
         assert!(text.contains(line), "{line}\n{text}");
     }
@@ -302,7 +302,7 @@ fn next_walks_a_standard_task_through_two_pages() {
         v["next"]["handover"]
             .as_str()
             .unwrap()
-            .contains("Length: A standard page is short."),
+            .contains("Length: A standard page is short: at most 20 KB"),
         "{v}"
     );
     // A page of the full set is not one a standard task owes.

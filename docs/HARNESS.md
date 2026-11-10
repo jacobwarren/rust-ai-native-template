@@ -8,6 +8,11 @@ check silently. Arguments are passed directly to processes, without a shell.
 `@self` expands to xtask; `@app` expands to the compiled example executable.
 Profiles are trusted code and must be reviewed like source.
 
+A profile run prints its report and also writes it to
+`target/verification/PROFILE.json`, the path the completion and release
+commands are shown with. A check that did not pass carries `output_tail`, the
+last 30 lines of its stdout and stderr, so the reason is in the report.
+
 Each step has a unique ID, a positive timeout, stdout/stderr log files, exit
 code, elapsed time, and passed/failed/timeout/error status. Spawn and per-step infrastructure failures are
 recorded as errors. Command specs preserve a nonempty executable, valid ID, and

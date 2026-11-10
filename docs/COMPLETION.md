@@ -96,7 +96,8 @@ The other fields are demonstrated in [the example](../examples/task-record.json)
 - documentation.updated lists existing source files actually changed from base;
   rationale explains updates or why none are necessary.
 - summary and remaining form the handoff. Partial/blocked status needs next steps.
-  Complete may retain follow-up work outside its accepted scope.
+  A complete record may leave `remaining` out, or retain follow-up work outside
+  its accepted scope.
 - tier is `small`, `standard` (the default) or `full`; reader is `human` or
   `none` (the default) and decides whether a full task writes its interview
   and quiz ([task size](ARTIFACTS.md)).
@@ -123,8 +124,7 @@ BASE=origin/main
 cargo xtask gaps
 cargo xtask gaps --base "$BASE"
 # Review required_changes and author any required transition receipt.
-mkdir -p target/verification
-cargo xtask check ci > target/verification/ci.json
+cargo xtask check ci   # prints the report and writes target/verification/ci.json
 cargo xtask complete --task TASK-142 --base "$BASE" --report target/verification/ci.json
 cargo xtask handoff --base "$BASE" --report target/verification/ci.json
 # On a pull request's merge commit, name the branch tip so page order is read:
@@ -182,8 +182,8 @@ CI would otherwise make at the PR to the moment an agent acts:
   changed on this branch says `"status": "complete"`, `cargo xtask complete`
   judges it and a refusal keeps the agent working; setting the record back to
   partial with its remaining actions always clears the block. On a branch
-  stacked on another remote branch (an unmerged PR), it judges from where this
-  branch's own commits start, so the lower branch's records are left to its own
+  stacked on another branch, remote or local (an unmerged PR, or a stack not
+  yet pushed), it judges from where this branch's own commits start, so the lower branch's records are left to its own
   PR. A copy of this branch pushed under another name, a branch someone pushed
   on top of it, or a detached HEAD hides the commits it holds the same way, so
   only later commits and uncommitted records are judged; PR CI still judges
@@ -226,6 +226,31 @@ Configure required status checks and independent review of acceptance, policy,
 baseline, workflow, hook and closure changes in hosting settings. Assign real
 CODEOWNERS. Local hooks and self-authored receipts cannot enforce that authority.
 PR code can modify its verifier; use a trusted verifier for adversarial contributions.
+
+## Archiving task history
+
+Task records, their pages and receipts are history the gates protect: handoff
+refuses a deleted record and `gaps --base` a deleted receipt. To take merged
+history out of the tree, list it in `harness/archive.json` in the same change:
+
+```json
+{"schema_version": 1, "archives": [{
+  "name": "showcase/template-history",
+  "commit": "FULL-40-CHARACTER-COMMIT-ID",
+  "reason": "Why this history left the tree",
+  "paths": ["harness/tasks/TASK-1.json", "harness/task-artifacts/TASK-1/", "harness/transitions/task-1.json"]
+}]}
+```
+
+A deletion passes only when an entry lists the path (a file, or a folder ending
+in `/`) and its commit holds the same content being deleted. A listed path the
+commit lacks or holds in another version, a commit the repository does not have,
+a path still in the tree and a changed (not deleted) receipt are each refused.
+The commit is read only when a deletion relies on it, so a tree unpacked from an
+archive without history still passes its checks. `name` is a branch or tag for people; the gate reads
+`commit`, so use a commit the default branch descends from and its objects
+travel with every clone. The manifest is a protected path and needs a receipt.
+Archive merged work only; a record on the current branch is still a claim.
 
 ## Optional tracker integration and migration
 

@@ -1,5 +1,6 @@
 //! Review receipts bind rationale to exact before/after objects, not free-form claims.
 use crate::{
+    archive,
     config::{self, Result},
     history, readiness,
     tracking::{self, Gap},
@@ -45,7 +46,8 @@ const PROTECTED_PREFIXES: [&str; 7] = [
     ".claude/",
     ".codex/",
 ];
-const PROTECTED_FILES: [&str; 11] = [
+const PROTECTED_FILES: [&str; 12] = [
+    "harness/archive.json",
     "harness/config.json",
     "harness/readiness.json",
     "harness/tracking.json",
@@ -126,12 +128,16 @@ pub fn required(root: &Path, base: &str) -> Result<(Vec<Change>, Vec<Gap>, Vec<S
     }
     let before = history::before(root, base)?;
     let after = history::current(root)?;
-    // Existing receipts are append-only. A later correction must be a new record.
+    // Existing receipts are append-only. A later correction must be a new record;
+    // one may leave the tree only for the archive commit that still holds it.
+    let archived = archive::load(root)?;
     for (path, hash) in before
         .iter()
         .filter(|(p, _)| p.starts_with("harness/transitions/"))
     {
-        if after.get(path) != Some(hash) {
+        let kept = after.get(path) == Some(hash)
+            || (!after.contains_key(path) && archive::covers(root, &archived, base, path)?);
+        if !kept {
             return Err(format!("transition history changed or deleted: {path}").into());
         }
     }

@@ -1,3 +1,4 @@
+mod archive;
 mod artifact_hook;
 mod artifacts;
 mod checks;

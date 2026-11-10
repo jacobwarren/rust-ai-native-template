@@ -30,6 +30,11 @@ pub fn merge_base(root: &Path, revision: &str) -> Result<String> {
             .to_owned(),
     )
 }
+/// Whether HEAD is a merge commit, as a pull request's checkout is on a code host.
+pub fn head_is_merge(root: &Path) -> Result<bool> {
+    let line = String::from_utf8(git(root, &["rev-list", "--parents", "-n1", "HEAD"])?)?;
+    Ok(line.split_whitespace().count() > 2)
+}
 pub fn paths(root: &Path, base: &str) -> Result<Vec<String>> {
     String::from_utf8(git(root, &["ls-tree", "-r", "--name-only", "-z", base])?)?
         .split('\0')

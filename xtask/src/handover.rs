@@ -230,6 +230,28 @@ pub fn handover(root: &Path, id: &str, page: &str, task: &Task, to: For) -> Resu
     })
 }
 
+/// Advice for each standard page whose file is over the size its hand-over states.
+pub fn size_advisories(root: &Path, id: &str, task: &Task) -> Vec<String> {
+    if task.tier() != Tier::Standard {
+        return Vec::new();
+    }
+    let limit = artifacts::STANDARD_PAGE_BYTES;
+    artifacts::Pages::of(task)
+        .all()
+        .into_iter()
+        .filter_map(|page| {
+            let size = std::fs::metadata(root.join(artifacts::directory(id)).join(page))
+                .ok()?
+                .len();
+            (size > limit).then(|| {
+                format!(
+                    "{page} is {size} bytes; a standard page stays within {limit} (docs/ARTIFACTS.md, The standard pages)"
+                )
+            })
+        })
+        .collect()
+}
+
 /// Add the hand-over to a step that starts a subagent: author, build (the notes'
 /// author), review and rewrite. Other steps are left as they are.
 pub fn attach(
@@ -302,6 +324,11 @@ mod tests {
         }
         assert!(answering_rule().unwrap().contains("the agent's call"));
         assert!(no_reader_rule().unwrap().contains("the agent's call"));
-        assert!(standard_rule().unwrap().contains("half"));
+        // The quoted limit is the one `next` measures.
+        assert!(
+            standard_rule()
+                .unwrap()
+                .contains(&format!("{} KB", artifacts::STANDARD_PAGE_BYTES / 1000))
+        );
     }
 }

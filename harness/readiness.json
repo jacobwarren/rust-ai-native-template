@@ -57,12 +57,15 @@
       "id": "evidence",
       "implementation": [
         "xtask/src/golden.rs",
-        "xtask/src/readiness.rs"
+        "xtask/src/readiness.rs",
+        "xtask/src/runner.rs"
       ],
       "tests": [
         "golden::tests::missing_and_changed_baselines_fail_without_writing_source",
         "readiness_rejects_stale_incomplete_and_missing_workflow_evidence",
-        "workflow_grader_rejects_wrong_state_and_missing_golden_from_successful_app"
+        "workflow_grader_rejects_wrong_state_and_missing_golden_from_successful_app",
+        "a_profile_run_writes_its_report_where_the_docs_say",
+        "a_failed_check_shows_the_end_of_its_output"
       ],
       "workflows": [
         "board-lifecycle",
@@ -79,7 +82,8 @@
         "scripts/agent-complete.sh",
         "scripts/agent-hook.sh",
         ".claude/settings.json",
-        ".codex/hooks.json"
+        ".codex/hooks.json",
+        "xtask/src/archive.rs"
       ],
       "tests": [
         "completion_requires_acceptance_and_fresh_evidence_but_not_closing_unrelated_gaps",
@@ -115,7 +119,9 @@
         "wrong_arguments_print_the_matching_usage",
         "help_flags_after_run_belong_to_the_application",
         "agent_stop_help_names_the_hook_that_runs",
-        "help::tests::every_key_reads_as_a_usage"
+        "help::tests::every_key_reads_as_a_usage",
+        "archived_history_may_be_deleted_and_nothing_else",
+        "a_complete_record_needs_no_remaining_field"
       ],
       "workflows": []
     },
@@ -159,6 +165,8 @@
         "a_partial_handoff_checks_that_the_brief_came_before_code",
         "handoff_reads_the_branchs_commits_from_a_pull_request_merge",
         "next_walks_a_standard_task_through_two_pages",
+        "next_reports_a_standard_page_over_its_size_limit",
+        "a_late_brief_on_a_merge_commit_points_at_head",
         "skill_copies_must_match_and_name_their_folder",
         "author_mode_allows_only_the_artifact_folder_and_outside_paths",
         "agent_definitions_preload_their_skills_and_limit_writes",

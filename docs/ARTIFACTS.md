@@ -73,11 +73,14 @@ Two pages, one on each side of the code:
 The exemplars were written for the full set, one job per page. A standard page
 does two jobs in less room:
 
-> A standard page is short. Aim for about half its exemplar's length: at most
-> five unknowns or deviations, each proven by code or captured output, and one
-> decision per screen. Cut anything a reader would learn as fast from the diff.
+> A standard page is short: at most 20 KB as a file, the pasted stylesheet
+> included. Keep to five unknowns or deviations at most, each proven by code or
+> captured output, and one decision per screen. Cut anything a reader would
+> learn as fast from the diff.
 
-`next` hands this rule to the author and the reviewer of a standard page.
+`next` hands this rule to the author and the reviewer of a standard page, and
+adds an advisory when a page's file is over the limit. The limit is a size
+because reviewers measured "about half the exemplar" two ways and disagreed.
 
 ## The full set
 
@@ -170,7 +173,10 @@ read the log.
    rewrite the page, then have a fresh reviewer judge the whole page again:
    each review samples different claims, and rewrites can break what was
    right. After two rewrites, commit the best
-   version. Record every review with `cargo xtask task-artifact verdict --task ID
+   version. When a review's only finding is one wrong label, number or citation,
+   the task owner may correct it by hand instead of starting an author; a fresh
+   reviewer still judges the page, and the record's `review.verification` names
+   the hand edit. Record every review with `cargo xtask task-artifact verdict --task ID
    --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL
    --findings N --notes -`, piping the reviewer's whole reply to stdin, where
    shell quoting cannot cut it (at most 64 KiB; `--notes TEXT` takes it inline).
@@ -236,6 +242,8 @@ reviewer's and the human's call.
 On a pull request a code host checks out a merge commit it built, from which
 the branch's own commits cannot be read. CI passes the branch tip to
 `cargo xtask handoff --base REV --head REV` so the order is checked there too.
+Without `--head`, a merge commit built after the target moved can make a
+correctly ordered branch look late; the error says to pass it.
 
 `cargo xtask task-artifact guard --task ID` fails until the pages due before
 code are committed. The opt-in [Codex example](../examples/codex-artifact-hooks.json) runs it

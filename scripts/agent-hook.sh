@@ -12,7 +12,7 @@ trap 'rc=$?; case $rc in 0 | 2) ;; *) echo "agent-hook: internal error (exit $rc
 
 # Copied from xtask/src/transitions.rs; transitions::tests keeps them equal.
 PROTECTED_PREFIXES="xtask/ .github/ scripts/ .cargo/ harness/goldens/ .claude/ .codex/"
-PROTECTED_FILES="harness/config.json harness/readiness.json harness/tracking.json harness/workflows.json harness/scenarios.json Cargo.toml Cargo.lock docs/PRODUCT.md docs/READINESS.md docs/COMPLETION.md AGENTS.md"
+PROTECTED_FILES="harness/archive.json harness/config.json harness/readiness.json harness/tracking.json harness/workflows.json harness/scenarios.json Cargo.toml Cargo.lock docs/PRODUCT.md docs/READINESS.md docs/COMPLETION.md AGENTS.md"
 CEREMONY_SKILLS="author-artifact review-artifact write-ticket"
 
 mode=${1:-}

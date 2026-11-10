@@ -120,8 +120,7 @@ Start with [the driver](docs/DRIVER.md), [behavioral testing](docs/TESTING.md),
 Capture the full gate's JSON output and preserve its referenced logs:
 
 ```sh
-mkdir -p target/verification
-cargo xtask check ci > target/verification/ci.json
+cargo xtask check ci   # prints the report and writes target/verification/ci.json
 cargo xtask release template --report target/verification/ci.json
 ```
 
@@ -145,9 +144,8 @@ audit or require new gaps. Default Claude Code and Codex hooks also guard golden
 baselines and policy files; see docs/COMPLETION.md "Default hooks and CI".
 
 ```sh
-mkdir -p target/verification
 cargo xtask gaps --base origin/main
-cargo xtask check ci > target/verification/ci.json
+cargo xtask check ci   # prints the report and writes target/verification/ci.json
 cargo xtask complete --task TASK-142 --base origin/main --report target/verification/ci.json
 ```
 

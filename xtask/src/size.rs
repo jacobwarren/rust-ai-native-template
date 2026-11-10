@@ -110,7 +110,7 @@ pub fn check_small(root: &Path, base: &str) -> Result<()> {
         return Ok(());
     }
     Err(format!(
-        "{}; a small task changes at most {SMALL_LINES} lines and none of these paths. Narrow the change, or restart it as a standard task on a new branch with its discovery pages committed before code (docs/ARTIFACTS.md)",
+        "{}; a small task changes at most {SMALL_LINES} lines and none of these paths. Narrow the change, or restart it as a standard task on a new branch with its brief committed before code (docs/ARTIFACTS.md)",
         problems.join("; ")
     )
     .into())

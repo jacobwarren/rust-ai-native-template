@@ -60,8 +60,8 @@ anything.
    this one, revise. If your page runs longer than the exemplar, cut what a
    reader would skim until every remaining section carries something new.
    When your hand-over carries a `Length:` line, that line is the limit, not
-   the exemplar: a brief or a report does two of the exemplars' jobs in about
-   half one exemplar's room.
+   the exemplar: a brief or a report does two of the exemplars' jobs in a
+   file of at most 20 KB. Check your file's size before you hand back.
 
 If you were given reviewer findings, address every one of them, and rewrite more
 than the flagged lines when a finding shows the page misread its job.

@@ -31,6 +31,9 @@ const FOR_A_READER: [&str; 2] = ["interview.html", "quiz.html"];
 /// text counts: an interactive page builds its content from data in a script.
 /// A floor against placeholders, not a measure of usefulness.
 pub const MIN_TEXT: usize = 1200;
+/// Largest file a standard page should be, stylesheet included. Advice from
+/// `next`, never a gate; docs/ARTIFACTS.md quotes it to authors and reviewers.
+pub const STANDARD_PAGE_BYTES: u64 = 20_000;
 
 /// The pages one task owes, by when they are due.
 #[derive(Default)]
@@ -294,9 +297,17 @@ fn order(
     for page in &pages.before {
         let at_base = history::read(root, base, &format!("{prefix}{page}"))?.is_some();
         if !at_base && !touched(page).first().is_some_and(|&i| i < first) {
-            return Err(
-                format!("{page} must be committed before the first product-code commit").into(),
-            );
+            // Read from a host's merge commit without the branch tip, the target's
+            // own commits can look like this branch's code.
+            let hint = if head.is_none() && history::head_is_merge(root)? {
+                "; HEAD is a merge commit, so if it is a pull request's checkout pass the branch tip as handoff --head"
+            } else {
+                ""
+            };
+            return Err(format!(
+                "{page} must be committed before the first product-code commit{hint}"
+            )
+            .into());
         }
     }
     if !final_stage {

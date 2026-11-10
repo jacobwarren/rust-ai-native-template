@@ -18,8 +18,7 @@ open gap instead of inventing feature breadth work.
 ```sh
 cargo xtask gaps
 cargo xtask readiness
-mkdir -p target/verification
-cargo xtask check ci > target/verification/ci.json
+cargo xtask check ci   # prints the report and writes target/verification/ci.json
 cargo xtask readiness --report target/verification/ci.json
 cargo xtask release template --report target/verification/ci.json
 cargo xtask release product --report target/verification/ci.json

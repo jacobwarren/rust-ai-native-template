@@ -16,7 +16,8 @@ Start here. Two commands carry the detail, so run them before reading further:
 4. Make the smallest coherent change and add a meaningful regression check
    when behavior changes. Tests must assert an independent expected result.
 5. Run targeted checks while editing, then
-   `cargo xtask check ci > target/verification/ci.json` before handoff.
+   `cargo xtask check ci` before handoff; it writes its report to
+   `target/verification/ci.json` and shows the end of a failed check's output.
 6. Reconcile the record's gaps, discoveries and four review answers
    ([completion](docs/COMPLETION.md)), then run
    `cargo xtask complete --task ID --base REV --report PATH`. Partial or

@@ -1,6 +1,6 @@
 //! The same admission gate is callable from an agent hook and PR CI.
 use crate::{
-    artifacts,
+    archive, artifacts,
     config::{self, Result},
     history, readiness, repo, size,
     task_record::{self, GapState, Status, Tier},
@@ -150,9 +150,13 @@ pub fn handoff(
     let mut results = Vec::new();
     let mut covered = BTreeSet::new();
     let mut errors = Vec::new();
+    let archived = archive::load(root)?;
     for path in before.keys().filter(|p| p.starts_with("harness/tasks/")) {
-        if !after.contains_key(path) {
-            errors.push(format!("task history deleted: {path}"));
+        if !after.contains_key(path) && !archive::covers(root, &archived, &base, path)? {
+            errors.push(format!(
+                "task history deleted: {path}; list it in {} with the commit that keeps it",
+                archive::FILE
+            ));
         }
     }
     for path in records.iter().filter(|p| {
@@ -191,7 +195,9 @@ pub fn handoff(
     {
         if before.get(path) != after.get(path) {
             let id = path.split('/').nth(2).unwrap_or("");
-            if !after.contains_key(&format!("harness/tasks/{id}.json")) {
+            if !after.contains_key(&format!("harness/tasks/{id}.json"))
+                && !(after.get(path).is_none() && archive::covers(root, &archived, &base, path)?)
+            {
                 errors.push(format!("artifact has no task record: {id}"));
             }
         }
@@ -248,7 +254,8 @@ pub fn validate(root: &Path) -> Result<Value> {
     }
     // Old records are retained but their evidence is not re-asserted on every edit.
     let _: Value = config::read(&root.join("harness/readiness.json"))?;
-    Ok(json!({"ok":true,"tasks":ids,"tracking":tracking}))
+    let archives = archive::validate(root)?;
+    Ok(json!({"ok":true,"tasks":ids,"tracking":tracking,"archives":archives}))
 }
 
 /// A stop hook permits an explicit blocked handoff even when the gap register needs repair.

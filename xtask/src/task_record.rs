@@ -59,6 +59,8 @@ pub struct Task {
     pub review: Option<Review>,
     pub documentation: Documentation,
     pub summary: String,
+    /// Next steps; a complete record may leave it out.
+    #[serde(default)]
     pub remaining: Vec<String>,
     /// Values for the page prompts' braces; `next` fills them in (handover.rs).
     #[serde(default)]
@@ -129,6 +131,12 @@ pub fn read(root: &Path, id: &str) -> Result<Task> {
         return Err("invalid task ID".into());
     }
     let task: Task = config::read(&root.join(format!("harness/tasks/{id}.json")))?;
+    if task.status != Status::Complete && task.remaining.is_empty() {
+        return Err(format!(
+            "task {id}: a partial or blocked record lists its next steps in `remaining`; only a complete record may leave it empty or out"
+        )
+        .into());
+    }
     if !(1..=SCHEMA).contains(&task.schema_version)
         || (task.declared_reader.is_some() && task.schema_version <= FULL_BY_DEFAULT)
         || task.id != id

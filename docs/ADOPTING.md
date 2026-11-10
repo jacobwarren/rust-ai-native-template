@@ -16,6 +16,11 @@
 6. Keep meaningful behavior tests. Replace the disposable greeting scenarios
    and board workflows with real user journeys and negative inputs for your product.
 7. Run full checks and inspect the JSON report. Commit the clean baseline.
+   The four task records under `harness/tasks/` are worked examples of the
+   tiers (board-clear-done is a product task with a brief, a report and a
+   receipt); keep them, or archive them once you have your own
+   ([archiving](COMPLETION.md)). The template's earlier history is on the
+   `showcase/template-history` branch, not in your tree.
 8. Enable GitHub Actions and required status checks/review in repository settings.
    The files alone do not enable branch protection, publishing, or deployment.
 

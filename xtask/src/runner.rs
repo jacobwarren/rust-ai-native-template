@@ -26,6 +26,30 @@ pub struct Outcome {
     pub duration_ms: u128,
     pub stdout: PathBuf,
     pub stderr: PathBuf,
+    /// The end of a check's output when it did not pass, so the reason is in the report.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub output_tail: Option<String>,
+}
+
+/// Most lines of each log a failed check's `output_tail` carries.
+const TAIL_LINES: usize = 30;
+
+fn tail(path: &Path) -> String {
+    let text = fs::read(path)
+        .map(|b| String::from_utf8_lossy(&b).into_owned())
+        .unwrap_or_default();
+    let lines: Vec<&str> = text.lines().collect();
+    lines[lines.len().saturating_sub(TAIL_LINES)..].join("\n")
+}
+
+impl Outcome {
+    fn with_tail(mut self) -> Self {
+        if self.status != Status::Passed {
+            let (out, err) = (tail(&self.stdout), tail(&self.stderr));
+            self.output_tail = Some(format!("stdout:\n{out}\nstderr:\n{err}"));
+        }
+        self
+    }
 }
 
 pub fn run_dir(root: &Path) -> Result<PathBuf> {
@@ -105,6 +129,7 @@ pub fn execute_with(
                 duration_ms: start.elapsed().as_millis(),
                 stdout,
                 stderr,
+                output_tail: None,
             });
         }
     };
@@ -143,6 +168,7 @@ pub fn execute_with(
         duration_ms: start.elapsed().as_millis(),
         stdout,
         stderr,
+        output_tail: None,
     })
 }
 
@@ -193,7 +219,9 @@ pub fn profile(root: &Path, name: &str) -> Result<Value> {
             duration_ms: 0,
             stdout: dir.join(format!("{}.stdout.log", step.id())),
             stderr: dir.join(format!("{}.stderr.log", step.id())),
+            output_tail: None,
         });
+        let outcome = outcome.with_tail();
         ok &= outcome.status == Status::Passed;
         outcomes.push(outcome);
         report["checks"] = serde_json::to_value(&outcomes)?;
@@ -213,5 +241,9 @@ pub fn profile(root: &Path, name: &str) -> Result<Value> {
     report["complete"] = json!(true);
     report["ok"] = json!(ok);
     save_report(&dir, &report)?;
+    // The path the docs and gates name, so a fresh clone needs no mkdir or redirect.
+    let latest = root.join("target/verification");
+    fs::create_dir_all(&latest)?;
+    fs::write(latest.join(format!("{name}.json")), format!("{report:#}\n"))?;
     Ok(report)
 }

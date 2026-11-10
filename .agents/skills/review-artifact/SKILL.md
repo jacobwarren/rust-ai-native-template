@@ -45,7 +45,7 @@ the page a reader would get, not the effort behind it.
 | Is every claim grounded? | A checked claim is wrong or vague ("various places"). |
 | Does each interaction change what the reader sees or decides? | A control is decorative, broken, or reveals text that could simply be shown. |
 | Does it show rather than tell? | Findings are prose where an excerpt, diagram, before/after or demo would make them checkable. |
-| Is it as short as its content allows? | A reader would skim whole sections, it runs well past the exemplar's length without carrying more, or it derives again at length what an earlier page of this task already showed. When the hand-over carries a `Length:` line, a page well past that limit fails here. |
+| Is it as short as its content allows? | A reader would skim whole sections, it runs well past the exemplar's length without carrying more, or it derives again at length what an earlier page of this task already showed. When the hand-over carries a `Length:` line, measure the file (`wc -c`): a page over its byte limit fails here, and one within it does not fail on length alone. |
 | Is it about the feature? | It discusses the harness, hashes, revisions, verification process or what the page is not. |
 | Does it render cleanly? | The screenshot report lists console errors, network requests, local files or phone-width overflow, or a tile shows broken layout. |
 

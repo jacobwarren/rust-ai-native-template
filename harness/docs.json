@@ -222,64 +222,16 @@
     "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
   },
   {
-    "path": "docs/plans/agent-discoverability.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; harness/tasks/agent-discoverability.json"
-  },
-  {
-    "path": "docs/plans/brief-calibration.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; harness/tasks/brief-calibration.json"
-  },
-  {
-    "path": "docs/plans/ceremony-paths.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; harness/tasks/ceremony-paths.json"
-  },
-  {
-    "path": "docs/plans/completed/0002-evaluable-harness.md",
-    "owner": "maintainers",
-    "status": "archived",
-    "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
-  },
-  {
-    "path": "docs/plans/completed/0003-observable-product.md",
-    "owner": "maintainers",
-    "status": "archived",
-    "verified_by": "cargo xtask docs; acceptance evidence recorded in plan"
-  },
-  {
-    "path": "docs/plans/completed/0004-completion-gate.md",
-    "owner": "maintainers",
-    "status": "archived",
-    "verified_by": "cargo xtask docs; completion regression tests"
-  },
-  {
-    "path": "docs/plans/completed/0005-focused-gap-review.md",
-    "owner": "maintainers",
-    "status": "archived",
-    "verified_by": "cargo xtask docs; focused gap discovery and completion regression tests"
-  },
-  {
     "path": "docs/plans/lighter-ceremony.md",
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs; harness/tasks/lighter-ceremony.json"
   },
   {
-    "path": "docs/plans/next-prompt.md",
+    "path": "docs/plans/ship-clean.md",
     "owner": "maintainers",
     "status": "active",
-    "verified_by": "cargo xtask docs; harness/tasks/next-prompt.json"
-  },
-  {
-    "path": "docs/plans/router-polish.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; harness/tasks/router-polish.json"
+    "verified_by": "cargo xtask docs; harness/tasks/ship-clean.json"
   },
   {
     "path": "docs/plans/tech-debt.md",

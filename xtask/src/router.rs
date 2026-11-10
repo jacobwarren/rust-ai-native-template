@@ -383,12 +383,13 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
             ));
         }
     }
+    advisories.extend(handover::size_advisories(root, id, &task));
     let source = if log.is_some() {
         format!("from {}", log_path(id))
     } else {
         "from each page's review".into()
     };
     let next = found.unwrap_or_else(|| json!({"action":"complete","say":format!(
-        "Every page is reviewed and committed. Copy each page's final verdict and open notes {source} into review.verification, run cargo xtask check ci > target/verification/ci.json, then cargo xtask complete.")}));
+        "Every page is reviewed and committed. Copy each page's final verdict and open notes {source} into review.verification, run cargo xtask check ci (it writes target/verification/ci.json), then cargo xtask complete.")}));
     Ok(json!({"ok":true,"task":id,"pages":pages.all(),"next":next,"advisories":advisories}))
 }

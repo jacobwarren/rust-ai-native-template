@@ -237,6 +237,11 @@ fn stop_judges_only_this_branchs_records_when_stacked() {
         )
     };
     assert_eq!(gate(None).0, 0, "{}", gate(None).1);
+    // A stack kept on local branches, never pushed, is judged the same way.
+    f.git(&["update-ref", "-d", "refs/remotes/origin/lower"]);
+    assert_eq!(gate(None).0, 2);
+    f.git(&["branch", "lower-local", "HEAD~1"]);
+    assert_eq!(gate(None).0, 0, "{}", gate(None).1);
     // An explicit base still judges everything since it.
     assert_eq!(gate(Some("origin/main")).0, 2);
     // This branch's own remote copy is not another branch.

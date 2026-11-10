@@ -45,7 +45,7 @@ Write these five sections, short and concrete:
    exist yet; these names become the record's remaining actions now and its
    `readiness.json` tests when the work lands.
 4. **Validation.** The commands that show it works: always
-   `cargo xtask check ci > target/verification/ci.json`, plus any workflow,
+   `cargo xtask check ci` (its report lands in `target/verification/ci.json`), plus any workflow,
    scenario or manual step, with what to look for.
 5. **Out of scope.** What a reader might expect that this work will not do, and
    where it goes instead (a gap, a later ticket).
@@ -87,7 +87,8 @@ each page's prompt (docs/ARTIFACTS.md), and a value left as its `<…>`
 placeholder or blank stays a visible brace. A small task can drop `prompt`.
 
 `id` matches the file name (letters, digits, `-`, `_`). Leave `review` out until
-the work is done; before a PR, handoff asks the record its four review
+the work is done, and `remaining` may be left out once the record is complete;
+before a PR, handoff asks the record its four review
 questions (acceptance, verification, assumptions, coverage), so answer them
 then. Requirement ids are checked at handoff too, not by `coordination`.
 

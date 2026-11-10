@@ -6,7 +6,7 @@
 # its remaining actions, always clears the block. Partial handoffs, stray files
 # and policy receipts are checked by PR CI (cargo xtask handoff), not here.
 #   HARNESS_BASE    base ref. Unset: origin/main, or where this branch's own
-#                   commits start when it is stacked on another remote branch
+#                   commits start when it is stacked on another branch
 #   HARNESS_REPORT  CI evidence (default target/verification/ci.json)
 #   HARNESS_XTASK   tests only: replaces `cargo xtask`
 # No -E: there are no functions, and bash 3.2 would run the ERR trap inside the
@@ -29,8 +29,9 @@ fi
 
 # Stacked on another branch (an unmerged PR): judge from where this branch's own
 # commits start. The lower branch's records, and its commits' page order, are its
-# own PR's to judge. Own commits are those on no other remote branch; this branch's
-# own remote copy and upstream are not "other". HARNESS_BASE overrides this.
+# own PR's to judge. Own commits are those on no other branch, remote or local
+# (a stack kept on local branches is still a stack); this branch's own remote
+# copy and upstream are not "other". HARNESS_BASE overrides this.
 if [ -z "${HARNESS_BASE:-}" ]; then
   branch=$(git symbolic-ref -q --short HEAD 2>/dev/null || true)
   upstream=$(git rev-parse -q --verify --symbolic-full-name '@{upstream}' 2>/dev/null || true)
@@ -40,6 +41,10 @@ if [ -z "${HARNESS_BASE:-}" ]; then
       */HEAD | "$upstream") continue ;;
     esac
     [ -n "$branch" ] && [ "${ref#refs/remotes/*/}" = "$branch" ] && continue
+    others="$others $ref"
+  done
+  for ref in $(git for-each-ref --format='%(refname)' refs/heads 2>/dev/null || true); do
+    [ -n "$branch" ] && [ "$ref" = "refs/heads/$branch" ] && continue
     others="$others $ref"
   done
   if [ -n "$others" ]; then
@@ -80,7 +85,7 @@ for id in $claims; do
       echo "Completion claim refused: harness/tasks/$id.json says complete, but the completion gate failed:"
       printf '%s\n' "$out" | head -c 8000
       echo
-      echo "Fix what it reports (run cargo xtask check ci > $report for fresh evidence), or set the record back to partial with its remaining actions. Do not claim completion."
+      echo "Fix what it reports (run cargo xtask check ci for fresh evidence; it writes target/verification/ci.json), or set the record back to partial with its remaining actions. Do not claim completion."
     } >&2
   else
     {
