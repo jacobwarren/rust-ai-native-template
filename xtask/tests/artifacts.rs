@@ -84,6 +84,7 @@ fn coordination_accepts_a_started_task_but_checks_the_pages_it_has() {
             .to_string()
             .contains("plan.html must carry the shared stylesheet inline")
     );
+    f.page("plan.html");
     f.write("harness/tasks/TASK-1.json", f.record("complete"));
     assert!(
         f.run(&["coordination"])["error"]

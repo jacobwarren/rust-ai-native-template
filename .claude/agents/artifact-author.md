@@ -1,6 +1,6 @@
 ---
 name: artifact-author
-description: Writes one task HTML page for this repository from its prompt and exemplar (docs/ARTIFACTS.md). Use for each page a standard-tier task needs, one fresh author per page.
+description: Writes one task HTML page for this repository from its prompt and exemplar (docs/ARTIFACTS.md). Use for each page a standard or full task needs, one fresh author per page.
 model: opus
 tools: Read, Grep, Glob, Bash, Write, Edit, WebFetch
 skills:

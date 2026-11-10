@@ -3,10 +3,10 @@
 //! exemplar, the output path and the pages written so far. The guide is compiled
 //! in, so the prompt text has one source and a fixture repository needs no copy.
 use crate::{
-    artifacts::{self, DISCOVERY, FINAL, NOTES},
+    artifacts::{self, BRIEF, REPORT},
     config::Result,
     router::{Log, Verdict},
-    task_record::Prompt,
+    task_record::{Prompt, Reader, Task, Tier},
 };
 use serde_json::{Value, json};
 use std::path::Path;
@@ -25,7 +25,7 @@ pub struct Row {
 }
 
 fn pages() -> Vec<&'static str> {
-    DISCOVERY.into_iter().chain([NOTES]).chain(FINAL).collect()
+    artifacts::known()
 }
 
 /// The prompt table, keyed by its File column, in page order.
@@ -64,20 +64,35 @@ pub fn rows() -> Result<Vec<Row>> {
     Ok(rows)
 }
 
-/// The quoted rule for answering the interview when no one replies.
-pub fn answering_rule() -> Result<String> {
+/// The rule a guide section quotes, as one line.
+fn quoted(heading: &str) -> Result<String> {
     let section = GUIDE
         .split("\n## ")
-        .find(|s| s.starts_with("Replies come back into the work"))
-        .ok_or("docs/ARTIFACTS.md has no section on replies")?;
+        .find(|s| s.starts_with(heading))
+        .ok_or(format!("docs/ARTIFACTS.md has no section {heading}"))?;
     let rule: Vec<&str> = section
         .lines()
         .filter_map(|l| l.strip_prefix("> "))
         .collect();
     if rule.is_empty() {
-        return Err("docs/ARTIFACTS.md's replies section must quote its answering rule".into());
+        return Err(format!("docs/ARTIFACTS.md's section {heading} must quote its rule").into());
     }
     Ok(rule.join(" "))
+}
+
+/// The quoted rule for answering the interview when no one replies.
+pub fn answering_rule() -> Result<String> {
+    quoted("Replies come back into the work")
+}
+
+/// The quoted rule for a task whose pages no person will answer.
+pub fn no_reader_rule() -> Result<String> {
+    quoted("Pages need a reader")
+}
+
+/// The quoted length rule for the standard tier's two pages.
+pub fn standard_rule() -> Result<String> {
+    quoted("The standard pages")
 }
 
 /// Who receives the hand-over.
@@ -105,12 +120,12 @@ fn given(value: Option<&String>) -> Option<&str> {
     (!v.is_empty() && !(v.starts_with('<') && v.ends_with('>'))).then_some(v)
 }
 
-/// Fill a prompt's braces. The blindspot prompt alone opens "I'm about to {task}",
-/// so it takes the verb phrase; the others take the noun phrase.
+/// Fill a prompt's braces. A prompt that opens "I'm about to {task}" takes the
+/// verb phrase; the others take the noun phrase.
 fn fill(row: &Row, prompt: Option<&Prompt>) -> (String, Vec<&'static str>) {
     let none = Prompt::default();
     let p = prompt.unwrap_or(&none);
-    let task = if row.file == DISCOVERY[0] {
+    let task = if row.prompt.starts_with("I'm about to {task}") {
         ("task", &p.task)
     } else {
         ("task_noun", &p.task_noun)
@@ -136,13 +151,9 @@ fn fill(row: &Row, prompt: Option<&Prompt>) -> (String, Vec<&'static str>) {
 }
 
 /// The text to hand the subagent unchanged, for one page of a task.
-pub fn handover(
-    root: &Path,
-    id: &str,
-    page: &str,
-    prompt: Option<&Prompt>,
-    to: For,
-) -> Result<Handover> {
+pub fn handover(root: &Path, id: &str, page: &str, task: &Task, to: For) -> Result<Handover> {
+    let prompt = task.prompt.as_ref();
+    let owed = artifacts::Pages::of(task).all();
     let rows = rows()?;
     let index = rows
         .iter()
@@ -157,7 +168,8 @@ pub fn handover(
         context.push(ticket);
     }
     let mut before = Vec::new();
-    for r in &rows[..index] {
+    let position = owed.iter().position(|p| *p == page).unwrap_or(0);
+    for r in rows.iter().filter(|r| owed[..position].contains(&r.file)) {
         if artifacts::exists(root, id, r.file)? {
             before.push(r.file);
         }
@@ -188,8 +200,16 @@ pub fn handover(
         For::Review { .. } => format!("Pages before it: {before}"),
         _ => format!("Pages so far: {before}"),
     });
-    if page == "interview.html" || page == "buy-in.html" {
+    if page == "interview.html" || (page == "buy-in.html" && task.reader() == Reader::Human) {
         lines.push(format!("Answering rule: {}", answering_rule()?));
+    }
+    // Without a reader no interview is written: its questions belong to these pages.
+    if task.reader() == Reader::None && ["plan.html", "buy-in.html", BRIEF, REPORT].contains(&page)
+    {
+        lines.push(format!("No reader: {}", no_reader_rule()?));
+    }
+    if task.tier() == Tier::Standard {
+        lines.push(format!("Length: {}", standard_rule()?));
     }
     match to {
         For::Rewrite { round, notes, .. } => {
@@ -215,7 +235,7 @@ pub fn handover(
 pub fn attach(
     root: &Path,
     id: &str,
-    prompt: Option<&Prompt>,
+    task: &Task,
     log: Option<&Log>,
     step: &mut Value,
 ) -> Result<()> {
@@ -239,7 +259,7 @@ pub fn attach(
         },
         _ => return Ok(()),
     };
-    let h = handover(root, id, &page, prompt, to)?;
+    let h = handover(root, id, &page, task, to)?;
     // The note goes first: a review step's say ends with the verdict command to copy.
     if !h.unfilled.is_empty() {
         let say = step["say"].as_str().unwrap_or_default();
@@ -272,14 +292,16 @@ mod tests {
                 assert!(BRACES.contains(&&rest[start..end]), "{}", &rest[start..end]);
                 rest = &rest[end..];
             }
-            // Only the blindspot prompt takes {task} as a verb phrase.
+            // Only the two pages that open a task take {task} as a verb phrase.
             assert_eq!(
                 row.prompt.starts_with("I'm about to {task}"),
-                row.file == "blindspots.html",
+                ["blindspots.html", "brief.html"].contains(&row.file),
                 "{}",
                 row.file
             );
         }
         assert!(answering_rule().unwrap().contains("the agent's call"));
+        assert!(no_reader_rule().unwrap().contains("the agent's call"));
+        assert!(standard_rule().unwrap().contains("half"));
     }
 }

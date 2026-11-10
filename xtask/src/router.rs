@@ -2,7 +2,7 @@
 //! commit, from the task record, the pages and the verdict log; `verdict` appends one
 //! review to that log. Both advise. Completion never reads the log (docs/ARTIFACTS.md).
 use crate::{
-    artifacts::{self, DISCOVERY, FINAL, NOTES},
+    artifacts::{self, Pages},
     config::{Result, valid_id},
     handover, history,
     task_record::{self, Tier},
@@ -72,10 +72,6 @@ fn read(root: &Path, id: &str) -> Result<Option<Log>> {
     }
 }
 
-fn pages() -> impl Iterator<Item = &'static str> {
-    DISCOVERY.into_iter().chain([NOTES]).chain(FINAL)
-}
-
 fn page_sha(root: &Path, id: &str, page: &str) -> Result<Option<String>> {
     if !artifacts::exists(root, id, page)? {
         return Ok(None);
@@ -112,9 +108,17 @@ pub fn verdict(root: &Path, id: &str, review: &Review) -> Result<Value> {
         findings,
         model,
     } = *review;
-    task_record::read(root, id)?;
-    if !pages().any(|p| p == page) {
-        return Err(format!("{page} is not a task page; see docs/ARTIFACTS.md").into());
+    let owed = Pages::of(&task_record::read(root, id)?).all();
+    if !owed.contains(&page) {
+        return Err(format!(
+            "{page} is not a task page this task owes ({}); see docs/ARTIFACTS.md",
+            if owed.is_empty() {
+                "none".to_owned()
+            } else {
+                owed.join(", ")
+            }
+        )
+        .into());
     }
     let verdict: Verdict = serde_json::from_value(json!(verdict))
         .map_err(|_| format!("verdict {verdict} must be pass, revise or best"))?;
@@ -293,7 +297,7 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
         );
     }
     let task = task_record::read(root, id)?;
-    if task.tier == Tier::Small {
+    if task.tier() == Tier::Small {
         return Ok(
             json!({"ok":true,"task":id,"tier":"small","next":{"action":"build","say":
             "Small task: no pages. Build, commit, run cargo xtask check ci, then complete; the gate measures the size."},
@@ -316,21 +320,29 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
             .map_or(0, |c| c.rows.len()),
         _ => 0,
     };
+    let pages = Pages::of(&task);
     let mut found = None;
-    for page in DISCOVERY {
+    for page in &pages.before {
         found = page_step(root, id, page, log.as_ref(), committed_rows)?;
         if found.is_some() {
             break;
         }
     }
-    if found.is_none() {
-        found = if artifacts::exists(root, id, NOTES)? {
-            page_step(root, id, NOTES, log.as_ref(), committed_rows)?
+    if let (None, Some(notes)) = (&found, pages.notes) {
+        found = if artifacts::exists(root, id, notes)? {
+            page_step(root, id, notes, log.as_ref(), committed_rows)?
         } else {
-            step("build", NOTES, 1, "Discovery is done. Build and commit the first product slice, then start a fresh artifact-author on implementation.html with the handover, and commit the notes before the last product commit.".into())
+            step(
+                "build",
+                notes,
+                1,
+                format!(
+                    "Discovery is done. Build and commit the first product slice, then start a fresh artifact-author on {notes} with the handover, and commit the notes before the last product commit."
+                ),
+            )
         };
     }
-    for page in FINAL {
+    for page in &pages.after {
         if found.is_some() {
             break;
         }
@@ -342,13 +354,18 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
                 page,
                 1,
                 format!(
-                    "Finish and commit the product work and its notes; then start a fresh artifact-author on {page} with the handover; it must be committed at or after the last product commit."
+                    "Build, verify and commit the product work{}; then start a fresh artifact-author on {page} with the handover; it must be committed at or after the last product commit.",
+                    if pages.notes.is_some() {
+                        " and its notes"
+                    } else {
+                        ""
+                    }
                 ),
             )
         };
     }
     if let Some(step) = found.as_mut() {
-        handover::attach(root, id, task.prompt.as_ref(), log.as_ref(), step)?;
+        handover::attach(root, id, &task, log.as_ref(), step)?;
     }
     // Every page, not only those before the next step: a hand edit anywhere shows.
     for row in log.iter().flat_map(|l| &l.rows) {
@@ -373,5 +390,5 @@ pub fn next(root: &Path, id: &str) -> Result<Value> {
     };
     let next = found.unwrap_or_else(|| json!({"action":"complete","say":format!(
         "Every page is reviewed and committed. Copy each page's final verdict and open notes {source} into review.verification, run cargo xtask check ci > target/verification/ci.json, then cargo xtask complete.")}));
-    Ok(json!({"ok":true,"task":id,"next":next,"advisories":advisories}))
+    Ok(json!({"ok":true,"task":id,"pages":pages.all(),"next":next,"advisories":advisories}))
 }

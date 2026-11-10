@@ -13,16 +13,32 @@ pub enum Status {
     Partial,
     Blocked,
 }
-/// How much ceremony a task owes. A small task changes at most a few product lines,
-/// touches no policy, dependency or ceremony path, and needs no task pages; the
-/// gate measures the branch to hold it to that (see size.rs and docs/ARTIFACTS.md).
+/// How much ceremony a task owes (docs/ARTIFACTS.md "Task size"). A small task
+/// changes a few lines away from policy and needs no pages; the gate measures its
+/// branch (size.rs). A standard task, the default, owes a brief before code and a
+/// report after it. A full task owes the eight-page set. Read it through
+/// `Task::tier()`: a record from schema 6 or earlier wrote "standard" for the
+/// eight pages.
 #[derive(Deserialize, PartialEq, Eq, Clone, Copy, Debug, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum Tier {
     Small,
     #[default]
     Standard,
+    Full,
 }
+/// Whether a person will answer the task's pages. The interview and the quiz are
+/// written only for a human reader; without one their questions go into the plan.
+#[derive(Deserialize, PartialEq, Eq, Clone, Copy, Debug)]
+#[serde(rename_all = "snake_case")]
+pub enum Reader {
+    Human,
+    None,
+}
+/// The newest record schema; records from `FULL_BY_DEFAULT` and earlier keep
+/// their meaning and stay valid.
+pub const SCHEMA: u32 = 7;
+const FULL_BY_DEFAULT: u32 = 6;
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Task {
@@ -30,8 +46,10 @@ pub struct Task {
     pub id: String,
     pub work_item: Option<String>,
     pub status: Status,
-    #[serde(default)]
-    pub tier: Tier,
+    #[serde(default, rename = "tier")]
+    declared_tier: Tier,
+    #[serde(default, rename = "reader")]
+    declared_reader: Option<Reader>,
     pub requirements: Vec<String>,
     pub related_gaps: Vec<Disposition>,
     pub gap_review: String,
@@ -45,6 +63,25 @@ pub struct Task {
     /// Values for the page prompts' braces; `next` fills them in (handover.rs).
     #[serde(default)]
     pub prompt: Option<Prompt>,
+}
+impl Task {
+    /// The ceremony this record owes. Schema 6 and earlier called the eight
+    /// pages "standard" and made them the default.
+    pub fn tier(&self) -> Tier {
+        match self.declared_tier {
+            Tier::Standard if self.schema_version <= FULL_BY_DEFAULT => Tier::Full,
+            tier => tier,
+        }
+    }
+    /// Who answers the pages. Records from before the field were written for a
+    /// human; a newer record that names no reader has none.
+    pub fn reader(&self) -> Reader {
+        match self.declared_reader {
+            Some(reader) => reader,
+            None if self.schema_version <= FULL_BY_DEFAULT => Reader::Human,
+            None => Reader::None,
+        }
+    }
 }
 /// Brace values for docs/ARTIFACTS.md's prompts. Every one is optional and checked
 /// by `next`, which leaves a missing one visible, never by `read`.
@@ -92,7 +129,8 @@ pub fn read(root: &Path, id: &str) -> Result<Task> {
         return Err("invalid task ID".into());
     }
     let task: Task = config::read(&root.join(format!("harness/tasks/{id}.json")))?;
-    if !(1..=6).contains(&task.schema_version)
+    if !(1..=SCHEMA).contains(&task.schema_version)
+        || (task.declared_reader.is_some() && task.schema_version <= FULL_BY_DEFAULT)
         || task.id != id
         || task
             .work_item
@@ -149,8 +187,8 @@ pub struct Review {
 
 pub fn review_errors(task: &Task) -> Vec<String> {
     let mut errors = Vec::new();
-    if task.schema_version != 6 {
-        errors.push("Upgrade this active task to schema_version 6 and write its HTML artifacts (docs/ARTIFACTS.md); historical records may remain archived.".into());
+    if task.schema_version < FULL_BY_DEFAULT {
+        errors.push(format!("Upgrade this active task to schema_version {SCHEMA} and write its HTML pages (docs/ARTIFACTS.md); historical records may remain archived."));
     }
     let empty = Review::default();
     let review = task.review.as_ref().unwrap_or(&empty);

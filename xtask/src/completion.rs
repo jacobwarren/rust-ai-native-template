@@ -13,24 +13,25 @@ pub fn task(
     root: &Path,
     id: &str,
     base: &str,
+    head: Option<&str>,
     report: Option<&Path>,
     must_complete: bool,
 ) -> Result<Value> {
     let task = task_record::read(root, id)?;
     let complete = task.status == Status::Complete;
-    let artifact_result = match task.tier {
-        Tier::Standard => artifacts::check(root, id, complete, Some(base)),
-        Tier::Small => artifacts::check_written(root, id).and_then(|()| {
-            if complete {
+    let pages = artifacts::Pages::of(&task);
+    let artifact_result =
+        artifacts::check(root, id, &pages, complete, Some(base), head).and_then(|()| {
+            // A task with no pages still completes from commits.
+            if complete && pages.is_empty() {
                 artifacts::committed(root, id)
             } else {
                 Ok(())
             }
-        }),
-    };
-    let size_result = match task.tier {
+        });
+    let size_result = match task.tier() {
         Tier::Small => size::check_small(root, base),
-        Tier::Standard => Ok(()),
+        Tier::Standard | Tier::Full => Ok(()),
     };
     let current = match tracking::load(root) {
         Ok(gaps) => gaps,
@@ -128,14 +129,19 @@ pub fn task(
 pub fn complete(root: &Path, id: &str, revision: &str, report: &Path) -> Result<Value> {
     let base = history::merge_base(root, revision)?;
     let transitions = transitions::check(root, &base, Some(report))?;
-    let task = task(root, id, &base, Some(report), true)?;
+    let task = task(root, id, &base, None, Some(report), true)?;
     Ok(
         json!({"ok":transitions["ok"] == true && task["ok"] == true,"kind":"completion",
         "base_commit":base,"source_sha256":repo::fingerprint(root)?,"task":task,"transitions":transitions}),
     )
 }
 
-pub fn handoff(root: &Path, revision: &str, report: Option<&Path>) -> Result<Value> {
+pub fn handoff(
+    root: &Path,
+    revision: &str,
+    head: Option<&str>,
+    report: Option<&Path>,
+) -> Result<Value> {
     let base = history::merge_base(root, revision)?;
     let before = history::before(root, &base)?;
     let after = history::current(root)?;
@@ -173,7 +179,7 @@ pub fn handoff(root: &Path, revision: &str, report: Option<&Path>) -> Result<Val
                 .iter()
                 .filter_map(|d| d.record.strip_prefix("gap:").map(String::from)),
         );
-        results.push(task(root, id, &base, report, false)?);
+        results.push(task(root, id, &base, head, report, false)?);
     }
     if changed && results.is_empty() {
         errors.push("changed source requires an added/updated task reconciliation record".into());
@@ -233,11 +239,8 @@ pub fn validate(root: &Path) -> Result<Value> {
             .ok_or("invalid task filename")?;
         let record = task_record::read(root, id)?;
         // Handoff and completion demand pages; validation only checks the ones written.
-        if record.schema_version >= 6
-            && record.status == Status::Complete
-            && record.tier == Tier::Standard
-        {
-            artifacts::check(root, id, true, None)?;
+        if record.schema_version >= 6 && record.status == Status::Complete {
+            artifacts::check(root, id, &artifacts::Pages::of(&record), true, None, None)?;
         } else if record.schema_version >= 6 {
             artifacts::check_written(root, id)?;
         }
@@ -256,7 +259,7 @@ pub fn agent_stop(root: &Path, id: &str, revision: &str, report: &Path) -> Resul
         return complete(root, id, revision, report);
     }
     let base = history::merge_base(root, revision)?;
-    let task = task(root, id, &base, Some(report), false)?;
+    let task = task(root, id, &base, None, Some(report), false)?;
     if task["reconciliation_pending"] == true {
         return Ok(
             json!({"ok":true,"complete":false,"kind":"blocked_handoff","task":task,

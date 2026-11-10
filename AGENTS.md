@@ -1,30 +1,29 @@
 # Agent map
 
-Start here. This is a map; follow the linked source for the current task.
+Start here. Two commands carry the detail, so run them before reading further:
+`cargo xtask help` lists every command with its usage, and
+`cargo xtask task-artifact next --task ID` names the one next step of a task.
 
 1. Read [product intent](docs/PRODUCT.md), [architecture](ARCHITECTURE.md),
    and the nearest package's AGENTS.md before editing.
-2. Set the task's tier in its record. A small task (at most 100 changed lines,
-   no policy, dependency or ceremony path) needs no pages; a standard task writes
-   the eight [HTML pages](docs/ARTIFACTS.md), discovery pages before code;
-   `cargo xtask task-artifact next --task ID` names the next page step.
-   Inspect the existing implementation and applicable acceptance criteria.
-   Use `cargo xtask gaps` for ranked work and the driver to observe product behavior.
-   Use `cargo xtask map` and `rg` to locate owners and dependencies.
+2. Give the task a record, `harness/tasks/ID.json`, from
+   [the example](examples/task-record.json) or the write-ticket skill. Its
+   `tier` sets what the task owes ([task size](docs/ARTIFACTS.md)): `small`,
+   no pages; `standard`, the default, a brief before code and a report after;
+   `full`, the eight-page set for risky work. Then follow `task-artifact next`.
 3. Run `cargo xtask doctor` on first setup and `cargo xtask check fast`
    for the baseline. Distinguish pre-existing failures from your changes.
-4. For multi-step or risky work, create a plan from
-   [the plan template](docs/plans/TEMPLATE.md); a small task needs none.
-5. Make the smallest coherent change and add a meaningful regression check
+4. Make the smallest coherent change and add a meaningful regression check
    when behavior changes. Tests must assert an independent expected result.
-6. Run targeted checks while editing, then `cargo xtask check ci` before handoff.
-   Cite the report path, checks actually run, and remaining uncertainty.
-7. Reconcile task records and gaps at task start, material discovery, milestone,
-   and handoff. Follow [completion and gap discovery guidance](docs/COMPLETION.md).
-   Before claiming done, run `cargo xtask complete --task ID --base REV --report PATH`;
-   partial or blocked work uses handoff with explicit remaining actions, and does
-   not force broader gaps closed.
-8. Update affected contracts and docs in the same change. New Markdown files
+5. Run targeted checks while editing, then
+   `cargo xtask check ci > target/verification/ci.json` before handoff.
+6. Reconcile the record's gaps, discoveries and four review answers
+   ([completion](docs/COMPLETION.md)), then run
+   `cargo xtask complete --task ID --base REV --report PATH`. Partial or
+   blocked work sets its remaining actions and stops; it does not force
+   broader gaps closed. Cite the report path, the checks run and what is
+   still uncertain.
+7. Update affected contracts and docs in the same change. New Markdown files
    must be registered in `harness/docs.json`.
 
 ## Navigation

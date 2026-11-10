@@ -25,7 +25,7 @@ the page a reader would get, not the effort behind it.
    | consistent | Two places on the page disagree: the reply and what it summarizes, a tile and the body, a badge and its section. Read the reply as the script builds it, for the default choices and one changed choice. | never |
    | provenance | Something is shown as more real than it is: typed or reconstructed output as captured, invented lines in a quoted excerpt, unbuilt behaviour as existing. | the page shows no output or excerpt |
    | cited | A tile, headline number or claim a decision rests on has no source on the page: no file, test or output, and no command named that reproduces it. | never |
-   | ticket | An acceptance, scope or validation item of the ticket is neither met nor changed with its reason. | not a plan or buy-in page |
+   | ticket | An acceptance, scope or validation item of the ticket is neither met nor changed with its reason. | not a plan, buy-in, brief or report page |
 
 3. Check the claims. Pick at least three concrete claims the page rests on,
    favoring the ones a decision depends on, and verify each against the code,
@@ -45,13 +45,20 @@ the page a reader would get, not the effort behind it.
 | Is every claim grounded? | A checked claim is wrong or vague ("various places"). |
 | Does each interaction change what the reader sees or decides? | A control is decorative, broken, or reveals text that could simply be shown. |
 | Does it show rather than tell? | Findings are prose where an excerpt, diagram, before/after or demo would make them checkable. |
-| Is it as short as its content allows? | A reader would skim whole sections, it runs well past the exemplar's length without carrying more, or it derives again at length what an earlier page of this task already showed. |
+| Is it as short as its content allows? | A reader would skim whole sections, it runs well past the exemplar's length without carrying more, or it derives again at length what an earlier page of this task already showed. When the hand-over carries a `Length:` line, a page well past that limit fails here. |
 | Is it about the feature? | It discusses the harness, hashes, revisions, verification process or what the page is not. |
 | Does it render cleanly? | The screenshot report lists console errors, network requests, local files or phone-width overflow, or a tile shows broken layout. |
 
 Each page has one job. Judge it against that job, not against the exemplar's
 layout or domain:
 
+- **Brief** (standard task, before code): the unknowns the ticket does not
+  show, each proven by code, then a plan that leads with the decisions most
+  likely to change. Without a reader, its open questions are answered on the
+  page as the agent's calls.
+- **Report** (standard task, before merge): leads with the demo and evidence,
+  then the deviations from the brief with the conservative option taken, then
+  what is still open, enough to decide the merge from this page alone.
 - **Blindspot pass**: real unknowns a competent implementer would miss, each
   proven by code, plus how to prompt better.
 - **Brainstorm the intervention**: distinct places to intervene, ordered from
@@ -69,8 +76,8 @@ layout or domain:
 - **Quiz**: questions answerable only by understanding the change, not by
   scanning the page for a matching phrase, and a pass the reader must earn.
 
-Discovery pages (the first five) must end with a reply the reader can assemble
-and copy back.
+A full task's discovery pages (the first five) and a brief must end with a
+reply the reader can assemble and copy back.
 
 Return one verdict:
 

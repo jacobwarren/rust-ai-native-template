@@ -45,8 +45,35 @@ pub fn read(root: &Path, base: &str, path: &str) -> Result<Option<Vec<u8>>> {
 }
 /// Paths changed by each of the branch's own commits since `base`, oldest first.
 /// Merge commits are skipped so changes merged in from the target do not count.
-pub fn commits(root: &Path, base: &str) -> Result<Vec<Vec<String>>> {
-    let range = format!("{base}..HEAD");
+///
+/// On a pull request a code host checks out a merge commit it built itself, whose
+/// first parent is the target branch: read from there, the branch has no commits.
+/// `head` names the branch's own tip for that case.
+pub fn commits(root: &Path, base: &str, head: Option<&str>) -> Result<Vec<Vec<String>>> {
+    let tip = match head {
+        Some(revision) => String::from_utf8(git(
+            root,
+            &[
+                "rev-parse",
+                "--verify",
+                "--end-of-options",
+                &format!("{revision}^{{commit}}"),
+            ],
+        )?)?
+        .trim()
+        .to_owned(),
+        None => {
+            // A merge whose first parent is the base is such a commit even when
+            // the caller named no head: the branch is its second parent.
+            let line = String::from_utf8(git(root, &["rev-list", "--parents", "-n1", "HEAD"])?)?;
+            let ids: Vec<&str> = line.split_whitespace().collect();
+            match ids[..] {
+                [_, first, second] if first == base => second.to_owned(),
+                _ => "HEAD".to_owned(),
+            }
+        }
+    };
+    let range = format!("{base}..{tip}");
     let out = String::from_utf8(git(
         root,
         &[

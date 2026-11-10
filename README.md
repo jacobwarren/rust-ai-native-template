@@ -158,15 +158,18 @@ schemas, discovery guidance, hook setup and authority limits.
 
 ## HTML task reviews
 
-Each standard task leaves [HTML artifacts](docs/ARTIFACTS.md) a human can review: five
-discovery pages before code, implementation notes during the work, and a buy-in
-doc and quiz before merge. Each page comes from one prompt adapted from Thariq
+A task leaves [HTML pages](docs/ARTIFACTS.md) a human can review, as few as its
+risk calls for. A standard task, the default, writes two: a brief before code and
+a report before merge. A full task, for risky or hard-to-undo work, writes eight:
+five discovery pages before code, implementation notes during the work, and a
+buy-in doc and quiz before merge; the interview and the quiz are written only
+when the record names a human reader. Each page comes from one prompt adapted from Thariq
 Shihipar's [Know your unknowns](examples/thariq/index.html) examples, which set
 the quality bar. A dedicated subagent writes each page and another reviews it
 against its exemplar before it is committed. Each page is a single file carrying
 the shared stylesheet from `cargo xtask task-artifact style --task ID` inline.
-Completion reads commit order: discovery pages before the first code commit,
-notes during the work, buy-in and quiz last. A small task (at most 100 changed
+Completion reads commit order: the pages due before code come before the first
+code commit, and the pages due before merge after the last. A small task (at most 100 changed
 lines, no policy, dependency or ceremony path) needs no pages; the gate measures
 its branch. Claude Code and Codex load the author and reviewer briefs as skills,
 and `.claude/agents/` and `.codex/agents/` define the two roles.

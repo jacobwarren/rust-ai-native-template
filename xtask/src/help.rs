@@ -56,7 +56,7 @@ pub const TABLE: &[(&str, &str)] = &[
     ),
     (
         "task-artifact guard --task ID",
-        "Fail until the five discovery pages are committed; for host hooks before product edits",
+        "Fail until the task's pages due before code are committed; for host hooks before product edits",
     ),
     (
         "task-artifact next --task ID",
@@ -68,7 +68,7 @@ pub const TABLE: &[(&str, &str)] = &[
     ),
     (
         "artifact-hook --task ID",
-        "Hook adapter for Codex apply_patch events: reads one event on stdin and refuses product edits until the discovery pages are committed; run by scripts/agent-artifact-write.sh",
+        "Hook adapter for Codex apply_patch events: reads one event on stdin and refuses product edits until the task's pages due before code are committed; run by scripts/agent-artifact-write.sh",
     ),
     (
         "coordination",
@@ -83,8 +83,8 @@ pub const TABLE: &[(&str, &str)] = &[
         "Gate a completion claim with reconciliation and current evidence; the default stop hook runs this for each changed task record that says complete",
     ),
     (
-        "handoff --base REV [--report PATH]",
-        "Check changed tasks; partial/blocked handoffs are explicitly allowed",
+        "handoff --base REV [--head REV] [--report PATH]",
+        "Check changed tasks; partial/blocked handoffs are explicitly allowed. --head names the branch tip when HEAD is a pull request's merge commit, so page order reads the branch's own commits",
     ),
     (
         "run -- ARGS...",

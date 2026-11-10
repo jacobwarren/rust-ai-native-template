@@ -121,8 +121,9 @@ impl Fixture {
         self.text(
             &format!("harness/task-artifacts/TASK-1/{name}"),
             &format!(
-                "<!doctype html><head>{STYLE}</head><p>{name} {:?}</p>",
-                std::time::Instant::now()
+                "<!doctype html><head>{STYLE}</head><p>{name} {:?}</p><p>{}</p>",
+                std::time::Instant::now(),
+                "A finding with the code that proves it. ".repeat(40)
             ),
         );
     }

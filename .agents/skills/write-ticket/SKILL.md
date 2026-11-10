@@ -31,8 +31,15 @@ Write these five sections, short and concrete:
      write-ticket skills, agents, `docs/ARTIFACTS.md`. Other skills can change
      in a small task. Small tasks need no pages; the gate measures the branch
      and refuses one that grows.
-   - **standard** otherwise. It owes the eight task pages, discovery before
-     code (docs/ARTIFACTS.md). When unsure, say standard.
+   - **standard** otherwise, and by default. It owes two pages: a brief
+     before code and a report before merge (docs/ARTIFACTS.md). When unsure,
+     say standard.
+   - **full** when the change is risky or hard to undo (a persistence or wire
+     format, a security boundary, a migration, a public contract) or the
+     owner asks to steer it. It owes the eight-page set. Say who reads the
+     pages: `"reader": "human"` only when a person has agreed to answer the
+     interview and take the quiz; otherwise `"none"`, and those two pages are
+     not written.
 3. **Acceptance as named tests.** One line per behaviour:
    `test_name_in_snake_case: given …, when …, then …`. Name tests that do not
    exist yet; these names become the record's remaining actions now and its
@@ -51,11 +58,12 @@ remaining actions:
 
 ```json
 {
-  "schema_version": 6,
+  "schema_version": 7,
   "id": "<id>",
   "work_item": "<tracker URL, or null>",
   "status": "partial",
-  "tier": "small | standard",
+  "tier": "small | standard | full",
+  "reader": "none | human",
   "requirements": ["<readiness ids from Scope>"],
   "related_gaps": [{"id": "<gap>", "disposition": "unaffected", "rationale": "<why>"}],
   "gap_review": "<which gaps were read and why they are or are not touched>",
@@ -65,7 +73,7 @@ remaining actions:
   "prompt": {
     "task": "<verb phrase that reads after I'm about to>",
     "task_noun": "<noun phrase naming what is built; reads after build and shipping>",
-    "area": "<the code area, for the blindspot pass>",
+    "area": "<the code area, for the brief or the blindspot pass>",
     "problem": "<the Problem, with no final period>",
     "reference": "<one code path that already behaves this way, singular>"
   },
@@ -74,7 +82,7 @@ remaining actions:
 }
 ```
 
-A standard task fills `prompt`: `task-artifact next` puts these values into
+A standard or full task fills `prompt`: `task-artifact next` puts these values into
 each page's prompt (docs/ARTIFACTS.md), and a value left as its `<…>`
 placeholder or blank stays a visible brace. A small task can drop `prompt`.
 

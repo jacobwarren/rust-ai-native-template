@@ -138,25 +138,30 @@ fn dispatch() -> Result<Value> {
         ["task-artifact", "screenshot", "--task", id] => artifacts::screenshots(&root, id),
         ["task-artifact", "check", "--task", id] => {
             let task = task_record::read(&root, id)?;
-            if task.tier == task_record::Tier::Small {
-                artifacts::check_written(&root, id)?;
-            } else {
-                artifacts::check(
-                    &root,
-                    id,
-                    task.status == task_record::Status::Complete,
-                    None,
-                )?;
-            }
-            Ok(json!({"ok":true,"task":id}))
+            let pages = artifacts::Pages::of(&task);
+            artifacts::check(
+                &root,
+                id,
+                &pages,
+                task.status == task_record::Status::Complete,
+                None,
+                None,
+            )?;
+            Ok(json!({"ok":true,"task":id,"pages":pages.all()}))
         }
         ["coordination"] => completion::validate(&root),
         ["complete", "--task", id, "--base", base, "--report", path] => {
             completion::complete(&root, id, base, std::path::Path::new(path))
         }
-        ["handoff", "--base", base] => completion::handoff(&root, base, None),
+        ["handoff", "--base", base] => completion::handoff(&root, base, None, None),
         ["handoff", "--base", base, "--report", path] => {
-            completion::handoff(&root, base, Some(std::path::Path::new(path)))
+            completion::handoff(&root, base, None, Some(std::path::Path::new(path)))
+        }
+        ["handoff", "--base", base, "--head", head] => {
+            completion::handoff(&root, base, Some(head), None)
+        }
+        ["handoff", "--base", base, "--head", head, "--report", path] => {
+            completion::handoff(&root, base, Some(head), Some(std::path::Path::new(path)))
         }
         ["doctor"] => {
             config::load(&root)?;

@@ -36,9 +36,11 @@ jobs:
         if: github.event_name == 'pull_request'
         env:
           HARNESS_BASE: ${{ github.event.pull_request.base.sha }}
+          HARNESS_HEAD: ${{ github.event.pull_request.head.sha }}
         shell: bash
         run: |
-          cargo xtask handoff --base "$HARNESS_BASE" --report target/verification/ci.json > target/verification/handoff.json
+          # The checkout is the host's merge commit: page order is read from the head.
+          cargo xtask handoff --base "$HARNESS_BASE" --head "$HARNESS_HEAD" --report target/verification/ci.json > target/verification/handoff.json
       - name: Qualify template scope against this checkout
         run: cargo xtask release template --report target/verification/ci.json > target/verification/readiness.json
       - name: Preserve evidence

@@ -1,5 +1,5 @@
 {
-  "description": "Opt-in discovery-page guard: blocks apply_patch edits to product code until the task's five discovery pages are committed. Set HARNESS_TASK_ID, build xtask, and merge this PreToolUse entry into .codex/hooks.json next to the default hooks. Shell and MCP writers are not covered.",
+  "description": "Opt-in before-code guard: blocks apply_patch edits to product code until the task's pages due before code are committed. Set HARNESS_TASK_ID, build xtask, and merge this PreToolUse entry into .codex/hooks.json next to the default hooks. Shell and MCP writers are not covered.",
   "hooks": {
     "PreToolUse": [
       {
