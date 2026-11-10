@@ -20,6 +20,16 @@
       "notes": "PASS. Four unknowns (stats must be an Action not a Command; no test guards the methods list; unit Stats admits typos while Stats {} rejects; crates/app needs no change) and two decisions. Fixed checks: consistent held; provenance held; cited held; ticket held. Unknown 3 reproduced in a clean copy. Optional: transitions.rs citations lack the xtask/src/ path.\nFINDINGS: 0",
       "findings": 0,
       "model": "claude"
+    },
+    {
+      "page": "report.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "46da2ca8b3c36cbc2e606f9b8aaf35117ff6fa0a2da088f460c5fd75d3d833bd",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. Demo and tests reproduced in a clean copy; checks consistent, provenance, cited, ticket held. Open calls C1-C3 on the page are the agent's calls. FINDINGS: 0",
+      "findings": 0,
+      "model": "claude"
     }
   ]
 }
