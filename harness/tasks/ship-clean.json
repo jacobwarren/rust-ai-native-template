@@ -1,0 +1,44 @@
+{
+  "schema_version": 7,
+  "id": "ship-clean",
+  "work_item": null,
+  "status": "partial",
+  "tier": "standard",
+  "reader": "none",
+  "requirements": [
+    "completion",
+    "task-artifacts",
+    "evidence"
+  ],
+  "related_gaps": [
+    {
+      "id": "product-acceptance",
+      "disposition": "unaffected",
+      "rationale": "Removing the template's own task history does not establish acceptance for an adopted product."
+    },
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "updated",
+      "rationale": "The closed gap's evidence cited a page this task archives; the evidence now names the archive commit. Its state, resolution and requirements are unchanged."
+    }
+  ],
+  "gap_review": "Read the three open gaps (product-acceptance, platform-qualification, hosting-enforcement); none is changed. The closed gap artifact-gate-holes cited an archived page as evidence, so its evidence text is re-pointed.",
+  "discoveries": [],
+  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "documentation": {
+    "updated": [],
+    "rationale": "docs/ARTIFACTS.md, docs/COMPLETION.md, docs/EVALUATION.md, docs/ADOPTING.md and README.md change; listed when the work lands."
+  },
+  "prompt": {
+    "task": "let archived task history be deleted from the tree, remove the template's own, and fix the friction twelve agent runs reported",
+    "task_noun": "the history archive and the friction fixes",
+    "area": "xtask's handoff and transition gates (xtask/src/completion.rs, transitions.rs, history.rs), the check runner (runner.rs), the task record and the page router",
+    "problem": "the gates forbid deleting the template's own task history, and fresh agents keep tripping on a missing report directory, a bare parse error and an unmeasurable length rule",
+    "reference": "The protected-path and immutable-receipt checks in xtask/src/transitions.rs"
+  },
+  "summary": "Add an archive manifest so merged task history can leave the tree, remove the template's own, and fix six points of friction from the first runs under the new tiers.",
+  "remaining": [
+    "Commit the brief before the code, then the code, the removal and the receipt",
+    "cargo xtask check ci, then complete against product/board-stats"
+  ]
+}

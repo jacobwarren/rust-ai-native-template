@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brief: ship the template without its history</title>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<style>
+main{max-width:66rem}
+pre{font-size:var(--text-small);margin-block:var(--space-2)}
+.lbl{font:650 .7rem var(--font-code);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.u{border-inline-start:3px solid var(--warning);padding:var(--space-1) var(--space-4);margin-block:var(--space-4)}
+.u h3{margin:0}
+.u p{margin-block:var(--space-2)}
+fieldset{padding:var(--space-4);margin-block:var(--space-4)}
+fieldset label{margin-block:var(--space-2);padding-inline-start:1.6rem;text-indent:-1.6rem}
+.call{font:650 .7rem var(--font-code);background:var(--ink);color:var(--surface);border-radius:4px;padding:1px 6px;margin-inline-start:var(--space-2)}
+td code,li code,p code{font-size:.85em}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Brief · before code · standard task, no reader</p>
+<h1>Ship the template without its history</h1>
+<p class="lead">Let archived task history leave the tree through a manifest, remove the template's eleven merged tasks, and fix six frictions from the first runs. Five things the ticket does not show change the plan; five calls follow, each made by the agent and open for you at merge.</p>
+
+<h2>Unknowns the code shows</h2>
+
+<div class="u">
+<h3>1. Deleting history trips three gates, and the receipt gate hides the other two</h3>
+<p>The ticket names two refusals. Deleting one archived task in a clone of this branch shows a third, once per page, and shows that the receipt check aborts the whole handoff before its error list is printed (<code>transitions::check(..)?</code>, completion.rs:223).</p>
+<p class="lbl">Captured: next-prompt's record, pages and receipt deleted, <code>xtask handoff --base HEAD</code></p>
+<pre>{"error":"transition history changed or deleted: harness/transitions/next-prompt.json","ok":false}</pre>
+<p class="lbl">Captured: same, receipt kept; the errors list, its last line printed 9 times (once per page file) and trimmed to 1</p>
+<pre>task history deleted: harness/tasks/next-prompt.json
+changed source requires an added/updated task reconciliation record
+artifact has no task record: next-prompt</pre>
+<p>Sources: completion.rs:153-157 (records), 187-198 (pages), transitions.rs:130-137 (receipts). The manifest must be consulted in all three. Plans and calibration drafts pass handoff untouched; only <code>xtask docs</code> catches them (captured: <code>DOC002 missing or duplicate document docs/plans/next-prompt.md</code>, <code>DOC006 docs/EVALUATION.md: broken or escaping link ../harness/calibration/…</code>).</p>
+</div>
+
+<div class="u">
+<h3>2. The documented command fails in the shell, before xtask runs</h3>
+<p class="lbl">Captured: fresh clone, no <code>target/</code></p>
+<pre>$ bash -c 'cargo xtask check ci > target/verification/ci.json'
+bash: line 1: target/verification/ci.json: No such file or directory
+exit=1</pre>
+<p>The shell opens the redirect first, so a runner that writes <code>target/verification/ci.json</code> itself cures nothing while the instruction keeps <code>&gt;</code>. The redirect appears on 10 lines in 9 files (<code>grep -rn "check ci &gt;"</code>, excluding task pages and old tickets). Four follow a <code>mkdir -p</code>: README.md:124, docs/READINESS.md:22, docs/COMPLETION.md:127, ci.yml:33. Six do not, including every one an agent is handed: AGENTS.md:19, both write-ticket copies (line 48), router.rs:392 (the <code>complete</code> step), scripts/agent-complete.sh:83, README.md:150. Each becomes plain <code>cargo xtask check ci</code>.</p>
+</div>
+
+<div class="u">
+<h3>3. Defaulting <code>remaining</code> moves a partial record onto a message that names nothing</h3>
+<p class="lbl">Captured: <code>xtask coordination</code> on board-stats' record; each line prefixed with the edit made</p>
+<pre>partial, no remaining:   {"error":"missing field `remaining` at line 43 column 1","ok":false}
+partial, remaining []:   {"error":"task board-stats: invalid identity, missing reconciliation/acceptance, invalid references, or missing next steps","ok":false}</pre>
+<p>Neither names the file. With <code>#[serde(default)]</code> added at task_record.rs:62 a partial record lands on the second, one of 17 conditions joined in task_record.rs:132-169. The acceptance test wants the field named, so that one condition gets its own message. The same broken record also failed <code>tests</code> (<code>stop_claim_pattern_matches_parsed_status</code> unwraps every record, task_record.rs:269), and the captured <code>check fast</code> report gave each failure only <code>"stdout"</code> and <code>"stderr"</code> log paths (runner.rs:27-28).</p>
+</div>
+
+<div class="u">
+<h3>4. "Half its exemplar" has two answers, and the rule is quoted text pinned by a test</h3>
+<p>The <code>Length:</code> line is the blockquote under "The standard pages" in docs/ARTIFACTS.md, copied by <code>handover::quoted</code> (handover.rs:67-95); a unit test asserts it contains "half" (handover.rs:305). <code>next</code> never measures a page (router.rs:288-393). The exemplars differ: 08 is 36,988 bytes, 09 is 26,697 (<code>wc -c</code>), so half is 18.5 KB for a brief and 13.3 KB for a report, each carrying the 5,126-byte style block. Reviewers measured both ways: lighter-ceremony's report round 1 read "62%" of the exemplar's height and "86%" of its bytes (reviews.json).</p>
+</div>
+
+<div class="u">
+<h3>5. A closed gap cites an archived page as its evidence</h3>
+<p><code>artifact-gate-holes</code> (gaps.json:46) gives as evidence <code>harness/task-artifacts/artifact-harness/blindspots.html cards 01-03</code>. Evidence is free text checked only for being non-empty (tracking.rs:78), so the removal passes and leaves it pointing at nothing. Editing it changes the gap's digest, and handoff then requires a task record to cover it (completion.rs:199-221). This record says no gap changes.</p>
+</div>
+
+<h2>Calls to check before merge</h2>
+<p>Each call is the agent's, made because no one will answer before code. Change a choice and the reply at the bottom changes with it.</p>
+
+<form id="calls">
+<fieldset><legend>A. Who may edit the manifest <span class="call">agent's call</span></legend>
+<label><input type="radio" name="A" checked data-r="protect harness/archive.json">Protect <code>harness/archive.json</code>: add it to <code>PROTECTED_FILES</code> (transitions.rs:48) and to the guard's copy (scripts/agent-hook.sh:15, kept equal by <code>guard_tiers_match_protected_paths</code>). Archiving then needs a receipt, the bar the append-only receipts it unlocks already carry (transitions.rs:129).</label>
+<label><input type="radio" name="A" data-r="leave the manifest unprotected">Leave it unprotected: any task can list a receipt and delete it in the same branch.</label>
+</fieldset>
+
+<fieldset><legend>B. What "the commit holds it" means <span class="call">agent's call</span></legend>
+<label><input type="radio" name="B" checked data-r="same blob at the archive commit as at the base">The same blob at the archive commit as at the base (<code>git rev-parse C:path</code> equals <code>BASE:path</code>). main's tip qualifies: <code>git diff --stat main product/board-stats</code> over these paths lists only this stack's own additions, so all eleven records, ten receipts and their pages are unchanged since.</label>
+<label><input type="radio" name="B" data-r="path exists at the archive commit">The path exists at the commit: a record edited after archiving could then be deleted with its last version lost.</label>
+</fieldset>
+
+<fieldset><legend>C. When the manifest is read <span class="call">agent's call</span></legend>
+<label><input type="radio" name="C" checked data-r="read the manifest only when a deletion relies on it">Only when a base path is missing from the tree; an unknown commit fails then and only then. Adopters start from an archive and commit a fresh baseline (docs/ADOPTING.md step 7 and line 74; the hosting-enforcement gap's evidence: "delivered as an archive"), so their repository never holds the commit.</label>
+<label><input type="radio" name="C" data-r="validate the manifest on every docs check">On every <code>xtask docs</code> run: every archive-born adopter then fails CI on the first run.</label>
+</fieldset>
+
+<fieldset><legend>D. The standard page limit <span class="call">agent's call</span></legend>
+<label><input type="radio" name="D" checked data-r="one limit of 20,000 bytes per page">One limit, 20,000 bytes for the whole file with its style block, both pages. Of this stack's six reviewed standard pages, three are over (lighter-ceremony brief 23,605; board-stats brief 20,673 and report 21,716), the two briefs are the exact versions their reviewers passed (reviews.json hashes).</label>
+<label><input type="radio" name="D" data-r="half of each exemplar: 18,494 and 13,348 bytes">Half of each exemplar: 18,494 for a brief, 13,348 for a report. All six pages are over: every report (14,736 to 21,716) and every brief.</label>
+</fieldset>
+
+<fieldset><legend>E. The gap whose evidence is archived <span class="call">agent's call</span></legend>
+<label><input type="radio" name="E" checked data-r="re-point artifact-gate-holes and declare it updated">Re-point its evidence to the page on <code>showcase/template-history</code> and declare the gap <code>updated</code> in this record. A closed gap whose resolution and requirements stay is not a receipt subject (transitions.rs:89-101).</label>
+<label><input type="radio" name="E" data-r="leave artifact-gate-holes citing a removed page">Leave it: nothing fails, and the evidence names a file no reader can open.</label>
+</fieldset>
+</form>
+
+<h2>The ticket, item by item</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Ticket item</th><th>Plan</th></tr></thead>
+<tbody>
+<tr><td><code>archived_history_may_be_deleted_and_nothing_else</code></td><td>Planned; covers the three gates of unknown 1 and calls A to C.</td></tr>
+<tr><td><code>a_profile_run_writes_its_report_where_the_docs_say</code></td><td>Planned. <b>Changed:</b> also drops the redirect from the 10 lines of unknown 2, including ci.yml, AGENTS.md, COMPLETION.md and the write-ticket skill, which the scope did not list.</td></tr>
+<tr><td><code>a_failed_check_shows_the_end_of_its_output</code></td><td>Planned: the last 20 lines of each stream on the failed entry, the log paths kept.</td></tr>
+<tr><td><code>a_complete_record_needs_no_remaining_field</code></td><td>Planned. <b>Changed:</b> splits the partial-with-empty-remaining condition out of the catch-all (unknown 3).</td></tr>
+<tr><td><code>next_reports_a_standard_page_over_its_size_limit</code></td><td>Planned with call D; the constant lives in Rust and a test checks the guide quotes its value, replacing the "half" assertion.</td></tr>
+<tr><td><code>a_late_brief_on_a_merge_commit_points_at_head</code></td><td>Planned: in <code>artifacts::order</code>, when HEAD has two parents and no <code>--head</code> was given.</td></tr>
+<tr><td>Removal of the eleven tasks, plans, calibration drafts</td><td>Planned; docs/EVALUATION.md:77-82 names the reviewer calibration set (three drafts plus next-prompt's three passing pages), which it will point at on the archive branch. <b>Changed:</b> call E edits gaps.json and this record's <code>gap_review</code>, which says no gap changes.</td></tr>
+<tr><td>Stale wording; add-product-command skill</td><td>Planned for size.rs:113 and scripts/agent-artifact-write.sh:10. <b>Changed:</b> <code>trial/journal-versioning</code> exists on origin (<code>git ls-remote</code>); the skill will say it is not in an archive copy, rather than drop the name.</td></tr>
+<tr><td>Validation: <code>check ci</code> 9 of 9; handoff ok; <code>ls-tree showcase/template-history</code> lists eleven</td><td>Run after the receipt. main's tip holds exactly eleven records (<code>git ls-tree main harness/tasks/</code>).</td></tr>
+</tbody></table></div>
+
+<details>
+<summary>Build order (mechanical)</summary>
+<ol>
+<li><code>archive.rs</code>: read <code>harness/archive.json</code>, answer "is this base path archived" by blob comparison; hook it into the three checks of unknown 1. Test 1.</li>
+<li>runner.rs writes <code>target/verification/PROFILE.json</code> (creating the folder) and a tail per failed check; the ten redirect lines. Tests 2 and 3.</li>
+<li>task_record.rs default and the named message. Test 4.</li>
+<li>Size constant, <code>next</code> advisory with exit 3, the guide's quoted rule. Test 5.</li>
+<li>The <code>--head</code> hint. Test 6. Stale wording and the skill.</li>
+<li>Branch <code>showcase/template-history</code> at main's tip, the manifest, the removal, docs.json, EVALUATION.md, README.md, ADOPTING.md, gaps.json.</li>
+<li>Receipt for the protected changes; <code>cargo xtask check ci</code>; handoff against product/board-stats.</li>
+</ol>
+</details>
+
+<h2>Reply</h2>
+<p>Built from the choices above. Copy it back, or leave it to accept every call as made.</p>
+<output id="reply" aria-live="polite"></output>
+<p><button type="button" id="copy">Copy reply</button></p>
+</main>
+<script>
+var f=document.getElementById('calls'),o=document.getElementById('reply');
+function build(){var l=[];f.querySelectorAll('fieldset').forEach(function(s){var c=s.querySelector('input:checked'),d=s.querySelector('input')===c;l.push(s.querySelector('legend').firstChild.textContent.trim()+': '+c.dataset.r+(d?' (agent’s call kept)':' (changed)'))});o.textContent='ship-clean brief:\n'+l.join('\n');o.style.whiteSpace='pre-wrap'}
+f.addEventListener('change',build);build();
+document.getElementById('copy').onclick=function(){var b=this;navigator.clipboard.writeText(o.textContent).then(function(){b.textContent='Copied'},function(){b.textContent='Select the text to copy'})};
+</script>
+</body>
+</html>

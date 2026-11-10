@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "brief.html",
+      "round": 1,
+      "verdict": "pass",
+      "sha256": "d3cb4c5a677518584b2601f68e5436a8d636fbbfd0d17cd49e2870d0f0373581",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. A reader learns that deleting archived history trips three separate gates and that the receipt gate aborts handoff before the others print; that the documented check ci redirect fails in a fresh shell on 10 lines in 9 files; and that the half-its-exemplar rule has two defensible readings. Size 18,992 bytes, under the limit. Minor, not a finding: 'each carrying the 5,126-byte style block' in unknown 4 reads as if it describes the exemplar. Fixed checks: consistent held; provenance held; cited held; ticket held. FINDINGS: 0",
+      "findings": 0,
+      "model": "sonnet"
+    }
+  ]
+}
