@@ -1,0 +1,43 @@
+{
+  "schema_version": 7,
+  "id": "lighter-ceremony",
+  "work_item": null,
+  "status": "partial",
+  "tier": "standard",
+  "reader": "none",
+  "requirements": [
+    "task-artifacts",
+    "completion"
+  ],
+  "related_gaps": [
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "resolved",
+      "rationale": "This task fixes the three holes the gap names and closes it against the task-artifacts requirement, whose tests now include one per hole."
+    },
+    {
+      "id": "hosting-enforcement",
+      "disposition": "unaffected",
+      "rationale": "CI now passes the PR head to handoff, but required checks and reviewers are still hosting settings."
+    }
+  ],
+  "gap_review": "Read the four open gaps. artifact-gate-holes is this task's subject; hosting-enforcement is adjacent and unchanged; product-acceptance and platform-qualification are unrelated.",
+  "discoveries": [],
+  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "documentation": {
+    "updated": [],
+    "rationale": "docs/ARTIFACTS.md, docs/COMPLETION.md, AGENTS.md and README.md change with the tiers; listed when the work lands."
+  },
+  "prompt": {
+    "task": "cut the task-page ceremony to a two-page default tier, write the interview and quiz only for a human reader, and close the three holes in the page gate",
+    "task_noun": "the two-page default tier, the reader rule and the page-gate fixes",
+    "area": "xtask's task record, page gate and page router (xtask/src/task_record.rs, artifacts.rs, router.rs, handover.rs, completion.rs, history.rs) and docs/ARTIFACTS.md",
+    "problem": "a 300-line change owes eight reviewed pages nobody answers, and CI's page-order check reads no commits on a pull request",
+    "reference": "The small tier in xtask/src/size.rs and its tests in xtask/tests/tiers.rs"
+  },
+  "summary": "Make a two-page tier the default, keep the eight pages as an opt-in full tier, write reader-facing pages only for a reader, and close artifact-gate-holes.",
+  "remaining": [
+    "Commit the brief before the code, then the code, docs and receipt",
+    "cargo xtask check ci, then complete against origin/main"
+  ]
+}
