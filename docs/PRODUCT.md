@@ -33,7 +33,7 @@ passes its example checks.
 
 ## Stateful reference
 
-The task board supports add, complete, remove and undo through one engine path.
+The task board supports add, complete, remove, clear_done and undo through one engine path.
 Its driver discovers capabilities, inspects state, captures evidence, replays a
 bounded journal and saves/reopens it. [DRIVER.md](DRIVER.md) defines protocol,
 resource limits and persistence failure semantics. Complete process journeys live

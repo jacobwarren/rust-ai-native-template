@@ -38,6 +38,7 @@ pub fn capabilities(session: &Session, persistence: bool) -> Value {
             {"id":"add","example":{"command":"add","title":"Ship a change"},"effect":"Add a task; returns its id"},
             {"id":"complete","example":{"command":"complete","id":1},"effect":"Complete an existing open task"},
             {"id":"remove","example":{"command":"remove","id":1},"effect":"Remove an existing task"},
+            {"id":"clear_done","example":{"command":"clear_done"},"effect":"Remove every completed task in one edit; returns {removed:[ids ascending]}; one undo restores them","enabled":session.has_done()},
             {"id":"undo","example":{"command":"undo"},"effect":"Undo the last edit","enabled":session.inspect()["can_undo"]}
         ],"errors":"Invalid requests and rejected edits preserve session state; see docs/DRIVER.md"})
 }

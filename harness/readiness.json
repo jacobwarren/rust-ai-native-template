@@ -9,11 +9,13 @@
       ],
       "tests": [
         "discovery_examples_are_real_commands_and_capture_replays",
-        "strict_requests_and_nested_commands_fail_without_mutation"
+        "strict_requests_and_nested_commands_fail_without_mutation",
+        "clear_done_is_strict_discoverable_and_replayable"
       ],
       "workflows": [
         "script-parity",
-        "rejected-edit"
+        "rejected-edit",
+        "board-clear-done"
       ]
     },
     {
@@ -24,10 +26,14 @@
       ],
       "tests": [
         "generated_edits_match_reference_model_and_replay",
-        "failed_replay_and_invalid_edit_preserve_all_observable_state"
+        "failed_replay_and_invalid_edit_preserve_all_observable_state",
+        "clear_done_removes_all_done_and_returns_ascending_ids",
+        "clear_done_without_done_fails_nothing_to_clear_and_changes_nothing",
+        "clear_done_undo_restores_everything_in_one_step_and_ids_are_not_reused"
       ],
       "workflows": [
-        "replay-atomicity"
+        "replay-atomicity",
+        "board-clear-done"
       ]
     },
     {
@@ -39,10 +45,12 @@
         "store::tests::roundtrip_preserves_state_journal_and_undo",
         "store::tests::failures_before_replace_preserve_committed_bytes",
         "store::tests::abrupt_process_exit_reopens_last_commit_and_ignores_orphan",
-        "store::tests::error_after_replace_reports_uncertainty_instead_of_false_rollback"
+        "store::tests::error_after_replace_reports_uncertainty_instead_of_false_rollback",
+        "clear_done_survives_save_and_load"
       ],
       "workflows": [
-        "board-lifecycle"
+        "board-lifecycle",
+        "board-clear-done"
       ]
     },
     {

@@ -19,10 +19,13 @@
   ],
   "gap_review": "Read the open gaps; only product-acceptance is adjacent and it is unchanged. The others concern platforms, hosting and the page gate.",
   "discoveries": [],
-  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "discovery_review": "Reviewed store.rs load order and the discovery test seed. Decisions D1-D4 were taken as the brief recommends: journal schema_version stays 1 (an older build rejects a clear_done journal with invalid_store and keeps live state; documented in DRIVER.md), descriptor carries enabled, the domain returns the error, and a new board-clear-done workflow proves the binary.",
   "documentation": {
-    "updated": [],
-    "rationale": "docs/DRIVER.md lists the commands and will gain clear_done; listed when the work lands."
+    "updated": [
+      "docs/DRIVER.md",
+      "docs/PRODUCT.md"
+    ],
+    "rationale": "DRIVER.md lists clear_done, its error, discovery availability, undo and the older-build journal behavior; PRODUCT.md lists the command."
   },
   "prompt": {
     "task": "add a clear_done command to the task board",

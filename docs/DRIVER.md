@@ -50,12 +50,16 @@ the tail is never interpreted as a new command. Output is flushed after each rep
 | save | none | Persist journal to APP_DATA_DIR/board.json |
 | load | none | Validate stored version/checksum, replay, then replace live state |
 
-Commands are add {title}, complete {id}, remove {id}, undo {} with the discriminator
-command. Unknown fields at every request/command level fail admission, including
+Commands are add {title}, complete {id}, remove {id}, clear_done {}, undo {} with the
+discriminator command. Unknown fields at every request/command level fail admission, including
 empty-struct variants. IDs are unsigned integers. Title parsing rejects controls
 before trimming, requires 1–120 Unicode scalar values after trimming, and caps
 raw input at 512 bytes. A board holds at most 64 tasks; a session journal holds
-at most 256 successful commands, including undo. Undo restores the prior board
+at most 256 successful commands, including undo. clear_done removes every completed task in one edit and
+returns {"removed":[ids ascending]}; with no completed task it fails with
+nothing_to_clear and changes nothing. Its discover descriptor has enabled=true
+only while a task is completed. It never lowers next_id, so removed ids are not
+reissued, and one undo restores all of them in place. Undo restores the prior board
 and next_id; IDs can therefore be reused after undo. Revision counts successful
 journal entries. No command retry deduplication is implied: replay replaces the
 session, while repeating add creates another task.
@@ -81,7 +85,9 @@ After an interrupted write, load reads only board.json. Orphan .board-*.tmp file
 are ignored, never promoted automatically. They may be removed while no writer
 is running. A missing or corrupt primary file is an explicit error; the driver
 never silently replaces it with empty state. Loading bad data preserves the live
-session. Tests inject errors before/after replacement and exit a child process
+session. A saved journal keeps schema_version 1 even when it contains clear_done, so a
+build older than clear_done fails to load it with invalid_store (unknown command) and
+keeps its live session; current builds read every older journal. Tests inject errors before/after replacement and exit a child process
 after syncing its staged file, then reopen the last committed state.
 
 APP_DATA_DIR must be private to the operator. The advisory writer lock coordinates

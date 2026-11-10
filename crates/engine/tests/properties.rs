@@ -16,14 +16,15 @@ fn generated_edits_match_reference_model_and_replay() {
         for step in 0..100 {
             random = random.wrapping_mul(6364136223846793005).wrapping_add(1);
             let id = (random >> 8) % 20;
-            let choice = (random >> 32) % 4;
+            let choice = (random >> 32) % 5;
             let command = match choice {
                 0 => Command::Add {
                     title: format!("Task é {step}"),
                 },
                 1 => Command::Complete { id },
                 2 => Command::Remove { id },
-                _ => Command::Undo {},
+                3 => Command::Undo {},
+                _ => Command::ClearDone {},
             };
             let old = reference.clone();
             let valid = match &command {
@@ -51,6 +52,14 @@ fn generated_edits_match_reference_model_and_replay() {
                 Command::Undo {} => {
                     if let Some(before) = history.pop() {
                         reference = before;
+                        true
+                    } else {
+                        false
+                    }
+                }
+                Command::ClearDone {} => {
+                    if reference.1.iter().any(|t| t.2) {
+                        reference.1.retain(|t| !t.2);
                         true
                     } else {
                         false
