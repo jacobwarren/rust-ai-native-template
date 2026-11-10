@@ -196,7 +196,7 @@ pub fn handoff(
         if before.get(path) != after.get(path) {
             let id = path.split('/').nth(2).unwrap_or("");
             if !after.contains_key(&format!("harness/tasks/{id}.json"))
-                && !(after.get(path).is_none() && archive::covers(root, &archived, &base, path)?)
+                && !(!after.contains_key(path) && archive::covers(root, &archived, &base, path)?)
             {
                 errors.push(format!("artifact has no task record: {id}"));
             }
