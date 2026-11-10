@@ -58,12 +58,9 @@ fn generated_edits_match_reference_model_and_replay() {
                     }
                 }
                 Command::ClearDone {} => {
-                    if reference.1.iter().any(|t| t.2) {
-                        reference.1.retain(|t| !t.2);
-                        true
-                    } else {
-                        false
-                    }
+                    let any_done = reference.1.iter().any(|t| t.2);
+                    reference.1.retain(|t| !t.2);
+                    any_done
                 }
                 _ => false,
             };
