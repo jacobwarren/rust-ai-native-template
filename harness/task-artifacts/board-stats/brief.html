@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-artifact-foundation="1">
+/* Artifact foundation v1.0.0. Pasted inline into each page so the page renders alone and never changes. */
+:root {
+  color-scheme: light;
+  --artifact-style-version: "1.0.0";
+  --ink: #18332e;
+  --muted: #526a63;
+  --paper: #f6f5ee;
+  --surface: #ffffff;
+  --accent: #126d5c;
+  --accent-soft: #e4f3eb;
+  --line: #c5d2c9;
+  --warning: #79501b;
+  --warning-soft: #fcf2e9;
+  --danger: #a12b35;
+  --focus: #79501b;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-small: .875rem;
+  --text-body: 1rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius: .75rem;
+  --control-radius: .4rem;
+  --reading-width: 72ch;
+  --page-width: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: var(--text-body)/1.65 var(--font-body); }
+main { max-width: var(--page-width); margin-inline: auto; padding: var(--space-12) var(--space-6); }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; margin-block: var(--space-8) var(--space-6); }
+h2 { font-size: 1.5rem; margin-block: var(--space-8) var(--space-4); }
+h3 { font-size: 1.125rem; }
+p, li, dd { overflow-wrap: anywhere; }
+p { margin-block: var(--space-4); }
+a { color: var(--accent); text-underline-offset: .18em; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+nav a { padding: var(--space-2); border-radius: var(--control-radius); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--surface); }
+button, input, select, textarea { font: inherit; accent-color: var(--accent); }
+button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); max-width: 100%; background: var(--surface); color: var(--ink);
+}
+button { cursor: pointer; min-height: 44px; }
+button:not(.secondary) { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+label { display: block; margin-block: var(--space-4); }
+textarea { display: block; width: 100%; min-height: 7rem; resize: vertical; }
+select { display: block; }
+input[type="checkbox"], input[type="radio"] { margin-inline-end: var(--space-2); }
+input[type="range"] { max-width: 100%; }
+fieldset { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); margin-block: var(--space-6); }
+legend { max-width: 100%; padding-inline: var(--space-2); font-weight: 650; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); padding: var(--space-4); border-radius: var(--control-radius); }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: start; vertical-align: top; border-bottom: 1px solid var(--line); padding: var(--space-3); }
+caption { text-align: start; font-weight: 650; margin-bottom: var(--space-3); }
+.table-scroll { overflow-x: auto; }
+summary { cursor: pointer; font-weight: 650; }
+details, .surface { padding: var(--space-6); margin-block: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details > :last-child { margin-bottom: 0; }
+output { display: block; padding: var(--space-4); background: var(--accent-soft); border-radius: var(--control-radius); }
+blockquote, .callout { margin-inline: 0; padding: var(--space-4); border-inline-start: 3px solid var(--accent); background: var(--accent-soft); }
+.warning { border-color: var(--warning); background: var(--warning-soft); }
+.muted, small { color: var(--muted); }
+.eyebrow { font-size: var(--text-small); letter-spacing: .1em; text-transform: uppercase; font-weight: 650; color: var(--accent); }
+.lead { font-size: 1.25rem; max-width: var(--reading-width); }
+img, video, svg { max-width: 100%; }
+img, video { height: auto; }
+footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); font-size: var(--text-small); color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 40rem) { main { padding: var(--space-6) var(--space-4); } th, td { padding: var(--space-2); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { body { background: white; } main { max-width: none; padding: 0; } nav { display: none; } a { color: inherit; } }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brief: a read-only stats method for the board driver</title>
+<style>
+  main { max-width: 60rem; padding-block: var(--space-6); }
+  h1 { margin-block: var(--space-2) var(--space-3); font-size: clamp(1.75rem, 3.2vw, 2.4rem); }
+  h2 { margin-block: var(--space-8) var(--space-3); }
+  .lead { margin-block: var(--space-2); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-3) 0; padding: 0; list-style: none; }
+  .chips li { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0 var(--space-3); font-size: .8rem; }
+  .chips b { font-family: var(--font-code); }
+  .chips small { font-size: .75rem; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3) var(--space-4); margin-block: var(--space-3); }
+  .card h3 { margin: 0 0 var(--space-1); display: flex; gap: var(--space-3); align-items: baseline; flex-wrap: wrap; }
+  .card > p { margin-block: var(--space-2); }
+  .tag { font-family: var(--font-code); font-size: .75rem; font-weight: 650; border-radius: var(--control-radius); padding: 0 var(--space-2); background: var(--ink); color: var(--surface); }
+  .tag.call { background: var(--warning-soft); color: var(--warning); border: 1px solid var(--warning); }
+  .pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-3); }
+  @media (max-width: 46rem) { .pair { grid-template-columns: minmax(0, 1fr); } }
+  figure { margin: var(--space-2) 0; min-width: 0; }
+  figcaption { font-size: .75rem; color: var(--muted); font-family: var(--font-code); margin-bottom: var(--space-1); }
+  pre { margin: 0; font-size: .78rem; line-height: 1.45; padding: var(--space-3); }
+  pre .hl { background: var(--warning-soft); }
+  .so { font-size: var(--text-small); margin: var(--space-2) 0 0; }
+  .card details { padding: 0; border: 0; margin: var(--space-2) 0 0; font-size: var(--text-small); }
+  .card details summary { font-weight: 500; color: var(--muted); }
+  .card details pre { margin-top: var(--space-2); }
+  .opts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-3); margin-top: var(--space-2); }
+  @media (max-width: 46rem) { .opts { grid-template-columns: minmax(0, 1fr); } }
+  .opts label { margin: 0; border: 1px solid var(--line); border-radius: var(--control-radius); padding: var(--space-3); cursor: pointer; font-size: var(--text-small); line-height: 1.5; }
+  .opts label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .opts .who { display: inline; font-family: var(--font-code); font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  td code, li code, p code, label code { font-size: .85em; background: var(--accent-soft); border-radius: .25rem; padding: 0 .25rem; }
+  ul.tk { list-style: none; padding: 0; margin: var(--space-2) 0; font-size: var(--text-small); }
+  ul.tk li { padding: var(--space-1) 0; border-bottom: 1px solid var(--line); }
+  th, td { padding: var(--space-2); }
+  td:first-child { width: 38%; }
+  .met { color: var(--accent); font-weight: 650; white-space: nowrap; }
+  .chg { color: var(--warning); font-weight: 650; white-space: nowrap; }
+  details.mech { padding: var(--space-3) var(--space-4); }
+  details.mech ul { margin: var(--space-2) 0 0; padding-left: var(--space-6); font-size: var(--text-small); }
+  .reply-actions { display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; margin-bottom: var(--space-2); }
+  .reply-actions h3 { margin: 0; }
+  output { font-size: var(--text-small); white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Brief · before code · board driver</p>
+  <h1>A read-only <code>stats</code> method for the board driver</h1>
+  <p class="lead">Clients count tasks today by pulling the whole list through <code>inspect</code>. Below: four things the ticket doesn't show, two calls you might change, then the mechanical work.</p>
+
+  <ul class="chips" aria-label="Plan at a glance">
+    <li>Engine source files <b>2</b> <small>lib.rs, protocol.rs</small></li>
+    <li>crates/app source <b>0</b> <small>unknown 4</small></li>
+    <li>Protected paths <b>0</b> <small>transitions.rs:39-60</small></li>
+    <li>Open calls <b id="chip-calls">2</b> <small>A1, A2</small></li>
+  </ul>
+
+  <h2 id="unknowns">What the ticket does not show</h2>
+
+  <section class="card" id="u1">
+    <h3><span class="tag">1</span> The repo's "add a command" recipe would make stats an edit</h3>
+    <p>The <code>add-product-command</code> skill says to add a <code>Command</code> variant (.claude/skills/add-product-command/SKILL.md:15). Every command lands in history and the journal, <code>revision</code> is the journal's length (lib.rs:99), and save writes the journal for load to replay. A stats command would bump the revision, be undoable and get saved.</p>
+    <div class="pair">
+      <figure><figcaption>crates/engine/src/lib.rs:84-88, shortened</figcaption>
+<pre>} else { <span class="hl">self.history.push(self.board.clone());</span> }
+self.board = next;
+<span class="hl">self.journal.push(command);</span></pre></figure>
+      <figure><figcaption>crates/engine/src/store.rs:81 (save) and :135 (load)</figcaption>
+<pre><span class="hl">commands: session.journal().to_vec(),</span>
+<span class="hl">session.replay(envelope.data.commands)</span></pre></figure>
+    </div>
+    <p class="so"><b>So:</b> make it an <code>Action</code> next to <code>Inspect</code> (protocol.rs:20-28). Stats then never reaches the journal, so replay and persistence stay correct with no extra code.</p>
+  </section>
+
+  <section class="card" id="u2">
+    <h3><span class="tag">2</span> No test checks the discovered method list</h3>
+    <p>The doc comment says "descriptor compatibility is tested" (protocol.rs:31), but the test only loops over <code>commands</code> (crates/engine/tests/protocol.rs:18). In a clean copy I added <code>Stats {}</code> and a dispatch arm and left the <code>methods</code> literal (protocol.rs:35) alone. Every test still passed, and discovery doesn't list the new method.</p>
+    <figure><figcaption>captured · <code>cargo test -p starter-engine -p starter-app</code> (6 result lines, counts only) · <code>starter-app capabilities</code> (methods only)</figcaption>
+<pre>test result: ok. 0 / 3 / 7 / 3 / 2 / 0 passed; 0 failed
+<span class="hl">"methods":["discover","inspect","execute","replay","capture","save","load"]</span></pre></figure>
+    <details><summary>Scratch patch used in 2 and 3, as applied (protocol.rs; counts through inspect only to get a reply, not the plan)</summary>
+<pre>@@ enum Action
+     Inspect {},
++    Stats {},
+@@ fn dispatch
++            Action::Stats {} =&gt; {
++                let t = self.session.inspect()["tasks"].as_array().cloned().unwrap_or_default();
++                let done = t.iter().filter(|x| x["done"] == true).count();
++                Ok(json!({"total":t.len(),"open":t.len()-done,"done":done}))
++            }</pre></details>
+  </section>
+
+  <section class="card" id="u3">
+    <h3><span class="tag">3</span> <code>Stats</code> admits typos; <code>Stats {}</code> does not</h3>
+    <p>A unit variant ignores <code>deny_unknown_fields</code>, which has bitten this repo before (docs/regressions/0001-strict-unit-commands.md). I built both spellings and fed the same five lines to the real <code>driver</code> transport. Both answered line 4 with <code>{"done":1,"open":1,"total":2}</code>. Line 5 adds a typo.</p>
+    <div class="pair">
+      <figure><figcaption>captured · <code>Stats {}</code> · exit code, last reply</figcaption>
+<pre>exit=2
+<span class="hl">{"error":{"code":"invalid_request","message":"unknown field `typo`, there are no fields at line 1 column 67"},"id":null,"ok":false,"schema_version":1}</span></pre></figure>
+      <figure><figcaption>captured · <code>Stats</code> (unit) · same input</figcaption>
+<pre>exit=0
+<span class="hl">{"id":5,"ok":true,"result":{"done":1,"open":1,"total":2},"schema_version":1}</span></pre></figure>
+    </div>
+    <details><summary>Input and command</summary>
+<pre>env -u APP_DATA_DIR starter-app driver &lt; in.jsonl &gt; out.jsonl; echo exit=$?; tail -1 out.jsonl
+# in.jsonl
+{"schema_version":1,"id":1,"action":{"method":"execute","command":{"command":"add","title":"A"}}}
+{"schema_version":1,"id":2,"action":{"method":"execute","command":{"command":"add","title":"B"}}}
+{"schema_version":1,"id":3,"action":{"method":"execute","command":{"command":"complete","id":1}}}
+{"schema_version":1,"id":4,"action":{"method":"stats"}}
+{"schema_version":1,"id":5,"action":{"method":"stats","typo":true}}</pre></details>
+    <p class="so"><b>So:</b> declare it <code>Stats {}</code>, like <code>Inspect {}</code> (protocol.rs:22). Keys come out sorted like every other reply, so tests compare values, not bytes.</p>
+  </section>
+
+  <section class="card" id="u4">
+    <h3><span class="tag">4</span> The transports in crates/app need no code</h3>
+    <div class="pair">
+      <p>Neither transport names a method (<code>grep -rn method crates/app/src</code> finds nothing). Both pass raw lines to the engine, and the replies in 3 came back through an unchanged crates/app.</p>
+      <figure><figcaption>crates/app/src/driver.rs:22 · main.rs:53-65, shortened</figcaption>
+<pre><span class="hl">let reply = driver.handle(&amp;bytes);</span>
+// main.rs: script FILE, else stdin
+if let Some(path) = args.get(1) {
+    <span class="hl">driver::serve(&amp;mut BufReader::new(file), …)</span>
+} else { <span class="hl">driver::serve(&amp;mut stdin().lock(), …)</span> }</pre></figure>
+    </div>
+  </section>
+
+  <h2 id="decisions">A · Calls you might change <span class="tag call">agent's calls · open at merge</span></h2>
+  <p class="so muted">No one answers before the code, so my pick is checked. Switching one rewrites the reply.</p>
+
+  <section class="card decision" id="d1" data-title="A1 where counting lives">
+    <h3><span class="tag">A1</span> Where the counting lives</h3>
+    <div class="opts">
+      <label><input type="radio" name="d1" value="pick" checked data-reply="keep: Session::stats(&amp;self) in crates/engine/src/lib.rs; no domain change."><span class="who">Agent's call</span><br><b><code>Session::stats(&amp;self)</code> in lib.rs.</b> A shared borrow lets the compiler prove it is read-only. It counts <code>Board::tasks()</code> (domain board.rs:55) and builds no titles.</label>
+      <label><input type="radio" name="d1" value="alt" data-reply="switch: Board::counts() in crates/domain with a domain test; Session::stats calls it."><span class="who">Alternative</span><br><b><code>Board::counts()</code> in crates/domain</b>, with a domain test. Better layering, but a new domain API outside the ticket's area.</label>
+    </div>
+  </section>
+
+  <section class="card decision" id="d2" data-title="A2 discovery guard">
+    <h3><span class="tag">A2</span> How far to guard the method list <small>(unknown 2)</small></h3>
+    <div class="opts">
+      <label><input type="radio" name="d2" value="pick" checked data-reply="keep: add &quot;stats&quot; plus a guard test tying the methods list to Action both ways."><span class="who">Agent's call</span><br><b>Add <code>"stats"</code> plus a general guard.</b> Each listed name must parse as an <code>Action</code>, and an exhaustive <code>match</code> requires each variant to be listed, so the next method can't skip discovery.</label>
+      <label><input type="radio" name="d2" value="alt" data-reply="switch: add &quot;stats&quot; and assert only it in stats_is_strict_and_discoverable; no general guard."><span class="who">Alternative</span><br><b>Assert only <code>stats</code></b> in the ticket's discoverable test. Smaller, but the next method can repeat the gap.</label>
+    </div>
+  </section>
+
+  <h2 id="ticket">B · Ticket items that need a note</h2>
+  <p class="so">Done as written: brief before code; <code>stats_counts_open_and_done_for_the_live_board</code> (exactly three keys, sorted on the wire per unknown 3); <code>stats_needs_no_storage_directory</code> (the arm never touches <code>self.store</code>, unlike protocol.rs:97-110); docs and <code>cargo xtask check ci</code> (C).</p>
+  <ul class="tk">
+    <li><span class="met">met</span> <code>stats_never_changes_board_revision_journal_or_undo</code>: <code>&amp;self</code> (A1), and the test compares capture, which includes the journal (protocol.rs:94).</li>
+    <li><span class="met">met</span> <code>stats_is_strict_and_discoverable</code>: <code>Stats {}</code> (unknown 3), with discovery covered by the A2 guard.</li>
+    <li><span class="met">met</span> <code>stats_over_stdin_and_script_agree</code>: goes in crates/app/tests/driver_boundary.rs beside the parity test (:55). Protected harness/workflows.json (transitions.rs:52) stays unchanged.</li>
+  </ul>
+
+  <details class="mech">
+    <summary>C · Mechanical work</summary>
+    <ul>
+      <li>Order: <code>Session::stats</code> → <code>Action::Stats {}</code>, its arm and <code>"stats"</code> (protocol.rs:20-28, :35, :78-81) → engine tests and the A2 guard → driver_boundary.rs test → docs → <code>cargo xtask check ci</code>.</li>
+      <li>Count <code>tasks().values().filter(|t| t.done)</code>; open = total − done, which can't underflow.</li>
+      <li>docs/DRIVER.md:45-51 row: <code>| stats | none | total, open, done of the live board; never edits or journals; needs no APP_DATA_DIR |</code>.</li>
+      <li>ARCHITECTURE.md:15: "Discover, execute, inspect, stats, capture, replay, save/load".</li>
+      <li>No changes to main.rs, driver.rs, the goldens, or the error codes.</li>
+    </ul>
+  </details>
+
+  <section class="card" id="reply">
+    <div class="reply-actions">
+      <h3>Your reply</h3>
+      <button type="button" id="copy">Copy reply</button>
+      <span class="muted" id="copied" hidden>Copied</span>
+    </div>
+    <output id="reply-text" aria-live="polite"></output>
+  </section>
+</main>
+<script>
+(function () {
+  var out = document.getElementById('reply-text');
+  var secs = document.querySelectorAll('section.decision');
+  document.getElementById('chip-calls').textContent = secs.length;
+  function build() {
+    var lines = ['stats brief, ' + secs.length + ' calls:'];
+    secs.forEach(function (sec) {
+      var c = sec.querySelector('input:checked');
+      lines.push('- ' + sec.dataset.title + ': ' + c.dataset.reply);
+    });
+    out.textContent = lines.join('\n');
+  }
+  document.querySelectorAll('section.decision input').forEach(function (i) { i.addEventListener('change', build); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var text = out.textContent, flag = document.getElementById('copied');
+    function done() { flag.hidden = false; setTimeout(function () { flag.hidden = true; }, 1500); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  });
+  build();
+})();
+</script>
+</body>
+</html>

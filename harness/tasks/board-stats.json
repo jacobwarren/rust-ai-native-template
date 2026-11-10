@@ -1,0 +1,43 @@
+{
+  "schema_version": 7,
+  "id": "board-stats",
+  "work_item": null,
+  "status": "partial",
+  "tier": "standard",
+  "reader": "none",
+  "requirements": [
+    "driver",
+    "state"
+  ],
+  "related_gaps": [
+    {
+      "id": "product-acceptance",
+      "disposition": "unaffected",
+      "rationale": "The task board stays a disposable reference; this adds one read-only method and does not establish adopted-product acceptance."
+    }
+  ],
+  "gap_review": "Read the open gaps. product-acceptance is adjacent but unchanged; platform-qualification, hosting-enforcement and artifact-gate-holes are unrelated to a driver method.",
+  "discoveries": [],
+  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "documentation": {
+    "updated": [],
+    "rationale": "docs/DRIVER.md surface table and ARCHITECTURE.md driver row change when the method lands."
+  },
+  "prompt": {
+    "task": "add a read-only stats method to the board driver protocol",
+    "task_noun": "the read-only stats driver method",
+    "area": "the engine's driver protocol and session (crates/engine/src/protocol.rs, lib.rs), its transports in crates/app, and docs/DRIVER.md",
+    "problem": "a driver client must fetch and count the whole task list through inspect to learn how many tasks are open or done",
+    "reference": "The inspect method in crates/engine/src/protocol.rs and Session::inspect in crates/engine/src/lib.rs"
+  },
+  "summary": "The driver has no cheap way to count open and done tasks; add a read-only stats method beside inspect.",
+  "remaining": [
+    "Commit the brief before the code",
+    "stats_counts_open_and_done_for_the_live_board: given a board with done and open tasks, when stats is requested, then exactly total, open and done are returned",
+    "stats_never_changes_board_revision_journal_or_undo: given a session, when stats is called, then capture is identical before and after",
+    "stats_needs_no_storage_directory: given a driver without APP_DATA_DIR, when stats is requested, then it succeeds",
+    "stats_is_strict_and_discoverable: given extra fields, then admission fails; discover lists stats",
+    "stats_over_stdin_and_script_agree: given the real process, when stats runs by stdin and script, then replies are identical",
+    "Update docs/DRIVER.md and ARCHITECTURE.md; run cargo xtask check ci, then complete against main"
+  ]
+}

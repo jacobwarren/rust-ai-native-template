@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "page": "brief.html",
+      "round": 1,
+      "verdict": "revise",
+      "sha256": "7b2b07fe408309007ecb9e9c6df94c814ed3c12611310d1fba852231197f7b90",
+      "reviewer": "artifact-reviewer",
+      "notes": "REVISE\n\n1. Is it as short as its content allows? Fails. The Length line asks for about half the exemplar. The page renders 4772px tall in six desktop tiles, against 3678px in five for the exemplar, about 30% taller instead of about 50% shorter.\n - Unknown 4 (key order) restates what the existing inspect reply already shows: serde_json has no preserve_order, so keys sort. It spends a cargo tree claim and a second figure on it.\n - The section B ticket table repeats the unknowns, the calls and the plan in prose.\n - Rewrite: merge unknown 4 into A1 or cut it, shrink the section B table to items that changed or are not obvious. Aim for roughly 2500px.\n\n2. Does it show rather than tell? / cited. Fails for unknown 5. The heading promises a finding (\"The transports need no code\"), but the body is bare file:line citations with no excerpt or captured output.\n - Show crates/app/src/driver.rs:22 and main.rs:53-65 as an excerpt, or move this to a line in section C.\n - The only real call is where the process test lives, and A4 already covers that.\n - A1 and A4 are weak as decisions. A1's alternative (preserve_order, reordering every capture hash) is one no reader will pick.\n - The \"Open calls 4\" chip and the reply count all four; keep only calls someone might actually flip.\n\n3. cited (minor). The captured outputs in unknown 3 (Stats {} versus unit Stats, with exit codes) and unknown 2 (the scratch-copy test run) cannot be reproduced from the page. Give the exact stdin lines or command.\n\nClaims verified at HEAD: Action enum and methods literal, history/journal push, PROTECTED_FILES, DRIVER.md table, ARCHITECTURE.md line 15, parity test, descriptor test loops over commands only, Board::tasks(), inspect typo test, SKILL.md:15. Page renders with no console errors, external requests or phone overflow.\n\nFixed checks: consistent held; provenance held; cited failed (2, 3); ticket held\n\nFINDINGS: 3",
+      "findings": 3,
+      "model": "claude"
+    },
+    {
+      "page": "brief.html",
+      "round": 2,
+      "verdict": "pass",
+      "sha256": "76dceb7c7e659a53db346ca1a2276d1aa8c93a06b109b436866093d94f63ad4d",
+      "reviewer": "artifact-reviewer",
+      "notes": "PASS. Four unknowns (stats must be an Action not a Command; no test guards the methods list; unit Stats admits typos while Stats {} rejects; crates/app needs no change) and two decisions. Fixed checks: consistent held; provenance held; cited held; ticket held. Unknown 3 reproduced in a clean copy. Optional: transitions.rs citations lack the xtask/src/ path.\nFINDINGS: 0",
+      "findings": 0,
+      "model": "claude"
+    }
+  ]
+}
