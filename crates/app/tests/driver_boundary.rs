@@ -102,17 +102,14 @@ fn stats_over_stdin_and_script_agree_and_match_inspect() {
     assert_eq!(code, 2);
     assert_eq!(scripted, piped);
     assert_eq!(piped[3]["result"], json!({"total":2,"open":1,"done":1}));
-    assert_eq!(
-        String::from_utf8(
-            Command::new(env!("CARGO_BIN_EXE_starter-app"))
-                .arg("capabilities")
-                .output()
-                .unwrap()
-                .stdout
-        )
-        .unwrap()
-        .contains("\"stats\""),
-        true
+    let capabilities = Command::new(env!("CARGO_BIN_EXE_starter-app"))
+        .arg("capabilities")
+        .output()
+        .unwrap();
+    assert!(
+        String::from_utf8(capabilities.stdout)
+            .unwrap()
+            .contains("\"stats\"")
     );
     assert_eq!(piped[4]["error"]["code"], "invalid_request");
 }
