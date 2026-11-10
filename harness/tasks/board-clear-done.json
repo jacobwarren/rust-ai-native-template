@@ -40,5 +40,6 @@
     "verification": "cargo xtask check ci passed all 9 checks (target/verification/ci.json) and the board-clear-done workflow passes 3 of 3 sessions; both pages were reviewed PASS.",
     "assumptions": "Journal schema_version stays 1, so an older build rejects a journal containing clear_done with invalid_store (documented in DRIVER.md). The discovery descriptor sits before undo and carries enabled. Both are the agent's calls.",
     "coverage": "Process evidence is local Linux/macOS stdin and script transport only; no network or GUI. The property test now draws each older command a fifth less often."
-  }
+  },
+  "remaining": []
 }
