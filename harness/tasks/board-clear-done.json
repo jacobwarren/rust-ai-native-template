@@ -2,7 +2,7 @@
   "schema_version": 7,
   "id": "board-clear-done",
   "work_item": null,
-  "status": "partial",
+  "status": "complete",
   "tier": "standard",
   "reader": "none",
   "requirements": [
@@ -34,14 +34,11 @@
     "problem": "removing finished tasks takes one remove per task, and each is its own edit and undo step",
     "reference": "The remove command in crates/engine/src/lib.rs and its discover descriptor in protocol.rs"
   },
-  "summary": "Add clear_done: remove every completed task in one edit, returning the ids, failing with nothing_to_clear, and undone in one step.",
-  "remaining": [
-    "clear_done_removes_all_done_and_returns_ascending_ids: given a mix of open and done tasks, when clear_done runs, then only open tasks remain and removed lists done ids ascending",
-    "clear_done_without_done_fails_nothing_to_clear: given no done task, when clear_done runs, then error nothing_to_clear and state, revision unchanged",
-    "clear_done_undo_restores_in_one_step: given a cleared board, when undo runs once, then all tasks return in place with the prior next_id",
-    "clear_done_does_not_reuse_ids: given a cleared board, when add runs, then the new id is above every removed id",
-    "clear_done_is_strict_discoverable_and_replayable: unknown fields fail, the descriptor example runs, capture replays",
-    "clear_done_survives_save_load_and_both_transports: process workflow through the binary",
-    "cargo xtask check ci, then complete against main"
-  ]
+  "summary": "clear_done removes every completed task in one edit, returns the ids, fails with nothing_to_clear, and undoes in one step; proven through engine tests and a process workflow.",
+  "review": {
+    "acceptance": "Each ticket behavior has a named test: removal and ascending ids, nothing_to_clear with no state change, one-step undo with no id reuse, strict admission, discovery, replay and save/load, plus the board-clear-done process workflow over stdin and script transports.",
+    "verification": "cargo xtask check ci passed all 9 checks (target/verification/ci.json) and the board-clear-done workflow passes 3 of 3 sessions; both pages were reviewed PASS.",
+    "assumptions": "Journal schema_version stays 1, so an older build rejects a journal containing clear_done with invalid_store (documented in DRIVER.md). The discovery descriptor sits before undo and carries enabled. Both are the agent's calls.",
+    "coverage": "Process evidence is local Linux/macOS stdin and script transport only; no network or GUI. The property test now draws each older command a fifth less often."
+  }
 }
