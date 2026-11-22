@@ -2,7 +2,7 @@
   "schema_version": 7,
   "id": "one-brief",
   "work_item": null,
-  "status": "partial",
+  "status": "complete",
   "tier": "standard",
   "requirements": [
     "task-artifacts",
@@ -21,11 +21,32 @@
     }
   ],
   "gap_review": "Read the four open gaps; none concerns the page machinery this task removes. The closed gap artifact-gate-holes pointed at a test file this task deletes, so its resolution record is re-pointed.",
-  "discoveries": [],
-  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "discoveries": [
+    {
+      "summary": "The brief's five unknowns were all dependencies of the removed code: the shared test fixture was a schema 6 task owing eight pages; readiness.json named the deleted files and 33 deleted tests; the rule every brief receives was quoted from a docs section being deleted; the author's four checks were defined in the reviewer's skill; and the vendored gallery index linked ten exemplars being removed, which the docs check would not have caught. Each is handled in the change.",
+      "record": "harness/task-artifacts/one-brief/brief.html"
+    },
+    {
+      "summary": "The closed gap artifact-gate-holes named a deleted test file as its resolution record, which coordination refused; it is re-pointed with a receipt.",
+      "record": "gap:artifact-gate-holes"
+    },
+    {
+      "summary": "The four committed records of this stack keep their old report.html pages and reviews.json logs; nothing reads them now. They can be archived with those records once the stack merges.",
+      "record": "docs/plans/one-brief.md"
+    }
+  ],
+  "discovery_review": "Three discoveries: what depended on the removed code, a closed gap that pointed at a deleted file, and leftover pages in this stack's own records.",
   "documentation": {
-    "updated": [],
-    "rationale": "docs/ARTIFACTS.md, docs/EVALUATION.md, docs/COMPLETION.md, AGENTS.md and README.md change; listed when the work lands."
+    "updated": [
+      "docs/ARTIFACTS.md",
+      "docs/EVALUATION.md",
+      "docs/COMPLETION.md",
+      "AGENTS.md",
+      "README.md",
+      "ARCHITECTURE.md",
+      "examples/thariq/README.md"
+    ],
+    "rationale": "docs/ARTIFACTS.md is rewritten around the one brief; docs/EVALUATION.md retires the reviewer calibration to a paragraph; docs/COMPLETION.md, AGENTS.md, README.md and ARCHITECTURE.md describe two tiers and no review loop; examples/thariq/README.md describes the one exemplar kept."
   },
   "prompt": {
     "task": "remove the full tier, the reader rule, the review loop and the verdict log, leaving one brief as the only task page",
@@ -35,8 +56,10 @@
     "reference": "The standard tier's brief path through xtask/src/router.rs and artifacts.rs"
   },
   "summary": "Cut the template's page machinery down to one brief: no full tier, no reader rule, no review loop, no verdict log.",
-  "remaining": [
-    "Commit the brief before the code, then the removal, docs and receipt",
-    "cargo xtask check ci, then complete against harness/pages-by-risk"
-  ]
+  "review": {
+    "acceptance": "The five named tests exist and pass: tier_is_small_or_standard and a_record_below_schema_7_cannot_claim (xtask/tests/tiers.rs), a_standard_task_owes_a_brief_before_code (xtask/tests/artifacts.rs), next_walks_a_standard_task_to_its_brief_and_no_further and the_page_commands_are_style_check_guard_next_and_screenshot (xtask/tests/brief.rs). Sizes, before and after against harness/pages-by-risk: xtask/src 4,519 to 3,721 lines; xtask/tests 4,119 to 3,172 lines; examples 424 KB to 72 KB; docs/ARTIFACTS.md 17,326 to 8,115 bytes; 59 files changed, 1,242 lines added and 10,542 deleted.",
+    "verification": "cargo xtask check ci passed 9 of 9 (target/verification/ci.json); cargo xtask gaps --base harness/pages-by-risk --report target/verification/ci.json is ok with harness/transitions/one-brief.json. The brief was written by one author pass and not independently reviewed, as the process it introduces says; the task owner checked its five unknowns against the draft and found each already handled. GitHub Actions has not run; nothing is pushed.",
+    "assumptions": "That no adopter holds schema 6 records they still need to complete: such a record must be upgraded to schema 7 first. That the author's own four checks are enough without a reviewer rests on the paired run's finding that review rounds were mostly about page length and citations; no run compares briefs with and without review on gate changes. The exemplar kept is one of eleven; its README says where the rest are.",
+    "coverage": "No test exercises an author subagent actually writing a brief; next's hand-over text and the skill are checked, the page they produce is not. The Codex agent definition and example hook were edited but not run. Whether task records, receipts and the brief pay for themselves is still unmeasured; docs/EVALUATION.md says what comparison would decide it."
+  }
 }
