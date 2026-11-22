@@ -60,6 +60,44 @@ run was graded by 13 to 15 held-out checks.
   The one that followed the process left a product doc un-updated to avoid
   needing a receipt.
 
+## Experiment 3: does a post-edit hook help?
+
+The hooks were the one removed part the first two experiments could not
+reach, so a small one was rebuilt and tested with hooks firing: 24 lines that
+type-check the edited crate and check its formatting after every edit, and
+hand any failure back to the agent. It is on the `harness/post-edit-hook`
+branch. The runs were headless sessions in fresh clones of this repository,
+with and without the hook, on the five tasks of experiment 2, three runs per
+cell, on Claude Sonnet 5.5 and on Claude Haiku 5.5 as a weaker model.
+
+| | Sonnet, no hook | Sonnet, hook | Haiku, no hook | Haiku, hook |
+| --- | --- | --- | --- | --- |
+| Accepted | 15 of 15 | 15 of 15 | 15 of 15 | 15 of 15 |
+| Held-out checks passed | 213 of 213 | 213 of 213 | 213 of 213 | 213 of 213 |
+| `scripts/ci.sh` checks clean | 15 of 15 | 15 of 15 | 15 of 15 | 15 of 15 |
+| Mean wall-clock time | 96 s | 94 s | 143 s | 149 s |
+| Mean cost | $0.32 | $0.31 | $0.07 | $0.08 |
+| Mean turns | 24.9 | 24.7 | 36.8 | 38.1 |
+| Times the hook ran | 0 | 115 | 0 | 179 |
+
+The hook ran 294 times and changed nothing that was measured: not what was
+accepted, not whether the work was clean, not the time, cost or number of
+turns. It was not added to this template.
+
+Two things qualify that. Every run passed everything, so the set had no room
+to show a benefit; a hook like this may matter on a codebase where a build
+takes minutes and an agent would otherwise go a long way on broken code. And
+the runs did not record how often the hook reported a failure rather than
+passing silently, so "it never needed to speak" and "it spoke and made no
+difference" cannot be told apart.
+
+One result is new. The `limits` task failed in all four runs of experiment 2
+and passed in all twelve here. The difference is the checklist in
+[AGENTS.md](../AGENTS.md), which did not exist then and names that exact
+trap. That is the checklist being written from the test, not evidence that
+checklists generalize; but it is the only change in any of these experiments
+that moved an acceptance number, and it is six lines of text.
+
 ## A held-out build
 
 One agent was given the harness, with no history, and a specification for a
@@ -71,16 +109,18 @@ There was no stripped build to compare it with.
 
 ## What this does not show
 
-- **Hooks were never exercised.** Every run was a subagent working in a
-  clone, where the session's hooks did not fire. A check that runs after each
-  edit is the removed part most likely to help, and it is untested.
+- **Only one hook was tested.** Experiment 3 covers a post-edit check. The
+  edit guard and the stop gate of the removed harness were never run with
+  hooks firing.
 - **Nothing here spans sessions or people.** Records and receipts exist to
   coordinate work over time. Single-task runs cannot show whether they do.
-- **Little headroom.** In experiment 1 every no-pages run passed, and in
-  experiment 2 four of five tasks were passed by every run, so only one task
-  could separate the arms.
-- **Small samples.** One or two runs per cell, one model (Claude Sonnet 5.5),
-  one small codebase. Time was measured; tokens were not, beyond the top-level
+- **Little headroom.** In experiment 1 every no-pages run passed, in
+  experiment 2 four of five tasks were passed by every run, and in experiment
+  3 every run passed everything, including on the weaker model. These tasks on
+  this codebase are too easy to show what helps on hard ones.
+- **Small samples.** One to three runs per cell, two models, one small
+  codebase. In experiment 3 the headless agents had a narrow shell allowlist
+  and were refused three to five commands per run, in both arms alike. Time was measured; tokens were not, beyond the top-level
   agent.
 - **The evidence is not in this repository.** Prompts, graders and run
   clones lived in a session scratch directory. The tables are a record, not
@@ -111,4 +151,5 @@ A stronger-looking setup does not show that agents do better. Measure it.
 
 The lesson these runs did yield is in [AGENTS.md](../AGENTS.md): a short
 checklist of what agents left out when the request did not spell it out. It
-came from grading, costs a few lines to read, and has not itself been tested.
+came from grading and costs a few lines to read. Its one test so far is the
+`limits` result above, on the task it was written from.

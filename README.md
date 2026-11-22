@@ -37,8 +37,10 @@ HTML pages per task. Two paired experiments on this codebase found no task
 where it changed whether an agent's work was accepted. The pages cost fifteen
 to forty times the wall-clock time, and the rest of the harness about three
 times. So it was removed. [docs/EVALUATION.md](docs/EVALUATION.md) has the
-tables and, as important, what the experiments did not test: the edit-time
-hooks, and work spread over many sessions and people.
+tables and, as important, what the experiments did not test: work spread over
+many sessions and people, and tasks hard enough to fail. A third experiment
+rebuilt a small post-edit hook and ran it with hooks firing; it changed
+nothing measurable and was left out (`harness/post-edit-hook` has it).
 
 Nothing was thrown away. Three branches keep it:
 
