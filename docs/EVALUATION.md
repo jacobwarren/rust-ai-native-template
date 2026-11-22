@@ -153,6 +153,88 @@ scenario runners assume a program that exits, so the agent rewrote
 `xtask/src/workflows.rs` and added a service driver before it could grade its
 own product.
 
+## The harness against a stripped copy
+
+The run above compared pages with no pages, both inside the harness. This one
+asks the question underneath it: does the harness itself change what an agent
+delivers?
+
+**Arms.** *Harness*: this template after the page machinery was cut to one
+brief, where a product task owes a task record and CI. *Stripped*: the same
+product code and tests as a plain Cargo workspace, with a short README and the
+product and driver docs, and no `xtask`, hooks, skills, agent files, `AGENTS.md`,
+task records or receipts. It passes `cargo test` and clippy on its own.
+
+**Set.** Five tasks chosen to be harder than the first set: reorder tasks with
+a `move` command (the board is keyed by id, so order needs a model change);
+raise the limits to 200 tasks and 1,000 commands; an atomic `add_many`; a new
+`already_done` error code; a `find` method with Unicode case-insensitive
+matching. Each had 13 to 15 held-out checks. The prompt was the request as a
+user would write it, identical in both arms, with nothing about tests, docs or
+process. Two runs per cell, Claude Sonnet 5.5 as subagents in fresh clones,
+graded on a clean build of what was committed.
+
+| Task | Stripped | Harness |
+| --- | --- | --- |
+| move | 2 of 2 accepted | 1 of 1 accepted |
+| limits | 0 of 2 | 0 of 2 |
+| add_many | 2 of 2 | 2 of 2 |
+| already_done | 2 of 2 | 2 of 2 |
+| find | 2 of 2 | 2 of 2 |
+| Accepted | 8 of 10 | 7 of 9 |
+| Held-out checks passed | 140 of 142 | 125 of 127 |
+| Mean wall-clock time | 94 s (75 to 110) | 252 s (180 to 416) |
+| New tests per run | 1.6 | 2.4 |
+| Runs that updated the docs | 10 of 10 | 9 of 9 |
+| `cargo test`, clippy, fmt clean | 10 of 10 | 9 of 9 |
+
+**What it shows.**
+
+- The harness changed nothing about acceptance. Every failure, in both arms, is
+  the same held-out check: after raising the journal limit, a full journal of
+  the largest allowed titles no longer fits the store's 256 KiB bound, so it
+  cannot be saved. One stripped run noticed and asked; none fixed it.
+- The harness's own CI did not catch it either: `cargo xtask check ci` passed
+  on all nine harness runs, including the two that failed.
+- A bare repository was enough for the habits the harness asks for. Every
+  stripped run added tests, updated the driver doc and left `cargo test`,
+  clippy and formatting clean, unprompted.
+- The process was mostly skipped. One harness run of nine wrote a task record
+  and ran `complete`; the other eight judged it out of proportion to the
+  request and said so. That one run then left `docs/PRODUCT.md` un-updated,
+  because editing it would have needed a receipt: the gate made the docs
+  worse.
+- The harness arm wrote somewhat more tests, and three of its runs added a
+  test through the real binary, which the product skill asks for. Whether
+  those tests catch anything the others miss was not measured.
+- It cost about 2.7 times the wall-clock time. Part of that is this run's
+  load: nineteen agents built at once, and `cargo xtask check ci` ran past the
+  agents' two-minute tool limit, which several reported.
+
+**What it does not show.**
+
+- The edit-time and stop hooks did not fire: the runs were subagents working
+  in clones, where the session's project hooks point at another repository.
+  The hook that checks each edit is the part of the harness most likely to
+  help and it is still untested.
+- Headroom is thin. Four of five tasks were passed by every run in both arms,
+  so the set separates the arms on one task only, and there it does not.
+- Two runs per cell, one model, one small product. One harness cell has a
+  single run: its second was blocked at launch and not retried.
+- Subagents inherit this session's instructions, which point at an
+  `AGENTS.md`. Several stripped runs looked for one, found none in their clone
+  and said so; none read this repository's copy.
+- It says nothing about work over many sessions or by several people, which
+  is what task records, receipts and the archive are for. No single-task run
+  can show that.
+
+**Reading.** On single, well-specified product tasks the harness is cost
+without measured benefit, and agents treat its record-keeping as optional.
+What it might still earn is untested here: per-edit feedback, and coordination
+over time. Until one of those is measured, an adopter who wants speed loses
+nothing this run can detect by starting from the stripped layout and adding
+the CI profile.
+
 ## The page reviewer, retired
 
 This template once had an independent reviewer agent for task pages, calibrated
