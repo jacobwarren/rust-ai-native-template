@@ -1,89 +1,41 @@
 # Adopt this template
 
-## First hour
+1. Run `scripts/ci.sh` before editing, so you know the baseline is green.
+2. Replace [PRODUCT.md](PRODUCT.md) with your product: who uses it, the
+   observable outcomes, what it must reject, the platforms it supports. Attach
+   each outcome to a test or an explicitly manual check.
+3. Choose the smallest crate layout that fits. Rename the crates and the
+   binary, or replace the example outright. Run `cargo generate-lockfile` after
+   intentional dependency changes and review the lockfile diff; `scripts/ci.sh`
+   builds with `--locked`.
+4. Keep the shape of the example where it applies: validated types at the
+   edge of the domain, one command path, bounded inputs, and a driver that
+   exposes real behavior at a process boundary. [DRIVER.md](DRIVER.md) is an
+   example of that contract, not a universal interface. For a service, start
+   on an OS-assigned port, print the port when ready, and have the tests speak
+   to the running process.
+5. Rewrite the checklist in [AGENTS.md](../AGENTS.md) for your product. It
+   holds the things agents left out when the request did not spell them out;
+   yours will be different, and you find them by grading work, not by
+   guessing.
+6. Enable GitHub Actions and make the `ci` job a required check. The file
+   alone does not protect a branch.
 
-1. Run `cargo xtask doctor` and `cargo xtask check ci` before editing.
-2. Replace PRODUCT.md with your actual purpose, acceptance criteria, non-goals,
-   supported platforms, runtime shape, and failure/resource budgets.
-3. Choose the smallest crate layout that fits. Keep or replace the example;
-   do not add six layers before you need them.
-4. Rename crates and update Cargo dependencies, package metadata, harness
-   config, the @app path/build package in xtask, scenario contracts, and docs
-   together. Run `cargo generate-lockfile` after intentional dependency changes.
-   Review the lockfile diff, then return to locked verification.
-5. Replace “maintainers” with actual ownership in metadata and the docs catalog.
-   Add your license before public distribution; no project license is assumed.
-6. Keep meaningful behavior tests. Replace the disposable greeting scenarios
-   and board workflows with real user journeys and negative inputs for your product.
-7. Run full checks and inspect the JSON report. Commit the clean baseline.
-   The four task records under `harness/tasks/` are worked examples of the
-   tiers (board-clear-done is a product task with a brief, a report and a
-   receipt); keep them, or archive them once you have your own
-   ([archiving](COMPLETION.md)). The template's earlier history is on the
-   `showcase/template-history` branch, not in your tree.
-8. Enable GitHub Actions and required status checks/review in repository settings.
-   The files alone do not enable branch protection, publishing, or deployment.
-
-## First-task prompt
+## A first prompt
 
 ```text
-Read AGENTS.md and the documents relevant to this task.
-We are adapting this starter into: [product and target platform].
-The first useful vertical slice is: [observable outcome].
-Acceptance criteria: [specific valid and invalid behavior].
-Constraints: [dependencies, runtime, security, latency, compatibility].
-Inspect the baseline and propose the smallest crate/contract changes needed.
-Implement the slice, replace the greeting sample where appropriate, update
-architecture policy and docs intentionally, run the harness, and report exact
-verification evidence and unresolved limitations. Do not claim unrun checks.
+Read AGENTS.md. We are turning this starter into: [product and platform].
+The first useful slice is: [observable outcome].
+It must accept: [valid behavior]. It must reject: [invalid behavior].
+Constraints: [dependencies, runtime, security, compatibility].
+Replace the example where it is in the way, keep scripts/ci.sh passing,
+and tell me what you verified and what you did not.
 ```
 
-For complex work, create an execution plan. For small changes, act directly.
-An agent may review its own diff; consequential policy/authority changes benefit
-from an independent reviewer. Neither self-review nor a second model guarantees
-correctness, so preserve independent acceptance checks.
+## Adding process
 
-## Worktrees
-
-```sh
-git worktree add ../my-product-feature -b feature/example
-cd ../my-product-feature
-cargo xtask check fast
-```
-
-The harness uses this checkout's target folder and per-command state paths.
-For external services, databases, caches, or hardware, add real isolation in the
-runtime driver. For an HTTP server, bind port zero and report the assigned port;
-path hashes do not guarantee collision-free network ports.
-
-## Extending platform coverage
-
-Linux and macOS are configured. Windows process-tree containment is not
-implemented; port it with job objects or another verified mechanism before
-claiming Windows harness support. Embedded/no_std products need a compatible
-host harness plus target-specific build/run checks. Toolchain/MSRV claims require
-actual tested versions; the pin is not evidence for older compilers.
-
-## Establish the product's acceptance surface
-
-Expose discovery, execution, inspection and evidence capture at the real runtime
-boundary; reuse the same product implementation for user and agent adapters.
-Follow [the driver contract](DRIVER.md) as an example, not a universal interface.
-Replace harness/workflows.json and harness/goldens with reviewed product outcomes.
-Keep property/replay/failure-atomicity tests where those invariants apply.
-
-Register actual requirements in harness/readiness.json and close the ranked
-harness/gaps.json blockers with checked-in resolution evidence. Keep template and
-product claims separate. Set the workflow's required job as a required status and
-assign real reviewers to policies, baselines, workflows and gap closure. The
-archive cannot configure your hosting settings. See [READINESS.md](READINESS.md).
-
-## Work tracking and agent completion
-
-Keep task coordination wherever your team works. The task record may contain an
-opaque work_item reference; prompts need no ticket. Keep only material engineering
-shortcomings in the project gap register. Use the task-review checkpoint before
-completion claims; the default hooks gate them. Codex users trust the project's
-`.codex/` layer and review its hooks in `/hooks`; Claude Code needs v2.1.295 or
-later for the guard to fail closed. See [COMPLETION.md](COMPLETION.md).
-Live tracker synchronization is an optional team integration outside the core.
+Add a rule, a hook or a document only when graded work shows agents getting
+something wrong without it, and check afterwards that it helped.
+[EVALUATION.md](EVALUATION.md) describes how this repository measured that and
+what it removed as a result. The removed harness is on the
+`showcase/full-harness` branch if you want any part of it back.

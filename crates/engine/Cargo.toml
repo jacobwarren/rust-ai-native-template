@@ -13,7 +13,3 @@ sha2.workspace = true
 
 [lints]
 workspace = true
-
-[package.metadata.harness]
-layer = "engine"
-owner = "maintainers"

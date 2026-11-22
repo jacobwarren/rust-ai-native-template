@@ -12,7 +12,3 @@ serde_json.workspace = true
 
 [lints]
 workspace = true
-
-[package.metadata.harness]
-layer = "runtime"
-owner = "maintainers"

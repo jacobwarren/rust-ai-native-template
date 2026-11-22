@@ -9,13 +9,10 @@ Normal use requires no model, Python, sockets, or MCP server.
 From the workspace root:
 
 ```sh
-cargo xtask run -- capabilities
-cargo xtask run -- script examples/board.jsonl
-cargo xtask workflow
-cargo xtask workflow board-lifecycle
+cargo run -p starter-app -- capabilities
+cargo run -p starter-app -- script examples/board.jsonl
 ```
 
-The harness creates isolated state, captures stdout/stderr and reports its paths.
 For interactive integration, build once and start target/debug/starter-app driver.
 Each UTF-8 JSON line is one request; EOF ends the session. For persistent manual
 use, set APP_DATA_DIR to your own private directory. The store acquires a
