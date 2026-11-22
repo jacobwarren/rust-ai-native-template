@@ -23,8 +23,8 @@ or Python dependency. Product intent lives in docs/PRODUCT.md.
 | Workflow acceptance and goldens | xtask/src/workflows.rs, golden.rs | Independent process expectations and read-only baseline comparison |
 | Readiness and work selection | xtask/src/readiness.rs: assess | Current evidence, named scope requirements and ranked blockers |
 | Gap authority and history | xtask/src/tracking.rs, transitions.rs, history.rs | Project register with opaque links; merge-base transition receipts |
-| Task HTML artifacts and hook adapter | xtask/src/artifacts.rs, size.rs, artifact_hook.rs, artifact_foundation.css, scripts/artifact-screenshots.cjs | Self-contained pages per tier (none for a small task, a brief for a standard one, eight for a full one), the small tier's path gate, inline shared stylesheet, commit-order gate, opt-in edit guard and Chrome screenshots |
-| Agent skills and roles | .claude/skills, .agents/skills, .claude/agents, .codex/agents | Page author and reviewer briefs as skills for both hosts (copies checked equal), and the author and reviewer subagents |
+| Task brief and hook adapter | xtask/src/artifacts.rs, brief.rs, size.rs, artifact_hook.rs, artifact_foundation.css, scripts/artifact-screenshots.cjs | One self-contained page a standard task commits before code, the small tier's path gate, inline shared stylesheet, commit-order gate, `task-artifact next`, opt-in edit guard and Chrome screenshots |
+| Agent skills and roles | .claude/skills, .agents/skills, .claude/agents, .codex/agents | The brief author's instructions as a skill for both hosts (copies checked equal), and the author subagent |
 | Task reconciliation | xtask/src/task_record.rs, completion.rs | Task review, acceptance evidence and honest handoffs |
 | Default agent hooks | scripts/agent-hook.sh, agent-complete.sh, .claude/settings.json, .codex/ | Edit guard, post-edit check and claims-only stop gate for Claude Code and Codex |
 | Source identity | xtask/src/repo.rs: metadata, fingerprint, worktree_id | Workspace discovery and inspected-source identity |

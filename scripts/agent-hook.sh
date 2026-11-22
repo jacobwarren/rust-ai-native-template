@@ -13,7 +13,7 @@ trap 'rc=$?; case $rc in 0 | 2) ;; *) echo "agent-hook: internal error (exit $rc
 # Copied from xtask/src/transitions.rs; transitions::tests keeps them equal.
 PROTECTED_PREFIXES="xtask/ .github/ scripts/ .cargo/ harness/goldens/ .claude/ .codex/"
 PROTECTED_FILES="harness/archive.json harness/config.json harness/readiness.json harness/tracking.json harness/workflows.json harness/scenarios.json Cargo.toml Cargo.lock docs/PRODUCT.md docs/READINESS.md docs/COMPLETION.md AGENTS.md"
-CEREMONY_SKILLS="author-artifact review-artifact write-ticket"
+CEREMONY_SKILLS="author-artifact write-ticket"
 
 mode=${1:-}
 host=${2:-}
@@ -410,7 +410,6 @@ author() {
     allow
   fi
   case "$(lower "$rel")" in
-    harness/task-artifacts/?*/reviews.json) block "Blocked: the verdict log records reviews and only cargo xtask task-artifact verdict writes it; the author does not grade its own page." ;;
     harness/task-artifacts/?*/?*) allow ;;
   esac
   block "Blocked: the artifact author edits only task pages under harness/task-artifacts/<task>/, and $rel is not one. Report the change you need instead of making it."

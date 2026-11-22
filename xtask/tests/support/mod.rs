@@ -3,23 +3,6 @@ pub mod hooks;
 use serde_json::{Value, json};
 use std::{fs, path::PathBuf, process::Command};
 pub const STYLE: &str = "<style data-artifact-foundation=\"1\">body{}</style>";
-pub const DISCOVERY: [&str; 5] = [
-    "blindspots.html",
-    "interventions.html",
-    "interview.html",
-    "reference.html",
-    "plan.html",
-];
-pub const ALL: [&str; 8] = [
-    "blindspots.html",
-    "interventions.html",
-    "interview.html",
-    "reference.html",
-    "plan.html",
-    "implementation.html",
-    "buy-in.html",
-    "quiz.html",
-];
 pub struct Fixture(pub PathBuf);
 impl Fixture {
     pub fn new() -> Self {
@@ -97,25 +80,26 @@ impl Fixture {
         v
     }
     pub fn record(&self, status: &str) -> Value {
-        json!({"schema_version":6,"id":"TASK-1","work_item":"https://tracker.example/TASK-1","status":status,
+        json!({"schema_version":7,"id":"TASK-1","work_item":"https://tracker.example/TASK-1","status":status,
             "requirements":["behavior"],"related_gaps":[{"id":"remaining","disposition":"unaffected","rationale":"Different work remains"}],
             "gap_review":"Reviewed relevant blockers", "discoveries":[],"discovery_review":"No material discoveries",
             "review":{"acceptance":"Named behavior is implemented, or explicitly pending in remaining work.","verification":"Reviewed relevant checks and identified no additional pre-existing defect.","assumptions":"No unverified assumption was needed for this change.","coverage":"Reviewed the affected boundary; no additional material coverage gap found."},
             "documentation":{"updated":[],"rationale":"No public contract change"},"summary":"Implemented accepted behavior",
             "remaining":if status == "complete" {vec![]} else {vec!["Finish the failing behavior test"]}})
     }
-    /// A task record whose eight artifact pages are already committed.
+    /// A small task's record; kept as a name for the tests that mean "a task".
     pub fn task(&self, status: &str) -> Value {
-        if !self
-            .0
-            .join("harness/task-artifacts/TASK-1/quiz.html")
-            .exists()
-        {
-            self.run(&["task-artifact", "style", "--task", "TASK-1"]);
-            self.pages(&ALL);
-            self.commit("artifacts");
-        }
         self.record(status)
+    }
+    /// A standard task's record: it owes a brief.
+    pub fn standard(&self, status: &str) -> Value {
+        let mut r = self.record(status);
+        r["tier"] = json!("standard");
+        r
+    }
+    /// Write a brief with the stylesheet and enough text to clear the floor.
+    pub fn brief(&self) {
+        self.page("brief.html");
     }
     pub fn page(&self, name: &str) {
         self.text(
@@ -126,11 +110,6 @@ impl Fixture {
                 "A finding with the code that proves it. ".repeat(40)
             ),
         );
-    }
-    pub fn pages(&self, names: &[&str]) {
-        for name in names {
-            self.page(name);
-        }
     }
     pub fn commit(&self, message: &str) {
         self.git(&["add", "-A"]);

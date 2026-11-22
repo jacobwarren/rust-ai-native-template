@@ -43,10 +43,9 @@ findings into existing gaps. No quota requires a new gap per task.
    gaps the assignment addresses and create harness/tasks/ID.json using
    examples/task-record.json and choose its tier. A ticket URL, ID or plan reference is
    optional; the [write-ticket skill](../.claude/skills/write-ticket/SKILL.md)
-   turns a request into a ticket and a partial record stub. A small task, the default, needs no pages;
-   a standard task commits its brief before implementation; a full task its
-   discovery pages before, notes during the work and the buy-in doc last
-   ([task pages](ARTIFACTS.md)).
+   turns a request into a ticket and a partial record stub. A small task, the default, needs no page;
+   a standard task commits its brief before implementation
+   ([the task brief](ARTIFACTS.md)).
 2. Material discovery: investigate immediately. Fix it within authorized scope,
    update an existing gap, or record a new durable gap/observation. Do not silently
    expand the task into a project-wide audit.
@@ -98,21 +97,18 @@ The other fields are demonstrated in [the example](../examples/task-record.json)
 - summary and remaining form the handoff. Partial/blocked status needs next steps.
   A complete record may leave `remaining` out, or retain follow-up work outside
   its accepted scope.
-- tier is `small` (the default), `standard` or `full`; reader is `human` or
-  `none` (the default) and decides whether a full task writes its interview
-  and quiz ([task size](ARTIFACTS.md)).
+- tier is `small` (the default) or `standard` ([task size](ARTIFACTS.md)).
 - prompt, optional, holds the values `task-artifact next` fills into the
-  page prompts: task (a verb phrase after "I'm about to"), task_noun (a
-  noun phrase naming what is built), area, problem and reference (one code path,
-  singular). A missing value stays visible as its brace (docs/ARTIFACTS.md).
+  brief's prompt: task (a verb phrase after "I'm about to") and area. A missing
+  value stays visible as its brace (docs/ARTIFACTS.md).
 
 References are not proof that a remote document exists or its contents are true.
-Unknown fields are rejected. Archived v1–v5 task records remain readable; upgrade any
-active record making a new handoff/completion claim to v7, write its
-[pages](ARTIFACTS.md) and answer the review. A v6 record stays valid and keeps
-its meaning: its "standard" tier, and a missing tier, is the eight-page set
-written for a human reader. Git history preserves earlier page
-versions; artifact-only edits also trigger reconciliation.
+Unknown fields are rejected. Records below v7 remain readable as history, owe
+nothing and cannot claim; upgrade any active record making a new
+handoff/completion claim to v7 and answer the review. A `reader` value and the
+prompt names `task_noun`, `problem` and `reference`, written while this
+template had more pages, are accepted and ignored. Git history preserves
+earlier versions of a brief; brief-only edits also trigger reconciliation.
 
 ## Commands and source-bound evidence
 
@@ -267,21 +263,17 @@ before switching; the harness rejects that legacy mode rather than trusting a
 stale local copy. Historical external-authority comparisons require a deliberate
 migration baseline; there is no automatic remote migration or completeness claim.
 
-## Artifact admission
+## Brief admission
 
-Completion requires the pages the task's tier and reader owe
-([task size](ARTIFACTS.md)), each carrying the shared stylesheet inline and at
-least 1,200 characters outside its tags and styles, and reads the branch's own commits since the base
-(merge commits skipped; on a pull request's merge commit, the commits of
-`--head`). The pages due before code come before the first product-code commit;
-handoff checks this for a partial task too. At completion a full task's
-implementation notes come before the last product-code commit, and the pages due
-before merge at or after it. Product code and the task's pages must be committed;
-task records, gaps and reports need not be. A small task needs no pages;
-completion and handoff instead refuse it when the branch touches a policy,
-dependency or ceremony path.
-Commit order shows sequence, not usefulness, and a rewritten history can fake it;
-the text floor stops a placeholder, not a page of filler. An independent reviewer
-agent and human review against the exemplars judge quality. The default stop hook
-invokes the same completion checks for a claimed task; the opt-in before-code
-guard is separate.
+A standard task's completion requires its brief ([task size](ARTIFACTS.md)),
+carrying the shared stylesheet inline and at least 1,200 characters outside its
+tags and styles, and reads the branch's own commits since the base (merge
+commits skipped; on a pull request's merge commit, the commits of `--head`):
+the brief comes before the first product-code commit, and handoff checks this
+for a partial task too. Product code and the brief must be committed; task
+records, gaps and reports need not be. A small task owes no brief; completion
+and handoff instead refuse it when the branch touches a policy, dependency or
+ceremony path. Commit order shows sequence, not usefulness, and a rewritten
+history can fake it; the text floor stops a placeholder, not a page of filler.
+The task's owner judges the brief. The default stop hook invokes the same
+completion checks for a claimed task; the opt-in before-code guard is separate.

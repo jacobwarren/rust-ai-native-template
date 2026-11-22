@@ -154,25 +154,19 @@ scoped to assigned work; release gates check the selected project scope. Use
 handoff for partial/blocked work. Read [the workflow](docs/COMPLETION.md) for
 schemas, discovery guidance, hook setup and authority limits.
 
-## HTML task reviews
+## The task brief
 
-A task leaves [HTML pages](docs/ARTIFACTS.md) only when its risk calls for
-them. Most tasks are small and write none, at any size. A standard task, for a
-change to policy, dependency or ceremony paths, writes one: a brief before code.
-A full task, when a person asks to steer the design, writes eight:
-five discovery pages before code, implementation notes during the work, and a
-buy-in doc and quiz before merge; the interview and the quiz are written only
-when the record names a human reader. Each page comes from one prompt adapted from Thariq
-Shihipar's [Know your unknowns](examples/thariq/index.html) examples, which set
-the quality bar. A dedicated subagent writes each page and another reviews it
-against its exemplar before it is committed. Each page is a single file carrying
-the shared stylesheet from `cargo xtask task-artifact style --task ID` inline.
-Completion reads commit order: the pages due before code come before the first
-code commit, and a full task's final pages after the last. A small task needs no
-pages; the gate refuses it only for policy, dependency and ceremony paths. Claude Code and Codex load the author and reviewer briefs as skills,
-and `.claude/agents/` and `.codex/agents/` define the two roles.
-`cargo xtask task-artifact next --task ID` names the next page step and hands
-over the filled-in prompt for it, and `task-artifact verdict` logs each review
-in the task's `reviews.json`. The
-write-ticket skill drafts a ticket and its task record stub before work starts.
+Most tasks write no page. A task that changes policy, dependency or ceremony
+paths commits one first: a [brief](docs/ARTIFACTS.md), a single self-contained
+HTML page that shows what the ticket does not and leads its plan with the
+decisions most likely to change. One fresh author subagent writes it from one
+prompt, modelled on a page from Thariq Shihipar's
+[Know your unknowns](examples/thariq/08-implementation-plan.html); the task's
+owner reads it, acts on it and commits it before any code. There is no review
+loop and nothing is owed after the code: the task record's four review answers
+report on the finished work. `cargo xtask task-artifact next --task ID` names
+the next step and hands over the filled-in prompt. A paired run is why it is
+this small ([evaluation](docs/EVALUATION.md)); the earlier eight-page set and
+its reviewer are on the `showcase/full-ceremony` branch. The write-ticket skill
+drafts a ticket and its task record stub before work starts.
 The harness preserves bytes and provenance without prescribing presentation.

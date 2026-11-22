@@ -14,29 +14,17 @@ pub enum Status {
     Blocked,
 }
 /// How much ceremony a task owes (docs/ARTIFACTS.md "Task size"). A small task,
-/// the default, owes no pages and stays away from policy paths; the gate reads its
-/// branch (size.rs). A standard task owes a brief before code. A full task owes
-/// the eight-page set. Read it through `Task::tier()`: a record from schema 6 or
-/// earlier wrote "standard" for the eight pages and made them the default.
+/// the default, owes no page and stays away from policy paths; the gate reads its
+/// branch (size.rs). A standard task owes a brief before code.
 #[derive(Deserialize, PartialEq, Eq, Clone, Copy, Debug)]
 #[serde(rename_all = "snake_case")]
 pub enum Tier {
     Small,
     Standard,
-    Full,
 }
-/// Whether a person will answer the task's pages. The interview and the quiz are
-/// written only for a human reader; without one their questions go into the plan.
-#[derive(Deserialize, PartialEq, Eq, Clone, Copy, Debug)]
-#[serde(rename_all = "snake_case")]
-pub enum Reader {
-    Human,
-    None,
-}
-/// The newest record schema; records from `FULL_BY_DEFAULT` and earlier keep
-/// their meaning and stay valid.
+/// The record schema a new claim must use. Earlier records can be read as
+/// history but owe nothing and cannot complete.
 pub const SCHEMA: u32 = 7;
-const FULL_BY_DEFAULT: u32 = 6;
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Task {
@@ -46,8 +34,9 @@ pub struct Task {
     pub status: Status,
     #[serde(default, rename = "tier", deserialize_with = "named_tier")]
     declared_tier: Option<Tier>,
+    /// Written by records from when a full tier chose its pages by reader; ignored.
     #[serde(default, rename = "reader")]
-    declared_reader: Option<Reader>,
+    _reader: Option<serde::de::IgnoredAny>,
     pub requirements: Vec<String>,
     pub related_gaps: Vec<Disposition>,
     pub gap_review: String,
@@ -60,11 +49,11 @@ pub struct Task {
     /// Next steps; a complete record may leave it out.
     #[serde(default)]
     pub remaining: Vec<String>,
-    /// Values for the page prompts' braces; `next` fills them in (handover.rs).
+    /// Values for the brief prompt's braces; `next` fills them in (brief.rs).
     #[serde(default)]
     pub prompt: Option<Prompt>,
 }
-/// A tier that is written must be one of the three; `null` is not "no tier".
+/// A tier that is written must be one of the two; `null` is not "no tier".
 fn named_tier<'de, D: serde::Deserializer<'de>>(
     deserializer: D,
 ) -> std::result::Result<Option<Tier>, D::Error> {
@@ -72,38 +61,29 @@ fn named_tier<'de, D: serde::Deserializer<'de>>(
 }
 
 impl Task {
-    /// The ceremony this record owes. Schema 6 and earlier called the eight
-    /// pages "standard" and made them the default.
+    /// The ceremony this record owes; a record from an earlier schema owes none.
     pub fn tier(&self) -> Tier {
-        let old = self.schema_version <= FULL_BY_DEFAULT;
-        match self.declared_tier {
-            Some(Tier::Standard) | None if old => Tier::Full,
-            Some(tier) => tier,
-            None => Tier::Small,
+        if self.schema_version < SCHEMA {
+            return Tier::Small;
         }
-    }
-    /// Who answers the pages. Records from before the field were written for a
-    /// human; a newer record that names no reader has none.
-    pub fn reader(&self) -> Reader {
-        match self.declared_reader {
-            Some(reader) => reader,
-            None if self.schema_version <= FULL_BY_DEFAULT => Reader::Human,
-            None => Reader::None,
-        }
+        self.declared_tier.unwrap_or(Tier::Small)
     }
 }
-/// Brace values for docs/ARTIFACTS.md's prompts. Every one is optional and checked
-/// by `next`, which leaves a missing one visible, never by `read`.
+/// Brace values for the brief's prompt. Each is optional and checked by `next`,
+/// which leaves a missing one visible, never by `read`. Three more names are
+/// accepted from records written for the earlier page set and ignored.
 #[derive(Deserialize, Default)]
 #[serde(default, deny_unknown_fields)]
 pub struct Prompt {
-    /// Verb phrase after "I'm about to", for the blindspot prompt.
+    /// Verb phrase after "I'm about to".
     pub task: Option<String>,
-    /// Noun phrase naming what is built, for the other prompts' {task}.
-    pub task_noun: Option<String>,
     pub area: Option<String>,
-    pub problem: Option<String>,
-    pub reference: Option<String>,
+    #[serde(rename = "task_noun")]
+    _task_noun: Option<serde::de::IgnoredAny>,
+    #[serde(rename = "problem")]
+    _problem: Option<serde::de::IgnoredAny>,
+    #[serde(rename = "reference")]
+    _reference: Option<serde::de::IgnoredAny>,
 }
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -145,7 +125,6 @@ pub fn read(root: &Path, id: &str) -> Result<Task> {
         .into());
     }
     if !(1..=SCHEMA).contains(&task.schema_version)
-        || (task.declared_reader.is_some() && task.schema_version <= FULL_BY_DEFAULT)
         || task.id != id
         || task
             .work_item
@@ -202,8 +181,8 @@ pub struct Review {
 
 pub fn review_errors(task: &Task) -> Vec<String> {
     let mut errors = Vec::new();
-    if task.schema_version < FULL_BY_DEFAULT {
-        errors.push(format!("Upgrade this active task to schema_version {SCHEMA} and write its HTML pages (docs/ARTIFACTS.md); historical records may remain archived."));
+    if task.schema_version < SCHEMA {
+        errors.push(format!("Upgrade this active task to schema_version {SCHEMA} (docs/COMPLETION.md); earlier records are history and cannot make a new claim."));
     }
     let empty = Review::default();
     let review = task.review.as_ref().unwrap_or(&empty);
@@ -292,7 +271,7 @@ mod tests {
 
     #[test]
     fn prompt_values_are_optional_and_strict() {
-        let base = serde_json::json!({"schema_version":6,"id":"t","work_item":null,"status":"partial",
+        let base = serde_json::json!({"schema_version":7,"id":"t","work_item":null,"status":"partial",
             "requirements":[],"related_gaps":[],"gap_review":"g","discoveries":[],"discovery_review":"d",
             "documentation":{"updated":[],"rationale":"r"},"summary":"s","remaining":["x"]});
         let parse = |prompt: Option<serde_json::Value>| {
@@ -311,7 +290,8 @@ mod tests {
         .unwrap();
         assert_eq!(p.task.as_deref(), Some("add x"));
         assert_eq!(p.area.as_deref(), Some(""));
-        assert!(p.reference.is_none() && p.task_noun.is_none());
+        // Names from the earlier page set still parse; nothing reads them.
+        assert!(parse(Some(serde_json::json!({"task_noun":"x","problem":"y"}))).is_ok());
         assert!(parse(Some(serde_json::json!({"task_nuon":"x"}))).is_err());
     }
 }

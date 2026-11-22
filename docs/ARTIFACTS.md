@@ -1,42 +1,36 @@
-# Task pages
+# The task brief
 
-A task can leave HTML pages that let a human understand it before code is
-written. The method is Thariq Shihipar's
-[Know your unknowns](../examples/thariq/index.html): each page is what a capable
-model produces from **one short, specific prompt, given its full attention**.
-Rules and checklists do not make these pages good. The prompt, a strong example
-and a dedicated author do.
+Most tasks here write no page at all. A task that changes what every later
+task is held to writes one first: a brief, a single HTML page that shows what
+the ticket does not and where the plan could go wrong, before any code.
 
-Pages cost far more than the code they describe, so most tasks write none. A
-paired run on product features found no accepted change that pages bought and
-ten to fifteen times the wall-clock time ([evaluation](EVALUATION.md)); the
-pages that did find defects were briefs on changes to the gates themselves.
-The tiers follow that evidence. `cargo xtask task-artifact next --task ID`
-names the next step for whichever tier the record declares.
+That is the whole ceremony, and it is this small on evidence. A paired run on
+product features found no accepted change that task pages bought and fifteen to
+forty times the wall-clock time; the pages that did find defects were briefs on
+changes to the gates themselves ([evaluation](EVALUATION.md)). The earlier
+eight-page set and its review loop are not in this template. The branch
+`showcase/full-ceremony` names the last commit that has them.
 
 ## Task size
 
-A task record carries `"tier": "small"`, `"standard"` or `"full"`; a record
-without a tier is small. Choose the tier at task start: a brief must be
-committed before the first product-code commit, so a task cannot move up a tier
-after its code lands.
+A task record carries `"tier": "small"` or `"standard"`; a record without a
+tier is small. Choose at task start: a brief must be committed before the first
+product-code commit, so a task cannot become standard after its code lands.
 
-| Tier | Pages | Choose it when |
+| Tier | Owes | Choose it when |
 | --- | --- | --- |
-| small | none | Any change, of any size, away from policy, dependency and ceremony paths. This is the default. |
+| small | nothing | Any change, of any size, away from policy, dependency and ceremony paths. This is the default. |
 | standard | `brief.html` before code | The change touches a path the gates protect, a `Cargo.toml` or the ceremony's own files, or is otherwise hard to undo: a persistence or wire format, a security boundary, a migration. |
-| full | the eight-page set below | A person has asked to steer the design before code and to understand it before merge. |
 
-Every tier owes its task record, the four review answers, current CI evidence
+Both tiers owe the task record, its four review answers, current CI evidence
 and any transition receipt. The four review answers are the report on the
 finished work; no page restates them.
 
-A small task needs no pages and no page reviews. The completion and handoff
-gates read the branch against its merge base and refuse a small task when it
-touches a protected policy path other than the product's own acceptance files,
-any `Cargo.toml`, or the ceremony's own
-definitions (this guide, the author-artifact, review-artifact and write-ticket
-skills and their `docs/skills/` pointers, and the agent folders under
+The completion and handoff gates read the branch against its merge base and
+refuse a small task when it touches a protected policy path other than the
+product's own acceptance files, any `Cargo.toml`, or the ceremony's own
+definitions (this guide, the author-artifact and write-ticket skills and the
+`docs/skills/author-artifact.md` pointer, and the agent folders under
 `.claude/` and `.codex/`). A mistake there changes what every later task is
 held to, so those changes owe a brief. Size alone never does: a 600-line
 feature with tests is a small task. Neither do `harness/workflows.json`,
@@ -62,193 +56,80 @@ A small task that turns out to need a protected path is split, or restarted as
 a standard task on a new branch with its brief first. The path list lives in
 `xtask/src/size.rs`; changing it needs a transition receipt.
 
-Records written at schema version 6 or earlier called the eight-page set
-"standard" and made it the default. They keep that meaning and stay valid; a
-new record uses schema version 7. A schema 7 record written while the standard
-tier also owed a `report.html` keeps that page as history; nothing reads it.
+A record below schema version 7 is history: it can be read, owes nothing and
+cannot make a new claim. Records written while this template had a full tier
+may carry a `reader` value and extra `prompt` names; both are accepted and
+ignored.
 
-## The standard page
+## Writing the brief
 
-One page, before the code:
+`cargo xtask task-artifact next --task ID` says the one next step: write the
+record, write the brief, commit it, build, or complete. For a brief it prints a
+`handover` to give the author unchanged. The prompt, with its braces filled
+from the record's `prompt.task` and `prompt.area`:
 
-| When | Page | File | Prompt | Exemplar |
-| --- | --- | --- | --- | --- |
-| Before code | The brief | brief.html | "I'm about to {task} in {area}. Before I write code, give me one page: the unknowns in this part of the codebase that the ticket does not show, each with the code that proves it, then the plan, leading with the decisions I'm most likely to tweak and burying the mechanical work at the bottom." | [08](../examples/thariq/08-implementation-plan.html) |
+> I'm about to {task} in {area}. Before I write code, give me one page: the
+> unknowns in this part of the codebase that the ticket does not show, each
+> with the code that proves it, then the plan, leading with the decisions I'm
+> most likely to tweak and burying the mechanical work at the bottom.
 
-The exemplar was written for the full set, one job per page. A brief does two
-jobs in less room:
+and the rules that keep it short and self-sufficient:
 
-> A standard page is short: at most 20 KB as a file, the pasted stylesheet
-> included. Keep to five unknowns at most, each proven by code or captured
-> output, and one decision per screen. Cut anything a reader would learn as
-> fast from the diff.
+> Keep the file at or under 20 KB, the pasted stylesheet included: five
+> unknowns at most, each proven by code or captured output, and one decision
+> per screen. No person will answer questions before the code is written, so
+> put each question you would have asked on the page with your recommendation,
+> labelled as the agent's call.
 
-`next` hands this rule to the brief's author and reviewer, and adds an advisory
-when the file is over the limit. The limit is a size because reviewers measured
-"about half the exemplar" two ways and disagreed.
+`unfilled` names any `prompt` value the record lacks, whose brace stays visible
+in the text. `next` advises and never blocks; it exits 3 when it has a warning,
+such as a brief over 20 KB.
 
-A brief gets one author pass. An independent review is the owner's call: ask
-for one when the change alters a gate or a person wants a second reading, and
-otherwise read the brief, act on what it found and commit it. `next` offers
-the review as optional. The review loop cost more than the authoring in the
-paired run, and most of its findings were about the page, not the change.
-
-## The full set
-
-Eight pages, for a change that needs a person to steer it before code and to
-understand it before merge:
-
-| When | Page | File | Prompt | Exemplar |
-| --- | --- | --- | --- | --- |
-| Before code | Blindspot pass | blindspots.html | "I'm about to {task} in {area}. Do a blindspot pass: find my unknown unknowns in this part of the codebase, explain each one with the code that proves it, and tell me how to prompt you better for the implementation." | [01](../examples/thariq/01-blindspot-pass.html) |
-| Before code | Brainstorm the intervention | interventions.html | "Here's the problem: {problem}. Search the codebase and brainstorm the places we could intervene, from cheapest to most ambitious. I'll tell you which ones resonate." | [05](../examples/thariq/05-churn-brainstorm.html) |
-| Before code | The interview | interview.html | "Interview me one question at a time about anything still ambiguous in {task}. Prioritize questions where my answer would change the architecture." | [06](../examples/thariq/06-interview.html) |
-| Before code | Point at a reference | reference.html | "{reference} already behaves the way {task} should. Read it and show me a semantics map, with matched excerpts, gotchas and edge cases, so I can confirm you understood it before you build anything." | [07](../examples/thariq/07-reference-port.html) |
-| Before code | The tweakable plan | plan.html | "Write an implementation plan for {task} as HTML, but lead with the decisions I'm most likely to tweak: data model changes, new type interfaces and anything user-facing. Bury the mechanical work at the bottom; I trust you on that part." | [08](../examples/thariq/08-implementation-plan.html) |
-| During | Implementation notes | implementation.html | "Keep implementation notes as you build {task}. When the code forces a deviation from the plan, pick the conservative option, log it under Deviations, and keep going." | [09](../examples/thariq/09-implementation-notes.html) |
-| Before merge | Buy-in doc | buy-in.html | "Package the plan, the implementation notes and the evidence into a single doc I can share to get buy-in on shipping {task}. Lead with the demo." | [10](../examples/thariq/10-pitch-doc.html) |
-| Before merge | Quiz me before I merge | quiz.html | "I want to make sure I understand everything that happened in this change before I merge. Give me an HTML report on the diff, covering context, intuition and what was done, with a quiz at the bottom that I must pass." | [11](../examples/thariq/11-change-quiz.html) |
-
-When no external reference exists, the reference is the existing code path that
-the change extends or most resembles. Add these when the task calls for them:
-[teach me my unknowns](../examples/thariq/02-color-grading-explainer.html)
-for unfamiliar domains, [design directions](../examples/thariq/03-design-directions.html)
-for visual work, and [mock before you wire](../examples/thariq/04-toolbar-mock.html)
-for new UI.
-
-Write implementation notes during the work: after the first implementation slice
-and at each material milestone. Never write them all at the end.
-
-## Pages need a reader
-
-The interview asks a person questions and the quiz tests a person. A record
-says who will read its pages: `"reader": "human"` when someone has agreed to
-answer before code and to take the quiz before merge, `"reader": "none"`
-otherwise. A record that names no reader has none.
-
-Without a reader a full task writes six pages: no `interview.html` and no
-`quiz.html`. Their content is not dropped. `next` hands this rule to the
-authors of the plan, the buy-in doc and the brief:
-
-> No person will answer this task's pages. Put each question you would have
-> asked into this page with your recommendation, label it as the agent's call,
-> and list the calls still open where the reader decides on the merge.
-
-Set the reader honestly at task start. A page that waits for an answer nobody
-gives costs a full author and review loop and tells the next reader nothing.
-
-## How to produce a page
-
-`cargo xtask task-artifact next --task ID` reads the task record, the pages and
-the task's verdict log and prints the one next step: author, review, rewrite,
-commit, build or complete. Author, review, rewrite and build steps carry a
-`handover`: the page's prompt from the tables above with its braces filled from
-the record's `prompt` values, the exemplar, the output path, the task context
-and the pages so far, plus the last review's findings for a rewrite. Pass it to
-the subagent unchanged; `unfilled` names any `prompt` value the record lacks,
-whose brace stays in the text. It advises and never blocks. It exits 3 when it also
-has a warning, such as a page edited after its last review. Completion does not
-read the log.
-
-1. **Use a dedicated author.** Start a fresh subagent for each page and give it
-   the [author-artifact brief](../.claude/skills/author-artifact/SKILL.md) and
-   the step's `handover`: the prompt with the task filled in, the exemplar
-   path, the task context and the task's pages written so far. If your host has no subagents, give the page its own turn and
-   do nothing else in it. Write the pages in the order of their table.
-   Authors working in parallel each derive the same headline finding again; one
-   after another, each builds on the last.
-2. **Read the exemplar first.** The author reads the matching page in
-   [examples/thariq/](../examples/thariq/) in full before writing. Match its
-   depth, density and the job its interactions do, not its layout or domain.
-   Those pages run 27–41 KB. A full-set page a fraction of that size on a
-   comparable task usually summarizes where it should show; a brief
-   follows its own length rule above.
+1. **Use a dedicated author.** Start one fresh subagent with the
+   [author-artifact brief](../.claude/skills/author-artifact/SKILL.md) and the
+   `handover`. An author that has not been writing the change reads the code
+   as it is, which is where the briefs that paid off found their defects. If
+   your host has no subagents, give the brief a turn of its own.
+2. **Read the exemplar first.** The brief is modelled on Thariq Shihipar's
+   [tweakable plan](../examples/thariq/08-implementation-plan.html), from his
+   "Know your unknowns" pages. Match the job its interactions do, not its
+   layout, domain or length.
 3. **Ground every claim.** Name the file, function, test or commit behind each
-   finding. Do not invent findings, options, questions or reference code to fill
-   space. A small change gets a smaller page, but it must still teach something
-   the diff alone does not. A finding an earlier page showed gets a one-line
-   citation in later pages, not a second derivation.
-4. **Look at it.** Run `cargo xtask task-artifact screenshot --task ID`. It
-   renders each page with local Chrome at desktop and phone width into
+   unknown, and label output as captured only when it was run and pasted.
+4. **Look at it.** `cargo xtask task-artifact screenshot --task ID` renders the
+   page with local Chrome at desktop and phone width into
    `target/artifact-screenshots/ID/` and reports console errors, phone-width
-   overflow, network requests and any file the page loads from disk. View the
-   tiles next to the exemplar's
-   (`node scripts/artifact-screenshots.cjs OUT_DIR examples/thariq/PAGE.html`)
-   and fix what the report flags before committing. Without Node or Chrome, say
-   so rather than implying visual review.
-5. **Get an independent review** of each page of the full set, and of a brief
-   when its owner wants one. Start another fresh subagent, never the
-   author, with the [reviewer brief](../.claude/skills/review-artifact/SKILL.md) and
-   the review step's `handover`: the page, its prompt, the exemplar and the task
-   context. A different model is better when
-   your host offers one. On REVISE, give the findings to a fresh author to
-   rewrite the page, then have a fresh reviewer judge the whole page again:
-   each review samples different claims, and rewrites can break what was
-   right. After two rewrites, commit the best
-   version. When a review's only finding is one wrong label, number or citation,
-   the task owner may correct it by hand instead of starting an author; a fresh
-   reviewer still judges the page, and the record's `review.verification` names
-   the hand edit. Record every review with `cargo xtask task-artifact verdict --task ID
-   --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL
-   --findings N --notes -`, piping the reviewer's whole reply to stdin, where
-   shell quoting cannot cut it (at most 64 KiB; `--notes TEXT` takes it inline).
-   N counts every finding the reviewer listed, blocking or not, and MODEL is the
-   reviewer's model as the host names it. The rewrite step hands those notes to
-   the next author. It
-   appends a row with the page's SHA-256 to `reviews.json` in the task's folder
-   and keeps a copy of the reviewed version under `target/artifact-reviews/`;
-   `best` marks the reviewed version restored after two rewrites. Commit the log
-   with the page; the artifact author's hook refuses edits to it. Copy each
-   page's final verdict and any findings left open into the task record's
-   `review.verification`.
+   overflow, network requests and any file the page loads from disk. Without
+   Node or Chrome, say so rather than implying visual review.
+5. **Act on it, then commit it.** The task owner reads the brief, checks what
+   it found against the code, changes the plan where the brief is right, and
+   commits the page before any product code. One author pass is the whole
+   loop. There is no reviewer and no rewrite: in the paired run the review loop
+   cost more than the authoring, and most of its findings were about the page,
+   not the change. Record what the brief changed in the task record's
+   `discoveries`.
 
-Fill in the braces from the task: `next` fills them from the record's `prompt`
-values (`task` in the two prompts that open "I'm about to", `task_noun` in the
-other `{task}`s, `area`, `problem`, `reference`) and reads the tables by their
-File column. The adapted prompt is the author's instruction. The exemplar is
-the bar.
-
-## Replies come back into the work
-
-Thariq's pages end with a reply the reader assembles and copies back. When the
-record's reader is human, present the pages due before code and wait for the
-reply before writing product code; the answers are task input. If the reader
-does not answer after all, follow this rule, which `next` hands the interview
-and buy-in authors:
-
-> When no one answers the discovery pages, answer each interview question with
-> your recommendation, label it as the agent's call, and carry the questions
-> still open into the buy-in doc.
-
-## Keep pages about the feature
-
-A page speaks to a reviewer about the change. Keep harness mechanics out of it:
-commit hashes, revision numbers, verification boilerplate and paragraphs
-about what the page is not. One short label is enough when a page shows a model
-rather than the running product. Report verification limits to the caller and in
-the task record.
+Keep the brief about the change. Leave out commit hashes, verification
+boilerplate and paragraphs about what the page is not.
 
 ## Files and commits
 
-The harness checks presence, a floor of text and order. Quality is the
-reviewer's and the human's call.
+The harness checks presence, a floor of text and order. Whether the brief is
+useful is the owner's call.
 
 1. After creating the task record, run `cargo xtask task-artifact style --task ID`.
    It creates `harness/task-artifacts/ID/` and writes the shared stylesheet to
    `target/artifact-style.html` as a `<style data-artifact-foundation="1">`
-   block. Paste that block first in each page's head and use its tokens for
-   color, type and spacing. Layout stays page-specific.
-2. Write the pages in that folder under the file names in the tables, with the
-   verdict log `reviews.json`. Each page is one self-contained file that loads
-   nothing else, not even from its own folder, so it renders the same in a file
-   preview, on a code host or as an attachment, and a later style change never
-   alters it. A required page holds at least 1,200 characters outside
-   its tags and styles; a page that is only the stylesheet is refused.
-3. Commit as you go. Completion and handoff read the branch's own commits since
-   the base. At any stage, the pages due before code come before the first
-   product-code commit. At completion, a full task's notes come before the last
-   product-code commit, and its buy-in doc and quiz at or after it. Code and pages must be committed when
-   you claim completion. Git history keeps every earlier version.
+   block. Paste that block first in the brief's head and use its tokens for
+   color, type and spacing.
+2. Write `harness/task-artifacts/ID/brief.html` as one self-contained file that
+   loads nothing else, so it renders the same in a file preview, on a code host
+   or as an attachment. It holds at least 1,200 characters outside its tags and
+   styles; a page that is only the stylesheet is refused.
+3. Commit the brief before the first product-code commit. Completion and
+   handoff read the branch's own commits since the base and check that order,
+   for a partial task too. Code and brief must be committed when you claim
+   completion. Nothing is owed after the code, so a late fix touches no page.
 
 On a pull request a code host checks out a merge commit it built, from which
 the branch's own commits cannot be read. CI passes the branch tip to
@@ -256,12 +137,12 @@ the branch's own commits cannot be read. CI passes the branch tip to
 Without `--head`, a merge commit built after the target moved can make a
 correctly ordered branch look late; the error says to pass it.
 
-`cargo xtask task-artifact guard --task ID` fails until the pages due before
-code are committed. The opt-in [Codex example](../examples/codex-artifact-hooks.json) runs it
+`cargo xtask task-artifact guard --task ID` fails until a brief the task owes
+is committed. The opt-in [Codex example](../examples/codex-artifact-hooks.json) runs it
 before `apply_patch` edits to product code. It does not cover shell or MCP
 writes. The default stop hook gates completion claims; see
 [COMPLETION.md](COMPLETION.md).
 
-Examples are from Thariq Shihipar's
+The exemplar is from Thariq Shihipar's
 [html-effectiveness](https://github.com/ThariqS/html-effectiveness), vendored
-unmodified under Apache-2.0; see [their provenance](../examples/thariq/README.md).
+unmodified under Apache-2.0; see [its provenance](../examples/thariq/README.md).

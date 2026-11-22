@@ -44,31 +44,27 @@ pub const TABLE: &[(&str, &str)] = &[
     ),
     (
         "task-artifact style --task ID",
-        "Create the task's artifact folder and write the shared stylesheet block to paste into each page (docs/ARTIFACTS.md)",
+        "Create the task's page folder and write the shared stylesheet block to paste into its brief (docs/ARTIFACTS.md)",
     ),
     (
         "task-artifact check --task ID",
-        "Check the task's required pages exist and carry the stylesheet inline",
+        "Check that a brief the task owes exists, carries the stylesheet inline and is more than a placeholder",
     ),
     (
         "task-artifact screenshot --task ID",
-        "Render the task's pages to PNG tiles under target/artifact-screenshots with local Chrome; reports console errors, phone overflow and network requests",
+        "Render the task's brief to PNG tiles under target/artifact-screenshots with local Chrome; reports console errors, phone overflow and network requests",
     ),
     (
         "task-artifact guard --task ID",
-        "Fail until the task's pages due before code are committed; for host hooks before product edits",
+        "Fail until a brief the task owes is committed; for host hooks before product edits",
     ),
     (
         "task-artifact next --task ID",
-        "Say which page to write, review, rewrite or commit next; exit 3 adds advice, such as a page edited after review",
-    ),
-    (
-        "task-artifact verdict --task ID --page PAGE --verdict pass|revise|best --reviewer NAME --model MODEL --findings N --notes TEXT|-",
-        "Append one page review, with the page's SHA-256, finding count and reviewer model, to the task's reviews.json; --notes - reads the notes from stdin",
+        "Say the one next step of a task: record, write or commit its brief, build, or complete; exit 3 adds advice, such as a brief over its size",
     ),
     (
         "artifact-hook --task ID",
-        "Hook adapter for Codex apply_patch events: reads one event on stdin and refuses product edits until the task's pages due before code are committed; run by scripts/agent-artifact-write.sh",
+        "Hook adapter for Codex apply_patch events: reads one event on stdin and refuses product edits until a brief the task owes is committed; run by scripts/agent-artifact-write.sh",
     ),
     (
         "coordination",
@@ -234,7 +230,7 @@ mod tests {
         }
         let wrong = usage_error(&["task-artifact", "nxt", "--task", "X"]);
         assert_eq!(wrong.command, "task-artifact");
-        assert_eq!(wrong.usage.len(), 6);
+        assert_eq!(wrong.usage.len(), 5);
         let check = usage_error(&["check"]);
         assert_eq!(
             check.to_string(),

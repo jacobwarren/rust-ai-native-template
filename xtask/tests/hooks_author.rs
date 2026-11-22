@@ -76,18 +76,9 @@ fn agent_definitions_preload_their_skills_and_limit_writes() {
         author.contains("scripts/agent-hook.sh\" author claude"),
         "{author}"
     );
-    let reviewer =
-        std::fs::read_to_string(root.join(".claude/agents/artifact-reviewer.md")).unwrap();
-    assert!(reviewer.contains("model: sonnet") && reviewer.contains("  - review-artifact"));
-    let tools = reviewer.lines().find(|l| l.starts_with("tools:")).unwrap();
-    assert!(
-        !tools.contains("Write") && !tools.contains("Edit"),
-        "{tools}"
-    );
-    for (agent, skill) in [
-        ("artifact-author", "author-artifact"),
-        ("artifact-reviewer", "review-artifact"),
-    ] {
+    // One role: the brief's author. No reviewer agent is shipped.
+    assert!(!root.join(".claude/agents/artifact-reviewer.md").exists());
+    for (agent, skill) in [("artifact-author", "author-artifact")] {
         let toml =
             std::fs::read_to_string(root.join(format!(".codex/agents/{agent}.toml"))).unwrap();
         assert!(toml.contains(&format!("name = \"{agent}\"")), "{toml}");

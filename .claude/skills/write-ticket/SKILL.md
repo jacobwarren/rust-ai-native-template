@@ -29,7 +29,7 @@ Write these five sections, short and concrete:
      protected path (policy, gates, hooks) beyond the product's own
      acceptance files (workflows, scenarios, readiness, goldens,
      `docs/PRODUCT.md`), no `Cargo.toml`, and none
-     of the ceremony's own files: the author-artifact, review-artifact and
+     of the ceremony's own files: the author-artifact and
      write-ticket skills, agents, `docs/ARTIFACTS.md`. Other skills can change
      in a small task. Small tasks need no pages; the gate reads the branch
      and refuses one that touches those paths.
@@ -37,11 +37,6 @@ Write these five sections, short and concrete:
      undo (a persistence or wire format, a security boundary, a migration).
      It owes one page, a brief before code (docs/ARTIFACTS.md); the record's
      four review answers report on the finished work.
-   - **full** when the owner asks to steer the design before code and to
-     understand it before merge. It owes the eight-page set. Say who reads the
-     pages: `"reader": "human"` only when a person has agreed to answer the
-     interview and take the quiz; otherwise `"none"`, and those two pages are
-     not written.
 3. **Acceptance as named tests.** One line per behaviour:
    `test_name_in_snake_case: given …, when …, then …`. Name tests that do not
    exist yet; these names become the record's remaining actions now and its
@@ -64,8 +59,7 @@ remaining actions:
   "id": "<id>",
   "work_item": "<tracker URL, or null>",
   "status": "partial",
-  "tier": "small | standard | full",
-  "reader": "none | human",
+  "tier": "small | standard",
   "requirements": ["<readiness ids from Scope>"],
   "related_gaps": [{"id": "<gap>", "disposition": "unaffected", "rationale": "<why>"}],
   "gap_review": "<which gaps were read and why they are or are not touched>",
@@ -74,18 +68,15 @@ remaining actions:
   "documentation": {"updated": [], "rationale": "<docs the work will change, or why none>"},
   "prompt": {
     "task": "<verb phrase that reads after I'm about to>",
-    "task_noun": "<noun phrase naming what is built; reads after build and shipping>",
-    "area": "<the code area, for the brief or the blindspot pass>",
-    "problem": "<the Problem, with no final period>",
-    "reference": "<one code path that already behaves this way, singular>"
+    "area": "<the code area the brief should investigate>"
   },
   "summary": "<Problem, one sentence>",
   "remaining": ["<one per named test: test_name: given …, then …>", "<Validation commands>"]
 }
 ```
 
-A standard or full task fills `prompt`: `task-artifact next` puts these values into
-each page's prompt (docs/ARTIFACTS.md), and a value left as its `<…>`
+A standard task fills `prompt`: `task-artifact next` puts these values into
+the brief's prompt (docs/ARTIFACTS.md), and a value left as its `<…>`
 placeholder or blank stays a visible brace. A small task can drop `prompt`.
 
 `id` matches the file name (letters, digits, `-`, `_`). Leave `review` out until

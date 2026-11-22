@@ -65,8 +65,7 @@ const PROTECTED_FILES: [&str; 12] = [
 /// these stay protected, so another skill changes without a receipt and, being
 /// outside the ceremony, can change in a small task (docs/ARTIFACTS.md "Task
 /// size"). The guard copies this list too.
-pub(crate) const CEREMONY_SKILLS: [&str; 3] =
-    ["author-artifact", "review-artifact", "write-ticket"];
+pub(crate) const CEREMONY_SKILLS: [&str; 2] = ["author-artifact", "write-ticket"];
 
 /// Whether `path` lies in one of the ceremony skills, in either host's folder.
 /// Names compare without case: on a case-insensitive checkout

@@ -153,31 +153,17 @@ scenario runners assume a program that exits, so the agent rewrote
 `xtask/src/workflows.rs` and added a service driver before it could grade its
 own product.
 
-## Calibrating the page reviewer
+## The page reviewer, retired
 
-The artifact reviewer is a semantic checker, so it gets the calibration above.
-Run fresh reviewers on pages whose verdict is already known and compare. The
-first calibration ran on the template's own history, which now lives at the
-commit `harness/archive.json` names (branch `showcase/template-history`):
-three round-1 drafts of the next-prompt task that were revised
-(`harness/calibration/next-prompt/` there) and its three committed pages that
-passed. Its method and every round are in `docs/plans/brief-calibration.md` at
-that commit. What it found, and what the current review brief carries:
-
-- Before the brief had fixed checks, 19 of 21 runs gave the original verdict,
-  but a contradicting reply was caught 2 of 3 times, typed output shown as
-  captured 2 of 3, an uncited tile 1 of 3 and a dropped ticket item 1 of 4.
-- With the four fixed checks (consistent, provenance, cited, ticket) every
-  targeted defect was raised 3 of 3. Pages expected to pass did worse, mostly
-  for real defects earlier reviews had missed.
-- `cited` is read more strictly than written, and `ticket` fires on changes
-  reported only as decisions. These are known gaps, not tuned away.
-
-To calibrate again, build a set from your own tasks: keep each reviewed draft
-(`task-artifact verdict` saves one under `target/artifact-reviews/`), write the
-expected verdict and its reason down before any run, and hand each fresh
-reviewer the prompt the page itself quotes. Rerun whenever the review brief,
-the reviewer's model or tools, or the review line of the hand-over
-(xtask/src/handover.rs) change. Three runs per page is the smallest count that
-shows a miss rate. A check that stays below 3 of 3 is a known gap: record it
-rather than tuning the brief to its own calibration set.
+This template once had an independent reviewer agent for task pages, calibrated
+the way the guardrail section above describes: fresh reviewers judged pages
+whose verdict was already known. Before the review brief had fixed checks, 19
+of 21 runs gave the original verdict but missed specific defects one time in
+three; with four fixed checks (consistent, provenance, cited, ticket) every
+targeted defect was raised 3 of 3, and pages expected to pass did worse. The
+reviewer was removed after the paired run above: its loop cost more than the
+authoring and most findings were about the page, not the change. The four
+checks survive as the author's own checklist in the author-artifact skill. The
+reviewer, its brief and the calibration record are on the
+`showcase/full-ceremony` branch, and the calibration set at the commit
+`harness/archive.json` names.

@@ -52,13 +52,13 @@ fn small_task_completes_with_no_pages() {
     let v = complete_at(&f, &base);
     assert_eq!(v["ok"], true, "{v}");
     assert!(!f.0.join("harness/task-artifacts/TASK-1").exists());
-    // The same change as a standard task still needs its pages.
-    f.write("harness/tasks/TASK-1.json", f.record("complete"));
+    // The same change as a standard task needs its brief.
+    f.write("harness/tasks/TASK-1.json", f.standard("complete"));
     f.commit("standard record");
     f.evidence();
     let v = complete_at(&f, &base);
     assert_eq!(v["ok"], false);
-    assert!(errors(&v).contains("missing blindspots.html"), "{v}");
+    assert!(errors(&v).contains("missing brief.html"), "{v}");
 }
 
 #[test]
@@ -120,14 +120,11 @@ fn protected_cargo_and_ceremony_paths_force_standard() {
         "crates/app/Cargo.toml",
         "docs/ARTIFACTS.md",
         "docs/skills/author-artifact.md",
-        "docs/skills/review-artifact.md",
-        ".agents/skills/review-artifact/SKILL.md",
         ".agents/skills/write-ticket/SKILL.md",
         ".agents/skills/author-artifact/SKILL.md",
         ".claude/skills/author-artifact/SKILL.md",
-        ".claude/skills/review-artifact/SKILL.md",
         ".claude/skills/write-ticket/SKILL.md",
-        ".agents/skills/Review-Artifact/SKILL.md",
+        ".agents/skills/Author-Artifact/SKILL.md",
         ".agents/skills/README.md",
         ".claude/settings.json",
         ".claude/commands/new.md",
@@ -188,7 +185,7 @@ fn unrelated_skills_stay_small() {
     assert!(!errors(&v).contains("task tier small"), "{v}");
     assert!(!errors(&v).contains("transition rationale"), "{v}");
     // The same edit to a ceremony skill needs a receipt as well as the standard tier.
-    f.text(".claude/skills/review-artifact/SKILL.md", "one line\n");
+    f.text(".claude/skills/author-artifact/SKILL.md", "one line\n");
     f.commit("ceremony skill");
     let v = handoff_at(&f, &base);
     assert!(errors(&v).contains("task tier small"), "{v}");
@@ -223,17 +220,20 @@ fn every_page_check_reads_the_tier() {
     )
     .unwrap();
     assert!(hook.wait().unwrap().success());
-    // A page a small task chooses to write must still carry the stylesheet.
-    f.text("harness/task-artifacts/TASK-1/plan.html", "<p>no style</p>");
+    // A brief a small task chooses to write must still carry the stylesheet.
+    f.text(
+        "harness/task-artifacts/TASK-1/brief.html",
+        "<p>no style</p>",
+    );
     let o = Command::new(env!("CARGO_BIN_EXE_xtask"))
         .args(["coordination"])
         .current_dir(&f.0)
         .output()
         .unwrap();
     assert!(!o.status.success());
-    // A standard record without pages fails the same checks.
+    // A standard record without its brief fails the same checks.
     std::fs::remove_dir_all(f.0.join("harness/task-artifacts")).unwrap();
-    f.write("harness/tasks/TASK-1.json", f.record("complete"));
+    f.write("harness/tasks/TASK-1.json", f.standard("complete"));
     let o = Command::new(env!("CARGO_BIN_EXE_xtask"))
         .args(["task-artifact", "guard", "--task", "TASK-1"])
         .current_dir(&f.0)
@@ -243,43 +243,58 @@ fn every_page_check_reads_the_tier() {
 }
 
 #[test]
-fn tier_is_strict_and_an_old_record_defaults_to_the_full_set() {
+fn tier_is_small_or_standard() {
     let f = Fixture::new();
-    let mut r = f.record("partial");
-    r["tier"] = json!("tiny");
-    f.write("harness/tasks/TASK-1.json", r);
-    let o = Command::new(env!("CARGO_BIN_EXE_xtask"))
-        .args(["coordination"])
-        .current_dir(&f.0)
-        .output()
-        .unwrap();
-    let out = String::from_utf8_lossy(&o.stdout);
-    assert!(
-        !o.status.success() && out.contains("unknown variant"),
-        "{out}"
-    );
-    // The guard reports a bad tier as itself, never as missing pages.
-    for bad in [json!("Small"), Value::Null] {
-        let mut r = f.record("partial");
-        r["tier"] = bad;
+    let coordination = |r: Value| {
         f.write("harness/tasks/TASK-1.json", r);
         let o = Command::new(env!("CARGO_BIN_EXE_xtask"))
-            .args(["task-artifact", "guard", "--task", "TASK-1"])
+            .args(["coordination"])
             .current_dir(&f.0)
             .output()
             .unwrap();
-        let out = String::from_utf8_lossy(&o.stdout);
-        assert!(
-            !o.status.success() && !out.contains("missing blindspots"),
-            "{out}"
-        );
+        (
+            o.status.success(),
+            String::from_utf8_lossy(&o.stdout).into_owned(),
+        )
+    };
+    // The full tier is gone, by name; so is anything else that is not one of the two.
+    for bad in [json!("full"), json!("tiny"), json!("Small"), Value::Null] {
+        let mut r = f.record("partial");
+        r["tier"] = bad.clone();
+        let (ok, out) = coordination(r);
+        assert!(!ok && !out.contains("missing brief"), "{bad}: {out}");
+        if bad.is_string() {
+            assert!(out.contains("expected `small` or `standard`"), "{out}");
+        }
     }
-    // A schema 6 record with no tier keeps its meaning: the eight-page set.
-    f.write("harness/tasks/TASK-1.json", f.record("complete"));
-    let o = Command::new(env!("CARGO_BIN_EXE_xtask"))
-        .args(["task-artifact", "check", "--task", "TASK-1"])
-        .current_dir(&f.0)
-        .output()
-        .unwrap();
-    assert!(String::from_utf8_lossy(&o.stdout).contains("missing blindspots.html"));
+    // Records written when a full tier chose its pages by reader still parse.
+    for reader in ["none", "human"] {
+        let mut r = f.standard("partial");
+        r["reader"] = json!(reader);
+        r["prompt"] = json!({"task":"t","task_noun":"n","area":"a","problem":"p","reference":"r"});
+        assert!(coordination(r).0, "{reader}");
+    }
+    // No tier means small: nothing is owed.
+    assert!(coordination(f.record("complete")).0);
+}
+
+#[test]
+fn a_record_below_schema_7_cannot_claim() {
+    let f = Fixture::new();
+    let base = f.git(&["rev-parse", "HEAD"]);
+    let mut old = f.standard("complete");
+    old["schema_version"] = json!(6);
+    f.write("harness/tasks/TASK-1.json", old);
+    // It is history: readable, and owing nothing, whatever tier it names.
+    assert_eq!(f.run(&["coordination"])["ok"], true);
+    f.text("implementation.rs", "// changed\n");
+    f.commit("work under an old record");
+    f.evidence();
+    let v = complete_at(&f, &base);
+    assert_eq!(v["ok"], false);
+    assert!(
+        errors(&v).contains("Upgrade this active task to schema_version 7"),
+        "{v}"
+    );
+    assert!(!errors(&v).contains("brief.html"), "{v}");
 }

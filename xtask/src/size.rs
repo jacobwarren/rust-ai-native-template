@@ -8,10 +8,9 @@ use std::path::Path;
 /// Paths that define the ceremony itself; editing them always needs a standard
 /// task and its brief. The ceremony skills, in either host, are added by `ceremony_skill`;
 /// other skills are ordinary paths.
-const CEREMONY: [&str; 5] = [
+const CEREMONY: [&str; 4] = [
     "docs/ARTIFACTS.md",
     "docs/skills/author-artifact.md",
-    "docs/skills/review-artifact.md",
     ".claude/agents/",
     ".codex/agents/",
 ];

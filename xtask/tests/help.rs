@@ -29,7 +29,7 @@ fn help_narrows_to_the_commands_asked() {
     let mid = f.run(&["task-artifact", "next", "--help", "--task", "X"]);
     assert_eq!(keys(&mid), ["task-artifact next --task ID"]);
     let family = keys(&f.run(&["help", "task-artifact"]));
-    assert_eq!(family.len(), 6, "{family:?}");
+    assert_eq!(family.len(), 5, "{family:?}");
     assert!(family.iter().all(|k| k.starts_with("task-artifact ")));
     // These arms take any word, so --help must be read before them.
     for (words, key) in [
@@ -61,7 +61,7 @@ fn wrong_arguments_print_the_matching_usage() {
     );
     // A typo in the second word gets every command under the first.
     let typo = f.run(&["task-artifact", "nxt", "--task", "X"]);
-    assert_eq!(typo["usage"].as_array().unwrap().len(), 6, "{typo}");
+    assert_eq!(typo["usage"].as_array().unwrap().len(), 5, "{typo}");
     // No flags in the usage, no clause about their order.
     let check = f.run(&["check"]);
     assert_eq!(

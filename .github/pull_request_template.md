@@ -6,12 +6,11 @@ Problem and observable outcome.
 
 Behavior, boundaries, contracts, and intentional policy changes.
 
-## HTML task review
+## Task brief
 
-Most tasks are small and have no pages. Link a standard task's brief, or a
-full task's discovery pages, implementation notes and buy-in doc (and the
-quiz, when a person takes it), from harness/task-artifacts/ID/. Distinguish demonstration from
-observed behavior. Quiz completion is not reviewer approval.
+Most tasks are small and have no page. Link a standard task's brief,
+harness/task-artifacts/ID/brief.html, and say what it changed in the plan.
+Distinguish demonstration from observed behavior.
 
 ## Evidence
 

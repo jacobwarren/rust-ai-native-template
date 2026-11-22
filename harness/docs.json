@@ -9,19 +9,13 @@
     "path": ".agents/skills/author-artifact/SKILL.md",
     "owner": "maintainers",
     "status": "active",
-    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); xtask/tests/briefs.rs; reviewer calibration (docs/EVALUATION.md)"
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal)"
   },
   {
     "path": ".agents/skills/investigate/SKILL.md",
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal; DOC009 keeps the body equal to the GEPA seed docs/skills/investigate.md)"
-  },
-  {
-    "path": ".agents/skills/review-artifact/SKILL.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); xtask/tests/briefs.rs; reviewer calibration (docs/EVALUATION.md)"
   },
   {
     "path": ".agents/skills/write-ticket/SKILL.md",
@@ -36,12 +30,6 @@
     "verified_by": "cargo xtask docs; hooks_author tests"
   },
   {
-    "path": ".claude/agents/artifact-reviewer.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs; hooks_author tests"
-  },
-  {
     "path": ".claude/skills/add-product-command/SKILL.md",
     "owner": "maintainers",
     "status": "active",
@@ -51,19 +39,13 @@
     "path": ".claude/skills/author-artifact/SKILL.md",
     "owner": "maintainers",
     "status": "active",
-    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); xtask/tests/briefs.rs; reviewer calibration (docs/EVALUATION.md)"
+    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal)"
   },
   {
     "path": ".claude/skills/investigate/SKILL.md",
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal; DOC009 keeps the body equal to the GEPA seed docs/skills/investigate.md)"
-  },
-  {
-    "path": ".claude/skills/review-artifact/SKILL.md",
-    "owner": "maintainers",
-    "status": "active",
-    "verified_by": "cargo xtask docs (DOC007 keeps both host copies equal); xtask/tests/briefs.rs; reviewer calibration (docs/EVALUATION.md)"
   },
   {
     "path": ".claude/skills/write-ticket/SKILL.md",
@@ -228,6 +210,12 @@
     "verified_by": "cargo xtask docs; harness/tasks/lighter-ceremony.json"
   },
   {
+    "path": "docs/plans/one-brief.md",
+    "owner": "maintainers",
+    "status": "active",
+    "verified_by": "cargo xtask docs; harness/tasks/one-brief.json"
+  },
+  {
     "path": "docs/plans/pages-by-risk.md",
     "owner": "maintainers",
     "status": "active",
@@ -268,12 +256,6 @@
     "owner": "maintainers",
     "status": "active",
     "verified_by": "cargo xtask docs; source and acceptance review following docs/MAINTENANCE.md"
-  },
-  {
-    "path": "docs/skills/review-artifact.md",
-    "owner": "maintainers",
-    "status": "archived",
-    "verified_by": "cargo xtask docs; forwarding note to the skill"
   },
   {
     "path": "examples/thariq/README.md",

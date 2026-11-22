@@ -1,16 +1,15 @@
 mod archive;
 mod artifact_hook;
 mod artifacts;
+mod brief;
 mod checks;
 mod completion;
 mod config;
 mod golden;
-mod handover;
 mod help;
 mod history;
 mod readiness;
 mod repo;
-mod router;
 mod runner;
 mod scenarios;
 mod size;
@@ -55,27 +54,6 @@ fn main() -> ExitCode {
     }
 }
 
-/// Most bytes `verdict --notes -` reads: a long review, far short of a runaway pipe.
-const NOTES_CAP: usize = 64 * 1024;
-
-/// Notes piped to `verdict --notes -`. The length is checked on bytes before
-/// decoding, so an over-long reply cut inside a character still reads as too long.
-fn piped_notes() -> Result<String> {
-    use std::io::Read;
-    let mut bytes = Vec::new();
-    std::io::stdin()
-        .take(NOTES_CAP as u64 + 1)
-        .read_to_end(&mut bytes)?;
-    if bytes.len() > NOTES_CAP {
-        return Err("--notes - read more than 64 KiB from stdin; pipe the review itself".into());
-    }
-    let notes = String::from_utf8(bytes).map_err(|_| "--notes - needs UTF-8 on stdin")?;
-    if notes.trim().is_empty() {
-        return Err("--notes - read nothing from stdin; pipe the reviewer's reply".into());
-    }
-    Ok(notes)
-}
-
 fn dispatch() -> Result<Value> {
     let root = repo::root()?.canonicalize()?;
     let args: Vec<String> = std::env::args().skip(1).collect();
@@ -98,57 +76,20 @@ fn dispatch() -> Result<Value> {
         }
         ["task-artifact", "style", "--task", id] => artifacts::install(&root, id),
         ["task-artifact", "guard", "--task", id] => artifacts::guard(&root, id),
-        ["task-artifact", "next", "--task", id] => router::next(&root, id),
-        [
-            "task-artifact",
-            "verdict",
-            "--task",
-            id,
-            "--page",
-            page,
-            "--verdict",
-            verdict,
-            "--reviewer",
-            reviewer,
-            "--model",
-            model,
-            "--findings",
-            findings,
-            "--notes",
-            notes,
-        ] => {
-            // "-" reads the reviewer's whole reply from stdin, where shell quoting cannot cut it.
-            let piped = if *notes == "-" {
-                Some(piped_notes()?)
-            } else {
-                None
-            };
-            router::verdict(
-                &root,
-                id,
-                &router::Review {
-                    page,
-                    verdict,
-                    reviewer,
-                    notes: piped.as_deref().unwrap_or(notes),
-                    findings,
-                    model,
-                },
-            )
-        }
+        ["task-artifact", "next", "--task", id] => brief::next(&root, id),
         ["task-artifact", "screenshot", "--task", id] => artifacts::screenshots(&root, id),
         ["task-artifact", "check", "--task", id] => {
             let task = task_record::read(&root, id)?;
-            let pages = artifacts::Pages::of(&task);
+            let owed = artifacts::owed(&task);
             artifacts::check(
                 &root,
                 id,
-                &pages,
+                owed,
                 task.status == task_record::Status::Complete,
                 None,
                 None,
             )?;
-            Ok(json!({"ok":true,"task":id,"pages":pages.all()}))
+            Ok(json!({"ok":true,"task":id,"brief_owed":owed}))
         }
         ["coordination"] => completion::validate(&root),
         ["complete", "--task", id, "--base", base, "--report", path] => {

@@ -19,11 +19,11 @@ pub fn task(
 ) -> Result<Value> {
     let task = task_record::read(root, id)?;
     let complete = task.status == Status::Complete;
-    let pages = artifacts::Pages::of(&task);
+    let owed = artifacts::owed(&task);
     let artifact_result =
-        artifacts::check(root, id, &pages, complete, Some(base), head).and_then(|()| {
-            // A task with no pages still completes from commits.
-            if complete && pages.is_empty() {
+        artifacts::check(root, id, owed, complete, Some(base), head).and_then(|()| {
+            // A task with no brief still completes from commits.
+            if complete && !owed {
                 artifacts::committed(root, id)
             } else {
                 Ok(())
@@ -31,7 +31,7 @@ pub fn task(
         });
     let size_result = match task.tier() {
         Tier::Small => size::check_small(root, base),
-        Tier::Standard | Tier::Full => Ok(()),
+        Tier::Standard => Ok(()),
     };
     let current = match tracking::load(root) {
         Ok(gaps) => gaps,
@@ -244,12 +244,17 @@ pub fn validate(root: &Path) -> Result<Value> {
             .and_then(|s| s.to_str())
             .ok_or("invalid task filename")?;
         let record = task_record::read(root, id)?;
-        // Handoff and completion demand pages; validation only checks the ones written.
-        if record.schema_version >= 6 && record.status == Status::Complete {
-            artifacts::check(root, id, &artifacts::Pages::of(&record), true, None, None)?;
-        } else if record.schema_version >= 6 {
-            artifacts::check_written(root, id)?;
-        }
+        // Handoff and completion demand a brief; validation only checks one that is written,
+        // unless the record already claims completion.
+        let claims = record.status == Status::Complete;
+        artifacts::check(
+            root,
+            id,
+            claims && artifacts::owed(&record),
+            false,
+            None,
+            None,
+        )?;
         ids.push(id.to_owned());
     }
     // Old records are retained but their evidence is not re-asserted on every edit.
