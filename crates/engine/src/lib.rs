@@ -34,6 +34,7 @@ pub enum Command {
     Complete { id: u64 },
     Remove { id: u64 },
     Undo {},
+    ClearDone {},
 }
 
 #[derive(Clone, Debug, Default)]
@@ -70,6 +71,12 @@ impl Session {
                     .map_err(|e| Error::new("invalid_task", e))?;
                 json!({"id":id})
             }
+            Command::ClearDone {} => {
+                let removed = next
+                    .clear_done()
+                    .map_err(|e| Error::new("nothing_to_clear", e))?;
+                json!({"removed":removed})
+            }
             Command::Undo {} => {
                 next = self
                     .history
@@ -97,6 +104,18 @@ impl Session {
             .map(|(id, task)| json!({"id":id,"title":task.title.as_str(),"done":task.done}))
             .collect();
         json!({"tasks":tasks,"next_id":self.board.next_id(),"revision":self.journal.len(),"can_undo":!self.history.is_empty()})
+    }
+
+    /// True when at least one task is completed, so `clear_done` can succeed.
+    pub fn has_done(&self) -> bool {
+        self.board.tasks().values().any(|task| task.done)
+    }
+
+    /// Read-only counts for the live board; never touches history or journal.
+    pub fn stats(&self) -> Value {
+        let tasks = self.board.tasks();
+        let done = tasks.values().filter(|task| task.done).count();
+        json!({"total":tasks.len(),"open":tasks.len() - done,"done":done})
     }
 
     pub fn journal(&self) -> &[Command] {

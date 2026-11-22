@@ -20,6 +20,7 @@ pub struct Request {
 pub enum Action {
     Discover {},
     Inspect {},
+    Stats {},
     Execute { command: Command },
     Replay { commands: Vec<Command> },
     Capture {},
@@ -32,12 +33,13 @@ pub enum Action {
 pub fn capabilities(session: &Session, persistence: bool) -> Value {
     json!({"protocol_version":1,"boundary":"application_engine",
         "limits":{"request_bytes":MAX_BYTES,"journal_commands":MAX_COMMANDS,"tasks":64,"title_chars":120},
-        "methods":["discover","inspect","execute","replay","capture","save","load"],
+        "methods":["discover","inspect","stats","execute","replay","capture","save","load"],
         "persistence_available":persistence,
         "commands":[
             {"id":"add","example":{"command":"add","title":"Ship a change"},"effect":"Add a task; returns its id"},
             {"id":"complete","example":{"command":"complete","id":1},"effect":"Complete an existing open task"},
             {"id":"remove","example":{"command":"remove","id":1},"effect":"Remove an existing task"},
+            {"id":"clear_done","example":{"command":"clear_done"},"effect":"Remove every completed task in one edit; returns {removed:[ids ascending]}; one undo restores them","enabled":session.has_done()},
             {"id":"undo","example":{"command":"undo"},"effect":"Undo the last edit","enabled":session.inspect()["can_undo"]}
         ],"errors":"Invalid requests and rejected edits preserve session state; see docs/DRIVER.md"})
 }
@@ -79,6 +81,7 @@ impl Driver {
         match action {
             Action::Discover {} => Ok(capabilities(&self.session, self.store.is_some())),
             Action::Inspect {} => Ok(self.session.inspect()),
+            Action::Stats {} => Ok(self.session.stats()),
             Action::Execute { command } => self.session.execute(command),
             Action::Replay { commands } => {
                 self.session.replay(commands)?;

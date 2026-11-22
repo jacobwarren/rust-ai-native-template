@@ -19,7 +19,7 @@ and persistence. Both are disposable examples; adopt real product requirements.
   distributed tracing implementation.
 - The greeting has no storage/network effects. Domain behavior is deterministic.
 
-Examples are executable in [scenarios](../harness/scenarios.json). Domain edge
+Domain edge
 conditions live in [unit tests](../crates/domain/src/lib.rs). Together these
 provide a sample vertical slice to replace with real product behavior.
 
@@ -33,17 +33,12 @@ passes its example checks.
 
 ## Stateful reference
 
-The task board supports add, complete, remove and undo through one engine path.
+The task board supports add, complete, remove, clear_done and undo through one engine path.
 Its driver discovers capabilities, inspects state, captures evidence, replays a
 bounded journal and saves/reopens it. [DRIVER.md](DRIVER.md) defines protocol,
-resource limits and persistence failure semantics. Complete process journeys live
-in harness/workflows.json; baselines are independently authored under
-harness/goldens. [TESTING.md](TESTING.md) records which boundary each check covers.
+resource limits and persistence failure semantics.
 
 A usable example must preserve rejected edits, reopen the last committed state
 after interrupted saving, preserve undo through replay/reopen, and produce the
 same results through stdin and file-script adapters. It must never bless its own
 missing baseline. Live app sessions are single-writer per storage root.
-
-Release scope is defined in [READINESS.md](READINESS.md). Passing the template's
-gate leaves the adopted-product blockers open until real evidence closes them.

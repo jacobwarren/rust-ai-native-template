@@ -9,4 +9,4 @@ Never hide a save error or claim rollback after replacement already occurred.
 
 Exercise independent expected state, replay, undo, failed persistence, and actual
 process interruption. Fault hooks stay inside test builds; no production request
-can trigger them. Golden files require explicit review and never auto-create.
+can trigger them.

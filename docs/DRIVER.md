@@ -9,13 +9,10 @@ Normal use requires no model, Python, sockets, or MCP server.
 From the workspace root:
 
 ```sh
-cargo xtask run -- capabilities
-cargo xtask run -- script examples/board.jsonl
-cargo xtask workflow
-cargo xtask workflow board-lifecycle
+cargo run -p starter-app -- capabilities
+cargo run -p starter-app -- script examples/board.jsonl
 ```
 
-The harness creates isolated state, captures stdout/stderr and reports its paths.
 For interactive integration, build once and start target/debug/starter-app driver.
 Each UTF-8 JSON line is one request; EOF ends the session. For persistent manual
 use, set APP_DATA_DIR to your own private directory. The store acquires a
@@ -26,6 +23,7 @@ A new process starts empty; request load explicitly to restore the saved board.
 {"schema_version":1,"id":1,"action":{"method":"discover"}}
 {"schema_version":1,"id":2,"action":{"method":"execute","command":{"command":"add","title":"Review"}}}
 {"schema_version":1,"id":3,"action":{"method":"inspect"}}
+{"schema_version":1,"id":6,"action":{"method":"stats"}}
 {"schema_version":1,"id":4,"action":{"method":"save"}}
 {"schema_version":1,"id":5,"action":{"method":"capture"}}
 ```
@@ -45,17 +43,22 @@ the tail is never interpreted as a new command. Output is flushed after each rep
 | discover | none | Version, limits, methods and typed command examples |
 | execute | command | One edit through Session; domain rejection preserves all state |
 | inspect | none | Ordered tasks, next_id, revision, can_undo |
+| stats | none | Read-only {total, open, done} counts; changes no state and needs no APP_DATA_DIR |
 | capture | none | Snapshot, journal, snapshot_sha256 and application_engine boundary |
 | replay | commands | Rebuild from an empty session; commit only if every command succeeds |
 | save | none | Persist journal to APP_DATA_DIR/board.json |
 | load | none | Validate stored version/checksum, replay, then replace live state |
 
-Commands are add {title}, complete {id}, remove {id}, undo {} with the discriminator
-command. Unknown fields at every request/command level fail admission, including
+Commands are add {title}, complete {id}, remove {id}, clear_done {}, undo {} with the
+discriminator command. Unknown fields at every request/command level fail admission, including
 empty-struct variants. IDs are unsigned integers. Title parsing rejects controls
 before trimming, requires 1–120 Unicode scalar values after trimming, and caps
 raw input at 512 bytes. A board holds at most 64 tasks; a session journal holds
-at most 256 successful commands, including undo. Undo restores the prior board
+at most 256 successful commands, including undo. clear_done removes every completed task in one edit and
+returns {"removed":[ids ascending]}; with no completed task it fails with
+nothing_to_clear and changes nothing. Its discover descriptor has enabled=true
+only while a task is completed. It never lowers next_id, so removed ids are not
+reissued, and one undo restores all of them in place. Undo restores the prior board
 and next_id; IDs can therefore be reused after undo. Revision counts successful
 journal entries. No command retry deduplication is implied: replay replaces the
 session, while repeating add creates another task.
@@ -81,7 +84,9 @@ After an interrupted write, load reads only board.json. Orphan .board-*.tmp file
 are ignored, never promoted automatically. They may be removed while no writer
 is running. A missing or corrupt primary file is an explicit error; the driver
 never silently replaces it with empty state. Loading bad data preserves the live
-session. Tests inject errors before/after replacement and exit a child process
+session. A saved journal keeps schema_version 1 even when it contains clear_done, so a
+build older than clear_done fails to load it with invalid_store (unknown command) and
+keeps its live session; current builds read every older journal. Tests inject errors before/after replacement and exit a child process
 after syncing its staged file, then reopen the last committed state.
 
 APP_DATA_DIR must be private to the operator. The advisory writer lock coordinates

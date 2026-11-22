@@ -7,7 +7,3 @@ publish.workspace = true
 
 [lints]
 workspace = true
-
-[package.metadata.harness]
-layer = "domain"
-owner = "maintainers"

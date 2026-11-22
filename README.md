@@ -1,177 +1,57 @@
-# Rust Agent Starter
+# Rust starter for agent-built software
 
-A Rust workspace built around a legible, executable engineering harness.
-The greeting and task-board applications are deliberately small. The reusable asset is the feedback loop:
-intent → implementation → bounded verification → evidence → review.
-
-## Start
-
-Prerequisites: Linux or macOS, Git, and Rust installed through rustup.
-The pinned toolchain is **1.99.1** with rustfmt and Clippy. Cargo downloads the
-locked dependencies on first use; after fetching, `CARGO_NET_OFFLINE=true` works.
-Normal Cargo development requires no Python, Node, Docker, model SDK, or paid API.
-Optional experiments use Python; GEPA is installed only when explicitly requested.
+A minimal Rust workspace meant to be handed to a coding agent: a small example
+product with a real process boundary, one page of instructions, and one check
+script. Replace the example with your product.
 
 ```sh
-cd rust-agent-starter
-git init
-cargo xtask doctor
-cargo xtask check ci
-cargo xtask run -- greet Ada
+scripts/ci.sh                                             # the whole gate
+cargo run -p starter-app -- greet Ada
+cargo run -p starter-app -- capabilities
+cargo run -p starter-app -- script examples/board.jsonl
 ```
 
-The first Cargo invocation installs the pinned toolchain if needed.
-`cargo xtask` always uses `--locked`; commit Cargo.lock. `cargo fmt --all`
-formats code. Verification commands check formatting without changing files.
-After customizing the project, commit the baseline and mark the hosted repo as a
-GitHub template if desired. See [adoption steps](docs/ADOPTING.md).
+## What is here
 
-## Included
-
-| Surface | Working implementation |
+| Path | What it is |
 | --- | --- |
-| Agent context | Short AGENTS.md, scoped instructions, canonical docs, Claude pointer |
-| Rust foundation | Edition 2024 workspace, pinned toolchain, lockfile, shared lints |
-| Architecture | Cargo metadata dependency allowlists, owners, unregistered member failures |
-| Knowledge checks | Markdown catalog, local inline links, AGENTS length |
-| Runtime evidence | JSON output/logs, run IDs, isolated per-command state |
-| Verification | Named profiles, timeouts, process groups, logs, source fingerprints |
-| Behavior | Six CLI replay cases with exact exit/output and telemetry assertions |
-| Harness regression | Negative architecture, docs, process, and CLI tests |
-| Delivery | Same CI command locally and on Linux/macOS GitHub Actions |
-| Stateful reference | Discoverable JSON driver, undo, replay, single-writer atomic persistence |
-| Product evidence | Complete process workflows, explicit golden baselines, failure injection |
-| Readiness | Source-bound test/workflow evidence, ranked gaps, named release scopes |
-| Evolution | Plans, decision record, quality inventory, maintenance and evaluation protocol |
+| [AGENTS.md](AGENTS.md) | Everything an agent is told: three steps, the layout, a checklist for protocol changes and the rules. `CLAUDE.md` points at it. |
+| `crates/domain` | Board rules and validated types. No I/O. |
+| `crates/engine` | Sessions, the JSON-lines driver protocol, the journal store. |
+| `crates/app` | The `starter-app` binary: a greeting and the task board's stdin and script drivers. |
+| [docs/PRODUCT.md](docs/PRODUCT.md) | What the example must do. Replace it first. |
+| [docs/DRIVER.md](docs/DRIVER.md) | The protocol: discover, execute, inspect, capture, replay, save, load. |
+| `scripts/ci.sh` | Formatting, Clippy with warnings denied, tests, rustdoc. CI runs the same file on Linux and macOS. |
+| [docs/ADOPTING.md](docs/ADOPTING.md) | Turning this into your product. |
+| [docs/EVALUATION.md](docs/EVALUATION.md) | Why there is so little here, with the numbers. |
 
-## Commands
+The part most worth keeping when you replace the example is the driver
+pattern: the product exposes its real behavior at a process boundary an agent
+can discover, drive, inspect and replay, and the tests go through it.
 
-| Command | Purpose |
-| --- | --- |
-| `cargo xtask help [WORDS]` | List every command, or those starting with WORDS; `cargo xtask WORDS --help` does the same, and wrong arguments print the matching usage |
-| `cargo xtask doctor` | Check tool availability and configuration |
-| `cargo xtask map` | Inspect packages, layers, owners, and declared dependencies |
-| `cargo xtask check fast` | Formatting, architecture, docs, workspace tests |
-| `cargo xtask check ci` | Fast checks plus Clippy, rustdoc, and replay scenarios |
-| `cargo xtask architecture` | Inspect layer violations directly |
-| `cargo xtask docs` | Inspect knowledge structure violations directly |
-| `cargo xtask scenario` | Build and replay the application boundary |
-| `cargo xtask run -- greet Ada` | Run example with isolated state and captured logs |
-| `cargo xtask workflow [id]` | Run stateful journeys and retain evidence |
-| `cargo xtask run -- capabilities` | Discover the application command surface |
-| `cargo xtask run -- script examples/board.jsonl` | Run the stateful example with isolated persistence |
-| `cargo xtask gaps` | Inspect ranked work and release blockers |
-| `cargo xtask readiness --report <path>` | Inspect implemented/verified requirements and scopes |
-| `cargo xtask release template --report <path>` | Fail unless fresh evidence qualifies the example/template |
-| `cargo xtask env` | Inspect root, worktree ID, artifacts, and source fingerprint |
+## Why it is this small
 
-Commands emit JSON on stdout and use nonzero exit codes for failures. Cargo
-bootstrap/compiler failures can occur before xtask starts; preserve their stderr.
-Progress is on stderr. Each profile run writes a self-contained report and logs
-under `target/harness/runs/<run-id>/`. Reports include log paths and command argv.
-Do not commit runtime logs; attach selected, reviewed evidence to a PR.
+This repository used to carry a much larger harness: task records, transition
+receipts, edit and stop hooks, a custom check runner, and up to eight reviewed
+HTML pages per task. Two paired experiments on this codebase found no task
+where it changed whether an agent's work was accepted. The pages cost fifteen
+to forty times the wall-clock time, and the rest of the harness about three
+times. So it was removed. [docs/EVALUATION.md](docs/EVALUATION.md) has the
+tables and, as important, what the experiments did not test: work spread over
+many sessions and people, and tasks hard enough to fail. A third experiment
+rebuilt a small post-edit hook and ran it with hooks firing; it changed
+nothing measurable and was left out (`harness/post-edit-hook` has it).
 
-## Layout
+Nothing was thrown away. Three branches keep it:
 
-```text
-AGENTS.md               short context map
-ARCHITECTURE.md          boundaries and extension rules
-crates/domain/          pure validated domain example
-crates/engine/          shared commands, state, driver and persistence
-crates/app/             replaceable CLI runtime
-xtask/                  Rust harness implementation
-harness/config.json     layers, dependencies, named command profiles
-harness/scenarios.json  replayable public behavior contracts
-harness/docs.json       document ownership and verification catalog
-docs/                   intent, decisions, plans, quality, operating procedures
-.github/workflows/      verification and scheduled structural maintenance
-```
+- `showcase/full-harness`: the harness as it stood at the last experiment,
+  with its full evaluation write-up.
+- `showcase/full-ceremony`: the last commit with the eight-page set and the
+  page reviewer.
+- `showcase/template-history`: the template's own task history under that
+  ceremony.
 
-Start an agent with: “Read AGENTS.md. Implement [outcome]. Acceptance criteria:
-[observable behavior]. Verify with the repository harness and report evidence.”
-For a new product, use the [first-task prompt](docs/ADOPTING.md).
+## Requirements
 
-This is an executable starting point, not an assertion that every Rust product
-needs these exact crates or that the harness improves every model. Read the
-[known limits](docs/HARNESS.md) and [evaluation protocol](docs/EVALUATION.md).
-The greeting is disposable; keep the feedback loop.
-
-## Optional agent evaluation and optimization
-
-The starter includes a separately invoked task evaluator and GEPA adapter.
-Start with the [experiment guide](experiments/README.md). The self-contained demo
-requires Python 3.11+ and Git, and tests real Rust behavior with scripted agents:
-
-```sh
-python3 -m experiments.evaluator.demo --output target/experiments/demo
-```
-
-GEPA installation, budgets, split controls, and the separate final comparison are
-in [the GEPA guide](experiments/gepa/README.md). Normal CI makes no model calls.
-Only measured, independently reviewed improvements should replace the canonical
-[repository-investigation skill](docs/skills/investigate.md). Claude Code and
-Codex load the same text as the `investigate` skill; `cargo xtask docs` (DOC009)
-keeps the skill's body equal to that seed.
-
-## Product feedback loop
-
-Start with [the driver](docs/DRIVER.md), [behavioral testing](docs/TESTING.md),
-[regression repair](docs/REGRESSIONS.md) and [readiness](docs/READINESS.md).
-Capture the full gate's JSON output and preserve its referenced logs:
-
-```sh
-mkdir -p target/verification
-cargo xtask check ci > target/verification/ci.json
-cargo xtask release template --report target/verification/ci.json
-```
-
-The product scope intentionally stays blocked until real product requirements,
-platform results and hosted enforcement are supplied. No paid model or deployment
-is part of a release-readiness check. CI exposes a final required status for the
-adopter to make mandatory in repository settings.
-
-## Task completion and project gaps
-
-Tasks can come from a prompt, plan or ticket. Optional work-item references are
-opaque: the harness never fetches or interprets Jira, Linear or GitHub state.
-`cargo xtask gaps` reads the known project engineering gaps; it does not generate
-findings or mirror a backlog. Agents investigate and record material shortcomings.
-
-Before stopping, review assigned acceptance, check failures, assumptions and
-missing coverage. Record discoveries or explicitly report none in the inspected
-scope. The default stop hook (scripts/agent-complete.sh) checks this reconciliation and
-current evidence when a record claims completion; it does not launch a broad
-audit or require new gaps. Default Claude Code and Codex hooks also guard golden
-baselines and policy files; see docs/COMPLETION.md "Default hooks and CI".
-
-```sh
-mkdir -p target/verification
-cargo xtask gaps --base origin/main
-cargo xtask check ci > target/verification/ci.json
-cargo xtask complete --task TASK-142 --base origin/main --report target/verification/ci.json
-```
-
-Create a task record and review any transition receipts first. Completion is
-scoped to assigned work; release gates check the selected project scope. Use
-handoff for partial/blocked work. Read [the workflow](docs/COMPLETION.md) for
-schemas, discovery guidance, hook setup and authority limits.
-
-## HTML task reviews
-
-Each standard task leaves [HTML artifacts](docs/ARTIFACTS.md) a human can review: five
-discovery pages before code, implementation notes during the work, and a buy-in
-doc and quiz before merge. Each page comes from one prompt adapted from Thariq
-Shihipar's [Know your unknowns](examples/thariq/index.html) examples, which set
-the quality bar. A dedicated subagent writes each page and another reviews it
-against its exemplar before it is committed. Each page is a single file carrying
-the shared stylesheet from `cargo xtask task-artifact style --task ID` inline.
-Completion reads commit order: discovery pages before the first code commit,
-notes during the work, buy-in and quiz last. A small task (at most 100 changed
-lines, no policy, dependency or ceremony path) needs no pages; the gate measures
-its branch. Claude Code and Codex load the author and reviewer briefs as skills,
-and `.claude/agents/` and `.codex/agents/` define the two roles.
-`cargo xtask task-artifact next --task ID` names the next page step and hands
-over the filled-in prompt for it, and `task-artifact verdict` logs each review
-in the task's `reviews.json`. The
-write-ticket skill drafts a ticket and its task record stub before work starts.
-The harness preserves bytes and provenance without prescribing presentation.
+Rust from `rust-toolchain.toml` with rustfmt and Clippy, on Linux or macOS.
+No project license is included; add yours before distributing.

@@ -83,4 +83,19 @@ impl Board {
         self.tasks.remove(&id).ok_or("task does not exist")?;
         Ok(())
     }
+    /// Removes every completed task and returns their ids in ascending order.
+    /// `next_id` is untouched, so removed ids are never reissued by this edit.
+    pub fn clear_done(&mut self) -> Result<Vec<u64>, &'static str> {
+        let ids: Vec<u64> = self
+            .tasks
+            .iter()
+            .filter(|(_, task)| task.done)
+            .map(|(id, _)| *id)
+            .collect();
+        if ids.is_empty() {
+            return Err("no completed tasks to clear");
+        }
+        self.tasks.retain(|_, task| !task.done);
+        Ok(ids)
+    }
 }
