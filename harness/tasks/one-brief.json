@@ -1,0 +1,42 @@
+{
+  "schema_version": 7,
+  "id": "one-brief",
+  "work_item": null,
+  "status": "partial",
+  "tier": "standard",
+  "requirements": [
+    "task-artifacts",
+    "completion"
+  ],
+  "related_gaps": [
+    {
+      "id": "service-acceptance",
+      "disposition": "unaffected",
+      "rationale": "Removing page machinery does not teach the workflow runner to grade a service."
+    },
+    {
+      "id": "artifact-gate-holes",
+      "disposition": "updated",
+      "rationale": "The closed gap named xtask/tests/ceremony.rs as its resolution record; that file is gone and its three tests now live in xtask/tests/artifacts.rs, so the resolution and the test names are re-pointed. The gap stays closed against task-artifacts."
+    }
+  ],
+  "gap_review": "Read the four open gaps; none concerns the page machinery this task removes. The closed gap artifact-gate-holes pointed at a test file this task deletes, so its resolution record is re-pointed.",
+  "discoveries": [],
+  "discovery_review": "Not started; discoveries are recorded as the work finds them.",
+  "documentation": {
+    "updated": [],
+    "rationale": "docs/ARTIFACTS.md, docs/EVALUATION.md, docs/COMPLETION.md, AGENTS.md and README.md change; listed when the work lands."
+  },
+  "prompt": {
+    "task": "remove the full tier, the reader rule, the review loop and the verdict log, leaving one brief as the only task page",
+    "task_noun": "the removal of the full tier and the review loop",
+    "area": "xtask's page code (xtask/src/router.rs, handover.rs, artifacts.rs, task_record.rs, main.rs, help.rs), its tests, the ceremony skills and agents, and docs/ARTIFACTS.md",
+    "problem": "an adopter inherits about a thousand lines of page-loop code, a reviewer agent and eleven exemplars for pages the evaluation found do not pay",
+    "reference": "The standard tier's brief path through xtask/src/router.rs and artifacts.rs"
+  },
+  "summary": "Cut the template's page machinery down to one brief: no full tier, no reader rule, no review loop, no verdict log.",
+  "remaining": [
+    "Commit the brief before the code, then the removal, docs and receipt",
+    "cargo xtask check ci, then complete against harness/pages-by-risk"
+  ]
+}
